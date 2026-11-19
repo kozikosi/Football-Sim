@@ -1,0 +1,87 @@
+SHELL-INTEGRITY PASS — Z.ai · 2026-11-19 · TASK 3 (v3.0 §4) · measure, do not fix
+Environment: node v24.22.3, linux x64, agent-browser (headless Chromium) for the DOM measurements.
+Every number below came from a command run this sitting; labels: VERIFIED / UNKNOWN.
+The measured package is the c10 package's cakepanz-4 (dist sha256 76de5658… — the release-candidate
+bytes, VERIFIED by sha256sum on the extracted file).
+
+ROW 1 — the C'1 suggestion ring (the defect the Owner calls "worse than w89's glowing button")
+  Method: opened the extracted dist/single.html at a 1180x900 viewport in a headless browser,
+  started a dev-build draft (Buffalo Bills, slot 1), then drove picks programmatically
+  (row expand -> "Draft at ..." chip -> "Confirm the pick") and measured the DOM after every pick:
+  document.querySelectorAll('.cp-row') and '.cp-row.cp-suggest'.
+
+  results (user-pick number: counter / rows / ringed / ring contiguous from top):
+    pick 1 (before any pick):  "Round 1 · Pick 1 overall 1 of 1024"   rows=60 ringed=3  contiguous
+    pick 2:  "Round 2 · Pick 32 overall 64"   rows=60 ringed=4   contiguous
+    pick 3:  "Round 3 · Pick 1 overall 65"    rows=60 ringed=8   contiguous
+    pick 5:  "Round 5 · Pick 1 overall 129"   rows=60 ringed=12  contiguous
+    pick 8:  "Round 9 · Pick 1 overall 257"   rows=60 ringed=16  contiguous
+    pick 10: "Round 11 · Pick 1 overall 321"  rows=60 ringed=16  contiguous
+    pick 12: "Round 13 · Pick 1 overall 385"  rows=60 ringed=31  contiguous
+    pick 15: "Round 16 · Pick 32 overall 512" rows=60 ringed=60  contiguous
+    pick 16: "Round 17 · Pick 1 overall 513"  rows=60 ringed=60  contiguous
+    pick 18: "Round 19 · Pick 1 overall 577"  rows=60 ringed=50  contiguous
+    pick 20: "Round 21 · Pick 1 overall 641"  rows=60 ringed=9   contiguous
+    pick 27: "Round 27 · Pick 1 overall 833"  rows=60 ringed=60  contiguous
+
+  Answer to the order's three readings: rows=60 at EVERY state (VERIFIED); ringed=3 at pick 1
+  (VERIFIED — exactly the intended top-3); ringed=60 at the pick-27 state (VERIFIED — the tie
+  extension walked the whole board). My mid-draft numbers differ from ERNIE's (his pick-13 = 46,
+  mine = 31): the draft is unseeded (Math.random()), so the tie pattern differs per run — which is
+  itself the ?seed= gap made visible.
+  Ring ORDER: the ringed rows are the top rows of the displayed order at every measurement —
+  contiguousFromTop=true at all 27 states (VERIFIED). ERNIE's finding confirmed.
+  MECHANISM (VERIFIED, this sitting): DraftBoard.svelte's suggestIds parses the DISPLAYED value —
+  Number(String(x[vm.sort]).replace(/[^0-9.\-]/g,'')) — and extends the ring while rows[i] shows the
+  SAME PARSED STRING as row 3. At the pick-27 state the sort is Wins, all 60 rows display "+0.0",
+  and all 60 carry the ring (measured: uniqueWinsValues = {"+0.0": 60}). The underlying raw values
+  are not on the VM, so the shell cannot tell real ties from rounding artifacts.
+  Root cause (INFERRED from the code, consistent with the Owner's C'1 note): rank is computed on
+  the rounded display string instead of the raw engine value.
+  One-line fix shape (NOT applied — product changes are the Architect's): rank on the raw value.
+  That needs the raw { wins, priority } on BoardRowVM — an engine-view export (or a re-pin); named
+  for the product track. The battery cannot catch it: L13 rebuilds its expectation with the same
+  rounded parse the component uses (REPORTED-from-ERNIE, consistent with the code I read).
+  w89 comparison for the same affordance (VERIFIED, this sitting, w89 from origin/gh-pages):
+  w89's board highlights EXACTLY 3 rows at pick 1 (class zpb-top3, one per-row "Draft" button,
+  a --glow CSS variable) — the "glowing button" the Owner prefers. Structural comparison table:
+  see deliverables/w89-vs-cakepanz.md.
+
+ROW 2 — the ?seed= seam
+  Command + output (VERIFIED):
+    sed -n '109p' src/App.svelte  →  "    seed = 1000 + Math.floor(Math.random() * 9000);"
+  (line 109 in the shipped package's src/App.svelte — exactly the line the order quotes).
+  Is there any URL parameter that could pin the seed? There is exactly ONE URL-parameter read in
+  the app: App.svelte:54  "const DEV = new URLSearchParams(location.search).has('dev');" — a dev
+  flag only. No ?seed, no other location.search use (grep -rn 'URLSearchParams|location.search'
+  over the package's src/ → that one line). ANSWER: NO — nothing pins the seed; every UI walk is
+  an unseeded sample (the initial value is 777 at line 65 and a restored autosave restores its own
+  seed at line 170, but a fresh draft is random).
+  Consequence (INFERRED): the highest-leverage shell item — it is the precondition for
+  deterministic battery runs and any paired what-if feature.
+
+ROW 3 — the aria-describedby gap
+  Command + output (VERIFIED):
+    grep -rn "aria-describedby" <package>/src/  →  0 hits (whole tree: App.svelte, shell.css,
+    BoardRow.svelte).
+  Count = 0. The D3 fix is half-done, as the order suspected: the tooltip span now carries
+  aria-hidden="true" (VERIFIED in the shipped BoardRow.svelte line 33), so assistive tech reads the
+  row once — but nothing programmatically associates the row with its own detail panel
+  (BoardRow.svelte:24 carries aria-expanded + aria-controls to the cp-fits container, which is
+  correct for the disclosure; the gap is the tooltip/row association).
+
+ROW 4 — the offline story (reported, per the order: greps, not a boot test)
+  On the extracted dist/single.html (VERIFIED greps):
+    (a) external CDNs: grep '<script[^>]*src="http' → none; grep '<link[^>]*href="http' → none.
+    (b) the only script tag is '<script type="module">' — inline, no src. No <link> tags at all
+        (styles are inlined). The only URL-ish attribute in the file is href="?dev=1" (relative).
+    (c) '/assets/' absolute paths: grep count = 0. The dist references no absolute asset paths.
+  Incidental observation (not the formal answer): both the cakepanz dist and the w89 page DID boot
+  from file:// in this sandbox's headless browser during ROW 1's measurement — consistent with (a)-(c),
+  offered as extra evidence, not as the ordered receipt.
+
+PRODUCT-TRACK ITEMS (recorded, NOT applied — the fence; see the report §10)
+  - C'1 visual match to w89 (Owner: "we need to get as close to w89 as possible"): needs the raw
+    { wins, priority } on BoardRowVM (an engine-view export or a re-pin) — the Architect's.
+  - The four stats tabs, w89 titles in ALL CAPS (Owner ruling, exact strings): SEASON STATS /
+    PLAYOFF STATS / YOUR PLAYERS / LEAGUE LEADERS — for the product track to apply at cutover.
