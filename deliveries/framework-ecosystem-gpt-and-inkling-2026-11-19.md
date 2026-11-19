@@ -451,3 +451,41 @@ he should have scored the port boundary, the verified shell, and the agent tooli
 > My current vote: Svelte 5 + Vite, approximately 60/40 over Vue 3 + Vite. Vue has a stronger toolbox; Svelte has a more attractive foundation for the particular product you're building.
 
 — Appendix A ends.
+
+---
+
+## Addendum — the outside-tools audit (Inkling, 2026-11-19T02:20Z)
+
+The Owner asked (2026-11-19, verbatim question in-session): "could we have more dashboards + screens + heavy table for the awards and
+your season stats and all team's stats and playoff stats? i do think we could upgrade from w89 here" — and in the framework context: "are
+there tools we could use to improve the site?" Constraints honoured: don't suggest tools for their own sake; drag-and-drop is out (the
+w89 board stays); every tool must run offline, bundle into one self-contained file, cost ~zero at runtime, and beat the thing it replaces.
+
+**Used in the product today: zero runtime dependencies for the render layer beyond Svelte/Vite + Playwright (dev).** Both scaffolds'
+own standards already name three of these as intended-but-not-yet-installed — so using them is convergence, not novelty.
+
+Candidates that pass the bar (ranked):
+1. **@tanstack/svelte-table** (MIT, ~15 KB min, headless/unstyled) — the ONE real candidate for the awards/stats/table upgrade: sort/filter/
+   column-visibility/pagination/facets + row models for the 44-key leaderboards, the ALL TEAMS table, YOUR STATS, PLAYOFF STATS. Board
+   stays bespoke per the Owner's ruling. Specified-but-uninstalled in the Svelte scaffold; wiring = one sitting item. Honestly weighs as
+   "saves ~150 lines of sort/filter logic and gains column visibility" vs hand-rolled; recommend it for the heavy tables, keep BoardRow bespoke.
+2. **@lucide/svelte** — tree-shaken, MIT; consistent a11y-labelled icons for award cards, trophy/stat iconography, nav polish. Specified-
+   but-uninstalled in the Svelte scaffold today.
+3. **axes / QA-only, zero product cost:** axe-core injected via Playwright in the batteries (hardens the a11y laws beyond the existing probe);
+   Playwright screenshot assertions against the seeded engine (deterministic per seed) — the visual-regression harness with NO new deps.
+4. **lz-string** — only if browser saves ever need shrinking (envelope compression for localStorage/autosave); the envelope spec governs;
+   optional, never blocking; likely unnecessary with replay-based hydration.
+
+Candidates that FAIL the bar (and would be "tools for the sake of using tools"): UI kits (Bits/shadcn/Skeleton/Flowbite — the custom identity
+wins, GPT agrees); chart libraries (Chart.js/ECharts/D3 — no per-week probability series exists in the VM today; hand-rolled inline SVG
+covers any future sparklines once the Architect exposes the data); PWA service worker (cache-invalidation complexity, offline save is the
+sync story); virtual scrolling for ~1.7k tiny rows (render cost is fine); Zod (the envelope already validates at load); Storybook; drag-
+copy (explicitly ruled out); analytics/telemetry (offline hard requirement, never); Pinia/VueUse/Vue Router in the Svelte tree (wraps a
+working engine store; solves an SSR-routing problem the hash router already solves; adds the double-store seam — this is also the honest
+Vue-side counterpoint: Pinia timeline debugging is genuinely nice and would only matter if the port broke and the shell became the truth).
+
+**Vue-side tool for the record, honestly priced:** `vite-plugin-vue-devtools` + Pinia timeline inspection is Vue's one real tooling pull —
+real, and irrelevant while the shell is a thin snapshot-render layer behind the port.
+
+Verdict: adopt **1** (tables) and optionally **2–4**; reject the rest; w89's board and identity stay exactly as shipped. Framework verdict
+unchanged: Svelte 5 stands (Owner's call to make).
