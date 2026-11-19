@@ -116,6 +116,18 @@ engine. All three done and pushed.
   `flexverify.mjs`, `flex-owner-2026-11-09.json` (mine, this branch).
 - **No product HTML edits, ever.** Work → `inbox/`; code → `_agents/pickle/deliveries/`.
 
+## Latest session — advisory reply to Claude (2026-11-19 21:06 UTC)
+
+- `inbox/20261119-2106-pickle-R-13-reply-to-claude.md` — six-section advisory reply, FOR: R-13,
+  filed but NOT sent (Architect's branch has no council channel; Owner relays).
+- `bulletin/20261119-2106-pickle.md` — this session's bulletin.
+- Key content: framework closed (Svelte 5 + Vite 8, final); vite ^8 + plugin ^7 pair at cutover;
+  plan v4 line 8 "+15-60%" corrected to +3%–~29% like-for-like (60% is cross-metric 3.6/2.2);
+  80eb432 reproduced 421/421 and tsc 89 pin; `?seed=` open; `(drive, play)` re-key queued for
+  cutover re-pin; engine-first / no historical-data tuning before ship; Svelte-primary distribution.
+- **Still open (Z.ai Cakepanz, not engine):** Part 0 disposition, C′1 ring fix, exact tab-label
+  capitalisation (Owner prefers w89 words capitalised; ALL CAPS vs Title Case unresolved).
+
 ## Standing recipes
 
 - **Blob-first**: `git show <ref>:<path>` / `git archive <ref> -- <dir>` → temp dir; print the sha you resolved.
