@@ -23,9 +23,16 @@
   - `inbox/20261119-1345-vl-review-ernie-cakepanz10-review.md` (ernie's cakepanz-10 review) — VERDICT improved; ernie independently rebuilt the tree + re-ran suites (test:engine 394/394, battery:node 33/33, shell 48/0, slice 29/0/10/3, board 6/6, all falsifiers die); confirmed F1 (VERIFY.txt open-vs-closed contradiction), F2 (two MANIFESTs name different dists; SHELL-STATUS false byte-identity claim), F3 (cite-check L7b counter 0), F4 (START header names wrong sitting), F5 (C′1 ring degenerates to 60 rows).
 - Also read (no separate review filed yet): orcaink's cakepanz-10 delivery review + item-5 receipts-exist (`inbox/20261119-0907-orcaink-cakepanz-10-delivery-review.md`, `20261119-1000-orcaink-item5-receipts-exist.md`) on council/orcaink @ `2eefc4cf5` — F1 delta-trap, F2 stale doc lines, §5 innovation I–XII; item-5 RUNS confirmed pushed and byte-verified (preflight shas `05a751ed…`/`c3c00b46…` MATCH the recipe; N=20,000 artifacts `d7de8a1d…`/`45ee0f4a…` match receipts).
 
+## In progress (not finished this session) — Architect/engine-and-seats re-root audit
+- Council prompt (inkling's) accepted read-only: verify re-root of architect/engine-and-seats (2026-11-19) and consequences; shape G receipt format `inbox/<UTC>-<seat>-arch-reroot-audit.md`.
+- Step A DONE: `git fetch origin 'preserve/architect-engine-and-seats-pre-reroot-2026-11-19'` → FETCH_EXIT 0 (ref exists locally).
+- Steps B–E PENDING: tree-level diff `2dff30b5` vs `560b8364f` (expect exactly 3 files: claude/NOW.md, claude/zai-item6-recipe-2026-11-19.md, colors/tools/lambda-axis.ts); citation-rot audit across council/muse/inkling/base/zai + in-repo docs; gh api event/refs forensics; recovery drill in a scratch clone.
+- Open: why/how of re-root (deliberate/habit/misfire — UNKNOWN, only Architect can say); scope of citation rot (un enumerated); recovery untested; preserve ref is only remote anchor of old line.
+
 ## Next session
 - `node tools/council.mjs next` (live queue on origin/council/muse).
 - Pick up top P-item from the live queue.
+- Continue re-root audit steps B–E if no queue item claims VL.
 
 ## Open questions
 - Part 1 drafts not pushed (MUSE/queue) — carried over.
@@ -35,6 +42,7 @@
 - Mid-season blank board defect blocks mid-season shipping.
 - The Owner's Part-0 accept/strike word (Z.ai w89 sitting) gates the re-zip, the four tab labels, and the stats sitting.
 - F1–F5 doc/receipt fixes (cite-check L7b counter, two MANIFEST dist lines, SHELL-STATUS byte-identity, VERIFY.txt §23.7, START line 3) owned by Z.ai/MUSE before cutover citation.
+- Re-root recovery: Owner decides policy; VL supplies receipts only.
 
 ## Live files / receipts
 - `inbox/20261119-0400-vl-cakepanz-9-sitting-notes.md` — pushed (commit e1985ace).
@@ -48,4 +56,4 @@
 - `deliveries/zai-pass-through/67-cakepanz-9-2026-11-19/` — pushed (commit faa94cef).
 - `deliveries/zai-pass-through/67-cakepanz-10-2026-11-19/` — pushed (commits 3316828db / 4a1046c9e / aa6298b19).
 - All inbox filings committed and pushed on origin/council/vl.
-- VL's worktree `council/vl` is clean and pushed (OK per preserve.mjs). Branch on origin: `0eb76005b` → `8f0b1c0aa` (after reviews commit, pending push).
+- VL's worktree `council/vl` is clean and pushed (OK per preserve.mjs). Branch on origin: `280458cdd`.
