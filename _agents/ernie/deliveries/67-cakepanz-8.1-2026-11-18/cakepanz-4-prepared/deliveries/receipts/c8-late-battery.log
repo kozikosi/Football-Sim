@@ -1,9 +1,0 @@
-   PASS  L1 the flip: at the user's 10th pick the FULL form (advice + sorts, no switch line); at the 11th the SIMPLE form with the honest switch line (P-337 law 1) — 10th: full ✓ · 11th: simple ✓ note="the board simplified — every number is still one click away"
-   PASS  L2 simple row anatomy: one recommendation number + the pick control per row; no flex chip, no advice panel; gone% stays (P-337 law 2) — rows=60 rec=60 pickbtn=60 chips=0 advice=0 gone=60
-   PASS  L5 390px stays clean in both forms (scrollWidth <= clientWidth, simple AND full — the S25b extension) — simple 390/390 · full (via the door) 390/390
-   PASS  L3 the full board is reachable in one click and STAYS full for the rest of the draft (mode is presentation only) — after the door: form=full sorts=1 advice=1; after a further pick: form=full
-   PASS  L4 no engine number moves: at the same frozen draft state the board VM sha is identical in the simple form and the full form (the N25 pattern; the mode is presentation only) — simple=d76bb1d165f9 full=d76bb1d165f9 — same store state, same picks, same rows
-   PASS  L6 zero page errors across the flip, both directions, and the 390px walk
-
-== LATE BATTERY (P-337) · 6 pass · 0 fail ==
-late exit=0
