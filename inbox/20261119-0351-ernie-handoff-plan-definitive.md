@@ -87,7 +87,8 @@ Z.ai owns the **UI tree entirely** against a **view-model contract Claude publis
 
 1. **Evaluate z.ai's latest package** — verify the delivered bytes (pins, flex census, suites, batteries, gates, numerals under the correct CP_PIN), the Cakepanz-9 v4 parts (A/B/B-bis/C), the path-fence check (plant-a-violation), and the receipts. Label every claim VERIFIED / REPORTED / NOT RUN.
 2. **Reply to z.ai with the explained handoff of work in detail** — using this document: restate the tiers, the path fence (five paths), the protocol (spec-first, apply-asserted, receipts, seats verify, fence wins ties, rollback, no direct pushes), the house law (no push / one zip / no gaming the gate / P-144 / one-sentence), what he takes now (Tier 1: per-commit receipts + items 5/6 runs), what's under review (Tier 2), what's blocked (Tier 3 until R-13), what never moves (Tier 4), and the interface approach as the target.
-3. **File the review + the reply to z.ai** on `council/ernie`, commit, push.
+3. **Relay the two asks to z.ai** — `inbox/20261119-0403-ernie-ask-zai-tools-and-framework-verdict.md`: (a) innovate on Vue 3 / Svelte 5 ecosystem tools to improve the site (use-case framed, with the full context + constraints), and (b) a final Svelte-vs-Vue verdict (vote + confidence + evidence + what would change his mind).
+4. **File the review + the reply to z.ai** on `council/ernie`, commit, push.
 
 ## 8b · What the council checks when Z.ai lands (the acceptance checklist)
 
