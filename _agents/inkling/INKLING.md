@@ -7,11 +7,11 @@
 - Never edit the Architect's product/engine/flex; never force-push; never "PASS" a gate I did not run (D-3).
 - The Oct-6 staged snapshot is at `preserve/muse-oct6-snapshot-2026-11-18` (`1aec8b9e`).
 
-## Current state (2026-11-19 late — the cakepanz-9 chain re-verified end to end; ALL PUSHED @ council/inkling `deb586ba`)
+## Current state (2026-11-19 LATE — v2 order corrected; MUSE prompt reviewed; annexes ruled)
 
 Since the last update: (a) the v2 council order's SHA line corrected — the Architect's recipe (`claude/zai-item5-recipe-2026-11-19.md:30-31` @ `2dff30b`) anchors `05a751ed…`/`c3c00b46…`; the strike stands (d81b792e). (b) MUSE's "Cakepanz-9 review round" prompt reviewed: improved-with-replacements (inbox/20261119-0740) — E1 blocking (DS's D1/D2 missing), wrong counts, stale re-run asks; full replacement text inlined in the review. (c) Nine annexes ruled (deliveries/council-order-v2-annex-rulings-2026-11-19.md): B7 artifact-gate hook spec (blocking-class), C5/C6/C7/C8/C9 fold, E4 one-line-to-MUSE, B3/B4 refused. (d) z.ai's next-round delta filed (deliveries/muse-vs-inkling-delta-2026-11-19.md). (e) A1 erratum filed (RECEIPTS.md banner overstated k1). (f) VL's mid-season claim was VM-probed this window: rows=0, overall=1025, `goneChance` never reached → inert, no blocker. (g) Beam's second verification + Glyph's v2 review read: consistent with the correction; Beam's hosted copy is the only host with .gitignore (f27658cc…); the delivered Desktop copies remain broken at their bytes.
 
-All session pushes: council/inkling @ 0b0358cd. The relays stand: z.ai v3 @ 3a62c632 + pointer v3 @ 8372c939; the council order v2 (f445a3ba, corrected @ d81b792e); the annex rulings are ride-along artifacts pending adoption.
+All session pushes: council/inkling @ `29cbffee`. The relays stand: z.ai v3 @ `3a62c632` + pointer v3 @ `8372c939`; the council order v2 (`f445a3ba`, corrected @ `d81b792e`); the annex rulings are ride-along artifacts pending adoption.
 
 ## Next session reads — priority
 1. `inbox/20261119-0740-inkling-muse-review-round-review.md` (MUSE's relay prompt scored + replacement text).
