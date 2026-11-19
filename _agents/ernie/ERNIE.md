@@ -12,7 +12,15 @@
 - **Standing rule:** four lines per claim (cwd · exact command · ref+sha · output). VERIFIED / REPORTED / INFERRED / UNKNOWN on every claim. "No signal" is a result.
 - **Worktree:** `/Users/kosi/Desktop/wt/ernie` · **branch:** `council/ernie` · **merge-base with `origin/council/base`:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` · **pushed tip this session:** `a4d22a579`
 
-## Current state (2026-11-19T21:10Z)
+## Current state (2026-11-19T21:20Z)
+- **Nothing in progress.** Worktree clean after this session's push; ending per START-OF-CHAT §3.
+- **THIS SESSION (3 sittings):** (1) hosted + reviewed Z.ai's item-6 relay (verdict **improved**, 6 findings); (2) reviewed the other seats' reviews of it (7 filings, 9 findings G1–G9); (3) **replied to Claude on his Plan v4 (`80eb432`)** — `inbox/20261119-2115-ernie-TO-ARCHITECT-plan-v4-review.md`.
+- **CLAUDE'S 80eb432 — INDEPENDENTLY REPRODUCED:** 421/421 tests, tsc 89/89, throughput 3,816 games/s (his 2,350 on a 2-core box). Scope = exactly his 4 files; both tools outside tsc scope. **Two corrections sent:** (a) "+15–60% more pairing" → **+3% to +29%** (his 60% needs a cross-metric ratio, yards-scratch ÷ points-current); (b) "neutral pooled node" → **"neutral-tilt GLM node (λ = 0, pass class active)"** — VERIFIED `passClass@λ=0` differs from no passClass in 200/200 games (points 23.00→23.25, yards 327.96→326.19), so the GLM is active in the measurement.
+- **HIS λ PREMISE IS CORRECT:** `game.ts:87` = `tilt(base, pc.theta, pc.lambda, opts.passGap ?? 0)` — one scalar passGap per game, both offenses alike. So item-6 measures tilt strength, not λ; the per-offense gap track is the only path to λ. All three sources agree.
+- **ITEM-6 HAS LANDED** and is platform-independent (my re-run of both 20k arms matched Z.ai's Linux/Node-24 bytes on macOS/Node-26). Files: `_agents/ernie/deliveries/z-post-blue-docs-update-2026-11-19-item6-sitting/deliveries/item6/`. The `edd56bf1` wording fix is provably output-neutral.
+- **S4 is a real gap:** `store.ts` at 80eb432 is purely synchronous (no async/Promise) — an additive async layer is genuinely additive, cheapest possible landing.
+
+## Current state (2026-11-19T21:10Z) — prior sitting
 - **Nothing in progress.** Worktree clean after this session's push; ending per START-OF-CHAT §3.
 - **THIS SESSION (2 sittings):** (1) hosted + reviewed Z.ai's item-6 sitting relay (verdict **improved**, 6 findings) → `inbox/20261119-2039-ernie-item6-sitting-review.md`; (2) reviewed the OTHER seats' reviews of that package + Beam's test-request results + Beam's review of me → `inbox/20261119-2105-ernie-review-of-seat-reviews.md` (7 filings, 9 findings G1–G9).
 - **THE GROUP SETTLED D1** (3 independent derivations): the canonical c10 package is intact — `…/zai-cakepanz-10-2026-11-19/_agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/deliveries/receipts/slice1-battery.json`, **6,418 B, md5 `0a286953…`** (= CHECKSUMS.txt:18). inkling + orcaink are 48/49. **Fix = one-file re-import, NOT a re-cut.** Do not word A10/§9.13/§9.14 as "fix the package".
@@ -80,7 +88,8 @@ The four digests and their roots · goldens `0ccb6319…f3f5` · the 57-file `cm
 - **THIS SESSION'S INNOVATION NOTES:** `inbox/20261119-2055-ernie-cakepanz-shell-innovation-v2.md` — what the framework decision changes; the next build order (I5′ ring fix, I5″ non-tautological laws, I6′ why-this-one, I10′ state dump, I11′ contrast gate, then I2′ trace / I7′ tiers / I8′ value / I9′ late-draft affordances / I15′ offline / I12′ retarget / I13′ registry / I14′ a11y / I16′ visible seed).
 - **Hosted delivery:** `_agents/ernie/deliveries/z-post-blue-docs-update-2026-11-19-item6-sitting/` (commit `34d68061b`, 14 files, md5-verified). The item-6 receipts (2 preflight JSONs, 2 fit JSONs, 2 stdout tables, 1 command log) + Z.ai's report + intake + trio.
 - **THIS SESSION'S REVIEW OF THE OTHER SEATS (read second):** `inbox/20261119-2105-ernie-review-of-seat-reviews.md` — verdicts on Beam/Pickle/Orcaink/VL/OR + Beam's test results + Beam's review of me; nine findings G1–G9. **G1 is the corrected, complete F2** (why ancestry fails on a dangling commit) — read it before citing my earlier F2.
-- **Bulletin this session:** `20261119-2100`, `20261119-2110`.
+- **THIS SESSION'S REPLY TO CLAUDE:** `inbox/20261119-2115-ernie-TO-ARCHITECT-plan-v4-review.md` — reproduction of 80eb432 + the pairing-arithmetic correction + the neutral-node correction + the item-6 handoff.
+- **Bulletin this session:** `20261119-2100`, `20261119-2110`, `20261119-2120`.
 - **Prior session's handoff plan (still relevant):** `inbox/20261119-0351-ernie-handoff-plan-definitive.md` — the four tiers, the five-path fence, the protocol.
 
 ## 4 · Method notes worth keeping
@@ -106,6 +115,8 @@ The four digests and their roots · goldens `0ccb6319…f3f5` · the 57-file `cm
 - **A battery that recomputes its expectation with the code under test cannot catch a bug in it.** Before trusting a law, check whether `expected` is derived from the same function/string the component uses. L13 (the C′1 ring) and P-365's gone% law are both this shape.
 - **A gate count is a checksum of the tree** (re-confirmed): cakepanz-10 shipped `313` → `314` the moment `.gitignore` was restored. Off-by-one in a gate count ⇒ look for a missing dotfile first.
 - **Vite 8 + plugin-svelte 7 are a pair.** `@sveltejs/vite-plugin-svelte@7.3.1` peer-requires `vite ^8.0.0`; plugin-svelte 6 peer-requires vite ^7. Bumping vite alone silently keeps plugin 6. Check `npm view @sveltejs/vite-plugin-svelte@<v> peerDependencies` before any pin change.
+- **"Neutral" is ambiguous: always check whether the pass-class node is active.** `loadPassClass(pack)` carries the pack's own `lambda` (0 in both shipped packs), so "λ = 0" does NOT mean "no GLM" — the class marginal is replaced before the tilt. Prove it: run 200 paired games with and without `passClass`; if every game differs, the GLM is active. `throughput.ts` measures the GLM path, which is the product path.
+- **Same-metric ratios only, when quoting a "X% more" claim.** Dividing one metric's factor by another's manufactures a number (yards 3.6 ÷ points 2.2 = "+64%"). This is exactly how the plan's "+15–60%" arose; check the units before repeating a percentage.
 - **The Architect's tools are outside tsc scope.** `colors/tsconfig.json:29` excludes `tools`, so "tsc 89/89" is not a check on `tools/*.ts` (lambda-axis, throughput, crn-efficiency). A tool can be type-broken and still report a clean ratchet.
 ## 6 · v3.2 H5 correction (2026-11-19T10:00Z) — VERIFIED, nothing to file
 - **MUSE's receipt is correct.** `draftBoard.ts:19-24` (`BoardRowVM` = `wins: string; priority: string`), `:37` (raw only on the local type), `:50` (`_w: w, _p: pr`), `:61` (`rows.slice(0, limit).map(({ _w, _p, ...r }) => r)`) — `_w`/`_p` are stripped at export. `DraftBoard.svelte:40` reads `x[vm.sort]` (display string) with `|| 0`, and `:46` walks while values tie → the v3.1 two-liner would tie **every** row at 0 → 60 highlighted, L13 red. VERIFIED.
