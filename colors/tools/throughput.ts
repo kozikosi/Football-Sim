@@ -1,4 +1,4 @@
-// Throughput of the play-level engine on the neutral pooled node (no ratings, no roster work): games/s, snaps/s, events/s, and the seconds one 272-game season costs.
+// Throughput of the play-level engine on the lambda-0 GLM node (pass class active with the pack's lambda 0, so no tilt; no ratings, no roster work): games/s, snaps/s, events/s, and the seconds one 272-game season costs.
 // MEASUREMENT ONLY. The numbers depend on the machine and Node version, so the tool prints them with the Node version and never gates anything (a report, not a pin).
 // Usage: node --experimental-strip-types tools/throughput.ts [games=6000] [pools=nfl-pools-fit2023-2025] [passclass=nfl-passclass-fit2023-2025]
 // Game keys are 'thru:<g>' (the 300 warm-up games use 'warm:<g>'), so the simulated games are fixed by N and the packs; only the wall clock varies between runs.
