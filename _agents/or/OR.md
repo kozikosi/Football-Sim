@@ -7,13 +7,13 @@
 
 ## Current work
 - **Claimed / in progress:** none
-- **Done this session:** verified four cakepanz-9 reviews (Beam, VL, Glyph, Pickle) at delivered bytes → consolidated review inbox/20261119---cakepanz-9-review.md (VERDICT: improved); executed fix round A1 (.gitignore restore + gate PASS), A3 (START-OF-CHAT hash correction 8ef3b18d→15f088c7×14), A4 (intake rows 5/7/23 → open k1), A5 (dist sha 4ce69205→670d4c08×7), A7 (README front-door `npm ci is MANDATORY` ×2)
-- **Blocked / waiting on:** A2 (k1 composite ~40 min), A6 (BoardFooter dead .cp-sorttoggle), A8–A9/B1–B4 deferred to next sitting with node_modules/Playwright
+- **Done this session:** thorough cakepanz-9 review (inbox/20261119-0925-or-cakepanz-9-review-71.md, VERDICT: improved); innovation/brainstorm (inbox/20261119-0925-or-cakepanz-brainstorm-71.md); delivered package pushed to council/or (commit 72dd53fe5); consolidated review and innovation both pushed; preserve.mjs check clean.
+- **Blocked / waiting on:** innovation P0 (seed determinism, PWA) pending Owner directive; next session will evaluate P2–P3 items based on Owner feedback.
 
 ## What the next session needs
-- **Read first:** inbox/20261119---cakepanz-9-review.md (consolidated review), 67-cakepanz-9-2026-11-19/ledger/intake-zai-cakepanz-9-2026-11-19.md (open k1 items)
-- **Open questions:** whether A2 window opens next session; whether A6 edit wanted in BoardFooter
-- **Do not redo:** seven verification jobs all confirmed (H1–H6, VL mid-season blank board, Beam open ask) — receipts in consolidated review
+- **Read first:** inbox/20261119-0925-or-cakepanz-9-review-71.md (thorough review), inbox/20261119-0925-or-cakepanz-brainstorm-71.md (innovation list, P0–P3 ranked), bulletin/20261119-0925-or.md (this session's end-of-chat summary)
+- **Open questions:** whether Owner green-lights innovation P0 (?seed=, PWA) or directs different priority; whether A6 (dead .cp-sorttoggle) is worth fixing in next sitting.
+- **Do not redo:** cakepanz-9 review + brainstorm (pushed this session); four-review verification (pushed prior session, receipts intact).
 
 ## Files in this lane
 inbox/20261119---cakepanz-9-review.md
