@@ -12,12 +12,12 @@
 - **Standing rule:** four lines per claim (cwd · exact command · ref+sha · output). VERIFIED / REPORTED / INFERRED / UNKNOWN on every claim. "No signal" is a result.
 - **Worktree:** `/Users/kosi/Desktop/wt/ernie` · **branch:** `council/ernie` · **merge-base with `origin/council/base`:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 
-## Current state (2026-11-19T04:36Z)
-- **Nothing in progress.** Worktree clean; branch pushed; ending the session per START-OF-CHAT §3.
-- **THIS SESSION (cakepanz-9 review):** hosted cakepanz-9 at `_agents/ernie/deliveries/67-cakepanz-9-2026-11-19/` (commit `4d59d574`, 1070 files) · reviewed it thoroughly (verdict: **improved**) · all 12+ verification categories re-run at delivered bytes match claims · three findings: F1 `.gitignore` missing (gate-manifest fails at delivered bytes), F2 START-OF-CHAT sha in prose wrong (`8ef3b18d…` vs actual `15f088c7…`), F3 README overclaims composite completion (VERIFY §23.7 is honest) · filed innovation notes (7 ideas for the cakepanz shell) · review at `inbox/20261119-0436-ernie-cakepanz-9-review.md` · bulletin at `bulletin/20261119-0436-ernie.md`.
-- **CAKEPANZ-9 STATUS:** VERIFIED at delivered bytes — pins byte-identical (67/67 shipped, 68/68 prepared), engine 394/406, node 33/33, shell 48/0, board 6/6, slice 29/0/10/3, numerals gate CLEAN ×4 (F6-prepared CLOSED), falsifiers all DIED, dist `670d4c08…52d1` reproducible, contrast unchanged, snake passes, Part B/C fixes present. Three doc/packaging fixes needed (all one-line).
-- **MY 8.1 FINDINGS STATUS:** F6-prepared CLOSED (numerals gate CLEAN ×4) · F3 (theme tokens) CLOSED (C'4 gold tokens) · F7 (README contradiction) PARTIALLY ADDRESSED (VERIFY honest, README still overclaims — cakepanz-9 F3).
-- **KEY STATE:** Architect head `06d89724` (P-317; tests 421/421 REPORTED) · Cakepanz-9 v4 (`c7c83853`) is the sendable sitting order · the path fence (five paths) is the immediate build · Tier 1 (per-commit receipts + items 5/6 runs) is the immediate handoff · framework leans Svelte (7-8 seats), the Owner rules at cutover · P-144 rejected (resubmission, not redesign).
+## Current state (2026-11-19T09:45Z)
+- **Nothing in progress.** Worktree clean after this session's pushes; ending per START-OF-CHAT §3.
+- **THIS SESSION (cakepanz-10 = z.ai's cakepanz-9 close-out sitting):** hosted the delivery for public reading at `_agents/ernie/deliveries/67-cakepanz-10-2026-11-19/` (commit `a69a9f4c9`, 52 files, **49/49 md5 OK**) · reviewed it thoroughly (verdict **improved**) · filed `inbox/20261119-0930-ernie-cakepanz-10-review.md` (9 findings) + `inbox/20261119-0940-ernie-cakepanz-shell-innovation.md` (15 ideas).
+- **CAKEPANZ-10 STATUS — VERIFIED at the patched bytes (my machine, Node v26.13.0):** engine **394/394** · node **33/33** · shell **48/0** · slice **29/0/10/3** · board **6/6** · receipt falsifiers **F1–F12 ALL DIED** · shell **FA/FB/FC DIED** · board **F15/17/18/19/20/21/22 DIED** · **dist rebuilds to `76de5658…` (527,162 B) byte-exact** · gate-manifest **PASS 314** (and I proved 313→314 *is* the `.gitignore`) · gate-numerals CLEAN · **item-5 reproduces bit-for-bit on a Mac** (preflight `c3c00b46…`/`05a751ed…`; N=20,000 `d7de8a1d…`/`45ee0f4a…`).
+- **MY CAKEPANZ-10 FINDINGS (all open):** **F1** VERIFY §23.7 (`:1117`) still calls the shipped k1 the ONE OPEN ITEM while `:951` and the report call it CLOSED · **F2** the two MANIFESTs name two dists (shipped `76de5658`, prepared `670d4c08`) and only the patched one is in the package; prepared `dist/` is absent, so its 319/PASS needs a rebuild if its `src/` is patched · **F3** cite-check log prints `COUNT L7b all chips hit chip: 0` against its own 12/12 evidence · **F4** START-OF-CHAT-ZAI `:3` names the 8.1 sitting while §2 is the close-out rewrite · **F5** the C′1 ring highlights **60 of 60 rows at pick 27** (rank on the raw value, not the printed one) · **F6** D1/D2 are protected only by source-string asserts + one-off probes — no behavioural standing law · **F7** FB dies by crash, not by law failure · **F8** `aria-describedby` absent from `src/` (D3 half-finished) · **F9** the package is a diff/hosting package, not a buildable tree.
+- **KEY STATE:** Architect head `560b8364` (moved past `2dff30b5`, which is the item-5 recipe pin; `colors/tools/glm-bar.ts` is the recipe's tool) · cakepanz-9 chain CLOSED · Part 0 patched at the working bytes, **rides on the Owner's accept/strike word** · framework leans Svelte (Z.ai 85/15; the measurement reproduced) · P-144 rejected.
 - **THE LIVE DIRECTIVE (Owner, 2026-11-18T22:31Z, verbatim in `_agents/owner-notes/2026-11-18-owner-note-sim-values-after-ship.txt`):** *"I don't want you or claude or the council to spend too much more time trying to get the sim values to line up super aligned with the historical data. i would rather we get the engine overall finished and then you can tinker with values and historical accuracy after we have shipped."* → **per-metric historical alignment is PARKED until after ship.** Engine completion and product surface continue. Read this before proposing any calibration work.
 
 ## 1 · What not to redo (receipts exist)
@@ -45,20 +45,27 @@ The four digests and their roots · goldens `0ccb6319…f3f5` · the 57-file `cm
 - **Correction I filed and Inkling's totals-bar run corroborates:** the hier-followups report's "**−0.28 points/game**" contradicts its own table — 23.40 → 23.25 = **−0.15** (+3.7% → +3.0% of 22.56 = 0.16). The prose is the stale artefact.
 
 ## 2 · What is genuinely open
-1. **cakepanz-9 three findings** — F1 (`.gitignore` missing → gate-manifest fails at delivered bytes), F2 (START-OF-CHAT sha in prose wrong), F3 (README overclaims composite completion). All one-line doc/packaging fixes. z.ai's next sitting should address them.
-2. **R-13 / Block C** — gated on cakepanz-9 acceptance; my proposal: the **late-draft board** is the sealed slice (9 laws + F13–F16 → law-parity decides R-13, not bytes). The uniform-board round (cakepanz-9) is the prerequisite.
-3. **The four sim-layer survivors** — PARKED by the 22:31Z directive.
-4. **PROJECT-KNOWLEDGE.md antiquation** — still deferred; coordinate with Inkling (co-custodian).
-5. **P-333** — VL's `DT→ILB = 6` is the only surviving lever; PARKED for calibration but the harness is live.
-6. **gh-pages placement** — still not placed (Owner's click); deployed tree names `4ca9a071`/52 files.
+1. **cakepanz-10 F1–F4** — four doc/package integrity fixes, one line each: VERIFY §23.7 still calls the shipped k1 the ONE OPEN ITEM (while `:951` + the report call it CLOSED); the two MANIFESTs name two dists (shipped `76de5658`, prepared `670d4c08`) and only the patched one is in the package (prepared `dist/` absent); the cite-check log prints `COUNT L7b all chips hit chip: 0` against its own 12/12; START-OF-CHAT-ZAI `:3` names the 8.1 sitting while §2 is the close-out rewrite. z.ai's next sitting should take them before building on these bytes.
+2. **cakepanz-10 F6 (mine, the important one)** — D1/D2 are protected only by source-string asserts + one-off probes; promote the L7b/S29b probes into `batteries/`. Pairs with the defect→law registry (I13).
+3. **cakepanz-10 F5** — the C′1 suggestion ring highlights 60/60 rows at pick 27; rank on the raw VM value (one line). I5 (bug fix) vs I7 (tiers) is the Owner's product call.
+4. **R-13 / Block C** — gated on cakepanz-9 acceptance; my proposal: the **late-draft board** is the sealed slice (9 laws + F13–F16 → law-parity decides R-13, not bytes).
+5. **The four sim-layer survivors** — PARKED by the 22:31Z directive.
+6. **PROJECT-KNOWLEDGE.md antiquation** — still deferred; coordinate with Inkling (co-custodian).
+7. **P-333** — VL's `DT→ILB = 6` is the only surviving lever; PARKED for calibration but the harness is live.
+8. **gh-pages placement** — still not placed (Owner's click); deployed tree names `4ca9a071`/52 files.
+9. **The shell's replay property (I1–I4)** — seed + frozen pool + pick log *is* the whole draft (`saves.ts:27-31`); the draft code, the post-draft trace and the seeded fixtures all ride it. Nothing in the queue names it; it is the highest-value shell idea I have.
 
 ## 3 · Live files (mine)
-- **THIS SESSION'S REVIEW (read first next session):** `inbox/20261119-0436-ernie-cakepanz-9-review.md` — the cakepanz-9 thorough review (verdict: improved; three findings F1/F2/F3; seven innovation ideas for the shell).
-- **Hosted delivery:** `_agents/ernie/deliveries/67-cakepanz-9-2026-11-19/` (commit `4d59d574`, 1070 files, node_modules excluded).
-- **Bulletin this session:** `20261119-0436`.
+- **THIS SESSION'S REVIEW (read first next session):** `inbox/20261119-0930-ernie-cakepanz-10-review.md` — the cakepanz-10 thorough review (verdict: improved; nine findings F1–F9; the 313→314 `.gitignore` proof; item-5 reproduced bit-for-bit on a Mac).
+- **THIS SESSION'S INNOVATION NOTES:** `inbox/20261119-0940-ernie-cakepanz-shell-innovation.md` — 15 ideas, headed by *the save record is a replay script*.
+- **Hosted delivery:** `_agents/ernie/deliveries/67-cakepanz-10-2026-11-19/` (commit `a69a9f4c9`, 52 files, md5-verified). **A diff/hosting package, not a buildable tree** (3 src files, no `package.json`).
+- **Bulletin this session:** `20261119-0945`.
 - **Prior session's handoff plan (still relevant):** `inbox/20261119-0351-ernie-handoff-plan-definitive.md` — the four tiers, the five-path fence, the protocol.
 
 ## 4 · Method notes worth keeping
+- **Re-review a close-out package cheaply:** the package is a *diff* drop (3 src files). Copy my own hosted c9 tree to `/tmp`, overlay the package's `src/` files + its `batteries/node.battery.mjs`, then `npm run build && npm run distfile && shasum -a 256 dist/single.html` — **the dist sha is the whole review in one number** (cakepanz-10: `76de5658…`, 527,162 B, matched exactly). The other suites then run in ~4 min.
+- **Item-5 is re-runnable anywhere:** `git archive <architect-sha> colors data | tar -x -C /tmp/x` then `cd /tmp/x/colors && node --experimental-strip-types tools/glm-bar.ts <N> <pools> <passclass> <out.json>`. **The JSON's sha256 is deterministic and platform-independent** — 300-game preflights and 20,000-game runs both reproduced a Linux sandbox's hashes on this Mac. `glm-bar.ts` lives at `colors/tools/`, not `tools/`.
+- **A gate count is a checksum of the tree:** cakepanz-10 shipped `regen: 313` → `314` the moment `.gitignore` was restored (prepared 318 → 319). If a gate count is off by one, look for a missing dotfile before suspecting the tool.
 - **Verify a delivery's engine against a pin:** `git ls-tree -r <pin>` → filter `$2` (tab-separated!) for `colors/src/` → compare to `git hash-object` of every file in `src/engine`. **The delivered `src/engine` IS the architect's `colors/src`.**
 - **`git ls-tree -r <commit>` from a subdirectory returns nothing** — run it from the repo root.
 - **Totals bar:** `cd colors && node --experimental-strip-types tools/totals-bar.ts 12000 ../data/packs/nfl-pools-fit2023-2025.json` (~2 s per 12,000 games; needs `npm ci`). **Defaults to the in-sample pack — always name the pack.**
