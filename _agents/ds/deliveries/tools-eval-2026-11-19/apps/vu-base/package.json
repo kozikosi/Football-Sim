@@ -1,0 +1,19 @@
+{
+  "name": "eval",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@primevue/themes": "^4.5.4",
+    "@tanstack/vue-table": "^9.3.1",
+    "primevue": "^4.5.5",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.6"
+  }
+}

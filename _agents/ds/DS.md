@@ -10,9 +10,23 @@
 - **Worktree:** `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-ds`
 - **Branch:** `council/ds`
 - **merge-base HEAD origin/council/base:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (base advanced this session — MUSE synced live infra to base; my branch already contained it)
-- **Last session end:** 2026-11-19 (04:30Z — cakepanz-8.1 pushed + reviewed)
+- **Last session end:** 2026-11-19 (04:51Z — R-13 tools evaluation + Svelte/Vue verdict)
 
-## Current state (18–19 Nov 2026, late — cakepanz-8.1 pushed + reviewed + L10 closed)
+## Current state (19 Nov 2026 — R-13: w89 stats screens → Colors, Svelte 5 vs Vue 3, measured)
+
+### What this session produced
+- **Report:** `inbox/20261119-0451-ds-R-13-w89-stats-tools-svelte-vue.md` — the Owner asked what Svelte 5 / Vue 3 tooling could improve the w89 "Your team stats" and "Playoff stats" screens on the way into Colors, and which framework to pick. Answer: **stay on Svelte 5 + Vite**, measured, with falsifiers and the `statsTable` VM hedge.
+- **Measured, not guessed:** five fresh Vite 8 builds of one identical stats-table app (32 rows, phase tabs, filter, sortable headers, expandable row, SVG sparkline) — Svelte 5 hand-rolled **15,511 B gz**; Svelte 5 + TanStack v9 **25,940**; Vue 3 hand-rolled **26,353**; Vue 3 + TanStack v9 **34,701**; Vue 3 + PrimeVue 4.5.5 DataTable **150,529** (raw 694,053). Product context: c9 dist 527,177 B raw / 221,814 B gz. Harness + `MEASUREMENTS.txt`: `_agents/ds/deliveries/tools-eval-2026-11-19/`.
+- **Licence traps recorded:** `@tanstack/svelte-table` 9.3.2 MIT + `peer svelte ^5.0.0`; `svelte-headless-table` 0.18.3 peers Svelte **4** (dead for us); `primevue` 5.0.5 is the **PrimeUI commercial licence**, 4.5.5 is MIT; AG Grid has no first-party Svelte adapter.
+- **w89 facts behind the reframing:** `renderStatsTabsHTML` (l. 8381), `userStatsInner` (l. 8374; the last column is one concatenated `seasonStatLine` string, and the rating cell mixes value + `#rank`), ten ad-hoc `leaderBoards` (l. 8406), `renderTeamStatsHTML` (l. 8448) is the per-game box not a season aggregate; **no per-game player log** (`gameLog|playerGameStats|byGame|perGame` → 0 hits), so game logs/sparklines are an engine request.
+- **Design spec:** T1–T10 (one table component, real columns under the badge law, sort everywhere, totals↔per-game toggle, row expansion, rank as a number, leaders as one table, team-stats ranks/percentile bars, mobile cards, a11y) — proposals only, nothing built.
+- **Unchanged:** nothing written to `colors/`, `67-cakepanz/` or the product file; the harness lives outside git and is copied to my lane for re-running.
+
+### Owed and not done
+- **Round K: DS's macro answer** — still owed.
+- The c81/c9 patches still await a builder (op in `inbox/20261119-0427-ds-OP-add-cakepanz-8-2-close-the-two-she.md`).
+
+## Previous state (18–19 Nov 2026, late — cakepanz-8.1 pushed + reviewed + L10 closed)
 
 ### What this session produced
 - **The Owner's `67-cakepanz-8.1-2026-11-18` folder pushed so anyone can read it:** `_agents/ds/deliveries/67-cakepanz-8.1-2026-11-18/` on `council/ds` @ `9ac66840` — 1049 files, 35 MB, with `MANIFEST.sha256` (1049 lines). The trees' own `.gitignore` excludes `src/engine-node/` (137 generated files) and two `slice1-battery.json`; force-added so the pushed package is complete. Verified remotely with `git ls-remote` + `git ls-tree` (1050 tree entries; a 60 s stall limit on every network command).
@@ -87,7 +101,7 @@
 - Does "one adapter" mean one facade over the six VMs, or a new interface layer? (still open from the previous round)
 
 ## Live files
-`inbox/20261119-0427-ds-c81-review.md` · `inbox/20261119-0427-ds-c81-ui-ideas.md` · `inbox/20261119-0427-ds-OP-add-cakepanz-8-2-close-the-two-she.md` · `_agents/ds/deliveries/cakepanz-8.1-review-2026-11-18/` (receipts R1–R12 + probes + the L10 acceptance receipt) · `_agents/ds/deliveries/67-cakepanz-8.1-2026-11-18/` (read-only delivery, pushed for the council) · `inbox/20261118-1956-ds-P-337-cakepanz-8-review.md` · `inbox/20261118-1956-ds-R-13-cakepanz-shell-innovations.md` · `_agents/ds/deliveries/prompt-zai-cakepanz-9-2026-11-18.md` (+ `inbox/20261118-2027-ds-P-337-cakepanz-9-order.md`) · `inbox/20261118-1950-ds-P-355-pin-watch-corroboration.md` · `inbox/20261117-2056-ds-GLM-state-bucket.md` · `_agents/ds/deliveries/glm-state-bucket-2026-11-17/` · `inbox/20261116-2102-ds-CAKEPANZ-SHELL-{pin,neutrality,seam}.md` · `inbox/20261115-1149-ds-direction-innovation.md` · `inbox/20261115-1132-ds-delivery-fix-relay.md`
+`inbox/20261119-0451-ds-R-13-w89-stats-tools-svelte-vue.md` (framework/tools verdict) · `_agents/ds/deliveries/tools-eval-2026-11-19/` (measured harness + MEASUREMENTS.txt) · `inbox/20261119-0427-ds-c81-review.md` · `inbox/20261119-0427-ds-c81-ui-ideas.md` · `inbox/20261119-0427-ds-OP-add-cakepanz-8-2-close-the-two-she.md` · `_agents/ds/deliveries/cakepanz-8.1-review-2026-11-18/` (receipts R1–R12 + probes + the L10 acceptance receipt) · `_agents/ds/deliveries/67-cakepanz-8.1-2026-11-18/` (read-only delivery, pushed for the council) · `inbox/20261118-1956-ds-P-337-cakepanz-8-review.md` · `inbox/20261118-1956-ds-R-13-cakepanz-shell-innovations.md` · `_agents/ds/deliveries/prompt-zai-cakepanz-9-2026-11-18.md` (+ `inbox/20261118-2027-ds-P-337-cakepanz-9-order.md`) · `inbox/20261118-1950-ds-P-355-pin-watch-corroboration.md` · `inbox/20261117-2056-ds-GLM-state-bucket.md` · `_agents/ds/deliveries/glm-state-bucket-2026-11-17/` · `inbox/20261116-2102-ds-CAKEPANZ-SHELL-{pin,neutrality,seam}.md` · `inbox/20261115-1149-ds-direction-innovation.md` · `inbox/20261115-1132-ds-delivery-fix-relay.md`
 
 ## Method note
 zsh: `$r:tools/...` is a **parameter modifier** (`:t` = tail), so `origin/$r:tools/mathlab/flex.json` quietly asks for a path that does not exist and hashes the empty string (`e3b0c442…`). Quote the whole ref; print the ref and byte count next to every hash.
