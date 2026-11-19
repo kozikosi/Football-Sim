@@ -1,0 +1,63 @@
+=== VAPOR MODE EXPERIMENT — ERNIE 2026-11-19 ===
+date: 2026-11-19T21:41Z · node v26.13.0 · npm 11.20.0 · macOS (darwin)
+scratch: /tmp/vap (Vue vapor), /tmp/vapv (Vue vdom baseline), /tmp/sv (Svelte)
+         nothing written to any repo; all three trees are throwaway.
+
+--- versions installed (VERIFIED via package.json read-back) ---
+vue                          3.6.0-rc.15   (ships @vue/runtime-vapor + @vue/compiler-vapor)
+@vitejs/plugin-vue           6.0.11        (peer: vue ^3.2.25 || ^3.6.0-rc.15)
+svelte                       5.58.0
+@sveltejs/vite-plugin-svelte 7.3.1         (peer: vite ^8.0.0)
+vite                         8.3.8
+
+--- the surface (identical in all three arms) ---
+One component: a header '{{ rows.length }} available' plus a v-for / #each over rows rendering a
+6-column button (name / pos / ovr / wins / priority / gone). Same markup, same classes, one
+reactive sort key. No CSS in any arm (cssCodeSplit:false, no <style> block) so the numbers are
+JS only.
+
+--- RESULTS (gz -9 of the emitted JS chunk; raw = on-disk bytes) ---
+build                                raw_B     gz_B    ratio
+Svelte 5.58.0 (runes)                 33497     13154    1.00x
+Vue 3.6.0-rc.15 VDOM                  68068     26294    2.00x
+Vue 3.6.0-rc.15 VAPOR                 83040     31498    2.39x
+
+--- the registered falsifier (filed 2026-11-15, inbox/20261115-1035-ernie-REVIEW-zai-fourslice.md) ---
+THRESHOLD: "a Vue vapor build within 5 KB gz of Svelte on this surface"
+MEASURED:  vapor is 17 KB gz OVER Svelte (31,498 - 13,154) — 3.4x the allowed gap
+VERDICT:   FALSIFIED, decisively. Vapor does not close the gap; it widens it.
+
+--- why (VERIFIED, read out of the emitted bundle) ---
+1. Vapor IS genuinely engaged. The compiled component carries `__vapor:!0`, clones from a
+   `gc()`-built template, and drives the DOM through `ss()` (renderEffect). There are ZERO
+   `createVNode` / `createBlock` / `openBlock` calls in the bundle. This is real vapor codegen.
+2. The component begins at byte 82,514 of an 83,040-byte bundle: 99.3% of the emitted size is
+   the VAPOR RUNTIME, not the app. The runtime is ~66 KB raw and does not shrink with
+   `optionsAPI:false` (measured byte-identical 83,040 B both ways).
+3. runtime-vapor is a SECOND renderer alongside runtime-dom. `createApp`/`hydrate` are both
+   present, so a mixed app pays for both.
+4. Vapor's intended win is runtime DOM elimination, not bundle size. On this surface it costs
+   +19.8% gz over vdom with no runtime benefit demonstrated (I did not measure runtime).
+
+--- caveats, stated plainly ---
+- Vue 3.6 is PRE-RELEASE (rc.15). Vapor is not officially complete. Numbers may move at 3.6.0
+  final; the direction (bigger, not smaller) is unlikely to reverse but the magnitude may.
+- Single-component micro-surface, not a 4-slice app. A real app amortizes the runtime over more
+  components, which narrows the RATIO but cannot make vapor smaller than vdom on the same pair.
+- No runtime perf measured. The case for vapor was always bundle size; that case is now closed.
+- Svelte's 13,154 B gz is for the same surface and is the floor the falsifier referenced.
+
+--- how to reproduce (all three arms, ~10 min including npm installs) ---
+mkdir -p /tmp/vap/src && cd /tmp/vap
+  package.json: vue 3.6.0-rc.15 / @vitejs/plugin-vue 6.0.11 / vite 8.3.8
+  vite.config.js: plugins:[vue({ vapor: true })], build:{ minify:true, cssCodeSplit:false }
+  src/App.vue:  <script setup vapor> ... </script>   <-- the per-file marker is REQUIRED;
+                    the plugin-level `vapor:true` alone did NOT engage (identical output hash)
+  npx vite build   -> 83,040 B / 31,498 gz
+then flip the config to plugins:[vue()] and remove the per-file marker -> 68,068 B / 26,294 gz
+then the svelte arm: svelte 5.58.0 + @sveltejs/vite-plugin-svelte 7.3.1 -> 33,497 B / 13,154 gz
+
+--- the one thing worth remembering ---
+The plugin-level `vapor: true` silently did nothing (byte-identical output). Only the per-file
+`<script setup vapor>` marker engaged. If anyone re-runs this, that is the trap: check for
+`__vapor:!0` in the emitted chunk before trusting a number.
