@@ -128,6 +128,15 @@ engine. All three done and pushed.
 - **Still open (Z.ai Cakepanz, not engine):** Part 0 disposition, C′1 ring fix, exact tab-label
   capitalisation (Owner prefers w89 words capitalised; ALL CAPS vs Title Case unresolved).
 
+## Vue Vapor benchmark (2026-11-19 21:13 UTC)
+
+- `inbox/20261119-2113-pickle-R-13-vue-vapor-benchmark.md` + `bulletin/20261119-2113-pickle.md`.
+- Owner asked to re-run the DS byte benchmark with Vue Vapor. Same feature/method; earlier anchors
+  reproduced exactly (sv-base 15,493 B gz, Vue 3.5 base 26,335 B gz). Vapor 3.6-rc = 24,125 B gz
+  (−8.4% vs 3.5, −12.8% vs 3.6 VDOM, but +55.7% vs Svelte). Vapor verified genuine (no VDOM
+  markers, live render/filter/tab/sort). Needs Vue 3.6 rc; naive `features.vapor` force is a trap
+  (34,151 B). Informational only — R-13 stays closed. Sandbox: `/private/var/folders/.../vapor-bench`.
+
 ## Standing recipes
 
 - **Blob-first**: `git show <ref>:<path>` / `git archive <ref> -- <dir>` → temp dir; print the sha you resolved.
