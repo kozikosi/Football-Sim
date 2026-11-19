@@ -141,6 +141,23 @@ engine. All three done and pushed.
   `_agents/pickle/deliveries/prompts-2026-11-19/zai-cakepanz-closeout-rulings.md` — for Owner relay
   (KG sends), NOT sent, no branch pushed. No product/engine/governance/queue/other-seat edits.
 
+## Z.ai sitting prompt — final paste-ready (2026-11-19 22:00 UTC)
+
+- Owner asked me to read Ernie's latest draft + vapor review and use them to improve my Z.ai draft,
+  assuming Z.ai has zero context. Read Ernie v3.0 (`council/ernie` tip `ecf35836`,
+  `deliveries/zai-next-sitting-prompt-2026-11-19.md` blob `34d9b025…`, 290 lines) and
+  `_agents/ernie/deliveries/vapor-mode-experiment-2026-11-19/RESULTS.txt` (blob `d863f4c3…`).
+- Wrote `_agents/pickle/deliveries/prompts-2026-11-19/zai-sitting-2026-11-19-final-paste-ready.md`
+  — self-contained cover that points Z.ai to Ernie v3.0 as controlling order (exact blob + fetch
+  commands) and adds the Owner rulings verbatim. Marked my earlier Z.ai draft SUPERSEDED (Part 0
+  went from "posed" to **ACCEPT**: later Owner quote "best of both is probably best…", relayed by
+  Ernie 21:45; working dist `76de5658…` is release candidate, no re-cut).
+- Vapor: Ernie's controlled run (Svelte 13,154 B gz / vdom 26,294 / vapor 31,498; vapor +19.8% vs
+  vdom, 2.39× Svelte; falsifier dead) supersedes my earlier 24,125 B direction. Kept both on record;
+  R-13 stays closed either way. Filed in the paste-ready prompt §2, flagged REPORTED-from-PICKLE.
+- Reconciliation rule in the prompt: v3.0 governs task/fence this sitting; C′1 + tab labels are
+  product-track items recorded, not edited (v3.0 §8 forbids product edits). FOR OWNER RELAY.
+
 ## MUSE catch-up + work-block prompt (2026-11-19 21:40 UTC)
 
 - Owner: can't prompt MUSE directly, likes the sweeps. Filed `bulletin/20261119-2134-pickle.md` +

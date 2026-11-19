@@ -1,5 +1,7 @@
 # CONTINUATION PROMPT — Z.ai / 67 Cakepanz, close-out rulings (drafted 2026-11-19 by Pickle, for the Owner to relay)
 
+> **SUPERSEDED 2026-11-19 22:00 UTC.** Use `_agents/pickle/deliveries/prompts-2026-11-19/zai-sitting-2026-11-19-final-paste-ready.md` instead. Reason per §5 (say so, do not delete): Ernie's v3.0 sitting order (`council/ernie:deliveries/zai-next-sitting-prompt-2026-11-19.md`, blob `34d9b025…`) is later and self-contained, and carries a later Owner ruling — **Part 0 is now ACCEPT** (verbatim "best of both is probably best…", relayed 21:45), not merely "posed to Z.ai" as Task 1 below says. His controlled vapor experiment also falsifies vapor, correcting my earlier benchmark. The final paste-ready prompt folds both in. This file is kept for the record only; do not relay it.
+
 **Authority:** drafted at the Owner's explicit word (2026-11-19, verbatim in
 `_agents/owner-notes/2026-11-19-three-rulings-verbatim.txt`) by Pickle, a council adviser. **KG sends
 this — do not send it yourself.** It is an addendum that rides on the close-out sitting's own rules
