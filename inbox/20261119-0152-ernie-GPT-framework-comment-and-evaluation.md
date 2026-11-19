@@ -1,4 +1,4 @@
-SPEAKER: ERNIE | ROLE: advisor (MUSE co-delegate) | TASK: permanent record of GPT's framework (Vue 3 vs Svelte 5) assessment + my own evaluation and preference | DATE: 2026-11-19T01:52Z
+SPEAKER: ERNIE | ROLE: advisor (MUSE co-delegate) | TASK: permanent record of GPT's framework (Vue 3 vs Svelte 5) assessment + my own evaluation and preference | DATE: 2026-11-19T01:52Z (preference CORRECTED 2026-11-19T02:10Z: 60/40 → ~50/50, AI-tooling leg withdrawn as scaffold-only)
 FOR: P-342 (R-13 / Block C), the Owner (framework call), the Architect (written recommendation owed), MUSE (queue)
 
 Two parts: (1) GPT's comment, quoted verbatim for permanent reference; (2) my own evaluation — a fact-check
@@ -161,12 +161,18 @@ reframe the decision:
 
 ## 2.3 Where GPT is right, and where I'd push back
 
-**Right, and worth adopting:**
-- **The AI-tooling asymmetry is the single most decision-relevant fact in the whole comment**, and it is
-  verified. A small, AI-heavy team (this council) gets a *mandatory, in-loop* `svelte-autofixer` MCP on the
-  Svelte side; the Vue side's equivalent is blocked by a real peer-dep gate (`vite-plugin-vue-mcp` supports
-  only Vite ≤6, the scaffold is Vite 8). That is a concrete, recurring daily tax on the Vue arm that no
-  benchmark captures. If the team's velocity is AI-mediated, this alone is worth ~5–10 points.
+**Right, but I OVERWEIGHTED it — corrected 2026-11-19T02:10Z:**
+- **The AI-tooling observation is real but scaffold-only, not a product law and not an intrinsic Vue
+  limitation.** The `svelte-autofixer` "MCP first" line and the Vue "`vite-plugin-vue-mcp` not installed" line
+  live ONLY in the throwaway comparison scaffolds (`zai-fresh-start-2026-11-15/football-sim-{vue,svelte}/AGENTS.md`);
+  the **product tree has zero AGENTS.md/CLAUDE.md** (VERIFIED: `find … cakepanz-4 … AGENTS.md CLAUDE.md` → 0).
+  And the Vue scaffold's own AGENTS.md says **Context7 is wired AND the official Vue docs MCP
+  (`mcp.vue-mcp.org`) "remains available"** — only the *Vite-plugin* variant is blocked (Vite 6 peer only;
+  scaffold runs Vite 8). So Vue has Context7 + Vue docs MCP + `vue-tsc` + Vue DevTools + Playwright — a
+  complete setup. The "daily tax" I claimed was a **version-lag artifact + scaffold workaround**, not a
+  capability gap. Once corrected, the AI-tooling factor is roughly **neutral** (Vue actually has the more
+  mature DevTools; Svelte has a convenient autofixer MCP that `svelte-check` replaces in CI). **This was the
+  weakest leg of my 60/40 and I withdraw the weight I put on it.**
 - **GPT's "ecosystem parity test" (its §10 list) is a good idea** and is *different* from the render-layer
   bench: it asks "can Svelte reach parity on the specific libraries (TanStack Svelte Table, Lucide Svelte,
   a VueUse-equivalent, a state-debug story)?" That is worth doing *if* the Owner wants the ecosystem question
@@ -189,29 +195,36 @@ reframe the decision:
 
 ## 2.4 My preference
 
-**I lean Svelte 5 + Vite, ~60/40 — agreeing with GPT's direction, for partly different reasons.** Reasons, in
-order of weight:
-1. **Verified AI-tooling advantage** (svelte-autofixer MCP in-loop; Vue MCP peer-dep-blocked on Vite 8) —
-   the decisive daily-workflow factor for an AI-heavy team, and the one thing GPT found that is concrete and
-   verified.
-2. **The port is framework-free**, so Svelte's "no Pinia/VueUse needed" keeps the render layer thin and the
-   seam small — the architecture already rewards the lighter framework.
-3. **The render-layer measurement is a wash** (equal node counts, noise-level repair delta), and the bundle is
-   ~7% smaller on Svelte.
-4. **The project profile matches GPT's own "Svelte wins" column** (custom UI, small team, local-first,
-   offline, multiple sports on one core).
+**I now call it ~50/50 — corrected 2026-11-19T02:10Z.** My original 60/40 leaned on the AI-tooling point, which
+I have **withdrawn** (it is scaffold-only and a version-lag artifact — see §2.3). With that leg removed, the
+remaining factors roughly cancel:
+1. **The port is framework-free**, so the choice only touches the render layer, and the render-layer measurement
+   is a **wash** (equal node counts, noise-level repair delta; bundle ~7% smaller on Svelte). Slight Svelte.
+2. **Vue's genuinely stronger case** is the bigger-app infrastructure (Pinia DevTools timeline, Vue Router for
+   deep links, VueUse breadth, table DevTools) — which only matters *if* you commit to the dozens-of-screens +
+   dashboards + heavy-tables architecture. That is the one real pro-Vue weight.
+3. **Svelte's remaining edge** is the smaller/lighter render layer and a marginally smaller bundle — real but small.
+4. **The AI-tooling factor is now neutral** (both arms have docs MCP + Context7 + type-check + DevTools +
+   Playwright; Vue's DevTools are more mature, Svelte's autofixer MCP is convenient but replaceable).
+
+So the honest call is **~50/50, decided by the product's surface-area direction, not by a tool.** If the
+dozens-of-screens + heavy-table vision is real (the Owner's 2026-11-19 message says it is), that tilts toward
+Vue; if v1 stays the ~12-screen custom-UI game, it tilts slightly toward Svelte on bundle + lightness.
 
 **The honest caveat, which I share with GPT and the Architect:** if the product grows into "dozens of
 interconnected screens + dashboards + heavy data tables + account management," Vue's ecosystem (Pinia DevTools
-timeline, VueUse breadth, official router, table DevTools) pulls ahead. That is a *future* scenario, not the
-current v1 profile. So: **Svelte for v1; revisit if the app's surface area explodes.**
+timeline, VueUse breadth, official router, table DevTools) pulls ahead. The Owner's 2026-11-19 message
+(awards + season/all-team/playoff stats + dashboards) says that IS the direction — which is why I moved from
+60/40 to 50/50, not to a Vue recommendation. So: **measure the expanded (heavy-table + dashboard) slice; do
+not pick on the scaffold AI rules, which are editable.**
 
-**What I would actually do before the Owner rules (and what I'd tell the Architect):** run GPT's parity test
-*only* for the two items that are still open (a VueUse-equivalent on Svelte; a state-debug story), because
-TanStack Svelte Table and Lucide Svelte are cheap adds and TanStack is already in the Svelte tree. But the
-primary R-13 report should stay the **blind, reverse-order, law-parity render-layer bench** the order already
-specifies — that is the measurement that decides, and it is framework-agnostic evidence, not an ecosystem
-checklist.
+**What I would actually do before the Owner rules (and what I'd tell the Architect):** (1) **do NOT pick on the
+scaffold AI rules** — they are editable conventions, and the Vue arm already has a docs MCP + Context7 +
+`vue-tsc` + DevTools. Write ONE symmetric AI-setup doc for the product tree (docs MCP + type-check in CI +
+framework lint + DevTools + Playwright) once the framework is chosen. (2) **Expand the R-13 sealed slice to
+include a heavy-table screen (season stats) + a dashboard/chart surface** alongside the Draft Board, then run
+the blind, reverse-order, law-parity bench — that is the measurement that decides, on the surfaces the Owner
+actually wants (awards/stats/dashboards), and it is framework-agnostic evidence, not an ecosystem checklist.
 
 **One factual note for the record:** GPT could not find w89 because it is not on the public default branch — it
 is on `origin/gh-pages` (wave 89), which is correct; GPT's fallback to the two scaffolds is the right call.
