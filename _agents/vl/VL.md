@@ -12,18 +12,11 @@
 - I do **not** edit the product file, AGENTS.md, CLAUDE.md, QUEUE.md, STATUS.md, CHRONICLE.md, PROJECT-KNOWLEDGE.md, or protected constants, and I never force-push or `git stash` (WIP commit instead). I do not build another seat's shell/engine bytes.
 - **Folder separation:** my own review work lives under `inbox/`; Z.ai pass-through deliveries pushed at the Owner's direction live under `deliveries/zai-pass-through/<item>/`.
 
-## Current session (2026-11-19, council round — Cakepanz-9 review round)
-- Took the council prompt "Cakepanz-9 review round: verify the four reviews at the delivered bytes" (MUSE, SPEAKER: MUSE). `node /tmp/council.mjs next` returned empty, so this direct council task was taken.
-- Filed review: `inbox/20261119---cakepanz-9-review.md`, VERDICT improved.
-- Verified at delivered bytes (`_agents/vl/deliveries/zai-pass-through/67-cakepanz-9-2026-11-19/`):
-  - Pickle H1: NINE sites claim k1 passed (README-DELIVERY:54-62, both VERIFY.txt:951, both SHELL-STATUS:30-32, WHAT-CHANGED:211-212/:264, RECEIPTS:5-6, intake ledger row 5 + more); package's own VERIFY §23.7 says k1 is OPEN. CONFIRMED contradiction.
-  - Pickle H4: gate-manifest FAILS exit 1 as delivered, both trees — `.gitignore` missing but listed in MANIFEST line 20. CONFIRMED.
-  - Pickle H5: `DraftBoard.svelte:40` parses rounded display string for ties (not raw `_w`/`_p`). CONFIRMED DEFECT.
-  - Pickle H6: `.cp-suggest .cp-main` targets row-toggle button (`.cp-main`, expand/collapse only), not draft chip (`.cp-chip.cp-primary` inside `hidden={!open}`). CONFIRMED DEFECT.
-  - VL mid-season blank board: symptom CONFIRMED (hydrateBoot→loadDraft→go('board') before r.week→go('hub'); refresh() skips vmStore for done-drafts). Root cause corrected: not goneOdds-throw (guarded by status==='done') but refresh() not computing VM for done-drafts + board-before-hub ordering. Blocks mid-season flows.
-  - Beam open ask (re-run board battery + falsify-board): CANNOT RUN — no node_modules/Playwright in checkout. REPORTED-from-receipts only.
-  - Pickle H2/H3: START hash actual `15f088c7…` ×3 (matches council/muse re-file — MUSE HAS re-filed); stale `8ef3b18d…` (7 sites) and `f31bdf51…` (3 sites) still drift. CONFIRMED drift persists.
-- Engine pins byte-identical (diff -rq exit 0 both); flex.json identical; dist sha `670d4c08…` byte-identical ×2 — all re-confirmed.
+## Current session (2026-11-19, council round — Cakepanz-10 intake + review)
+- Took the Owner's direct task: push `67-cakepanz-10-2026-11-19` (from `/Users/kosi/Desktop/Football Sim/`) to council/vl so anyone can read it, then review it thoroughly and push the review, incl. cakepanz / UI-UX shell improvements for Claude's engine. `node /tmp/council.mjs next` returned empty (live queue on origin/council/muse has no line for me), so this direct task was taken.
+- Pushed the folder as `_agents/vl/deliveries/zai-pass-through/67-cakepanz-10-2026-11-19/` (52 files, 1.8 MB) in 3 commits: `3316828db` (review), `4a1046c9e` (pickle tree), `aa6298b19` (zai trio + receipts + checksums). Pushed to origin/council/vl = `aa6298b19`, verified with `git ls-remote`.
+- Verified the delivery: `diff -rq` copy vs source exit 0 (byte-identical); `md5sum -c CHECKSUMS.txt` → 49/49 OK, exit 0; dist/single.html = `76de5658…` (527,162 B, the patched unreleased working bytes — NOTE: not the released artifact `670d4c08…`, see review).
+- Filed review: `inbox/20261119-1130-vl-review-cakepanz-10-2026-11-19-delivery.md`, VERDICT improved. Covers: what was checked (commands + outputs, all VERIFIED), defects/risks (dist is patched bytes not the released artifact; no independent seat has re-run the composite from this folder; four tab labels owe the Owner's word), weakest point (A2 push access NO; only Z.ai's receipts, no fresh-extract reproduction), and a brainstorm section (seeded `?seed=` dev param; one brand/wordblock; 390px law as a build rule; StatTable provenance law; the two dashboard reframings — Your Team Stats + Playoff Stats; reduced-motion assert line; port traps; deliberate non-goals).
 
 ## Next session
 - `node tools/council.mjs next` (live queue on origin/council/muse).
@@ -35,12 +28,15 @@
 - Owner rulings not for VL: value label, dark --text, Bodoni Moda, 2PT chip, prepared re-pin activation, GLM default, λ value, gh-pages placement.
 - cakepanz engine snapshot drift vs canonical pin 4ca9a071 (cutover item).
 - Mid-season blank board defect blocks mid-season shipping.
+- The Owner's Part-0 accept/strike word (Z.ai w89 sitting) gates the re-zip, the four tab labels, and the stats sitting.
 
 ## Live files / receipts
 - `inbox/20261119-0400-vl-cakepanz-9-sitting-notes.md` — pushed (commit e1985ace).
 - `inbox/20261119-0417-vl-cakepanz-9-review.md` — pushed (commit faa94cef).
 - `inbox/20261119-0600-vl-answer-inkling-absorb-ask.md` — pushed (commit a6c073ea).
-- `inbox/20261119---cakepanz-9-review.md` — this session (Verdict: improved).
+- `inbox/20261119---cakepanz-9-review.md` — prior session (Verdict: improved).
+- `inbox/20261119-1130-vl-review-cakepanz-10-2026-11-19-delivery.md` — this session (Verdict: improved).
 - `deliveries/zai-pass-through/67-cakepanz-9-2026-11-19/` — pushed (commit faa94cef).
-- All prior inbox filings committed and pushed on origin/council/vl.
-- VL's worktree `council/vl` is clean and pushed (OK per preserve.mjs).
+- `deliveries/zai-pass-through/67-cakepanz-10-2026-11-19/` — pushed (commits 3316828db / 4a1046c9e / aa6298b19).
+- All inbox filings committed and pushed on origin/council/vl.
+- VL's worktree `council/vl` is clean and pushed (OK per preserve.mjs). Branch on origin: `aa6298b19`.
