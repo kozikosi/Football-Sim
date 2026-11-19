@@ -1,0 +1,14 @@
+64bf0f711e2c0c1ed932cb264a9369d577e6af54846671228ecef105ecf732ba  ./CHECKSUMS.txt
+e9719e95e8dcf8af4362e2742600fb37ca4992f71e5fedf43e1c38bce7106f62  ./UPDATE-README.md
+bb3572c30c3dbe68954772f7a0b00d0bafba9cf8ecf8caa1150bc8126df9a71d  ./_agents/zai/END-OF-CHAT-ZAI.md
+052083a7c83a5e2b6dcae2efbf70483436e7cf6a91c71b840883068ea1d55e65  ./_agents/zai/START-OF-CHAT-ZAI.md
+8f3e16d3b7fa6e5bf98413568dcd8b18c9ec5d62850f84eda3f219bd425c62d7  ./_agents/zai/ZAI.md
+79a4554f49522f2dc1b2d1aac200d6492322b51371c8bc98a51a304ff5cdba49  ./deliveries/OWNER-INTAKE-2026-11-19-item6-sitting.md
+513b91309dad65ed4537d7b7bff64d018e5c640ebfd3f85abcfd9e5573d9f96d  ./deliveries/item6/item6-fit2016-2022.json
+49f2bcaaf34c213e835323aca20b9333914f8e2bd101b0e3f764980c60bb2baf  ./deliveries/item6/item6-fit2016-2022.txt
+6e9168ecaf05cc4fbf3b71f0e5c5178b407dfd3e1d3ddd791c837c6b6a6e6b50  ./deliveries/item6/item6-fit2023-2025.json
+7733f8f61b0e195e85ff42fada4a51427f1d55fc3f1cb024d521123909b772db  ./deliveries/item6/item6-fit2023-2025.txt
+ad3f1a2a2719cb8dc18e046e611b599e3046b5cade6e1b4c39fdc213e49efc66  ./deliveries/item6/item6-preflight-2016-2022.json
+e793aacbb8c2bfaaf830b25d7c2eca59d94e82bfb8b89b3052b16756a0fcd45b  ./deliveries/item6/item6-preflight-2023-2025.json
+52879a15102f23a3fb4ae0e3fd05849312b684f9eb671eeaa4e00aeee19d2bc4  ./deliveries/item6/zai-item6-command-receipts.log
+c197a78cf76a0d65c550646d18a18193edb32d6d23f9547f9fba0edc039124d3  ./deliveries/zai-this-sitting-report-2026-11-19.md
