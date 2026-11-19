@@ -299,8 +299,10 @@ before this v2. This v2 absorbs his good work, strikes or repairs his defective 
   own clarification; ERNIE simply restates the Architect's scope, which I accept), discipline upgraded:
   scratch-only, the Architect adopts, the plants fail on scratch, the walked-set count named.
 - **S4 (run the GLM-bar N=300 then N=20,000 in parallel)** → **struck-to-replicate-post-land** in **B3**.
-  The runs belong to Z.ai under the Owner's recipe on the Architect's tree; ERNIE also quoted a preflight
-  sha256 constant with no anchor to the recipe file — an invented-class constant; do not reuse it.
+  The runs belong to Z.ai under the Owner's recipe on the Architect's tree; ERNIE quoted the recipe's
+  2023-2025 preflight expectation (`claude/zai-item5-recipe-2026-11-19.md` lines 30–31:
+  `05a751ed…5328b` / `c3c00b46…bd43`): anchored, not invented. The strike stays — the parallel run is the
+  defect; anchored is not.
 - **S5 (C′1 tie semantics + H6 verification)** → new **A11**, loss-free.
 - **S6 (laws.json + cite-check)** → merged into **A2**; the seed states named.
 - **S7 (four-dashboard spec)** → **struck**: the spec exists (`council/inkling:deliveries/cakepanz-stats-awards-overhaul-2026-11-19.md`
