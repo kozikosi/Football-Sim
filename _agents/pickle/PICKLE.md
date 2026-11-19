@@ -2,207 +2,100 @@
 
 SEAT: pickle · ROLE: Council Adviser · BRANCH: `council/pickle`
 WORKTREE: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle`
-MERGE-BASE: `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (`git merge-base HEAD origin/council/base`, re-verified 19 Nov 2026)
-HEAD at session end: the final lane+bulletin commit of this session. Last pushed report commit before
-  it: `e69e707bd` (the P-345 brainstorm filing).
+MERGE-BASE: `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (`git merge-base HEAD origin/council/base`, re-verified 19 Nov 2026).
 
-## Current state (19 Nov 2026, ninth session) — Owner's final framework ruling (R-13)
+## Current state (19 Nov 2026, tenth session) — hosted + reviewed + brainstormed the Z.ai v3 sitting
 
-Owner's task: record that he has officially decided **Svelte 5 + Vite 8**, final, and that I was
-authorized to ensure everyone understands. Done: verbatim note (`_agents/owner-notes/2026-11-19-framework-svelte5-vite8-verbatim.txt`),
-R-13 filing with three paste-ready patches (`inbox/20261119-1929-pickle-R-13-owner-framework-ruling.md`),
-bulletin (`bulletin/20261119-1929-pickle.md`). All pushed on council/pickle.
-- The 50/50 standing verdict and "forced only at cutover" line are superseded. R-13 is RESOLVED.
-- Owner then explicitly authorized me to edit MUSE's files (he is absent to Sat). I landed the ruling on
-  the LIVE branch myself: fast-forward `d6095d4b5..d8eca10e5` to `origin/council/muse`, built via a temp
-  git index (no worktree switched). Four live files changed + one live ruling: `AGENTS.md:34`,
-  `PROJECT-KNOWLEDGE.md:11`, R-13 row `_agents/QUEUE.md:241`, P-368 tail clause `_agents/QUEUE.md:233`,
-  and `docs/COUNCIL-BULLETIN.md:31`. Verified from `git show origin/council/muse:<path>` post-push.
-  MUSE's worktree was clean/0-unpushed and behind remote; push was a checked fast-forward, no --force.
-  The earlier "did NOT edit / MUSE applies" lines in the bulletin are corrected there by an UPDATE block.
-- "vite 8" is the Owner's exact major (not corrected). c9 pins 7.3.7 / rev10 ^7.3.6 / DS harness ^8.3.6 —
-  Architect reconciles build-tree pins at cutover. F1 bake-off moot. My 70/30 and 78/22 are historical input.
+Owner's task: host the desktop `z-post-blue-docs-update-2026-11-19-v3-sitting` folder on my branch
+so any seat can read it; review it thoroughly and push the review; then brainstorm implications and
+improvements to Cakepanz / the UI-UX shell for Claude's engine. All three done and pushed.
 
-### Prior session (eighth) — item-6 relay hosting, review, brainstorm
+- **Host (commit `f1b6afa4d`, ls-remote verified):** `_agents/pickle/deliveries/z-post-blue-docs-update-2026-11-19-v3-sitting/`
+  — 23 source files / 252 KB byte-identical to `/Users/kosi/Desktop/Football Sim/…v3-sitting`
+  (`diff -rq` exit 0; source `CHECKSUMS.txt` 22/22 OK). Added seat-authored `SHA256SUMS.txt` (23/23
+  OK), `.PROVENANCE.md`, and a `-text` rule in `_agents/pickle/deliveries/.gitattributes`. Git
+  blob check: 0 mismatches across all 22 manifest files. I authored none of the package content.
+- **Review (commit `d8a7c935f`):** `inbox/20261119-2252-pickle-P-287-v3-sitting-review.md`,
+  FOR P-287, VERDICT **improved**. VERIFIED independently: repair artifact 6,418 B / md5 `0a286953…`
+  / sha256 `3e6476de…` (== c10 CHECKSUMS line 18); manifest-true nested c10 copy 6,418 B vs c9
+  hosting's later 6,423 B re-run `333c588a…`; before-states 49/52, 48/51, 48/51 with the exact
+  missing path; dist hashes `76de5658…` (527,162 B) and `670d4c08…` (527,177 B); all six before/after
+  doc md5s; k1 log 18 × `EXIT_CODE=0`; vapor numbers; `?dev`/`?seed`/aria anchors.
+  - **D1 (defect):** FIX-NOTES §5's `patch -p1 … from the c9 subtree root` fails (`No file found`).
+    Correct: `-p1` from the c10 package root, or `-p5` from the c9 subtree root (both run, produce
+    the exact delivered md5s). The `cp` route is correct.
+  - **D2 (defect):** report §10.2 wrongly says pickle's hosted-c9 shipped dist is `76de5658…` and
+    calls that copy "false at its own bytes". Measured: both hosted-c9 trees are `670d4c08…` (527,177 B)
+    — the sentence there is TRUE. The `76de5658…` dist belongs to the c10 package's nested copy.
+    Fix bytes remain valid; the classification and the edit-one/report-two policy need a ruling.
+  - **R1 (strengthening):** exact root-cause line found — `view/draftBoard.ts:61`
+    `rows: … .map(({ _w, _p, ...r }) => r)` strips the raw values, so `DraftBoard.svelte:40` can
+    only parse the display string. My shell-only-fix hypothesis was FALSIFIED by that line; Z.ai's
+    re-pin conclusion stands. Cite line 61 to make the root cause VERIFIED.
+  - **N1 (nit):** the repair file is line 17 in the v3 zip's own CHECKSUMS (line 18 in the c10 packages).
+  - **Not run:** browser 27-pick curve, gate-numerals/gate-manifest scripts, item-5/6/vapor re-runs.
+- **Brainstorm (commit `bf778568d`):** `inbox/20261119-2252-pickle-P-345-v3-shell-implications.md`,
+  FOR P-345. Four new ideas + S5 (sharpens my earlier L3): S1 make "suggestion" a first-class
+  engine-view contract (`BoardVM.suggestions {ids, rankedBy, cutoffRaw, reason}`) instead of a
+  component parse; S2 a raw-value property invariant because `batteries/board.battery.mjs:52`
+  reuses the same rounded parse (tautology — blind to C′1); S3 seeded visual gate once B1 lands;
+  S4 one-click draft with explicit slot + visible undo (`App.svelte:151`); S5 self-verifying
+  shareables via `loadDraft(record, lineage)` + seed/enginePin/checksum with a visible drift warning.
+  Implications I1–I4 (fidelity-loss lens; tests must not share subject derivation; converge on
+  affordances not the frame; one bundled re-pin). Advisory only, no product edits.
 
-Owner's task: host Z.ai's `z-post-blue-docs-update-2026-11-19-item6-sitting` folder from the desktop
-Football Sim folder on `council/pickle` so any seat can read it; review it thoroughly and push the
-review; then brainstorm implications and improvements to Cakepanz / the UI-UX shell for Claude's
-engine. All three done and pushed.
+## What the next session needs
 
-- **Hosted (commit `71d72c603`):** `_agents/pickle/deliveries/z-post-blue-docs-update-2026-11-19-item6-sitting/`
-  — 14 source files / 144 KB, byte-for-byte from `/Users/kosi/Desktop/Football Sim/z-post-blue-docs-update-2026-11-19-item6-sitting`
-  (`diff -rq` exit 0; staged blobs vs source 0 mismatches). `md5sum -c CHECKSUMS.txt` → 13/13 OK;
-  `SHA256SUMS.txt` (added by me, self-excluded) → 14/14 OK. Wrote `.PROVENANCE.md`; extended
-  `_agents/pickle/deliveries/.gitattributes` with `z-post-blue-docs-update-2026-11-19-item6-sitting/** -text`.
-  Authored none of the package content.
-- **Review (commit `d3a8880c7`):** `inbox/20261119-1816-pickle-P-287-item6-sitting-report-review.md`,
-  FOR P-287, VERDICT **improved**, FOUND 14 / NEW 3. Confirmed: all 13 md5s; all four item-6 JSON
-  sha256s vs the report; JSON `games` 300/20000 + tool/lambdaOverride/axis; both 86-line tables; the
-  command log's 7 EXIT 0; the three source-file hashes at `560b8364f`; parent `2dff30b5`; recipe's
-  expected preflight hashes; λ-tool header ("A REPORT, not a gate", λ-1 off-pack, single passGap,
-  paired keys); D2 push line; w89 live; k1 log 18 × EXIT_CODE=0 + COMPLETE + outer exit 0; D1's 48/49
-  observation on inkling/orcaink. **N1 (material): D1's conclusion is wrong** — the manifest-named
-  `slice1-battery.json` exists on `council/pickle` inside the byte-identical c10 copy at md5 `0a286953…`,
-  6,418 B, and that package verifies 49/49; the loss was in the two hosts' import, not the package.
-  Fix = re-import into inkling/orcaink, not re-cut the zip. N2: §6.4 ancestry UNVERIFIED-here
-  (shallow history cut at `9dda473be`, 58 boundaries; tips moved) — a naive NO would be a false negative.
-  N3: the k1 path in §6 is c10-package-relative, not repo-root.
-- **Brainstorm (commit `e69e707bd`):** `inbox/20261119-1816-pickle-P-345-item6-shell-implications.md`,
-  FOR P-345 — four new ideas (L1 paired what-if reusing the λ-tool's same-key design after B1 seed;
-  L2 read-only Lab panel with no false strength dial until per-offense gaps are identifiable; L3
-  self-verifying shareables, the D1 lesson in the shell's own import path; L4 visible save lineage in
-  the header from the already-passed `loadDraft` lineage) plus implications I1–I3. Re-checked anchors:
-  one live `Math.random` at `App.svelte:109`; 14 `show: true` NAV entries; `loadDraft(record, lineage, opts)`;
-  `restoreSeason()` nulls `statsAcc`/`seasonStats`; `awardsNow` MVP sorts on `pyd+rtd`; `cp-gonehow`
-  in-flow method pattern; `?dev` gate + honest empty state.
-- **Disclosure:** I hosted this package and wrote its provenance; I authored none of its content. This
-  session's review and brainstorm are mine, labelled VERIFIED/REPORTED/INFERRED/UNKNOWN. No product
-  bytes, engine files, protected constants or queue rows were edited.
-- **Not run:** item-5, item-6, the c10 composite, browser/Playwright legs, any dist runtime. Findings
-  are from the delivered receipts and read-only git/code checks, not from executing the shipped bundle.
-
-### Prior sessions (compressed history, all pushed and VERIFIED)
-
-- **Seventh:** hosted c10 (`338e9d868`, 52 files, 49 OK md5/52 OK sha256); review `8e82489a7` (P-287,
-  improved, R1–R3 — resolve R1 cite-check counter before citing as receipt-backed); brainstorm
-  `a974fabc6` (P-345, B1–B5 shell ideas). Queue path correction: live list is `_agents/QUEUE.md` on
-  `origin/council/muse`, not `PRIORITIES.md`.
-- **Sixth:** `inbox/20261119-0438-pickle-R-13-tools-and-framework-verdict.md` — ranked five tools,
-  rejected ten, recommendation Svelte 5 + Vite ~70/30 (advisory; R-13 stands 50/50 until Owner rules).
-  Registry corrections: `@tanstack/svelte-table@9.3.2` declares `svelte: ^5.0.0`; `@lucide/svelte@1.75.0`
-  is ISC. Svelte autofixer 5.57.3 returned `issues: [], suggestions: []` on the snippet.
-- **Fifth:** hosted c9 (`bcc89ca1`, 5,104 files byte-identical, `.SHA256SUMS` 5,104 OK); c9 review
-  (`49b1c9d1`, verdict improved, H1–H6); c9 shell brainstorm (`e6bd44cb`).
-
-## Next session needs
-
-0. DONE on `council/muse` under Owner authorization: R-13 patches landed (commit `d8eca10e5`),
-   live governance files now read Svelte 5 + Vite 8. MUSE may retire the R-13 row at leisure.
-   Architect: vite-major (8) reconciliation in build trees + the `?seed=` seam (B1). No seat action owed on R-13.
 1. Take a NEW top item from `_agents/QUEUE.md` on `origin/council/muse` with the v9 tool
-   `node /private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/council.mjs next` (a real
-   path — never `/tmp`, macOS symlink makes older tools no-op). Do not re-review c9/c10/item-6 or
-   re-litigate R-13.
-2. Relay N1 to the Owner/MUSE: the D1 ruling target is the two hosts (re-import the missing file from
-   `council/pickle`), not the c10 package. Resolve R1 (c10 cite-check counter) before citing that
-   package as a receipt-backed close-out.
-3. If the Owner picks up the shell ideas: B1 (seed) → L1, L4 (one line) immediately, L2 behind `?dev`,
-   L3 with Slice 5. Keep every change behind `port/seam.ts`; no engine edits.
-4. A seat with a full (non-shallow) fetch should settle §6.4's `fee5c2fd8` ancestry claim — do not treat
-   this checkout's `NO` as evidence either way.
-5. Keep the hosted c9, c10 and item-6 copies as read sources; all are byte-identical to their zips/limits.
+   (`git show origin/architect/engine-and-seats:tools/council.mjs > <real /private/var/... path>`;
+   macOS `/tmp` is a symlink — older tools no-op there). Do NOT re-review c9/c10/item-6/v3-sitting.
+2. Relay to the Owner/MUSE: the two v3 review defects (D1 apply instruction, D2 byte-truth
+   classification) need text fixes before the package is relayed onward; the C′1 root-cause line
+   (`draftBoard.ts:61`) makes the Architect's re-pin decision concrete.
+3. If the Owner picks up the shell ideas: S1 first (the seam that makes C′1/S2/S3 cheap), B1
+   (`?seed=`) in parallel, S4/S5 at cutover. Bundle engine-view changes into ONE re-pin with the
+   vite-major (`^8`) reconciliation. Keep every change behind `port/seam.ts`; no engine edits.
+4. A seat with a full (non-shallow) fetch may settle historical ancestry claims; do not treat this
+   checkout's shallow `NO` as evidence either way.
+5. Keep the hosted c9, c10, item-6 and v3-sitting copies as read sources; all verified byte-identical
+   to their source limits. Do not edit another seat's lane or inbox.
 6. Run `node tools/preserve.mjs check` on any clean-up; do NOT touch other seats' unsaved worktrees.
 
 ## Open questions (Owner / Architect / MUSE — never a seat)
 
-- Owner: Part-0 accept-or-strike + distribution word (from Z.ai's report §4); a ruling on D1 with N1's
-  correction; which (if any) of B1–B5/L1–L4 becomes a real P-item; cutover timing.
-- Architect: re-point Share's MVP through `seasonAwards` (B2); persist `SeasonStats` across restore (B3);
-  the `?seed=` store seam; the stats VM spec; a read-only Lab export shape (L2).
-- MUSE: resolve c10 R1 and re-file any corrected cite-check receipt; note the other seats' unsaved
-  worktrees listed in the session bulletin; reword §9.13/§9.14 and A10 per N1.
+- Owner: apply the v3 repair + doc fixes (with D1/D2 text corrections); rule the C′1 export (R1 line
+  61 makes it concrete); choose a policy for the three byte-true stale-line copies (hosted c9 +
+  inkling's + orcaink's own c9); which B/S idea becomes a real P-item; cutover timing.
+- Architect: `raw: { wins, priority }` on BoardRowVM / S1's `suggestions` contract; the `?seed=`
+  store seam; S2's raw invariant; share MVP through `seasonAwards`; `SeasonStats` across restore.
+- MUSE: fold the v3 review's D1/D2 into the queue's P-287 row if useful; note other seats' unsaved
+  worktrees from the session bulletin.
 
-## Live files
+## Live files (this session)
 
-- `inbox/20261119-1816-pickle-P-345-item6-shell-implications.md` — this session's brainstorm (L1–L4).
-- `inbox/20261119-1816-pickle-P-287-item6-sitting-report-review.md` — item-6 report review (N1–N3).
-- `_agents/pickle/deliveries/z-post-blue-docs-update-2026-11-19-item6-sitting/` + `.PROVENANCE.md` +
-  `SHA256SUMS.txt` — item-6 relay host.
-- `bulletin/20261119-1816-pickle.md` — this session's bulletin.
-- Earlier: `inbox/20261119-0911-pickle-P-345-cakepanz10-shell-innovation.md`,
-  `inbox/20261119-0906-pickle-P-287-cakepanz10-closeout-review.md`,
-  `_agents/pickle/deliveries/zai-cakepanz-{9,10}-*/`, `tools/mathlab/flexrebuild.mjs`,
-  `flexverify.mjs`, `flex-owner-2026-11-09.json` (mine, this branch).
+- `inbox/20261119-2252-pickle-P-287-v3-sitting-review.md` — v3 review (D1/D2/R1/N1).
+- `inbox/20261119-2252-pickle-P-345-v3-shell-implications.md` — shell brainstorm (S1–S5, I1–I4).
+- `_agents/pickle/deliveries/z-post-blue-docs-update-2026-11-19-v3-sitting/` + `.PROVENANCE.md` +
+  `SHA256SUMS.txt` — v3 relay host.
+- `bulletin/20261119-2252-pickle.md` — this session's bulletin.
+- Earlier (kept as read sources): `inbox/20261119-1816-pickle-P-287-item6-sitting-report-review.md`,
+  `inbox/20261119-1816-pickle-P-345-item6-shell-implications.md`,
+  `inbox/20261119-2106-pickle-R-13-reply-to-claude.md` (+ errata 2120),
+  `inbox/20261119-2130-pickle-R-13-three-rulings-closed.md`, hosted c9/c10/item-6 folders,
+  `tools/mathlab/flexrebuild.mjs`, `flexverify.mjs`, `flex-owner-2026-11-09.json` (mine, this branch).
 - **No product HTML edits, ever.** Work → `inbox/`; code → `_agents/pickle/deliveries/`.
 
-## Latest session — advisory reply to Claude (2026-11-19 21:06 UTC)
+## Standing recipes / rules that changed
 
-- `inbox/20261119-2106-pickle-R-13-reply-to-claude.md` — six-section advisory reply, FOR: R-13,
-  filed but NOT sent (Architect's branch has no council channel; Owner relays).
-- `bulletin/20261119-2106-pickle.md` — this session's bulletin.
-- Key content: framework closed (Svelte 5 + Vite 8, final); vite ^8 + plugin ^7 pair at cutover;
-  plan v4 line 8 "+15-60%" corrected to +3%–~29% like-for-like (60% is cross-metric 3.6/2.2);
-  80eb432 reproduced 421/421 and tsc 89 pin; `?seed=` open; `(drive, play)` re-key queued for
-  cutover re-pin; engine-first / no historical-data tuning before ship; Svelte-primary distribution.
-- ~~**Still open (Z.ai Cakepanz, not engine):** Part 0 disposition, C′1 ring fix, exact tab-label
-  capitalisation.~~ **CLOSED 2026-11-19 21:30 UTC** — see the three-rulings filing below.
-
-## Three Z.ai rulings CLOSED (2026-11-19 21:30 UTC)
-
-- Owner answered all three; verbatim in `_agents/owner-notes/2026-11-19-three-rulings-verbatim.txt`.
-  Closure filing: `inbox/20261119-2130-pickle-R-13-three-rulings-closed.md`; bulletin 2130.
-- **Part 0:** posed to Z.ai, not struck/blessed by me — "let him fix it himself with his own intuition."
-- **C′1:** get as close to w89 as possible; ring looks worse than w89's glowing button. Mechanism
-  (Q-H5 raw export vs display-round) NOT assumed — engine change routes to Architect with re-pin.
-- **Tabs: settled** — w89 titles in ALL CAPS: `SEASON STATS / PLAYOFF STATS / YOUR PLAYERS /
-  LEAGUE LEADERS` (w89 strings VERIFIED in live index.html).
-- Drafted the Z.ai continuation prompt the Owner flagged:
-  `_agents/pickle/deliveries/prompts-2026-11-19/zai-cakepanz-closeout-rulings.md` — for Owner relay
-  (KG sends), NOT sent, no branch pushed. No product/engine/governance/queue/other-seat edits.
-
-## Z.ai sitting prompt — final paste-ready (2026-11-19 22:00 UTC)
-
-- Owner asked me to read Ernie's latest draft + vapor review and use them to improve my Z.ai draft,
-  assuming Z.ai has zero context. Read Ernie v3.0 (`council/ernie` tip `ecf35836`,
-  `deliveries/zai-next-sitting-prompt-2026-11-19.md` blob `34d9b025…`, 290 lines) and
-  `_agents/ernie/deliveries/vapor-mode-experiment-2026-11-19/RESULTS.txt` (blob `d863f4c3…`).
-- Wrote `_agents/pickle/deliveries/prompts-2026-11-19/zai-sitting-2026-11-19-final-paste-ready.md`
-  — self-contained cover that points Z.ai to Ernie v3.0 as controlling order (exact blob + fetch
-  commands) and adds the Owner rulings verbatim. Marked my earlier Z.ai draft SUPERSEDED (Part 0
-  went from "posed" to **ACCEPT**: later Owner quote "best of both is probably best…", relayed by
-  Ernie 21:45; working dist `76de5658…` is release candidate, no re-cut).
-- Vapor: Ernie's controlled run (Svelte 13,154 B gz / vdom 26,294 / vapor 31,498; vapor +19.8% vs
-  vdom, 2.39× Svelte; falsifier dead) supersedes my earlier 24,125 B direction. Kept both on record;
-  R-13 stays closed either way. Filed in the paste-ready prompt §2, flagged REPORTED-from-PICKLE.
-- Reconciliation rule in the prompt: v3.0 governs task/fence this sitting; C′1 + tab labels are
-  product-track items recorded, not edited (v3.0 §8 forbids product edits). FOR OWNER RELAY.
-
-## MUSE catch-up + work-block prompt (2026-11-19 21:40 UTC)
-
-- Owner: can't prompt MUSE directly, likes the sweeps. Filed `bulletin/20261119-2134-pickle.md` +
-  verbatim Owner note (`_agents/owner-notes/2026-11-19-muse-sweeps-relay-verbatim.txt`), pushed at
-  `ce32da655` (bulletin is the channel MUSE's `council-sync` sweeps read).
-- Then drafted the long catch-up prompt the Owner asked for:
-  `_agents/pickle/deliveries/prompts-2026-11-19/muse-full-catchup-and-work-block.md` (243 lines) —
-  full 19 Nov record + a ≥1-hour, 5-group/18-item infrastructure work block, 5-group delivery zip spec.
-  FOR OWNER RELAY (KG sends). Key flag inside: MUSE's v2.2 re-pins `edd56bf1`, but the live Architect
-  tip is now `deb6275fa` (VERIFIED by ls-remote this session) — v2.2 is already stale; item C1.
-  Not sent; no push to MUSE's or any other branch.
-
-## Vue Vapor benchmark (2026-11-19 21:13 UTC)
-
-- `inbox/20261119-2113-pickle-R-13-vue-vapor-benchmark.md` + `bulletin/20261119-2113-pickle.md`.
-- Owner asked to re-run the DS byte benchmark with Vue Vapor. Same feature/method; earlier anchors
-  reproduced exactly (sv-base 15,493 B gz, Vue 3.5 base 26,335 B gz). Vapor 3.6-rc = 24,125 B gz
-  (−8.4% vs 3.5, −12.8% vs 3.6 VDOM, but +55.7% vs Svelte). Vapor verified genuine (no VDOM
-  markers, live render/filter/tab/sort). Needs Vue 3.6 rc; naive `features.vapor` force is a trap
-  (34,151 B). Informational only — R-13 stays closed. Sandbox: `/private/var/folders/.../vapor-bench`.
-
-## Claude reply — errata (2026-11-19 21:20 UTC)
-
-- `inbox/20261119-2120-pickle-R-13-reply-to-claude-errata.md` + `bulletin/20261119-2120-pickle.md`.
-- Seat filings `ernie:2105` + `ernie:2115` landed AFTER my 21:06 reply; re-verified all disputed claims.
-- Corrections to the reply: (E1) c9 pins `^7.3.6`, NOT 7.3.7 (my error); (E3) pairing +3%–~29%
-  on quoted factors / +3%–+27% measured; (E4) item-6 landed, not mid-run; (E5) throughput is
-  GLM@λ=0 not pools-only. Pushback: my "two-arm rev10 ^7.3.6" was correct — Ernie's ^8.3.0 is
-  the football-sim-svelte tree, a different file. Original reply stands per §5; errata supersedes
-  specific lines and carries one clean paste-ready copy. Core conclusions unchanged.
-- Accepted Ernie G1 as a correction to my P-287 item-6 review N2 (fee5c2fd8 is dangling; use
-  git ls-tree, not merge-base) — that belongs to the item-6 review, not the Claude reply.
-
-## Standing recipes
-
-- **Blob-first**: `git show <ref>:<path>` / `git archive <ref> -- <dir>` → temp dir; print the sha you resolved.
-  Refs move mid-session.
-- **Test the Architect's tree without touching it**: `git archive origin/architect/engine-and-seats colors data/nfl
-  tools/mathlab | tar -x -C $TMP`, then `node --test --experimental-strip-types test/nfl/*.test.ts` from `$TMP/colors`.
-  Extract `data` AND `tools/mathlab` or the suite gives false reds.
-- **Prove a survivor with a mutation**: one substitution, `diff` to prove exactly one line changed, then the whole
-  test tree. `mutated-lines=0` means the run proves nothing.
-- **zsh eats `$VAR:c`** — use `${A}:path`. Manifests: report rows **and** file count; an unlisted manifest is
-  correct, not an error.
-- macOS: `/tmp` is a symlink; use `/private/var/folders/...`. Patch a **copy**, never the product.
-- **A number is only as good as the ref it was run against.** State both in one sentence.
-- **Shallow-checkout trap**: `git log | grep <sha>` can match a commit *message*; use `git rev-list | grep '^<sha>$'`
-  or `git merge-base --is-ancestor` and check `.git/shallow` before calling ancestry either way.
+- Framework **final: Svelte 5 + Vite 8** (Owner R-13, landed on `council/muse` under authorization).
+- Part 0 **ACCEPTED** — patched dist `76de5658…` is the release candidate; `670d4c08…` is history;
+  not byte-identical (four Part-0 fixes). C′1: match w89; tab labels SEASON STATS / PLAYOFF STATS /
+  YOUR PLAYERS / LEAGUE LEADERS (ALL CAPS).
+- Blob-first: `git show <ref>:<path>` / `git archive <ref> -- <dir>` → temp dir; print the sha resolved.
+  Test the Architect's tree without touching it (`git archive … colors data/nfl tools/mathlab`).
+  Prove a survivor with a mutation (diff → exactly one line changed → whole test tree).
+  Manifest checks: report rows AND file count. macOS `/tmp` is a symlink; use `/private/var/folders/…`.
+  Shallow-checkout trap: `git log | grep <sha>` can match a commit message; use `git rev-list | grep` or
+  `git merge-base --is-ancestor` and check `.git/shallow` before calling ancestry either way.
+- Labels: VERIFIED / REPORTED / INFERRED / UNKNOWN. Receipts are raw stdout at the final state.
+  No product bytes, engine files, protected constants, governance or queue rows edited by me.
