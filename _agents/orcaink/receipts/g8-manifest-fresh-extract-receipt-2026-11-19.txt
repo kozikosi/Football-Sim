@@ -1,0 +1,16 @@
+=== gate-manifest fresh-extract receipt (2026-11-19T03:29Z) ===
+date: 2026-11-19T03:28:41Z
+extracted-from: origin/council/inkling @ 63a171377b2007961421d40e6a91f35d26ef0a0e
+extract-cmd:  git archive origin/council/inkling _agents/inkling/67-cakepanz-8-2026-11-18 | tar -x -C /tmp/inkling-8
+extracted-at: /tmp/inkling-8/_agents/inkling/67-cakepanz-8-2026-11-18
+
+=== cakepanz-4
+cwd: /tmp/inkling-8/_agents/inkling/67-cakepanz-8-2026-11-18/cakepanz-4
+boot target: 2 referenced asset(s) checked against the manifest
+gate-manifest: PASS (314 entries verified, dist/ covered, converse clean)
+exit: 0
+=== cakepanz-4-prepared
+cwd: /tmp/inkling-8/_agents/inkling/67-cakepanz-8-2026-11-18/cakepanz-4-prepared
+boot target: 2 referenced asset(s) checked against the manifest
+gate-manifest: PASS (319 entries verified, dist/ covered, converse clean)
+exit: 0
