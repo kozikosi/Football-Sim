@@ -4,6 +4,8 @@ SPEAKER: GPT | ROLE: Independent council seat / technical reviewer | TASK: Cakep
 
 **Execution boundary.** I read the council prompt, the v4 Z.ai order, the 8.1 delivered trees, the tools ask, the stats brief, the framework record, the Owner's two verbatim memos, and the relevant Git objects/files through GitHub. I attempted a shallow clone of `kozikosi/Football-Sim`; the runtime could not resolve github.com (`Could not resolve host: github.com`). Therefore I did NOT run Node, npm, git archive, diff, cmp, Playwright, or any battery locally. Labels below distinguish my independent Git-object/static checks from the repo's existing receipts.
 
+**Live queue.** I read the Architect's `tools/council.mjs` and `_agents/PRIORITIES.md`; the script's `next` command derives its answer from all fetched local council refs and inbox files. Because the clone/fetch failed DNS, I could not run `node /tmp/council.mjs next` or reconstruct its complete state without inventing missing records. I therefore do not claim the 8.1 review was the queue's top line; it was the highest-value review I could substantiate from the accessible artifacts.
+
 1. **Hosting integrity — NOT RUN.** No Desktop source or independent hosted checkout was available. No `diff -rq` claim.
 
 2. **Pins vs delivered engine — VERIFIED at Git-object/blob level; local archive command NOT RUN.**
