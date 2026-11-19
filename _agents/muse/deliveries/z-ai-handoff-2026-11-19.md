@@ -179,3 +179,28 @@ This is for you specifically. Read it once if the Owner relays you here; it carr
 **If you are unsure:** ask in one sentence in your reply; we'll answer in one sentence. Don't guess into a shipped feature.
 
 End of Addendum B.
+
+---
+
+## Addendum C — the next-session assignment (2026-11-19T05:30Z, folding Ernie's definitive brief in)
+
+Folds `council/ernie:inbox/20261119-0351-ernie-handoff-plan-definitive.md` (@ `626c512d`) — a peer filing written for the next session with the same goal — with attribution. Nothing in it overrules the Architect's answers or this file; where the two differ, the Architect's ruling and this file govern. This addendum exists because this file is the one reference everyone can also read on the public branch, so it should ALSO name the next step plainly for any seat arriving fresh.
+
+**Current state, re-fetched this hour (2026-11-19T05:30Z):**
+
+- **Architect head:** `origin/architect/engine-and-seats @ 06d89724dbb6…` — "P-317: START takes pickSlot (1-32); optional record field, old saves unchanged; absorb-work answer; NOW". The engine-side P-317 contract is DONE: `START` takes `pickSlot` 1–32; the user's team takes that round-1 slot; the snake runs from there; old saves restore exactly as before (the field is optional; a slot equal to the team's own index writes nothing); tests 421/421, tsc 89/89 (REPORTED). **What remains of P-317 is the cakepanz shell passing the slot through its own store — that is Z.ai's, not Claude's.**
+- ** Items 5 and 6 not started:** item 5 = the GLM-vs-pool re-run on the new baseline (Claude writes the seeds/N/pack spec; Z.ai runs it; Claude reads the JSON); item 6 = the λ-axis Lab (measurement only; GLM default 0).
+- **Cakepanz-9 v4** (`c7c83853`, Inkling's) is the sendable sitting order — Parts A (close 8.1 honestly) → B (C1/C2) → B-bis (remove the flip; one uniform board) → C (Owner-approved items only) → D (the absorb-work answer, non-blocking) → E (the w89 tool brainstorm, brainstorm-not-build).
+- **The fence is still the immediate build** (Z.ai implements, Claude designs, **plant-a-violation before anyone trusts it**); **Tier 1 is the immediate handoff** (per-commit receipts + the items 5/6 runs once specs land).
+- **Second opinions in:** the P-144 rejection stands (resubmission, not redesign — the Owner does not pick until the files are redone); GPT's §22 confirmed 4-for-4 and folds into v4's Part A re-quote (no v5).
+- **Framework:** 7-9 council seats lean Svelte (GPT 70/30 ↑ from 60/40, Inkling 70/30, Glyph 70/30, OR 70/30/85%, ORCAINK 65%, VL 65%, BEAM 65%, Ernie ~50/50, z.ai's Rev 10), the Architect's written rec is Vue at LOW confidence, the Owner rules at cutover. Nothing ships before the ruling.
+
+**What the next session does (the assignment):**
+
+1. **Evaluate z.ai's latest package** — verify the delivered bytes: pins (`git archive` cmp vs both trees), flex census (99 rules {0:17, 2:17, 6:42, 12:23}), suites (394/406), node batteries (33/33), shell (47/0 or 48/0 consistent with the folds), slice (29/0/10/3), gate-manifest from a fresh extract (PASS 314/319), numerals under **both** CP_PIN invocations (the 8.1 receipts only ran the default — the prepared tree will FAIL if the merge-guide still names 5c808472; that is the v4 Part A fix), the acceptance-receipt pointer vs body in **both** trees, the dist sha vs §21.8's unmarked stale line, the receipt files' own existence (FIX/START hashes absent from `receipts/partH-c8-1/`), Cakepanz-9 v4 items (parts A/B/B-bis/C as relayed), and the fence check if one ships — plant a violation on purpose and confirm it fails loudly. Label every claim VERIFIED / REPORTED / NOT RUN.
+2. **Reply to z.ai with the explained handoff of work in detail** — restate from this file: the four tiers, the five-path fence verbatim (`colors/src/core/**`, `colors/src/sports/nfl/engine/**`, `app/saves.ts`·`appstate.ts`·hydrate/versions/envelope, `data/**`, `tools/mathlab/**`), the protocol (spec-first, apply-asserted, receipts raw stdout, seats verify with fresh extracts, fence wins ties, rollback, no direct pushes), Tier 1 as the immediate take, Tier 2 under diff review, Tier 3 blocked until R-13 (or framework-neutral work), Tier 4 never, and the interface divide as the target after R-13 rules — with the receipt-excluded output path as the one load-bearing detail of the items 5/6 spec.
+3. **File the review + the reply to z.ai** on your own branch; commit; push.
+
+**One nuance this file has been wrong about by omission:** the cakepanz shell does NOT yet pass the slot through its own store (engine-side contract done; shell wiring pending in Z.ai's track — likely to land in the Cakepanz-9 sitting). The handoff doc's "Where we are" does not name this split; this line names it, and the next evaluator should check for it any member of the package.
+
+End of Addendum C.
