@@ -1,0 +1,47 @@
+
+> cakepanz-67@0.6.0-shell battery:node
+> node --import ./scripts/node-port-register.mjs batteries/node.battery.mjs
+
+
+== NODE BATTERY complete — framework-blind, browser-free ==
+✔ M1: no svelte file imports the snapshot (the grep is the law; empty outside the port is the PASS) (5.61047ms)
+✔ M1b: only port/seam.ts imports src/engine (the ONE door) (4.243824ms)
+✔ M2: the swap cone — deleting src/engine roots every missing module at the adapter (throwaway copy) (1118.79763ms)
+✔ N4a: the fixture marshal is deterministic (same bytes twice) (956.198744ms)
+✔ N4b: the fixture draft is a FULL 1,024-pick league (32 x 32) (0.239238ms)
+✔ P-317: newDraft honours a custom order (the user picks FIRST at their chosen slot) (848.402022ms)
+✔ N9a: the stepper plays week 1 and the week view is done (17.78059ms)
+✔ N9b: standings through week 18 equal the engine's own table (280.00537ms)
+✔ N9c: the bracket derives from the engine seeding and plays out to a champion (60.290006ms)
+✔ N9d: the season's playoff games replay identically from their stored gameSeed (0.20692ms)
+✔ N10: the stats accumulator folds every played week into the engine SeasonStats (197.849642ms)
+✔ N11: the review re-renders the engine recap — no "expected scoring", no "sudden death", turnovers named (9.821559ms)
+✔ N12a: the week payload round-trips (serialize → restore → hydrate) (3.923159ms)
+✔ N12b: a corrupt blob is REFUSED verbatim (never repaired) (0.114725ms)
+✔ N12c: a NEWER-build save is refused by VERSION (never silently accepted) (0.125779ms)
+✔ N13: settings persist and a corrupt blob falls back to defaults (0.152329ms)
+✔ N14: every shareable card is ONE self-contained blob (no CDN, no network, provenance inside) (0.590057ms)
+✔ N15: the board rows print integers except Wins/Priority (one decimal) (1221.475464ms)
+✔ N14b: the season brag names the REAL champion and the honest record (case-insensitive) (0.306159ms)
+✔ N19: gone% values are TRUE — a direct engine replay agrees with the board, and the envelopes hold (3057.27106ms)
+✔ N16: port/ is framework-blind (no svelte/vue/react imports, no runes anywhere below the render layer) (1.273592ms)
+✔ N17: the w88 feed anatomy rides the shell (zrl-* classes + the me glow + reduced-motion off) (0.704945ms)
+✔ N18: the team remap is the 32-team palette (zpb json) + the .ub law lives in the shell law set (0.230093ms)
+✔ N20 (F8): the save service refuses a slot/key mismatch — the engine asserts the pair, the composition wires it (0.220953ms)
+✔ N21: the older-build note names another build on the slot card, and is silent for the running one (Part F) (0.905182ms)
+✔ N22 (the packs law): the sim boots on a non-empty pool, and the current-era pack hashes to the pin value (417.505807ms)
+✔ N23 (Part A): picking a team changes at least three accent tokens, and --zcream is unchanged (6.17754ms)
+✔ N24 (Part D): the body copy is a system sans, the slogan rides home + Guide, the 900 faces are inlined, and the label is one constant (6.936014ms)
+✔ N25 (HYDRATE, Slice 3): a refresh mid-draft lands back on the same board — the full AppState rehydrates from the saver (1896.009823ms)
+✔ N26 (Slice 3): the gone-odds tooltip surfaces the engine's own number and states its method on hover (1022.093847ms)
+✔ N27 (Slice 3): the "my needs" sticky row shows exactly the roster's empty slots, is clickable, and the count moves (49.132552ms)
+✔ N28 (RESUME, cakepanz-8 A1): a refresh with BOTH autosaves lands on the hub — the season outranks the finished draft's screen (989.462151ms)
+✔ N29 (DONE-DRAFT, cakepanz-8 A1): a refresh with a done draft and no week lands on Complete — never a blank board (892.690103ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14151.445255
