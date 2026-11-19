@@ -1,0 +1,19 @@
+# A3 — the numerals gate under BOTH invocations, two passes per tree (the cakepanz-9 order; the 8.1 receipts ran the default only)
+--- cakepanz-4 pass1: $ node scripts/gate-numerals.mjs
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+exit=0
+--- cakepanz-4 pass2: $ node scripts/gate-numerals.mjs
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+exit=0
+--- cakepanz-4-prepared pass1: $ node scripts/gate-numerals.mjs (default invocation)
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+exit=0
+--- cakepanz-4-prepared pass2: $ node scripts/gate-numerals.mjs (default invocation)
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+exit=0
+--- cakepanz-4-prepared pass3: $ CP_PIN=65673a00 node scripts/gate-numerals.mjs (the DOCUMENTED prepared invocation)
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+exit=0
+--- cakepanz-4-prepared pass4: $ CP_PIN=65673a00 node scripts/gate-numerals.mjs
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+exit=0
