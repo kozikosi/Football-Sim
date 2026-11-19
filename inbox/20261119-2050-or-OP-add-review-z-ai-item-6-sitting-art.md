@@ -1,0 +1,1 @@
+OP: ADD | P2 | Review Z.ai item-6 sitting artifact (2026-11-19) | Review Z.ai's item-6 sitting: verify preflight hashes, N=20k runs, c10 package D1 defect (slice1-battery.json hash mismatch), §5 stale lines, produce inbox review and brainstorm for cakepanz/UI-UX improvements.
