@@ -12,22 +12,22 @@
 3. Live queue/tool/docs on `origin/council/muse`: `git fetch -q origin && git show origin/council/muse:tools/council.mjs > ./.council_tool.mjs && node ./.council_tool.mjs next` (delete temp tool before push).
 4. `node tools/preserve.mjs check`.
 
-## Current state (session end 2026-11-18T23:18Z, glyph)
+## Current state (session end 2026-11-19T09:04Z, glyph)
 - **Worktree:** `/Users/kosi/Desktop/wt/glyph`, branch `council/glyph`, git common dir `/Users/kosi/Desktop/Football Sim/.git`.
-- **Tip (VERIFIED this session end):** `origin/council/glyph@64ebb926f4c63f9dfee358b0e34ac0906b4950e4` (HEAD == ls-remote before this end-of-chat commit).
-- **Published this session (VERIFIED, pushed):**
-  - `e27df3d99952f35b6fa661b15f5d0fb39c953759` — published `_agents/glyph/deliveries/67-cakepanz-8-2026-11-18/` (copy of `/Users/kosi/Desktop/Football Sim/67-cakepanz-8-2026-11-18`; 1006 files, no `node_modules`/.git inside). Pins reported/held: shipped `5c808472` (67 files), prepared `65673a00` (68 files, NOT ACTIVATED); GLM off; gh-pages fix not placed; Block C (R-13) not started.
-  - `a0a127baeae2af398ca65db9c86db3953eec8813` — `inbox/20261118-2005-glyph-cakepanz-8-review-and-ideas.md` (thorough cakepanz-8 review + UI/UX ideas).
-  - `bf437466172df051df63c954307575e480febc33` — `inbox/20261118-2205-glyph-cakepanz8-seats-synthesis.md` (cross-seat synthesis, consolidated findings, prioritized fixes/brainstorm).
-  - `5a419203f0625fe82a0368b2e0e58bab868f5d5b` — `inbox/20261118-2235-glyph-inkling-hier-round-review.md` (Inkling hier/drift round review).
-  - `64ebb926f4c63f9dfee358b0e34ac0906b4950e4` — `bulletin/20261118-2232-glyph.md` (Owner directive broadcast); board `INFO` to `ALL` posted (id `board_4e78811f-4218-433d-bf52-6c3374d87c22`, stored; no delivery/read/action guarantee).
-- **Key findings (REPORTED unless noted):** cakepanz-8 A1/A2/Block B anchors and spot-checked receipts as in synthesis inbox (b1 engine diff clean; A2 red 46/1 S29, green 47/0; F0–F12/F0-late/F13-late died; gates PASS 314/319; fresh-clone ends green). Convergent nits: `simpleOff` not persisted/restored, simple-row detail affordance/copy, `syncFromHash()` bypasses router normalization, sort vs displayed rec number in simple mode, receipt tail-green/attempt gate, `Hub.svelte` week-class precedence. Cross-seat reviews seen: Inkling/Beam/Pickle verdict inboxes; Ernie/DS hosted copies without verdicts found. Inkling hier/drift (`ab5c3085`) vs Architect `5d018f52`,`ea48005c`: glyph verdict ok, nothing blocking (name-only diff empty, golden 2023-25 unchanged, datacheck 0/3/3 reproduced, CI run 44404129491 success).
-- **Owner directive (FACT, 2026-11-18):** prioritize finishing engine and shipping over super-aligned sim-vs-historical tuning; defer deep historical-alignment/value-tuning to post-ship unless required for correctness/acceptance.
+- **Prior tip (VERIFIED):** `origin/council/glyph@64ebb926f4c63f9dfee358b0e34ac0906b4950e4` (2026-11-18 session). New tip = this session’s pushed commit (hash in final reply / `git rev-parse HEAD`).
+- **Published this session (Owner request; commit pushed to `council/glyph`):**
+  - `_agents/glyph/deliveries/67-cakepanz-10-2026-11-19/` — verbatim copy of `/Users/kosi/Desktop/Football Sim/67-cakepanz-10-2026-11-19` (52 files, 1.8M). VERIFIED: Desktop vs `wt/beam` copy `diff -rq` no differences; `CHECKSUMS.txt` md5 49/49 ok; START ×3 `5e5ed7c9c3ce4afc3a8bc1f2487a345e496ad9b06e85a0eeaef40c1f25e935b9`; `.gitignore` ×2 `f27658cc…`; shipped `dist/single.html` `76de5658…` (unreleased working build); manifests 314/319. Prepared tree in-package is metadata/docs-only (no `src`/`dist`/`batteries`) — prepared code claims REPORTED from this copy.
+  - `inbox/20261119-0904-glyph-cakepanz-10-review.md` — thorough review (integrity table, Part 0 source/receipt inspection: D1 keepWeek S29b, D2/L7b 390px tooltip/tap fix, D3 aria-hidden, D5.3 single brand; gate/k1/cite-check/item-5 readout; implications; UI/UX-shell brainstorm for Claude’s engine). Z.ai relay treated REPORTED; execution claims not rerun.
+- **Key findings (this session):** Part 0 anchors present in shipped sources and sampled probe receipts coherent (S29b 3 boots hub+week key, L7b 6 rows tip hidden 0px + 12/12 chip hits + scrollW=390, rendered-state single brand/aria-hidden/in-flow method). Fence spot-check clean in patched files. Cite-check log shows unresolved 0 but a `COUNT L7b all chips hit chip: 0` counter anomaly vs probe data (hygiene flag). Suites/gates not rerun by glyph.
+- **Owner directive (FACT, 2026-11-18, still applies):** prioritize finishing engine and shipping over super-aligned sim-vs-historical tuning; defer deep historical-alignment/value-tuning to post-ship unless required for correctness/acceptance.
+
+## Prior published (2026-11-18, VERIFIED pushed)
+- `e27df3d9` cakepanz-8 delivery, `a0a127ba` cakepanz-8 review, `bf437466` cakepanz-8 synthesis, `5a419203` inkling hier/drift review, `64ebb926` bulletin/board directive.
 
 ## Open gaps / next session needs
-1. **Priority lens:** take queue-driven work from `origin/council/muse` (`node ./.council_tool.mjs next`) biased toward engine-completion/shipping; defer non-blocking historical-accuracy tuning (margins/sacks/lambda/GLM-vs-pool fine-tuning) unless required for correctness/acceptance.
-2. **If continuing cakepanz-8 polish (render/receipt-layer only, no engine/pin moves):** persist/restore `simpleOff` with reload-covering law, fix simple-row detail affordance/copy, route `syncFromHash()` through `go()`/router normalization, align simple-mode sort vs displayed rec number, add receipt tail-green/attempt gate and parenthesize `Hub.svelte` week-class condition. Keep engine tree/pins untouched.
-3. **Not rerun by glyph (REPORTED/data-gated, secondary per directive):** full cakepanz-8 browser/acceptance/fresh-clone suites; Inkling hier/drift full `npm ci && npm test` 419/419, tsc 89, build, totals-bar reruns, classpath execution, nflverse-dependent proofs. Deployment/policy (gh-pages fix, prepared activation, Block C R-13, late-mode threshold, etc.) remain Owner/Architect decisions.
+1. **Priority lens:** take queue-driven work from `origin/council/muse` (`node ./.council_tool.mjs next`) biased toward engine-completion/shipping; defer non-blocking historical-accuracy tuning unless required for correctness/acceptance.
+2. **Cakepanz-10 follow-ups (if taken, spec/Owner-gated where noted):** Owner accept/strike of Part 0 + release/cutover mechanics (unreleased `76de5658…` dist vs live artifact, re-zip/parity policy); confirm prepared-tree code/dist parity from full sources; consider `?seed=` dev seam (Architect) for deterministic UI batteries/goldens; address cite-check L7b counter hygiene if tooling touched.
+3. **Not rerun by glyph (REPORTED/data-gated):** cakepanz-10 composites/batteries/gates/fresh-clone/5,104-row SHA256SUMS verification; item-5 interpretation (Architect). Deployment (gh-pages/make-live), prepared activation, Block C (R-13), copy/label rulings remain Owner/Architect decisions.
 
 ## Live/relevant files
 - `_agents/glyph/deliveries/67-cakepanz-8-2026-11-18/` — published cakepanz-8 copy + receipts.
