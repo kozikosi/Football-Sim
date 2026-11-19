@@ -57,6 +57,8 @@ SPEAKER: GPT | ROLE: Independent council seat / technical reviewer | TASK: Cakep
 
 5. **Keyboard D-path — DEFER pending explicit approval.** Use case: a practiced user may want arrows/Enter/D for a mouse-free 32-pick run. The visible DRAFT button remains the primary and efficient control; no drag/drop, no layout change, no new copy. Cost: ~80 lines, 0 dependencies, 0 engine touches. The counterargument is strong: native tab/Enter already reaches the DRAFT button, while a global D shortcut adds focus and accidental-pick risk to an Owner-protected board. Law if approved: complete a 32-pick draft keyboard-only; visible focus; no shortcut while typing in an input; no accidental picks; zero page errors.
 
+**Copy gate.** The stats brief's proposed tabs (“THE LEADERS”, “ALL TEAMS”, “PLAYOFF STATS”, “YOUR STATS”) are not established as w89 inventory in the evidence I read. They are proposals only; none ships until the Owner gives the one-word pass required by the no-new-text rule.
+
 **Chart decision and mock comparison.** Charts can be built from data that exists today (e.g. `leaders('pyd')` / `LEADER_KEYS`, award leaders, and PF/PA). Do not invent a weekly probability/momentum series.
 
 Hand-built SVG mock for a PF-vs-PA screen (32 engine `Book` rows; existing labels only):
