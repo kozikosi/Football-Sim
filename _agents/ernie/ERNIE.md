@@ -12,10 +12,9 @@
 - **Standing rule:** four lines per claim (cwd · exact command · ref+sha · output). VERIFIED / REPORTED / INFERRED / UNKNOWN on every claim. "No signal" is a result.
 - **Worktree:** `/Users/kosi/Desktop/wt/ernie` · **branch:** `council/ernie` · **merge-base with `origin/council/base`:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 
-## Current state (2026-11-18T23:16Z)
-- **Nothing in progress.** Pushed `fa79e314`. Worktree clean, branch pushed and verified.
-- **This session:** hosted z.ai's **cakepanz-8** (`cc05df44`), reviewed it (P-316, **improved**), reviewed the Architect's **hier/drift round** (P-342, **ok + one correction**), reviewed **Inkling's** hier-round review + council order (P-342, **improved**, 4 corrections), filed **eleven shell ideas** (P-345), and broadcast the **Owner's 22:31Z directive**.
-- **THE LIVE DIRECTIVE (Owner, 2026-11-18T22:31Z, verbatim in `_agents/owner-notes/2026-11-18-owner-note-sim-values-after-ship.txt`):** *"I don't want you or claude or the council to spend too much more time trying to get the sim values to line up super aligned with the historical data. i would rather we get the engine overall finished and then you can tinker with values and historical accuracy after we have shipped."* → **per-metric historical alignment is PARKED until after ship** (W1/W2 tolerances, W3 GLM-vs-pool, W4 lambda Lab, `NOW.md` items 4–7, V7/V8 oracle census). **Engine completion and product surface continue.** Read this before proposing any calibration work.
+## Current state (2026-11-19T01:05Z)
+- **Nothing in progress.** Worktree clean; branch pushed (commit pending below). This session: hosted z.ai's **cakepanz-8.1** (869-file package, `5f7e9525`), reviewed it (8.1 review, **improved** — 8.1 closes P-316's five user-facing findings but leaves F6-prepared + F3), filed the **P-345 follow-through #2** (cakepanz-8.1 implications + next leaps), and **compiled a report of all seven seats' cakepanz reviews + everyone's ideas**.
+- **THE LIVE DIRECTIVE (Owner, 2026-11-18T22:31Z, verbatim in `_agents/owner-notes/2026-11-18-owner-note-sim-values-after-ship.txt`):** *"I don't want you or claude or the council to spend too much more time trying to get the sim values to line up super aligned with the historical data. i would rather we get the engine overall finished and then you can tinker with values and historical accuracy after we have shipped."* → **per-metric historical alignment is PARKED until after ship.** Engine completion and product surface continue. Read this before proposing any calibration work.
 
 ## 1 · What not to redo (receipts exist)
 
@@ -30,27 +29,30 @@ The four digests and their roots · goldens `0ccb6319…f3f5` · the 57-file `cm
 - **My findings (F1–F6):** F1 the simple row's main button is a dead control with `aria-expanded`; F2 the simple form shows `r.wins` while row order may be `priority`/`ovr`; F3 the new Block B CSS hard-codes golds instead of the theme tokens (bites the Owner's two open contrast rulings); F4 the FULL BOARD door is one-way for the draft; F5 the gate is red after `npm run battery` until `regen-manifest` re-runs; **F6 `gate-numerals` exits 1 on BOTH trees** (`VERIFY.txt:553–554` reports the deployed `4ca9a071` without a correction keyword; prepared `MERGE-GUIDE.md:3` names `5c808472` not `65673a00`) — so `SHELL-STATUS.md:53`'s "Numerals CLEAN ×2" does not reproduce.
 - **z.ai's cakepanz-8.1 work order already exists** (Inkling `de1e9ef2`, `596bd94f`) and folds in DS/Pickle/Inkling findings + L7–L9/F14–F16. **Check F6 is in it** when 8.1 lands.
 
+**Cakepanz-8.1, VERIFIED by me (receipts: `_agents/ernie/deliveries/67-cakepanz-8.1-2026-11-18/` + `inbox/20261118-2345-ernie-P-316-cakepanz-8.1-review.md`):**
+- **Hosted the 8.1 package** at `_agents/ernie/deliveries/67-cakepanz-8.1-2026-11-18/` (commit `5f7e9525`, 910 files, byte-identical to the Desktop source). Two trees: `cakepanz-4/` (shipped, 5c808472) + `cakepanz-4-prepared/` (65673a00).
+- **Re-ran on Node 26, both trees:** engine **394/394** shipped + **406/406** prepared; node **33/33**; shell **47/0**; slice **29/0/10/3**; late **9/9**; gates **314/319**; **late falsifier F0 clean 9/9 + F13/F14/F15/F16 ALL DIED**; dist `4ce69205…` rebuild byte-identical, cross-tree identical; pins byte-identical (67/68 via hash-object); flex 99.
+- **8.1 closes P-316's five user-facing findings** (4.1–4.5): L2 shows `rec=+0.3 vm=+0.3 cap=PRIO`/`wins: rec=+0.5 cap=WINS`; L7 `regions=1 chips=1 lbl="OVR 77 · priority +0.2 · fills QB"`; L9 `restoredPicks=12 form=full`; L8 `screen=complete h1="Your draft is complete"`.
+- **My 8.1 findings (still open):** **F6-prepared** — prepared `MERGE-GUIDE.md:3` names 5c808472, numerals gate **FAILS at CP_PIN=65673a00** (`never names the CURRENT pin`); z.ai's "CLEAN ×2 both trees" only holds with the wrong pin (default 5c808472). **F3** — Block B hard-codes golds in **3 files** (BoardRow/DraftBoard/BoardFooter), ~20 declarations, so team takeover won't recolour the late board; unfixed. **F7** — README-DELIVERY:9 "acceptance script completes end-to-end" contradicts its own L10 bullet (:41). L10 open item is honestly flagged (ACCEPTANCE pointer + VERIFY §22.2).
+
 **Engine / tooling state:**
 - **The engine tip is `ea48005c`** (oracle drift root-caused; 2016-22 pack re-baked; `datacheck.py` + `data-manifest.json` guard). Prior: `5d018f52` (class path), `57fb83c` (pools node).
 - **Verified this session:** 419/419 · tsc **89/89** · build clean · CI `44404129491` (`ea48005c`), `44351214198` (`57fb83c`), `44266214860` (`3363eb0`), `44262444359` (`1aa7fb3`) all success · `git diff 57fb83c..ea48005c -- colors/src` **empty** · golden pin `pack53:1465418807480a` / `log53:03a2e03a885c91` / `[24,31]` / 216 · flex **99 {0:17,2:17,6:42,12:23}** · `datacheck.py` tampered → **exit 3** with the byte-size line, missing → **exit 3** (synthetic `NFLVERSE_DIR`).
 - **Correction I filed and Inkling's totals-bar run corroborates:** the hier-followups report's "**−0.28 points/game**" contradicts its own table — 23.40 → 23.25 = **−0.15** (+3.7% → +3.0% of 22.56 = 0.16). The prose is the stale artefact.
 
 ## 2 · What is genuinely open
-1. **P-316 (cakepanz-8) needs two more seats** — my review is 1 of 3. Inkling also reviewed cakepanz-8 (`763f7a5c`, VERDICT improved, 2 render-layer fixes + receipt hygiene) — check whether that counts as the second before chasing.
-2. **F6 (numerals gate) is unfixed** — needs `VERIFY.txt:553–554` re-worded (or the gate's regex widened) and prepared `MERGE-GUIDE.md:3` re-pointed at `65673a00`, then both gates re-run and `SHELL-STATUS.md:53` re-printed.
-3. **Inkling's council order needs its four corrections applied** before seats execute it — above all the **REVIEWED threshold (order says two seats; `AGENTS.md` §5 says three)**.
-4. **R-13 / Block C** — still gated on the cakepanz-8/8.1 zip being pushed. My proposal: make the **late-draft** board the sealed slice (item 11 of the P-345 filing).
-5. **The Architect's ladder patch** (`1e6` + a permanent `EMERGENCY < PLAYS` assertion) — unlanded.
-6. **The four sim-layer survivors** — PARKED by the 22:31Z directive.
-7. **PROJECT-KNOWLEDGE.md antiquation** — still deferred; coordinate with Inkling (co-custodian).
-8. **P-333** — VL's `DT→ILB = 6` is the only surviving lever; PARKED for calibration but the harness is live.
+1. **cakepanz-8.1 → v8.2 / cakepanz-9** — my 8.1 review (`improved`) leaves: **F6-prepared** (one-line `MERGE-GUIDE.md:3` or exclude MERGE-GUIDE from the prepared numerals check), **F3 theme tokens** (3 files, ~20 declarations), Beam's cross-draft `fullBoard` + sighted caption, the "CLOSED except L10"/WHAT-CHANGED doc fixes. My compiled report (`20261119-0105`) synthesizes all seven seats' ideas into a cakepanz-9 proposal (three-choice card + one-click pick + why-this-one + Complete-roster + decision-cost law + colour gate + port-purity).
+2. **R-13 / Block C** — gated on cakepanz-8.1/8.2; my proposal: the **late-draft board** is the sealed slice (9 laws + F13–F16 → law-parity decides R-13, not bytes).
+3. **The four sim-layer survivors** — PARKED by the 22:31Z directive.
+4. **PROJECT-KNOWLEDGE.md antiquation** — still deferred; coordinate with Inkling (co-custodian).
+5. **P-333** — VL's `DT→ILB = 6` is the only surviving lever; PARKED for calibration but the harness is live.
+6. **gh-pages placement** — still not placed (Owner's click); deployed tree names `4ca9a071`/52 files.
 
 ## 3 · Live files (mine)
-- `_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/` — **the hosted cakepanz-8 delivery** (`cc05df44`), 869 tracked files, unmodified.
-- `_agents/ernie/deliveries/cakepanz-8-review-2026-11-18/` — `verify-cakepanz8.sh` + `.log`, `a2-mutation.log`, `browser-batteries.log`, `numerals-gate.log`, `README.md`.
-- This session's filings: `inbox/20261118-2149-…P-316-cakepanz-8-review.md` (improved + ADDENDUM F6), `-2155-…P-342-hier-followups-review.md` (ok + correction), `-2200-…P-345-cakepanz-shell-next-leaps.md` (11 ideas), `-2222-…P-342-inkling-hier-order-review.md` (improved, 4 corrections).
-- Bulletins this session: `20261118-2205-…`, `-2225-…`, `-2232-…` (the Owner-directive broadcast).
-- Earlier: `_agents/ernie/deliveries/cakepanz-7-2026-11-18/`, `cakepanz-7-review-2026-11-18/`, `prompts-2026-11-18/`, `pin-watch-2026-11-17/`, `p333-gap-options-2026-11-16/`.
+- `_agents/ernie/deliveries/67-cakepanz-8.1-2026-11-18/` — **the hosted cakepanz-8.1 delivery** (`5f7e9525`), 910 files, two trees + receipts.
+- `_agents/ernie/deliveries/cakepanz-8-review-2026-11-18/` — cakepanz-8 review receipts (verify script + logs).
+- This session's filings: `inbox/20261118-2345-…P-316-cakepanz-8.1-review.md` (improved; F6-prepared/F3/F7), `-2350-…P-345-cakepanz-8.1-implications-and-next-leaps.md` (P-345 follow-through #2), `-0105-…cakepanz-all-seats-ideas-compiled.md` (7-seat synthesis).
+- Earlier: `67-cakepanz-8-2026-11-18/`, `cakepanz-7-…`, `cakepanz-6-…`, `cakepanz-5-…`, `prompts-2026-11-18/`, `pin-watch-2026-11-17/`, `p333-*`, `ernie-ringers-*`.
 
 ## 4 · Method notes worth keeping
 - **Verify a delivery's engine against a pin:** `git ls-tree -r <pin>` → filter `$2` (tab-separated!) for `colors/src/` → compare to `git hash-object` of every file in `src/engine`. **The delivered `src/engine` IS the architect's `colors/src`.**
