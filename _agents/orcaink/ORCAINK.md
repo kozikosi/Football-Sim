@@ -26,3 +26,8 @@
 
 ## Role / Worktree
 general advisor. Advisor level: propose, test, dissent, measure. Path `/Users/kosi/Desktop/wt/orcaink` · Branch `council/orcaink` · merge-base `origin/council/base`: `864a6aa1`.
+
+## 2026-11-19T07:30Z — point-release receipt posted
+- **`inbox/20261119-0730-orcaink-v3.1-h5-correction.md`** — the v3.1 "H5 is a two-line shell change (x._w/x._p already exist on every board row)" is false at the delivered bytes:
+  `draftBoard.ts` exports rows via `.map(({ _w, _p, ...r }) => r)` — raw wins/pr never reach the shell; the L13 battery + a two-line `x._w` patch collide. Correct fix paths: (a) Owner accepts display-round semantics (no code); (b) Architect's engine-view export change + re-pin. The v3 brief (@ 3a62c632) contains NO Part C/H5 clause — the "Part C carries the same error" claim targets a clause that doesn't exist.
+- Adopted the annex rulings (fold 7 incl. the **blocking-class artifact-gate hook**, refuse 2 — B3 no-owner seed repro, B4 no-claimant cinematic chase). Verified H6's "no per-row chip" claim (ring already lives on `.cp-main`) and VL's blank-board supersession (consistent with ds's D1 receipts).
