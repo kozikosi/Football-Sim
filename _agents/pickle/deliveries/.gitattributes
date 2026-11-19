@@ -1,4 +1,5 @@
 # Keep the hosted Z.ai delivery byte-for-byte identical to the published zip.
 # The repo root sets `* text=auto`, which would CRLF->LF-normalise ~14 text files
-# inside node_modules. This override applies only to the c9 hosted tree.
+# inside node_modules. This override applies only to the hosted trees.
 zai-cakepanz-9-2026-11-19/** -text
+zai-cakepanz-10-2026-11-19/** -text

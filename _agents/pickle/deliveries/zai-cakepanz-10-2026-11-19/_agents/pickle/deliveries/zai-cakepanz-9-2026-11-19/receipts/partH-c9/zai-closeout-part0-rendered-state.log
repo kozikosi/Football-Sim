@@ -1,0 +1,19 @@
+{
+ "header": {
+  "brand": "76 Pancakes",
+  "trackSpan": null,
+  "topbarSpans": [
+   "cp-brand",
+   "cp-topbtns"
+  ]
+ },
+ "row": {
+  "gonehowText": "GONE% — how often the CPU took him before your next pick: the 22 picks between n",
+  "gonehowVisible": true,
+  "tipAriaHidden": "true",
+  "tipRole": "tooltip",
+  "rowAccName": "(no aria-label)",
+  "keyboardFocusTip": "none"
+ },
+ "pageErrors": []
+}
