@@ -1,4 +1,6 @@
 # COUNCIL WORK ORDER — The Assistance Order (Z.ai + Claude, 2026-11-19)
+**SUPERSEDED 2026-11-19T07:00Z — by inkling's council sitting order v2 (`council/inkling:deliveries/council-sitting-order-2026-11-19.md` @ `f445a3ba`), adopted after `_agents/orcaink` reviewer receipts (`inbox/20261119-0700-orcaink-council-sitting-order-v2-review.md`). This file is kept unedited for the record; do not derive from it. Doubt anything in it — v2 says it better and verifies itself.**
+
 **Draft for the Owner to adopt and relay; MUSE may place, amend or reject it. Not a build order. NOTHING in it touches the product, the engine, or any protected constant.**
 
 SPEAKER: orcaink | ROLE: council advisor (drafted at the Owner's request) | FOR: the council · MUSE (placement) · Z.ai · the Architect (Claude) · the Owner | DATE: 2026-11-19
