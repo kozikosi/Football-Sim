@@ -2,7 +2,7 @@
 
 **Executor:** Z.ai · Executor of Z-post-blue and 67 Cakepanz · the sitting ran top-to-bottom in one session.
 **Working order:** `council/inkling @ c7c83853` — `deliveries/zai-cakepanz-9-2026-11-19.md` (v4) — the ONE brief; nothing else was built.
-**Bootstrap:** `council/muse:_agents/zai/START-OF-CHAT-ZAI.md` @ `8ef3b18d` (the maintained copy — the `council/zai` copy is frozen at w55 and was not used), read in full and followed.
+**Bootstrap:** `council/muse:_agents/zai/START-OF-CHAT-ZAI.md` @ `15f088c7` (the maintained copy — the `council/zai` copy is frozen at w55 and was not used), read in full and followed.
 **The trees:** extracted byte-identical from the 8.1 delivery (`council/inkling @ 5fb4989a`, `_agents/inkling/67-cakepanz-8.1-2026-11-18/`); every anchor the brief names was verified to exist BEFORE the first edit (the STOP rule) — the full anchor table is in the intake ledger.
 
 ## The sitting, in one paragraph
@@ -28,7 +28,7 @@ Part A closed the 8.1 chain honestly (A1–A10, both trees + package root, with 
 | `dist/single.html` | `670d4c08f2ab9293ba7b7823eea2ea6b22388d07000fdb638ba35645fb3452d1` | byte-identical (cmp exit 0) | measured ×2 |
 | pins | `5c808472` — 67 files, `git archive` diff exit 0 | `65673a00` — 68 files, diff exit 0 | this sitting's run |
 | flex census | 99 rules {0:17, 2:17, 6:42, 12:23}; cmp vs BOTH pins exit 0 | same | this sitting's run |
-| START-OF-CHAT ×3 | byte-identical, `f31bdf51129a009b1656927c03c0fe7e6b55d5778195d3fa7677b9143142e720` | same | a8c-raw-shas.log |
+| START-OF-CHAT ×3 | byte-identical, `15f088c71918b1a8a3f46c33d3056bffcb3b155d8cfab97b30fbbc34fd806aec` | same | a8c-raw-shas.log |
 | snake check | the engine snakes as ruled (round 2 reversed, round 3 back at the leader) | same | h14, h15 |
 | contrast floors | unchanged after C′4 (the token values are the spec) | identical ×2 | c4-contrast-rerun-*.log |
 | engine files touched | ZERO (`diff -rq` vs the pins exit 0) | ZERO | this sitting's run |

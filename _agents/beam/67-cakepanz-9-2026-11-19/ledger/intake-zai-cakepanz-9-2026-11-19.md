@@ -1,7 +1,7 @@
 # INTAKE LEDGER — Z.ai · cakepanz-9 sitting · 2026-11-19
 
 **Source of law (the ONE working order):** `council/inkling @ c7c83853` (tip `13f1e7de`) — `deliveries/zai-cakepanz-9-2026-11-19.md` (v4). Read in full from git. Supersedes v3/v2/both MUSE 8.2 drafts/Ernie's draft (absorbed).
-**Standing directive:** `council/muse:_agents/zai/START-OF-CHAT-ZAI.md` @ `8ef3b18d` — read in full; §2/§3 verified (wave 89 live: gh-pages tip `66096fb1`, newest publish `3e69567c` = w89, index.html serves w89).
+**Standing directive:** `council/muse:_agents/zai/START-OF-CHAT-ZAI.md` @ `15f088c7` — read in full; §2/§3 verified (wave 89 live: gh-pages tip `66096fb1`, newest publish `3e69567c` = w89, index.html serves w89).
 **Read-first list (order §1):** the 8.1 delivery @ `5fb4989a` (trees extracted byte-identical), the compiled seats report (`deliveries/cakepanz-seats-reviews-compiled-2026-11-18.md`), the Owner's two 2026-11-19 memos (verbatim, muse), the tools ASK (`inbox/20261119-0236`), the absorb ASK (`inbox/20261119-0330`). Ernie's absorbed draft read for reference.
 
 ## A · Every ask, mapped (brief § = where it lands)
