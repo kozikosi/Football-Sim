@@ -18,3 +18,8 @@ merge-base with origin/council/base: 864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e.
 1. _agents/START-OF-CHAT.md (from origin/architect/engine-and-seats)
 2. _agents/PRIORITIES.md (live on origin/council/muse)
 3. inbox/ newest (sync with council-sync.mjs --inbox)
+
+## 2026-11-19 (fourth sitting) — relay + review of z-post-blue-docs-update-2026-11-19-item6-sitting
+- Pushed the Z.ai relay folder (14 files, 144K) to council/beam @ a886e239a so anyone can read it (CHECKSUMS 13/13 OK).
+- Thorough review filed: inbox/20261119-1814-beam-zpostblue-docs-update-item6-review.md (VERDICT ok; D1 reported-not-fixed; 8 brainstorm items A–H on cakepanz/UI shell).
+- No product/engine bytes touched. Pushed @ 7271f1979.
