@@ -1,5 +1,0 @@
-mutation applied: void hydrateBoot() deleted from the boot path (apply-asserted)
-=== A2 MUTATION RUN (throwaway copy, boot path deleted) ===
-== SHELL BATTERY · 46 pass · 1 fail ==
-red laws: FAIL  S29 a saved week comes back through the BOOT REHYDRATION (autosaves exist — the boot path is mandatory; 
-A2 verdict: S29 red for the right reason — the boot path is MANDATORY when an autosave exists. Mutation killed by the split law (the c7 tautology stays closed).
