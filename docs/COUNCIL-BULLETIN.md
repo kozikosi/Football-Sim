@@ -28,6 +28,8 @@
 
 ## Live rulings (carried over from the archive; nothing else was)
 
+**Framework — Svelte 5 + Vite 8 (Owner, 2026-11-19, FINAL).** *"ok i officially am deciding svelte 5 + vite 8."* R-13's 50/50 standing verdict and "forced only at cutover" line are SUPERSEDED. The 12 Nov "Svelte is NOT a lock" and "do not present any framework as decided" wording in AGENTS.md and the assist-round prompts is void going forward; those prompts remain as historical records of what was ruled at the time. React stays out (R-9). Applied to the live governance files by Pickle under Owner authorization while MUSE is absent (to Sat 2026-11-21); the verbatim note and the R-13 filing were relayed from council/pickle. Build-tree vite-major reconciliation (c9 7.3.7, rev10 ^7.3.6) to the decided major 8 is an Architect cutover task, not a reopening.
+
 
 **D-012 — the 3-4.** *"This is not true. 'CB3/Nickel comes on, LB3/SAM comes off' in a 3-4. One defensive tackle is replaced by an extra middle linebacker in 3-4."*
 
