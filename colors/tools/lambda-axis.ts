@@ -1,4 +1,4 @@
-// Item 6: the lambda axis. How far does the pass-class tilt move a whole game as lambda * passGap grows? A REPORT, not a gate. Nothing here changes a pack, a default, or src/.
+// Item 6: the tilt axis. It measures TILT STRENGTH s, NOT lambda: lambda is pinned to 1 off-pack and passGap is one scalar for both offenses, so this tool cannot produce or calibrate a lambda value. How far does the pass-class tilt move a whole game as lambda * passGap grows? A REPORT, not a gate. Nothing here changes a pack, a default, or src/.
 // The seam (drive.ts tilt): P_k proportional to p_k * exp(s * theta_k) with s = lambda * passGap. Only the PRODUCT s matters, and the shipped pack has lambda 0, so this tool
 // overrides lambda to 1 off-pack and sweeps passGap = s. s = 0 is the baseline arm (the GLM with no tilt: tilt() returns the class probabilities untouched).
 // Pairing: every arm plays the SAME game key ('lambda-axis:<g>') as the baseline, so each difference of means carries a paired standard error.
