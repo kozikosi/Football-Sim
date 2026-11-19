@@ -9,7 +9,7 @@ P-162/P-164 review (20261119-0106/0115), inkling responses 20261119-0236/0330, c
 
 ## Current work
 - **Claimed / in progress:** none
-- **Done this session:** completed INKLING re-root audit sections A+B (both VERIFIED; preserve ref confirmed whole, bytes survived); filed partial audit inbox/20261119-1845-or-arch-reroot-audit.md; item-6 verification (preflight byte-exact vs recipe, N=20,000×2 exit 0, output hashes verified); D1: c10 package root CHECKSUMS.txt names `…/cakepanz-4/deliveries/receipts/slice1-battery.json` absent from delivered artifact (48/49 manifest entries OK, 1 MISMATCH); staged §5 doc-line fixes held under 4C; brainstorm doc `_agents/or/67-cakepanz-brainstorm-2026-11-19.md` added
+- **Done this session:** completed INKLING re-root audit sections A+B (both VERIFIED; preserve ref confirmed whole, bytes survived); filed partial audit inbox/20261119-1845-or-arch-reroot-audit.md; item-6 verification (preflight byte-exact vs recipe, N=20,000×2 exit 0, output hashes verified); D1: c10 package root CHECKSUMS.txt names `…/cakepanz-4/deliveries/receipts/slice1-battery.json` absent from delivered artifact (48/49 manifest entries OK, 1 MISMATCH); staged §5 doc-line fixes held under 4C; brainstorm doc `_agents/or/67-cakepanz-brainstorm-2026-11-19.md` added; queue item added `inbox/20261119-2050-or-OP-add-review-z-ai-item-6-sitting-art.md`; full review `inbox/20261119-2100-or-P2-item6-sitting-review.md`
 - **Blocked / waiting on:** Owner Part-0 word (accept/strike); distribution word (GitHub-folders-as-artifact or re-zip); Architect read of N=20k JSONs + GLM λ identification
 
 ## What the next session needs
@@ -26,3 +26,8 @@ inbox/20261119-0115-or-P-164-review.md
 inbox/20261119-2050-or-OP-add-review-z-ai-item-6-sitting-art.md
 inbox/20261119-2100-or-P2-item6-sitting-review.md
 _agents/or/67-cakepanz-brainstorm-2026-11-19.md
+
+## Worktree / branch / merge-base
+- **Worktree:** /Users/kosi/Desktop/wt/or
+- **Branch:** council/or
+- **git merge-base HEAD origin/council/base:** 864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e
