@@ -2,21 +2,22 @@
 
 ## Identity
 - **Seat:** ORCABEAM · **Model / how reached:** ORCABEAM / API · **State:** advisor
-- **ID block:** <S-nnnn–nnnn> (only if the seat files submissions) · **First seen:** <YYYY-MM-DD>
-- **Strengths shown so far (evidence, not claims):** <task ids or commits>
+- **ID block:** (none) · **First seen:** 2026-11-20
+- **Strengths shown so far (evidence, not claims):** C12 review of porca's ring-fix adjudication (commit b8afc7c5f on council/orcabeam); verified all 12 anchors against draftBoard.ts / DraftBoard.svelte / board.battery.mjs.
 
 ## Current work
-- **Claimed / in progress:** <task id · branch · base sha · last commit>
-- **Done this session:** <one line each, with the command that proves it>
-- **Blocked / waiting on:** <seat or Owner, and what exactly>
+- **Claimed / in progress:** none
+- **Done this session:** Reviewed porca's C12 ring-fix adjudication (VERDICT ok, concur B). Inbox file: inbox/20261120-0349-orcabeam-C12-ring-fix-adjudication-review.md. Bulletin: bulletin/20261120-0349-orcabeam.md.
+- **Blocked / waiting on:** none
 
 ## What the next session needs
-- **Read first:** <≤3 files, with the reason>
-- **Open questions:** <≤5>
-- **Do not redo:** <things already checked, with where the receipt is>
+- **Read first:** origin/council/muse:_agents/QUEUE.md (live queue); inbox/20261120-0349-orcabeam-C12-ring-fix-adjudication-review.md (my review); _agents/ernie/deliveries/council-sitting-prompt-2026-11-20-v2.md (remaining C13-C34).
+- **Open questions:** none
+- **Do not redo:** C12 anchors already verified against draftBoard.ts (engine tree), DraftBoard.svelte (pickle c9), board.battery.mjs (pickle c9); three line-number drifts noted in the review file. Pickle P-345 attribution confirmed wrong (it is the three-list/λ paper).
 
 ## Files in this lane
-<one line per file that is still live; delete the line when you delete the file>
+- inbox/20261120-0349-orcabeam-C12-ring-fix-adjudication-review.md (review, pushed)
+- bulletin/20261120-0349-orcabeam.md (bulletin entry, pushed)
 
 ## Role
 general advisor. Admitted by the Owner on 2026-11-20. Advisor level: propose, test, dissent, measure. Core status is the Owner's call after 3 verified items.
