@@ -1,0 +1,325 @@
+{
+  "widths": [
+    390,
+    768,
+    1280
+  ],
+  "results": [
+    {
+      "width": 390,
+      "screen": "team",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "noScroll": true
+    },
+    {
+      "width": 390,
+      "screen": "cards",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "noScroll": true
+    },
+    {
+      "width": 390,
+      "screen": "hub",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "noScroll": true
+    },
+    {
+      "width": 390,
+      "screen": "week",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "noScroll": true
+    },
+    {
+      "width": 390,
+      "screen": "standings",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "noScroll": true
+    },
+    {
+      "width": 390,
+      "screen": "bracket",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "noScroll": true
+    },
+    {
+      "width": 390,
+      "screen": "awards",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "noScroll": true
+    },
+    {
+      "width": 390,
+      "screen": "review",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "noScroll": true
+    },
+    {
+      "width": 390,
+      "screen": "stats",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "noScroll": true
+    },
+    {
+      "width": 390,
+      "screen": "book",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "noScroll": true
+    },
+    {
+      "width": 390,
+      "screen": "share",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "noScroll": true
+    },
+    {
+      "width": 390,
+      "screen": "guide",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "noScroll": true
+    },
+    {
+      "width": 390,
+      "screen": "settings",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "noScroll": true
+    },
+    {
+      "width": 390,
+      "screen": "saves",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "noScroll": true
+    },
+    {
+      "width": 390,
+      "screen": "board",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "noScroll": true
+    },
+    {
+      "width": 768,
+      "screen": "team",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "noScroll": true
+    },
+    {
+      "width": 768,
+      "screen": "cards",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "noScroll": true
+    },
+    {
+      "width": 768,
+      "screen": "hub",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "noScroll": true
+    },
+    {
+      "width": 768,
+      "screen": "week",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "noScroll": true
+    },
+    {
+      "width": 768,
+      "screen": "standings",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "noScroll": true
+    },
+    {
+      "width": 768,
+      "screen": "bracket",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "noScroll": true
+    },
+    {
+      "width": 768,
+      "screen": "awards",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "noScroll": true
+    },
+    {
+      "width": 768,
+      "screen": "review",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "noScroll": true
+    },
+    {
+      "width": 768,
+      "screen": "stats",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "noScroll": true
+    },
+    {
+      "width": 768,
+      "screen": "book",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "noScroll": true
+    },
+    {
+      "width": 768,
+      "screen": "share",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "noScroll": true
+    },
+    {
+      "width": 768,
+      "screen": "guide",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "noScroll": true
+    },
+    {
+      "width": 768,
+      "screen": "settings",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "noScroll": true
+    },
+    {
+      "width": 768,
+      "screen": "saves",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "noScroll": true
+    },
+    {
+      "width": 768,
+      "screen": "board",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "noScroll": true
+    },
+    {
+      "width": 1280,
+      "screen": "team",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noScroll": true
+    },
+    {
+      "width": 1280,
+      "screen": "cards",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noScroll": true
+    },
+    {
+      "width": 1280,
+      "screen": "hub",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noScroll": true
+    },
+    {
+      "width": 1280,
+      "screen": "week",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noScroll": true
+    },
+    {
+      "width": 1280,
+      "screen": "standings",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noScroll": true
+    },
+    {
+      "width": 1280,
+      "screen": "bracket",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noScroll": true
+    },
+    {
+      "width": 1280,
+      "screen": "awards",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noScroll": true
+    },
+    {
+      "width": 1280,
+      "screen": "review",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noScroll": true
+    },
+    {
+      "width": 1280,
+      "screen": "stats",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noScroll": true
+    },
+    {
+      "width": 1280,
+      "screen": "book",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noScroll": true
+    },
+    {
+      "width": 1280,
+      "screen": "share",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noScroll": true
+    },
+    {
+      "width": 1280,
+      "screen": "guide",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noScroll": true
+    },
+    {
+      "width": 1280,
+      "screen": "settings",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noScroll": true
+    },
+    {
+      "width": 1280,
+      "screen": "saves",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noScroll": true
+    },
+    {
+      "width": 1280,
+      "screen": "board",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noScroll": true
+    }
+  ],
+  "errors": 0
+}
