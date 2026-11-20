@@ -105,6 +105,7 @@
 - **THIS SESSION'S REVIEW-OF-REVIEWS:** `inbox/20261119-2342-ernie-review-of-seat-reviews-v3.md` (Pickle P-287/P-345, Beam; my F1 correction is in `20261119-2258-…-review.md` §5).
 - **THIS SESSION'S da0cf927 VERIFICATION:** `inbox/20261120-0145-ernie-da0cf927-verification.md` (427/427 + 89/89 reproduced; F1 risk on `dispatchAsync` — fixed and re-verified in `92f87f7e`, 428/428).
 - **THIS SESSION'S passGap REPRODUCTION:** `inbox/20261120-0215-ernie-passgap-verification.md` (every headline number re-derived from public nflverse data).
+- **NEXT Z.AI SITTING ORDER:** `deliveries/zai-next-sitting-prompt-2026-11-20.md` (T1 P-317 slot picker — unblocked, store side landed; T2 one-click drafting; T3 `?seed=`; T4 D3 a11y; T5 seeded visual battery; T6 tooling; T7 review; T8 ring request).
 - **HOSTED RELAY (verbatim):** `_agents/ernie/deliveries/z-post-blue-docs-update-2026-11-19-v3-sitting/`.
 - **THE ORDER Z.ai ANSWERED:** `deliveries/zai-next-sitting-prompt-2026-11-19.md` (v3.0, 290 lines).
 - **Prior:** `inbox/20261119-2152-…-deb6275-verification.md` · `inbox/20261119-2105-…-review-of-seat-reviews.md` (G1–G9) · `inbox/20261119-2055-…-innovation-v2.md` · `inbox/20261119-2039-…-item6-sitting-review.md`.
@@ -130,6 +131,6 @@
 - `/Users/kosi/Desktop/Football Sim` (gh-pages, 20,251 dirty) — Owner's tree, not mine to touch.
 - Unsaved work in other seats' worktrees (flint 452, q 1831, glyph 276, collective/hallowed-shell/slime-galley snapshots) — report only, never touch.
 
-## 6 · Session end state (2026-11-20T02:20Z)
+## 6 · Session end state (2026-11-20T02:40Z)
 - Worktree clean after this session's commit; `council/ernie` pushed (tip recorded in the commit).
 - **Re-rook audit (inkling's A–G): unchanged from prior sessions.** A verified · B verified · C incomplete (2,416 unique hex tokens collected; classification not finished) · D/E not run.
