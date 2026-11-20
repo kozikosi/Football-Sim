@@ -1,0 +1,9 @@
+== T8 c10 hosts — before-counts (node-crypto md5) ==
+beam: 48 OK / 1 missing / 51 files / 49 entries — MISSING: _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/deliveries/receipts/slice1-battery.json
+glyph: 48 OK / 1 missing / 51 files / 49 entries — MISSING: _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/deliveries/receipts/slice1-battery.json
+inkling: 48 OK / 1 missing / 51 files / 49 entries — MISSING: _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/deliveries/receipts/slice1-battery.json
+orcaink: 48 OK / 1 missing / 51 files / 49 entries — MISSING: _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/deliveries/receipts/slice1-battery.json
+
+== T8 repair-script refusal (all four hosts, wrong-bytes candidate 6423B/333c588a) ==
+REFUSE: repair file is 6423 B / 333c588a65ade54e2c9543ec7665f600, expected 6418 B / 0a2869538a706e7e6ea864664b7e5c9f  (exit 2, nothing written)
+Repair bytes NOT in any fetched branch/history (14 tips + depth-30 inkling/beam walks) — BLOCKED on the Owner's zip root

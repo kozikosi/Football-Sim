@@ -1,0 +1,5 @@
+== T3 gh-pages deployed-tree engine suite (the Architect's re-point) ==
+BEFORE (unpatched gh-pages bytes): node --test --experimental-strip-types test/engine.test.ts
+ℹ tests 286 · ℹ pass 277 · ℹ fail 9
+PATCH: claude/patches/cakepanz-test-repoint-2026-11-20.patch — dry-run clean, applied (2 test files only)
+AFTER: ℹ tests 286 · ℹ pass 286 · ℹ fail 0 · exit 0 (44s, Node v24.22.3)
