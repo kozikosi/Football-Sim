@@ -1,0 +1,75 @@
+{
+  "seeds": [
+    "a3f2",
+    "k1x9"
+  ],
+  "results": [
+    {
+      "law": "W1 seed a3f2: exactly 3 .cp-suggest rows at pick 1 (more ONLY on an order tie — C′1's rule)",
+      "verdict": "PASS",
+      "detail": "ring=4 userPicks=0 · TIE at the cutoff: vals[2..3]=2.2/2.2, next=2.1"
+    },
+    {
+      "law": "W2 seed a3f2: the ring is contiguous from the top",
+      "verdict": "PASS",
+      "detail": "top3=nfl-p00061,nfl-p00071,nfl-p00002 ring=nfl-p00061,nfl-p00071,nfl-p00002,nfl-p00081"
+    },
+    {
+      "law": "W6 seed a3f2: the footer shows the seed code and it matches ?seed=",
+      "verdict": "PASS",
+      "detail": "code=a3f2 seed=470990 base36=a3f2"
+    },
+    {
+      "law": "W3 seed a3f2: one-click Draft on a ringed row lands exactly one pick",
+      "verdict": "PASS",
+      "detail": "userPicks=1 err=\"\""
+    },
+    {
+      "law": "W1 seed k1x9: exactly 3 .cp-suggest rows at pick 1 (more ONLY on an order tie — C′1's rule)",
+      "verdict": "PASS",
+      "detail": "ring=3 userPicks=0"
+    },
+    {
+      "law": "W2 seed k1x9: the ring is contiguous from the top",
+      "verdict": "PASS",
+      "detail": "top3=nfl-p00061,nfl-p00071,nfl-p00081 ring=nfl-p00061,nfl-p00071,nfl-p00081"
+    },
+    {
+      "law": "W6 seed k1x9: the footer shows the seed code and it matches ?seed=",
+      "verdict": "PASS",
+      "detail": "code=k1x9 seed=935613 base36=k1x9"
+    },
+    {
+      "law": "W7 two loads at seed a3f2 give identical boards (60-row id order + ring + footer)",
+      "verdict": "PASS",
+      "detail": "idsEqual=true ringEqual=true footerEqual=true rows=60"
+    },
+    {
+      "law": "W8 a garbage seed falls back to the random draw WITHOUT throwing (a valid record mounts, a code displays)",
+      "verdict": "PASS",
+      "detail": "seed=2527 code=1y7 rendered=true"
+    },
+    {
+      "law": "W8 an integer seed pins the exact integer (777777)",
+      "verdict": "PASS",
+      "detail": "seed=777777 code=go4x"
+    },
+    {
+      "law": "W4 seed a3f2: no horizontal scroll at 390 across the walk",
+      "verdict": "PASS",
+      "detail": "board 390/390 · after pick 390/390"
+    },
+    {
+      "law": "W5 zero console/page errors across every load (both viewports)",
+      "verdict": "PASS",
+      "detail": "clean"
+    },
+    {
+      "law": "W9 seed a3f2 survives save → restore (reload replays the same seed, no \"pick is out of order\")",
+      "verdict": "PASS",
+      "detail": "seed=470990 err=\"\""
+    }
+  ],
+  "pass": 13,
+  "fail": 0
+}
