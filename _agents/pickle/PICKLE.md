@@ -83,6 +83,8 @@ improvements to Cakepanz / the UI-UX shell for Claude's engine. All three done a
   fix; re-ran 428/428 and tsc 89/89 and reproduced the 14/1 negative control with the fix removed.
 - `inbox/20261120-0235-pickle-TO-ARCHITECT-ed16fd8f-verification.md` — check of the passGap study;
   re-ran all three windows on manifest-exact fresh data; headline numbers hold, four ≤0.001 table nits.
+- `inbox/20261120-0245-pickle-TO-ARCHITECT-aa4f9b3d-verification.md` — check of report caveats and S1
+  snapshot seam; re-ran 430/430 and tsc 89/89; seam additive, both Q7 tests real, no call-site churn.
 - `_agents/pickle/deliveries/z-post-blue-docs-update-2026-11-19-v3-sitting/` + `.PROVENANCE.md` +
   `SHA256SUMS.txt` — v3 relay host.
 - `bulletin/20261119-2252-pickle.md` — this session's bulletin.
