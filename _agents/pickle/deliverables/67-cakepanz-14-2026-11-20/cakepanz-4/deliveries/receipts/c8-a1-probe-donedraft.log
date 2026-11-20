@@ -1,0 +1,28 @@
+   PASS  L1 the flip: at the user's 10th pick the FULL form (advice + sorts, no switch line); at the 11th the SIMPLE form with the honest switch line (P-337 law 1) — 10th: full ✓ · 11th: simple ✓ note="the board simplified — every number is still one click away"
+   PASS  L2 simple row anatomy: one recommendation number + the pick control per row; no flex chip, no advice panel; gone% stays (P-337 law 2) — rows=60 rec=60 pickbtn=60 chips=0 advice=0 gone=60
+   PASS  L5 390px stays clean in both forms (scrollWidth <= clientWidth, simple AND full — the S25b extension) — simple 390/390 · full (via the door) 390/390
+   PASS  L3 the full board is reachable in one click and STAYS full for the rest of the draft (mode is presentation only) — after the door: form=full sorts=1 advice=1; after a further pick: form=full
+   FAIL  L4 no engine number moves: the board VM sha is identical across the flip, both directions (the N25 pattern) — simple=034325f7153e full=034325f7153e full-after-a-pick=7d42718ae83f
+   PASS  L6 zero page errors across the flip, both directions, and the 390px walk
+
+== LATE BATTERY (P-337) · 5 pass · 1 fail ==
+late exit=1
+=== A1 done-draft probe (with register) ===
+{
+ "atBoot": {
+  "screen": "complete",
+  "complete": 1,
+  "board": 0,
+  "rows": 0,
+  "err": null
+ },
+ "afterDraftNav": {
+  "screen": "complete",
+  "complete": 1,
+  "board": 0,
+  "rows": 0
+ },
+ "pageErrors": []
+}
+A1 DONE-DRAFT OUTCOMES: GREEN (boot lands Complete; the DRAFT nav returns to Complete; never a blank board)
+probe exit=0
