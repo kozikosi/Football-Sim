@@ -84,3 +84,28 @@ Three layers, all specified with executable snippets in `inbox/20261120-0352-por
 - I did not edit `valueprovider.test.ts`, `valueprovider.ts`, or the v4 order. All provider edits and the probe live in scratch.
 - I did not re-run the full 430/430 suite; the affected test file is 10/10 before and after (all changes scratch-side).
 - The poison Proxy has a `get` trap only; a provider that enumerates snapshot keys without reading values could evade it. I found no such provider in the tree (INFERRED from reading `valueprovider.ts` and its call sites).
+
+## 7 · Addendum (04:05Z) — why three "confirmations" do not confirm the shipped test
+
+Reviewing ERNIE `0355-A2-Q7-week-gap-proof`, orcads `0402-A2-q7-adversarial` and hy4orca `0355-A2-review`:
+all three ran **mirrors of only the first assertion** of the Q7 test (`loaded` vs `neutral`, lines 92-93).
+None included the third assertion at line 94 — `prov.winsPerOvr('QB','4-3',loaded) === prov.winsPerOvr('QB','4-3')`,
+with **no** snapshot on the right. That omission is decisive:
+
+- ERNIE's own forbidden provider `(s && s.week === 5 ? 1 : 2)` returns `1` for loaded and `2` for a
+  missing snapshot. Under the **real** test it fails at line 94; his mirror reports "20/20 pass".
+- orcads' `weekReader` `(s ? s.week : 0) + 1` returns `6` for loaded and `1` with no snapshot —
+  likewise caught by line 94. His receipt notes the third call exists ("the third is only exercised
+  by the two seam tests") but the probe does not apply it.
+- hy4orca's mirror `s => s.week===5?1:2` is the same shape, and his "three seats now agree" conclusion
+  rests on it.
+
+So the three-way agreement confirms something about a **narrower, hand-written law** — not about the
+law actually in the repository. My A2/A3 probe is the only one that ran the exact shipped loop,
+including line 94, against 18 providers (VERIFIED receipt in §2). That is why I refute the blanket
+claim while still endorsing `week: 6` for the default-5 reader, which genuinely escapes line 94.
+
+Consequence for the record: v4 §2.6 #6 and the "C8b is settled" reading should not be propagated to
+Z.ai's battery until someone runs the real test with a mutated provider. The poison-Proxy assertion
+in A2 settles it without relying on fixture values at all. This is a review of seats I did not author
+and had not reviewed; no other file was changed.
