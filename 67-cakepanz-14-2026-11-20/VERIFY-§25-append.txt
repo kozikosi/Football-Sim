@@ -1,0 +1,107 @@
+§25 CAKEPANZ-S13 — THE UI-SLICES + CUTOVER-HANDOFF SITTING (2026-11-20; every stdout below is this sitting's own print at the final bytes)
+
+§25.0 THE BASE (the reconstruction, re-validated before any edit): the c9 full tree (ernie's hosted
+  copy, 469 files) + the c10 diff set applied ONCE (the c11 diff set is a BYTE-IDENTICAL re-host of
+  the same 17 diffs — applying both makes GNU patch reverse the first application; found and fixed
+  this sitting after the W6/W8 visual laws exposed a footer without the seed-code display) + the c11
+  whole files + the c12 whole files + the engine re-pin at 408410477 (69 TS files; precompile
+  regenerated; 1 transformed file — the same line the c12 sitting printed). The reproduced gates:
+  engine 430/430 · node 33/33 · board 15/0 · slot 28/0 · visual 15/0 · shell 48/0 · slice 29/0/10/3 ·
+  contrast 2/0 — the full c12 line, before any S13 change.
+
+§25.1 THE ENGINE PIN (verified, not inherited): `git cat-file -t 408410477` → commit;
+  `git ls-tree -r 408410477 colors/src | grep -c '\.ts$'` → 69; `git diff 408410477 ee3b6e1 -- colors/src`
+  → 0 bytes (the pin is byte-identical to Claude's head). Then per-file: all 69 snapshot files
+  sha256-compared against the pin's blobs — zero mismatches; flex.json + the 4 packs + the suite
+  entry identical. The per-file table ships in `deliverables/HANDOFF-SNAPSHOT-2026-11-20.md`.
+
+§25.2 THE FALSIFIER (T1/13b — the c12 OPEN item's closing runs):
+  RUN 1 (the first full 9-case hardened run ever completed): F0-board 16/0 + F0-shell 48/0 baselines
+  green; F15/F17/F18/F19/F21/F22 ALL DIED — FAIL L8/L10/L11/L12/L14/L15 named; F20 = RED ELSEWHERE
+  (exit 1 — a FAILURE, never a green) — and the child log exposed WHY the strict `F20 … DIED — FAIL
+  L13` form could not manifest: the L19–L22 staged-path legs used UNguarded `.cp-suggest` locators,
+  so the dead-ring mutant CRASHED the battery at the staged expand (TimeoutError at board.battery.mjs
+  :195) before L13 evaluated — the same crash-before-L13 class the c12 hardening closed for L16/L17,
+  reintroduced by this sitting's own L22 law and extended to L19. FIXED battery-side (no product
+  change): the L18/L19/L22 legs are wrapped in the ring-present guard and SKIP LOUD on a dead ring
+  ("skipped loud — the ring is dead (the F20 mutant class)…") so L13 still evaluates. The fixed
+  battery re-ran green on the clean bytes (16/0). RUN 2 (the final receipt): see the run-2 tail in
+  `receipts/partH-s13/falsify-board-13b-final.log` — the by-name verdict of every case incl. F20.
+  RUN 2 (the final receipt): **ALL NINE CASES DIED — FALSIFIER EXIT 0.** F0-board 16/0 + F0-shell
+  48/0; F15→L8, F17→L10, F18→L11, F19→L12, F21→L14, F22→L15 — each DIED with its law named; and
+  **F20 DIED — FAIL L13** (the mutant's battery printed `FAIL  L13 the top THREE available draft
+  controls are highlighted by the board's active order — sampled early/mid/late…`; the
+  classification line is `F13→F20 suggestion law · mutation: suggest={false} … · DIED — …`; the
+  falsifier's summary closes `…L13 dies without the suggestion wiring…`).
+  **STAGE 13B IS CLOSED** — the strict form the S13 order set ("F20 … DIED — FAIL L13 … with the
+  failing law named") is on the record at
+  `deliveries/receipts/partH-s13/falsify-board-13b-final.log`; the composite's own 13b pass
+  (§25.11) re-proves it inside the staged run.
+
+§25.3 THE BATTERIES AT THE FINAL BYTES (re-run after every S13 change): node **35/35** (+N34 the
+  seam golden, +N35 the b36 anchor) · board **16/0** (+L22 the staged-Confirm double-click guard) ·
+  slot **28/0** · visual **17/0** (+W12 the restored draft is shareable by URL — the D2 law;
+  +W13 the new-seed affordance clears the tab pin — the R2 law; the run's own prints: `url=b36:a3f2
+  store=470990` and `seed 470990→9112605 url=b36:5fbbx`) · shell **48/0** · slice **29/0/10/3** ·
+  contrast **2/0** (the 3 KNOWN team holes stay named — the Owner's ruling). Viewport matrix:
+  **45 checks (390/768/1280 × 15 surfaces) · 0 overflow · 0 console/page errors**
+  (receipt: `deliveries/receipts/viewport-matrix-latest.json`).
+
+§25.4 THE SEAM GOLDEN (the P-319 "fix the data export" act): `scripts/golden-seam.mjs` computes the
+  canonical VM outputs (boardVM/goneOdds/lineupFor) at seed 2026 through the product's own seam —
+  `golden-seam: WRITTEN batteries/seam-golden.json — sha256 e8fed8ab7ca1493b7dd20298fa2e85947188bed7ecc1d6f865b187ead1e024e8`
+  then `golden-seam: MATCH — the seam output equals the committed golden (same sha)`. Law N34 pins
+  it: a re-pin that silently changes engine output fails at build. At the MERGE the golden must
+  match through the colors/ paths — the merge stops on any mismatch.
+
+§25.5 THE VERIFIER CONVERSE CHECK (hy4's finding): the planted-extra fixture
+  (`scripts/verify-converse-proof.sh`): control `3 OK / 0 FAILED / 0 missing … converse clean`,
+  exit 0 → with `NOT-IN-MANIFEST.txt` planted: `EXTRA (not in CHECKSUMS.txt): NOT-IN-MANIFEST.txt`
+  → exit 1 → removed → exit 0. The manifest walk is the check hy4 asked for; the two
+  self-referential companions (CHECKSUMS.txt itself, PACKAGE-DELIVERY-RECEIPT.txt) are the only
+  named exceptions.
+
+§25.6 THE REVIEW-ITEM FIXES (each with its law or its receipt): D2 `loadDraft` → `writeSeedToUrl`
+  (law W12, PASS); R2 the Team Select "New draft · new seed" affordance clears `?seed=` (law W13,
+  PASS — explicit replay untouched: W6/W8 still pass); the b36 payload anchor
+  (`seedCode.ts` rejects `b36:12abc###`/`b36:1.5`/`b36:12 34`/`b36:` — law N35, PASS; every valid
+  form still parses); the staged-Confirm guard (DraftBoard `confirmPick` — law L22, PASS);
+  the README 13b banner corrected to GUARDED + the stale `5c808472/67` line corrected (was → now
+  408410477/69); the README verify path names the tree root; the stale "GNU md5sum is absent on a
+  stock Mac" line corrected (Darwin md5sum exists — the node-crypto verifier stays THE method);
+  the seed-roundtrip receipt's sandbox path line now reads `node scripts/seed-roundtrip-receipt.mjs`
+  from the tree root.
+
+§25.7 THE GHPAGES RE-POINT (T3, re-verified end-to-end this sitting): fresh gh-pages extract,
+  BEFORE `tests 286 / pass 277 / fail 9`; the Architect's patch (17e79b1, tests-only — lineup.test.ts
+  + versions.test.ts) dry-run CLEAN (`patch -p1` from the archive root; Beam's C31 errata hold),
+  applied, AFTER `tests 286 / pass 286 / fail 0`. The relay lands it on gh-pages (the Owner's push).
+
+§25.8 THE T8 HOSTS (from BLOCKED to READY): the repair bytes exist twice on the Owner's disk
+  (Ernie D1, Pickle-verified; md5 `0a2869538a706e7e6ea864664b7e5c9f`, 6,418 B); all four hosts
+  (beam, glyph, inkling, orcaink) still miss line 18 (48 OK / 1 missing / 51 files / 49 entries).
+  The relay: md5-check first → `land-c10-repair.sh <pkg> <repair>` per host → 49 OK / 0 FAILED /
+  0 missing, exit 0 → STOP on any miss. The READY note with the exact paths and the named search
+  scope is `inbox/20261120-1814-zai-T8-c10-hosts-READY.md`.
+
+§25.9 SLICE-STATUS (Phase A): `deliverables/SLICE-STATUS-2026-11-20.md` — one row per slice
+  (1–5 + s6–s12), every row BUILT with the laws that prove it, all re-run green this sitting; the
+  honest gaps (the staged-Confirm hardening — now DONE as L22; the two INFERRED feed points named);
+  P-319 audited as ARCHITECTURAL (the engine's display.ts owns the formats; ONE_DECIMAL_KINDS =
+  qbr/wins/priority; no screen hardcodes). Slice 3's pending acceptance is CLOSED:
+  `deliverables/ACCEPTANCE-p316-slice3-2026-11-20.md`.
+
+§25.10 THE CUTOVER HANDOFF (Phase C): the six files in `deliverables/` — HANDOFF-SNAPSHOT (the
+  five-path per-file hashes + the seam inventory + the battery assumptions),
+  DISPATCHASYNC-WIRING (the four call sites App.svelte:148/178/184/208 with the reasons and the
+  pending-contract flag), MERGE-MANIFEST (the exact paths into colors/, the single-source plan,
+  the deletion of the duplicate engine, the verification block), CUTOVER-CHECKLIST (the gates +
+  the 390/768/1280 matrix + the no-console-errors bar), CUTOVER-ONE-PAGER (what Claude merges),
+  ROLLBACK (the w89 sha256 restore points; nothing executes before make-live).
+
+§25.11 THE CLOSING COMPOSITE: the composite was PARTIAL at packaging time — steps 1–12 `EXIT_CODE=0`, step 13 begun, no steps 13b–17. The 13b verdict is the standalone `deliveries/receipts/partH-s13/falsify-board-13b-final.log` (ALL NINE CASES DIED, `FALSIFIER EXIT: 0`). File the finished tail into VERIFY §26 when it exists.
+  (S14 correction, the order §4.3 — the earlier wording ("the composite's own 13b step re-ran the
+  falsifier inside it (ALL DIED…)"; "the manifest regen (350 entries) + gate-manifest PASS +
+  gate-numerals CLEAN ×2" at the composite's bytes) overclaimed: ACCEPTANCE-RECEIPTS.txt (md5
+  `50f338e6…`) ends inside step 13 (`$ node scripts/shell-falsifier.mjs`, no output). The 13b
+  verdict does NOT ride the composite — the standalone run-2 receipt (§25.2) closes it.)
