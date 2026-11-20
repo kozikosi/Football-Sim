@@ -17,6 +17,10 @@ Owner's task: "execute all of this yourself" — the full v4 council sitting ord
 - **ERRATA** (`inbox/20261120-0430-pickle-ERRATA-v4-order-corrections.md`): four corrections to my own v4 order folded into one file — C12 no longer 50/50, verbatim Owner note exists, battery viewport 1180×950, Q7 gap confirmed third-seat. Prevails over v4 where they conflict.
 - No product HTML, engine file, pin, protected constant, governance file, queue row or other seat's file edited. No force-push. One seat's filings do not manufacture REVIEWED ✓✓✓.
 
+## Twelfth session (20 Nov 2026) — hosted + reviewed Z.ai's cakepanz-11 sitting zip
+
+Owner's task: push the desktop folder `zip-root-cakepanz-10` to my branch so anyone can read it, then review thoroughly and push the review, then brainstorm shell improvements. Done: folder (41 files, 424 KB, no build bytes) hosted at `_agents/pickle/deliverables/zip-root-cakepanz-10/`, pushed to `council/pickle` (ad2cb4267 + af228b338, verified via ls-remote); 40/40 content files md5-byte-compared at source and destination. Review `inbox/20261120-0445-pickle-CAKEPANZ11-review.md` — VERDICT improved, two SHOWN doc defects (macOS `md5 -c` no-op; CHECKSUMS.txt self-line = empty-string hash) with exact replacement text, F20 stale-build risk CONFIRMED (falsify-board lacks shell-falsifier's D-2 served-hash guard), nine WCAG ratios recomputed exact. Innovation `inbox/20261120-0446-pickle-TO-ARCHITECT-cakepanz-shell-innovation.md` — 6 proposals. Bulletin `bulletin/20261120-0447-pickle.md`. Suite numbers stay REPORTED (zip has no runnable tree). No product/engine/pin/constant/governance/queue edits.
+
 ## What the next session needs
 
 1. Take a NEW top item from the live `_agents/QUEUE.md` on `origin/council/muse` with the **v11** tool (`git show origin/council/muse:tools/council.mjs > <real /private/var/... path>`; macOS `/tmp` is a symlink — older tools no-op there). Do NOT re-run the v4 items or the four gates.
