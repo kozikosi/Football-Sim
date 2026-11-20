@@ -7,19 +7,23 @@
 - **Worktree:** `/Users/kosi/Desktop/wt/hy4` · **branch:** `council/hy4` · **merge-base with base:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 
 ## Current work
-- **Done 2026-11-18 (first session):** mirrored the Owner's `67-cakepanz-8-2026-11-18/` delivery (869 committed files, 35 MB) onto `council/hy4` at `581e63a9` so anyone can read it; reviewed it thoroughly and pushed `inbox/20261118-2005-hy4-cakepanz-8-review.md` (VERDICT: improved) plus `inbox/20261118-2005-hy4-cakepanz-8-ideas.md` at `fc92351d`.
-- **Review receipts (re-run by me, not just read):** pins 5c808472/65673a00 byte-identical; flex 99 rules {0:17,2:17,6:42,12:23}; engine 394/394 + 406/406; node battery 33/33; shell 47/0; slice 29/0/10/3; late 6/6; falsifiers F0–F12 + F13 all DIED; dist `single.html` sha `1529a003…e737` byte-reproducible on rebuild; gate PASS (314).
-- **Finding:** simple late-draft row's `<button>` toggles `aria-expanded` but renders no detail — dead affordance and an inaccurate "one click away" claim. Full improved `BoardRow.svelte` and a proposed L7 law are in the review file.
-- **Claimed / in progress:** none · **Blocked / waiting on:** nothing for this work; the Owner/Architect hold the open decisions.
+- **Done 2026-11-20 (cakepanz-12 sitting):** mirrored the Owner's `zai-cakepanz-12-2026-11-20/` delta folder (37 files, 376 KB) on council/hy4 @ `870fcb7d6`; reviewed and pushed `inbox/20261120-1551-hy4-cakepanz-12-review.md` (VERDICT: improved) + `inbox/20261120-1551-hy4-cakepanz-12-ideas.md` at `6ffb1ef72`.
+- **Re-ran myself:** verifier on the zip root (36 OK / 0 FAILED / 0 missing, exit 0) + independent md5 loop 36/36; tamper proof (35 OK / 1 FAILED, exit 1); seed round-trip receipt (700/9000 before, 0 after everywhere, exit 0); T3 gh-pages patch dry-run + suite (277/286 → 286/286, exit 0).
+- **Finding (shown defect):** `tools/verify-package.mjs` has no converse check — an unlisted extra file verifies clean (exit 0). Full improved file with a directory-walk set comparison is in the review.
+- **Other findings:** 380 ms timer-only one-click guard (risk); stage 13b falsifier re-run still OPEN (report says so honestly); sandbox path in `seed-roundtrip-receipt.mjs:5`; browser battery counts REPORTED (delta-only zip cannot reproduce them).
+- **Earlier sittings (same branch):** ring identification (`inbox/20261120-0902-hy4-ring-identification.md` — the gold C′1 suggestion ring, tie-extension via display-string parsing), cutover sequencing (`inbox/20261120-0931-hy4-cutover-sequencing.md` — re-sync first), A1 pin-watch self-test, D1 landing audit.
+- **Claimed / in progress:** none · **Blocked / waiting on:** nothing for this work. Owner holds the gh-pages patch application and the c10 repair bytes.
 
 ## What the next session needs
-- **Read first:** (1) the two inbox files named above; (2) `67-cakepanz-8-2026-11-18/WHAT-CHANGED.md` + `README-DELIVERY.md` in this branch; (3) `AGENTS.md` §5 (review chain, states, one-writer rule).
-- **Open questions:** (a) calmer second half of the draft vs. a first-time-player-readable shell — the question I ended the ideas file on; (b) fix the 10-pick flip threshold or leave it (Owner); (c) does MUSE want a PRIORITIES row for the improved component?
-- **Do not redo:** every receipt in the review file was re-run this session; do not re-measure the pins, hashes, census, gates or batteries unless the delivery changes. Do not re-run the slice battery without restoring `batteries/slice1-battery.json` afterwards (it rewrites last-run output).
+- **Read first:** (1) the two c12 inbox files above; (2) `zai-cakepanz-12-2026-11-20/deliverables/sitting-report-2026-11-20.md`; (3) `AGENTS.md` §5 (states, review chain).
+- **Open questions:** (a) close 13b with the hardened falsifier re-run before new work? (b) fixed-seed slice battery to unblock manifest-pinned receipts? (c) state-based one-click latch vs 380 ms timer?
+- **Do not redo:** every receipt listed above was re-run this sitting. Do not re-measure the seed contract, verifier, or gh-pages patch unless bytes change. Do not re-run the slice battery without restoring its last-run JSON.
 
 ## Files in this lane
 - `_agents/hy4/HY4.md` — this file (only live lane artifact).
-- `inbox/20261118-2005-hy4-cakepanz-8-review.md` — review, VERDICT improved, with improved component.
-- `inbox/20261118-2005-hy4-cakepanz-8-ideas.md` — ranked shell UX improvements (Tier 1–3).
-- `bulletin/20261118-2008-hy4.md` — this session's board entry.
-- `67-cakepanz-8-2026-11-18/` — read-only mirror of the Owner's delivery (do not edit; it is Z.ai's work).
+- `inbox/20261120-1551-hy4-cakepanz-12-review.md` — review, VERDICT improved, with improved verifier.
+- `inbox/20261120-1551-hy4-cakepanz-12-ideas.md` — ranked improvements (Tier 1–3).
+- `inbox/20261120-1551-hy4-cakepanz-12-ideas.md` siblings from earlier sittings: A1 pin-watch, D1 landing audit, ring ID, cutover sequencing.
+- `bulletin/20261120-1553-hy4.md` — this session's board entry.
+- `zai-cakepanz-12-2026-11-20/` — read-only mirror of Z.ai's delivery (do not edit).
+- The old c8 mirror was removed from this worktree after MUSE pruned it from the branch (identical copies live on inkling/pickle).
