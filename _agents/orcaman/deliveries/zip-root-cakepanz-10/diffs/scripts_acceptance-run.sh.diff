@@ -1,0 +1,40 @@
+--- baseline/tree-tmp/scripts/acceptance-run.sh	2026-11-20 03:54:20.440774530 +0000
++++ cakepanz-4/scripts/acceptance-run.sh	2026-11-20 03:45:42.143790981 +0000
+@@ -15,9 +15,10 @@
+ step() { local name="$1"; shift; say "$name"; echo "\$ $*" >> "$R"; local log; log=$(mktemp); if "$@" > "$log" 2>&1; then code=0; else code=$?; fi; tail -n 25 "$log" >> "$R"; echo "EXIT_CODE=$code" >> "$R"; rm -f "$log"; if [ "$code" -ne 0 ]; then echo "ACCEPTANCE RUN STOPPED AT: $name (exit $code)" >> "$R"; tail -40 "$R" >&2; exit "$code"; fi; }
+ 
+ step "1. npm ci (clean lock — no --legacy-peer-deps)" npm ci
+-step "2. npm run test:engine (the pin's own suite — expect 394/394, exit 0)" npm run test:engine
++step "2. npm run test:engine (the pin's own suite — expect 430/430 at pin 408410477, exit 0)" npm run test:engine
+ step "2b. npm run precompile (the Part-D generated copy src/engine-node — the node suites' freshness gate regenerates it too, this makes the step explicit)" npm run precompile
+ step "3. the node battery via the Part-D register (expect 33/33: 31 carried + N28 the RESUME law + N29 the DONE-DRAFT law — the cakepanz-8 A1 laws; runs on Node 24 AND 26)" npm run battery:node
++step "3b. the contrast guardrail (T6/W5 — the 32 team inks × 2 modes + the token audit; the six KNOWN holes stay named, a NEW hole FAILS)" node --import ./scripts/node-port-register.mjs batteries/contrast.battery.mjs
+ step "4. npm run build (green; dist/assets ships)" npm run build
+ step "5. npm run distfile (single-file dist/single.html)" npm run distfile
+ 
+@@ -37,7 +38,9 @@
+ 
+ step "7. npm run battery (the slice battery — expect 29/0/10/3: 26 carried + 3 Slice-3 laws)" npm run battery
+ step "8. the shell battery S1a–S31 + L12 (one uninterrupted run, exit 0 — 48/0: the A2 split, the boot path MANDATORY when an autosave exists, S31 the manual path, L12 the uniform-board law (cakepanz-9); Part-D register)" node --import ./scripts/node-port-register.mjs batteries/shell.battery.mjs
+-step "8b. the uniform-board battery (cakepanz-9 — expect 6/6: L13 the top-three suggestion, L8 the last pick lands on Complete (re-quoted), L14 the Complete roster print, L15 the wall-slip reveal, L10 the new draft after a done draft, L11 the partial Complete screen; the late battery is DELETED with the flip — the Owner's ruling, the order §5; Part-D register)" node --import ./scripts/node-port-register.mjs batteries/board.battery.mjs
++step "8b. the uniform-board battery (cakepanz-9 + T2 — expect 11/0: L13 the top-three suggestion, L8 the last pick lands on Complete (re-quoted), L14 the Complete roster print, L15 the wall-slip reveal, L10 the new draft after a done draft, L11 the partial Complete screen, L16/L17 the ONE-CLICK ringed-row draft + undo + expand + keyboard (the 2026-11-20 sitting); the late battery is DELETED with the flip — the Owner's ruling, the order §5; Part-D register)" node --import ./scripts/node-port-register.mjs batteries/board.battery.mjs
++step "8c. the P-317 slot battery (T1 — expect 27/0: the draft-position selector end-to-end, node + browser laws, the independent order oracle)" node --import ./scripts/node-port-register.mjs batteries/slot.battery.mjs
++step "8d. the seeded visual battery (T5/T3 — expect 13/0 at named seeds a3f2,k1x9: the ring laws, the 390 walk, the identical-boards replay, the seed code)" node --import ./scripts/node-port-register.mjs batteries/visual.battery.mjs
+ 
+ say "9. boot probes: dist/single.html from vanilla file:// (the file:// law ran inside the shell battery S26–S28; receipt above)"
+ node scripts/probe-contrast.mjs >> "$R" 2>&1 || true
+@@ -48,10 +51,12 @@
+ step "13. the shell falsifiers FA/FB/FC (the render laws must die too)" node scripts/shell-falsifier.mjs
+ step "13b. the uniform-board falsifier (F0-board clean baseline 6/6 + F0-shell baseline 48/0, then F15-board the completing-pick handoff deleted → L8 must DIE, F17 the startDraft order reverted → L10 must DIE, F18 the unconditional Complete h1 + live CTA re-planted → L11 must DIE, F19 the simple branch planted → L12 must DIE, F20 the suggestion wiring killed → L13 must DIE, F21 the roster print deleted → L14 must DIE, F22 the cascade deleted → L15 must DIE; F13/F14/F16 are SUPERSEDED 2026-11-19 with the flip; staged builds, PID ports)" node --import ./scripts/node-port-register.mjs scripts/falsify-board.mjs
+ 
++step "13c. the P-317 slot falsifier (F-S1: the START dispatch drops pickSlot → B1+B3 must DIE)" node scripts/falsify-slot.mjs
++step "13d. tools/shell-status.mjs (SHELL-STATUS.md is MEASURED, never hand-written — the T6 anti-rot tool; written BEFORE the manifest so the gates hash the fresh file)" node --import ./scripts/node-port-register.mjs tools/shell-status.mjs
+ step "14. node scripts/regen-manifest.mjs (dist/ covered — the D4 fix)" node scripts/regen-manifest.mjs
+ step "15. node scripts/gate-manifest.mjs (PASS: dist/ hashed + boot target asserted)" node scripts/gate-manifest.mjs
+-step "16. node scripts/gate-numerals.mjs — CLEAN (1st pass)" node scripts/gate-numerals.mjs
+-step "17. node scripts/gate-numerals.mjs — CLEAN (2nd pass)" node scripts/gate-numerals.mjs
++step "16. node scripts/gate-numerals.mjs — CLEAN (1st pass; CP_PIN=408410477 — the shipped tree's pin)" env CP_PIN=408410477 node scripts/gate-numerals.mjs
++step "17. node scripts/gate-numerals.mjs — CLEAN (2nd pass)" env CP_PIN=408410477 node scripts/gate-numerals.mjs
+ 
+ # the M3 swap test is a HABIT, not a gate: run it against another engine commit when one is named
+ # (CP_SWAP_SHA=<sha> bash scripts/acceptance-run.sh). At the re-pin sitting it ran BOTH directions
