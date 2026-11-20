@@ -1,0 +1,31 @@
+--- baseline/tree-tmp/batteries/node.battery.mjs	2026-11-20 03:54:20.468774691 +0000
++++ cakepanz-4/batteries/node.battery.mjs	2026-11-20 03:38:43.547405732 +0000
+@@ -581,7 +581,7 @@
+   assert.ok(appSrc.includes('void clearAutosaveWeek()'), 'a new draft clears a stale season autosave');
+ });
+ 
+-test('N26 (Slice 3, D2/D3 re-anchor 2026-11-19): the gone-odds tooltip surfaces the engine\'s own method on hover only, is aria-hidden, and the method is in-flow in the row detail (L7b)', async () => {
++test('N26 (Slice 3, D2/D3 re-anchor 2026-11-19 · T4 re-anchor 2026-11-20): the gone-odds tooltip surfaces the engine\'s own method on hover only, is aria-hidden, the method is in-flow in the row detail AND programmatically on the cell (L7b + T4)', async () => {
+   // the number: every row's gone cell IS the engine's own replay chance for that player (recomputed here)
+   const store = createStore(pool);
+   store.dispatch({ type: 'START', seed: 4242, userTeam: 9 });
+@@ -592,12 +592,14 @@
+   for (const row of vm.rows) {
+     assert.equal(row.gone, goneDisplay(goneChance(odds, row.id)) + '%', 'row ' + row.id + ' shows the engine\'s own gone odds');
+   }
+-  // the surface: the gone cell renders the VM value verbatim; the tooltip rides the row, opens on
+-  // hover ONLY (D2: the :focus leg raised it into the tap path — dropped), is aria-hidden (D3: the
+-  // row's accessible name stays the row's), the width clamps in the base rule (the 430px rule was
+-  // dead code by CSS order), and the method is in-flow in the detail (keyboard/touch read it there)
++  // the surface: the gone cell renders the VM value verbatim (no hardcode) — the T4 form carries the
++  // programmatic description on the cell (aria-describedby → the .cp-sr copy); the tooltip rides the
++  // row, opens on hover ONLY (D2: the :focus leg raised it into the tap path — dropped), is
++  // aria-hidden (D3: the row's accessible name stays the row's — the sr copy is the describedby
++  // target, NOT the tooltip), the width clamps in the base rule, and the method is in-flow in the detail
+   const rowSrc = fs.readFileSync(P('src/lib/components/BoardRow.svelte'), 'utf8');
+-  assert.ok(rowSrc.includes('<span class="cp-num cp-gone">{r.gone}</span>'), 'the gone cell renders the VM value verbatim (no hardcode)');
++  assert.ok(rowSrc.includes('<span class="cp-num cp-gone" aria-label="GONE%" aria-describedby="cp-gone-desc-{r.id}">{r.gone}</span>'), 'the gone cell renders the VM value verbatim (no hardcode; T4 describedby on the cell)');
++  assert.ok(rowSrc.includes('<span class="cp-sr" id="cp-gone-desc-{r.id}">{method(oddsMeta)}</span>'), 'the method is programmatically on the cell — the .cp-sr describedby target (T4; never ONLY in an aria-hidden node)');
+   assert.ok(rowSrc.includes('<span class="cp-gonetip" role="tooltip" aria-hidden="true">{method(oddsMeta)}</span>'), 'the tooltip carries the method, aria-hidden (D3)');
+   assert.ok(/\.cp-gone-wrap:hover \.cp-gonetip \{ display: block/.test(rowSrc), 'the method is surfaced on hover only (D2ii)');
+   assert.ok(!/\.cp-main:focus \.cp-gonetip/.test(rowSrc), 'the :focus leg of the tooltip is deleted (D2ii)');

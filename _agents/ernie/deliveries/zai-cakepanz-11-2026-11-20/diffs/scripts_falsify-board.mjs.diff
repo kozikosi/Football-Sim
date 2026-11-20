@@ -1,0 +1,27 @@
+--- baseline/tree-tmp/scripts/falsify-board.mjs	2026-11-20 03:54:20.441774535 +0000
++++ cakepanz-4/scripts/falsify-board.mjs	2026-11-20 03:49:46.617197304 +0000
+@@ -112,11 +112,11 @@
+ {
+   const dir = mkCopy();
+   mustReplace(path.join(dir, 'src/App.svelte'),
+-    `    store.dispatch({ type: 'START', seed, userTeam });
++    `    store.dispatch({ type: 'START', seed, userTeam, ...(slot !== null && slot - 1 !== userTeam ? { pickSlot: slot } : {}) });
+     go('board');
+ `,
+     `    go('board');
+-    store.dispatch({ type: 'START', seed, userTeam });
++    store.dispatch({ type: 'START', seed, userTeam, ...(slot !== null && slot - 1 !== userTeam ? { pickSlot: slot } : {}) });
+ `);
+   build(dir);
+   const out = await runBattery(dir, PORT_BASE + 3, 'board.battery.mjs');
+@@ -166,8 +166,8 @@
+ {
+   const dir = mkCopy();
+   mustReplace(path.join(dir, 'src/lib/components/DraftBoard.svelte'),
+-    `<BoardRow {r} onpick={(id, slot) => (picked = { id, slot })} {oddsMeta} suggest={suggestIds.has(r.id)} />`,
+-    `<BoardRow {r} onpick={(id, slot) => (picked = { id, slot })} {oddsMeta} suggest={false} />`);
++    `<BoardRow {r} onpick={(id, slot) => (picked = { id, slot })} onpickDirect={onpick} {oddsMeta} suggest={suggestIds.has(r.id)} />`,
++    `<BoardRow {r} onpick={(id, slot) => (picked = { id, slot })} onpickDirect={onpick} {oddsMeta} suggest={false} />`);
+   build(dir);
+   const out = await runBattery(dir, PORT_BASE + 6, 'board.battery.mjs');
+   fs.rmSync(dir, { recursive: true, force: true });

@@ -1,0 +1,11 @@
+--- baseline/tree-tmp/src/lib/port/shareable.ts	2026-11-20 03:54:20.457774628 +0000
++++ cakepanz-4/src/lib/port/shareable.ts	2026-11-20 03:25:25.632812527 +0000
+@@ -69,7 +69,7 @@
+       `<b>${opts.picks}</b> picks in the league, <b>${opts.mine}</b> of them mine.`,
+       `Best of my class: <span class="ink">${esc(opts.bestPick)}</span> at <b>${opts.bestWins}</b> wins.`,
+     ],
+-    stamp: `seed ${opts.seed} · engine ${opts.engine} · played by the pinned engine`,
++    stamp: `seed ${opts.seed} (code ${opts.seed.toString(36)}) · engine ${opts.engine} · played by the pinned engine`,
+   };
+ }
+ 

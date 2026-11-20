@@ -1,0 +1,40 @@
+--- baseline/tree-tmp/src/lib/components/DraftBoard.svelte	2026-11-20 03:54:20.456774622 +0000
++++ cakepanz-4/src/lib/components/DraftBoard.svelte	2026-11-20 03:24:46.705594596 +0000
+@@ -14,12 +14,12 @@
+   import NeedsRow from './NeedsRow.svelte';
+ 
+   let {
+-    vm, onpick, onundo, onsort, canUndo, openSlots = [], oddsMeta = null, needsSelected = [], onneedtoggle, onneedclear, onplay, draftDone = false,
++    vm, onpick, onundo, onsort, canUndo, openSlots = [], oddsMeta = null, needsSelected = [], onneedtoggle, onneedclear, onplay, draftDone = false, seedCode = '',
+   }: {
+     vm: BoardVM; onpick: (id: string, slot: string) => void; onundo: () => void; onsort: (s: any) => void; canUndo: boolean;
+     openSlots?: SlotId[]; oddsMeta?: { picksBetween: number; sims: number } | null;
+     needsSelected?: SlotId[]; onneedtoggle: (slot: SlotId) => void; onneedclear: () => void;
+-    onplay: () => void; draftDone?: boolean;
++    onplay: () => void; draftDone?: boolean; seedCode?: string;
+   } = $props();
+   let picked = $state<{ id: string; slot: string } | null>(null);
+   let row: HTMLDivElement | null = $state(null);
+@@ -61,10 +61,12 @@
+   {/if}
+   <div class="cp-rows" bind:this={row} data-count={shown.length}>
+     {#each shown as r (r.id)}
+-      <BoardRow {r} onpick={(id, slot) => (picked = { id, slot })} {oddsMeta} suggest={suggestIds.has(r.id)} />
++      <!-- T2: onpick stages through the confirm banner; onpickDirect is the immediate dispatch —
++           the ringed rows' ONE-CLICK button uses it (no expand, chip or confirm). -->
++      <BoardRow {r} onpick={(id, slot) => (picked = { id, slot })} onpickDirect={onpick} {oddsMeta} suggest={suggestIds.has(r.id)} />
+     {/each}
+   </div>
+-  <BoardFooter footer={vm.footer} canUndo={canUndo} onundo={onundo} onsort={onsort} sort={vm.sort} {onplay} {draftDone} />
++  <BoardFooter footer={vm.footer} canUndo={canUndo} onundo={onundo} onsort={onsort} sort={vm.sort} {onplay} {draftDone} {seedCode} />
+ </section>
+ 
+ <style>
+@@ -73,5 +75,7 @@
+   .cp-btn { border: 1px solid var(--gold3); background: transparent; color: var(--gold2); border-radius: 999px; padding: 7px 16px; cursor: pointer; font-family: inherit; }
+   .cp-btn:hover { background: color-mix(in srgb, var(--goldm) 12%, transparent); }
+   .cp-go { background: linear-gradient(90deg, #c9a24b, #b3766a); color: #2c1e0c; font-weight: 800; }
++  /* T4: keyboard focus is visible on the confirm control too */
++  .cp-btn:focus-visible, .cp-go:focus-visible { outline: 2px solid var(--gold2); outline-offset: 2px; }
+   .cp-rows { margin: 10px 0; }
+ </style>

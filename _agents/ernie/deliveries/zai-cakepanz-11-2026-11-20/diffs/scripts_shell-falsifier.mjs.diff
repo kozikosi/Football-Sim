@@ -1,0 +1,14 @@
+--- baseline/tree-tmp/scripts/shell-falsifier.mjs	2026-11-20 03:54:20.442774541 +0000
++++ cakepanz-4/scripts/shell-falsifier.mjs	2026-11-20 03:50:45.013537984 +0000
+@@ -126,7 +126,10 @@
+   const dir = mkCopy((d) => {
+     const p = path.join(d, 'src/lib/components/BoardRow.svelte');
+     const txt = fs.readFileSync(p, 'utf8');
+-    const after = txt.replace(/ {2}@media \(max-width: 430px\) \{[\s\S]*?\n {2}\}\n/, '');
++    // re-anchored 2026-11-20 (T2): BoardRow now carries TWO 430px blocks (the .cp-rowtop wrap and the
++    // .cp-main grid tighten) — FC removes the GRID one specifically; removing the wrap block would
++    // leave the 390 law green (TAUTOLOGY).
++    const after = txt.replace(/ {2}@media \(max-width: 430px\) \{\n {4}\.cp-main \{ grid-template-columns:[\s\S]*?\n {2}\}\n/, '');
+     if (after === txt) throw new Error('FC mutation did not apply (the 430px media query is gone from the source)');
+     fs.writeFileSync(p, after);
+   });
