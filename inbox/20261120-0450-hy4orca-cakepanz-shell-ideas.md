@@ -1,0 +1,31 @@
+SPEAKER: hy4orca | ROLE: advisor | TASK: brainstorm — implications of the cakepanz-11 sitting and improvements to the cakepanz UI/UX shell for Claude's engine | DATE: 2026-11-20T04:50Z
+FOR: whoever takes the next cakepanz shell item (advisory IDEA only — no product/engine/pin/governance file touched, no seat assigned)
+IDEA: the c11 sitting is a useful hinge. It turned the ring, the slot and the seed into real laws, but it also surfaced a structural smell (the shell re-parses engine DISPLAY strings to recover semantics) and a process smell (receipts that cannot self-report their own state). The highest-value next work is not a new screen — it is hardening the seam so the next five slices and the next sport (plan M) cost less.
+
+## The implication I would act on first
+The engine is a frozen snapshot consumed across a one-door seam; every re-pin is a 5-path copy plus a 430-test gate. That model is sound, but `draftBoard.ts:61` stripping `_w/_p` forced the view to reconstruct a tie rule from a rounded display string. This is not one bug — it is a class: **any engine semantic the VM does not carry will be re-derived in the shell from display text, and will drift.** The T8 `suggestions` contract fixes one instance. The durable fix is a rule + a law.
+
+1. **Typed advice channel (contract 1, generalized).** Make `suggestions { ids, rankedBy, cutoffRaw, reason }` the first member of a typed *advice envelope* that also eventually carries gone-odds method, lineup advice and feed. Add a shell law: `grep` the shell for `Number(String(x…).replace(/[^0-9.\\-]/g,''))` / `parseFloat(String(engine field))` and fail on any hit. This is cheap, engine-neutral and prevents the class from recurring when slice 4 (feed) lands.
+   - Risk: the engine view must own semantics; that is the Architect's call (T8 already filed). The *law* is mine to propose and is useful under either contract — under contract 2 it forces the raw value to be typed rather than parsed.
+
+2. **Progressive disclosure for the late draft (answers P-337 without an engine change).** The Owner wants rounds 1–10 deep and the second half seamless. Add a shell-only `draftPhase` derived from the record: through round 10 show the full advice surface (ring + reason + gone% + flex chips); from round 11 collapse each open slot to one "Fill {slot} — {name}" one-click row with a one-line reason, with a persistent "show details" control (progressive disclosure, never removal). Undo and the mode lock stay.
+   - Test: a battery walks 32 rounds and asserts the DOM simplification threshold, that details are reachable, and that an undone pick restores the rich view. This is the clearest way to turn a UX ruling into a law.
+   - Implication: it also shrinks the 60-row highlight tie sets seen at pick 27 in the board battery — the "37/60 highlighted" ring is a symptom of showing full advice where the Owner wants simplicity, not of a broken law.
+
+3. **Seed/team/slot/mode as a shareable challenge link.** T3 exposes `?seed=` and a visible code; the brag stamp already carries the code. Extend to `?seed=<code>&team=<idx>&slot=<n>&mode=<measured|preset>` plus a "copy challenge" button. Two loads of one link reproduce the exact board AND order (W7 already proves the seed half). Entirely offline, no new data, and it converts determinism into the product's most natural social feature.
+   - Risk: validate every param at boot (garbage → random fallback, as T3 does) and never let a bad `slot` throw after the draft mounts (the store already rejects a bad slot at START).
+
+4. **WCAG-aware team ink + a "palette doctor".** The six named holes are blocked on an Owner palette ruling. Ship a small tool that, given the Owner's chosen hexes, computes the minimal lightness shift (hue-preserving) to reach 4.5:1 and prints the exact token diff; derive team ink text colour from each team's primary hex (black/white/lifted tint chosen by measured contrast) instead of hand-authoring 32 inks. The guardrail becomes the gate, and the blocked decision becomes a one-command fix.
+   - Risk: the Owner's 22 Oct colour table is authoritative — the tool must propose, never silently change, and the diff needs his approval (palette is a product call).
+
+5. **One shared `serveAndRun` for every falsifier.** The open 13b item (falsify-board lacks the D-2 stale-server guard that shell-falsifier has) is a class bug: any mutation test that serves a build must verify the served bytes are the mutant's. Extract the guard + PID-port isolation into one helper used by all falsifiers, and add a grep law that each falsifier imports it. Closes the class, not the instance. Directly relevant to the next sitting's first item.
+
+6. **Machine-readable run state.** Have `acceptance-run.sh` emit a final `RUN-STATE.json` (ordered stage list, each stage's exit code, sha256 of the receipts file) and a gate that the sitting report's stage summary matches it. This is the mechanical version of my review findings F1–F3: the three docs disagreed about 13b because nothing mechanically bound prose to the run. Cheap, and it makes every future handoff self-auditing.
+
+7. **Multi-sport-ready seam (plan M anticipation).** Claude's plan M is kernel + thin sport modules. Define a `SportAdapter` interface (slot taxonomy, VM shape, advice vocabulary, screen labels) and keep all football strings behind it. A grep law (`src/lib/` has zero NFL literals outside the adapter) makes the next sport a new adapter rather than a fork of the shell. Pairs with the existing N16 "port is framework-blind" law.
+   - Risk: do not build the adapter before there is a second sport to constrain its shape (avoid speculative abstraction). The *law* is worth having now; the interface can wait for the Architect's MS-2 ruling (baseball vs basketball).
+
+## Ordering I would recommend
+(1) + (5) + (6) first — they are laws/tools that make every later slice cheaper and directly address this sitting's open item; (2) next, when the Owner's P-337 UX intent is ruled; (3)/(4)/(7) when their decisions land. None of this touches the engine, ratings, pins, protected constants or another seat's file.
+
+No work was assigned to any seat. All claims above are INFERRED from the delivered docs and the repo unless stated otherwise (F1–F5 of my review are VERIFIED with commands); no new build or battery was run for this idea file.
