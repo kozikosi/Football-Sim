@@ -6,7 +6,16 @@
 - **Worktree:** `/Users/kosi/Desktop/wt/porca` · **Branch:** `council/porca` · `git merge-base HEAD origin/council/base` → `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 - **Evidence standard:** receipts come from fresh `git show`/`git grep`/`md5sum`/node runs or real file reads. No shared tree writes, product file, engine, pin or other seat's file touched. A wrong claim is kept in the record with a superseding correction.
 
-## Current work — session 10 (second-pass Z.ai prompt review + v3, 2026-11-20)
+## Current work — session 11 (draft ranking, P-287 contract review, Architect replies, 2026-11-20)
+- **User request 1 — "whose draft is best":** re-fetched all seat branches and re-read the latest four S14 work orders: pickle `2127` v4, hy4 `2130` v3, my `2125` v3, ernie `2130` v3. Ranked pickle v4 first (only draft simultaneously self-contained, pin-safe, delivery-honest and gate-consistent; byte proof of the pin boundary; full keyframes, glossary, decision boundary). hy4 v3 second (pin-safe but W14 double-count and a dangling `§0.6` reference). My v3 third (self-assessment). ernie v3 fourth: §4.3.1 still tells Z.ai to expose `rawSort` on `BoardRowVM` in the frozen engine — not executable as written. Delivered in chat; no ranking file filed.
+- **User request 2 — review the Architect's `dac331e` report:** found and verified a tree mismatch. His `dispatchAsync` contract §2 was labelled as the *deployed* `67-cakepanz/src/App.svelte` (3 sites, `:56/:80/:84`), while §4 and the runbook §3 require the c12/S13 tree (4 sites, `:148/:178/:184/:208`, `__cp` at `:104`). Filed `inbox/20261120-2210-porca-P-287-review-dispatchasync-contract-c12-callsites.md`, VERDICT improved, commit `2822222cd`, push verified by `git ls-remote`. Exact old→new text supplied; no Architect file touched.
+- **Self-correction carried in the reply:** I had framed the `__cp` shape change as a battery issue; the Architect verified `slice1.battery.mjs` has zero `__cp` references. Corrected in the reply to Claude: the shape matters to dev-hook tooling generally (`vmStore`, `go`), not that battery. The four-site finding stands.
+- **User requests 3/4 — "how should we reply to Claude":** drafted two pasteable replies. First covered the §2/§5 re-anchoring ask plus hy4's three UNKNOWN answers; second confirmed the fixes and raised two residuals. No repo action for either.
+- **Verified at session end (read-only):** remote tip `origin/architect/engine-and-seats` = `7d8d71c`; `d3177ee` and `7d8d71c` both present. All three hy4 leftovers fixed in the contract and `NOW.md`: §3 says four sites, §4 says Cloudflare handover, LANES matches RULINGS. hy4's three receipts all reproduce from the S13 tree: `CUTOVER-CHECKLIST.md:20-22` (board 15/0→16/0, slot 28/0, visual 15/0→17/0); `swap-test.log:30` = `SWAP TEST VERDICT: FAIL` and c7/c8 battery `:45` = 29 pass / 0 fail / 10 skip / 3 deferred; w89 `KEY='zpb:season'` at `:18080` with `grep -c 'sim:nfl'` = 0.
+- **Two residuals reported, not filed:** (1) contract §2 header credits hy4's anchors as VERIFIED but §5 still labels `:104` "REPORTED" — he verified `:104` too; (2) relay note for Z.ai — `slice1.battery.mjs` is clean, but `shell.battery.mjs:61,170` call `__cp.store.dispatch({type:'LOAD'})` and `board`/`visual`/`slot` batteries use `__cp.vmStore`/`go`/`refresh`. Contract's §5 rule covers them; naming the two LOAD calls in the handoff was recommended.
+- **Not done:** no product/engine/pin/governance/other-seat file edited; no colors/ gates re-run (430/430 and tsc 89/89 remain the Architect's receipts). Everything delivered in chat plus one inbox review.
+
+## Session 10 (second-pass Z.ai prompt review + v3, 2026-11-20)
 - **User request:** re-review the other seats' *updated* S14 prompt drafts, compare to my v2, and rewrite assuming Z.ai read none of the drafts.
 - **Read fresh this pass:** pickle `2109` (six-way review), pickle `2110` (v3 work order), hy4 `2115` (v2 work order) — line-by-line against my v2. Did not re-open ernie `2100` or iceman; they are represented through those two reviews and I say so in the deliverable.
 - **Deliverable:** `inbox/20261120-2125-porca-TO-ZAI-S14-self-contained-prompt-v3.md`. Self-contained (no cross-draft reading), glossary retained, execution-order table added.
@@ -36,22 +45,24 @@
 - **Implications + second-order reviews:** `inbox/20261120-2003-porca-IDEA-cakepanz-s13-implications.md`; `inbox/20261120-2031-porca-review-of-peer-review-of-reviews.md` (my corrections: classifier `:203` not `:201`; flex 97→99 resolved in muse AGENTS.md; pin drift 5 lines in 2 files).
 
 ## Corrections carried in the record
-- Ring verdict: **B** (`rawSort`), not A. Label collision (pickle A1 vs MUSE "five-voice Contract B") — same `rawSort` mechanism, different naming axes; MUSE to reconcile; do not re-litigate. Owner's verbatim ruling (20 Nov, chat; no filed note yet) revives the ring in Z.ai's lane with w89's glowing buttons; multisport stays parked. **But** the "behaviour settled, restyle only" inference is false — Contract B is a target to build, not shipped (pickle `2034` erratum; verified in bytes).
+- Ring verdict: **B** (`rawSort`), not A. Label collision (pickle A1 vs MUSE "five-voice Contract B") — same `rawSort` mechanism, different naming axes; MUSE to reconcile; do not re-litigate. Owner's verbatim ruling (20 Nov, chat; no filed note yet) revives the ring in Z.ai's lane with w89's glowing buttons; multisport stays parked. **Correction (session 11):** the Owner has since ruled the ring REMOVED and deploy = CLOUDFLARE (via hy4's relay, recorded in Claude's `NOW.md` RULINGS). Treat that as the newer ruling; do not re-litigate.
 - Pin provenance (CORRECTED): `06d89724` is the true pickSlot introduction and IS an ancestor of pin `408410477`; `560b8364f` has identical lines but is a different commit. Verify ancestry in full history, never in this worktree (`.git/shallow`).
 - `d3bd81d2` = Colors engine pin; `4ca9a071` = 67-cakepanz snapshot pin; `408410477` = plan-M docs pin (REPORTED from the relay). Live pin in the S13/S14 prompts is `408410477`.
 - C12 README "stage 13b CLOSED" is a 2026-11-20 correction; authoritative state CLOSED (named-law DIED), standing.
+- Session 11 self-correction: the c12 `__cp` hook shape matters to dev-hook tooling, **not** to `slice1.battery.mjs` (verified zero `__cp` refs). Do not repeat the earlier framing.
 
 ## What the next session needs
-- **Read first:** `inbox/20261120-2125-porca-TO-ZAI-S14-self-contained-prompt-v3.md` (current work; supersedes the `2115` v2), then the session-8 relay review `inbox/20261120-1940-porca-cakepanz-13-review.md`.
-- **Do not redo:** C1–C12, A1/A2/A3, the c10/c12/c13 relays and reviews, the ancestry re-check, the S13 review round, the 11-draft Z.ai prompt review, the second-pass review of the updated drafts, the 4-audit seat ranking.
-- **Still open (not mine, no claim):** Owner-note intake of the ring quote (newest note = 2026-11-19); five stale pin lines (`AGENTS.md:44,45,46,73`, `PROJECT-KNOWLEDGE.md:18`); the Architect landing engine `rawSort` + the paired L13/component fix; the make-live decision; Contract A/B label reconciliation; the Owner's seat-retirement decisions.
-- **End-of-chat gate:** `node tools/preserve.mjs check` exits 1 for OTHER worktrees only (shared Football Sim tree, council-ds/flint/super/dsd/boc, architect-colors, local-only commits on council/vlorca, etc.). My `council/porca` is clean after this session's commit. Do not touch another seat's worktree.
+- **Read first:** `inbox/20261120-2210-porca-P-287-review-dispatchasync-contract-c12-callsites.md` (newest work), then `inbox/20261120-2125-porca-TO-ZAI-S14-self-contained-prompt-v3.md`, then the session-8 relay review `inbox/20261120-1940-porca-cakepanz-13-review.md`.
+- **Do not redo:** C1–C12, A1/A2/A3, the c10/c12/c13 relays and reviews, the ancestry re-check, the S13 review round, the 11-draft Z.ai prompt review, the second-pass review of the updated drafts, the 4-audit seat ranking, the latest-draft ranking, the P-287 contract review.
+- **Still open (not mine, no claim):** the Architect's Cloudflare rollback section and w89-parity visual acceptance in the runbook; the two residuals reported in session 11 (§5 VERIFIED/REPORTED label; naming the two `shell.battery.mjs` LOAD calls for Z.ai); Owner-note intake of the ring quote; five stale pin lines (`AGENTS.md:44,45,46,73`, `PROJECT-KNOWLEDGE.md:18`); the make-live trigger under Cloudflare; Contract A/B label reconciliation; the Owner's seat-retirement decisions.
+- **End-of-chat gate:** `node tools/preserve.mjs check` exits 1 for OTHER worktrees only (shared Football Sim tree, council-ds/flint/super/dsd/boc, architect-colors, local-only commits on council/vlorca, q, vloc). My `council/porca` is clean after this session's commit. Do not touch another seat's worktree.
 
 ## Files in this lane
 - `_agents/porca/PORCA.md` — this file.
 - `_agents/porca/deliverables/zip-root-cakepanz-{10,12,13}/` — verbatim relays.
 - `inbox/20261120-2115-porca-TO-ZAI-S14-self-contained-prompt-v2.md` — superseded (session 9).
-- `inbox/20261120-2125-porca-TO-ZAI-S14-self-contained-prompt-v3.md` — current deliverable.
+- `inbox/20261120-2125-porca-TO-ZAI-S14-self-contained-prompt-v3.md` — current Z.ai prompt.
+- `inbox/20261120-2210-porca-P-287-review-dispatchasync-contract-c12-callsites.md` — current Architect review.
 - No build copies, images or lane code (advisor role). Work lives in `inbox/` plus one bulletin file per session.
 
 ## Role
