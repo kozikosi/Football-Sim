@@ -1,0 +1,23 @@
+--- baseline/tree-tmp/src/lib/screens/Complete.svelte	2026-11-20 03:54:20.457774628 +0000
++++ cakepanz-4/src/lib/screens/Complete.svelte	2026-11-20 03:25:05.453699342 +0000
+@@ -54,12 +54,18 @@
+     {/if}
+   </p>
+   <p class="cp-prov cp-done-prov">
+-    seed <b>{record.seed}</b> · engine <b>{engineVersion()}</b> · {showInt(picks)} picks · {TEAMS[record.userTeam].name}
++    seed <b>{record.seed}</b> · code <b>{record.seed.toString(36)}</b> · engine <b>{engineVersion()}</b> · {showInt(picks)} picks · {TEAMS[record.userTeam].name}
+     {#if requestedSlot !== null}· requested slot <b>{requestedSlot}</b>{/if}
+     · every number reads <b>{MODE_LABEL[valuation.get().mode]}</b>
+   </p>
+   {#if requestedSlot !== null}
+-    <p class="cp-note cp-done-note">You asked for draft slot {requestedSlot}; the store ran the standard order — the store's slot wiring is the Architect's piece (P-317, filed §5). The engine's own order parameter supports it (proven node-side).</p>
++    <p class="cp-note cp-done-note">
++      {#if record.pickSlot !== undefined}
++        You drafted at slot {record.pickSlot} — the store traded {TEAMS[record.userTeam].name} into that slot and mirrored the trade through the snake; the record carries it (pickSlot) and a restore replays the same order.
++      {:else}
++        Slot {requestedSlot} is {TEAMS[record.userTeam].name}'s own spot — the standard snake ran, and a restore replays it unchanged.
++      {/if}
++    </p>
+   {/if}
+   {#if complete && rosterSlots.length}
+   <div class="cp-rosterline" data-lineup={lineupState}>

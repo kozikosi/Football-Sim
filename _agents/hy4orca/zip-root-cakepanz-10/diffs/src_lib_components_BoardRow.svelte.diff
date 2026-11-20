@@ -1,0 +1,86 @@
+--- baseline/tree-tmp/src/lib/components/BoardRow.svelte	2026-11-20 03:54:20.467774685 +0000
++++ cakepanz-4/src/lib/components/BoardRow.svelte	2026-11-20 03:18:33.334483587 +0000
+@@ -8,7 +8,7 @@
+      (the A8e fix); the top-three suggestion carries the gold ring on the row's pick control (C′1). -->
+ <script lang="ts">
+   import type { BoardRowVM } from '../port/seam.ts';
+-  let { r, onpick, oddsMeta = null, suggest = false }: { r: BoardRowVM; onpick: (id: string, slot: string) => void; oddsMeta?: { picksBetween: number; sims: number } | null; suggest?: boolean } = $props();
++  let { r, onpick, onpickDirect, oddsMeta = null, suggest = false }: { r: BoardRowVM; onpick: (id: string, slot: string) => void; onpickDirect?: (id: string, slot: string) => void; oddsMeta?: { picksBetween: number; sims: number } | null; suggest?: boolean } = $props();
+   let open = $state(false);
+   // the numeric cells name their field — the caption texts are the 8.1 REC strings, kept verbatim
+   const CAP = {
+@@ -21,18 +21,30 @@
+ </script>
+ 
+ <div class="cp-row cp-{r.tone}" class:cp-suggest={suggest} data-id={r.id}>
+-  <button class="cp-main" onclick={() => (open = !open)} aria-expanded={open} aria-controls="cp-fit-{r.id}">
+-    <span class="cp-name">{r.name}</span>
+-    <span class="cp-pos">{r.pos}</span>
+-    <span class="cp-nflteam">{r.nflTeam}</span>
+-    <span class="cp-num cp-ovr" title={CAP.ovr} aria-label="OVR">{r.ovr}</span>
+-    <span class="cp-num" title={CAP.wins} aria-label="WINS">{r.wins}</span>
+-    <span class="cp-num" title={CAP.priority} aria-label="PRIO">{r.priority}</span>
+-    <span class="cp-gone-wrap">
+-      <span class="cp-num cp-gone">{r.gone}</span>
+-      <span class="cp-gonetip" role="tooltip" aria-hidden="true">{method(oddsMeta)}</span>
+-    </span>
+-  </button>
++  <div class="cp-rowtop">
++    <button class="cp-main" onclick={() => (open = !open)} aria-expanded={open} aria-controls="cp-fit-{r.id}">
++      <span class="cp-name">{r.name}</span>
++      <span class="cp-pos">{r.pos}</span>
++      <span class="cp-nflteam">{r.nflTeam}</span>
++      <span class="cp-num cp-ovr" title={CAP.ovr} aria-label="OVR">{r.ovr}</span>
++      <span class="cp-num" title={CAP.wins} aria-label="WINS">{r.wins}</span>
++      <span class="cp-num" title={CAP.priority} aria-label="PRIO">{r.priority}</span>
++      <span class="cp-gone-wrap">
++        <!-- T4: the gone% cell carries its method programmatically — the .cp-sr copy is the screen-reader
++             source of truth; the hover tooltip stays a decorative duplicate (the D3 ruling) -->
++        <span class="cp-num cp-gone" aria-label="GONE%" aria-describedby="cp-gone-desc-{r.id}">{r.gone}</span>
++        <span class="cp-gonetip" role="tooltip" aria-hidden="true">{method(oddsMeta)}</span>
++        <span class="cp-sr" id="cp-gone-desc-{r.id}">{method(oddsMeta)}</span>
++      </span>
++    </button>
++    {#if suggest}
++      <!-- T2 (the Owner's w89 signal): ONE click drafts a ringed row — no expand, chip or confirm
++           (the call goes straight to the store's PICK). The slot is NAMED on the button (a player
++           fits several slots; a bare "Draft" silently chooses one). The expand path below stays
++           for the flex alternatives. -->
++      <button class="cp-quick" onclick={() => (onpickDirect ?? onpick)(r.id, r.slotId)}>Draft {r.name} at {r.slotLabel}</button>
++    {/if}
++  </div>
+   <div class="cp-fits" id="cp-fit-{r.id}" hidden={!open}>
+     <span class="cp-fitlbl">Fills {r.slotLabel}{r.natural ? '' : ' (flex)'}</span>
+     {#each r.alsoFits as f}
+@@ -54,6 +66,19 @@
+     .cp-main { grid-template-columns: 1fr 30px 34px 40px 52px 58px 46px; gap: 5px; padding: 8px 4px; }
+   }
+   .cp-main:hover { background: color-mix(in srgb, var(--goldm) 7%, transparent); }
++  /* T2: the row top holds the main row and — on a ringed row — the ONE-CLICK draft button.
++     Desktop: it sits beside the grid; a phone wraps it to its own line (the 390 law holds:
++     wrap, never overflow). */
++  .cp-rowtop { display: flex; align-items: center; }
++  .cp-rowtop .cp-main { flex: 1 1 auto; min-width: 0; }
++  .cp-quick { flex: 0 0 auto; margin-left: 8px; border: 1px solid var(--gold2); background: color-mix(in srgb, var(--goldm) 20%, transparent);
++    color: var(--gold2); border-radius: 999px; padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.82rem;
++    font-weight: 800; white-space: nowrap; }
++  .cp-quick:hover { background: color-mix(in srgb, var(--goldm) 32%, transparent); }
++  @media (max-width: 430px) {
++    .cp-rowtop { flex-wrap: wrap; }
++    .cp-quick { flex-basis: 100%; margin: 0 6px 6px; white-space: normal; text-align: center; }
++  }
+   .cp-name { font-weight: 700; color: #f5e9dd; overflow-wrap: anywhere; }
+   .cp-pos, .cp-nflteam { color: #c8a48f; font-size: 0.8rem; }
+   .cp-num { font-variant-numeric: tabular-nums; text-align: right; }
+@@ -72,6 +97,11 @@
+   .cp-fits[hidden] { display: none; }
+   .cp-fitlbl { font-size: 0.78rem; color: #c8a48f; }
+   .cp-gonehow { flex-basis: 100%; margin: 2px 0 0; font-size: 0.72rem; line-height: 1.4; color: #c8a48f; }
++  /* T4: the visually-hidden method copy — the screen-reader source of truth for the gone% cell
++     (the hover tooltip stays decorative; the method is never ONLY hidden from assistive tech). */
++  .cp-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
++  /* T4: keyboard focus is VISIBLE on every control of the row (Tab/Enter path). */
++  .cp-main:focus-visible, .cp-chip:focus-visible, .cp-quick:focus-visible { outline: 2px solid var(--gold2); outline-offset: 2px; }
+   .cp-chip { border: 1px solid var(--gold3); background: transparent; color: var(--gold2); border-radius: 999px; padding: 4px 12px; cursor: pointer; font-family: inherit; font-size: 0.8rem; }
+   .cp-chip i { font-style: normal; color: #c8a48f; }
+   .cp-chip:hover { background: color-mix(in srgb, var(--goldm) 12%, transparent); }

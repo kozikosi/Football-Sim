@@ -1,0 +1,29 @@
+--- baseline/tree-tmp/src/lib/port/seam.ts	2026-11-20 03:54:20.456774622 +0000
++++ cakepanz-4/src/lib/port/seam.ts	2026-11-20 03:04:19.939637688 +0000
+@@ -6,7 +6,7 @@
+ //   M3  the swap test — replace src/engine/ with a new pin's snapshot, build + battery, zero edits here.
+ //   M4  the contract — SNAPSHOT.md (repo root) carries the pin, the sha256s, and the re-pin procedure.
+ //   M5  a thin seam — the app-touch count is measured in the battery (MERGE-GUIDE.md §seam).
+-import { createStore, freezePool, thawPool, parseRecord, restoreDraft, saveTo, loadFrom, SAVE_KEY } from '../../engine/sports/nfl/app/store.ts';
++import { createStore, freezePool, thawPool, parseRecord, restoreDraft, saveTo, loadFrom, SAVE_KEY, draftOrder } from '../../engine/sports/nfl/app/store.ts';
+ import type { Store, DraftStoreState, DraftStoreAction, SaveRecord, Status } from '../../engine/sports/nfl/app/store.ts';
+ import type { Player } from '../../engine/sports/nfl/engine/players.ts';
+ import { buildPool } from '../../engine/sports/nfl/engine/players.ts';
+@@ -109,6 +109,8 @@
+ export {
+   // draft store (the only DraftStoreState/DraftStoreAction, F1)
+   createStore, freezePool, thawPool, parseRecord, restoreDraft, saveTo, loadFrom, SAVE_KEY,
++  // P-317: the store's own order builder — the shell never computes the order itself
++  draftOrder,
+   // draft engine (newDraft carries the ORDER param — P-317's seam)
+   newDraft, DEFAULT_CONFIG, snakeOrder, openSlots, candidates, cpuChoose, applyPick, roundOf, runDraft,
+   // board
+@@ -142,7 +144,7 @@
+ 
+ // ---------- the port object (what controllers consume; keeps one import in the bindings) ----------
+ export const engine = {
+-  createStore, freezePool, thawPool, parseRecord, restoreDraft,
++  createStore, freezePool, thawPool, parseRecord, restoreDraft, draftOrder,
+   newDraft, DEFAULT_CONFIG, snakeOrder, openSlots, roundOf,
+   boardVM, slotLabel, goneOdds, goneChance, lineupFor, fit, SLOTS, SLOT_IDS, fieldSlots,
+   TEAMS, TEAM_BY_NAME, DIVS, divisionTeams, TEAM_COLORS,

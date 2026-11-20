@@ -1,0 +1,26 @@
+--- baseline/tree-tmp/src/lib/components/BoardFooter.svelte	2026-11-20 03:54:20.455774616 +0000
++++ cakepanz-4/src/lib/components/BoardFooter.svelte	2026-11-20 03:25:00.968674268 +0000
+@@ -2,12 +2,13 @@
+      Slice 4: PLAY WEEK 1 — the drive-level feed, played by the engine from the finished rosters. -->
+ <script lang="ts">
+   import SortControls from './SortControls.svelte';
+-  let { footer, canUndo, onundo, onsort, sort, onplay, draftDone = false }: { footer: { filled: number; total: number; text: string }; canUndo: boolean; onundo: () => void; onsort: (s: any) => void; sort: string; onplay: () => void; draftDone?: boolean } = $props();
++  let { footer, canUndo, onundo, onsort, sort, onplay, draftDone = false, seedCode = '' }: { footer: { filled: number; total: number; text: string }; canUndo: boolean; onundo: () => void; onsort: (s: any) => void; sort: string; onplay: () => void; draftDone?: boolean; seedCode?: string } = $props();
+ </script>
+ 
+ <div class="cp-ft">
+   <SortControls sort={sort} onsort={onsort} />
+   <span class="cp-count">{footer.text}</span>
++  {#if seedCode}<span class="cp-seedcode" title="the draft code — put ?seed={seedCode} in the URL to replay this exact draft">code <b>{seedCode}</b></span>{/if}
+   <button class="cp-undo" onclick={onundo} disabled={!canUndo}>Undo my last pick</button>
+   {#if draftDone}
+     <button class="cp-play" onclick={onplay} data-testid="cp-play">Play week 1 →</button>
+@@ -17,6 +18,8 @@
+ <style>
+   .cp-ft { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; border-top: 1px solid #3a2c31; padding-top: 10px; }
+   .cp-count { color: #c8a48f; font-size: 0.85rem; }
++  .cp-seedcode { color: #c8a48f; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
++  .cp-seedcode b { color: var(--gold2); letter-spacing: 0.04em; }
+   .cp-sorttoggle { border: 1px solid var(--hairline); background: transparent; color: var(--sub); border-radius: 999px; padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.82rem; }
+   .cp-undo { margin-left: auto; border: 1px solid #3a2c31; background: transparent; color: #c8a48f; border-radius: 999px; padding: 6px 14px; cursor: pointer; font-family: inherit; }
+   .cp-undo:hover:not(:disabled) { color: var(--gold2); border-color: var(--gold3); }
