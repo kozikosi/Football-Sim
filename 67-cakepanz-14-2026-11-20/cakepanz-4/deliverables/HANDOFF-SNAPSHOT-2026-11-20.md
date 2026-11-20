@@ -1,0 +1,156 @@
+# HANDOFF-SNAPSHOT — the frozen engine at the S13 cutover · 2026-11-20 · Z.ai
+
+**What this is:** the cutover handoff's contract of record for the ENGINE side of the merge
+(Phase C item 1 of the S13 order). The merge moves Z.ai's UI INTO `colors/` (Claude's tree);
+the engine lives at `colors/src/` and NEVER moves. This file pins the exact bytes that
+`colors/src` (and its four companion paths) must equal at the moment of the merge.
+
+## The pin and its proof (VERIFIED this sitting)
+
+- Pin: **`408410477`** on `architect/engine-and-seats` — a commit object (`git cat-file -t` → commit).
+- Count: `git ls-tree -r 408410477 colors/src | grep -c '\.ts$'` → **69** TS files.
+- Identity: `git diff 408410477 ee3b6e1 -- colors/src` → **empty (0 bytes)** — the pin is
+  byte-identical to Claude's branch head `ee3b6e1`. Claude's stalled re-sync question is
+  already answered: the engine does not need a re-sync; it needs the UI merged around it.
+- This sitting's tree: all **69** snapshot files byte-compared against the pin per file
+  (`sha256sum` per file vs `git show 408410477:<path>` piped through the same hash) — **zero
+  mismatches**. The four companion fence paths compared the same way: `tools/mathlab/flex.json`,
+  `test/engine/engine.test.ts` entry, `test/engine/**`, `data/packs/*.json` (4 files) — identical.
+- The carried suite at these bytes: `npm run test:engine` → **430/430** (VERIFIED, this sitting).
+- Precompile: `node scripts/precompile-engine.mjs` → "generated 69 files (1 transformed:
+  platform/localstorage.ts) — snapshot untouched" (the engine-node/ emit is derived, never a
+  snapshot edit; the register asserts staleness and regenerates once per byte change).
+
+## The five-path fence (what moves together at any future re-pin)
+
+1. `src/engine/` (the snapshot; at the merge: stays at `colors/src/`)
+2. `tools/mathlab/flex.json` (the flex table the carried tests read — 99 rules, 17/17/42/23)
+3. `test/engine/` (the carried expectations — the `colors/test` copy at the pin)
+4. `test/engine.test.ts` (the suite entry file — 430 tests, 430 pass)
+5. `data/packs/*.json` (the fixtures the carried suite reads — 4 files)
+
+## Per-file hashes (sha256, the S13 sitting's own measurement)
+
+```
+80388320e29eec4150e6a81275e14b92e7428624aaf8c6b41772f27e03f73eb8  src/engine/core/app.ts
+b4a8bb8be5fddb4f96c2bbc33cce76b42cef2050de673ad31356e5ff86e89b7d  src/engine/core/at.ts
+d6ae98002c6a9a7302171e4e4ffdb70c12ffb7df20cc13a6d896ecae3d7ead83  src/engine/core/envelope.ts
+4f3a00c81846342fba8748bc7baea6c2f304d8cc4b4124fa85efaf617fdbb3b0  src/engine/core/events.ts
+63b6679d1d9f4de0b2d8007cb03b98f5b93ee44ab2fa23a8749bb31fec189cd7  src/engine/core/fold.ts
+bc6ec6f0dfbee6021d569f0790fd869178dfb79c18509e78ec6be59843a443ed  src/engine/core/hash.ts
+466a77e0c27d3f9bbd156890e8cda0dd9ee7c87767c67b54a278fbf3ed6e9efe  src/engine/core/hungarian.ts
+e914ae60655b7ceb0468161a88c90c0b614c7e452c0d221963a7dfed78adf2ba  src/engine/core/ids.ts
+4621b40aa525f280777ae06e82817042408467e399aca02a6c0f6c4b3e7dec45  src/engine/core/keyedrng.ts
+4c3ccd4678515833157474ecccfedf4f068f03bb8cfaf30fdfa0559f050536ca  src/engine/core/keys.ts
+f6fc8e0eeeab4628cedfa1f0510319c65cbe4d189c9899f79444beeabfcd7e90  src/engine/core/pack.ts
+8e45462e2724988f0dcf02d81e57a77321334377a378d3bf92b08ab33e14d730  src/engine/core/pmath.ts
+6cff9338900f77ba8dc085ad86b1d955b0fa490b308cf232a1b92ceb623d7be1  src/engine/core/profile.ts
+3a760dab0eb82a70e89b92ed1657814467d075c4e1b2ea0c40749758eedc008b  src/engine/core/rng.ts
+f0ed2c18d2558c2901b97e102cd582b824b758d97670245fec01fa7fc9ff6221  src/engine/core/saver.ts
+b98bf19af9067b6b3bf9fc527ba70c31be83874cedd22dfe8103e790b1312809  src/engine/core/snapshot.ts
+12a19a8d260f05927250b185572d7016668cda1f51a726ffdf1cf592b7ef0b4c  src/engine/main.ts
+b4d6a7c96d37fd2d9963c73932acc931278bb88ee2b56e13fa4c7359ef87628b  src/engine/platform/localstorage.ts
+a27d1a9e7a15fd9fcae2874f8528fbd95e3a74f5d4742140e768fba1610e325b  src/engine/sports/nfl/app/appstate.ts
+a81a0ddf42b6a41d40e5b51c7b31fe1c456d9ccd18a39f2dfaff9514b365ac72  src/engine/sports/nfl/app/dataset.ts
+85a59566e100a9095751f0fa2ed0c1fa7e4b26ba7fdf74249c65213ac8ced7a6  src/engine/sports/nfl/app/feed.ts
+befb2ac7681bd0d83531d56b13494a24b62e8d2f00877467e77258936eb1e3e3  src/engine/sports/nfl/app/hydrate.ts
+4476b60faa04982ba2a69a89611a9185e58bbcc2200f6afb7ab99771683a82bb  src/engine/sports/nfl/app/legacy.ts
+5d4aece81baa4b43d345d9c6274bc04488170cbccde78d611763c7b160403502  src/engine/sports/nfl/app/outcome.ts
+7cd61673af90ac3b9c8fb7b8d99e4c8d2d5ed6bf7114a8146f98382585151b80  src/engine/sports/nfl/app/profile.ts
+e0d07e8165dc785edf96b74cd7449bb752fe13d4189fe794e06858bb50f99b13  src/engine/sports/nfl/app/saves.ts
+72f4709b8091535ffec9fc26894fe36d3685d711d498215d979ce0aea24f66ec  src/engine/sports/nfl/app/selectors.ts
+98883a9ecef2b9e2dd767b02140191921484f87138d319c8e3dac3fb4a4f7a77  src/engine/sports/nfl/app/store.ts
+6c898293e9ccb940cc52cdfe61bcb6fe23a586c7a83d24cdcc578519dff84e7c  src/engine/sports/nfl/app/versions.ts
+9fbb144fde4329a6c792656c49245537655bf723e670b52cea51a8bed109b4a0  src/engine/sports/nfl/app/weekmap.ts
+efdd16de875ce7fddf6bf9d212703376d832cd5503caa32e6242bbf498522c36  src/engine/sports/nfl/engine/awards.ts
+1fac49c3e902586cee6cfbef14b2e9ac366f1dfaabb6e92bc32277871f21070c  src/engine/sports/nfl/engine/boxscore.ts
+439cdae411dc46f8a6a8f766af10959fcc975ef99ef34dfa1f2947a6b1e561be  src/engine/sports/nfl/engine/display.ts
+43de3a3c6c4b1ad9258494a2e150a2ab5972e20ef0dea5071cf47c2b2b63876b  src/engine/sports/nfl/engine/draft.ts
+b9016ebd5cfb3453fc5bbb543a88d9ce0c63fed3aac22009597a08590b745eac  src/engine/sports/nfl/engine/drives.ts
+70d1bb9c6c3ba9de43b354c616d61b9121feb087801e08bc17592fff251e5acf  src/engine/sports/nfl/engine/flex.ts
+90c8f44ce4766ce109faa98f488d5dbce8282adcc928a0e538843c492bde3b23  src/engine/sports/nfl/engine/goneodds.ts
+7b73de4001f3129ef2c6c3bb5db99c590299aeb6efe260adde874c4055101ddd  src/engine/sports/nfl/engine/kicking.ts
+3e29c57676981041215f65920855b9734f1af474556319bc5852d9317743ccb3  src/engine/sports/nfl/engine/league.ts
+d979db14d93c0a591f4cfe36497a69e45323cf13190351e4bb5337a7d9068e5e  src/engine/sports/nfl/engine/legacyprovider.ts
+981d778bcf25ab05850b97c03ff5fdbae2bd12f111c61bd861a6a2acfd1f9cab  src/engine/sports/nfl/engine/lineup.ts
+3b44e08845d375a4e6c3d3af076c71b79e9d037582a0f30f0b92a5ea5b1548c8  src/engine/sports/nfl/engine/margin.ts
+889a119426638edde18f8a34ee632476b4457ee575e8493af026ea29d68f2c7d  src/engine/sports/nfl/engine/matchup.ts
+4d588dad863865036aa9dc40863bd1d55be8a80423597da05b32c7deb58e6204  src/engine/sports/nfl/engine/plans.ts
+482f0b831d88cab847de06efcccdb42a39baabdf7bebc81bcd93ba21f688bfbb  src/engine/sports/nfl/engine/playerids.ts
+e94708dfd9a9a6fc80f86cf2468e42b8dd2d554677fc70e4465bad57b376d895  src/engine/sports/nfl/engine/players.ts
+d931abf9dceb3d90d08c87589b8484bb7ca7ae7b2ef281e8f1de8f70552085e6  src/engine/sports/nfl/engine/ratings.ts
+7fe15a15782f771e85958988b75c327f26dc5206b49a9b711a3a91e07320a7e2  src/engine/sports/nfl/engine/recap.ts
+989e5a6a76bd29fca8ef6a75348027d2c8cc665457b0fce06522f596d3c60cc6  src/engine/sports/nfl/engine/returner.ts
+df6750ae87531799a234cdf278dd8636043a6977fc7328cb78760dac84e8e1ff  src/engine/sports/nfl/engine/schedule.ts
+03a3af0baad06b986e9bd63e0fa91e352b31c03a9a7b73a98db02da2a85c8f85  src/engine/sports/nfl/engine/season.ts
+fd33950186a8db6bcc0f7aec01709b9f66ee35e99c4b32386dada5318f1f072a  src/engine/sports/nfl/engine/seasonrun.ts
+8391b768508ee89f42e27962e3f3fa709aebe34024104ed4446918a303f7bef8  src/engine/sports/nfl/engine/slots.ts
+95f2c727c44cedc82f3dc36eee11a67c7d2673c8e46099bea22eec7a24ddd099  src/engine/sports/nfl/engine/specs.ts
+59c2706f2ecd96d142f6ed9a8d13d2900d982ca9d0590e707d3409e663120d43  src/engine/sports/nfl/engine/standings.ts
+37d34e341cda056c437d5ac4e6a10df43c31549c27024d569c9449950ceed777  src/engine/sports/nfl/engine/value.ts
+10ccb331ef799031499d54965eda4008b676f6e864a38f3b6c2c70af1262f619  src/engine/sports/nfl/engine/valueprovider.ts
+59f0676d46db34cfe7e4748207aa5814f76b47c50da9e517e38964c1bd4abaaf  src/engine/sports/nfl/sim/box.ts
+a112b6ee2713386e2822d4b8617e8e2dd02ca6d0b00f4e3d855891c25e19895e  src/engine/sports/nfl/sim/drive.ts
+e275ae072211eae1135505d6c11783e38b0731ec6eeb67777a431f1592004ff5  src/engine/sports/nfl/sim/game.ts
+e509895ae360ba0fcd92f46519554a325a83c003db9312ada19ad35cbd6c2f79  src/engine/sports/nfl/sim/passclass.ts
+bc76d14b5dc7c80acce142e450e0023d8909dde63bae667c35811f45326fca84  src/engine/sports/nfl/sim/pools.ts
+91f275b6d35bb59d57dff2922b32ae808340b89be943dd8af63f97fea1ac1af6  src/engine/sports/nfl/sim/totals.ts
+5be96c2af97aa1b78a98466e2a6d2ef9902149f806a7568859e3d25399817837  src/engine/sports/nfl/sim/toypack.ts
+e9e6e01a31d7024e6eb2bd9ece7034dadb93aa75316ca2826f96eb26a63f4251  src/engine/sports/nfl/view/draftBoard.ts
+68e067371bf4ff345801be01ccfe138727bac59f7c21555aa64ea9f66516674a  src/engine/sports/nfl/view/gameView.ts
+28cb8f7414fda15e6dcb5fec64be5b327946cdc35b97e1e1cee3cb50df9131d1  src/engine/sports/nfl/view/roster.ts
+49060e1c3f6d8cfc9300c2cbd0188a0072b0c20a88d85c16cf737f571cec352e  src/engine/sports/nfl/view/teamColors.ts
+03f0b880911041ec69b701b7ab3e6a5809b7ebd33284e01452b43d0825e13070  src/engine/sports/nfl/view/theme.ts
+76c02c659880e218d85aac335b5489848cdc3903877b5d7836201fd1db846a6a  tools/mathlab/flex.json
+c86a9971feb1da76799a175b127b8a5ea0648d781c3fe3674c7a77c95df8fe47  test/engine.test.ts
+bc0aae9525403dd5ab52bf0e2da129c7eb6b2084eeb2519859a667821cae8bf9  data/packs/nfl-passclass-fit2016-2022.json
+51a0f5fd0754f194044aab1dada535c8eb0e75c9b78b05b0a3e98084a91f991a  data/packs/nfl-passclass-fit2023-2025.json
+1ee3f1405c59475bc9ee1943b9f4f6f8b93270e8604c50241f492f886c8464ed  data/packs/nfl-pools-fit2016-2022.json
+6374a2d4a674818103ba0aa01c255904bbacc403f54111fe9feb853d9f5336ca  data/packs/nfl-pools-fit2023-2025.json
+```
+
+**Verification commands (Claude runs these against his tree before the merge):**
+
+```bash
+git cat-file -t 408410477 && git ls-tree -r 408410477 colors/src | grep -c '\.ts$'   # commit · 69
+git diff 408410477 ee3b6e1 -- colors/src | wc -c                                      # 0
+cd <cakepanz-4 tree> && for f in $(find src/engine -type f | sort); do \
+  a=$(sha256sum "$f" | cut -d' ' -f1); \
+  b=$(git -C <clone> show "408410477:${f#src/engine/}" | sha256sum | cut -d' ' -f1); \
+  [ "$a" = "$b" ] || echo "MISMATCH: $f"; done                                        # no output
+```
+
+## The seam inventory (what the UI imports — the ONE door)
+
+The UI never touches `engine/` outside `src/lib/port/seam.ts` (law M1/M1b in the node battery
+grep the files to prove it). The seam re-exports, by group:
+
+| group | names | consumed by |
+|---|---|---|
+| pool + draft | `buildPool`, `newDraft`, `DEFAULT_CONFIG`, `runDraft`, `snakeOrder`, `cpuChoose`, `applyPick`, `freezePool`, `thawPool`, `makeRng`, `applyPick` | App.svelte (boot), batteries, seasonFacade |
+| store | `createStore` (the `DraftStoreState`/`DraftStoreAction` union; sync `dispatch` + `dispatchAsync` — store.ts:105/147) | bindings/stores.ts → every screen |
+| board VM | `boardVM`, `goneOdds`, `goneChance`, `slotLabel`, `BoardVM/BoardRowVM/BoardHeaderVM/BoardSort/AlsoFitVM` (view/draftBoard.ts) | DraftBoard/BoardRow/BoardFooter, Cards, batteries |
+| lineup | `lineupFor`, `fit`, `SLOTS`, `SLOT_IDS`, `fieldSlots`, `netPts`, `slotWins`, `WEIGHT_UNIT_WINS` | App.svelte advice, Complete, reviewVM |
+| display | `showInt`, `showDecimal`, `goneDisplay`, `ONE_DECIMAL_KINDS` (engine/display.ts — integers except qbr/wins/priority at one decimal) | every screen via the port VMs |
+| season | `startSeason`, `playWeek`, `isFinished`, `table`, `buildSchedule`, `initialRanks`, `gameSeed`, `simulateGame`, `matchupModel`, `teamRatings`, `returnerRating`, `spotsOf`, `leagueBaseline`, `teamIdentity`, `TEAMS` | seasonFacade/seasonVM/weekVM/standingsVM/awardsVM/reviewVM/cardVM/feedVM |
+| saves | `serialize`, `restore`, `sportKey`, `SCHEMA_VERSION`, `createLocalStorageModule`, `assertSlotMatchesKey` | hydrateApp/savesApp/settings |
+| stamps | `engineVersion`, `sha256Hex`, `stamps`, `drift` | shareables, the provenance stamps |
+
+**The VM→JSON map is now a FILE:** `batteries/seam-golden.json` (the canonical JSON of
+boardVM/goneOdds/lineupFor at seed 2026, computed by `scripts/golden-seam.mjs`; law N34 pins it).
+At the merge this file and its law ride WITH the UI; a re-pin regenerates it with `--write` and
+receipts the diff.
+
+## The battery assumptions (what a green run requires)
+
+- Node ≥ 24 (strip-types on the .ts imports) — receipts this sitting on Node v24.22.3.
+- Every node-side TS entry runs under `node --import ./scripts/node-port-register.mjs` (the
+  engine's ONE parameter property is transformed in engine-node/ only; without the register any
+  Node dies with ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX — cakepanz-8 A6).
+- Playwright **1.57.0** (the exact devDependency) + `chromium-1200` (the receipts' browser);
+  `npx playwright install chromium` ONCE per machine — setup, not a tree defect.
+- The browser batteries serve the BUILT dist (`npm run distfile`) on `CP_PORT || 4179`
+  (`npx vite preview --port 4179`); the falsifier picks PID-derived ports and asserts
+  served-hash === this-copy-hash per case.
+- Offline hard rule: no CDN/network/fonts anywhere; `dist/single.html` boots from vanilla
+  `file://` (shell S26–S28 prove it each run).
