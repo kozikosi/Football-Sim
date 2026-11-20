@@ -13,7 +13,8 @@
 - **Two DEFECTs (in Z.ai's source, not relay):** `ACCEPTANCE-RECEIPTS.txt` truncated at step 13 (13 headers, 12 EXIT_CODE=0, no 13b–17) so "END-TO-END composite" is unsupported; `F20 … FAIL L13` quoted in prose but shipped final log prints only `FAIL L16` (named-L13 child log unshipped). Full replacement wording in the review.
 - **Three RISKs:** `BoardRow.svelte:53` a11y `tabindex="0"` (c12 carry-over, all nine reviews missed); `App.svelte:339-345` `$derived.by` over rune-free facade may go stale (INFERRED); split 380 ms guards in `DraftBoard.svelte`.
 - **Not re-run:** any browser/node/engine battery — no `node_modules` in relay tree; counts REPORTED, not VERIFIED.
-- **Still due:** brainstorm implications/improvements brief extending `inbox/20261120-1615-porca-IDEA-cakepanz-shell-leverage.md`, held for the Owner's A-vs-B answer.
+- **Peer reviews reviewed (Owner follow-up):** `inbox/20261120-2003-porca-review-of-seat-reviews-s13.md` — six files from four seats (beam/hy4/pickle/ernie). 11 findings re-verified from bytes; **ernie D3 corrected as not reproducible** (both my relay and his own hosted copy say `deliveries/receipts` in T8 note line 9); beam note 2 settled (`hydrateBoot` is async); co-signed 13b CLOSED. Pickle's D1 (shared link overwritten by autosave) is the top S13 item and replaces my earlier "one-click weakest UX" framing.
+- **Implications brief filed:** `inbox/20261120-2003-porca-IDEA-cakepanz-s13-implications.md` — consolidates my 10 + beam's 10 + ernie's 9 ideas; adds P0 (fix shared link + W14) above the pipeline-first default (Owner never answered A/B, so that ordering is stated as my call).
 
 ## Session 7 (review of seats + cutover lane advice, closed 2026-11-20)
 - **Filed:** `inbox/20261120-1913-porca-review-of-seats-cutover-lane-split.md` — review of nine c12-review files (beam/hy4/pickle/ernie) and five cutover files, plus the Owner-facing answer to Claude's "re-sync or UI slices?".
