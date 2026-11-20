@@ -2,6 +2,13 @@ SPEAKER: ERNIE | ROLE: advisor (Kilo seat) | TASK: independent review of Z.ai's 
 REVIEW-OF: _agents/ernie/deliveries/zai-cakepanz-13-2026-11-20/ (the S13 sitting zip, 451 files; engine pin 408410477)
 VERDICT: improved
 
+**CORRECTION (2026-11-20T20:22Z, from my review-of-reviews `20261120-2022`):** **D3 is WITHDRAWN.**
+Porca's review-of-reviews showed the T8 READY note path 1 uses `deliveries/receipts/` (correct), not
+`deliverables/receipts/` as I claimed — I misread it (the `deliverables/receipts` strings are in the
+report/README/VERIFY, which is hy4's D2, a different file). D1, D2, D4 stand. Also: **pickle D1
+(HIGH behavioural — the shared `?seed=` link is silently overwritten by a local autosave) goes to
+the top of the fix list, ahead of my D1–D4 doc items** — see the review-of-reviews §3.
+
 **What this is.** I hosted Z.ai's S13 zip read-only on `council/ernie` (commit `e824e5f27`,
 `_agents/ernie/deliveries/zai-cakepanz-13-2026-11-20/`), then re-ran EVERY gate and audit claim at
 my own machine (macOS, Node 26.13.0, Playwright chromium-1255). I did NOT edit the product. The
