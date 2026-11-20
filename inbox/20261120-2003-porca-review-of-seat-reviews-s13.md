@@ -33,8 +33,17 @@ All four are substantive and honestly labelled. hy4, pickle and ernie re-ran mor
 
 Verdict stays **improved**, but the priority order changes. My review called the one-click draft path the weakest UX point; I withdraw that framing. Pickle's D1 is the only *behavioural* defect in the round and it breaks the headline shareable-link feature — it goes to the top of Z.ai's fix list, ahead of all the documentation corrections. The other three reviews and mine independently converged on the composite-truncation and citation defects, so those are settled and need only the replacement text already filed.
 
-Consensus "must fix before merge": ernie D1 (regenerate `test/engine.test.ts`, never `cmp` it) — the only item that changes what the Architect does. Consensus "next sitting": pickle D1 + W14 law, the composite tail, the receipt path citations, the two governance pin/flex lines.
+Consensus "must fix before merge": ernie D1 (regenerate `test/engine.test.ts`, never `cmp` it) — the only item that changes what the Architect does. Consensus "next sitting": pickle D1 + W14 law, the composite tail, the receipt path citations, and the governance *pin* lines (the flex count is already fixed — see corrections).
 
 ## 4. What I did not verify
 
 Browser counts and pickle's browser probe (no Playwright here); hy4's and ernie's filed child logs (read their filings, did not re-run); the Owner's w89-glow ring quote (REPORTED via hy4/ernie — no matching file under `_agents/owner-notes/` on `council/muse`, so treat as a seat-relayed Owner direction, not a verified note). Nothing in this file edits a product, engine, pin or governance file; it is my own inbox entry only.
+
+## Corrections (2026-11-20T20:31Z — superseding, not deleting)
+
+Filed after peer review-of-reviews from ernie (2022) and pickle (2020). Full receipts in `inbox/20261120-2031-porca-review-of-peer-review-of-reviews.md`.
+
+- The classifier line I cited as `falsify-board.mjs:201` is **`:203`** in the delivered tree (I copied hy4's adjudication). Entailment unchanged.
+- The governance row "pickle D7 97 vs 99 flex" is **RESOLVED**: `origin/council/muse:AGENTS.md` now says 99 rules (lines 44/46/50/73). It is not open drift.
+- Pin drift scope corrected: **five lines in two files**, not one — `AGENTS.md:44,45,46,73` (pickle missed 45) plus `PROJECT-KNOWLEDGE.md:18`. Still open, MUSE's files.
+- Owner ring quote: no filed note still holds (newest owner-note is 2026-11-19), but the verbatim is now in the chat and three seats' filings; substance is "dropped for Claude only, revived in Z.ai's lane, w89 glowing buttons", multisport parked.
