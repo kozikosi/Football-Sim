@@ -15,7 +15,7 @@ But a prior council note was wrong, and this prompt corrects it: **the ring's co
 - `deliverables/sitting-report-s13-2026-11-20.md:168` says *"No ring work, no multisport, no Contract B."*
 - `src/engine/sports/nfl/view/draftBoard.ts` contains **no** `rawSort` and **no** `suggestions` field; neither Contract A nor B landed.
 - `src/lib/components/DraftBoard.svelte:76` still ranks the ring with the display-string parse `Number(String(x[vm.sort]).replace(/[^0-9.\-]/g,'')) || 0`.
-- The L13 law's oracle uses that same parse (`batteries/board.battery.mjs:66 vmVals()` and `:280-284`), so L13 currently agrees with the component by construction and cannot fail on a wrong ordering. The F20 child log records `expected 60` at pick 27 — the law blesses the degenerate all-rows-ringed case. There is no no-display-parse law in the S13 batteries.
+- The L13 law's oracle uses that same parse (`batteries/board.battery.mjs:66 vmVals()` and `:280-284`), so L13 certifies the display-rounded ordering rather than the raw ordering: it blesses the lossy result, and a correct raw-based implementation can FAIL it when rounded display values tie differently. The F20 child log records `expected 60` at pick 27 — the law blesses the degenerate all-rows-ringed case. There is no no-display-parse law in the S13 batteries. (I earlier wrote "cannot fail on a wrong ordering"; that was loose — this is the precise claim.)
 
 **Therefore do these BEFORE or WITH the glow, not after:**
 1. Land Contract B: `rawSort: number` on `BoardRowVM` sourced from the engine's `key()`, with the shell ranking on `r.rawSort` — the settled five-voice target (`suggestions` deferred).
