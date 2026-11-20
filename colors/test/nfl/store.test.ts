@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import { pool } from './fixture.ts';
 import { createStore, freezePool, loadFrom, parseRecord, restoreDraft, saveTo, thawPool, SAVE_KEY } from '../../src/sports/nfl/app/store.ts';
 import type { KeyValue } from '../../src/sports/nfl/app/store.ts';
-import { selectBoard, selectRoster } from '../../src/sports/nfl/app/selectors.ts';
+import { selectBoard, selectBoardAsync, selectRoster } from '../../src/sports/nfl/app/selectors.ts';
 
 const mem = (): KeyValue & { m: Map<string, string> } => { const m = new Map<string, string>(); return { m, getItem: (k) => m.get(k) ?? null, setItem: (k, v) => void m.set(k, v), removeItem: (k) => void m.delete(k) }; };
 const mine = (st: ReturnType<typeof createStore>) => st.getState().record!.picks.filter((k) => k.team === st.getState().record!.userTeam);
@@ -135,9 +135,23 @@ test('S4: dispatchAsync matches sync dispatch, in call order, and never rejects'
 });
 
 test('S4: selectBoardAsync equals selectBoard', async () => {
-  const { selectBoardAsync } = await import('../../src/sports/nfl/app/selectors.ts');
   const st = createStore(pool); st.dispatch({ type: 'START', seed: 5, userTeam: 3 });
   const r = await selectBoardAsync(st.getState(), { limit: 5 });
   assert.equal(r.pending, false);
   assert.deepEqual(r.pending ? null : r.vm, selectBoard(st.getState(), { limit: 5 }));
+});
+
+test('S4: a throwing subscriber does not reject the call or poison the queue; the yield is a macrotask', async () => {
+  const st = createStore(pool); let boom = true;
+  st.subscribe(() => { if (boom) throw new Error('subscriber boom'); });
+  const origWarn = console.warn; console.warn = () => {};
+  try {
+    let ran = false; const p = st.dispatchAsync({ type: 'START', seed: 5, userTeam: 3 });
+    Promise.resolve().then(() => { ran = st.getState().status !== 'idle'; });   // microtasks drain before the macrotask yield
+    await p;
+    assert.equal(ran, false, 'dispatch must not run before a macrotask boundary');
+    boom = false;
+    const s2 = await st.dispatchAsync({ type: 'UNDO' });   // a later call still runs
+    assert.ok(s2.record);
+  } finally { console.warn = origWarn; }
 });
