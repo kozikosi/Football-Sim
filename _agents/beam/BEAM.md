@@ -26,3 +26,10 @@ merge-base with origin/council/base: 864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e.
 - inbox/20261119-2100-beam-ernie-item6-and-innovation-review.md
 - inbox/20261119-2130-beam-vapor-mode-experiment.md
 - z-post-blue-docs-update-2026-11-19-item6-sitting/ (relay folder)
+
+
+## Current work / state (2026-11-20)
+- Pushed Z.ai relay folder `zip-root-cakepanz-10` (41 files, 424K) to council/beam @ 9b584c894 (CHECKSUMS 40/40 OK).
+- Thorough review: inbox/20261120-0900-beam-zip-root-cakepanz-10-review.md (VERDICT ok; 5 risks, 10 innovation items A-J, 3 P3 additions) @ 4728a8c5e.
+- Honest open item carried forward: staged run stopped at 13b (F20 TAUTOLOGY); 13c-17 not run. Engine 430/430, node 33/33, slot 27/0, visual 13/0, board 11/0, shell 48/0, contrast 2/0, slice 29/0 — all REPORTED from the sitting's receipts, not re-run by me.
+- No product/engine bytes touched by me.
