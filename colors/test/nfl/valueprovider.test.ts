@@ -2,6 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { SLOTS, SLOT_IDS, WEIGHT, fieldSlots } from '../../src/sports/nfl/engine/slots.ts';
 import { DEFAULT_VALUES, WINS_PER_UNIT, measuredValues, tableValues } from '../../src/sports/nfl/engine/valueprovider.ts';
+import type { ValueProvider } from '../../src/sports/nfl/engine/valueprovider.ts';
+import { makeSnapshot, neutralSnapshot } from '../../src/core/snapshot.ts';
 import { WEIGHT_UNIT_WINS, slotWins20 } from '../../src/sports/nfl/engine/value.ts';
 import { WINS_PER_UNIT as LINEUP_WINS_PER_UNIT, lineupFor } from '../../src/sports/nfl/engine/lineup.ts';
 import { DEFAULT_CONFIG, candidates, newDraft } from '../../src/sports/nfl/engine/draft.ts';
@@ -78,26 +80,20 @@ test('seam: the provider drives placement (rearrangement): the best receiver pla
 });
 
 // S1 seam + S3 snapshot (Owner ruling Q7: Wins are evaluated at the neutral snapshot and never move in-season).
-import { makeSnapshot, neutralSnapshot } from '../../src/core/snapshot.ts';
-import { SLOT_IDS as SEAM_SLOTS } from '../../src/sports/nfl/engine/slots.ts';
-import { measuredValues as seamMeasured, tableValues as seamTable } from '../../src/sports/nfl/engine/valueprovider.ts';
-import type { ValueProvider as SeamProvider } from '../../src/sports/nfl/engine/valueprovider.ts';
-import { test as seamTest } from 'node:test';
-import seamAssert from 'node:assert/strict';
 
-seamTest('Q7 law: measured and table providers return the same value for the neutral snapshot and a loaded one, every slot and base', () => {
+test('Q7 law: measured and table providers return the same value for the neutral snapshot and a loaded one, every slot and base', () => {
   const neutral = neutralSnapshot(2026, 5, 'sha256:p', 'e1');
   const loaded = makeSnapshot({ season: 2026, week: 5, packHash: 'sha256:p', engineVersion: 'e1', form: { p1: 5, p2: -5 }, focus: { t1: 'pass' }, flags: { x: true } });
-  for (const prov of [seamMeasured(), seamTable()]) for (const base of ['4-3', '3-4'] as const) for (const s of SEAM_SLOTS)
-    seamAssert.equal(prov.winsPerOvr(s, base, loaded), prov.winsPerOvr(s, base, neutral), `${prov.name} ${base} ${s}`);
-  for (const prov of [seamMeasured(), seamTable()]) seamAssert.equal(prov.winsPerOvr('QB', '4-3', loaded), prov.winsPerOvr('QB', '4-3'));
+  for (const prov of [measuredValues(), tableValues()]) for (const base of ['4-3', '3-4'] as const) for (const s of SLOT_IDS)
+    assert.equal(prov.winsPerOvr(s, base, loaded), prov.winsPerOvr(s, base, neutral), `${prov.name} ${base} ${s}`);
+  for (const prov of [measuredValues(), tableValues()]) assert.equal(prov.winsPerOvr('QB', '4-3', loaded), prov.winsPerOvr('QB', '4-3'));
 });
 
-seamTest('the seam carries the snapshot: a context-aware provider can read it, the call sites can pass it', () => {
+test('the seam carries the snapshot: a context-aware provider can read it, the call sites can pass it', () => {
   let seen: unknown = null;
-  const aware: SeamProvider = { name: 'aware', winsPerOvr: (_r, _b, snap) => { seen = snap; return snap && snap.form['p1'] ? 2 : 1; } };
+  const aware: ValueProvider = { name: 'aware', winsPerOvr: (_r, _b, snap) => { seen = snap; return snap && snap.form['p1'] ? 2 : 1; } };
   const loaded = makeSnapshot({ season: 1, week: 1, packHash: 'h', engineVersion: 'e', form: { p1: 3 } });
-  seamAssert.equal(aware.winsPerOvr('QB', '4-3', loaded), 2);
-  seamAssert.equal(seen, loaded);
-  seamAssert.equal(aware.winsPerOvr('QB', '4-3'), 1);
+  assert.equal(aware.winsPerOvr('QB', '4-3', loaded), 2);
+  assert.equal(seen, loaded);
+  assert.equal(aware.winsPerOvr('QB', '4-3'), 1);
 });
