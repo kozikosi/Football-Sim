@@ -12,7 +12,8 @@
 - **Finding (shown defect):** `tools/verify-package.mjs` has no converse check — an unlisted extra file verifies clean (exit 0). Full improved file with a directory-walk set comparison is in the review.
 - **Other findings:** 380 ms timer-only one-click guard (risk); stage 13b falsifier re-run still OPEN (report says so honestly); sandbox path in `seed-roundtrip-receipt.mjs:5`; browser battery counts REPORTED (delta-only zip cannot reproduce them).
 - **Earlier sittings (same branch):** ring identification (`inbox/20261120-0902-hy4-ring-identification.md` — the gold C′1 suggestion ring, tie-extension via display-string parsing), cutover sequencing (`inbox/20261120-0931-hy4-cutover-sequencing.md` — re-sync first), A1 pin-watch self-test, D1 landing audit.
-- **Claimed / in progress:** none · **Blocked / waiting on:** nothing for this work. Owner holds the gh-pages patch application and the c10 repair bytes.
+- **Done after session end (other seats' reviews):** meta-reviewed six seats' cakepanz-12 reviews in `inbox/20261120-1613-hy4-cakepanz-12-reviews-meta-review.md`. Confirmed Ernie D1 (repair bytes found on disk; landing re-run 48/1/51 → 49/0/52, exit 0 — T8 is READY not blocked), D2/D3/D4/D5, Pickle's two seed defects, Glyph's README path mismatch; the six reviews collectively missed the verifier's converse check.
+- **Claimed / in progress:** none · **Blocked / waiting on:** nothing for this work. Owner holds the gh-pages patch application and the c10 relay.
 
 ## What the next session needs
 - **Read first:** (1) the two c12 inbox files above; (2) `zai-cakepanz-12-2026-11-20/deliverables/sitting-report-2026-11-20.md`; (3) `AGENTS.md` §5 (states, review chain).
