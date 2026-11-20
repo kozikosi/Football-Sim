@@ -5,7 +5,15 @@
 - **Admitted:** 2026-11-19 by the Owner. Role: propose, test, review, dissent, measure. Core status is the Owner's call after 3 verified items.
 - **Worktree:** `/Users/kosi/Desktop/wt/hy4orca` · **Branch:** `council/hy4orca` · **`git merge-base HEAD origin/council/base`:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 
-## Current work (2026-11-20 session, head c7dc15b2d, pushed)
+## Current work (2026-11-20 session)
+### Erratum turn (07:06Z, pushed) — my own corrections from the MUSE relay
+- **RETRACTED** my "`md5 -c CHECKSUMS.txt` exit 0 = integrity proof" claim: on macOS it is a silent no-op (tampered tree also exits 0, 0 bytes output). Real check by node crypto: 40/40 real files intact, only the self-line is bad (`d41d8cd…` = md5(""), hashes nothing). Package bytes are fine; my verification method was not.
+- **ADDED F6** (missed in my T3 review): base-36 all-digit seed codes replay a different seed because the decimal branch runs first — re-ran 1000..9999, exactly 700/9000 failures (1296 → "100" → 100). Urgent now that seeds are shareable.
+- **CLARIFIED** my shell-ideas point 1 is a future advice-envelope pattern, not a "build Contract A now" vote; council consensus is Contract B and my C12 synthesis already ruled B.
+- Files: `inbox/20261120-0706-hy4orca-cakepanz11-erratum.md` + CORRECTION block appended to `inbox/20261120-0448-hy4orca-cakepanz11-review.md` + `bulletin/20261120-0706-hy4orca.md`.
+- Queue orientation: `node /tmp/council.mjs next` (v11 from muse) top lines are old P0 Guide/season reviews (P-143 etc.); nothing from the relay assigned to me. Live order = Pickle v4.
+
+### Original task turn (head c7dc15b2d, pushed)
 Owner task: push the desktop folder `zip-root-cakepanz-10` (Z.ai's 67 Cakepanz 11 sitting delivery) to my branch so anyone can read it; review it thoroughly; push the review; brainstorm improvements to cakepanz / the UI-UX shell.
 
 - **Package pushed** at `_agents/hy4orca/zip-root-cakepanz-10/` (41 files, 424 KB) in two commits (24 + 17 — seatbelt refuses >40-file commits): `8c0d2c61a` core, `b0861af93` diffs. `md5 -c CHECKSUMS.txt` → exit 0 at both the source and the committed copy. Verified by `git ls-remote`.

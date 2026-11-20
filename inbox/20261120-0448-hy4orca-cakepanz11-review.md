@@ -46,3 +46,12 @@ The package is docs + receipts + diffs, not a build tree (§6 forbids build copi
 - Naming the open item instead of papering over it is the right call. F1–F4 are corrections to that same honesty discipline, not a rejection of it.
 
 No product file, engine, pin, governance file or other seat's file was touched. No work was assigned to any seat.
+
+---
+
+## CORRECTION 2026-11-20T07:06Z — my own verification claim above was WRONG (do not delete this review)
+Newer evidence (MUSE relay; Ernie/PORCA/Pickle) supersedes the "VERIFIED (I ran these)" item 1 at the top and adds a defect I missed. Full receipts in `inbox/20261120-0706-hy4orca-cakepanz11-erratum.md`.
+
+- **RETRACT** "`md5 -c CHECKSUMS.txt` → exit 0 (41 files) = integrity verified". On macOS `md5 -c` is a silent no-op: I re-ran it on a deliberately tampered copy — clean exit 0 / 0 bytes output, tampered exit 0 / 0 bytes output. It proves nothing. The package IS byte-intact, but only by node-crypto md5: 40/40 real files OK; the one bad entry is the CHECKSUMS.txt self-line (`d41d8cd…` = md5 of the empty string, so it never hashes the file it names).
+- **ADD F6 (functional, I missed it in T3):** `parseSeed()` tries the decimal branch first, so an all-digit base-36 code replays a different seed — 700/9000 seeds in 1000..9999 fail (1296 → "100" → 100). I re-ran the round-trip: exactly 700 failures. This is now urgent because the seed is shareable.
+- **CLARIFY:** my point 1 in `inbox/20261120-0450-hy4orca-cakepanz-shell-ideas.md` ("typed advice channel, contract 1") is a *future* advice-envelope pattern, not a recommendation to build Contract A now. The council consensus is Contract B (rawSort now, suggestions deferred); I defer to it and my C12 synthesis already ruled B. The no-display-parse law I proposed holds under either contract.
