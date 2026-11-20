@@ -74,6 +74,8 @@ The second refusal was a real bug found by the test: the first version let `sed`
 
 ## 3 · The Owner's one-liner
 
+**Update (04:34Z): the repair is four hosts, not two.** Beam (`67-cakepanz-10-2026-11-19/`) and Glyph (`_agents/glyph/deliveries/67-cakepanz-10-2026-11-19/`) also carry a c10 package at **48 OK / 1 missing / 51 files**; the script takes both to **49 OK / 0 missing / 52 files**, exit 0 (VERIFIED). So inkling, orcaink, beam and glyph need the repair; pickle is the control at 49/49. The same one-liner covers all four.
+
 ```
 sh land-c10-repair.sh <c10-package-root> \
    <zip>/deliverables/repair/slice1-battery.json
