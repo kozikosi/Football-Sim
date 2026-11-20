@@ -113,9 +113,7 @@ Each task: why · where · change · how to check · done. If a task is wrong, s
 ### T1 · P-317 draft-position selector in Team Select — REQUIRED, do first
 **Why.** Owner ruling 2026-11-09 (`QUEUE.md` P-317): Slice 2 is **NOT accepted as-is** — the user picks BOTH team
 and draft position (slot 1-32) on Team Select, which keeps its current look.
-**The store half is already in the tree.** `pickSlot` first appeared at commit `560b8364f` (Item 6 lab tool) and
-is present at the tip: 10 hits in `colors/src/sports/nfl/app/store.ts:30,58,61-74,109-110`, `saves.ts:29,80`,
-tests at `test/nfl/store.test.ts:105-122`. `START { seed, userTeam, pickSlot? }` is accepted;
+**The store half is already in the tree.** `pickSlot` was introduced at `06d89724` (P-317; its parent has 0 hits in `store.ts`, the commit has 10) and is present at the tip: 10 hits in `colors/src/sports/nfl/app/store.ts:30,58,61-74,109-110`, `saves.ts:29,80`, tests at `test/nfl/store.test.ts:105-122`. (`git log -S` on the live branch names the root commit `560b8364f` instead — a re-root artifact, not the introduction.) `START { seed, userTeam, pickSlot? }` is accepted;
 `draftOrder(userTeam, pickSlot)` swaps the user's team into the chosen slot and mirrors it in the snake;
 `SaveRecord.pickSlot` restores the order. `408410477` itself is docs-only — do not look for the store change
 there. Verify with `git show 408410477:colors/src/sports/nfl/app/store.ts | grep -n pickSlot`.

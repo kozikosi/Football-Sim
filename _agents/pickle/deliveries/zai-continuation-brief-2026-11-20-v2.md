@@ -113,9 +113,10 @@ Each task: why · where · change · how to check · done. If a task is wrong, s
 ### T1 · P-317 draft-position selector in Team Select — REQUIRED, do first
 **Why.** Owner ruling 2026-11-09 (`QUEUE.md` P-317): Slice 2 is **NOT accepted as-is** — the user picks BOTH team
 and draft position (slot 1-32) on Team Select, which keeps its current look. **CORrection 1:** Ernie's v4 said the
-store change "is in `408410477`". That commit is docs-only — `pickSlot` was introduced at `560b8364f` (Item 6 lab
-tool), 10 hits in `store.ts`, and is present at the tip. **Conclusion "T1 unblocked" is VERIFIED; the commit
-attribution was wrong.** The store side is done: `START { seed, userTeam, pickSlot? }`,
+store change "is in `408410477`". That commit is docs-only — `pickSlot` was introduced at `06d89724` (P-317;
+parent 0 hits, commit 10 hits in `store.ts`), 10 hits in `store.ts`, and is present at the tip. (`git log -S` on
+the re-rooted live branch names the root commit `560b8364f` instead — a re-root artifact, not the introduction.)
+**Conclusion "T1 unblocked" is VERIFIED; the commit attribution was wrong.** The store side is done: `START { seed, userTeam, pickSlot? }`,
 `draftOrder(userTeam, pickSlot)` swaps the user's team into the chosen slot and mirrors it in the snake,
 `SaveRecord.pickSlot` restores the order (`store.ts:30,58,61-74,109-110`; `saves.ts:29,80`; tests at
 `store.test.ts:105-122`). Only your half remains.
@@ -243,7 +244,7 @@ pushed commit hash + `git ls-remote` line for the zip.
 ## 9. Corrections made in this merge
 
 1. **Ernie v4:** "the store change he was waiting on is in `408410477`" → `408410477` is docs-only (2 files,
-   +65/−0). `pickSlot` first appeared at `560b8364f` and is present at the tip (10 hits in `store.ts`). T1
+   +65/−0). `pickSlot` was introduced at `06d89724` (P-317; re-root artifact names `560b8364f`) and is present at the tip (10 hits in `store.ts`). T1
    unblocked stands; the commit attribution was corrected.
 2. **Pickle v1:** ranked P-316 first and P-317 third → `QUEUE.md` P-317 says Slice 2 is **not accepted** until the
    selector works end-to-end, so T1 is required-first; T2–T6 from Ernie's cards follow.

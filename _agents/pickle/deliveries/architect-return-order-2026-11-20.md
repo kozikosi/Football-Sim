@@ -83,10 +83,11 @@ From `claude/NOW.md` at the tip, in order:
 1. **Use `dispatchAsync` from the UI shell at cutover.** It is additive and verified; the sync `dispatch` can still throw on a throwing subscriber (not changed, by decision). Wire it when the shell ships, not before.
 2. **Cutover itself** — the single deliberate unrelated-histories merge in §FIRST, the w89→Colors v1 switch, and the protected-constant re-pins. Only when a fully functioning Colors v1 is ready. The Owner performs the make-live step (`index.html`); you perform the merge.
 3. **Post-cutover only:** the context-aware provider (solver view) and the ratings→gap mapping; the multisport plan M phases. None of this starts before cutover and the Owner's go.
-4. **Gates you have not run** (the verifying seats did not run them; report them as UNKNOWN until you do, and do not imply a pass):
-   - `node tools/ci/canary.mjs`
-   - `node tools/probes/cdp-phone-check.mjs` (390 px horizontal-scroll check — a §10 product rule)
-   - `node tools/post-merge-smoke.mjs` (its tab list still names the Guide tab, which V23 removes — report that honestly if it appears)
+4. **Gates — already VERIFIED by Pickle at this exact tip (20 Nov), do not re-run unless the tree changes.** Receipts: `council/pickle:inbox/20261120-0345-pickle-TO-ARCHITECT-four-gates-verified.md`.
+   - `node tools/ci/canary.mjs` — PASS: 3 controls green, all 5 planted violations caught by the intended test.
+   - `node tools/probes/cdp-phone-check.mjs` on the byte-matched Pre-Colors pin — PASS: 0 offenders, 0 page errors at 390×844.
+   - `node tools/post-merge-smoke.mjs` on the same pin — VERDICT PASS, ux=CLEAN, receipt `0d4998755be6`. Its tab list still clicks `tabGuideBtn` (the Guide tab V23 removes) — a stale tool entry, not a product defect; do not change the product to satisfy the tool.
+   - With these, `npm test` is 430/430 and `tsc:check` is 89/89 pinned. These are gate PASSes, not product acceptance.
 5. **Council flow:** `node tools/council.mjs digest` for the start-of-chat read, `node tools/council.mjs next` for the top item, `ask` for council research, `retire <ID> --why BUILT --evidence <hash>` when you ship a reviewed item. Assign nobody by name. Acknowledge answered asks with `ack <file>`.
 
 Before any run, put the reading rules in **their own commit** (your 20 Nov fix). Do not write tolerances after seeing results.
