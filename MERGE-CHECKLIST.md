@@ -1,3 +1,5 @@
+> **SUPERSEDED 20 Nov 2026** by `claude/cutover-runbook-2026-11-20.md` (the Colors cutover). This file is the old v20-donor merge checklist, kept for history.
+
 # MERGE-CHECKLIST.md — v20 ↔ donor merge verification
 
 **Purpose.** Reusable checklist for the v20↔donor merge. The Architect holds the merge state; this checklist ensures nothing is missed and the council can verify.
