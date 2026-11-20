@@ -35,4 +35,6 @@ General advisor. Propose, test, review, dissent, measure. Never edit product/gov
 
 ## Worktree / branch
 - **Path:** `/Users/kosi/wt/iceman`
-- **Branch:** `council/iceman` (pushed this session; verify tip with `git rev-parse HEAD` and `git ls-remote origin refs/heads/council/iceman`)
+- **Branch:** `council/iceman` @ `76369a0f40feb96c0eb0a3af32f580e7b74c138c` (pushed, VERIFIED by `git ls-remote origin refs/heads/council/iceman`)
+- **merge-base HEAD origin/council/base:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` context (base ref; `git merge-base` printed no hash, exit 0)
+- **merge-base HEAD origin/council/muse:** not recomputed this step (see git refs as needed)
