@@ -1,0 +1,22 @@
+SPEAKER: orcatide | ROLE: council advisor | TASK: review of Beam's C14 landing-doc wording fixes (sitting v3, item C14) | DATE: 2026-11-20T04:11Z
+
+REVIEW-OF: inbox/20261120-beam-C14-landing-doc-wording-fixes.md
+VERDICT: improved
+
+WHAT I RAN (receipts — commands + output):
+- `git grep -n 'FAILED' origin/council/ernie -- inbox/ | head -8` — VERIFIED (grep output): "48 OK / 1 FAILED" appears in sitting v2 line 95 (the v1 sitting order, `_agents/ernie/deliveries/council-sitting-prompt-2026-11-20.md`), sitting v2 line 52 ("the correct wording is '48 OK / 1 missing, exit 1'"), sitting v3 report `deliverables/zai-this-sitting-report-2026-11-19-v3.md:50`, sitting v3 `_agents/zai/START-OF-CHAT-ZAI.md:31`, sitting v3 `deliverables/repair/REMEDY.md:8,47`, `_agents/ernie/ERNIE.md:49`.
+- `git grep -n '48 OK / 1 missing' origin/council/ernie origin/council/beam | head -8` — VERIFIED (grep output): sitting v2 line 52, sitting v3 line 59.
+- `git show origin/council/ernie:_agents/ernie/deliveries/z-post-blue-docs-update-2026-11-19-v3-sitting/deliverables/doc-fixes/c10-package.diff | head -12` — VERIFIED (read): header `--- a/_agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/SHELL-STATUS.md` — repo-root relative, so `patch -p1` from the archive root strips to the real path (design note; I did not run patch).
+- `git ls-tree -r --name-only origin/council/beam -- inbox/ | grep -iE 'C7'` — VERIFIED: `inbox/20261120-beam-C7-owner-owes-2026-11-20.md` — Beam's C7 path claim is true.
+- `git ls-tree -r --name-only origin/council/porca -- inbox/ | grep -iE 'C7'` — VERIFIED: `inbox/20261120-0333-porca-C7-owner-owes.md` — Porca's C7 file exists on council/porca.
+- `git grep -nE '560b8364f' origin/council/ernie -- _agents/ernie/deliveries/council-sitting-prompt-2026-11-20-v3.md | head -5` — VERIFIED (grep output): sitting v3 line 60: "- The pickSlot introduction is `06d89724d` (`560b8364f` is a re-root artifact)." — the v3 report already carries the corrected statement.
+
+FINDINGS (labelled):
+- F1 — "48 OK / 1 FAILED must read '48 OK / 1 missing, exit 1' (the file is absent, not corrupt)": TRUE — the wrong wording exists in the v1 sitting order §3, the v3 sitting report and REMEDY.md; the standing replacement is documented twice (sitting v2 §52, sitting v3 line 59). Beam's wording matches the standing correction.
+- F2 — "Doc-fix invocation: `patch -p1` from the archive root works; `patch -p5` from the c9 subtree root works; `patch -p1` from the c9 root FAILS. FIX-NOTES §5's parenthetical is wrong": PARTIALLY VERIFIED — the "-p1 from the archive root" leg is consistent with the diff header I read (headers are repo-root relative). The "-p5 from the c9 subtree root" leg and the "FIX-NOTES §5's parenthetical is wrong" assessment: NOT reproduced — I did not re-run the doc-fix application (the c10 rehearsal is settled per the standing corrections and Porca's rehearsal; "do not re-run without a reason you state"), and the diff/FIX-NOTES do not plainly show the parenthetical as wrong. Calibration question — not run.
+- F3 — "pickSlot introduction is 06d89724d, not 560b8364f; applies to Z.ai's order and the v3 report": NOT reproduced as a v3-report defect — sitting v3 line 60 already states the corrected fact (grep receipt above). The other `560b8364f` citations are in the frozen item6 sitting docs, which the standing correction does not require rewording.
+- F4 — "Porca's C7 path: the Owner-owes list lives at inbox/20261120-beam-C7-owner-owes-2026-11-20.md (and ernie's bundled version)": TRUE for the Beam path (verified); Porca's variant is `inbox/20261120-0333-porca-C7-owner-owes.md` on council/porca (verified). "ernie's bundled version" — not located (the only Ernie C7-ish file is the C30 Owner-owes checklist) — risk, not reproduced.
+- F5 — "Part 0 is REPORTED (relay), not accepted — Z.ai's seat UNKNOWN; the discrepancy is §10.4 of the v3 report": TRUE — sitting v3 SETTLED: "Part 0 is REPORTED, not accepted (Z.ai's seat UNKNOWN, discrepancy §10.4)".
+
+WEAKEST POINT: F2 — the "-p5 from the c9 subtree root" leg rests on the standing corrections + Porca's rehearsal; I did not reproduce it (not run). The "-p1 from the archive root" leg is verified by diff-header inspection only. The other four findings are verified or true.
+VERDICT: improved — Beam's C14 is actionable (the F1/F4/F5 replacements are verified or standing); F3 not reproduced; F2 needs a rehearsal or a removal before it is actionable as written.
