@@ -17,15 +17,18 @@ Guarantees (each pinned by a test in `colors/test/nfl/store.test.ts`, S4 block):
 4. **Resolves with the state after this action.** Same result as the sync `dispatch` (record deep-equal, tested).
 5. Subscribers still fire synchronously inside the action, so the Svelte `readable` wrapper (`asReadable`) needs no change.
 
-## 2. The exact shell calls that move (V: deployed `67-cakepanz/src/App.svelte` on `origin/gh-pages`, 3 call sites)
+## 2. The exact shell calls that move (REPORTED by hy4 + four seats against the c12/S13 tree at pin `408410477`; I have not opened that tree. Z.ai: confirm each anchor against the delivered `App.svelte` before patching. The deployed gh-pages tree is no longer a build target; Cloudflare is the deploy, per the Owner, 20 Nov.)
 
-| Now | Becomes |
-|---|---|
-| `:56` `store.dispatch({type:'START',seed,userTeam}); valuation.lock(); refresh();` | `const st = await store.dispatchAsync({type:'START',seed,userTeam}); valuation.lock(); refresh(st);` |
-| `:80` `store.dispatch({type:'PICK',playerId,slot} as any); refresh();` | `const st = await store.dispatchAsync({type:'PICK',playerId,slot}); refresh(st);` (drop `as any`; the type is exact) |
-| `:84` `store.dispatch({type:'UNDO'}); refresh();` | `const st = await store.dispatchAsync({type:'UNDO'}); refresh(st);` |
-| new (slices 3-5, resume) | `await store.dispatchAsync({type:'LOAD',record})` |
-| `:62-71` `refresh()` builds the board with `goneOdds(...)` + `boardVM(...)` directly | `const r = await selectBoardAsync(st,{sort}); if (!r.pending) vmStore.set(r.vm)` |
+Four live sites, all must move together (never mix `dispatch` and `dispatchAsync`, section 3):
+
+| c12 anchor | Now | Becomes |
+|---|---|---|
+| `:148` START | `store.dispatch({type:'START', seed, userTeam, ...(slot!==null && slot-1!==userTeam ? {pickSlot:slot} : {})})` | `await store.dispatchAsync({...same args, including pickSlot...})`. **Keep `pickSlot`**: it carries the Owner's draft-position choice. |
+| `:178` PICK | `store.dispatch({type:'PICK', playerId, slot} as any)` | `await store.dispatchAsync({type:'PICK', playerId, slot})` (drop `as any`; the type is exact) |
+| `:184` UNDO | `store.dispatch({type:'UNDO'}); refresh(); void autosaveDraftNow();` | `await store.dispatchAsync({type:'UNDO'}); refresh(); void autosaveDraftNow();` |
+| `:208` LOAD | `store.dispatch({type:'LOAD', record} as any)` | `await store.dispatchAsync({type:'LOAD', record})`. LOAD is **already live** on c12; it is not a new slice 3-5 row. A synchronous LOAD left behind breaks section 3. |
+
+Keep the existing `valuation.lock()`, `refresh()` and the board rebuild (`goneOdds` + `boardVM`, or `selectBoardAsync` per section 3) where they are; only the dispatch call and its `await` change. Line anchors are as reported and will shift once Z.ai edits above them.
 
 Not moving: `getState()`, `subscribe()`, `valuation.*`, `lineupFor` (pure, synchronous, stays).
 
@@ -39,7 +42,7 @@ Not moving: `getState()`, `subscribe()`, `valuation.*`, `lineupFor` (pure, synch
 - **Honest limit:** the engine still runs on the calling thread (comment at `store.ts:144`). The contract is what lets a Worker sit behind it later. Do not promise the UI non-blocking behaviour yet.
 
 ## 4. Deployed gap (V)
-The deployed gh-pages snapshot has **0** `dispatchAsync` (pin has 3) and differs from `colors/src` in 12 files (`keyedrng, pack, appstate, feed, saves, selectors, store, draft, flex, lineup, slots, draftBoard`). So slices 3-5 must be built on the c12 tree (pin `408410477`), not on what is deployed. Landing c12 is Z.ai's deploy.
+The previously deployed gh-pages snapshot (no longer a build target) has **0** `dispatchAsync` (pin has 3) and differed from `colors/src` in 12 files (`keyedrng, pack, appstate, feed, saves, selectors, store, draft, flex, lineup, slots, draftBoard`). So slices 3-5 must be built on the c12 tree (pin `408410477`), not on what is deployed. Landing c12 is Z.ai's deploy.
 
 ## 5. Test the shell must keep green
-V: `slice1.battery.mjs` has no `dispatch`, `getState` or `__cp` references; it drives the built UI through Playwright. I (inferred): it needs only timing changes, i.e. wait for the `busy` flag to clear (or for the new DOM state) after each click instead of assuming a synchronous pick. `window.__cp.store` (dev hook, `App.svelte:44`) stays, but anything calling `__cp.store.dispatch` must switch to `dispatchAsync`.
+V: `slice1.battery.mjs` has no `dispatch`, `getState` or `__cp` references; it drives the built UI through Playwright. I (inferred): it needs only timing changes, i.e. wait for the `busy` flag to clear (or for the new DOM state) after each click instead of assuming a synchronous pick. `window.__cp` (dev hook; REPORTED on c12 at `App.svelte:104`, previously `:48` on the deployed tree) stays. On c12 it also carries `store`, `seasonFacade`, `go` and `vmStore`, which the batteries use. Anything calling `__cp.store.dispatch` must switch to `dispatchAsync`.
