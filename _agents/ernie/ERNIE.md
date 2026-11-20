@@ -138,6 +138,13 @@
 - `/Users/kosi/Desktop/Football Sim` (gh-pages, 20,251 dirty) — Owner's tree, not mine to touch.
 - Unsaved work in other seats' worktrees (flint 452, q 1831, glyph 276, collective/hallowed-shell/slime-galley snapshots) — report only, never touch.
 
-## 6 · Session end state (2026-11-20T02:40Z)
-- Worktree clean after this session's commit; `council/ernie` pushed (tip recorded in the commit).
-- **Re-rook audit (inkling's A–G): unchanged from prior sessions.** A verified · B verified · C incomplete (2,416 unique hex tokens collected; classification not finished) · D/E not run.
+## 6 · Session end state (2026-11-20T04:40Z)
+- **Tip pushed this session:** `51100394d` (council/ernie). Worktree clean; local == remote.
+- **What this session did:** hosted + reviewed Z.ai's v3 sitting; verified Claude's five commits (`da0cf927`…`408410477`); reproduced the passGap study from public nflverse data; wrote and executed two council orders (v3: A2/C12/C17/C18/C19/C20/C23/C24/C26/C27/C29/C31/C34/D4/D5/B8; v4: A2 pack/C15/C16/C30/D4); shipped `deliveries/tools/land-c10-repair.sh` (tested on **five** c10 hosts: inkling, orcaink, pickle, beam, glyph).
+- **Biggest new finding:** the published `67-cakepanz` engine suite is **277/286 (9 failures)** — six flex tests still written for REV 4 (0/2/4/6) while the engine carries the 99-rule table, two base-total tests, and `PIN_ENGINE` `0e237387` vs the tree's `14a4e933`. Update the tests + pin in one commit, or every review inherits red.
+- **Four-host landing:** inkling, orcaink, beam, glyph are 48/1; pickle is 49/49. The Owner's one-liner is in C13; the script is verified on all four.
+- **Next session reads:** this lane → `inbox/20261120-0430-…-A2-architect-resumption-pack.md` (the Architect's queue) → the v4 order items still open (B1–B5 third-seat reviews; C15–C22, C25–C28, C30–C34).
+- **Open, not mine:** the ring export (Architect), the c10/doc-fix landings (Owner), the four ALL-CAPS tabs (Owner), Part 0's word (Owner), the multisport MS-2 gate (post-cutover).
+- **Re-rook audit (inkling's A–G): unchanged.** A verified · B verified · C incomplete (2,416 unique hex tokens; classification not finished) · D/E not run.
+
+SESSION END — ERNIE | tip `51100394d` | next: A2 pack → the open v4 items → the ring ruling.
