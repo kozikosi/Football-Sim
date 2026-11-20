@@ -4,7 +4,21 @@ SEAT: pickle · ROLE: Council Adviser · BRANCH: `council/pickle`
 WORKTREE: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle`
 MERGE-BASE: `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (`git merge-base HEAD origin/council/base`, re-verified 20 Nov 2026).
 
-## Current state (20 Nov 2026, sixteenth session) — hosted + reviewed Z.ai's S13 delivery
+## Current state (20 Nov 2026, seventeenth session) — reviewed the peer reviews; recorded the Owner's ring ruling
+
+Owner's directive: "review the others seats's reviews and continue", plus a direct clarification of the ring dispute. Filed `inbox/20261120-2020-pickle-REVIEW-of-seat-reviews-s13.md` (Verifier pass over beam/hy4/ernie/porca/hy4orca — all ok), `inbox/20261120-2021-pickle-IDEA-ring-revival-for-zai.md` (prompt-ready ring revival), `bulletin/20261120-2022-pickle.md`. No product/engine/pin/governance/queue edit.
+
+**VERIFIED this session (commands run):**
+- 13b co-signed CLOSED: `falsify-board.mjs:203` holds the L13 classifier (hy4/porca cite `:201` — 2-line drift); filed final log line 7 = `DIED — FAIL L16` with zero `FAIL L13`; hy4's filed child log `:13` has the explicit `FAIL L13` line. Entailment `DIED ⇒ L13 ∈ fails` intact.
+- `hydrateBoot` is async (`App.svelte:231`) → beam note 2 settled. T8 READY note uses the correct `deliveries/receipts/` path → porca correction 1 / ernie D3 withdrawal confirmed. Live AGENTS.md says 99 rules (lines 44/46/50/73) → my D7 resolved.
+- **New finding:** governance pin drift is 4 lines in 2 files — `origin/council/muse:AGENTS.md:44,46,73` AND `PROJECT-KNOWLEDGE.md:18` still say `d3bd81d2`, not `408410477`. hy4 R2 named only the latter. MUSE's files.
+- **Owner's ring ruling recorded verbatim:** dropped FOR CLAUDE only (UI/UX is Z.ai's), council ring work revived in the next Z.ai prompt, direction = w89's glowing draft buttons, multisport parked confirmed. Supersedes all "ring dropped" assertions and "no ruling on record" claims. Architect `NOW.md:7` "Do not revisit before ship" is right for Claude's lane, wrong in scope. No verbatim note under `_agents/owner-notes/` yet — MUSE to intake.
+- Grounded the revival in the live build: `origin/gh-pages:Football-Sim-Z-post-blue-w89.html:12849` `@keyframes zpbBtnPulse`, `:12853` `button.resetbtn[data-pick]{animation:zpbBtnPulse 1.5s ease-in-out infinite;}` + W66 comment (every Draft button breathes; top-3 → team gradient + sheen), `--gold:#ffc43c` (`:381`), reduced-motion precedent (`:948`).
+- Open, not mine: scope of "revive" (my default restyle+explain+persist, keyboard/link deferred); hy4orca's make-live authority question; MUSE's "Contract B consensus" label vs my filed A+`rawSort` 3–1 record.
+
+## Earlier sessions (kept as history)
+
+### Sixteenth (20 Nov) — hosted + reviewed Z.ai's S13 delivery
 
 Owner asked me to (a) push the desktop folder `67-cakepanz-13-2026-11-20` to my branch so anyone can read it, (b) review it thoroughly and push the review, (c) brainstorm improvements to cakepanz / the UI-UX shell for Claude's engine. All three done; commits `f583abd4e` (hosting) and `051107020` (review), both pushed and ls-remote verified.
 
@@ -15,9 +29,7 @@ Owner asked me to (a) push the desktop folder `67-cakepanz-13-2026-11-20` to my 
 - **Real defect D1, VERIFIED in a real browser:** a shared `?seed=k1x9` link is silently replaced by a stale autosave at `a3f2` (store stayed 470990, URL rewritten, 43 old picks, no errors). Cause: unconditional `hydrateBoot()` → `loadDraft()` → `writeSeedToUrl(rec.seed)`. W6/W8 only prove replay after `localStorage.clear()`. The naive `if (has('seed')) return` fix breaks W9 (measured 16/1); the refined rule (skip autosave only when the explicit URL seed differs from the autosave seed) gives probe PASS (final seed 935613) and visual **17/0**. Fix applied only in a temp extract, never to Z.ai's tree.
 - Other verified defects: composite "END-TO-END" vs "still running" self-contradiction in the sitting report; stale §9 re-close instruction; broken §1.8b cross-reference; `a3f2 = 511,086` wrong (actual 470,990) in `seedCode.ts:15`; duplicated "RUN 2" lead-in. REPORTED: AGENTS.md §2's "97 flex rules" is stale (pinned flex.json says 99); the zip hash lives only in chat (my HOSTING-NOTE labels it REPORTED).
 
-**Filed this session:** `inbox/20261120-1934-pickle-CAKEPANZ13-review.md`, `inbox/20261120-1935-pickle-CAKEPANZ13-shell-innovation.md`, `bulletin/20261120-1936-pickle.md`. Innovation proposals: link-policy state machine + W14, fence-as-CI gate, typed `ShellRuntime` adapter, seam-golden corpus, visual hash baselines, explained link-vs-save UX.
-
-## Earlier sessions (kept as history)
+**Filed that session:** `inbox/20261120-1934-pickle-CAKEPANZ13-review.md`, `inbox/20261120-1935-pickle-CAKEPANZ13-shell-innovation.md`, `bulletin/20261120-1936-pickle.md`. Innovation proposals: link-policy state machine + W14, fence-as-CI gate, typed `ShellRuntime` adapter, seam-golden corpus, visual hash baselines, explained link-vs-save UX.
 
 ### Fifteenth (20 Nov) — advisory: lane split for the Colors v1 cutover
 Owner's three chat questions answered in chat only (Claude lane-split reply; self-contained answer; merged Z.ai S13 order), no inbox filing. Load-bearing ruling: **Claude** = engine + contracts + cutover merge runbook; **Z.ai** = UI slices + gh-pages deploy + handoff; **Owner** = the cutover decision. The "re-sync or UI slices" choice is false — engine is byte-current, the "11 files behind" is the deployed tree, and cutover is a merge of UI into `colors/`, not a second UI build. VERIFIED: engine diff = 0 paths; `dispatchAsync` at `colors/src/sports/nfl/app/store.ts:147`; w89 still live.
@@ -36,21 +48,22 @@ Hosted 37 files at `_agents/pickle/deliverables/zip-root-cakepanz-12/`; verifier
 
 ## What the next session needs
 
-1. Take a NEW top item from the live `_agents/QUEUE.md` on `origin/council/muse` with the **v11** tool (`git show origin/council/muse:tools/council.mjs > <real /private/var/... path>`; macOS `/tmp` is a symlink). Do NOT re-run the v4 items or the four gates.
+1. Take a NEW top item from `node <tool> next` using the current tool from the Architect's branch (`git show origin/architect/engine-and-seats:tools/council.mjs > <real /private/var/... path>`; macOS `/tmp` is a symlink — the live tool there is **v8** this sitting). Do NOT re-run the v4 items or the four gates.
 2. If the Owner asks, file the two chat-delivered advisory texts (Claude lane-split reply; merged Z.ai S13 order) — still not in the repo.
-3. Read Architect/Z.ai responses to the S13 order before starting new work; do not edit either side's tree.
-4. D1's shared-link defect is filed with a proven fix but not landed — Z.ai/Claude must add law W14 and apply the refined `hydrateBoot()` guard. Do not apply it to a delivery tree yourself.
-5. C24 is "reviewed with correction", not a clean ✓✓✓; C13/C14/C23/C29 have a third seat each; C12 awaits the Architect.
+3. Read Architect/Z.ai responses to the S13 order and to the ring ruling before starting new work; do not edit either side's tree.
+4. D1's shared-link defect is filed with a proven fix but not landed — Z.ai/Claude must add law W14 and apply the refined `hydrateBoot()` guard. Do not apply it to a delivery tree yourself. The ring revival proposal (`20261120-2021`) is prompt input, not accepted work; the Owner has not yet fixed the scope of "revive".
+5. 13b is now co-signed CLOSED on hy4's entailment (filed child log); the receipt-ergonomics fix (print the planted-law line) is still owed. C24 is "reviewed with correction", not a clean ✓✓✓; C12 awaits the Architect.
 6. Keep the hosted c9, c10, item-6, v3, c12 **and S13** copies as read sources. Never edit another seat's lane or inbox. Run `node tools/preserve.mjs check` on clean-up and leave other seats' unsaved worktrees alone.
 
 ## Open questions (Owner / Architect / MUSE — never a seat)
 
-- Owner: relay decisions (T8 ×4 hosts, gh-pages 286/286 patch, S13 tree landing); w89 retirement at make-live only; four ALL-CAPS tabs; Part 0 (REPORTED, not accepted).
-- Architect: publish the cutover runbook and the written `dispatchAsync` shell contract; S1 suggestions contract; Q7 `week: 6` ruling; sport-two framing as recommendation.
-- MUSE/INKLING: live `PROJECT-KNOWLEDGE.md` is stale (current-state block dated 2026-11-09) — a paste-ready replacement was supplied earlier; only MUSE integrates. Frozen AGENTS.md §2's "97 flex rules" also needs the pin's 99.
+- Owner: relay decisions (T8 ×4 hosts, gh-pages 286/286 patch, S13 tree landing); w89 retirement at make-live only; four ALL-CAPS tabs; Part 0 (REPORTED, not accepted); **scope of the ring "revive"** (my default restyle+explain+persist now, keyboard/link deferred) and **hy4orca's make-live authority question** (unanswered).
+- Architect: publish the cutover runbook and the written `dispatchAsync` shell contract; S1 suggestions contract; Q7 `week: 6` ruling; restate `NOW.md:7` (ring dropped for Claude, revived for Z.ai — not a global veto).
+- MUSE/INKLING: **intake the Owner's verbatim ring ruling from `20261120-2020-pickle-REVIEW...` §4 into `_agents/owner-notes/` + the ledger** (none exists; ernie co-signs); fix the pin drift in **both** `AGENTS.md:44,46,73` and `PROJECT-KNOWLEDGE.md:18` (`d3bd81d2` → `408410477`); reconcile the "Contract B consensus" label with the filed A+`rawSort` 3–1 record; live `PROJECT-KNOWLEDGE.md` current-state block is also stale. Only MUSE integrates.
 
 ## Live files
 
+- Seventeenth session: `inbox/20261120-2020-pickle-REVIEW-of-seat-reviews-s13.md`, `inbox/20261120-2021-pickle-IDEA-ring-revival-for-zai.md`, `bulletin/20261120-2022-pickle.md`.
 - Sixteenth session: `inbox/20261120-1934-pickle-CAKEPANZ13-review.md`, `inbox/20261120-1935-pickle-CAKEPANZ13-shell-innovation.md`, `bulletin/20261120-1936-pickle.md`, hosted S13 tree at `_agents/pickle/deliverables/67-cakepanz-13-2026-11-20/`.
 - Prior read sources: `inbox/20261120-1606-pickle-PEER-REVIEWS-review.md`, `inbox/20261120-1607-pickle-ERRATA-cakepanz12-t8-unblocked.md`, `inbox/20261120-1554-pickle-CAKEPANZ12-review.md`, `inbox/20261120-1555-pickle-CAKEPANZ12-shell-innovation.md`, `inbox/20261120-0410…0430-pickle-*`, hosted v3/c9/c10/item-6/c12 folders.
 - Deliveries: `council-sitting-order-2026-11-20-v4-pickle.md`, `architect-return-order-2026-11-20.md`, `zai-sitting-order-2026-11-20.md`, `zai-continuation-brief-2026-11-20-v2.md`.
