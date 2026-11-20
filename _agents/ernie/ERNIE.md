@@ -21,6 +21,7 @@
 3. **Shell innovation v3** → `inbox/20261119-2305-ernie-cakepanz-shell-innovation-v3.md` (I17–I29).
 4. Bulletin `20261119-2315-ernie.md`; this lane rewritten.
 5. **Reviewed the three new seat reviews** (Pickle P-287, Pickle P-345, Beam cakepanz-10) → `inbox/20261119-2342-ernie-review-of-seat-reviews-v3.md`. Pickle's D1 + D2 and R1 all reproduce; Beam's headline check does not; my F1 is withdrawn in the review file and here.
+6. **Verified Claude's `da0cf927`** (S3 snapshot + S4 async twins) → `inbox/20261120-0145-ernie-da0cf927-verification.md`: 427/427 and tsc 89/89 reproduce at the pushed bytes (421/421 at the parent); one risk (F1: `dispatchAsync`'s chain is poisoned by a throwing subscriber).
 
 ### What I did in the earlier sittings today (still relevant)
 - Reviewed Z.ai's **item-6** relay (`inbox/20261119-2039-…-item6-sitting-review.md`, improved, F1–F6) and the other seats' reviews of it (G1–G9).
@@ -45,6 +46,9 @@
 **PICKLE P-345 S1 (the best statement of the fix in the round).** Return `suggestions: { ids, rankedBy, cutoffRaw, reason }` from the engine view (`view/draftBoard.ts`) through `port/seam.ts` (`:15` re-exports `boardVM`, `:160` `EnginePort`), so the component renders a fact instead of re-deriving a ranking. It closes the class (reach/value/awards/why-hints), not the instance. His S2 (`suggestions.length===3 || all within ε of the third`, derived from raw values) and Beam's I1 (StatRow `{raw,key,render}`) are the same law as my I29.
 
 **BEAM's headline check does not reproduce.** At his cited commit `9ba6156ac`, `67-cakepanz-10-2026-11-19/` holds **51 files / 49 CHECKSUMS entries / 48 OK / 1 FAILED** — the failure is `slice1-battery.json`, the very file D1 is about. His "52 files, 52/52 OK" is Pickle's c10 count (52 files), not his tree. His k1 receipt (18 × EXIT_CODE=0), gate-manifest (314), gate-numerals (CLEAN ×2 both invocations) and cite-check all **verify**. His I4 is wrong: `shell.battery.mjs:129` asserts S22 (`body.classList.contains('cp-reduced')`) and `board.battery.mjs:185–193` samples `animationName`. His F4 over-reads: w89 does carry "Season stats"/"Playoff stats"/"Your Players"/"League Leaders" — only the ALL-CAPS casing is new.
+
+**CLAUDE'S `da0cf927` — VERIFIED at the pushed bytes (01:45Z).** 6 files, +156/−16: `claude/NOW.md`, new `colors/src/core/snapshot.ts`, `app/store.ts`, `app/selectors.ts`, 2 tests. **No engine, no protected constant, no pin, no package.json** — react/react-dom still listed, `vite ^8.3.6` unchanged. **427/427** (421/421 at the parent `deb6275fa`; +6 = the new tests) and **tsc 89/89** (89 errors, 16 files, zero per-file drift vs `tsc-baseline.json`). S3 is sport-free (imports only `./events.ts` + `./hash.ts`), hashes `snap53:` over `canonicalText`, drops zero form at build, deep-freezes. S4 is additive (`dispatch` body unchanged): `dispatchAsync` serialises through a promise chain, yields a macrotask, resolves with the post-action state; `selectBoardAsync` returns `{pending:false, vm}` deep-equal to `selectBoard`. **Risk F1:** "never rejects" is conditional — the catch calls `set()` (subscriber notification) outside any try, so one throwing subscriber rejects `run`, and `chain = run` keeps it → **every later `dispatchAsync` on that store rejects immediately**. One-line fix: `chain = run.catch(() => {})`. No test covers it.
+**ITEM-6 TILT (re-derived from both packs):** s=±0.25 → points ±4.2%, sacks −24.4/−24.9% and +30.6/+30.2%, giveaways ∓13.8/13.2%; s=1 → points +14.8/+15.2%, sacks −68.8%. Packs differ by ≤0.6 pt. The tool runs with `lambdaOverride: 1` — it sizes TILTS, it does not identify λ; λ stays 0, GLM off. Item-6 JSONs are on `council/beam` (15 files on mine too), **0 on inkling**, and byte-identical to my hosted copies.
 
 **D1 is CLOSED — three independent derivations agreed.** Canonical c10 package intact: 6,418 B / md5 `0a2869538a706e7e6ea864664b7e5c9f` (= CHECKSUMS.txt:18). `council/inkling` and `council/orcaink` are 51 files / 48 OK; `council/pickle` is 52 / 49 OK. **Fix = add that one file at the manifest's own path. Do NOT re-cut the zip, do NOT regenerate the manifests.**
 
@@ -72,7 +76,7 @@
 5. **The delivery law needs to be a script** (three instances now).
 
 ## 1 · What not to redo
-- **Do not re-run item-5 or item-6.** Both done, receipted, platform-independent.
+- **Do not re-run item-5 or item-6.** Both done, receipted, platform-independent. Item 6's tilt numbers are re-derived: s=±0.25 → points ±4%, sacks −25%/+30%, giveaways −13%/+14%; s=1 → points +15%, sacks −69%; both packs within 0.6 pt.
 - **Do not re-cut the c10 zip** and **do not regenerate the c10 manifests.**
 - **Do not re-run the vapor experiment.** Settled.
 - **Do not re-derive the pairing arithmetic.** +3% to +26%.
@@ -96,6 +100,7 @@
 - **THIS SESSION'S REVIEW:** `inbox/20261119-2258-ernie-zai-v3-sitting-review.md` (F1–F8, verdict improved).
 - **THIS SESSION'S INNOVATION v3:** `inbox/20261119-2305-ernie-cakepanz-shell-innovation-v3.md` (I17–I29).
 - **THIS SESSION'S REVIEW-OF-REVIEWS:** `inbox/20261119-2342-ernie-review-of-seat-reviews-v3.md` (Pickle P-287/P-345, Beam; my F1 correction is in `20261119-2258-…-review.md` §5).
+- **THIS SESSION'S da0cf927 VERIFICATION:** `inbox/20261120-0145-ernie-da0cf927-verification.md` (427/427 + 89/89 reproduced; F1 risk on `dispatchAsync`).
 - **HOSTED RELAY (verbatim):** `_agents/ernie/deliveries/z-post-blue-docs-update-2026-11-19-v3-sitting/`.
 - **THE ORDER Z.ai ANSWERED:** `deliveries/zai-next-sitting-prompt-2026-11-19.md` (v3.0, 290 lines).
 - **Prior:** `inbox/20261119-2152-…-deb6275-verification.md` · `inbox/20261119-2105-…-review-of-seat-reviews.md` (G1–G9) · `inbox/20261119-2055-…-innovation-v2.md` · `inbox/20261119-2039-…-item6-sitting-review.md`.
@@ -112,13 +117,15 @@
 - **The Architect's tools are outside tsc scope** (`colors/tsconfig.json:29` excludes `tools`).
 - **Tests need the WHOLE repo** — a partial extract gives 382/2 fail; full = 421/0.
 - **Vapor's trap:** plugin-level `vapor:true` is a no-op; check for `__vapor:!0` before trusting a number.
-- **A cited source path must exist on a ref.** Z.ai's `DraftBoard.svelte`/`suggestIds` citation does not; the dist does. When a report cites a file, `git ls-tree` it before repeating the claim.
+- **A cited path must be looked up on EVERY ref that could carry it.** I called Z.ai's `DraftBoard.svelte`/`suggestIds` citation nonexistent after checking only gh-pages and the c10 package — it is on `council/pickle`'s c9 tree (`…/zai-cakepanz-9-2026-11-19/cakepanz-4/src/lib/components/DraftBoard.svelte:38`). For a negative claim, sweep `council/{pickle,inkling,orcaink}` first; "not on the branch I checked" ≠ "not on any branch".
+- **THE `colors/` LAYOUT TRAP (hit 2026-11-20, caused a false 408/413).** `colors/test/**` reads data as `new URL('../../../data/packs/…', import.meta.url)` → from `colors/test/nfl/` that is **`<root>/data`**. Extract the WHOLE repo (`colors/` + `data/` + `tools/` at one root) and run `cd colors && npm test`. Flattening `colors/` into the root silently reads `/tmp/data` — and this machine has a **stale `/tmp/data` from 16 Nov** with the old pack (`pack53:0b60973944ae13`). Always `ls` the path the test resolves before believing a failure.
+- **To run tsc without a full install:** `node <other-tree>/node_modules/typescript/bin/tsc --noEmit -p tsconfig.json --pretty false`, then compare per-file counts to `tsc-baseline.json` (that IS the ratchet).
 - **The relay leaves no git history for "unchanged" claims.** Host the trio on muse if you want them checkable.
 
 ## 5 · Pending (not mine)
 - `/Users/kosi/Desktop/Football Sim` (gh-pages, 20,251 dirty) — Owner's tree, not mine to touch.
 - Unsaved work in other seats' worktrees (flint 452, q 1831, glyph 276, collective/hallowed-shell/slime-galley snapshots) — report only, never touch.
 
-## 6 · Session end state (2026-11-19T23:45Z)
+## 6 · Session end state (2026-11-20T01:50Z)
 - Worktree clean after this session's commit; `council/ernie` pushed (tip recorded in the commit).
 - **Re-rook audit (inkling's A–G): unchanged from prior sessions.** A verified · B verified · C incomplete (2,416 unique hex tokens collected; classification not finished) · D/E not run.
