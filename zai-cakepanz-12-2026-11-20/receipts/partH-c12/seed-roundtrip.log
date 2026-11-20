@@ -1,0 +1,20 @@
+== SEED ROUND-TRIP RECEIPT (cakepanz-12 T2 / PORCA S1) ==
+module: src/lib/port/seedCode.ts (sha256 bd9ff36a3541bd0b…)
+
+BEFORE (the c11 bytes: bare base-36 code + decimal-first parse), range 1000–9999:
+  failures: 700 / 9000  first=1296
+  · 1296 displayed "100" replayed 100
+  · 1297 displayed "101" replayed 101
+  · 1298 displayed "102" replayed 102
+  · 1299 displayed "103" replayed 103
+  · 1300 displayed "104" replayed 104
+
+AFTER (cakepanz-12: the b36: prefix, parsed first; the widened R2 draw range):
+  range 1000–9999:                 failures 0 / 9000
+  widened range 100000–9999999:    failures 0 / 9900000
+  strided sweep 1…2147483647/997:  failures 0
+  boundaries (1, 2147483647):      OK
+  legacy forms (int, a3f2, b36:100, 100, garbage): OK
+
+ROUND-TRIP: 0 FAILURES — the displayed code replays the SAME seed, everywhere
+exit=0

@@ -1,0 +1,19 @@
+== F20 MUTANT RUN at the HARDENED battery bytes (the by-name-death evidence) ==
+Planted: suggest={false} on the BoardRow line (the F20 mutation) in a scratch copy; built; served
+on :4701; the board battery run against it. The ring death now FAILS LAUDLY and the walk SKIPS
+(no crash — the pre-hardening bytes crashed with a Playwright TimeoutError before L13):
+
+   FAIL  L16 the ring is PRESENT (3+ rows, C'1's minimum) and the ringed rows carry a ONE-CLICK
+         draft button … — ringBefore=0 ringed=0 quick=0 named=true e.g. "(none)"
+   FAIL  L16 one click on a ringed row lands EXACTLY one user pick … — the one-click button NEVER
+         APPEARED — the ring is dead; the walk is skipped so the later laws still evaluate
+   FAIL  L17 undo reverses the one-click pick … — skipped — the one-click path is dead
+   FAIL  L17 a non-ringed row still expands … — skipped — the one-click path is dead
+   FAIL  L17 keyboard-only: Tab reaches the one-click button … — skipped — the one-click path is dead
+   FAIL  L18 a fast double activation … — userPicks 0→0 err=""
+   (the walk then proceeds into the L13 checkpoints — the full 9-case DIED run is the next
+    sitting's first command; the pre-hardening GUARDED full run is in falsify-board-13b.log:
+    F0-board 15/0 + F0-shell 48/0, six cases DIED, F20 = RED ELSEWHERE, exit 1 — a FAILURE)
+
+STATUS: the guard + the hardening together make F20 a failure BY CONSTRUCTION; the single
+remaining act is the one full re-run that prints "F20 … DIED — FAIL L13 …" — OPEN, named.
