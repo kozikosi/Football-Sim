@@ -3,37 +3,38 @@
 ## Identity
 - **Seat:** ORCAMAN · **Model / how reached:** ORCAMAN / API · **State:** advisor
 - **ID block:** n/a · **First seen:** 2026-11-19
-- **Strengths shown so far (evidence, not claims):** 2026-11-20 earlier session (commits 5c03f9260..a519b048a, pushed): C23 proposal, C31 errata, reviews C12/C14/C27/C13(B2)/A3/C24(B1)/C29(B5). 2026-11-20 this session (commits 6526a527c, 313a06634, pushed/verified): published Owner-requested `zip-root-cakepanz-10` delivery artifact and delivered a thorough review + implications + cakepanz/UI-UX brainstorm.
+- **Strengths shown so far (evidence, not claims):** 2026-11-20 earlier session (commits 5c03f9260..a519b048a): C23 proposal, C31 errata, reviews C12/C14/C27/C13(B2)/A3/C24(B1)/C29(B5). 2026-11-20 earlier this date (6526a527c, 313a06634, c9dd3182b, 408720ea8): published+reviewed `zip-root-cakepanz-10` (cakepanz-11, P-317/T1-T8). 2026-11-20 this session (Owner-directed): published and thoroughly reviewed Z.ai `zai-cakepanz-12-2026-11-20` fix-round delivery (P-317 follow-on, T1-T8 fixes/receipts/open gates) with implications and UI/UX brainstorm.
 
 ## Current work
 - **Claimed / in progress:** none.
-- **Done this session (2026-11-20, Owner-directed task: publish + review zip-root-cakepanz-10):**
-  - Start-of-chat followed: `pwd` `/Users/kosi/Desktop/wt/orcaman`, branch `council/orcaman`, `git fetch origin`, read `origin/architect/engine-and-seats:_agents/START-OF-CHAT.md`, `sync-base.sh` (up to date @ 864a6aa12), `preserve.mjs check` (orcaman OK), read AGENTS.md/PROJECT-KNOWLEDGE.md/COUNCIL-BULLETIN.md/V23-OWNER-REQUESTS/lane, read `origin/council/muse:_agents/START-HERE.md`, fetched `origin/council/muse:tools/council.mjs` (v9) — `node /tmp/council.mjs next` produced no output (REPORTED). Not retired.
-  - Located source: `/Users/kosi/Desktop/Football Sim/zip-root-cakepanz-10` (41 files, ~424 KB) — Z.ai 2026-11-20 sitting delivery, 67 Cakepanz 11, P-317/T1-T8 (engine re-pin 5c808472→408410477, slot/seed/one-click/a11y/visual/contrast/tools, T7/T8, staged acceptance stopped at 13b F20 TAUTOLOGY named).
-  - Published artifact to branch (so anyone can read): copied to `_agents/orcaman/deliveries/zip-root-cakepanz-10/`, committed and pushed as `6526a527c46aeba2827233bdcc5675f65868f1d1` on `origin/council/orcaman` (41 files, 4611 insertions; verified via `git ls-remote`).
-  - Thorough review written and pushed: `inbox/20261120-0443-orcaman-zip-root-cakepanz-10-review.md` @ `313a066346f964aab7a2750bd1f2ada5bf92687a` (pushed/verified). Inspected README/INTAKE/REPORT/START-OF-CHAT-ZAI/CHECKSUMS, all 18 diffs, T7/T8 inbox notes, slot battery, contrast audit, package-delivery tool. Assessed T1–T8 (seam/oracle quality, a11y, guardrails, falsifier re-anchors), highlighted open gate item (13b falsify-board stale-server/port-isolation → stages 13b–17 not fully green), implications for shell/engine boundary & replayability, and 21 IDEA proposals to improve cakepanz UI/UX shell for Claude's engine. Claims labeled VERIFIED (inspection)/REPORTED (Z.ai receipts)/INFERRED-IDEA; batteries not re-run locally.
-- **Blocked / waiting on:** nothing owned by me. 13b falsify-board guard + 13b–17 rerun and T8 ring contract are Architect/Z.ai/next-seat items (not assigned by me).
+- **Done this session (2026-11-20, Owner-directed: publish + review `zai-cakepanz-12-2026-11-20`):**
+  - Start-of-chat followed: `pwd` `/Users/kosi/Desktop/wt/orcaman`, branch `council/orcaman`, `git fetch origin`, read `origin/architect/engine-and-seats:_agents/START-OF-CHAT.md`, `sync-base.sh` (up to date @ 864a6aa12), `preserve.mjs check` (orcaman clean at start), read AGENTS.md/PROJECT-KNOWLEDGE.md/COUNCIL-BULLETIN.md/V23-OWNER-REQUESTS/lane, read `origin/council/muse:_agents/START-HERE.md`, fetched `origin/council/muse:tools/council.mjs` v9 (`node /tmp/council.mjs next` produced no output). Not retired.
+  - Located source: `/Users/kosi/Desktop/Football Sim/zai-cakepanz-12-2026-11-20` (37 files, ~376 KB) — Z.ai 2026-11-20 fix-round sitting (cakepanz-12 on cakepanz-11 base, pin 408410477): T2 seed round-trip (`b36:` contract, 0-failure receipts REPORTED), T1 falsifier D-2 guard + battery hardening (F20 root-cause corrected; full hardened 9-case rerun OPEN), T4 portable `verify-package.mjs`/no-self-entry manifest, T3 gh-pages re-point payload+receipt 277→286 (relay), T6/T7 a11y+one-click guard/disarm+restore reassurance+seed range/URL write-back+768px laws, T5 doc/C25 corrections filed, T8 hosts 48/1/51/49 with repair copy BLOCKED on pinned run-variant bytes.
+  - Published artifact to branch: copied to `_agents/orcaman/deliveries/zai-cakepanz-12-2026-11-20/` and committed+pushed on `origin/council/orcaman` (verified via `git ls-remote`).
+  - Thorough review pushed: `inbox/20261120-1200-orcaman-zai-cakepanz-12-review.md` (full inspection of changed source/batteries/scripts/tools, inbox T3/T5/T8, receipts partH-c12, gh-pages repoint, docs/checksums). Verdict **ok with named open items**. Covered correctness/risks of each fix, implications for engine-shell boundary/replay/trust, and 21 IDEA proposals for cakepanz UI/UX shell improvements for Claude's engine. Labels: VERIFIED (inspection)/REPORTED (Z.ai runtime)/INFERRED-IDEA; no local reruns.
+  - Bulletin: `bulletin/20261120-1602-orcaman.md`.
+- **Blocked / waiting on:** nothing owned by me. Open (REPORTED, not mine): full hardened `falsify-board` rerun + final acceptance composite; T3 gh-pages relay; T8 c10 repair copy (needs verified 0a2869… bytes); MUSE/INKLING C25 integration.
 
 ## What the next session needs
-- **Read first:** `git fetch -q origin && git show origin/council/muse:_agents/START-HERE.md` (Step 0 refresh governance docs first); `origin/council/muse:_agents/QUEUE.md` or fetched `node ./.council_tool.mjs next` for ranked work.
+- **Read first:** `git fetch -q origin && git show origin/council/muse:_agents/START-HERE.md` (Step 0 refresh from `origin/council/muse`); `git show origin/council/muse:tools/council.mjs > /tmp/council.mjs && node /tmp/council.mjs next` for ranked work.
 - **Open questions (≤5):**
-  1. zip-root-cakepanz-10 is published at `_agents/orcaman/deliveries/zip-root-cakepanz-10/` (6526a527c) with review `inbox/20261120-0443-orcaman-zip-root-cakepanz-10-review.md` (313a06634) — any seat may add independent reviews per chain.
-  2. Stage 13b (F20 TAUTOLOGY, falsify-board stale-server/port guard) remains the named open gate item per artifact; fix+rerun 13b–17 still needed before citing delta as fully gate-green.
-  3. C23 (earlier filing) and other v4 review counts still need confirmation against current QUEUE/sitting state (not rechecked this session).
-  4. Governance docs in this worktree were refreshed locally earlier (unstaged Step 0 state may differ) — next session should re-run Step 0 from `origin/council/muse`.
-  5. I did not run `node tools/preserve.mjs check` at very end after final lane commit — next action should include end-of-chat preservation check/push if anything remains.
-- **Do not redo:** publishing `6526a527c` or review `313a06634` (both pushed/verified). Earlier session inbox items listed in prior lane revisions remain pushed.
+  1. Cakepanz-12 delivery published at `_agents/orcaman/deliveries/zai-cakepanz-12-2026-11-20/` with review `inbox/20261120-1200-orcaman-zai-cakepanz-12-review.md` — open to independent seat reviews per chain.
+  2. 13b full hardened falsifier (expect F20 DIED by FAIL L13) + final acceptance composite at final bytes remain the named closure gate (REPORTED open by Z.ai).
+  3. T8 c10 repair stays blocked on run-variant receipt bytes (must copy verified `0a2869…` / 6418 B only; 49/49 or STOP).
+  4. T3 gh-pages test re-point payload in `deliverables/gh-pages-repoint/` awaits Owner/relay apply per Architect ruling.
+  5. C23/C31 and earlier v4 review queue status not rechecked this session; confirm against current `origin/council/muse` queue next time.
 
 ## Files in this lane (live)
 - `_agents/orcaman/ORCAMAN.md` — this lane file (rewritten 2026-11-20 end of session)
-- `_agents/orcaman/deliveries/zip-root-cakepanz-10/` — published delivery artifact (41 files), commit `6526a527c`
+- `_agents/orcaman/deliveries/zip-root-cakepanz-10/` — prior published delivery (6526a527c)
+- `_agents/orcaman/deliveries/zai-cakepanz-12-2026-11-20/` — published cakepanz-12 fix-round delivery (this session)
 
 ## Session inbox files (this session)
-- `inbox/20261120-0443-orcaman-zip-root-cakepanz-10-review.md` — thorough review + implications + UI/UX brainstorm (pushed `313a06634`)
+- `inbox/20261120-1200-orcaman-zai-cakepanz-12-review.md` — thorough review + implications + UI/UX brainstorm (pushed this session)
 
 ## Worktree / branch / base
 - **Worktree:** `/Users/kosi/Desktop/wt/orcaman`
-- **Branch:** `council/orcaman` @ `313a066346f964aab7a2750bd1f2ada5bf92687a` (pushed/verified)
+- **Branch:** `council/orcaman` (HEAD to be pushed this session; prior verified head 313a06634)
 - **Merge-base:** `git merge-base HEAD origin/council/base` = `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 
 ## Role
