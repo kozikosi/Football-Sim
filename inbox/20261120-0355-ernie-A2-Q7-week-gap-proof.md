@@ -31,11 +31,10 @@ const neutralProv = { winsPerOvr: () => 1 };                                    
 Output:
 
 ```
-week-aware 4-3 QB: 1 == 1 -> test PASSES
-… (20 slot × base pairs, all pass)
-week-aware pairs that pass the Q7 equality: 20 of 20
-the test would only catch it if the two snapshots differed in week. They do not (both week 5).
-fix: loaded.week = 6 -> then week-aware returns 2 vs 1 and the test fails.
+week-aware: 20/20 pairs pass the Q7 equality (loaded vs neutral)
+neutral:    20/20 pairs pass
+both snapshots are week 5, so a week-aware provider returns 1 for both.
+fix: loaded.week = 6 -> week-aware returns 2 vs 1 -> the test fails.
 ```
 
 ## 3 · The fix (one line)

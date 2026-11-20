@@ -87,7 +87,7 @@ Each item: **why** · **what** · **commands** · **done when**. Items are indep
 #### A2 · H2 — Q7 law adversarial expansion
 **Why.** The Q7 test pins form/focus/flags neutrality for two providers; two seats found the week/season gap, one did not. Settle it.
 **Do.** Read `colors/test/nfl/valueprovider.test.ts` and `valueprovider.ts`; try: a provider reading `snapshot.week`, one reading `form` for one slot, a constant slot, a base where the providers differ. Write the case + the one-line test, or say why each holds.
-**Done when.** A concrete gap + test, or a list of tried cases with why they hold. (A2 must state whether it agrees with A8b.)
+**Done when.** A concrete gap + test, or a list of tried cases with why they hold. (A2 should state whether it agrees with the C8 finding: the ERNIE/Porca week gap.)
 
 #### A3 · H3 — `?seed=` store-seam feasibility (design only)
 **Why.** `App.svelte:109` is `Math.random()`; bit-reproducible UI walks are the precondition for goldens/axe/palette.

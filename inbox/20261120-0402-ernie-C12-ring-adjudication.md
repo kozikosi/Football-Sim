@@ -30,7 +30,7 @@ The engine's sort is generic over the sort key; the component's is not. That is 
     rankedBy: sort,
     cutoffRaw,
     reason: sugIds.length > 3 ? 'tie' : sugIds.length === 3 ? 'top3' : 'none',
-  } as const;
+  };
 ```
 
 and add one line to the returned object:
