@@ -3,8 +3,9 @@
 **Path:** `/Users/kosi/Desktop/wt/glyph`  
 **Branch:** `council/glyph`  
 **Role:** verifier/reviewer/organizer (advisory). No product-file, governance, queue, protected-constant, or other-seat edits. Never force-push; never stash.  
-**Identity:** glyph (not retired; `_agents/RETIRED.txt` checked 2026-11-19).  
-**merge-base (HEAD, origin/council/base):** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (VERIFIED 2026-11-19T18:12Z).
+**Identity:** glyph (not retired; `_agents/RETIRED.txt` checked 2026-11-20).  
+**merge-base (HEAD, origin/council/base):** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (VERIFIED 2026-11-20T02:29Z).  
+**Last pushed tip before this session-end commit:** `14672ff9bb092252185751b14dcd51672b768285` (ls-remote verified 2026-11-20).
 
 ## BOOT — read this first, every session
 1. `git fetch -q origin` then START-HERE §1 Step 0 (refresh governance docs from `origin/council/muse`): `git status --porcelain -- AGENTS.md PROJECT-KNOWLEDGE.md _agents/START-HERE.md _agents/START-OF-CHAT.md` must be clean, then `git checkout origin/council/muse -- AGENTS.md PROJECT-KNOWLEDGE.md _agents/START-HERE.md _agents/START-OF-CHAT.md`; confirm staged diff lists only those four. Until run, treat governance docs as REPORTED. Do not run `sync-base.sh`.
@@ -12,28 +13,31 @@
 3. Live queue/tool/docs on `origin/council/muse`: `git fetch -q origin && git show origin/council/muse:tools/council.mjs > ./.council_tool.mjs && node ./.council_tool.mjs next` (delete temp tool before push).
 4. `node tools/preserve.mjs check`.
 
-## Current state (session end 2026-11-19T18:12Z, glyph)
+## Current state (session end 2026-11-20T02:29Z, glyph)
 - **Worktree:** `/Users/kosi/Desktop/wt/glyph`, branch `council/glyph`, git common dir `/Users/kosi/Desktop/Football Sim/.git`.
-- **Tip before this close commit:** `9539341cd13c0e54df98ba6e1f9fc4747b0ea65b` (`origin/council/glyph`) — “glyph: publish 67-cakepanz-10-2026-11-19 package copy and thorough review”.
-- **Published (2026-11-19, pushed):** `_agents/glyph/deliveries/67-cakepanz-10-2026-11-19/` (52 files, 1.8M; Desktop vs wt/beam `diff -rq` clean; CHECKSUMS 49/49; START×3/`.gitignore`×2/dist hashes as in review) and `inbox/20261119-0904-glyph-cakepanz-10-review.md` (integrity + sampled Part 0 receipts D1/S29b,D2/D3/L7b,D5.3; UI/UX-shell brainstorm for Claude engine; suites/gates not rerun by glyph = REPORTED/data-gated).
-- **Reroot audit progress (VERIFIED, not yet filed as receipt):** `origin/architect/engine-and-seats=560b8364f51fa07335b84649c8203ae06500c955` (parentless, count 1) vs `refs/heads/preserve/architect-engine-and-seats-pre-reroot-2026-11-19=2dff30b57405cb852c2e05fca3ecf0eada492220` (count 84, ancestor of preserve; `merge-base --is-ancestor 2dff30b5 preserve` EXIT:0). `git diff 2dff30b5 560b8364f` = `claude/NOW.md`, `claude/zai-item6-recipe-2026-11-19.md`, `colors/tools/lambda-axis.ts` (113 ins / 2 del); key engine/view/tools/manifest trees identical. Throwaway drill: `git diff 2dff30b5..560b8364f | git apply` clean (3 paths). Key shas: `560b8364` on current architect branch; `2dff30b5/35ce4e98/4ca9a071` resolvable but only via preserve ref (not ancestors of reroot tip). Public events p1-3: PushEvents for `architect/engine-and-seats` only (`02eebdfd..1ffb1ef4`, `5c808472..f9991424`, `db33bfa0..5c808472`, `f9991424..65673a0`, `39a91a43..b584d730`, `7828d914..db33bfa0`, `d71a5e2c..9acf1992`, `b584d730..7828d914`, `7a0706df..9c3a7701`); no `560b8364f`; no Delete/Create found p1-3; p4 returned 422 pagination limit (REPORTED partial).
-- **v3.2 correction prompt (blocked for requested filing):** source `3d0ac76f:deliveries/zai-w89-colors-tools-framework-prompt-2026-11-19.md` (v3.1). `origin/council/inkling` now has v3.3 stating v3.2 corrections stand; glyph cannot edit inkling branch/file. H5 basis: `origin/architect/engine-and-seats:colors/src/sports/nfl/view/draftBoard.ts:61` strips `_w/_p` (per `origin/council/orcaink:inbox/20261119-0730-orcaink-v3.1-h5-correction.md`).
+- **Published this session (VERIFIED, pushed):** `_agents/glyph/deliveries/z-post-blue-docs-update-2026-11-19-v3-sitting/` (23 files) copied from `/Users/kosi/Desktop/Football Sim/z-post-blue-docs-update-2026-11-19-v3-sitting` (`diff -rq` clean; `md5sum -c CHECKSUMS.txt` 22/22 OK; repair `slice1-battery.json` 6418 B md5 `0a286953…` sha256 `3e6476de…`). Review: `inbox/20261119-2251-glyph-z-post-blue-docs-update-2026-11-19-v3-sitting-review-and-ideas.md` (integrity + task-by-task assessment: repair/doc-fixes sound but host apply must be atomic per byte-state incl. manifest hash lines; C′1 ring on parsed display, needs raw/suggestion export; seed/aria gaps; vapor closed REPORTED-from-Ernie; cakepanz/UI-UX shell brainstorm for Claude engine). Commit `14672ff9b…`, `origin/council/glyph` ls-remote matched.
+- **Other-seat v3-sitting reviews (VERIFIED found, read):** Ernie `origin/council/ernie@1527b5df1` — `inbox/20261119-2258-ernie-zai-v3-sitting-review.md` (verdict improved; F1 attribution/citation, F2 generic raw-sort/suggestion, F3 reorder one-click before export, F5/F6/F7/F8, strong byte reproductions) + `-2305-ernie-cakepanz-shell-innovation-v3.md`. Pickle `origin/council/pickle@43135cba5` chain — `inbox/20261119-2252-pickle-P-287-v3-sitting-review.md` (improved; D1 FIX-NOTES patch cwd/path, D2 hosted-c9 byte-truth misclassified — glyph verified hosted c9 shipped+prepared dists `670d4c08…`/527177 B on pickle; R1 root cause `draftBoard.ts` strips `_w/_p` at return — glyph verified locally) + `P-345-v3-shell-implications.md` + bulletin. No other v3-sitting review files found on scanned council branches (beam 2300/2345 are cakepanz-10/item-6 adjacent, not v3-sitting package reviews).
+- **Architect update checked (VERIFIED remote):** `origin/architect/engine-and-seats` tip `da0cf927e7159607dcc44329125d3cae593ebf08` — S3 `colors/src/core/snapshot.ts`, S4 additive `dispatchAsync`/`selectBoardAsync`, item-6 read/decision in `claude/NOW.md` (lambda stays 0, GLM off, no pack/default changes; NEXT per-offense `passGap`). Tests 427/427, tsc 89/89 and push mechanics beyond final state REPORTED by Architect.
+- **Reroot audit (from prior session, still pending completion):** reroot refs/claims partially mapped (`560b8364f` vs preserve `2dff30b5`, diff scope noted); full C/D evidence receipt not filed/pushed.
 
 ## What next session needs
-1. **Reroot audit (Owner-prompted, priority):** complete C (citation-rot table `file:line | sha | class i/ii/iii` across requested scopes: `origin/council/muse`, `origin/council/inkling`, `origin/council/base`, `origin/council/zai`, in-repo working copies, own receipts; count iii) and D (public events quality/coverage, 14-day pages 1-4 if accessible; note `560b8364f` absent if not found). Write `inbox/<UTC>-glyph-arch-reroot-audit.md` (sections A–G, verbatim commands/tails, VERIFIED/REPORTED, contradictions if any). Add/commit/push by specific path(s).
-2. **v3.2 handling:** do not overwrite other seats’ work; if Owner wants glyph-side artifact, produce advisory corrected copy/diff receipt on `council/glyph` referencing inkling v3.3 and `3d0ac76f`.
-3. **Queue work (policy):** when not on explicit Owner audit, take from `origin/council/muse` (`node ./.council_tool.mjs next`) biased toward engine-completion/shipping; defer non-blocking historical-accuracy tuning unless required for correctness/acceptance.
+1. **Default (policy):** refresh governance from `origin/council/muse`, run `node ./.council_tool.mjs next`, take highest-value engine-completion/shipping work/review you can do well (defer non-blocking historical tuning).
+2. **If Owner/relay acts on v3-sitting:** corrections to carry before onward relay — Pickle D1 (patch invocation context), Pickle D2 (report §10.2 hosted-c9 classification/consistency), Ernie F1 (cite measured dist/source accurately). Host application must be atomic per matching byte-state (repair/doc files + manifest hash lines per FIX-NOTES/REMEDY).
+3. **Cakepanz/UI-UX (Architect-gated where noted):** `?seed` seam, non-tautological suggestion invariant, one-click suggested draft with explicit slot+undo (w89 affordance), engine/view suggestion contract or raw sort key (VM currently strips `_w/_p`), `aria-describedby` row↔detail, ALL-CAPS stats labels at cutover.
+4. **Optional follow-ups if directed:** complete reroot audit receipt (A–G with command tails) and/or glyph-side note on v3.2/v3.3 H5 handling (do not edit other seats’ branches).
 
 ## Open questions / blockers
-- Reroot audit receipt not completed/pushed (incomplete C/D evidence). Public events API pagination limited at page 4 (422) — cannot claim full 14-day coverage beyond retrieved pages.
-- v3.2 cannot be “filed” into inkling-owned brief by glyph; needs Owner/author decision.
-- Untracked local dirs (not committed, left as-is): `_agents/glyph/deliveries/67-cakepanz-8-2026-11-18/`, `_agents/glyph/deliveries/67-cakepanz-8.1-2026-11-18/`.
+- No active blockers. v3-sitting host fixes/application and any engine-view export/re-pin are Owner/Architect decisions/actions.
+- Public reroot evidence coverage previously limited (events API pagination 422 at p4) — treat full 14-day coverage as unproven unless re-fetched.
 
 ## Live files
-- `_agents/glyph/deliveries/67-cakepanz-10-2026-11-19/`, `inbox/20261119-0904-glyph-cakepanz-10-review.md` — cakepanz-10 package + review.
-- `bulletin/20261119-1812-glyph.md` — this session-end bulletin.
-- Prior reviews: `inbox/20261118-*`, `inbox/20261119-0{106,235,327,332,335,420,530,625,635}-glyph-*`.
-- Reroot refs (remote): `origin/architect/engine-and-seats@560b8364f`, `origin/preserve/architect-engine-and-seats-pre-reroot-2026-11-19@2dff30b574`.
+- `_agents/glyph/deliveries/z-post-blue-docs-update-2026-11-19-v3-sitting/` (23 files) + `inbox/20261119-2251-glyph-z-post-blue-docs-update-2026-11-19-v3-sitting-review-and-ideas.md` (pushed @14672ff9b).
+- `_agents/glyph/deliveries/67-cakepanz-10-2026-11-19/` + `inbox/20261119-0904-glyph-cakepanz-10-review.md`.
+- `bulletin/20261120-0229-glyph.md` (this session).
+- Other-seat refs (remote, read-only): `origin/council/ernie:inbox/20261119-2258-ernie-zai-v3-sitting-review.md`, `-2305`; `origin/council/pickle:inbox/20261119-2252-pickle-P-287-v3-sitting-review.md`, `P-345`; `origin/architect/engine-and-seats@da0cf927e`.
+
+## Local pending (not committed)
+- Untracked dirs left as-is (pre-existing, not added): `_agents/glyph/deliveries/67-cakepanz-8-2026-11-18/`, `_agents/glyph/deliveries/67-cakepanz-8.1-2026-11-18/`.
 
 ## Standing rules
 - Byte-check everything: VERIFIED = `ref@sha + path + command + hash/output`.
