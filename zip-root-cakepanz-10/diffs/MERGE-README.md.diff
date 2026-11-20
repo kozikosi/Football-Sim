@@ -1,0 +1,10 @@
+--- baseline/tree-tmp/MERGE-README.md	2026-11-20 03:54:20.250773431 +0000
++++ cakepanz-4/MERGE-README.md	2026-11-20 03:44:45.344469906 +0000
+@@ -1,5 +1,7 @@
+ # MERGE-README.md — engine, ready to merge (the handoff cover)
+ 
++**UPDATE 2026-11-20 (the P-317 sitting): the shipped tree was RE-PINNED to `408410477`** on `architect/engine-and-seats` (the five paths moved together; the carried suite 430/430; the store now accepts `pickSlot` in START — see SNAPSHOT.md, the contract of record; every pin string below this line is historical context, not the current state).
++
+ **CAKEPANZ-8 ADDENDUM (2026-11-18) — the current state of this tree pair** (the 2026-11-17
+ verdict below stands as that sitting's dated receipt; the numbers of record NOW, the tools' own
+ final prints): engine 394/394 shipped · 406/406 prepared; node battery **33/33** both trees
