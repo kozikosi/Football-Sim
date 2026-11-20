@@ -4,7 +4,19 @@ SEAT: pickle · ROLE: Council Adviser · BRANCH: `council/pickle`
 WORKTREE: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle`
 MERGE-BASE: `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (`git merge-base HEAD origin/council/base`, re-verified 20 Nov 2026).
 
-## Current state (20 Nov 2026, eighteenth session) — Owner rulings relayed; Claude's d3177ee/7d8d71c verified; runbook + rollback still open
+## Current state (20 Nov 2026, nineteenth session) — S14 hosted and reviewed; ring scope withdrawn; one Owner question open
+
+The Owner asked me to push the Desktop folder `67-cakepanz-14-2026-11-20` to my branch and review it. Done, both pushed and ls-remote verified:
+- `c58d3bf6e64f5a4e740f615f823be5c015deae73` — full tree (468 files) at `_agents/pickle/deliverables/67-cakepanz-14-2026-11-20/cakepanz-4/`, re-verified on the pushed copy: `verify-package` 467 OK / 0 FAILED / 0 missing + converse clean. Public: `github.com/kozikosi/Football-Sim/tree/council/pickle/_agents/pickle/deliverables/67-cakepanz-14-2026-11-20/cakepanz-4`.
+- `cfd5b7ec3096185b4f8386e0db4d1b5b069f2fce` — `inbox/20261120-2349-pickle-S14-review.md` (VERDICT `improved`, 9 findings), `inbox/20261120-2349-pickle-S14-implications-seed-ideas.md`, and `bulletin/20261120-2350-pickle.md`.
+
+**VERIFIED by me:** pin `408410477` byte-clean (69 TS files, `git diff 408410477 ee3b6e1 -- colors/src` = 0, pin `colors/src` ≡ tree `src/engine` diff -rq clean, `draftBoard.ts` sha `e9e6e01a…` both sides). Composite honestly PARTIAL at step 13b (13b–17 absent, gate-manifest/gate-numerals not recorded). Standalone falsifier exit 0, 11 mutants DIED by name (receipt). Battery counts from receipts, not re-run by me: 430/430 engine, 35/35 node, 19/0 board, 18/0 visual, 28/0 slot, 48/0 shell, 29/0/10/3 slice, 2/0 contrast, 45/45 viewport, golden MATCH.
+
+**Review headline:** S14 was packaged at 22:30Z with the ring-revival scope; the Owner withdrew that scope at 22:46Z (`inbox/20261120-2246-pickle-OWNER-RULINGS-remove-ring-cloudflare-panels.md`). Glow (`shell.css:181`) and per-player `cp-why` (`BoardRow.svelte:52`) sit inside ring-only blocks, so a literal removal deletes both — the "descriptions of why each player" question is open, do not decide it. Source-level defect: `savedSuggest` survives sort/needs changes (`App.svelte:191–195` vs `DraftBoard.svelte:85–86`), so the restored ring contradicts L24 and the autosave after a sort. Handoff docs still plan gh-pages rollback; `rawSort` is filed BLOCKED, not WITHDRAWN; W14 leg A clicks `.cp-quick` (visual.battery.mjs:292), which the ring removal deletes. No product/engine/pin/governance/queue file edited.
+
+**Next session:** (1) get the Owner's answer on the descriptions; (2) if he answers, hand the exact corrective list in the review to Z.ai — do not edit his tree; (3) relay `rawSort` WITHDRAWN so Claude does not build it; (4) note the delivery-tree image precedent to MUSE (AGENTS.md §4 says lanes hold no images; S13/S14 hosts include `dist/` + `shots/`); (5) use the v11 tool from `origin/council/muse:tools/council.mjs` — the v8 tool on `architect/engine-and-seats` reads the stale `PRIORITIES.md` and prints an empty `next`.
+
+## Previous state (20 Nov 2026, eighteenth session) — Owner rulings relayed; Claude's d3177ee/7d8d71c verified; runbook + rollback still open
 
 The Owner reversed the earlier ring-revival direction: **ring REMOVED**, gh-pages make-live retired, deploy is **Cloudflare by Claude + Owner**, panels to look like w89, per-player "why" descriptions kept. Supersedes the seventeenth session's `2020`/`2021` ring-revival filings and the `2034` erratum's Contract-B order — those are history only, not deferred work. Everything this session is review/relay: no product, engine, pin, governance or queue file edited.
 
