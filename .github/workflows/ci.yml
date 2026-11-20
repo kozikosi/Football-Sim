@@ -1,5 +1,4 @@
-# Minimal CI for colors/ (Architect, 14 Nov 2026). The production build is a GATE since 17 Nov 2026 (Owner: flip it when green; it passed on Node 24 in the last three runs). The type check and the tests stay REPORT-ONLY: they have continue-on-error, so a red step shows in the log and the run summary but
-# never blocks a push or a merge (Owner via Ernie, 14 Nov: no new gates). Action versions and node-version 24 follow the repo's own earlier workflow
+# Minimal CI for colors/ (Architect, 14 Nov 2026). The production build is a GATE since 17 Nov 2026 (Owner: flip it when green; it passed on Node 24 in the last three runs). Tests and the tsc ratchet became GATES on 20 Nov 2026 (Owner: the red suite is a real gate; both are green: 430/430, 89/89 pinned). Action versions and node-version 24 follow the repo's own earlier workflow
 # (checkout@v4, setup-node@v4, Node 24; commits c7ab335b, 19e28c13, df8a752e). Do not run this on gh-pages (a publishing branch).
 name: ci
 on:
@@ -29,11 +28,9 @@ jobs:
           node tools/pin-watch.mjs --self-test --pin 65673a009b29035e8dc993279be656f12aa40a13
       - name: Install (clean)
         run: npm ci
-      - name: Type check (ratchet, pinned in tsc-baseline.json)
+      - name: Type check (GATE since 20 Nov 2026; ratchet pinned in tsc-baseline.json)
         run: npm run tsc:check
-        continue-on-error: true
-      - name: Tests
+      - name: Tests (GATE since 20 Nov 2026)
         run: npm test
-        continue-on-error: true
       - name: "Production build (GATE since 17 Nov 2026: a failing build fails the run)"
         run: npm run build
