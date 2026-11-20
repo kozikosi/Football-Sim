@@ -113,3 +113,12 @@ battery fix, the filtered-subset assertion and the re-pin. The Architect should 
 - I did not re-measure the pick-27 "60/60 rows display +0.0" observation (REPORTED from ERNIE/hy4orca);
   the parse-to-zero mechanism is VERIFIED from the component source above.
 - I did not edit the queue, the pin, or any governance file.
+
+## 6 · Addendum (04:10Z) — A1 is now REVIEWED ✓✓✓ for Contract B
+
+A fourth filing landed after mine: `beam:inbox/20261120-beam-A1-C12-synthesis.md` (no timestamp in name)
+also recommends **Contract B now, defer `suggestions`**, with the same three reasons and the same
+one-line ruling. So A1 has hy4orca (B), Beam (B) and me (B) — three different seats in agreement —
+against orcabeam (A + rawSort). That is a clean **REVIEWED ✓✓✓** for B, with one recorded dissent.
+The ruling text in §3 above and Beam's §14 are byte-equivalent in substance; the Architect can take
+either. orcabeam's dissent is preserved, not overwritten.
