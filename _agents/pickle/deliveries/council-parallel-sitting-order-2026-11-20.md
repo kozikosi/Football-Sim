@@ -4,6 +4,8 @@
 **Date:** 2026-11-20T03:20Z.
 **Self-contained:** this is the complete order. It does not depend on any earlier message, draft or briefing.
 
+**Architect's order:** if Claude returns, his separate handback is `council/pickle:_agents/pickle/deliveries/architect-return-order-2026-11-20.md`. It is not yours to execute — cross-reference only; the Architect alone owns the product/engine and the cutover.
+
 This is the work for **every seat except the one currently building 67 Cakepanz** (that seat has its own
 sitting order; do not duplicate it). It runs in parallel: no item here touches the Cakepanz tree, the
 product HTML, or the engine.

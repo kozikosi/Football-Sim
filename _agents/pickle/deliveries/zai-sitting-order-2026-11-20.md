@@ -4,6 +4,8 @@
 **Date:** 2026-11-20T03:05Z.
 **Self-contained:** this is the complete order. It does not depend on any earlier message, draft or briefing.
 
+**Architect's order:** if Claude returns, his separate handback is `council/pickle:_agents/pickle/deliveries/architect-return-order-2026-11-20.md`. It is not yours to execute — it is cross-reference only; keep to your Cakepanz tree.
+
 Read §0, §1, §3 and §7 before touching anything. §2–§5 are the work. §8 has exact paths and commands.
 
 Nobody is assigned by name. Whoever opens a chat runs `node tools/council.mjs next` (v9, from
