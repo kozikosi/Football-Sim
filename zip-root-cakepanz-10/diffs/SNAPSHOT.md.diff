@@ -1,0 +1,68 @@
+--- baseline/tree-tmp/SNAPSHOT.md	2026-11-20 03:54:20.250773431 +0000
++++ cakepanz-4/SNAPSHOT.md	2026-11-20 03:44:25.675359040 +0000
+@@ -2,37 +2,43 @@
+ 
+ A stranger can re-pin from this file alone.
+ 
+-**STATE: SHIPPED TREE OF RECORD (2026-11-17 sitting, pin 5c808472).** This tree's snapshot is the
+-pin below, byte-verified. The re-pin PREPARATION to `65673a00` (Part B — built, proved, NOT
+-activated) is delivered as the sibling **prepared copy**; its own contract is that copy's
+-SNAPSHOT.md. The two trees are never confused: this file names THIS tree's snapshot. If the
+-Owner says "re-pin", activation is one step: move the five paths from the prepared copy (or
+-re-run the procedure below against `65673a00`), re-run the five checks, re-pin this file.
++**STATE: SHIPPED TREE OF RECORD (2026-11-20 sitting, pin 408410477 — the P-317 re-pin).** This
++tree's snapshot is the pin below, byte-verified. The re-pin was REQUIRED by P-317 (T1): the
++store's `pickSlot` support (introduced at `560b8364f`, present at the tip) is the half the
++Team Select selector consumes; the previous shipped pin `5c808472` predates it. The five paths
++moved together (the FIVE-path procedure below), the five checks re-ran green, and this file was
++re-pinned in the same sitting. The old prepared copy at `65673a00` is SUPERSEDED by this
++activation (its pass-class node `sports/nfl/sim/passclass.ts` is part of the tip's snapshot
++now); `65673a00` and `5c808472` appear in this file only as historical context.
+ 
+ ## The pin
+ 
+-- **Engine commit: `5c808472`** on `architect/engine-and-seats` ("Pooled-node conformance: the
+-  lab's own Pack is the oracle for the baked pack and the TS loader"). The prepared (not
+-  activated) next pin: `65673a00` — "2a: the pass-class GLM node" (one engine file added:
+-  `sports/nfl/sim/passclass.ts`, 68 files; `f9991424` between them is docs-only).
++- **Engine commit: `408410477`** on `architect/engine-and-seats` ("multisport plan M — docs
++  only"; the engine content at that commit carries the P-317 store (`pickSlot` in START,
++  `draftOrder(userTeam, pickSlot)`, `SaveRecord.pickSlot` — 10 hits in
++  `sports/nfl/app/store.ts`), the S3 context snapshot, S4 async twins, and the pass-class node.
++  The pin commit itself is docs-only (2 files, +65/−0).
+ - The shell consumes `colors/src/**` at that commit as a frozen snapshot, copied VERBATIM into
+-  `src/engine/` — **67 TypeScript files**. Byte-identity VERIFIED this sitting against a worktree
+-  checkout of the pin: `diff -rq <worktree 5c808472>/colors/src src/engine` → exit 0.
++  `src/engine/` — **69 TypeScript files**. Byte-identity VERIFIED this sitting against a
++  worktree checkout of the pin: `diff -rq <worktree 408410477>/colors/src src/engine` → exit 0.
+ - The carried suite (`test/engine/`, the pin's `colors/test` re-pointed by
+-  `scripts/sync_engine_tests.py`) passes **394/394** (`npm run test:engine`, 45 suites) — VERIFIED
+-  this sitting, including from a FRESH CLONE (`npm ci && npm run test:engine` → 394/394).
++  `scripts/sync_engine_tests.py`) passes **430/430** (`npm run test:engine`) — VERIFIED this
++  sitting at the re-pinned bytes, and re-run at the sitting's final bytes (see
++  ACCEPTANCE-RECEIPTS.txt).
+ - The flex table (`tools/mathlab/flex.json`) at this pin: **99 rules — 17 at 0, 17 at 2, 42 at 6,
+-  23 at 12** (rule-count script this sitting). The six Owner-approved rules are at 2 (EDGE→DT,
++  23 at 12** (counted this sitting). The six Owner-approved rules are at 2 (EDGE→DT,
+   ILB→OLB, CB→FS, EDGE→OLB, OT→OG, CB→SS) and **SS→NICKEL stays at 0** (never approved). The
+-  table is byte-identical across the two pins (`cmp` old pin vs `65673a00` → exit 0) — measured,
+-  not assumed.
+-- **Two pack files** in `data/packs/` at this pin (`nfl-pools-fit2016-2022.json`,
+-  `nfl-pools-fit2023-2025.json`), byte-identical to the pin. The prepared pin carries FOUR (the
+-  two test-only GLM packs join them; nothing in `src/` reads them at runtime — grep-verified —
+-  but the Architect's suite fails without them).
++  table is byte-identical across the re-pin (the same 99-rule distribution at `5c808472`) —
++  measured, not assumed.
++- **Four pack files** in `data/packs/` at this pin (`nfl-pools-fit2016-2022.json`,
++  `nfl-pools-fit2023-2025.json` + the two test-only GLM packs `nfl-passclass-fit2016-2022.json`,
++  `nfl-passclass-fit2023-2025.json` — nothing in `src/` reads the GLM packs at runtime;
++  grep-verified; the Architect's suite fails without them). The 2023–2025 pools pack is
++  byte-identical to the pin (`cmp` vs the worktree → exit 0).
+ - The engine's self-declared stamp at this pin: **`nfl1.1ac56c28928eff`** — invocation: `node
+   --experimental-strip-types --input-type=module -e "import { engineVersion } from
+-  './src/engine/sports/nfl/app/versions.ts'; console.log(engineVersion())"` (Node v24.22.3).
++  './src/engine/sports/nfl/app/versions.ts'; console.log(engineVersion())"` (Node v24.22.3) —
++  the SAME stamp as at `5c808472` (the ruleset did not change; the store gained a parameter).
+ 
+ ## Pack-hash citations (ALWAYS with the invocation — a bare hash is UNKNOWN)
+ 

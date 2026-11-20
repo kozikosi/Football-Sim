@@ -1,0 +1,52 @@
+--- baseline/tree-tmp/src/lib/screens/TeamSelect.svelte	2026-11-20 03:54:20.458774634 +0000
++++ cakepanz-4/src/lib/screens/TeamSelect.svelte	2026-11-20 03:05:03.360888824 +0000
+@@ -2,12 +2,11 @@
+      (slot 1–32) on the SAME screen, with the same look (the standing Owner requirement).
+      Engine-derived facts only (the league's real alignment): no ratings are generated, no engine state
+      is invented. The choice flows into the Draft Board: the chosen team is the team that drafts.
+-     THE SEAM: the engine's newDraft already takes an ORDER parameter — the picker builds that order
+-     (the user's team first at the chosen slot; the rest snake). The STORE's order support is the
+-     Architect's piece (P-317 store change): until it lands, the store starts with its default snake
+-     and the screen says so plainly — no engine internals guessed, no engine math copied. -->
++     THE SEAM (P-317, closed): the STORE accepts pickSlot in START and its draftOrder() trades the
++     user's team into the chosen slot and mirrors the trade through the snake; SaveRecord.pickSlot
++     restores the same order. This screen only previews the store's own order — it never computes one. -->
+ <script lang="ts">
+-  import { TEAMS, DIVS, divisionTeams, TEAM_BY_NAME, snakeOrder } from '../port/seam.ts';
++  import { TEAMS, DIVS, divisionTeams, TEAM_BY_NAME, draftOrder } from '../port/seam.ts';
+   import type { Conf } from '../port/seam.ts';
+   import { valuation, MODE_LABEL } from '../../lib/valuation.ts';
+ 
+@@ -17,21 +16,7 @@
+   let chosenIndex = $derived(chosen == null ? -1 : TEAMS.findIndex((t) => t.name === chosen));
+   let detail = $derived(chosen == null ? null : TEAM_BY_NAME[chosen]);
+   let rivals = $derived(chosen == null || !detail ? [] : divisionTeams(detail.conf, detail.div).filter((n) => n !== detail!.name));
+-  let orderPreview = $derived(chosenIndex < 0 ? null : orderWith(chosenIndex, chosenSlot));
+-
+-  /** The P-317 order: the FULL 1,024-pick sequence (32 rounds), round 1 re-ordered so the user's
+-      team drafts at their chosen slot; the displaced team takes the vacated natural position;
+-      rounds 2-32 keep the engine's own snake. */
+-  function orderWith(userTeam: number, slot: number | null): number[] {
+-    const base = snakeOrder();
+-    if (slot === null) return base;
+-    const r1 = base.slice(0, 32);
+-    const rest = r1.filter((t) => t !== userTeam);
+-    for (let i = 0; i < 32; i++) r1[i] = i + 1 === slot ? userTeam : -1;
+-    let k = 0;
+-    for (let i = 0; i < 32; i++) if (r1[i] === -1) r1[i] = rest[k++]!;
+-    return [...r1, ...base.slice(32)];
+-  }
++  let orderPreview = $derived(chosenIndex < 0 || chosenSlot === null ? null : draftOrder(chosenIndex, chosenSlot));
+ 
+   function start() {
+     if (chosenIndex < 0) return;
+@@ -83,8 +68,7 @@
+         {#if chosenSlot === null}
+           No position chosen — the league's standard order decides. Slot <b>{chosenIndex + 1}</b> is this team's natural first pick.
+         {:else}
+-          You pick <b>{chosenSlot}</b>{chosenSlot === chosenIndex + 1 ? ' — this team\'s natural spot' : ''} first.
+-          The engine's draft order supports this today; the STORE's slot wiring is the Architect's piece (P-317, filed — no engine internals guessed here).
++          You pick <b>{chosenSlot}</b>{chosenSlot === chosenIndex + 1 ? ' — this team\'s natural spot' : ` first`}. The store trades your team into this slot and mirrors the trade through the snake; a save restores the same order.
+         {/if}
+       </p>
+       {#if orderPreview && chosenSlot !== null}
