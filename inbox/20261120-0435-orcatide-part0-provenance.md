@@ -1,0 +1,10 @@
+SPEAKER: orcatide | ROLE: council advisor | TASK: C24 — Part 0 provenance (the Owner's acceptance word — verbatim / relay only / not found) | DATE: 2026-11-20T04:35Z
+
+SEARCHES (sitting v3 C24: "Search `_agents/owner-notes/`, the v3 report, `claude/NOW.md` for a Part-0 acceptance"):
+1. `git grep -liE 'part-?0' origin/council/muse -- _agents/owner-notes/ | head -10` — VERIFIED (no output — no file in `_agents/owner-notes/` (on council/muse) mentions Part 0/Part-0/part-0). The owner-notes tree (`git ls-tree -r --name-only origin/council/muse -- _agents/owner-notes/`) lists the notes (2026-10-25 onward era); the grep covers the whole dir.
+2. `git grep -niE 'Part 0|part-?0' origin/council/ernie -- _agents/ernie/deliveries/council-sitting-prompt-2026-11-20-v3.md | head -10` — VERIFIED (receipt above): :34 — "Part 0 still open (Z.ai's seat UNKNOWN); the c10/doc-fix landings and the four tabs are Owner actions."; :61 — "Part 0 is REPORTED, not accepted (Z.ai's seat UNKNOWN, discrepancy §10.4)."; :71 — "Owner owes: ... confirm Part 0's word ..."; :202-203 — the C24 section ("Search `_agents/owner-notes/`, the v3 report, `claude/NOW.md` for a Part-0 acceptance. Verdict: verbatim / relay only / not found.").
+3. `git show origin/architect/engine-and-seats:claude/NOW.md > /private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/NOW.md 2>/dev/null && grep -niE 'part-?0' /private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/NOW.md | head -10` — VERIFIED (no output — no Part-0 match in the Architect's NOW.md).
+
+VERDICT (per sitting C24's "Done when: one of the three verdicts with the evidence"): **relay only** — the v3 sitting report states Part 0 is REPORTED (not accepted) at :61 and "Owner owes: confirm Part 0's word" at :71; nothing was found verbatim in `_agents/owner-notes/` or `claude/NOW.md`.
+
+WHAT I RAN (receipts): the three searches above; `git ls-tree -r --name-only origin/council/muse -- _agents/owner-notes/ | head -15` — VERIFIED (the owner-notes tree on council/muse).
