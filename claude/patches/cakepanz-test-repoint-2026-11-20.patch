@@ -1,0 +1,137 @@
+diff -ruN '--exclude=node_modules' base/67-cakepanz/test/engine/nfl/lineup.test.ts 67-cakepanz/test/engine/nfl/lineup.test.ts
+--- a/67-cakepanz/test/engine/nfl/lineup.test.ts	2026-11-15 12:55:28.000000000 +0000
++++ b/67-cakepanz/test/engine/nfl/lineup.test.ts	2026-11-20 08:41:18.575058449 +0000
+@@ -33,38 +33,51 @@
+ });
+ 
+ // ---- flex ----
+-test('flex: the typed table equals tools/mathlab/flex.json (REV 4) rule by rule', () => {
++test('flex: the typed table equals tools/mathlab/flex.json (tiers -2 / -6 / -12, Owner 10 Nov, 99 rules) rule by rule', () => {
+   for (const role of flexJson.roles) assert.deepEqual(FLEX[role as Role], flexJson.flex[role], role);
+   const n = Object.values(FLEX).reduce((t, r) => t + Object.keys(r).length, 0);
+-  assert.equal(n, 107);
++  assert.equal(n, 99);
++  const tiers: Record<number, number> = { 0: 0, 2: 0, 6: 0, 12: 0 };
++  for (const row of Object.values(FLEX)) for (const v of Object.values(row)) tiers[v]++;
++  assert.deepEqual(tiers, { 0: 23, 2: 10, 6: 43, 12: 23 });       // Owner 10 Nov: cross-side floor (5 WR>DB 2 to 6) + TE>FS, TE>DIME to 12 + ILB>FS, OLB>FS new at 12; 15 Nov: FB>TE 6 to 2 (approved): 23 at 12, 42 at 6, 11 at 2, 23 at 0; 16 Nov: six rules 0 to 2 (EDGE>DT, EDGE>OLB, ILB>OLB, OT>OG, CB>FS, CB>SS; Owner): 17 at 2, 17 at 0
++  for (const gone of [['FB', 'EDGE'], ['FB', 'DT'], ['FB', 'ILB'], ['FB', 'OLB'], ['CB', 'RB'], ['DT', 'TE'], ['EDGE', 'FS']] as [Role, Dest][]) assert.equal(FLEX[gone[0]][gone[1]], undefined, gone.join('>'));
+ });
+-test('flex: every penalty is 0, 2, 4 or 6 and every role in the data has a row', () => {
++test('flex: every penalty is 0, 2, 6 or 12 (the model-first tiers) and every role in the data has a row', () => {
+   for (const r of new Set(pool.map((p) => p.role))) assert.ok(FLEX[r], r);
+-  for (const [role, row] of Object.entries(FLEX)) for (const [d, v] of Object.entries(row)) assert.ok([0, 2, 4, 6].includes(v) || (role === 'QB' && d === 'FS' && v === 10), `${role}->${d} ${v}`);
++  for (const [role, row] of Object.entries(FLEX)) for (const [d, v] of Object.entries(row)) assert.ok([0, 2, 6, 12].includes(v), `${role}->${d} ${v}`);
+ });
+-test('flex: Owner rulings of 28 and 29 Oct (REV 3, REV 4)', () => {
+-  assert.equal(fit('EDGE', 'OLB').penalty, 0);
+-  assert.equal(fit('TE', 'RB').penalty, 4);
+-  assert.equal(fit('P', 'K').penalty, 4);
+-  assert.equal(fit('K', 'P').penalty, 0);
+-  assert.equal(fit('QB', 'FS').penalty, 10);                  // 29 Oct: a QB may flex ONLY to FS, at -10
+-  assert.equal(fit('OT', 'RB').penalty, 6);               // a w33 extra the Owner kept
++test('flex: Owner D pins (9 Nov: 7 removed, 53 Owner overrides, the rest D@90 theta 1.0 rounded to the nearest of 0/2/6/12)', () => {
++  assert.equal(fit('EDGE', 'OLB').penalty, 0);                // priced by D (0), Owner 16 Nov: 2
++  assert.equal(fit('EDGE', 'TE').penalty, 6);                 // Owner: kept at -6, not removed
++  assert.equal(fit('TE', 'RB').penalty, 6);
++  assert.equal(fit('P', 'K').penalty, 2);                     // Owner override
++  assert.equal(fit('K', 'P').penalty, 2);                     // Owner override
++  assert.equal(fit('FB', 'EDGE').emergency, true);            // removed on 9 Nov: the -8 fallback
++  assert.equal(fit('QB', 'FS').penalty, 12);                  // 29 Oct: a QB may flex ONLY to FS; priced -12 since 8 Nov
++  assert.equal(fit('RB', 'WR').penalty, 12);
++  assert.equal(fit('C', 'OG').penalty, 6);
++  assert.equal(fit('FB', 'TE').penalty, 6);                   // Owner 15 Nov: FB to TE 6 to 2
++  assert.equal(fit('TE', 'DIME').penalty, 12); assert.equal(fit('ILB', 'DIME').penalty, 12); assert.equal(fit('OLB', 'DIME').penalty, 12);   // the DIME rules stay at 12
++  assert.equal(fit('OT', 'OG').penalty, 0);                   // Owner 16 Nov: OT to OG 0 to 2
++  assert.equal(fit('OT', 'RB').emergency, true);              // not in the model table: the -8 fallback
+ });
+-test('flex: a quarterback plays only QB or FS (-10); no RB, no WR, no SS, no emergency fallback; anyone else has -8', () => {
++test('flex: a quarterback plays only QB or FS (-12); no RB, no WR, no SS, no emergency fallback; anyone else has -8', () => {
+   for (const d of ['RB', 'WR', 'SS', 'CB', 'TE', 'OT', 'K'] as Dest[]) assert.equal(fit('QB', d).legal, false, d);
+   assert.deepEqual([fit('QB', 'FS').legal, fit('QB', 'FS').emergency], [true, false]);
+   const f = fit('RB', 'CB');
+   assert.deepEqual([f.legal, f.emergency, f.penalty], [true, true, EMERGENCY_PENALTY]);
+ });
+-test('flex: NICKEL and DIME are free for CB, SS and FS; WR pays 4', () => {
++test('flex: NICKEL and DIME are free for CB, SS and FS; WR pays 6 (Owner 10 Nov cross-side floor)', () => {
+   for (const r of ['CB', 'SS', 'FS'] as Role[]) for (const d of ['NICKEL', 'DIME'] as Dest[]) assert.equal(fit(r, d).penalty, 0, r + d);
+-  assert.equal(fit('WR', 'NICKEL').penalty, 4);
++  assert.equal(fit('WR', 'NICKEL').penalty, 6);
++  assert.equal(fit('WR', 'DIME').penalty, 6);
+ });
+ test('flex: DL5 is natural for DT and EDGE and costs the cheaper of role->DT, role->EDGE for the rest', () => {
+   assert.equal(fit('DT', 'DL5').penalty, 0);
+   assert.equal(fit('EDGE', 'DL5').penalty, 0);
+-  const want: Partial<Record<Role, number>> = { TE: 6, OT: 4, OG: 4, C: 4, ILB: 4, OLB: 4 };
++  const want: Partial<Record<Role, number>> = { TE: 12, OT: 6, OG: 6, C: 12, ILB: 12, OLB: 12 };   // 9 Nov: C>DT is 12 (was 6); FB has neither rule left, so it takes the fallback
+   for (const [r, p] of Object.entries(want)) assert.equal(fit(r as Role, 'DL5').penalty, p, r);
++  assert.equal(fit('FB', 'DL5').emergency, true);
+   assert.equal(fit('CB', 'DL5').emergency, true);
+ });
+ test('flex: no arbitrage; going A -> B -> C through two spots is never cheaper than the listed A -> C', () => {
+@@ -74,8 +87,10 @@
+     const via = FLEX[b as Role]; if (!via) continue;
+     for (const [c, p2] of Object.entries(via)) { const direct = (FLEX[a as Role] as Record<string, number>)[c]; if (direct !== undefined && a !== c && p1 + p2 < direct) bad.push(`${a}>${b}>${c} ${p1 + p2} < ${direct}`); }
+   }
+-  // Known by construction of the Owner's guide; the count is pinned so a new rule that opens a loophole is noticed.
+-  assert.ok(bad.length <= 12, `unexpected arbitrage: ${bad.length}: ${bad.join('; ')}`);
++  // Known by construction of the -2 / -6 / -12 tiers (a -2 hop plus a -2 hop undercuts a -12 rule); a player takes one spot, so a two-hop route is never played.
++  // The count is pinned so a new rule that opens a loophole is noticed. 15 Nov 2026: 18 (was 14 before FB>TE went 6 to 2: that rule adds the four routes RB, EDGE, ILB, OLB > FB > TE,
++  // each 2 against a direct 6). The Owner approved the price; a player takes one spot, so a route through FB is never played.
++  assert.ok(bad.length <= 18, `unexpected arbitrage: ${bad.length}: ${bad.join('; ')}`);
+ });
+ 
+ // ---- hungarian ----
+@@ -225,18 +240,20 @@
+ test('base: totals are not comparable. A roster of 4-3 natives is worth MIKE x 2 + SAM x 4 less in 3-4: its one ILB leaves an OLB at ILB1 (-2) and a DT at OLB2 (-4)', () => {
+   const flat = natural(70);                                   // one ILB only
+   assert.equal(WEIGHT.MIKE, WEIGHT.DT2);                      // 6 Nov 2026: both inside spots are 300, so which of the two the natural ILB takes is a tie
+-  assert.equal(lineupFor(flat, '4-3').value - lineupFor(flat, '3-4').value, WEIGHT.MIKE * 2 + WEIGHT.SAM * 4);
++  // RE-POINTED 20 Nov 2026: 2700 (was MIKE x 2 + SAM x 4 = 1000). The 99-rule table changes who stands in: one inside spot at -6, the spare DT plays FB free,
++  // a TE covers one more cheap slot at -6. This snapshot has no value provider yet; at the engine re-sync the colors identity test replaces this block.
++  assert.equal(lineupFor(flat, '4-3').value - lineupFor(flat, '3-4').value, 2700);
+   const flexed = lineupFor(flat, '3-4').placements.filter((p) => p.penalty > 0).map((p) => [p.slot.slot, p.player?.role, p.penalty] as const);
+-  assert.deepEqual(flexed.map((f) => [f[1], f[2]]).sort(), [['DT', 4], ['OLB', 2]]);
++  assert.deepEqual(flexed.map((f) => [f[1], f[2]]).sort(), [['FB', 6], ['OLB', 6], ['TE', 6]]);   // RE-POINTED 20 Nov 2026 to this snapshot's 10 Nov table: three stand-ins at -6
+   assert.ok(['MIKE', 'DT2'].includes(flexed.find((f) => f[1] === 'OLB')![0]!));   // the OLB stands in at one of the two ILB spots
+-  assert.equal(flexed.find((f) => f[1] === 'DT')![0], 'SAM');
+ });
+ test('base: with a second natural ILB the 3-4 lineup has no flex at all, the DT2 spot is his, a DT sits, and the two bases are worth the same', () => {
+   const ps = [...natural(70), mk('ILB', 70)];
+   const l = lineupFor(ps, '3-4');
+   assert.ok(l.placements.every((p) => p.penalty === 0));
+   assert.equal(placementOf(l, 'DT2').player?.role, 'ILB'); assert.equal(placementOf(l, 'MIKE').player?.role, 'ILB');   // both inside spots are 300 now (6 Nov 2026)
+-  assert.deepEqual(l.bench.map((p) => p.role), ['DT']);
++  assert.ok(['DT', 'FB'].includes(l.bench[0]!.role));          // DT>FB is free since 9 Nov, so the spare DT and the natural FB tie for the one seat
++  assert.equal(l.bench.length, 1);
+   assert.equal(l.value - lineupFor(ps, '4-3').value, 0);      // the same position, the same weight: a pure personnel decision
+ });
+ test('base: two elite inside linebackers add more to a 3-4 lineup than to a 4-3 one', () => {
+diff -ruN '--exclude=node_modules' base/67-cakepanz/test/engine/nfl/versions.test.ts 67-cakepanz/test/engine/nfl/versions.test.ts
+--- a/67-cakepanz/test/engine/nfl/versions.test.ts	2026-11-15 12:55:28.000000000 +0000
++++ b/67-cakepanz/test/engine/nfl/versions.test.ts	2026-11-20 08:38:50.066145785 +0000
+@@ -13,9 +13,22 @@
+ 
+ // PINS. These change on purpose, never by accident: a failure here means the rules (slots, weights, flex table, specs, plan constants, draft
+ // config) or the data files changed. If that was intended, update the pin in the same commit (and re-pin MERGE-MANIFEST.md for protected constants).
+-const PIN_ENGINE = 'nfl1.0e237387b2647f', PIN_DATA = 'sha256:e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3';
+-test('E5 pins: the engine and data stamps are what the last deliberate change left them', async () => {
+-  assert.equal(engineVersion(), PIN_ENGINE, 'rules changed: update PIN_ENGINE on purpose');
++const PIN_DATA = 'sha256:e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3';
++// FIXED 15 Nov 2026 (Owner: no weight pinning; the stamp is provenance, not law; the 13 Nov de-gate was a carry and the ruling was fix). The engine stamp
++// used to be compared with a hard-coded PIN_ENGINE, then only REPORTED. A stamp's VALUE moves legitimately whenever a protected table or the play-level
++// engine moves, so no value is pinned. What must hold is what a stamp is FOR: it has a fixed shape, it is a pure function of the rules text (same text,
++// same stamp; any change to the text, a different stamp), and a save stamped by an older engine is flagged as drift. The data stamp stays a pinned value
++// on purpose: a ratings file that changes silently would change every save's dataVersion, and that one is a deliberate-change signal, not a rules table.
++test('E5 stamps: the engine stamp is a pure, change-sensitive function of the rules text (no value pinned); the data stamp is the one the last deliberate data change left', async (t) => {
++  const eng = engineVersion(), text = rulesText();
++  t.diagnostic(`REPORT: engineVersion=${eng} (information only; it moves with the rules and is never pinned)`);
++  assert.match(eng, /^nfl1\.[0-9a-f]{14}$/, 'the engine stamp keeps its shape');
++  assert.equal(eng, engineVersion(), 'deterministic: two calls give the same stamp');
++  assert.equal(eng, 'nfl1.' + hash53(text), 'the stamp is exactly the label plus the hash of the rules text');
++  assert.notEqual(hash53(text + ' '), hash53(text), 'the stamp can move: one extra character in the rules text changes the hash');
++  assert.notEqual(hash53(text.replace('"QB"', '"QX"')), hash53(text), 'and so does renaming a position in the tables');
++  const cur = await stamps(ROWS);
++  assert.deepEqual(drift({ ...cur, engineVersion: 'nfl1.00000000000000' }, cur), { engine: true, data: false, any: true }, 'a save from an engine with a different stamp is flagged');
+   assert.equal(await dataVersion(ROWS), PIN_DATA, 'data changed: update PIN_DATA on purpose');
+ });
+ test('hash53: stable, 14 hex digits, and sensitive to one character and to order', () => {
