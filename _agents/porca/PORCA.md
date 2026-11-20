@@ -6,7 +6,17 @@
 - **Worktree:** `/Users/kosi/Desktop/wt/porca` · **Branch:** `council/porca` · `git merge-base HEAD origin/council/base` → `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 - **Evidence standard:** receipts come from fresh `git show`/`git grep`/`md5sum`/node runs or real file reads. No shared tree writes, product file, engine, pin or other seat's file touched. A wrong claim is kept in the record with a superseding correction.
 
-## Current work — session 9 (Z.ai S14 prompt rewrite + seat-quality ranking, 2026-11-20)
+## Current work — session 10 (second-pass Z.ai prompt review + v3, 2026-11-20)
+- **User request:** re-review the other seats' *updated* S14 prompt drafts, compare to my v2, and rewrite assuming Z.ai read none of the drafts.
+- **Read fresh this pass:** pickle `2109` (six-way review), pickle `2110` (v3 work order), hy4 `2115` (v2 work order) — line-by-line against my v2. Did not re-open ernie `2100` or iceman; they are represented through those two reviews and I say so in the deliverable.
+- **Deliverable:** `inbox/20261120-2125-porca-TO-ZAI-S14-self-contained-prompt-v3.md`. Self-contained (no cross-draft reading), glossary retained, execution-order table added.
+- **Three comparison findings:** (1) BOTH newer work orders reintroduced the pin-boundary defect my v2 fixed — pickle `2110` §3.4.1 and hy4 `2115` §4.3.1 tell Z.ai to add `rawSort` to `BoardRowVM`, which is a frozen engine type (`draftBoard.ts:19`, re-exported at `seam.ts:16,87`) — unsatisfiable with their own "69/69 engine byte-identical" gate; (2) hy4 v2 double-counts W14 in both node and visual batteries — W14 is visual only (node stays 35/35), as pickle `2109` §2.3 resolved; (3) hy4 v2 assumes push credentials in its delivery gate, while pickle correctly accepts a zip download link — v3 uses the latter and adds "never claim a push you cannot make."
+- **Absorbed:** hy4's one-page order table and general decision-boundary rule; pickle's `git cat-file -t`/`grep -c` boot receipts, first-reply format, `:81,125` anchors, W14 resolution and fuller ranked innovation list.
+- **New byte evidence (verified read-only this pass):** `seam.ts:16,87` re-export proof; `DraftBoard.svelte:70-73` comment (raw wins on a 1e-9 grid, "so real ties compare exactly"); `draftBoard.ts:53` sort key is raw `_w`/`_p` for wins/priority but exact integer display for `ovr`; `:61` strips the raw fields. Sharpens the pin-safe split: primary top-three by array position is correct for all three sorts; only the tie extension needs `rawSort`, and only for wins/priority.
+- **Verification:** self-containment grep clean inside the PROMPT block, gate counts consistent (W14 visual only, `45/45 with 0 overflow`), and every cited anchor re-read against the delivered S13 bytes. Corrected my own v2's `45/0` shorthand and the `:70-72` comment span (now `:70-73`).
+- **Not done:** no product/engine/pin/governance/other-seat file edited. Advisory input only; Owner/MUSE relay and decide.
+
+## Session 9 (Z.ai S14 prompt rewrite + seat-quality ranking, 2026-11-20)
 - **Z.ai prompt rewrite (user request):** `inbox/20261120-2115-porca-TO-ZAI-S14-self-contained-prompt-v2.md` — I read all 11 other seats' prompt drafts (beam, ernie ×3, glyph, hy4, pickle ×4, vl + my own 2040), then rewrote mine as a **self-contained** work order with a glossary (§13) assuming Z.ai read none of them. Supersedes my `2040` (which carried the false "ring restyle only" premise).
 - **Two substantive defects found that all 4 source drafts shared** (via a read-only reviewer + my byte checks):
   1. `BoardRowVM`/`key()` live in the **frozen engine** `src/engine/sports/nfl/view/draftBoard.ts:19,53`, so "expose `rawSort`" contradicts "all 69 engine files byte-identical". Resolved: engine half → §5 proposal to the Architect; shell half (primary top-three by row position) done pin-safe now. Rows already sorted by raw `key()` at `:54`; defect is the tie-extension display parse at `DraftBoard.svelte:76`.
@@ -32,15 +42,16 @@
 - C12 README "stage 13b CLOSED" is a 2026-11-20 correction; authoritative state CLOSED (named-law DIED), standing.
 
 ## What the next session needs
-- **Read first:** `inbox/20261120-2115-porca-TO-ZAI-S14-self-contained-prompt-v2.md` (current work), then the session-8 relay review `inbox/20261120-1940-porca-cakepanz-13-review.md`.
-- **Do not redo:** C1–C12, A1/A2/A3, the c10/c12/c13 relays and reviews, the ancestry re-check, the S13 review round, the 11-draft Z.ai prompt review, the 4-audit seat ranking.
+- **Read first:** `inbox/20261120-2125-porca-TO-ZAI-S14-self-contained-prompt-v3.md` (current work; supersedes the `2115` v2), then the session-8 relay review `inbox/20261120-1940-porca-cakepanz-13-review.md`.
+- **Do not redo:** C1–C12, A1/A2/A3, the c10/c12/c13 relays and reviews, the ancestry re-check, the S13 review round, the 11-draft Z.ai prompt review, the second-pass review of the updated drafts, the 4-audit seat ranking.
 - **Still open (not mine, no claim):** Owner-note intake of the ring quote (newest note = 2026-11-19); five stale pin lines (`AGENTS.md:44,45,46,73`, `PROJECT-KNOWLEDGE.md:18`); the Architect landing engine `rawSort` + the paired L13/component fix; the make-live decision; Contract A/B label reconciliation; the Owner's seat-retirement decisions.
 - **End-of-chat gate:** `node tools/preserve.mjs check` exits 1 for OTHER worktrees only (shared Football Sim tree, council-ds/flint/super/dsd/boc, architect-colors, local-only commits on council/vlorca, etc.). My `council/porca` is clean after this session's commit. Do not touch another seat's worktree.
 
 ## Files in this lane
 - `_agents/porca/PORCA.md` — this file.
 - `_agents/porca/deliverables/zip-root-cakepanz-{10,12,13}/` — verbatim relays.
-- `inbox/20261120-2115-porca-TO-ZAI-S14-self-contained-prompt-v2.md` — current deliverable.
+- `inbox/20261120-2115-porca-TO-ZAI-S14-self-contained-prompt-v2.md` — superseded (session 9).
+- `inbox/20261120-2125-porca-TO-ZAI-S14-self-contained-prompt-v3.md` — current deliverable.
 - No build copies, images or lane code (advisor role). Work lives in `inbox/` plus one bulletin file per session.
 
 ## Role
