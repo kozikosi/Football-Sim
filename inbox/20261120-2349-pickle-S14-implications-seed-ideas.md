@@ -1,0 +1,23 @@
+SPEAKER: pickle | ROLE: Council Adviser | TASK: implications of the S14 cakepanz delivery + provisional ideas for the shell | DATE: 2026-11-20T23:49Z
+FOR: S14
+IDEA: These are seeds for the brainstorming conversation, not a design and not accepted work. The Owner's one open question is at the end; nothing below is built, and no product, engine, pin or governance file was touched.
+
+## Implications I would carry forward
+
+1. **The ring removal is a simplification dividend, not a loss.** S14 added five board laws (L13, L23, L24, L25 plus W14's ring-coupled leg), four falsifier stages, one autosave field, one component prop chain and one §5 engine proposal. The Owner's ruling retires all of it. The shell gets smaller, the engine stays pinned, and the maintenance surface shrinks. Do not rebuild an equivalent feature under a new name.
+2. **One invariant from S14 is worth keeping even though the feature is gone: never parse displayed text back into data.** The pin strips the raw sort key, so the display-rounded tie extension was always an approximation; L24's "first three ARRAY POSITIONS" rule is the right discipline. Any future shell feature should derive from VM fields (`id`, `slotId`, `sort`, `needs`), never from `textContent` or CSS classes. This is an architectural rule the Architect can adopt without touching the engine.
+3. **W14 generalises into an intent-precedence rule.** The bug was implicit state (autosave) overwriting explicit intent (a shared URL). The same shape exists for imported drafts, slot loads and any future URL-driven state. One stated rule — *explicit URL intent > explicit user action > autosave* — with one helper instead of per-feature guards would prevent the next collision. My call: file it as a council idea, not a code change; the shell author decides the helper.
+4. **The falsifier pattern should spread to visual style.** S14 proves every law can have a named death (11 stages, exit 0). The Owner's panel restyle is currently a prose request. A "glass panel" law — 22px radius, `--glass`/`--glassbd`/`--shadow`, blur present in both themes, 390px still fits — with a falsifier that plants the old flat 8px panel and watches the law die, would turn "too boxy" into an enforceable contract. This is the single highest-value process innovation from this sitting.
+5. **The handoff is now the weak link, not the code.** Every gate is green and the engine fence is byte-clean, but the cutover docs still plan gh-pages rollback while deployment moved to Cloudflare. A one-page "static output is `dist/`; Claude + Owner deploy" correction is worth more than another battery pass.
+
+## Seed ideas for the UI/UX shell (my suggestions; none accepted)
+
+- **One token edit, every screen.** `.cp-panel` is the shared surface for Hub, Feed, Standings, Awards, Book, Cards, Review and the board chrome. Porting w89's glass tokens (`--glass`, `--glassbd`, `--shadow`) into `tokens-w89.css` in both light and dark roots restyles the whole app with one blast radius. Add a contrast receipt alongside it — the Owner wants colour, not washed-out panels.
+- **A dev-only side-by-side compare.** The Owner said *"i need to see them side by side if you can show me."* A `?compare=1` dev route showing the cakepanz board next to w89 (dev build only, excluded from the shipped single file) would settle the visual-acceptance question in one screenshot instead of another round of adjectives. Static, no network.
+- **Descriptions as content, not decoration.** Move the per-player "why" copy out of any feature-conditional block and render one short VM-sourced line on every row. It is explanatory content the Owner explicitly kept; it should not be coupled to a highlight that can be removed.
+- **Bring the gone% method into the open state.** It already exists (`.cp-gonehow`, `.cp-sr`), but a first-time user will not expand a row to learn what the column means. A single fading note under the board header — linked to the same source string — would explain the column without a new calculation or a new column.
+- **Keyboard-first draft loop.** The shell already has a focusable method copy and a staged-confirm guard. A visible key hint on the on-clock row (Enter = pick, U = undo) closes the loop for the "speedrun" use case the Owner originally wanted, without restoring a ring.
+
+## The open question (brainstorming gate)
+
+Before I write any of this up as a design: walk me through the last time you were drafting in Cakepanz and the board got in your way — what were you trying to do, and what did you see instead? If you would rather I skip the questions and just file my own design, say so and I will go ahead with the suggestions above as my calls.
