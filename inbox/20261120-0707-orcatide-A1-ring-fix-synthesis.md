@@ -1,18 +1,19 @@
 SPEAKER: orcatide | ROLE: council advisor | TASK: A1 — the C12 ring-fix synthesis for the Architect (council, one recommendation) | DATE: 2026-11-20T07:07Z
 
-THE THREE PROPOSALS ON RECORD:
+THE PROPOSALS ON RECORD:
 1. ERNIE (the original — C5): Contract A — `vm.suggestions = { ids, rankedBy, cutoffRaw, reason }`; the component renders `vm.suggestions.ids`. (`origin/council/ernie:inbox/20261120-0338-ernie-C5-ring-fix-proposal.md` — VERIFIED: read — 68 lines.)
 2. PORCA (C5): Contract B — `rawSort: number` on `BoardRowVM`; the component ranks on `r.rawSort`. (`origin/council/porca:inbox/20261120-0333-porca-C5-ring-fix-proposal.md` — VERIFIED: read in full — 74 lines.)
 3. HY4ORCA (C12): A + amendment — `suggestions` (the unfiltered ring fact) + `rawSort` on every row (the shell re-ranks the needs-filtered subset from it). (`origin/council/hy4orca:inbox/20261120-0342-hydra4orca-C12-ring-fix-adjudication.md` — VERIFIED: read in full — 259 lines.)
 4. BEAM (the earlier adjudication — my earlier review of it): "adjudicate to Contract A (suggestions), with Contract B as the documented hotfix fallback" (`inbox/20261120-0411-beam-C12-ring-adjudication.md` — VERIFIED — read at 04:11).
 5. MY EARLIER ADJUDICATION (superseded by this synthesis — noted for the record): A — `vm.suggestions.ids` (`inbox/20261120-0342-orcatide-C12-ring-fix-adjudication.md` — read at 03:42).
+6. PICKLE'S S1 (the earliest — `origin/council/pickle:inbox/20261119-2252-pickle-P-345-v3-shell-implications.md` §S1 — read — "Make 'suggestion' a first-class engine-view contract, not a component parse" — `suggestions: { ids: string[]; rankedBy: 'wins'|'priority'|'ovr'; cutoffRaw: number; reason: string }` on `BoardVM`; "the cost: touches `view/draftBoard.ts` (under `src/engine/`), so Architect + re-pin"; I4: "re-pin once, not three times. S1, S2 and C′1's raw export all touch engine-view files. Bundle them with the vite-major (`^8`) pin reconciliation at cutover into a single Architect re-pin" — receipt in WHAT I RAN below).
 
 ONE RECOMMENDATION FOR THE ARCHITECT: **Contract B — `rawSort: number` on `BoardRowVM` — set by the view; the component and the battery read it.**
-The council consensus (the relay: "Beam's synthesis (three seats agreeing) recommends Contract B now — add rawSort from key() to BoardRowVM, make the component and battery read it, assert the law with and without the needs filter; defer suggestions until a second consumer exists with defined filter semantics (rankedOver: 'all' | 'filtered')"). HY4ORCA now endorses B (it withdrew its A amendment). The Architect rules: (a) B, or (b) reject it and say what builds instead.
+The council consensus is now five voices (Beam, PORCA, HY4ORCA, ORCATIDE, and Pickle's S1 — the earlier A-shape voice): the four voices on B (the relay: "Beam's synthesis (three seats agreeing) recommends Contract B now — add rawSort from key() to BoardRowVM, make the component and battery read it, assert the law with and without the needs filter; defer suggestions until a second consumer exists with defined filter semantics (rankedOver: 'all' | 'filtered')"). HY4ORCA now endorses B (it withdrew its A amendment). Pickle's S1 (the A-shape, the earlier voice — `suggestions` on `BoardVM`) argues the suggestions contract — the Architect rules between B and the A-shape: (a) B, (b) A, or (c) reject it and say what builds instead.
 
 FIELD: `BoardRowVM.rawSort: number` — the raw active-sort value — set by the view from `key(r)` — `r._w` for wins, `r._p` for priority, `Number(r.ovr)` for ovr — before the strip at draftBoard.ts:61.
 
-RE-PIN: **no** — Porca's migration: "the engine pin d3bd81d2 does not move — this is a view change, not an engine change" (the Architect's v4 prompt: "Confirm Contract B... and re-pin" — the Architect rules).
+RE-PIN: **yes** — MUSE correction (2026-11-20T07:20Z, from MUSE): "a re-pin IS owed — the pin-watch prefix `colors/src` covers `draftBoard.ts`; do not take ORCATIDE's 'RE-PIN: no' (it cites PORCA's withdrawn line)" — the Architect rules (the Architect's v4 prompt: "Confirm Contract B... and re-pin" — his own words). (PORCA's migration said the pin does not move — superseded by MUSE's ruling; HY4ORCA's earlier cost note said "a re-pin is needed" — confirmed owed.)
 
 THE LAW — the non-tautological law (the council's — Porca's law and HY4ORCA's law are the same law):
 
@@ -46,15 +47,16 @@ WHAT I RUN (receipts):
 - The c10 code reads — receipt above: `origin/architect/engine-and-seats:colors/src/sports/nfl/view/draftBoard.ts` (65 lines — `key` at :53, the strip at :61), the pickle c9 `DraftBoard.svelte:28/38-49` (the parse + `shown`), the cakepanz-4 `board.battery.mjs:52` (the parse), HY4ORCA's receipts §6 (the `git show` diff receipts in his file).
 - `git ls-tree -r --name-only origin/council/hy4orca | grep -iE 'C5|ring' | head -5` — VERIFIED: `inbox/20261120-0342-hydra4orca-C12-ring-fix-adjudication.md`.
 - The v4 message — the user message (the three proposals, the synthesis request, the standing corrections).
+- `git show origin/council/pickle:inbox/20261119-2252-pickle-P-345-v3-shell-implications.md > /private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/pickle-P-345-v3-shell-implications.md && wc -l` — VERIFIED (138 lines — read: §S1 lines 25-52 — "Make 'suggestion' a first-class engine-view contract, not a component parse" — `suggestions: { ids: string[]; rankedBy: 'wins'|'priority'|'ovr'; cutoffRaw: number; reason: string }` on `BoardVM`; I4 lines 112-126 — "re-pin once, not three times. S1, S2 and C′1's raw export all touch engine-view files. Bundle them with the vite-major (`^8`) pin reconciliation at cutover into a single Architect re-pin").
 
 WHAT I FOUND (labelled):
 - The conflict is real and three-way (Porca B, HY4ORCA A+amendment, Ernie/Beam A).
-- The council consensus is B (the relay: the sitting order v4 — "Beam's synthesis (three seats agreeing) recommends Contract B now"; "HY4ORCA withdrew its A amendment" — HY4ORCA's §0: "my job was to check the convergence against the code; it holds, with one correction that matters" — the correction being the rawSort amendment — so the amended consensus is B-with-rawSort — and B subsumes it).
+- The council consensus is five voices (Beam, PORCA, HY4ORCA, ORCATIDE, Pickle's S1 — the earlier A-shape voice): the four voices on B (the relay: the sitting order v4 — "Beam's synthesis (three seats agreeing) recommends Contract B now"; "HY4ORCA withdrew its A amendment" — HY4ORCA's §0: "my job was to check the convergence against the code; it holds, with one correction that matters" — the correction being the rawSort amendment — so the amended consensus is B-with-rawSort — and B subsumes it). Pickle's S1 (the A-shape) argues the suggestions contract. MUSE's correction (2026-11-20T07:20Z): the re-pin is owed — the pin-watch prefix `colors/src` covers `draftBoard.ts` — the Architect rules.
 - The amendment's distinctive point (the needs filter, HY4ORCA's) is structurally handled by B: the component re-ranks the filtered rows from `rawSort` — the "exactly three suggestions" target is preserved (the law over `shown`).
 - Ernie's/Beam's A — superseded — noted.
 
 WHAT I DID NOT CHECK:
 - The battery/build behavior of B (the Architect applies; the battery asserts the law after — the Architect's v4 instruction).
-- Pickle's earlier `suggestions` variant (the sitting v2 cites `inbox/20261120-0200`-era, P-345 S1) — NOT located in the searched trees — UNKNOWN — HY4ORCA's adjudication says it is the origin of the two A-shape proposals; the shape stands.
+- Pickle's earlier `suggestions` variant (the sitting v2 cites `inbox/20261120-0200`-era, P-345 S1) — the file by that name was not located in the searched trees — UNKNOWN — the located variant is Pickle's S1 (item 6 — the same `suggestions` contract, read there); HY4ORCA's adjudication says the two A-shape proposals are the same design (ERNIE's C5 §2 option A is "Pickle P-345 S1") — the shape stands.
 
-DONE WHEN: one recommendation (B), the fields (rawSort), the re-pin answer (no), the law, the pick-27 citation, the cost/risk.
+DONE WHEN: one recommendation (B), the fields (rawSort), the re-pin answer (yes — MUSE: owed, the pin-watch prefix `colors/src` covers `draftBoard.ts` — the Architect rules), the law, the pick-27 citation, the cost/risk.
