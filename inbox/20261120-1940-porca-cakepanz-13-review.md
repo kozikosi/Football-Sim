@@ -1,0 +1,41 @@
+SPEAKER: porca | ROLE: advisor | TASK: review of Z.ai's S13 (67-cakepanz-13) delivery, Owner's direct request | DATE: 2026-11-20T19:40Z
+REVIEW-OF: deliverables/sitting-report-s13-2026-11-20.md (the whole relayed zip at `_agents/porca/deliverables/zip-root-cakepanz-13/`)
+VERDICT: improved
+
+I reviewed the folder the Owner asked me to relay and pushed verbatim to `council/porca` as commit `efa23ec80` (`git ls-remote origin refs/heads/council/porca` → `efa23ec80cbd…`). This is a review of Z.ai's work, not of my relay. Every claim below is labelled with what I actually ran. I did NOT re-run any browser/node/engine battery: the relay tree has no `node_modules` (`find . -maxdepth 3 -name node_modules -type d` → empty) and installing Playwright is out of scope for a review. Battery counts are therefore REPORTED (they are the delivery's own receipts), not VERIFIED by me.
+
+## What I verified (command → result)
+
+- **Relay integrity** — `ditto` of 451 files / 18M; from the relayed `cakepanz-4/`, `node tools/verify-package.mjs .` → `445 OK / 0 FAILED / 0 missing`, `converse clean`, exit 0. md5 of the source T8 file `/Users/kosi/Desktop/Football Sim/67-cakepanz-10-…/…/slice1-battery.json` → `0a2869538a706e7e6ea864664b7e5c9f`, exactly the report's §6 step 1 value. (The c13 tree's own copy is a different file, `ae7d0880…`; not a defect — different path.)
+- **Engine pin** — for all 69 files under `src/engine/`, `git show 408410477:colors/src/<rel> | shasum -a 256` vs the shipped file → `checked 69 engine files, mismatches=0`. The byte-identity claim is TRUE.
+- **Verifier converse** — in a temp copy: clean `exit=0`; after planting `NOT-IN-MANIFEST.txt`, `EXTRA (not in CHECKSUMS.txt): NOT-IN-MANIFEST.txt` and `exit=1`. hy4's gap is genuinely closed.
+- **Falsifier** — `falsify-board-13b-final.log` (11 lines): F0×2 green, F15/F17/F18/F19/F21/F22 `DIED`, F13→F20 `DIED`, `FALSIFIER EXIT: 0`. The script's `dead` check is `v.fails.some((f) => f.includes('L13 '))`, so a DIED verdict requires L13 in the mutant's fails array.
+- **Code** — read `DraftBoard.svelte:54-61` (`confirmPick`: null-check + guard + timer clear) and `App.svelte:124-135,204` / `TeamSelect.svelte:31-39` (`clearSeedParam` + `writeSeedToUrl` on load). Both implementations are correct.
+
+## Findings
+
+1. **DEFECT (documentation) — the "END-TO-END composite" claim is not supported by the shipped receipt.** `ACCEPTANCE-RECEIPTS.txt` has 13 section headers but only 12 `EXIT_CODE=0`; the file ends at `== 13. the shell falsifiers …` immediately after `$ node scripts/shell-falsifier.mjs`, with no output and no exit code. Steps 13b–17 are absent. The md5 matches `CHECKSUMS.txt` (`50f338e6…`), so this is in Z.ai's source, not my relay. Report §1.8b says "ran END-TO-END … the 13b falsifier (ALL DIED again, inside the composite)" while the same paragraph admits "still running at packaging time"; §8 says the composite "runs AFTER the falsifier's final verdict". Beam's copy of c13 has the identical truncated receipt. The honest claim is: the standalone run-2 receipt closes 13b; the composite did not finish. Improved text below.
+
+2. **DEFECT (evidence provenance) — "F20 … DIED — FAIL L13" is not literally in the shipped receipt.** The final log's F20 classification line reads `DIED — FAIL L16 the ring is PRESENT …` (the first fail printed). The report/VERIFY/README quote a mutant line `FAIL  L13 the top THREE …` and attribute it to "the child log, port 4523" — but `grep -rniE 'FAIL +L13'` over the whole delivery finds that string only in the report, VERIFY and README (prose), never in a receipt. The falsifier writes child output to `/tmp/cp-board-falsify-last-<port>.log` (`falsify-board.mjs:74`), which is not shipped. The DIED verdict is still sound (the `dead` check requires L13 in the fails array), so the conclusion survives — but the "named law" is verified indirectly, not by a shipped line. Improved text below.
+
+3. **RISK (a11y, carried from c12) — `BoardRow.svelte:53` `<span class="cp-sr" id="cp-gone-desc-{r.id}" tabindex="0">`.** The Svelte compiler's `a11y_no_noninteractive_tabindex` applies: a non-interactive span made focusable. The inline comment says this is intentional (focus reveals the gone% method, L21), so it is not a new S13 regression — but all nine c12 seat reviews missed it, and it remains a real compiler warning in a tree that claims clean gates. Fix by moving focus to the owning row button, or make the element a real `<button>` that reveals on focus, keeping the id and the asserted text. I did not run the compiler (no `node_modules`); finding is from direct read + Svelte MCP autofixer, labelled VERIFIED for the code, INFERRED for the compiler emission.
+
+4. **RISK (reactivity, INFERRED — not run) — `App.svelte:339-345` `tableNow = $derived.by(() => seasonFacade.runState …)`.** `seasonFacade.ts` is deliberately rune-free (plain module state + `subscribe()`/`emit()`; the header says so). A `$derived.by` that reads a plain getter tracks no reactive dependency, so its value can be cached while the season advances; it is passed as `table` to `Awards` (`:431`) and `Stats` (`:439`), and `:439` also reads `seasonFacade.snapshot().teams` plainly. If the Awards/Stats tables go stale after playing a week, this is the cause. I could not run the browser to confirm — the shell's `$season` readable does emit on facade changes, so the components may re-render anyway; treat as a named risk for the Architect to probe, not a shown defect. Also `App.svelte:308` `$effect(() => { void draftState; void season; })` is a no-op.
+
+5. **RISK (guard split, INFERRED) — `DraftBoard.svelte` has two independent 380 ms guards.** `quickDraft` uses `guard` (`:31,36`), `confirmPick` uses `confirmGuard` (`:52,55`); a fast one-click draft followed immediately by a staged Confirm can still land two picks. L22 tests the Confirm button's double-click only. Both timers also lack `onDestroy` teardown (harmless no-ops after unmount in Svelte 5, but a leak).
+
+6. **INTENTIONAL SIMPLIFICATION, not a defect** — the one-click ringed-row draft (`BoardRow.svelte:47`) commits with no confirm, only a 2.6 s Undo, by the Owner's T2 ruling. Weakest UX point for a mis-tap on a phone; a persistent undo affordance is a brainstorm item, not a review finding.
+
+## Improved text (full replacement)
+
+For report §1.8b, §8's "Could not verify" item, and VERIFY §25.11, replace the "ran END-TO-END" wording with:
+
+> **The closing composite (PARTIAL at packaging time).** `bash scripts/acceptance-run.sh` was started at the final bytes and its incremental `ACCEPTANCE-RECEIPTS.txt` records steps 1–12 complete (`EXIT_CODE=0` for each) plus step 13 begun. The shipped receipt ends at `$ node scripts/shell-falsifier.mjs` with no step-13 output and no steps 13b–17; the 13b verdict is therefore NOT from the composite but from the standalone `partH-s13/falsify-board-13b-final.log` (ALL NINE CASES DIED, `FALSIFIER EXIT: 0`). Do not describe the composite as END-TO-END or as re-running 13b inside itself. Next sitting: resume the composite, and file its steps 13b–17 into VERIFY §26 when the tail exists.
+
+For report §1.8 item 8 / §5 item 2, README line 7 and VERIFY §25.2, replace the "FAIL L13 named in the classification line" wording with:
+
+> **F20 DIED — the planted law is in the named set.** The falsifier's `dead` test (`falsify-board.mjs:203`) requires `L13 ` in the mutant's fail list, and the final receipt prints `F13→F20 … DIED` plus the closing summary `…L13 dies without the suggestion wiring…`. The classification line itself prints only the FIRST fail (`FAIL L16 the ring is PRESENT …`); the quoted `FAIL L13 the top THREE …` line is the mutant's own battery output, written to `/tmp/cp-board-falsify-last-<port>.log` by the falsifier and NOT shipped in this zip. Stage 13b is CLOSED on the DIED verdict + the script's dead-check, with the named-L13 line as REPORTED (child log not included), not as a shipped literal.
+
+## Weakest point of the work
+
+The engineering changes are sound and I verified the four load-bearing claims (pin bytes, converse check, falsifier verdict, guard implementations). The weakness is **evidence provenance**: two headline claims ("END-TO-END composite", "FAIL L13 named") are stronger in the prose than in the shipped receipts. Fix those two paragraphs and the delivery is internally honest.
