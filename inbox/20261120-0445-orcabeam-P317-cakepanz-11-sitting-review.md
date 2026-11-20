@@ -1,0 +1,65 @@
+SPEAKER: ORCABEAM | ROLE: advisor | TASK: review of zip-root-cakepanz-10 (Z.ai 2026-11-20 sitting: P-317 re-pin + T1-T8) | DATE: 2026-11-20T04:45Z
+FOR: P-317
+
+REVIEW-OF: zip-root-cakepanz-10/ (pushed to council/orcabeam @ c5e4b36f3, 41 files, 424K) — the Z.ai 2026-11-20 sitting package
+VERDICT: ok — with one open gate item and three hygiene fixes; nothing in the shell delta looks wrong
+
+## 0 · What I ran (receipts)
+
+- `git ls-files` / `find` on the pushed tree: 41 files, no `.git`, no `node_modules`, no `src/`, no `package.json` — this is a DELTA package, not a full tree (REPORTED as such by the README; VERIFIED by inspection).
+- `md5 -r CHECKSUMS.txt` → `956ab4693a9421a22081143ba28b5035` while the file's own self-entry says `d41d8cd98f00b204e9800998ecf8427e` (the MD5 of an empty file). The self-hash line is wrong. VERIFIED.
+- `md5 -c CHECKSUMS.txt` on macOS produces no per-file "OK" lines (the tool's format is not GNU's); the "md5 -c clean" claim in the report is platform-dependent and should not be quoted as a receipt on macOS. VERIFIED (no output, exit 0).
+- Read: README, INTAKE-LEDGER, SNAPSHOT, SHELL-STATUS, VERIFY (head), sitting report, both inbox files, all 17 diffs, the contrast/slot/visual battery files, package-delivery.sh, shell-status.mjs, falsify-slot.mjs, and the acceptance-run diff. No build was run by me (no tree present to run against) — every test claim below is REPORTED from Z.ai's receipts, not re-run by me.
+
+## 1 · What is right (keep)
+
+1. **The T1 closure is real and well-shaped.** `src/lib/port/seam.ts` now imports and re-exports `draftOrder` from the engine store; `TeamSelect.svelte` deleted its own `orderWith()` and previews `draftOrder(chosenIndex, chosenSlot)`; `App.svelte` dispatches `START { seed, userTeam, pickSlot }` with `pickSlot` omitted when null or the team's own slot; `Complete.svelte` reads `record.pickSlot` and tells the truth. The shell computes NO order. This matches the Owner's P-317 ruling and the "one writer for the product" rule. VERIFIED against the diffs.
+2. **The T2 one-click button is correctly scoped.** It is gated on `suggest` (the ring ids), calls `onpickDirect` (the store PICK, no expand/chip/confirm), and the expand path survives for flex. The slot is named on the button (`Draft {name} at {slotLabel}`) — the right fix for the "a player fits several slots" ambiguity. The `.cp-rowtop` wrap + the 430px wrap rule keep the 390 law honest. VERIFIED.
+3. **T3 seed replayability is a genuine product gain.** `parseSeed()` accepts a base-36 code or an integer (1…2^31-1) with a random fallback; `seed` became `$state`; `seedCode` derived and shown in footer + Complete + shareable stamp. Save/restore carries the seed (REPORTED). This turns every draft into a shareable, replayable artifact — the biggest UX win of the sitting.
+4. **T4 a11y is correctly done.** `aria-describedby` → a visually-hidden `.cp-sr` copy; the hover tooltip stays `aria-hidden="true"` (decorative, per D3); `:focus-visible` on `.cp-main`, `.cp-chip`, `.cp-quick`, `.cp-btn`, `.cp-go`. The gone% method is never only hidden from assistive tech. VERIFIED against the diff.
+5. **The T8 ring request (inbox/20261120-0420) is the strongest document in the package** — root cause named with file:line (`draftBoard.ts:61` strips `_w/_p`), the component parse named (`DraftBoard.svelte:40`), two candidate contracts, a recommendation (contract 1, `suggestions { ids, rankedBy, cutoffRaw, reason }`), and the view-side readiness. This is exactly the kind of exact, anchor-bearing proposal the council asks for. VERIFIED.
+6. **The tools are the right kind of infrastructure.** `shell-status.mjs` (measured, never hand-written, GENERATED banner) and `package-delivery.sh` (previous artifact → scratch → apply-asserted delta → fresh checksums → gate) are the anti-rot tools the process has been asking for. The fact that `package-delivery.sh` refused to emit on its own first test is evidence it works, not a defect. VERIFIED against the tool source.
+7. **The re-pin procedure is documented as a reproducible FIVE-path contract** (src/engine, tools/mathlab/flex.json, test/engine, test/engine.test.ts, data/packs) with `diff -rq` exit 0 and the carried suite at 430/430. REPORTED (not re-run by me — no tree).
+
+## 2 · Open items (must be named, not papered over)
+
+1. **Stage 13b stopped on F20 TAUTOLOGY.** The staged acceptance run went green through 16 stages and then stopped at 13b (exit 1) because F13→F20 reported TAUTOLOGY: the suggestion-wiring mutation killed, but L13 stayed green. The other six 13b cases (F0-board 6/6, F0-shell 48/0, F15, F17, F18, F19, F21, F22) DIED. Z.ai attributes this to `falsify-board.mjs` predating the D-2 STALE-SERVER GUARD that `shell-falsifier.mjs` carries — a mutant child can be served a stale build and read green. **Consequence: the ring-suggestion wiring is NOT proven to die.** The 13c–17 stages did not run in that pass. This is the package's one open gate item and it is filed as the next sitting's first fix. REPORTED from the report §2/§9. My read: this is a real, named defect, not a cosmetic one, and it blocks any "all green" claim. It does NOT invalidate the 13 laws that did run (slot 27/0, visual 13/0, board 11/0, shell 48/0, contrast 2/0) — those are separate suites that passed.
+2. **SHELL-STATUS.md says "slot battery (P-317): NO receipt on record"** while the report and the zip's own `deliveries/receipts/slot-battery-latest.json` claim 27/0. Either the status tool ran before the receipt was written (timing) or the receipt path the tool looks for does not match the path the battery writes. Either way, the "measured, never hand-written" tool is currently self-contradictory on this one line. VERIFIED (the file is in the package). Fix the path or the write order before relying on SHELL-STATUS as the single source of truth.
+3. **CHECKSUMS.txt self-hash is wrong** (see §0). Anyone running a naive `md5 -c` on a GNU system will see one "FAILED" line even though the other 40 files pass. Fix the self-entry (or drop the self-entry and hash the file externally) before this becomes a habit.
+4. **The report's §8 lists `node tools/ci/canary.mjs` as not run** (order §8 lists it as not re-run by Pickle either) — UNKNOWN. Also the newer Ernie notes (0332/0334/0336) were not read this sitting — UNKNOWN. These are honestly flagged and I repeat them here so they are not lost.
+
+## 3 · Implications for the rest of the council
+
+- **The engine pin moved.** 5c808472 → 408410477 (a "multisport plan M — docs only" commit). The shell snapshot is now 69 files and carries the pass-class node (`sports/nfl/sim/passclass.ts`) and the context-snapshot seam (S3/S4), both default-off/unused. Consequence for Colors v1: the cutover must consume the NEW pin, not the old one, and the pass-class node stays OFF until the Architect rules on the post-cutover fit (λ stays 0; GLM off). Any seat still quoting 5c808472 as "the pin" is now stale.
+- **The seam grew by one symbol (`draftOrder`).** M5's thin-seam count (38 distinct engine modules) needs re-measuring after this sitting; the seam is still one file (`src/lib/port/seam.ts`) and the import is additive, so M3's swap test should still pass, but the number should be re-quoted rather than assumed.
+- **The falsifier discipline has a hole.** `falsify-board.mjs` lacks the D-2 stale-server guard that `shell-falsifier.mjs` carries. The fix is small and well-scoped (carry the guard + PID-port isolation into falsify-board), but until it lands, F20's law is unverified and the acceptance run cannot be claimed green end-to-end. This is the next sitting's first item and it is correctly filed as such.
+- **The six named AA holes are now GATED, not fixed.** Three team inks (Ravens dark 4.21, Chargers light 4.28, Dolphins light 3.95) + two light-gold2 pairs (1.51/1.65) + the dark rose ink (3.17). The guardrail fails on a NEW hole. This is the right shape — the fix is a palette ruling (Owner), not a seat's unilateral change — but it means the Owner must rule before the record can shrink.
+- **The C′1 ring is still parsed from strings.** `DraftBoard.svelte:40` does `Number(String(x[vm.sort]).replace(/[^0-9.\-]/g, ''))`. The T8 request asks the Architect to export the ring as data (`suggestions { ids, rankedBy, cutoffRaw, reason }`). Until that lands, the ring's semantics are display-shaped and any display-format change can silently move the ring. My recommendation: contract 1, as Z.ai proposes, and add the invariance law (Q7-style) so the ring cannot become context-dependent.
+
+## 4 · Innovation / UX ideas for cakepanz and the Colors v1 shell
+
+These are proposals, not patches — they belong in the queue if the Owner or Architect wants them.
+
+1. **Make every draft shareable by URL.** `?seed=` already exists, but a random draw does NOT write the seed back to the URL, so a shared "random" draft cannot be replayed. On a random draw, `history.replaceState` the resolved code into `?seed=` so every draft — chosen or random — is one link. Cost: ~5 lines in `parseSeed()`/`startDraft`. This is the single highest-value UX addition on top of T3.
+2. **Copy-code button next to the footer code.** The footer already shows `code {seedCode}`. A one-tap copy (with a tiny "copied" toast) removes the friction that makes sharing theoretical. Also add a "replay this code" input on the landing screen so a code pasted from a friend lands on the same draft without editing the URL.
+3. **Undo toast after a one-click draft.** T2's quick button drafts with no confirm. That is the speedrun feature, but a mis-tap is now a real pick. A 3-second "Drafted X at slot Y — Undo" toast (the store already has undo) converts a mistake into a recoverable action without adding a confirm step. Keep the button instant; make the recovery instant too.
+4. **Export the ring as ADVICE, not decoration (T8).** Whichever contract the Architect picks, ship `reason` as a one-sentence line in the house style and expose it to the screen reader. A ring that says "top three by Wins/Priority" is advice; a gold ring with no text is decoration. This is the difference the Owner's ruling ("the three recommended rows") actually needs.
+5. **Property-based seed battery.** The visual battery checks two seeds (a3f2, k1x9). Add a law that runs N random seeds and asserts invariants (ring size ∈ {3, 3+tie}, contiguous rows, no page errors, identical replay) rather than named seeds. Named seeds catch regressions; random seeds catch assumptions. Both are cheap.
+6. **Palette ruling before the contrast fix.** The six holes are gated. Propose the Owner's ruling be a single token change (deeper gold for small text on light; the three team inks shifted, not replaced) applied in one commit, then the guardrail re-run and the KNOWN baseline shrunk in the same commit. Do NOT patch inks one at a time — that is how the six became six.
+7. **Adopt `shell-status.mjs` and `package-delivery.sh` in Colors v1.** They are currently cakepanz-only. The "measured, never hand-written" discipline is exactly what Colors v1's cutover will need (one writer, one truth). Port them before cutover, not after.
+8. **Seed in the save record + restore.** T3 already carries the seed in the record (REPORTED). Make the autosave key include the seed code so two tabs with different seeds never clobber each other, and so a restored draft re-opens on its own board. Small, but it removes a class of "my draft vanished" reports.
+9. **Focus ring on the whole row, not just the control.** `:focus-visible` is on `.cp-main` etc. Add `:focus-within` styling on `.cp-row` so a keyboard user sees which row they are on, not just which control. Cheap, high-value for the Tab/Enter path T4 built.
+10. **A "what changed since last pick" diff on the feed (Slice 4).** Not in this package, but the natural next slice. The ring already marks the recommended rows; the feed should mark which of those actually got drafted by whom, so the user sees the speedrun path being taken (or stolen) in real time.
+
+## 5 · Recommended next actions (for the queue, not for me)
+
+- Land the shell delta (report §3) onto the hosted tree — Owner.
+- Carry the D-2 stale-server guard + PID-port isolation into `falsify-board.mjs` and re-run 13b–17 — next sitting's first item (already filed).
+- Rule the C′1 ring contract (recommend contract 1 + the Q7 invariance law) — Architect.
+- Rule the six AA holes (one token commit) — Owner.
+- Fix the CHECKSUMS self-hash and the SHELL-STATUS slot-receipt path — small, either seat.
+- Add the shareable-URL write-back (idea 1) and the copy-code button (idea 2) to the queue as P3 ideas if the Owner wants them.
+
+## 6 · Verdict
+
+The sitting is solid work, receipted honestly (including its own open gate item), and the T1 closure is the load-bearing piece. The T8 ring request is the kind of exact, anchor-bearing proposal the council exists to produce. The open F20 TAUTOLOGY and the two hygiene items (self-hash, slot receipt) are real but small and correctly filed. Nothing in the shell delta looks wrong to me; the remaining risk is process (falsifier guard) and palette (Owner ruling), not code.
