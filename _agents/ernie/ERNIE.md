@@ -21,7 +21,8 @@
 3. **Shell innovation v3** → `inbox/20261119-2305-ernie-cakepanz-shell-innovation-v3.md` (I17–I29).
 4. Bulletin `20261119-2315-ernie.md`; this lane rewritten.
 5. **Reviewed the three new seat reviews** (Pickle P-287, Pickle P-345, Beam cakepanz-10) → `inbox/20261119-2342-ernie-review-of-seat-reviews-v3.md`. Pickle's D1 + D2 and R1 all reproduce; Beam's headline check does not; my F1 is withdrawn in the review file and here.
-6. **Verified Claude's `da0cf927`** (S3 snapshot + S4 async twins) → `inbox/20261120-0145-ernie-da0cf927-verification.md`: 427/427 and tsc 89/89 reproduce at the pushed bytes (421/421 at the parent); one risk (F1: `dispatchAsync`'s chain is poisoned by a throwing subscriber).
+6. **Verified Claude's `da0cf927`** (S3 snapshot + S4 async twins) → `inbox/20261120-0145-ernie-da0cf927-verification.md`: 427/427 and tsc 89/89 reproduce at the pushed bytes (421/421 at the parent); one risk (F1: `dispatchAsync`'s chain is poisoned by a throwing subscriber). Re-verified the fix `92f87f7e`: 428/428, tsc 89/89, and the new test **dies without the fix** (14 pass / 1 fail).
+7. **Reproduced the passGap study `ed16fd8f` from public data** → `inbox/20261120-0215-ernie-passgap-verification.md`: every headline number reproduced (187,644 dropbacks, 320 team-seasons; split-half 0.539/0.364; slopes 0.966/0.869/0.939; λ 6.89 / 6.83 / 7.13). Three caveats: λ is θ-dependent (θ chosen, not fitted), split-half is schedule-fixed (year-to-year 0.448/0.206 is the transferable number), and the reading rule is self-reported (same commit as the results).
 
 ### What I did in the earlier sittings today (still relevant)
 - Reviewed Z.ai's **item-6** relay (`inbox/20261119-2039-…-item6-sitting-review.md`, improved, F1–F6) and the other seats' reviews of it (G1–G9).
@@ -49,6 +50,8 @@
 
 **CLAUDE'S `da0cf927` — VERIFIED at the pushed bytes (01:45Z).** 6 files, +156/−16: `claude/NOW.md`, new `colors/src/core/snapshot.ts`, `app/store.ts`, `app/selectors.ts`, 2 tests. **No engine, no protected constant, no pin, no package.json** — react/react-dom still listed, `vite ^8.3.6` unchanged. **427/427** (421/421 at the parent `deb6275fa`; +6 = the new tests) and **tsc 89/89** (89 errors, 16 files, zero per-file drift vs `tsc-baseline.json`). S3 is sport-free (imports only `./events.ts` + `./hash.ts`), hashes `snap53:` over `canonicalText`, drops zero form at build, deep-freezes. S4 is additive (`dispatch` body unchanged): `dispatchAsync` serialises through a promise chain, yields a macrotask, resolves with the post-action state; `selectBoardAsync` returns `{pending:false, vm}` deep-equal to `selectBoard`. **Risk F1:** "never rejects" is conditional — the catch calls `set()` (subscriber notification) outside any try, so one throwing subscriber rejects `run`, and `chain = run` keeps it → **every later `dispatchAsync` on that store rejects immediately**. One-line fix: `chain = run.catch(() => {})`. No test covers it.
 **ITEM-6 TILT (re-derived from both packs):** s=±0.25 → points ±4.2%, sacks −24.4/−24.9% and +30.6/+30.2%, giveaways ∓13.8/13.2%; s=1 → points +14.8/+15.2%, sacks −68.8%. Packs differ by ≤0.6 pt. The tool runs with `lambdaOverride: 1` — it sizes TILTS, it does not identify λ; λ stays 0, GLM off. Item-6 JSONs are on `council/beam` (15 files on mine too), **0 on inkling**, and byte-identical to my hosted copies.
+
+**PASSGAP `ed16fd8f` — INDEPENDENTLY REPRODUCED FROM PUBLIC DATA (02:15Z).** I fetched nflverse pbp 2016-2025 (206 MB) and ran the pushed tool: 187,644 dropback plays, 320 team-seasons, offense split-half 0.539 (null p95 0.134), defense 0.364 (0.146), year-to-year 0.448/0.206, slopes 0.966/0.869/**0.939 ± 0.033**, λ **6.89 ± 0.24** (2016-22 6.83 ± 0.28; 2023-25 7.13 ± 0.47). λ = slope/mean Var(θ) with mean Var 0.1364 — the report's arithmetic is internally exact. **Caveats:** λ is θ-dependent (θ=[0.3,−0.2,−1,−0.6] is chosen, not fitted — scale θ by c and λ moves 1/c²); the SE is sampling-only (excludes the first-order tilt approximation and θ uncertainty); split-half by game parity holds the schedule fixed, so the **year-to-year** number is the transferable one; clustering is offense-only, so the defense SE may be understated (11.6 SE, so no effect on the conclusion); the reading rule first appears in git in the same commit as the results (self-reported). **Product stays λ=0, GLM off — correct: the tilt exists but the ratings→gap mapping is unmeasured.** The post-cutover spec is now "match the measured distribution (mean 0, sd ≈ 0.024) and 0.45/0.2 persistence", not "guess a mapping".
 
 **D1 is CLOSED — three independent derivations agreed.** Canonical c10 package intact: 6,418 B / md5 `0a2869538a706e7e6ea864664b7e5c9f` (= CHECKSUMS.txt:18). `council/inkling` and `council/orcaink` are 51 files / 48 OK; `council/pickle` is 52 / 49 OK. **Fix = add that one file at the manifest's own path. Do NOT re-cut the zip, do NOT regenerate the manifests.**
 
@@ -100,7 +103,8 @@
 - **THIS SESSION'S REVIEW:** `inbox/20261119-2258-ernie-zai-v3-sitting-review.md` (F1–F8, verdict improved).
 - **THIS SESSION'S INNOVATION v3:** `inbox/20261119-2305-ernie-cakepanz-shell-innovation-v3.md` (I17–I29).
 - **THIS SESSION'S REVIEW-OF-REVIEWS:** `inbox/20261119-2342-ernie-review-of-seat-reviews-v3.md` (Pickle P-287/P-345, Beam; my F1 correction is in `20261119-2258-…-review.md` §5).
-- **THIS SESSION'S da0cf927 VERIFICATION:** `inbox/20261120-0145-ernie-da0cf927-verification.md` (427/427 + 89/89 reproduced; F1 risk on `dispatchAsync`).
+- **THIS SESSION'S da0cf927 VERIFICATION:** `inbox/20261120-0145-ernie-da0cf927-verification.md` (427/427 + 89/89 reproduced; F1 risk on `dispatchAsync` — fixed and re-verified in `92f87f7e`, 428/428).
+- **THIS SESSION'S passGap REPRODUCTION:** `inbox/20261120-0215-ernie-passgap-verification.md` (every headline number re-derived from public nflverse data).
 - **HOSTED RELAY (verbatim):** `_agents/ernie/deliveries/z-post-blue-docs-update-2026-11-19-v3-sitting/`.
 - **THE ORDER Z.ai ANSWERED:** `deliveries/zai-next-sitting-prompt-2026-11-19.md` (v3.0, 290 lines).
 - **Prior:** `inbox/20261119-2152-…-deb6275-verification.md` · `inbox/20261119-2105-…-review-of-seat-reviews.md` (G1–G9) · `inbox/20261119-2055-…-innovation-v2.md` · `inbox/20261119-2039-…-item6-sitting-review.md`.
@@ -126,6 +130,6 @@
 - `/Users/kosi/Desktop/Football Sim` (gh-pages, 20,251 dirty) — Owner's tree, not mine to touch.
 - Unsaved work in other seats' worktrees (flint 452, q 1831, glyph 276, collective/hallowed-shell/slime-galley snapshots) — report only, never touch.
 
-## 6 · Session end state (2026-11-20T01:50Z)
+## 6 · Session end state (2026-11-20T02:20Z)
 - Worktree clean after this session's commit; `council/ernie` pushed (tip recorded in the commit).
 - **Re-rook audit (inkling's A–G): unchanged from prior sessions.** A verified · B verified · C incomplete (2,416 unique hex tokens collected; classification not finished) · D/E not run.
