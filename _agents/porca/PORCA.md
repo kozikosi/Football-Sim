@@ -3,33 +3,30 @@
 ## Identity
 - **Seat:** PORCA · **Model / how reached:** PORCA / API · **State:** advisor
 - **ID block:** none filed · **First seen:** 2026-11-19 (admitted by the Owner)
-- **Strengths shown (evidence, not claims):** 19 inbox receipts pushed on `council/porca` across four sessions on 2026-11-20. All measurements from fresh `git archive`/`git show`/real test runs; no shared tree, product file, engine, pin or other seat's file touched. Three self-corrections filed when runs falsified my own earlier claims (C8 week overclaim; A1 pin claim; A3 mirror critique).
+- **Strengths shown (evidence, not claims):** 21 inbox receipts pushed on `council/porca` across five sessions. All measurements from fresh `git archive`/`git show`/`md5`/real file reads; no shared tree, product file, engine, pin or other seat's file touched. Three self-corrections filed when runs falsified my own earlier claims (C8 week overclaim; A1 pin claim; A3 mirror critique).
 
-## Current work
-- **Claimed / in progress:** none. All taken items filed and pushed.
-- **Session 1 (v1 order):** C3, C4, C9 (Owner-flagged) at 03:28Z; C1, C2, C5, C6, C7, C8, C10, C11 at 03:33Z.
-- **Session 2 (v2 order):** C12 ring adjudication at 03:40Z — recommend **Contract B** (`rawSort` fact) over A (`suggestions`), because the ring ranks the needs-filtered `shown` list that `boardVM()` cannot see.
-- **Session 3 (v3 order):** A2 Q7 adversarial at 03:52Z. Ran the real test (10/10) plus 18 adversarial providers in scratch. Falsified my own C8 week/season claim: the shipped test's third no-snapshot QB assertion already catches plain week/season readers. Recommended a poison-Proxy assertion, a broader fixture family and a `SHIPPED_PROVIDERS` export. Exact snippets in `inbox/20261120-0352-porca-A2-q7-adversarial-settled.md`.
-- **Session 3 (v3 A3):** 03:58Z partial refutation of v4 §2.6 #6. Measured the precise escape set (unpopulated keys; non-QB-only metadata reads; a provider defaulting an absent snapshot to week 5). Refuted the blanket "week reader passes" wording; endorsed `week: 6` for the default-5 case. Exact replacement wording in `inbox/20261120-0358-porca-A3-c8b-week-gap-confirm.md`.
-- **Session 4 (v4 reviews):**
-  - A1 C12 synthesis review (`inbox/20261120-0405-porca-A1-c12-synthesis-review.md`): verified zero `suggestions` consumers, `boardVM()` has no filter state, pin-watch covers `colors/src/**`. Withdrew my own "engine pin does not move" claim — re-pin owed for both A and B. Endorsed hy4orca's B. A1 now **REVIEWED ✓✓✓** (hy4orca/Beam/Porca agree on B; orcabeam dissents for A + rawSort).
-  - C18/B8 battery-law review (`inbox/20261120-0410-porca-C18-battery-law-identity-review.md`): Beam's and ERNIE's ring laws are DOM count/position only, so a wrong-but-three-contiguous ring passes. Added paste-ready `V2-ID`/`L-C1d` identity law from `rawSort` on `shown`, with a needs-filter state. Flagged the conflicting seed sets.
-  - A3 addendum: ERNIE/orcads/hy4orca "week gap proofs" all used mirrors of only the first assertion; none ran the shipped test's line-94 no-snapshot call. orcaman's 04:05 independent reading agrees with my refinement.
+## Current work — session 5 (2026-11-20, the Owner's cakepanz relay)
+- **Pushed the Owner's folder verbatim:** `_agents/porca/deliverables/zip-root-cakepanz-10/` (41 files, 424 KB, 0 source-vs-copy byte mismatches), commit `97308ac8a`, verified on `origin/council/porca`. Follows Pickle's existing convention at the same path under `_agents/pickle/`.
+- **Reviewed the whole relay:** `inbox/20261120-0447-porca-P-317-cakepanz10-package-review.md`, `VERDICT: improved`. Four packaging defects + two minor nits + one clarification, each with a drop-in replacement. Headline: the two delivered status docs disagree about the single open gate item (bootstrap says "still running", report says "STOPPED exit 1"); the delivered SHELL-STATUS.md is stale (says the slot receipt is absent although it is present; omits the pin section its own tool writes) because acceptance step 13d never ran after 13b stopped; the receipts file ends at the 13b command so the F20 TAUTOLOGY has no raw stdout in the record; `md5 -c CHECKSUMS.txt` is a silent no-op on this mac and the manifest's line 1 is a broken self-entry.
+- **Filed 8 improvement ideas:** `inbox/20261120-0452-porca-IDEA-cakepanz-shell-next.md` — re-pin tool, ring-format falsifier, URL seed, local undo affordance, desktop DOM bound, generated-file input hashes, sport adapter, relay mirror.
+- **Pushed:** `4b9a80039`, matched by `ls-remote`. Worktree clean.
 
 ## Corrections carried in the record
-- Ring verdict: **B** (`rawSort`), not A. My C5 and C12 both say B; v3's "all recommend A" was wrong. Re-pin is owed even for a view-only change.
-- Q7: plain week/season readers are **already caught** by the no-snapshot QB assertion. The true gap is unpopulated keys and non-QB-only metadata reads. `week: 6` is a narrow fix, not the whole fix.
-- Distinguish **D18** (no-DSL defer) from the 13 Nov batch item 4; inkling/orcaink are **missing** a file, not failing a hash; pickSlot introduction is `06d89724d`; `d3bd81d2` = Colors engine pin, `4ca9a071` = 67-cakepanz snapshot pin; Part 0 is REPORTED, not accepted.
+- Ring verdict: **B** (`rawSort`), not A. Re-pin is owed even for a view-only change.
+- Q7: plain week/season readers are already caught by the no-snapshot QB assertion. The true gap is unpopulated keys and non-QB-only metadata reads.
+- **Pin provenance (settled this session):** pickSlot at `560b8364f` IS correct on the pin's lineage (`git merge-base --is-ancestor 560b8364f 408410477` → yes). `06d89724d` is the pre-reroot lineage commit; both carry the same lines. Do not "correct" SNAPSHOT.md to the latter.
+- Part 0 is REPORTED, not accepted. `d3bd81d2` = Colors engine pin; `4ca9a071` = 67-cakepanz snapshot pin (both superseded for cakepanz by the 408410477 re-pin, REPORTED from the relay).
 
 ## What the next session needs
-- **Read first:** the four v4 filings listed above, then `inbox/20261120-0352-porca-A2-q7-adversarial-settled.md`.
-- **Do not redo:** all C1–C11, C12, A1, A2, A3 and C18/B8 items I took. Do not re-measure the c10 repair, re-apply `hosted-c9.diff`, re-run passGap, or re-run the 18-provider Q7 probe without a stated reason.
-- **Still open (not mine, no claim):** A2 Architect resumption pack needs a third seat (Beam + ERNIE filed); C15/C16, C20, C25, C26, C30, C34 each have Beam + ERNIE and need a third; C21/C33 have one seat. Owner/Architect/MUSE actions are listed in v4 §3 — council does not do them.
-- **End-of-chat gate:** `node tools/preserve.mjs check` exits 1 because of other seats' unsaved work (`orcabeam`, `orcaman`, `q`, `vloc`, `vlorca`). My worktree `council/porca` reported `0 dirty / 0 unpushed OK`. Do not touch other seats' worktrees.
+- **Read first:** the two session-5 inbox files above, then the relay at `_agents/porca/deliverables/zip-root-cakepanz-10/deliverables/sitting-report-2026-11-20.md`.
+- **Do not redo:** all C1–C11, C12, A1, A2, A3, C18/B8, the c10 re-measurement, `hosted-c9.diff`, passGap, the 18-provider Q7 probe, or the cakepanz-10 relay review.
+- **Still open (not mine, no claim):** the falsify-board stale-server guard (next sitting's FIRST item per the relay); the C′1 ring contract; the six named AA holes; the Owner's Part 0 ruling; plan M's sport-two choice (baseball vs basketball).
+- **End-of-chat gate:** `node tools/preserve.mjs check` exits 1 because of OTHER seats' unsaved work (`orcabeam`, `orcaman`, `q`, `vloc`, `vlorca`, shared tree). My `council/porca` reported `0 dirty / 0 unpushed OK`. Do not touch other seats' worktrees.
 
 ## Files in this lane
 - `_agents/porca/PORCA.md` — this file.
-- No build copies, no images, no lane code (advisor role). All work lives in `inbox/` and one bulletin file per session.
+- `_agents/porca/deliverables/zip-root-cakepanz-10/` — the pushed relay (verbatim).
+- No build copies elsewhere, no images, no lane code (advisor role). Work lives in `inbox/` plus one bulletin file per session.
 
 ## Role
 General advisor. Admitted by the Owner on 2026-11-19. Propose, test, dissent, measure; never build or rule.
