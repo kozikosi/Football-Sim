@@ -1,0 +1,39 @@
+SPEAKER: ernie | ROLE: Kilo seat (advisor) | TASK: independent review of Z.ai's 67-cakepanz-11 sitting (T1–T8 + the engine re-pin) | DATE: 2026-11-20T04:50Z
+REVIEW-OF: deliverables/sitting-report-2026-11-20.md + the 17 diffs + 3 new batteries + 2 new tools + 2 inbox notes, hosted read-only at `_agents/ernie/deliveries/zai-cakepanz-11-2026-11-20/`
+FOR: P-317
+VERDICT: improved
+
+## What I actually ran (commands + results — the rest is REPORTED, see §5)
+
+1. **Package integrity.** The 41-file set is byte-intact: node-crypto md5 over every content file against `CHECKSUMS.txt` → **OK=40 FAIL=0** (line 41 is `CHECKSUMS.txt` listing itself with the empty-file hash `d41d8cd9…`; benign). I copied it into my lane and re-verified there → `dest OK=40 FAIL=0`.
+2. **The engine pin is real and the store semantics are what Z.ai says.** `git cat-file -t 408410477` → commit; `git ls-tree -r 408410477 colors/src | grep -c '\.ts$'` → **69** files (SNAPSHOT says 69 ✓). `store.ts` at that pin: `draftOrder(userTeam, pickSlot?)` builds `perm=[0..31]`, swaps `perm[userTeam]↔perm[pickSlot-1]` when `pickSlot-1 !== userTeam`, then `snakeOrder().map(i => perm[i])` (store.ts:66-69); `START` validates `pickSlot ∈ [1,32]` integer else `start: bad pick slot` (:109); the record omits `pickSlot` when natural (:110); `restoreDraft` replays via `draftOrder(rec.userTeam, rec.pickSlot)` (:74). **This matches the slot battery's independent oracle line-for-line** (`oracleOrder` = the same single `perm` applied to a strict serpentine every round). The battery is a genuine independent check, not a mirror of the store. VERIFIED.
+3. **The C′1 ring root cause is exactly as filed.** `colors/src/sports/nfl/view/draftBoard.ts:37` declares `_w`/`_p`, `:53-54` sorts on them, `:61` ships `rows.slice(0,limit).map(({_w,_p,...r})=>r)` — the raw keys are stripped before the VM leaves the engine, so `DraftBoard.svelte`'s `val()` must parse display strings. The T8 request's premise and its contract-1 recommendation are correct. VERIFIED.
+4. **Falsifier discipline.** `falsify-slot.mjs` CARRIES the D-2 stale-server guard + PID ports (its `serveAndRun` asserts served-hash === this-copy-hash, :46-48) — so F-S1 is trustworthy. The open item is real: the `falsify-board.mjs` diff shows **only anchor re-hits, no guard added**, so the F20 TAUTOLOGY root cause (a mutant served a stale build reading green) is correctly diagnosed and correctly left as the next sitting's first item. VERIFIED (from the diff).
+5. **What I did NOT re-run.** The full cakepanz-4 tree (src/, node_modules) is not in the zip — only the delta. I did not reconstruct gh-pages c10 + overlay + `npm ci` to re-run the 8 batteries. Their counts (engine 430/430, node 33/33, slice 29/0/10/3, shell 48/0, board 11/0, slot 27/0, visual 13/0, contrast 2/0) are **REPORTED by Z.ai**, and the receipts file is consistent with them (I read it).
+
+## Findings
+
+**D1 — DEFECT (the one that matters): the package's own verification instruction is a no-op on the Owner's Mac.**
+README §"Verification (quick)" and report §10 both say `md5 -c CHECKSUMS.txt`. On macOS (darwin, the Owner's platform) the BSD `md5 -c` **cannot parse the `md5sum` `<hash>␠␠<path>` format** — it silently exits 0 on a *tampered* tree. Proof I ran: append one byte to `README.md`, `md5 -c CHECKSUMS.txt` → `exit=0` (should fail). The correct tool exists here (`/sbin/md5sum`, GNU coreutils) and *does* catch it → `README.md: FAILED`. But `md5sum -c` on the **pristine** zip still prints `CHECKSUMS.txt: FAILED`, because `CHECKSUMS.txt` lists itself with the empty-file hash. So *no* documented command gives a clean green on macOS. Fix: verify per-file (node `crypto`, or `md5sum -c` ignoring the self-entry), and never print "md5 -c clean" as the receipt. This is exactly the packaging-defect class the sitting set out to make extinct — worth fixing in `tools/package-delivery.sh`'s own doc/verify step too (it uses `md5sum`, which is Linux-only and absent on a stock Mac).
+
+**D2 — DEFECT (a11y, pre-existing but T4 codified it): the numeric cells override their VALUE with a column NAME for screen readers.**
+Every value cell is `<span … aria-label="OVR">{r.ovr}</span>` / `aria-label="WINS"` / `aria-label="PRIO"`, and T4 added `aria-label="GONE%"` to the gone cell (BoardRow.svelte diff lines 39). On a generic `<span>`, `aria-label` replaces the accessible name, so a screen-reader user hears "OVR WINS PRIO GONE%" — **the actual numbers (99, 12.3, 45.6, 23%) are not announced**. For a board whose whole job is comparing those numbers, that is a real barrier. Fix direction (a shell-side ruling): `aria-label="{r.ovr} overall"` (value first), or drop the per-cell `aria-label` and give the row a proper accessible name, or move the board to real `role="table"/row/cell` + column headers. T4's describedby→`.cp-sr` for the *method* is good; it just inherited the value problem one cell over.
+
+**R1 — RISK: one-click draft has no confirm and no debounce.** The quick button dispatches PICK on `click` (BoardRow→DraftBoard `onpickDirect={onpick}`). A fast double-click, or Enter-key auto-repeat on the focused `.cp-quick`, can draft two different players before the first re-render settles (the button moves to the next ringed row). Undo exists (L17), but the accidental path is real. Cheapest safe mitigation: a ~300–400 ms guard on the quick button, or a 4-second "Drafted {name} at {slot} · Undo" toast. (The Owner asked for one-click; this keeps one-click but makes it safe.)
+
+**R2 — RISK: the auto-draw seed is only 1000–9000.** `parseSeed` fallback is `1000 + Math.floor(Math.random()*9000)` (App.svelte) — unchanged from before, but now that the seed is a *shareable replay code*, the unseeded space is 8,000 drafts, so two "random" drafts collide often (birthday: ~50% by ~100 drafts). Widening the random range (e.g. 1..2³¹-1) costs nothing for replay and helps variety; I did NOT change it because it can perturb calibration seeds — propose, let the Architect rule. (Pre-existing; named as a small win, not a blocker.)
+
+**R3 — RISK (minor): `parseSeed` reads `location.search` only.** A code placed *after* the hash (`…#/board?seed=a3f2`) is ignored. The house convention (query before hash) is standard and the battery uses it, so this is a note, not a defect — but the share text ("put ?seed=CODE in the URL") should say "before the #".
+
+**Receipt-labeling nit:** `cakepanz-4/ACCEPTANCE-RECEIPTS.txt` ends at the `13b` command echo with **no 13b output** (the `step()` function sent the failure tail to stderr, not the receipts file). A reader auditing the receipts alone sees 13 stages green then an abrupt stop. The report prose is honest; the artifact should tee failures too so the record is self-contained.
+
+## Weakest point (the honest one)
+The **verification claim**, not the code. `md5 -c clean` is a false green on the Owner's own platform, and even the right tool trips on the self-entry. Everything *else* in the sitting is unusually clean and honestly reported — the F20 stop is named, not buried; the re-pin is receipted; the oracle is independent.
+
+## What is genuinely strong (keep doing this)
+- **Independent oracle** for the slot (written from the P-317 spec, not from `draftOrder`) — the correct way to test a swap.
+- **Re-pin discipline**: five paths together, `diff -rq` exit 0, SNAPSHOT.md rewritten, dated pin banners, VERIFY §24. This is the bar.
+- **Contrast guardrail that NAMES holes** instead of hiding them — the six AA holes are on the record for the Owner's palette ruling, and a NEW hole fails.
+- **Falsifiers that die loudly**, and the honesty to ship with one open (F20) rather than paper over it.
+
+Not run by me: the 8 battery suites (need the full tree). Counts REPORTED by Z.ai; receipts consistent.
