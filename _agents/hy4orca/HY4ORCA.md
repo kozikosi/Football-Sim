@@ -4,29 +4,42 @@
 - **Seat:** HY4ORCA · **Model / how reached:** HY4ORCA / API · **State:** advisor
 - **Admitted:** 2026-11-19 by the Owner. Role: propose, test, review, dissent, measure. Core status is the Owner's call after 3 verified items.
 - **Worktree:** `/Users/kosi/Desktop/wt/hy4orca` · **Branch:** `council/hy4orca` · **`git merge-base HEAD origin/council/base`:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
-- **State at session end:** worktree clean (preserve check OK), branch pushed and verified by `ls-remote`.
+- **State at session end:** worktree clean, branch pushed and verified by `ls-remote`.
 
-## Current work (2026-11-20 session)
-Owner task: push the desktop folder `zip-root-cakepanz-10` (Z.ai's 67 Cakepanz 11 sitting delivery) to my branch, review it thoroughly, push the review, and brainstorm improvements to cakepanz / the UI-UX shell. Two later MUSE relays added corrections to work I had filed; I verified and corrected them.
+## Current work (2026-11-20, 16:04Z session — cakepanz-12 delivery)
+Owner task: push the Desktop folder `zai-cakepanz-12-2026-11-20` to my branch, review it thoroughly, push the review, and brainstorm improvements to cakepanz / the UI-UX shell.
 
 ### Delivered
-- **Package pushed** at `_agents/hy4orca/zip-root-cakepanz-10/` (41 files, 424 KB) in two commits (24 + 17 — seatbelt refuses >40-file commits): `8c0d2c61a` core, `b0861af93` diffs. Integrity re-checked with node crypto: 40/40 real files byte-intact; the lone bad entry is the `CHECKSUMS.txt` self-line (`d41d8cd…` = md5 of the empty string). NOTE: the delivery's quick-verify command `md5 -c` is a silent no-op on macOS — do NOT cite it as proof (see erratum).
-- **Review filed** `inbox/20261120-0448-hy4orca-cakepanz11-review.md` — VERDICT **improved**, five VERIFIED findings (F1 stage-summary contradicts itself and START; F2 receipts file ends at the 13b command with no stdout/exit; F3 SHELL-STATUS.md says the slot receipt is absent though the zip ships it 27/0/0; F4 six contrast holes cited to a JSON holding only three; F5 team 0 mislabelled "the Bears"). Withdrew a prospective L13 finding after reading the carried law — its 37/60 sets are genuine ties.
-- **Ideas filed** `inbox/20261120-0450-hy4orca-cakepanz-shell-ideas.md` — 7 proposals: typed advice channel + no-display-parse law; P-337 progressive disclosure; shareable challenge link; WCAG palette doctor; shared served-hash falsifier guard; RUN-STATE.json; SportAdapter seam law. Point 1 is a FUTURE advice-envelope pattern, not a vote to build Contract A now.
-- **Erratum filed** `inbox/20261120-0706-hy4orca-cakepanz11-erratum.md` + a CORRECTION block appended to the review: (a) RETRACTED my "`md5 -c` exit 0 = integrity proof" line — on macOS it exits 0 on a tampered tree with 0 bytes output; (b) ADDED F6 — base-36 all-digit seed codes replay a different seed (decimal branch first), re-run 1000..9999 → exactly 700/9000 failures (1296 → "100" → 100); (c) CLARIFIED my ring position is Contract B, matching my C12 synthesis.
-- **Repo facts re-verified:** pin `408410477` is an ancestor of architect tip, docs-only 2 files +65, 10 `pickSlot` hits in store.ts; flex 99 rules 17/17/42/23; P-317 row at `origin/council/muse:_agents/QUEUE.md:190`; shell-falsifier has the D-2 stale-server guard, falsify-board does not; NOW.md was 16 lines at first check.
+- **Package hosted** at `_agents/hy4orca/zai-cakepanz-12-2026-11-20/` (37 files, 376 KB) in commit **`db7e3a35309542f492a4a0b7d341a9d9fe875551`**, pushed and `ls-remote`-verified. Integrity re-verified at source and destination: 36/36 md5 entries match; `node cakepanz-4-changed/tools/verify-package.mjs .` → **36 OK / 0 FAILED / 0 missing, exit 0**.
+- **Review filed** `inbox/20261120-1604-hy4orca-cakepanz12-review.md` — VERDICT **improved**. Independently reproduced the seed receipt (`node --experimental-strip-types scripts/seed-roundtrip-receipt.mjs`, Node v26.13.0 → 700/9000 before, 0 after, sha256 `bd9ff36a3541bd0b…`, exit 0).
+- **Brainstorm filed** `inbox/20261120-1605-hy4orca-cakepanz-shell-ideas.md` — 8 proposals, led by the ring-drop re-scope.
+
+### Review findings (short index; full text + receipts in the review file)
+- **F1 HIGH VERIFIED — C25 correction #1 is superseded:** Architect tip `ee3b6e1db` NOW.md = "RING: DROPPED by Owner (20 Nov). Do not revisit before ship." Z.ai's 10:15Z note cites the older `17e79b1a` ("RING … UNKNOWN") and asks MUSE/INKLING to paste Contract-B wording — that would make PROJECT-KNOWLEDGE wrong. Do not paste correction #1; correction #2 (P-316 built) stands. Consequence for c12's one-click laws is INFERRED pending a scope ruling.
+- **F2 MED VERIFIED — confirm path unguarded:** `DraftBoard.svelte:84` calls `onpick` with no 380 ms guard (only `quickDraft` has one); L18 tests only the quick button → double-activation of Confirm can take two picks. Grows in importance if the ring drop makes Confirm the primary path.
+- **F3 MED VERIFIED — ring tie-break display-parses:** `DraftBoard.svelte:60` regex-strips `BoardRowVM.wins` strings; `BoardRowVM` (engine view) holds raw `_w`/`_p` but doesn't export `rawSort`. Not the Contract B shape C25 claims.
+- **F4 MED VERIFIED (provenance) — the T4 receipt certifies a different tree:** 41/40 entries, README md5 `8ab69401…`, CHECKSUMS self-line `d41d8cd…`; the shipped manifest has 36 entries, README `5719226a…`, no self-line. I proved the delivered tree clean myself; regenerate the receipt at final bytes.
+- **F5 LOW — 13b honestly OPEN** (no full hardened all-DIED re-run).
+- **F6 LOW — doc pin discrepancy, not a delivery defect:** `d3bd81d2` (live PK) is NOT an ancestor of architect tip; `408410477` (delivery) IS. MUSE/Architect reconcile.
+- **F7 INFERRED — `aria-label` on generic `<span>`** may not expose the field name; value is still in text content.
+
+## Repo facts re-verified this session
+- Architect tip `ee3b6e1db` (09:24Z), `claude/NOW.md` lines 3–7: colors 430/430; T3 test re-point done; CUTOVER GAP re-sync 11 files + slices 3–5; Q7 narrow week:6 stands; **RING DROPPED**.
+- `408410477` (20 Nov, docs-only) is an ancestor of architect tip; `d3bd81d2` (14 Nov) is not; neither on gh-pages; the two commits have no merge base.
+- `BoardRowVM` field types (beam c9 `view/draftBoard.ts:19-24`): `wins/priority/ovr/gone` are strings; internal rows carry `_w`/`_p` numbers.
+- Node here is v26.13.0; `--experimental-strip-types` runs the delivered seed receipt directly.
 
 ## What the next session needs
-- **Read first:** (1) `inbox/20261120-0706-hy4orca-cakepanz11-erratum.md` (corrects my earlier review — do not cite its `md5 -c` line); (2) `inbox/20261120-0448-hy4orca-cakepanz11-review.md`; (3) `inbox/20261120-0359-hy4orca-A1-C12-synthesis.md` for the Contract B ruling.
-- **Open questions:** Architect owes Contract B confirmation, NOW.md trim (now 17), red-suite/PIN_ENGINE/Q7 answers, and the plan-M additions; Owner owes palette ruling on six AA holes, Part 0 confirmation, sport-two pick, c10/doc landings. Z.ai's open item: falsify-board stale-server guard; plus the cakepanz-12 v2 fix round (F20, S1 seed round-trip, packaging, docs, a11y D2, one-click safety, seed range).
-- **Do not redo (receipts on my branch):** A1 pin-watch, C12 synthesis, C29/C23/C27/C24/A2/B2-C13/C17/C21/C14/B7/B6 reviews, cakepanz-11 review + ideas + erratum. A seat may not review the same item twice.
-- **Orientation:** live order is Pickle v4; `node /tmp/council.mjs next` (v11 from muse) currently surfaces old P0 Guide/season reviews (P-143 etc.). Nothing in the last three relays assigned work to this seat.
+- **Read first:** the two inbox files above; then the c11 chain (`inbox/20261120-0706-hy4orca-cakepanz11-erratum.md`, `…0448…review.md`, `…0359…-A1-C12-synthesis.md`) if the ring question returns.
+- **Open:** Owner/Architect scope ruling on the ring drop vs the c12 one-click laws; Z.ai's next-sitting first command (hardened falsifier re-run); T8 repair bytes still blocked on the Owner's zip root; MUSE/INKLING must not paste C25 correction #1 as written; the live PK pin discrepancy.
+- **Do not redo (receipts on my branch):** c11 review + ideas + erratum, A1/C12/C29/C23/C27/C24/A2/B2-C13/C17/C21/C14/B7/B6 reviews, and this c12 package/review/ideas. A seat may not review the same item twice.
+- **Orientation:** no task was in the queue for me — this was an Owner relay. `node tools/council.mjs next` (from muse) still surfaces old P0 items. Nothing here assigns work to a named seat.
 
 ## Live files (all on council/hy4orca)
-- 14 files from the 20 Nov review/verification session (`inbox/20261120-*`, earlier).
-- `_agents/hy4orca/zip-root-cakepanz-10/` — the pushed Z.ai package (41 files).
-- `inbox/20261120-0448-hy4orca-cakepanz11-review.md` (+ CORRECTION block), `inbox/20261120-0450-hy4orca-cakepanz-shell-ideas.md`, `inbox/20261120-0706-hy4orca-cakepanz11-erratum.md`.
-- `bulletin/20261120-0449-hy4orca.md` and `bulletin/20261120-0706-hy4orca.md` — one per session step.
+- `_agents/hy4orca/zai-cakepanz-12-2026-11-20/` — the hosted Z.ai package (37 files).
+- `_agents/hy4orca/zip-root-cakepanz-10/` — the earlier hosted c10 package (41 files).
+- `inbox/20261120-1604-hy4orca-cakepanz12-review.md`, `inbox/20261120-1605-hy4orca-cakepanz-shell-ideas.md`.
+- `bulletin/20261120-1606-hy4orca.md` — this session's bulletin line.
 
 ## Role reminder
 Advisor: propose in `inbox/`, never edit the product/engine/pins/governance or another seat's file. Push only `council/hy4orca`, never force-push. End every chat with one bulletin line.
