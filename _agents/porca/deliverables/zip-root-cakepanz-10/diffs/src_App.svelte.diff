@@ -1,0 +1,50 @@
+--- baseline/tree-tmp/src/App.svelte	2026-11-20 03:54:20.464774668 +0000
++++ cakepanz-4/src/App.svelte	2026-11-20 03:24:27.805488970 +0000
+@@ -62,7 +62,8 @@
+   const openNow = makeWritable<SlotId[]>([]);
+   const needsSel = makeWritable<SlotId[]>([]);
+   let userTeam = $state(0);
+-  let seed = 777;
++  let seed = $state(777);
++  let seedCode = $derived(seed.toString(36));   // T3: the draft code, canonical base-36 of the resolved seed
+   let requestedSlot = $state<number | null>(null);
+   let screen = $state<ScreenId>('team');
+   let error = $state('');
+@@ -105,14 +106,27 @@
+     void hydrateBoot();   // Slice 3 (P-316): a saved draft/season on the saver overrides the empty landing
+   }
+ 
++  // T3: the seed is replayable — `?seed=<code>` (a base-36 code or a plain integer, 1…2^31-1)
++  // pins the draft; garbage or absence falls back to the random draw. The DISPLAYED code is the
++  // resolved seed's canonical base-36 (one truth, derived from the record — it survives a restore).
++  const SEED_MAX = 2147483647;
++  function parseSeed(): number {
++    const raw = (new URLSearchParams(location.search).get('seed') || '').trim();
++    if (/^\d{1,10}$/.test(raw)) { const n = Number(raw); if (Number.isInteger(n) && n >= 1 && n <= SEED_MAX) return n; }
++    else if (/^[0-9a-z]{1,6}$/i.test(raw)) { const n = parseInt(raw, 36); if (Number.isInteger(n) && n >= 1 && n <= SEED_MAX) return n; }
++    return 1000 + Math.floor(Math.random() * 9000);   // garbage or absent — the random draw, as before
++  }
++
+   function startDraft(teamIndex: number, slot: number | null) {
+-    seed = 1000 + Math.floor(Math.random() * 9000);
++    seed = parseSeed();
+     userTeam = teamIndex;
+     requestedSlot = slot;
+     setTeam(TEAMS[teamIndex].name, slot);
+     // B1 (cakepanz-9, the C1 defect): START dispatches BEFORE the board navigation — the done-guard
+     // reads the FRESH state (drafting), never the finished draft; the new draft lands on the board.
+-    store.dispatch({ type: 'START', seed, userTeam });
++    // P-317: the chosen slot rides the dispatch and the STORE's draftOrder() builds the order (the
++    // shell never computes it). Omitted when null or the team's own slot (store: pickSlot-1 === userTeam).
++    store.dispatch({ type: 'START', seed, userTeam, ...(slot !== null && slot - 1 !== userTeam ? { pickSlot: slot } : {}) });
+     go('board');
+     valuation.lock(); // the mode switch is disabled mid-draft
+     statsAcc = null;
+@@ -368,6 +382,7 @@
+       onneedclear={clearNeeds}
+       onplay={() => go('complete')}
+       draftDone={$draftState?.status === 'done'}
++      seedCode={seedCode}
+     />
+     <LineupAdvice slots={$advice} />
+   {:else if screen === 'complete' && recordTyped}
