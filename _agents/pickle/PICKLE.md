@@ -4,7 +4,22 @@ SEAT: pickle · ROLE: Council Adviser · BRANCH: `council/pickle`
 WORKTREE: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle`
 MERGE-BASE: `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (`git merge-base HEAD origin/council/base`, re-verified 20 Nov 2026).
 
-## Current state (20 Nov 2026, fifteenth session) — advisory: lane split for the Colors v1 cutover
+## Current state (20 Nov 2026, sixteenth session) — hosted + reviewed Z.ai's S13 delivery
+
+Owner asked me to (a) push the desktop folder `67-cakepanz-13-2026-11-20` to my branch so anyone can read it, (b) review it thoroughly and push the review, (c) brainstorm improvements to cakepanz / the UI-UX shell for Claude's engine. All three done.
+
+**Facts I VERIFIED this session (commands run, raw output):**
+- Hosted the folder verbatim at `_agents/pickle/deliverables/67-cakepanz-13-2026-11-20/` (451 files / 18 MB) with `HOSTING-NOTE.md`; commit `f583abd4e` pushed, `ls-remote` verified. Hosted verifier: `445 OK / 0 FAILED / 0 missing` + `converse clean`, exit 0.
+- Pin `408410477` = commit, 69 TS files, `git diff 408410477 ee3b6e1 -- colors/src` = 0 bytes. Byte-compared **74** pin-comparable fence rows against the pin → 74/74 identical (flex hash `76c02c65…` matches). The 75th row (`test/engine.test.ts`) is a locally generated re-pointed file, NOT in the pin — the handoff's "all four companions compared to the pin" is an overclaim.
+- Clean `npm ci` + `npm run distfile` reproduced the delivered asset names exactly (`index-CoyTk5bV.css`, `index-Bymoqk0d.js`). Node battery **35/35**; seam golden `MATCH … e8fed8ab…`; visual battery **17/0** on the fixed build; L22 skip-loud guard, N34/N35 laws and the verifier converse proof all present.
+- **Real defect D1, VERIFIED in a real browser:** a shared `?seed=k1x9` link is silently replaced by a stale autosave at `a3f2` (store stayed 470990, URL rewritten, 43 old picks, no errors). Cause: unconditional `hydrateBoot()` → `loadDraft()` → `writeSeedToUrl(rec.seed)`. W6/W8 only prove replay after `localStorage.clear()`. The naive `if (has('seed')) return` fix breaks W9 (measured 16/1); the refined rule (skip autosave only when the explicit URL seed differs from the autosave seed) gives probe PASS (final seed 935613) and visual **17/0**. Fix applied only in a temp extract, never to Z.ai's tree.
+- Other verified defects: composite "END-TO-END" vs "still running" self-contradiction in the sitting report; stale §9 re-close instruction; broken §1.8b cross-reference; `a3f2 = 511,086` wrong (actual 470,990) in `seedCode.ts:15`; duplicated "RUN 2" lead-in. REPORTED: AGENTS.md §2's "97 flex rules" is stale (pinned flex.json says 99); the zip hash lives only in chat.
+
+**Filed this session:** `inbox/20261120-1934-pickle-CAKEPANZ13-review.md`, `inbox/20261120-1935-pickle-CAKEPANZ13-shell-innovation.md`, `bulletin/20261120-1936-pickle.md`. Innovation proposals: link-policy state machine + W14, fence-as-CI gate, typed `ShellRuntime` adapter, seam-golden corpus, visual hash baselines, explained link-vs-save UX.
+
+## Earlier sessions (kept as history)
+
+### Fifteenth (20 Nov) — advisory: lane split for the Colors v1 cutover
 
 Owner's questions, all in chat: (a) how to answer Claude's "re-sync or UI slices first?" given **Claude manages the merge and Z.ai completes the UI slices**; (b) a self-contained answer that does not assume Claude saw an earlier draft; (c) a long, self-contained continuation order for Z.ai, improved with Ernie's S13 filing. All three answers were **delivered in chat only** — no inbox file was filed for the advisory itself (the Owner has the text; say the word and I file either one). No product/engine/pin/governance/queue edits.
 
@@ -18,8 +33,6 @@ Owner's questions, all in chat: (a) how to answer Claude's "re-sync or UI slices
 **Counsel delivered (the load-bearing ruling):** the lane split the Owner wants already matches AGENTS.md §2. **Claude** = engine + contracts + the cutover merge runbook; **Z.ai** = UI slices + gh-pages deploy + handoff; **Owner** = the cutover decision. Neither "re-sync" nor "UI slices" is Claude's next job: the engine is already current byte-for-byte, the "11 files behind" is the *deployed* gh-pages tree (closing it is Z.ai's c12 deploy), and the cutover is the **merge of Z.ai's UI into `colors/`**, not a UI build by Claude. Do not start a second UI. `MERGE-CHECKLIST.md` on Claude's branch is the old v20↔donor one — the current runbook still has to be written. Multisport parked; ring is not a work item and not a gate.
 
 **Merged Z.ai S13 order (chat delivery)** covered: Phase A slice-status audit before building; slices 1–5 + season shell s6–s12 with byte-identical engine verification; P-319 engine values and integers-except-Wins/Priority; the cutover handoff package (SNAPSHOT.md, `dispatchAsync` call sites, merge manifest, gates, rollback); the named defects (D2 `loadDraft` seed write-back + W12 law, R2 same-tab seed replay, unanchored `b36:` guard); README 13b CLOSED→GUARDED/OPEN, verify path, md5sum wording; hy4's verifier converse check; T8 UNBLOCKED with both exact source paths and 49/49 landing; gh-pages 286/286; c12 deploy; w89 retired only at Owner-triggered make-live; labels/one-zip-one-relay process.
-
-## Earlier sessions (kept as history)
 
 ### Fourteenth (20 Nov) — meta-reviewed the five peer cakepanz-12 reviews
 Filed `inbox/20261120-1606-pickle-PEER-REVIEWS-review.md` + `inbox/20261120-1607-pickle-ERRATA-cakepanz12-t8-unblocked.md` (commit `11f78b66`, ls-remote verified). **Ernie's D1 VERIFIED:** the T8 "blocked" repair bytes exist on the Owner's disk in two folders (6,418 B / md5 `0a2869538a706e7e6ea864664b7e5c9f`); the folder Z.ai searched lacks them → **T8 READY, not blocked**. Erratum supersedes my own implication 3 and proposal B's "unblocks T8" rationale; A (SeedHandle) and C (harness port) stand. Also VERIFIED: hy4 verifier gap (extra file passes, exit 0); README "13b CLOSED" contradiction; README verify-path mismatch; `md5sum` present here (`/sbin/md5sum`, Darwin 1.0); 380 ms guard timer + unguarded Confirm; Beam's "37 entries" wrong (36 entries / 37 files). My same-tab seed replay defect was found by none of the five peers.
@@ -40,7 +53,8 @@ Hosted the 37-file desktop folder verbatim at `_agents/pickle/deliverables/zip-r
 3. Read the Architect/Z.ai responses to the S13 order before starting new work; do not edit either side's tree. The cutover merge waits on Z.ai's slices 3–5 and Claude's runbook.
 4. C24 is "reviewed with correction", not a clean ✓✓✓; C13/C14/C23/C29 have a third seat each; C12 awaits the Architect.
 5. A seat with a full (non-shallow) fetch may settle historical ancestry claims; this checkout's shallow `NO` is evidence neither way.
-6. Keep the hosted c9, c10, item-6, v3 and c12 sitting copies as read sources. Never edit another seat's lane or inbox. Run `node tools/preserve.mjs check` on any clean-up and leave other seats' unsaved worktrees alone.
+6. Keep the hosted c9, c10, item-6, v3, c12 **and S13** sitting copies as read sources. Never edit another seat's lane or inbox. Run `node tools/preserve.mjs check` on any clean-up and leave other seats' unsaved worktrees alone.
+7. D1's shared-link defect is filed with a proven fix (review §D1) but not landed — Z.ai/Claude must add law W14 and apply the refined `hydrateBoot()` guard. Do not apply it to a delivery tree yourself; it is a proposal, not an accepted change.
 
 ## Open questions (Owner / Architect / MUSE — never a seat)
 
@@ -50,8 +64,9 @@ Hosted the 37-file desktop folder verbatim at `_agents/pickle/deliverables/zip-r
 
 ## Live files
 
-- Advisory (this session, chat only): the Claude lane-split reply and the merged Z.ai S13 order — **not filed**; file on request.
-- Filed this chat: `inbox/20261120-1606-pickle-PEER-REVIEWS-review.md`, `inbox/20261120-1607-pickle-ERRATA-cakepanz12-t8-unblocked.md`, `bulletin/20261120-1606-pickle.md`.
+- Filed this chat (sixteenth session): `inbox/20261120-1934-pickle-CAKEPANZ13-review.md`, `inbox/20261120-1935-pickle-CAKEPANZ13-shell-innovation.md`, `bulletin/20261120-1936-pickle.md`, hosted S13 tree at `_agents/pickle/deliverables/67-cakepanz-13-2026-11-20/` (commit `f583abd4e`).
+- Advisory (fifteenth session, chat only): the Claude lane-split reply and the merged Z.ai S13 order — **not filed**; file on request.
+- Filed in the fifteenth chat: `inbox/20261120-1606-pickle-PEER-REVIEWS-review.md`, `inbox/20261120-1607-pickle-ERRATA-cakepanz12-t8-unblocked.md`, `bulletin/20261120-1606-pickle.md`.
 - Prior read sources: `inbox/20261120-1554-pickle-CAKEPANZ12-review.md`, `inbox/20261120-1555-pickle-CAKEPANZ12-shell-innovation.md`, `inbox/20261120-0410…0430-pickle-*`, `inbox/20261119-2252-pickle-P-287-v3-sitting-review.md`, `inbox/20261119-2327-pickle-P-287-review-of-peer-reviews.md`, `inbox/20261120-0245-pickle-TO-ARCHITECT-aa4f9b3d-verification.md` (430/430), `inbox/20261120-0345-pickle-TO-ARCHITECT-four-gates-verified.md`, hosted v3/c9/c10/item-6/c12 folders.
 - Deliveries: `council-sitting-order-2026-11-20-v4-pickle.md`, `architect-return-order-2026-11-20.md`, `zai-sitting-order-2026-11-20.md`, `zai-continuation-brief-2026-11-20-v2.md`.
 - **No product HTML edits, ever.** Work → `inbox/`; code → `_agents/pickle/deliveries/`.
