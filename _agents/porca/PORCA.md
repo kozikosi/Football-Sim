@@ -6,13 +6,22 @@
 - **Worktree:** `/Users/kosi/Desktop/wt/porca` · **Branch:** `council/porca` · `git merge-base HEAD origin/council/base` → `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 - **Evidence standard:** receipts come from fresh `git show`/`git grep`/`md5sum`/node runs or real file reads. No shared tree writes, product file, engine, pin or other seat's file touched. A wrong claim is kept in the record with a superseding correction: C8 week overclaim, A1 pin claim, A3 mirror critique, C1 ancestry claim.
 
-## Current work — session 7 (review of seats + cutover lane advice, closed 2026-11-20)
+## Current work — session 8 (Owner's cakepanz-13 relay + review, closed 2026-11-20)
+- **Relay pushed verbatim:** `_agents/porca/deliverables/zip-root-cakepanz-13/` — 451 files / 18M, from `/Users/kosi/Desktop/Football Sim/67-cakepanz-13-2026-11-20`. Commit `efa23ec80` (`git ls-remote` verified). Shipped verifier on the relayed `cakepanz-4/` → `445 OK / 0 FAILED / 0 missing`, `converse clean`, exit 0. `ALLOW_BULK=1` used because the wholesale add is the deliverable.
+- **Review filed:** `inbox/20261120-1940-porca-cakepanz-13-review.md`, VERDICT improved, commit `2c3ce8dbd` (`git ls-remote` verified). Bulletin: `bulletin/20261120-1948-porca.md`.
+- **Verified this session:** all 69 `src/engine/*.ts` byte-identical to pin `408410477` (mismatches=0); verifier converse clean + planted-extra detection (exit 1); falsifier 13b final log all nine DIED, exit 0; T8 source md5 `0a2869538a706e7e6ea864664b7e5c9f` matches report; `confirmPick`/seed-URL plumbing read correct.
+- **Two DEFECTs (in Z.ai's source, not relay):** `ACCEPTANCE-RECEIPTS.txt` truncated at step 13 (13 headers, 12 EXIT_CODE=0, no 13b–17) so "END-TO-END composite" is unsupported; `F20 … FAIL L13` quoted in prose but shipped final log prints only `FAIL L16` (named-L13 child log unshipped). Full replacement wording in the review.
+- **Three RISKs:** `BoardRow.svelte:53` a11y `tabindex="0"` (c12 carry-over, all nine reviews missed); `App.svelte:339-345` `$derived.by` over rune-free facade may go stale (INFERRED); split 380 ms guards in `DraftBoard.svelte`.
+- **Not re-run:** any browser/node/engine battery — no `node_modules` in relay tree; counts REPORTED, not VERIFIED.
+- **Still due:** brainstorm implications/improvements brief extending `inbox/20261120-1615-porca-IDEA-cakepanz-shell-leverage.md`, held for the Owner's A-vs-B answer.
+
+## Session 7 (review of seats + cutover lane advice, closed 2026-11-20)
 - **Filed:** `inbox/20261120-1913-porca-review-of-seats-cutover-lane-split.md` — review of nine c12-review files (beam/hy4/pickle/ernie) and five cutover files, plus the Owner-facing answer to Claude's "re-sync or UI slices?".
 - **Recommendation (backed by fresh receipts):** neither. The engine needs no re-sync — `git diff --stat 408410477 ee3b6e1 -- colors/src` is empty. Claude owns the cutover runbook and the `dispatchAsync`/S1 contract; Z.ai owns slices 3–5, the c12 gh-pages landing and the 277→286 test re-point; w89 retirement is a make-live step.
 - **Verified this session:** 69 engine TS files at `colors/src` and at pin `408410477` vs 57 in deployed gh-pages cakepanz; 0 `.svelte` in `colors/` vs 10 deployed; `w89` == `index.html` (sha256 prefix `dbb8c27ad6444115`); `dispatchAsync` at `colors/src/sports/nfl/app/store.ts:147`.
 - **Sequencing conflict resolved:** hy4 0931 ("re-sync first") diffed inkling's c9 tree, not Claude's source; ernie 1620 ("neither") used the right comparison and I reproduced it. hy4's *reason* still holds — slices must bind to the final API.
 - **Seat-audit findings (REPORTED, subagent receipts):** beam 1100 "37 entries" → 36 and T3/T4 mislabelled VERIFIED; beam 1610 "already applied bytes 49/49" false; pickle 1554 T8-blocked + ring-as-fact (self-corrected in 1607); hy4 1613 ring "CONFIRMED"; ernie 1559 `parseInt` 435 → 38; all nine missed `BoardRow.svelte:53` a11y. Clean: hy4 1551, pickle 1606/1607, ernie 1612.
-- **End state:** HEAD `b7ae33e5821d39c040a89e5d5e6148c65c5422d2` from session 6; this session's three files commit below. `council/porca` reported `0 dirty / 0 unpushed OK` at the preservation gate.
+- **End state:** HEAD was `b7ae33e5821d39c040a89e5d5e6148c65c5422d2` at session-7 close; session 8 advanced it to `2c3ce8dbd` (see current work). `council/porca` reported `0 dirty / 0 unpushed OK` at the preservation gate.
 
 ## Session 6 (Owner's cakepanz-12 relay + review, closed 2026-11-20)
 - **Relay pushed verbatim:** `_agents/porca/deliverables/zip-root-cakepanz-12/` (37 files, 376 KB, 0 byte mismatches vs source, 36/36 md5 OK, shipped verifier 36/0/0), commit `48b8e245d5418b6086465e1c5a0eb16134a2bdcb`, `git ls-remote` verified. Same convention as the c10 relay.
@@ -33,12 +42,13 @@
 - **Do not redo:** C1–C12, A1/A2/A3, C18/B8, the c10 re-measurement, `hosted-c9.diff`, passGap, the 18-provider Q7 probe, the cakepanz-10 review + Svelte pass, the ancestry re-check, any session-6 verification, or the session-7 byte-diff/lane-split audit.
 - **Still open (not mine, no claim):** the full hardened falsifier re-run (13b); the ring ruling; the six AA holes; the Owner's Part 0 / sport-two rulings; Z.ai's next sitting; the c10 landing on four hosts (blocked on repair bytes); hy4's strict verifier + my D1–D4 fixes awaiting Z.ai/Architect integration; Claude's cutover runbook and contract publication.
 - **Unanswered brainstorm question to the Owner:** is the main frustration the slow loop around the engine (re-pins, receipts, stale generators) or the player-facing board on a phone? The 10-idea shortlist is ordered on hypothesis A; it would be re-ranked on the answer.
-- **End-of-chat gate:** `node tools/preserve.mjs check` exits 1 for OTHER worktrees only (shared Football Sim tree, council-ds/super, architect-colors, boc, dsd, flint, GH, glm, q, vloc; local-only commit on council/vlorca). My `council/porca` reported `0 dirty / 0 unpushed OK`. Do not touch another seat's worktree.
+- **End-of-chat gate:** `node tools/preserve.mjs check` exits 1 for OTHER worktrees only (shared Football Sim tree, council-ds/super, architect-colors, boc, dsd, flint, GH, glm, q, vloc; local-only commit on council/vlorca). My `council/porca` reported `0 dirty / 0 unpushed OK` again at session-8 close. Do not touch another seat's worktree.
 
 ## Files in this lane
 - `_agents/porca/PORCA.md` — this file.
 - `_agents/porca/deliverables/zip-root-cakepanz-10/` — c10 relay (verbatim).
 - `_agents/porca/deliverables/zip-root-cakepanz-12/` — c12 relay (verbatim).
+- `_agents/porca/deliverables/zip-root-cakepanz-13/` — c13 relay (verbatim).
 - No build copies, images or lane code (advisor role). Work lives in `inbox/` plus one bulletin file per session.
 
 ## Role
