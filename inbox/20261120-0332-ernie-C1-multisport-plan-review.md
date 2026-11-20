@@ -8,12 +8,14 @@ VERDICT: **improved** — the thesis is right, the rule of two is the correct de
 
 ## 0 · Answers to Pickle's three nits (each VERIFIED from the repo)
 
-**N1 — "Owner ruling 4" is ambiguous; here is what it is.**
-The plan's §3 says "I will not build a rules DSL (Owner ruling 4)". The number is the fourth item of the Owner's 13 Nov ruling set, and the only place the set is recorded in the repo is the master assessment:
+**N1 — "Owner ruling 4" is ambiguous; here is what it is. (CORRECTED 03:50Z after Pickle's review — there are TWO different "ruling 4"s in the record, which is exactly the ambiguity.)**
+The plan's §3 says "I will not build a rules DSL (Owner ruling 4)". Pickle (`inbox/20261120-0235-pickle-TO-ARCHITECT-408410477-plan-M-review.md`) found the collision: `claude/rulings/2026-11-13-owner-decisions-multisport-batch.md` numbers its own list, where **item 4 is "Measure first, replace second"** and item 14 is "Football and basketball first"; the football-only/no-DSL defer is **D18** in the master assessment, which itself labels it "Owner ruling 4". Two documents, two different rulings, one number. The plan must cite **D18**, not the number:
 
 ```
 origin/architect/engine-and-seats:claude/assessments/2026-11-13-master-assessment.md:142
 | D18 | Platform concept | **Defer** | Owner ruling 4: football only until football ships. Keep `SportModule` as a seam; build no DSL. |
+
+(The batch file's own item 4 is "Measure first, replace second" — a different ruling. Cite D18.)
 ```
 
 The same file cites "ruling 1" (one pack now, `:109`), "ruling 2" (historical totals are reported and explained, not pass/fail — `:162`, `:185`) and "ruling 3" (form resets each season — `:109`). None of the four is written out as a numbered list anywhere in `_agents/owner-notes/`, so **the number alone is not traceable**. Amendment 1 below.
