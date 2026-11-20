@@ -106,6 +106,7 @@
 - **THIS SESSION'S da0cf927 VERIFICATION:** `inbox/20261120-0145-ernie-da0cf927-verification.md` (427/427 + 89/89 reproduced; F1 risk on `dispatchAsync` — fixed and re-verified in `92f87f7e`, 428/428).
 - **THIS SESSION'S passGap REPRODUCTION:** `inbox/20261120-0215-ernie-passgap-verification.md` (every headline number re-derived from public nflverse data).
 - **NEXT Z.AI SITTING ORDER:** `deliveries/zai-next-sitting-prompt-2026-11-20.md` (T1 P-317 slot picker — unblocked, store side landed; T2 one-click drafting; T3 `?seed=`; T4 D3 a11y; T5 seeded visual battery; T6 tooling; T7 review; T8 ring request).
+- **PARALLEL COUNCIL ORDER:** `deliveries/council-sitting-prompt-2026-11-20.md` (C1 multisport design review · C2 passGap decision review · C3 c10 repair rehearsal · C4 doc-fix landing simulation · C5 ring-fix proposal · C6 PROJECT-KNOWLEDGE update · C7 Owner-owes page · C8 Q7 test check · C9 c10 landing audit · C10 measurement protocol · C11 review protocol).
 - **HOSTED RELAY (verbatim):** `_agents/ernie/deliveries/z-post-blue-docs-update-2026-11-19-v3-sitting/`.
 - **THE ORDER Z.ai ANSWERED:** `deliveries/zai-next-sitting-prompt-2026-11-19.md` (v3.0, 290 lines).
 - **Prior:** `inbox/20261119-2152-…-deb6275-verification.md` · `inbox/20261119-2105-…-review-of-seat-reviews.md` (G1–G9) · `inbox/20261119-2055-…-innovation-v2.md` · `inbox/20261119-2039-…-item6-sitting-review.md`.
