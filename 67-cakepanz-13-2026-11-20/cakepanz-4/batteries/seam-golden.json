@@ -1,0 +1,228 @@
+{
+ "goldenVersion": 1,
+ "seed": 2026,
+ "userTeam": 1,
+ "engine": "nfl1.1ac56c28928eff",
+ "poolSha256": "70bd603bfcaf001f36e295ce155db96053bb487e0607b467b2a08e7ad51370b1",
+ "board": {
+  "sort": "wins",
+  "header": {
+   "teamName": "Miami Dolphins",
+   "round": 1,
+   "roundLabel": "Round 1",
+   "pickInRound": 2,
+   "overall": 2,
+   "totalPicks": 1024,
+   "onClock": "You're on the clock: Round 1, Pick 2 (overall 2 of 1024)"
+  },
+  "rowCount": 60,
+  "first3": [
+   {
+    "id": "nfl-p00003",
+    "name": "Josh Allen",
+    "pos": "QB",
+    "ovr": "99",
+    "wins": "+3.3",
+    "priority": "+3.3",
+    "gone": "99%",
+    "slotId": "QB",
+    "tone": "good"
+   },
+   {
+    "id": "nfl-p00009",
+    "name": "Matthew Stafford",
+    "pos": "QB",
+    "ovr": "98",
+    "wins": "+3.2",
+    "priority": "+3.2",
+    "gone": "99%",
+    "slotId": "QB",
+    "tone": "good"
+   },
+   {
+    "id": "nfl-p00016",
+    "name": "Joe Burrow",
+    "pos": "QB",
+    "ovr": "97",
+    "wins": "+3.0",
+    "priority": "+3.0",
+    "gone": "99%",
+    "slotId": "QB",
+    "tone": "good"
+   }
+  ],
+  "footer": {
+   "filled": 0,
+   "total": 32,
+   "text": "0 of 32 starters"
+  }
+ },
+ "oddsMeta": {
+  "picksBetween": 60,
+  "sims": 30
+ },
+ "lineup": {
+  "placements": [
+   {
+    "slot": "QB",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "WR1",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "OT1",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "OT2",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "WR2",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "C",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "OG1",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "OG2",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "TE1",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "RB1",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "WR3",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "RB2",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "TE2",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "FB",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "TE3",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "WR4",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "DE1",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "DT1",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "DE2",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "DT2",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "DL5",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "MIKE",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "WILL",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "SAM",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "CB1",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "CB2",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "Nickel",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "DIME",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "FS",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "SS",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "K",
+    "name": null,
+    "effOvr": 70
+   },
+   {
+    "slot": "P",
+    "name": null,
+    "effOvr": 70
+   }
+  ]
+ }
+}
