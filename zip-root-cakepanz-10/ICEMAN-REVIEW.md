@@ -131,3 +131,28 @@ Prioritized ideas (mix of near-term, medium, and exploratory). I’ve aimed for 
 **REPORTED (by included receipts/report):** most batteries/probes and several falsifier suites were green; however, the staged acceptance run stopped at 13b (falsify-board stale-server/tautology issue) so stages 13c–17 were not completed in that pass. I treat overall "end-to-end staged acceptance" as **open but well-triaged**, not fully closed.
 
 **Recommended next actions:** (1) land delta onto the correct base and rerun full acceptance with `falsify-board` guard fixed, (2) resolve T8 ring contract with Architect, (3) get owner rulings on contrast holes and Part 0 relay items as applicable, (4) keep seed/slot identity visible and carry it into share/replay surfaces.
+
+---
+
+## Addendum (2026-11-19 sweep follow-up, iceman)
+
+**Context:** post-review council sweep notes shared by Owner/MUSE after this review was first pushed. Items below update/correct the review where the sweep surfaced new verified findings or attribution corrections.
+
+### Newly confirmed findings (material to this package)
+
+1. **S1 — seed-code round-trip defect (VERIFIED by logic check, REPORTED by PORCA): FUNCTIONAL.** `parseSeed()` tries the decimal branch first (`/^\d{1,10}$/` → `Number(raw)`) and only falls back to base-36 for non-all-digit strings; but displayed codes are `seed.toString(36)`. For seeds 1000–9999, **700/9000 produce all-digit base-36 codes** and all 700 fail round-trip (parsed as decimal ≠ original). Examples: seed `1296` → code `"100"` → parsed as `100`. Because seeds/codes are now shareable (T3), this silently loads a different draft. **Fix direction (as proposed in sweep):** make the encoding unambiguous (e.g. `?seed=b36:<code>` parsed before decimal, or publish plain decimal) and prove 0 failures over the draw range. This strengthens/corrects my T3 note ("reasonable" parsing) — the ambiguity is real.
+2. **D2 — numeric cells override values for assistive tech (VERIFIED, diff):** in `BoardRow.svelte` diff, value spans carry column-name `aria-label`s (`aria-label="OVR"|"WINS"|"PRIO"` on elements whose text is the numeric value), which can cause screen readers to announce the label instead of the number. T4 improved gone% description, but these numeric cells remain affected. Treat as a real a11y defect to fix.
+3. **Packaging/verification on macOS (REPORTED, Ernie/sweep):** `md5 -c` quick-verify is a no-op on macOS (BSD `md5` cannot parse md5sum format) — "false green on Owner's platform"; `CHECKSUMS.txt` self-line reported as empty-string hash. Package bytes may be intact, but the verification command/claim is broken for the Owner's platform. Needs a cross-platform verify command and corrected self-hash, proven by a tampered-tree failure.
+4. **One-click safety R1/S2 (REPORTED):** no confirm/debounce on one-click draft and confirm banner may remain armed after pick lands — double-click/Enter-repeat could permit a second PICK. Combine with disarming staged confirm after pick.
+5. **Restore-replay reassurance copy S4 (REPORTED):** new restore-replay copy gated off on restore path so it never shows.
+6. **Seed range R2 (REPORTED):** auto-draw limited to 1000–9999; with shareable seeds, a wider range (and write-back to URL) is warranted.
+7. **F20 / staged acceptance (confirmed):** 13b open due falsify-board lacking D-2 stale-server guard + PID-port isolation; 13c–17 not run in that staged pass; docs/status reconciliation still needed. (Consistent with my original finding.)
+
+### Attribution / process corrections (from sweep)
+
+- **`pickSlot` introduction:** true introducing commit reported as **`06d89724`** (P-317 commit; 24 mentions, zero in parent). `408410477` is docs-only (plan-M), not the store-side landing; `560b8364f` carries byte-identical lines via cherry-pick (live-tip citation in SNAPSHOT is fine, but "first appeared" attribution was corrected). `06d89724` is in tip history but postdates frozen pin `d3bd81d2` (expected). (I cited `560b8364f`/tip context above; noting correction.)
+- **Ring direction:** council consensus moved to **Contract B** (rawSort from `key()` to `BoardRowVM`, component/battery read it, law with/without needs filter; defer suggestions until a second consumer with defined filter semantics) — pending Architect ruling. My review discussed T8/options; B is now the leading consensus.
+- **Live order:** **Pickle v4** is the live consolidated order (supersedes earlier v1/v2/v3 variants) per sweep clarification.
+
+### Status of draft prompts in the sweep (not executed by me)
+The sweep included draft "COUNCIL PROMPT" texts addressed to Z.ai (cakepanz-12 fix round v2), the Architect (Contract B / NOW.md trim / red suite+PIN_ENGINE+Q7 / plan-M additions), the council (Pickle v4 live), and the four c10 hosts (repair landing). **I did not execute these** — they target other seats/roles; I recorded the findings relevant to this review and verified S1/D2 locally as above.
