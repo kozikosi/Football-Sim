@@ -1,0 +1,15 @@
+{
+  "aa": 4.5,
+  "holes": [
+    "dark Baltimore Ravens: #9E7C0C on #291a24 = 4.21:1",
+    "light Los Angeles Chargers: #0080C6 on #ffffff = 4.28:1",
+    "light Miami Dolphins: #008E97 on #ffffff = 3.95:1"
+  ],
+  "results": [
+    {
+      "law": "C1 the 32 team inks × 2 modes read ≥ 4.5:1 as body text (every failing team NAMED; the three pre-existing holes stay on the record, a NEW hole FAILS)",
+      "verdict": "PASS",
+      "detail": "32 teams × 2 modes measured · 3 AA hole(s) named, 0 NEW · dark Baltimore Ravens: #9E7C0C on #291a24 = 4.21:1 | light Los Angeles Chargers: #0080C6 on #ffffff = 4.28:1 | light Miami Dolphins: #008E97 on #ffffff = 3.95:1"
+    }
+  ]
+}
