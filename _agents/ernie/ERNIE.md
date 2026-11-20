@@ -65,7 +65,7 @@
 
 **THE FRAMEWORK IS DECIDED: Svelte 5 + Vite 8** (Owner, 2026-11-19, final; R-13 closed). React out. The vite reconciliation is **ONE tree**: `67-cakepanz/package.json` (gh-pages) + c10's `cakepanz-4/package.json` = `vite ^7.3.6` / `plugin-svelte ^6.2.1`; rev10 arms and `colors/` are already on the decided pair (`vite ^8` + `plugin-svelte ^7`; Node ≥ 22.12).
 
-**PART 0 IS ACCEPTED (Owner, 2026-11-19).** Working bytes `76de5658…` (527,162 B) are the release candidate; the delivered `670d4c08…` (527,177 B) is pre-Part-0 history; **no re-cut zip**. Measured diff: keepWeek 0→2 · cp-gonehow 0→2 · tooltip `width:200px` + `:focus` leg → `width:min(240px,calc(100vw - 32px))`, no focus leg · aria-hidden 0→1 · `:focus` 1→0 · D5.3 `cp-track` span gone.
+**PART 0 — REPORTED accepted (relay; Z.ai's seat is UNKNOWN, discrepancy §10.4 — the Owner should confirm the word).** Working bytes `76de5658…` (527,162 B) are the release candidate; the delivered `670d4c08…` (527,177 B) is pre-Part-0 history; **no re-cut zip**. Measured diff: keepWeek 0→2 · cp-gonehow 0→2 · tooltip `width:200px` + `:focus` leg → `width:min(240px,calc(100vw - 32px))`, no focus leg · aria-hidden 0→1 · `:focus` 1→0 · D5.3 `cp-track` span gone.
 
 **THE LIVE DIRECTIVE (Owner, 2026-11-18T22:31Z):** per-metric historical alignment is **PARKED until after ship**. Don't spend the council's time tuning sim values to history now.
 
