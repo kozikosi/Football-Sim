@@ -1,0 +1,84 @@
+--- baseline/tree-tmp/batteries/board.battery.mjs	2026-11-20 03:54:20.252773443 +0000
++++ cakepanz-4/batteries/board.battery.mjs	2026-11-20 03:20:33.408170245 +0000
+@@ -12,6 +12,10 @@
+  *       motion (the Owner: "all for cinematics"; the order §6/C′3)
+  *   L10 a NEW draft after a finished draft lands on the BOARD (the C1 defect's law, the order §4/B1)
+  *   L11 the Complete screen does not lie in partial state (the C2 defect's law, the order §4/B2)
++ *   L16 the ringed rows carry a ONE-CLICK draft button that names player AND slot; one click lands
++ *       exactly one pick with no expand and no confirm banner (T2, the Owner's w89 signal, 20 Nov)
++ *   L17 undo reverses the one-click pick (order + ring restored); a non-ringed row still expands
++ *       into the flex chip path; keyboard Tab reaches the button with visible focus and Enter drafts (T2)
+  * Run: node --import ./scripts/node-port-register.mjs batteries/board.battery.mjs  (needs
+  * `npm run distfile` first + the preview server; CP_PORT picks the port). */
+ import fs from 'node:fs';
+@@ -83,6 +87,70 @@
+   return mine;
+ };
+ 
++// ---- L16/L17 — T2 (2026-11-20): ONE click drafts a ringed row; the expand path and undo still work ----
++// runs at pick 1 (before the L13 walk; the state is restored by undo afterwards)
++{
++  const ringBefore = await suggestRead();
++  const vmBefore = await vmRead();
++  const stateOf = () => page.evaluate(() => { const s = window.__cp.store.getState(); return { userPicks: s.record ? s.record.picks.filter((p) => p.team === s.record.userTeam).length : -1, total: s.record ? s.record.picks.length : -1, err: s.error ?? '' }; });
++  // L16a: the quick button exists on EXACTLY the ringed rows, and names the slot
++  const quick = await page.evaluate(() => [...document.querySelectorAll('.cp-rows .cp-row')].map((el) => ({
++    id: el.getAttribute('data-id'), suggest: el.classList.contains('cp-suggest'),
++    quick: el.querySelector('.cp-quick')?.textContent?.trim() ?? null,
++  })));
++  const ringed = quick.filter((q) => q.suggest);
++  const quickOnRingedOnly = ringed.every((q) => q.quick) && quick.filter((q) => q.quick).length === ringed.length && ringed.length === ringBefore.length;
++  const named = ringed.every((q) => /^Draft .+ at .+/.test(q.quick ?? ''));
++  ok('L16 the ringed rows carry a ONE-CLICK draft button that names the player AND the slot — and only the ringed rows carry it (T2)',
++    quickOnRingedOnly && named, `ringed=${ringed.length} quick=${quick.filter((q) => q.quick).length} named=${named} e.g. "${ringed[0]?.quick ?? '(none)'}"`);
++  // L16b: clicking it lands EXACTLY one pick, straight through (no confirm banner), the CPU picks on
++  const st0 = await stateOf();
++  await page.locator('.cp-rows .cp-row.cp-suggest .cp-quick').first().click({ timeout });
++  await page.waitForTimeout(700);
++  const confirmSeen = await page.locator('.cp-confirm').count();
++  const st1 = await stateOf();
++  ok('L16 one click on a ringed row lands EXACTLY one user pick — no expand, no confirm banner — and the CPU picks on (T2)',
++    st0.userPicks === 0 && st1.userPicks === 1 && confirmSeen === 0 && st1.total > st0.total && !st1.err,
++    `userPicks ${st0.userPicks}→${st1.userPicks} total ${st0.total}→${st1.total} confirmBanner=${confirmSeen} err="${st1.err}"`);
++  // L17a: undo reverses it — the board order and the ring come back
++  await page.locator('.cp-undo').click({ timeout });
++  await page.waitForTimeout(700);
++  const st2 = await stateOf();
++  const ringAfter = await suggestRead();
++  const vmAfter = await vmRead();
++  ok('L17 undo reverses the one-click pick: zero user picks, the board order and the ring return (T2)',
++    st2.userPicks === 0 && ringAfter.join(',') === ringBefore.join(',') && vmAfter.ids.join(',') === vmBefore.ids.join(','),
++    `userPicks=${st2.userPicks} ringRestored=${ringAfter.join(',') === ringBefore.join(',')} orderRestored=${vmAfter.ids.join(',') === vmBefore.ids.join(',')}`);
++  // L17b: a NON-ringed row still expands into its flex path
++  const nonRinged = quick.find((q) => !q.suggest);
++  await page.locator(`.cp-rows .cp-row[data-id="${nonRinged.id}"] .cp-main`).click({ timeout });
++  await page.waitForTimeout(250);
++  const expanded = await page.evaluate((id) => {
++    const row = document.querySelector(`.cp-rows .cp-row[data-id="${id}"]`);
++    return { open: row?.querySelector('.cp-main')?.getAttribute('aria-expanded'), fits: row?.querySelector('.cp-fits')?.hidden === false, chips: row?.querySelectorAll('.cp-chip').length ?? 0 };
++  }, nonRinged.id);
++  await page.locator(`.cp-rows .cp-row[data-id="${nonRinged.id}"] .cp-main`).click({ timeout });
++  await page.waitForTimeout(150);
++  ok('L17 a non-ringed row still expands into the flex chip path (the expand path is kept, T2)',
++    expanded.open === 'true' && expanded.fits && expanded.chips > 0, `aria-expanded=${expanded.open} fitsOpen=${expanded.fits} chips=${expanded.chips}`);
++  // L17c: keyboard-only — Tab reaches the quick button with a VISIBLE focus, Enter drafts, undo restores
++  await page.locator('.cp-rows .cp-row.cp-suggest .cp-main').first().focus();
++  await page.keyboard.press('Tab');   // .cp-main → .cp-quick (the row top's DOM order)
++  const kb = await page.evaluate(() => {
++    const el = document.activeElement;
++    return { cls: el?.className ?? '', outline: el ? getComputedStyle(el).outlineStyle : 'none', width: el ? getComputedStyle(el).outlineWidth : '0' };
++  });
++  const onQuick = kb.cls.includes('cp-quick');
++  const visibleFocus = kb.outline !== 'none' && kb.width !== '0px';
++  if (onQuick) { await page.keyboard.press('Enter'); await page.waitForTimeout(700); }
++  const st3 = await stateOf();
++  ok('L17 keyboard-only: Tab reaches the one-click button with a visible focus ring and Enter drafts with it (T2)',
++    onQuick && visibleFocus && st3.userPicks === 1 && !st3.err,
++    `focusedClass="${kb.cls}" outline=${kb.outline}/${kb.width} userPicksAfterEnter=${st3.userPicks}`);
++  await page.locator('.cp-undo').click({ timeout });   // restore pick 1 for the L13 walk
++  await page.waitForTimeout(700);
++}
++
+ // ---- L13 — the top THREE available draft controls are highlighted by the ACTIVE order ----
+ // sampled early/mid/late on the walk; more than three only on an order tie (the code comment's rule)
+ let l13pass = true; const l13detail = [];
