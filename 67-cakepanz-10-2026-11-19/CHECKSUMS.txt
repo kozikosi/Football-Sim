@@ -4,14 +4,14 @@
 808d4bd218ad83dab672646791bac43a  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/START-OF-CHAT-ZAI.md
 25c1c9defd350eb1f15620bb06a844d9  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/WHAT-CHANGED.md
 6cd21addd5dc0b6288b7e08329c5eca2  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4-prepared/.gitignore
-0e1541c91253c5026899f3d80bc4530e  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4-prepared/MANIFEST.txt
-1ac601c436b12b60629973e5ee27237c  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4-prepared/SHELL-STATUS.md
+7e227467cedf39844b09246849b834b0  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4-prepared/MANIFEST.txt
+e8137dc3e61e086977f4cc06e087ae8b  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4-prepared/SHELL-STATUS.md
 808d4bd218ad83dab672646791bac43a  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4-prepared/START-OF-CHAT-ZAI.md
 686d10ec0dacd467dd7319655b188aed  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4-prepared/VERIFY.txt
 6cd21addd5dc0b6288b7e08329c5eca2  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/.gitignore
 0738de39c9d5b627459430a40c1ffef2  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/ACCEPTANCE-RECEIPTS.txt
-f996c1f9991439bd4dced8596251484a  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/MANIFEST.txt
-fd04f140a6b241e89046507a00ed89f3  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/SHELL-STATUS.md
+74086b974244fcdd424b0d880a555db8  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/MANIFEST.txt
+5d877d57f1b6556c8c987edb059b19c6  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/SHELL-STATUS.md
 808d4bd218ad83dab672646791bac43a  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/START-OF-CHAT-ZAI.md
 686d10ec0dacd467dd7319655b188aed  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/VERIFY.txt
 0ad2a64043768642b87678e9fa87de16  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/batteries/node.battery.mjs
@@ -23,7 +23,7 @@ bc08892b9ce5ceb777415b6cff9b6dd7  _agents/pickle/deliveries/zai-cakepanz-9-2026-
 c9f63685bc4a715abd77f859a43c7099  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/src/App.svelte
 ab5612a885cd7357d10d39d8746b7bd6  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/src/lib/assets/shell.css
 9ec67c51acb311fcaa0c64b7b4f5c40e  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/src/lib/components/BoardRow.svelte
-8be4d21b5e61a8e731abb2f220448ee2  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/ledger/build-report-zai-cakepanz-9-2026-11-19.md
+75c69dbd8f63692ae457eefaf662859e  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/ledger/build-report-zai-cakepanz-9-2026-11-19.md
 43f8082053bff3fefe7ddc4649a43653  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/ledger/intake-zai-cakepanz-9-2026-11-19.md
 1151b35bd59647ccb2480629ab559547  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/receipts/partH-c9/zai-closeout-cite-check.log
 4886a55cd1caa915b702561bc295e174  _agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/receipts/partH-c9/zai-closeout-closing-gates-prepared.log
