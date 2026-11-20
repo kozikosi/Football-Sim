@@ -14,11 +14,16 @@
 import { WEIGHT, SLOT_IDS } from './slots.ts';
 import type { Base, SlotId } from './slots.ts';
 import { slotWins20 } from './value.ts';
+import type { ContextSnapshot } from '../../../core/snapshot.ts';
 
 export interface ValueProvider {
   readonly name: string;
-  /** Wins per season gained per OVR point at the spot `row` (the spot whose rating row the formation uses), under `base`. */
-  winsPerOvr(row: SlotId, base: Base): number;
+  /** Wins per season gained per OVR point at the spot `row` (the spot whose rating row the formation uses), under `base`.
+   *  `snapshot` (S3) is the context the caller evaluates at. THE LAW (Owner ruling Q7): displayed numbers, Wins among them, are evaluated at the
+   *  NEUTRAL snapshot and never move in-season, so every provider shipped today (measured, table) IGNORES form, focus and flags and returns the
+   *  same number for any snapshot; test/nfl/valueprovider.test.ts pins that. A later context-aware provider (the solver view, plan v3 3.3) is the
+   *  only implementation that may read it, and it is used for Priority and the game, never for the Wins the user sees. */
+  winsPerOvr(row: SlotId, base: Base, snapshot?: ContextSnapshot): number;
 }
 
 /** One fitted-weight unit x one OVR point, in wins (1 weight point = 0.00254 wins over a 70 -> 90 upgrade, spec section 1).
