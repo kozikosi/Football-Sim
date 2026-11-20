@@ -36,6 +36,47 @@ The cause is visible in `diffs/scripts_acceptance-run.sh.diff:31`: step `13d` re
 ### C1 — clarification, NOT a defect (prevents a false dispute)
 `SNAPSHOT.md:7` attributes pickSlot to `560b8364f`. VERIFIED: `git merge-base --is-ancestor 560b8364f 408410477` → yes; `06d89724d` (the P-317-titled commit in porca's lane file) is on the pre-reroot lineage and is NOT an ancestor of the pin. Both commits carry the pickSlot lines; SNAPSHOT's citation is correct ON THE PIN LINEAGE. Do not "correct" it to `06d89724d`.
 
+## Added 2026-11-20 — Svelte-code pass over the delivered diffs
+
+Scope: the delivered `diffs/src_*.diff` files plus the unchanged baseline at `/Users/kosi/Desktop/Football Sim/67-cakepanz-9-2026-11-19/cakepanz-4/src/` (the `baseline/tree-tmp/` side of those diffs). This is a code-reading pass, NOT a run of the app: no browser, no screen reader, no build. Labels are per §1 of AGENTS.md. Everything marked VERIFIED below was re-run against the delivered bytes in this session; the receipts are given.
+
+### S1 — defect (functional): a displayed draft code can replay a DIFFERENT seed
+
+`src_App.svelte.diff:9` defines `let seedCode = $derived(seed.toString(36))`. `src_App.svelte.diff:21-25` defines `parseSeed()` with the **decimal branch first** (`:23` `/^\d{1,10}$/` → `Number(raw)`) and the base-36 branch second (`:24` → `parseInt(raw, 36)`). A base-36 code made only of digits is therefore read as decimal. `Complete.svelte.diff:8` and `shareable.ts.diff:8` both publish that same base-36 code, so the code a user copies back into `?seed=` is the ambiguous one.
+
+VERIFIED (fresh run, this session):
+`node -e 'let bad=0,ex=[];for(let n=1000;n<=9999;n++){const c=n.toString(36);if(/^[0-9]+$/.test(c)&&Number(c)!==n){bad++;if(ex.length<5)ex.push(`${n}->${c}->${Number(c)}`)}}console.log("failures",bad,"of 9000; examples",ex.join(", "));console.log("1296 ->",(1296).toString(36),"-> parseSeed decimal",Number((1296).toString(36)))'`
+→ `failures 700 of 9000; examples 1296->100->100, 1297->101->101, 1298->102->102, 1299->103->103, 1300->104->104`
+→ `1296 -> 100 -> parseSeed decimal 100`
+
+So ~7.8% of the random draw range does not survive a code round-trip. Fix: make the code unambiguous (a prefix such as `?seed=b36:100`, parsed before the decimal branch), or publish `String(seed)` instead of base-36. Do NOT just swap the two branches: a plain `?seed=777` would then parse as base-36 (9331). Low cost to fix at the display side, high cost to discover after a shareable has been printed.
+
+### S2 — defect (functional): one-click pick leaves the staged confirm banner armed
+
+`DraftBoard.svelte.diff:25` adds `onpickDirect={onpick}`; `BoardRow.svelte.diff:49` wires the ringed row's one-click button via `onclick={() => (onpickDirect ?? onpick)(r.id, r.slotId)}`. The unchanged baseline banner (`baseline DraftBoard.svelte:55-59`) clears `picked` **only** in its own Confirm and Cancel handlers. Nothing in either diff clears `picked` on the direct path. `baseline App.svelte:144-146` shows `pick()` dispatches `PICK` unconditionally.
+
+VERIFIED from those exact lines. Consequence: stage a normal row (banner appears), then click a ringed row's "Draft <name> at <slot>" — the ringed player is drafted, but the banner still names the *first* player, and "Confirm the pick" fires a second `PICK` dispatch. Whether the store rejects that second dispatch is UNKNOWN (store source is not in the zip; only `seam.ts.diff:8,17,26` re-exporting `draftOrder` is). Fix is one line at the call site: `onpickDirect={(id, slot) => { picked = null; onpick(id, slot); }}`.
+
+### S3 — observation (a11y, effect INFERRED): gone% description is attached to a non-focusable span
+
+`BoardRow.svelte.diff:39,41,43`: `aria-describedby="cp-gone-desc-{r.id}"` sits on `<span class="cp-num cp-gone">`; its target `<span class="cp-sr" id="cp-gone-desc-{r.id}">` is a sibling **inside** `<button class="cp-main">`, and that button has no `aria-label` of its own (only its child spans do). The structure is VERIFIED; the assistive-technology effect is **INFERRED** — I ran no screen reader. Risk: the description is not attached to the focusable control, and the `.cp-sr` method text can enter the button's computed accessible name. Recommend moving the `.cp-sr` target outside the button and putting `aria-describedby` on the button (or giving the button an explicit `aria-label` and describing the cell via the button).
+
+### S4 — defect (copy never shown): the new restore-replay reassurance is gated off on the restore path
+
+`Complete.svelte.diff:9-21` replaces the slot note inside `{#if requestedSlot !== null}`; the new text at `:16,18` explicitly claims "a restore replays the same order". In the baseline `App.svelte`, `requestedSlot` is assigned only in `startDraft()` at `:111`; `loadDraft()` at `:167-175` dispatches `LOAD` and never sets it. So on the exact path the new copy talks about — a restored draft — the whole block is hidden and the user sees no slot/restore reassurance at all. VERIFIED from those lines. Fix: derive the flag from the record too, e.g. gate on `requestedSlot !== null || record.pickSlot !== undefined`, or set `requestedSlot` in `loadDraft()` from the loaded record.
+
+### S5 — observation (test coverage): the new one-click button's wrap band is untested
+
+`BoardRow.svelte.diff:59-71` adds `.cp-rowtop { display: flex }` with the wrap only inside `@media (max-width: 430px)`. The delivered `batteries/visual.battery.mjs:62,125` opens only `1180×900` and `390×320`; `:140` checks no horizontal scroll only at 390. VERIFIED from the code; the risk in the 431–1179 px band is **INFERRED** (not observed — the flex row should fit, but nothing measured it). One intermediate viewport (say 768) would close the gap.
+
+### S6 — nit (pre-existing): unkeyed `alsoFits` each
+
+`BoardRow.svelte.diff:54` leaves `{#each r.alsoFits as f}` unkeyed; it is unchanged from baseline, so this is NOT introduced by the package. VERIFIED from the diff. Low priority; note it only so it is not re-reported as new.
+
+### Svelte pass: what I checked and found nothing to report
+
+Rune usage (`$state` / `$derived`, including `seed` becoming `$state` and `seedCode` becoming `$derived`), reactive correctness beyond S1/S4, event syntax (`onclick` vs `on:click`), the keyed `{#each shown as r (r.id)}` in DraftBoard, `.cp-quick` button semantics (it is a real `<button>`, has visible text naming player and slot, and gets a `:focus-visible` outline at `BoardRow.svelte.diff:83`), and the `seam.ts` / `shareable.ts` diffs beyond the seed code cited in S1. `draftOrder(chosenIndex, chosenSlot)` being called by `TeamSelect.svelte.diff:39` even when `chosenSlot === chosenIndex + 1` (the natural slot, for which `App.svelte.diff:39` omits `pickSlot`) is **UNKNOWN**: whether `draftOrder(i, i+1) === snakeOrder()` needs the store source, which is not in the zip.
+
 ## What I endorse (with the checks behind it)
 
 - The re-pin is real and coherent: `408410477` and `5c808472` are commits; the pin commit is the 2-file docs-only commit; the tip store has 10 `pickSlot` hits; the five-path procedure is written so a stranger can follow it.
