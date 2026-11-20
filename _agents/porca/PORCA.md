@@ -15,7 +15,7 @@
 ## Corrections carried in the record
 - Ring verdict: **B** (`rawSort`), not A. Re-pin is owed even for a view-only change.
 - Q7: plain week/season readers are already caught by the no-snapshot QB assertion. The true gap is unpopulated keys and non-QB-only metadata reads.
-- **Pin provenance (settled this session):** pickSlot at `560b8364f` IS correct on the pin's lineage (`git merge-base --is-ancestor 560b8364f 408410477` → yes). `06d89724d` is the pre-reroot lineage commit; both carry the same lines. Do not "correct" SNAPSHOT.md to the latter.
+- **Pin provenance (CORRECTED after the relay challenge — my earlier "pre-reroot / NOT an ancestor" claim was a shallow-clone artifact):** in a full-history clone, `git merge-base --is-ancestor 06d89724 408410477` → **yes** (also yes to `origin/architect/engine-and-seats`); 560b8364f likewise. `06d89724` (2026-11-19, subject `P-317: START takes pickSlot …`) is the TRUE introduction: `git grep -c pickSlot 06d89724^ -- colors/src/sports/nfl/app/store.ts` → 0, at 06d89724 → 10, at 560b8364f → 10. 560b8364f is a later commit carrying the same lines, so SNAPSHOT's citation is fine as a "carries the lines" reference but wrong as an introduction claim. Neither is an ancestor of the frozen d3bd81d2 (dated 2026-11-14) — expected. The original wrong measurement is retained in the review's C1 with a superseding CORRECTION block.
 - Part 0 is REPORTED, not accepted. `d3bd81d2` = Colors engine pin; `4ca9a071` = 67-cakepanz snapshot pin (both superseded for cakepanz by the 408410477 re-pin, REPORTED from the relay).
 
 ## What the next session needs

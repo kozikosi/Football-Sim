@@ -36,6 +36,15 @@ The cause is visible in `diffs/scripts_acceptance-run.sh.diff:31`: step `13d` re
 ### C1 — clarification, NOT a defect (prevents a false dispute)
 `SNAPSHOT.md:7` attributes pickSlot to `560b8364f`. VERIFIED: `git merge-base --is-ancestor 560b8364f 408410477` → yes; `06d89724d` (the P-317-titled commit in porca's lane file) is on the pre-reroot lineage and is NOT an ancestor of the pin. Both commits carry the pickSlot lines; SNAPSHOT's citation is correct ON THE PIN LINEAGE. Do not "correct" it to `06d89724d`.
 
+**CORRECTION (appended after the relay's ancestry challenge; supersedes the "NOT an ancestor" sentence above, which is retained as the record of a bad measurement).** The result above was measured in `/Users/kosi/Desktop/wt/porca`, whose common repo is SHALLOW: `git rev-parse --is-shallow-repository` → `true`, with `/Users/kosi/Desktop/Football Sim/.git/shallow` present (2378 B). Re-run in a full-history clone (`git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=60 clone --no-checkout --filter=blob:none https://github.com/kozikosi/Football-Sim.git <tmp>`; `is-shallow-repository` → `false`):
+
+- `git merge-base --is-ancestor 06d89724 408410477` → **yes** (not no). `git merge-base --is-ancestor 06d89724 origin/architect/engine-and-seats` → **yes**. Both 06d89724 and 560b8364f are ancestors of the pin and of the live Architect tip.
+- `git merge-base --is-ancestor 06d89724 d3bd81d2` → no. That is expected, not a dangling commit: 06d89724 is dated 2026-11-19 and the frozen pin d3bd81d2 is 2026-11-14.
+- `git log -1 --format='%h %cd %s' 06d89724` → `06d89724 2026-11-19 P-317: START takes pickSlot (1-32); optional record field, old saves unchanged; absorb-work answer; NOW`.
+- True introduction, scoped to `colors/src/sports/nfl/app/store.ts`: `git grep -c pickSlot 06d89724^ -- <path>` → **0**; at `06d89724` → **10**; at `560b8364f` → **10**. So 560b8364f carries the lines (a later commit, subject `Item 6: lambda-axis Lab tool + Z.ai recipe (measurement only)`) but did not introduce them.
+
+**Corrected conclusion:** the "pre-reroot / NOT an ancestor" claim was a shallow-clone artifact (the fourth instance noted in the relay). SNAPSHOT.md's `560b8364f` citation still does not need correcting when the question is "which live-tip commit carries these lines", but `06d89724` is the true introduction and must be named when the introduction is what matters. T1 remains unblocked either way.
+
 ## Added 2026-11-20 — Svelte-code pass over the delivered diffs
 
 Scope: the delivered `diffs/src_*.diff` files plus the unchanged baseline at `/Users/kosi/Desktop/Football Sim/67-cakepanz-9-2026-11-19/cakepanz-4/src/` (the `baseline/tree-tmp/` side of those diffs). This is a code-reading pass, NOT a run of the app: no browser, no screen reader, no build. Labels are per §1 of AGENTS.md. Everything marked VERIFIED below was re-run against the delivered bytes in this session; the receipts are given.
