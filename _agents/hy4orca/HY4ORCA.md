@@ -5,34 +5,24 @@
 - **Admitted:** 2026-11-19 by the Owner. Role: propose, test, review, dissent, measure. Core status is the Owner's call after 3 verified items.
 - **Worktree:** `/Users/kosi/Desktop/wt/hy4orca` · **Branch:** `council/hy4orca` · **`git merge-base HEAD origin/council/base`:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 
-## Current work (2026-11-20 session, branch tip at end: see final bulletin)
-All 14 files below are committed and pushed on `council/hy4orca`; none touched the product, engine, pins, governance, or another seat's file.
+## Current work (2026-11-20 session, head c7dc15b2d, pushed)
+Owner task: push the desktop folder `zip-root-cakepanz-10` (Z.ai's 67 Cakepanz 11 sitting delivery) to my branch so anyone can read it; review it thoroughly; push the review; brainstorm improvements to cakepanz / the UI-UX shell.
 
-- **A1 pin-watch (v3):** VERIFIED exit 0 self-test (8/8 fixtures) and exit 0 live check at pin `40841047756db…` (69 engine files, byte-identical). Correction: no `pin-watch` npm scripts exist; tool is `node tools/pin-watch.mjs`.
-- **C12 (self) → A1 synthesis (v4):** three filings conflicted; synthesis rules **Contract B (`rawSort` from `key()`)**, defers `suggestions` (zero current consumers; my own A+rawSort created two disagreeing sets), and states a re-pin is required for ALL contracts because `BoardRowVM` lives in `colors/src/…/draftBoard.ts`.
-- **Reviews filed:** C29 (ok — pin bytes are `d3bd81d2`; v3 §1.3's pin split wrong), C23 (improved — fix does not change exit code; DOM filter loses falsifier), C27 (improved — ~2–3% vs ~1–2% conflict), C24 (improved — ERNIE bulletin FACT lines are a second relay), A2 Q7 (ok — week 5/week 6 mirror; residual season/packHash hole), B2 C13 (improved — all receipts reproduced, 52-file count not asserted), C17 (improved — a11y target is `.cp-gonetip`, not `.cp-fits`), C21 (improved — Retrosheet commercial use allowed with prominent credit), C14 (improved — patch levels run, FIX-NOTES:93 wrong, hash-replace scope narrowed), B7 (ok — framework arithmetic re-derived), B6 (improved — ECharts REPORTED not UNVERIFIED; pin PrimeVue 4.5.5).
-
-## Live files (all on council/hy4orca)
-- `inbox/20261120-0342-hy4orca-C12-ring-fix-adjudication.md`
-- `inbox/20261120-0350-hy4orca-A1-pin-watch-selftest.md`
-- `inbox/20261120-0353-hy4orca-C29-review.md`
-- `inbox/20261120-0353-hy4orca-C23-review.md`
-- `inbox/20261120-0354-hy4orca-C27-review.md`
-- `inbox/20261120-0354-hy4orca-C24-review.md`
-- `inbox/20261120-0355-hy4orca-A2-review.md`
-- `inbox/20261120-0359-hy4orca-A1-C12-synthesis.md`
-- `inbox/20261120-0403-hy4orca-B2-C13-script-review.md`
-- `inbox/20261120-0404-hy4orca-C17-review.md`
-- `inbox/20261120-0405-hy4orca-C21-review.md`
-- `inbox/20261120-0406-hy4orca-C14-review.md`
-- `inbox/20261120-0407-hy4orca-B7-review.md`
-- `inbox/20261120-0407-hy4orca-B6-review.md`
-- `bulletin/20261120-*.md` — one per session step (all pushed).
+- **Package pushed** at `_agents/hy4orca/zip-root-cakepanz-10/` (41 files, 424 KB) in two commits (24 + 17 — seatbelt refuses >40-file commits): `8c0d2c61a` core, `b0861af93` diffs. `md5 -c CHECKSUMS.txt` → exit 0 at both the source and the committed copy. Verified by `git ls-remote`.
+- **Review filed** `inbox/20261120-0448-hy4orca-cakepanz11-review.md` — VERDICT **improved**, five VERIFIED findings: F1 the staged-run summary contradicts itself and START (says "1–16 green" while stopping at 13b; START says 13b "still running"); F2 ACCEPTANCE-RECEIPTS.txt ends at the 13b command with no stdout/exit line, so the stop evidence is prose-only; F3 SHELL-STATUS.md (03:40Z) says the slot receipt is absent though the zip ships it 27/0/0; F4 report §5.4 says all six contrast holes are in contrast-audit-latest.json but it holds only the three team inks; F5 slot battery comment calls team 0 "the Bears" (it is Buffalo). Withdrew a prospective L13 finding after reading the carried law — its 37/60 sets are genuine ties.
+- **Ideas filed** `inbox/20261120-0450-hy4orca-cakepanz-shell-ideas.md` — 7 grounded proposals: typed advice channel + no-display-parse law (generalizes T8); progressive disclosure for the late draft (P-337); shareable challenge link (seed+team+slot+mode); WCAG-aware team ink + palette doctor; one shared serveAndRun for all falsifiers (closes the 13b class); RUN-STATE.json so prose is mechanically bound to the run; SportAdapter seam law for plan M.
+- **Repo facts re-verified this session:** pin `408410477` is an ancestor of architect tip, docs-only 2 files +65, 10 `pickSlot` hits in store.ts; flex 99 rules 17/17/42/23; P-317 row on `origin/council/muse:_agents/QUEUE.md:190`; shell-falsifier has the D-2 stale-server guard, falsify-board does not; claude/NOW.md is 16 lines.
 
 ## What the next session needs
-- **Read first:** (1) `inbox/20261120-0359-hy4orca-A1-C12-synthesis.md` — the ring ruling and its corrections; (2) the live order on `origin/council/pickle:_agents/pickle/deliveries/council-sitting-order-2026-11-20-v4-pickle.md` for what is still open; (3) this lane file's review list above, to avoid re-reviewing the same items.
-- **Open questions:** Architect still owes the S1/ring ruling and plan-M nits; Owner owes c10 + doc-fix landings, four ALL-CAPS tabs, Part 0 word, sport two; Z.ai's v4 status UNKNOWN at this tip.
-- **Do not redo (receipts on my branch):** A1 pin-watch (exit 0/0), C12 adjudication/synthesis, C29 pin bytes, C13 script dry-runs, C14 patch `-p1`/`-p5`/`-p1` exit codes, C17 anchor, C21 licence fetch, Q7 week mirror, C1–C11, four gates, c10 rehearsals, passGap. A seat may not review the same item twice.
+- **Read first:** (1) the two new inbox files above; (2) `inbox/20261120-0359-hy4orca-A1-C12-synthesis.md` for the ring ruling; (3) the live order on `origin/council/pickle` for what is still open.
+- **Open questions:** Architect still owes the C′1 ring contract (T8) and the post-cutover fit band; Owner owes c10/doc landings, the four ALL-CAPS tabs, Part 0, sport two, and a palette ruling on six AA holes; Z.ai's open item remains the falsify-board stale-server guard.
+- **Do not redo (receipts on my branch):** A1 pin-watch, C12 synthesis, C29/C23/C27/C24/A2/B2-C13/C17/C21/C14/B7/B6 reviews, this cakepanz-11 review and ideas. A seat may not review the same item twice.
+
+## Live files (all on council/hy4orca)
+- 14 files from the 20 Nov review/verification session (see prior lane revision / `inbox/20261120-*`).
+- `_agents/hy4orca/zip-root-cakepanz-10/` — the pushed Z.ai package (41 files).
+- `inbox/20261120-0448-hy4orca-cakepanz11-review.md`, `inbox/20261120-0450-hy4orca-cakepanz-shell-ideas.md`.
+- `bulletin/20261120-0449-hy4orca.md` — this session's entry.
 
 ## Role reminder
 Advisor: propose in `inbox/`, never edit the product/engine/pins/governance or another seat's file. Push only `council/hy4orca`, never force-push. End every chat with one bulletin line.
