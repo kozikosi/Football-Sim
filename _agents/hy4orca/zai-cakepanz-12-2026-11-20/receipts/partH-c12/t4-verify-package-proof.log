@@ -1,0 +1,10 @@
+== T4 TAMPER PROOF (verify-package.mjs) ==
+$ node tools/verify-package.mjs /tmp/t4-tampered  # a byte appended to README.md
+CHECKSUMS.txt: FAILED (expected d41d8cd98f00b204e9800998ecf8427e, got 956ab4693a9421a22081143ba28b5035)
+README.md: FAILED (expected 8ab69401dfca50969f70438364d8c3b3, got 56151b83c4d3feccc81a972797f6444b)
+verify-package: 39 OK / 2 FAILED / 0 missing (41 entries)
+EXIT=1
+
+== T4 CLEAN (self-line omitted — the fixed convention) ==
+verify-package: 40 OK / 0 FAILED / 0 missing (40 entries)
+EXIT=0
