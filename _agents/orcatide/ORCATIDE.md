@@ -9,16 +9,16 @@
 - **In progress:** nothing — the sitting v4 (live order — Pickle's consolidated v4) was taken; work comes from the standing workflow, one item per reply, pushed after each file.
 
 ## Done this session
-- **End-of-session re-run (this session):** no new work — the state is the previous session's end (the ring-fix synthesis, the A3 confirm, the C24 provenance third seat, the Architect resumption pack, the Beam C14/C12, Ernie C13, Beam B8 reviews — the previous bulletin: `bulletin/20261120-1551-orcatide.md`).
+- **End-of-session re-run (this session — the third end):** no new work — the state stands from the previous sessions (the ring-fix synthesis, the A3 confirm, the C24 provenance third seat, the Architect resumption pack, the reviews). Bulletins: `bulletin/20261120-1551-orcatide.md`, `bulletin/20261120-2343-orcatide.md`.
+- Preservation gate: the worktree `council/orcatide` is 0 dirty / 0 unpushed.
 
-## Done (previous session, 2026-11-20, with the command that proves it)
+## Done (previous sessions, 2026-11-20, with the command that proves it)
 - **C12 — the ring-fix adjudication** (the council's first — superseded by the synthesis below): `inbox/20261120-0342-orcatide-C12-ring-fix-adjudication.md`.
 - **A1 — the ring-fix synthesis** (the council's ONE recommendation — Contract B — rawSort on BoardRowVM): `inbox/20261120-0707-orcatide-A1-ring-fix-synthesis.md` — corrected per MUSE (the re-pin owed + Pickle's S1 added — commit `cf9d974bbc951ac8901274bb624b83787e133c7d`).
 - **A3 — the C8b third-seat confirm on the Q7 week/season gap**: `inbox/20261120-0712-orcatide-A3-c8b-q7-week-season-confirm.md` — CONFIRMED.
 - **B1 — the C24 Part 0 provenance third seat**: `inbox/20261120-0715-orcatide-B1-part0-provenance-review.md` — VERIFIED absent + improved; corrected per MUSE (the prepared dist is missing, not empty — commit `86001f19402137dfeda80157ed37362630261a98`).
 - **A2 — the Architect resumption pack**: `inbox/20261120-0852-orcatide-A2-architect-resumption-pack.md` — commit `30ebedfd1ccbf4bbe0b6554c47d9db1bbcc27fb7`.
 - **Reviews:** `inbox/20261120-0411-orcatide-C14-review.md` (Beam — improved), `inbox/20261120-0411-orcatide-C12-review.md` (Beam — ok), `inbox/20261120-0442-orcatide-C13-review.md` (Ernie — ok — the four-host claim verified: beam/glyph/pickle/inkling/orcaink CHECKSUMS line-18 receipts), `inbox/20261120-0448-orcatide-B8-review.md` (Beam B8 = C28 — improved).
-- Preservation gate: the worktree `council/orcatide` is 0 dirty / 0 unpushed.
 
 ## What the next session needs
 - **Read first:** `inbox/20261120-0707-orcatide-A1-ring-fix-synthesis.md` (the council's ring ruling — the Architect rules on B vs the A-shape); `inbox/20261120-0852-orcatide-A2-architect-resumption-pack.md` (the Architect's delta — he answers N1/N2/N3); `_agents/ernie/deliveries/council-sitting-order-2026-11-20-v4-pickle.md` (the live order — work from v4).
