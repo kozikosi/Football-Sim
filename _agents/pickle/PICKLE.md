@@ -53,6 +53,20 @@ abstraction in docs now, zero engine bytes (pin frozen). Real engineering risk i
 LWW-by-clock is broken; need versioned mutation log + merge policy + product call on authoritative state.
 Seeded RNG + D13 fence are the enablers. No implementation; decision remains Owner/Architect's.
 
+Owner 04:2xZ RELEASE SCOPE RULING (verbatim + full analysis at `inbox/20261121-0420-pickle-RELEASE-SCOPE-RULING-accounts-mandatory.md`):
+accounts, multi-season stat tracking, save sync, offline-conflict resolution, local-save migration and brag
+share are ALL MANDATORY TO RELEASE. Other sports, the 01/02 visuals, multiplayer = future. This SUPERSEDES my
+0410/0415 "do not build before ship" advice, the stored "optional sign-in" default
+(`COLORS-V1-UI-ARCHITECTURE.md:44-45`), and GPT's "don't delay release for accounts". MY CORRECTION: my 0415
+"mutation log / CRDT for conflicts" was WRONG — Owner approved the rule 2026-11-05 in P-254: per-slot LWW on
+the WHOLE save, never field merge, rung-back, keep both at slot level, additive deviceId. I flagged that
+conflict myself; implement the approved rule, do not redesign. FINAL DEPLOY COUNSEL: backend = Workers either
+way (rate limiting, Logs/Logpush, Source Maps, native DO are Workers-only); static front end = one Worker with
+assets IF domain on Cloudflare nameservers, else Pages + separate Worker (only reason to keep Pages). Free
+tier holds. COLLISION for Claude: v8 deferred migration to keep pin frozen; migration now ships — either
+envelope/contracts stay outside engine bytes or the pin is deliberately re-frozen. His call. Open question:
+must an account exist to PLAY, or only for history/sync? I took the narrow reading; Owner to confirm.
+
 ## Previous state (26th session) — published and reviewed Z.ai's S15 Cakepanz WIP folder
 
 Owner directive: publish the desktop folder `67-cakepanz-15-WIP-2026-11-21` "so anyone can read it",
