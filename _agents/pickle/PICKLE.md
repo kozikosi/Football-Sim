@@ -15,6 +15,11 @@ players "purely through badges spatially", no faces. Rival facts are REPORTED fr
 human-made pixel-art portraits). Four INFERRED ideas held, unranked: badge-only player glyph,
 field-as-badge-map, playbook-as-scheme-badges, and an anti-goal guard rail. MUSE owns the owner-notes
 intake + PRIORITY line; I did not edit them. No product/engine/pin/governance/queue/`tools/` edit.
+Owner then said "browse them and store the images": stored 26 Steam images (13 full-res screenshots
++ 13 store assets, 4.7 MB) at `_agents/pickle/deliverables/ref-pro-football-dynasty-2026-11-21/`
+with README provenance, `index.html` contact sheet and `CHECKSUMS.sha256` (26 OK exit 0). Commit
+`375f8475f01c8f30f4724bae3ae5d2031fab6164`, pushed + ls-remote verified. I cannot see pixels (no
+image input); content claims are UNVERIFIED until a seat/Owner looks. Reference only, never product.
 
 ## Previous state (26th session) — published and reviewed Z.ai's S15 Cakepanz WIP folder
 
