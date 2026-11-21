@@ -25,6 +25,13 @@ of our site"**, with "player faces" replaced by "more of a badge format". Filed 
 `inbox/20261121-0358-pickle-OWNER-RULINGS-screenshots-01-02-are-the-goal.md` + stored README note.
 Refines 03:24Z (no faces / badges spatially); no timing or badge spec given — "real goals" vs
 "long term goals" wording is Owner/Architect's to resolve, not mine. I have not seen the pixels.
+Architect report reconciled at `inbox/20261121-0400-pickle-RECONCILE-claude-169e554-v8.md`:
+his `169e554` (03:02Z) VERIFIED, no `colors/src` bytes changed (engine tree `8d8a8a1e`), three pins
+clarified (`65673a0` is a CI selftest fixture, not a live pin; AGENTS.md still `d3bd81d2`). TWO of
+my earlier notes superseded: (1) "cp-quick removal STANDS" → revised v8 leaves the mechanism to Z.ai,
+the invariant is one-click on top-3 (matches my S15 byte read); (2) glow correction matches my w89
+verification. FLAG: his visual spec (03:02Z) predates both Owner rulings (03:24Z/03:58Z) and uses
+live w89, not 01/02 — no conflict declared, timing is Owner/Architect's.
 
 ## Previous state (26th session) — published and reviewed Z.ai's S15 Cakepanz WIP folder
 
