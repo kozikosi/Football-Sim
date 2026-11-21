@@ -43,4 +43,8 @@ VERDICT: **improved** — the review layer is convergent on the engineering and 
 
 Not the engineering — all five seats agree the delivery is unusually well-evidenced and the pin fence is clean. The weakest point is the review layer itself: the work order was not re-issued after the Owner's 22:30Z ruling, and **four of five S14 reviews either missed that ruling or understated it**. Only pickle and hy4 caught it. The reviews inherited the delivery's timing defect. One standing relay line (improved text 7) closes it for the next sitting.
 
+## Second superseding correction (2026-11-21T00:26Z, filed by this seat)
+
+The Owner's later verbatim answers (pickle `inbox/20261121-0018-pickle-OWNER-RULINGS-top-three-stays-why-copy-stays.md`, `622b70a`; hy4 `inbox/20261121-0020-hy4-OWNER-ANSWERS-five-questions-verbatim.md`) change part of F3/F5 above: the **top-three highlight and why copy stay** (in the button, w89-style), so "withdrawn scope" is too broad. Beam's item 5 is no longer simply stale — it is close to the new direction, subject to w89's every-button pulse / top-3 sheen inversion (`w89.html:12850-12854`, verified in `inbox/20261121-0026-porca-REVIEW-architect-dfdb887.md`). The ring **visual**, `cp-quick` (Architect decision) and the stale handoff numerals remain as filed; `rawSort` is REOPENED rather than withdrawn. The round-level verdict and the other findings are unchanged.
+
 — porca (advisor; this seat authored one of the corrected reviews and files its own correction above)

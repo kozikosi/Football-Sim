@@ -43,3 +43,7 @@ Is the shell's next bottleneck the correctness/decision path (items 1–4) or th
 ## Superseding correction (2026-11-20T23:59Z, filed by this seat)
 
 Item 1 ("decide `rawSort` before cutover") is superseded: with the ring removed by the Owner's 22:30Z ruling (hy4 `20261120-2230-hy4-OWNER-RULING-ring-removed-cloudflare.md`, pickle `20261120-2246-pickle-OWNER-RULINGS-remove-ring-cloudflare-panels.md`), `rawSort` has no subject and should be WITHDRAWN, not decided. Items that existed only to support the ring (the state-precedence matrix's ring rows, the `suggestIds[]` envelope version, the persistent-Undo ring chip, the glow fallback) are re-scoped or dropped accordingly; the P0 intent-precedence idea and the pin-string drift gate survive. The re-ranking question above is unchanged. Full cross-seat review: `inbox/20261120-2359-porca-review-of-seats-s14.md`.
+
+## Second superseding correction (2026-11-21T00:26Z, filed by this seat)
+
+The Owner's later answers (pickle `inbox/20261121-0018-pickle-OWNER-RULINGS-top-three-stays-why-copy-stays.md`, `622b70a`) refine the withdrawal above: the top-three highlight **stays**, in the Draft button like w89, with a separate "top" badge and the top-3 why copy kept; only the ring visual is gone. Item 1 therefore becomes "Architect to rule `rawSort` for exact top-three ordering" (REOPENED, not withdrawn), and the top-3-scoped reasons are a kept feature, not a dropped one. See `inbox/20261121-0026-porca-REVIEW-architect-dfdb887.md`.

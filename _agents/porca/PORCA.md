@@ -6,7 +6,15 @@
 - **Worktree:** `/Users/kosi/Desktop/wt/porca` · **Branch:** `council/porca` · `git merge-base HEAD origin/council/base` → `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 - **Evidence standard:** receipts come from fresh `git show`/`git grep`/`shasum`/node runs or real file reads. No shared tree writes, product file, engine, pin or other seat's file touched. A wrong claim is kept in the record with a superseding correction.
 
-## Current work — session 13 (review of other seats' S14 reviews, 2026-11-20T23:59Z)
+## Current work — session 14 (verify Architect dfdb887 + second self-correction, 2026-11-21T00:26Z)
+- **Owner pasted Claude's report** of new tip `dfdb887966a61ce8cbffa1d9ec0a107e55fea4a0` (parent `7d8d71c`, 4 files, +61/−23). Filed `inbox/20261121-0026-porca-REVIEW-architect-dfdb887.md`, VERDICT improved.
+- **Verified report claims:** contract residuals closed (`__cp` VERIFIED + six keys + both LOAD calls at S13 `:61/:170`, S14 `:66/:175` + L-ERR); runbook five gh-pages lines + Playwright + w89 key + gate 5 + rollback + visual wording all rewritten; NOW.md decisions and multisport parked. `claude/releases.md` absent, consistent with "create at merge".
+- **New finding (mine):** v8 §3 and runbook gate 5 (`:36`) use **S13 floors** (board 15→16/0, visual 15→17/0) while v8 builds on the **S14 tree** whose finals are board 19/0 / visual 18/0 (`README.md:3`, `START:67-68`). A 19→16 regression would pass. Fix: S14 finals as floors; keep 15→16/17 as labelled S13 provenance. hy4's `0010` §1 had warned against exactly this.
+- **Confirmed hy4's two byte-proven defects** independently: w89 glow inversion (`w89.html:12850-12854` pulses EVERY Draft button, top-3 opts out with `animation:none` + sheen/badge; v8 and S14 `shell.css:181` glow only top-3), and `cp-quick` removal with no re-point of six `.cp-quick` locators in S14 `visual.battery.mjs` (`:98,:175,:199,:206,:230,:292` — `:292` is W14 leg A).
+- **Second self-correction filed** in the S14 review, idea and cross-seat review files: the Owner's 00:1xZ answers (pickle `622b70a`, hy4 `0020`) keep the top-three highlight + why copy in the button; only the ring visual is gone. `rawSort` is REOPENED (not withdrawn); beam's item 5 is no longer simply stale; top-3-scoped `cp-why` is explicitly kept.
+- **Not done:** no colors gate, browser battery or deploy re-run; no product/engine/pin/governance/other-seat file edited. Owner's new ruling treated as a filed council record, not observed first-hand.
+
+## Prior work — session 13 (review of other seats' S14 reviews, 2026-11-20T23:59Z)
 - **Owner request — "review the other seats's work":** read all five S14 seat review/idea filings from their branches with `git show`: beam (`20261120-beam-S14-review.md`, `20261120-beam-review-of-seats.md`), iceman (`20261120-2345-iceman-review-67-cakepanz-14.md`), pickle (`20261120-2349-pickle-S14-review.md` + ideas), hy4 (`20261120-2345-hy4-cakepanz-14-review.md` + ideas). Also read hy4orca's c12-round review-of-seats as precedent (out of S14 scope). Filed `inbox/20261120-2359-porca-review-of-seats-s14.md`, VERDICT improved.
 - **Round verdict:** convergent on engineering (all five agree P0 fix and 69-file pin fence sound; all note the honest PARTIAL composite); split on the Owner's 22:30Z "remove the ring" ruling. Only pickle (F1) and hy4 (§1) caught it with verbatim filings. Beam missed it and recommends extending it; iceman understates it as an open question; **my own S14 review missed it** — self-correction filed.
 - **New findings on the seats:** (1) beam's S14 review uses stale S13 gate numbers board 16/0 / visual 17/0 while the tree says 19/0 / 18/0 (`README.md:3`, `START:67-68`) — the exact drift he flags in others' handoff sheets; (2) beam's "whyFor returns a stub" is FALSE — `suggestWhy.ts:21-26` exports a concrete three-branch function; (3) beam's ring-glow item 5 and whole ring assessment are withdrawn scope; (4) iceman's §3 "scope question... unresolved" should read "superseded by 22:30Z ruling"; (5) beam review-of-seats undercounts my review as two findings (there are four); (6) beam filed no byte-fidelity command for the delivery verdict. Convergent cross-checks: pickle F7 + my `:417` finding are the same numeral drift at two sites; hy4 + me both flag the "zero receipts hits" prose; all four who checked call the composite PARTIAL.
@@ -28,11 +36,12 @@
 - Session 11 self-correction: the c12 `__cp` hook shape matters to dev-hook tooling, **not** `slice1.battery.mjs` (verified zero `__cp` refs).
 - Session 10/9 self-corrections: my v2/v3 prompt labels (`45/0`, `:70-72`) were corrected in the filed v3; do not repeat them.
 - Session 13 self-corrections: S14 review/idea files lacked the ring-withdrawal scope finding; superseding lines are appended to both, and the cross-seat review carries the detail.
+- Session 14 self-corrections: the Owner's 00:1xZ answers keep the top-three highlight + why copy; the 23:59Z "withdraw everything ring-related / rawSort" line is itself superseded. Three files carry second correction sections; `rawSort` is REOPENED, not withdrawn.
 
 ## What the next session needs
-- **Read first:** `inbox/20261120-2359-porca-review-of-seats-s14.md` (newest), then the two superseding corrections in the S14 review/idea files, then `inbox/20261120-2349-porca-cakepanz-14-review.md`.
+- **Read first:** `inbox/20261121-0026-porca-REVIEW-architect-dfdb887.md` (newest), then `inbox/20261120-2359-porca-review-of-seats-s14.md` and its second correction, then the two corrected S14 review/idea files.
 - **Do not redo:** C1–C12, A1/A2/A3, c10/c12/c13/c14 relays and reviews, ancestry re-check, S13/S14 review rounds, the 11-draft Z.ai prompt review, the second-pass review of updated drafts, the 4-audit seat ranking, the latest-draft ranking, the P-287 contract review, this S14 seat-review round.
-- **Still open (not mine):** MUSE/custodian to put the ring-withdrawal relay note on the S14 handoff and re-issue the work order from v7; Owner's answer to the correctness-vs-phone re-ranking question; Architect's ruling on the now-WITHDRAWN `rawSort` proposal; Z.ai to re-run the composite and file VERIFY §26; MUSE's five stale pin lines; Contract A/B label reconciliation; Cloudflare deploy/rollback owner; Owner's seat-retirement decisions.
+- **Still open (not mine):** Architect to fold three v8 fixes before Z.ai starts (w89 every-button pulse, six `cp-quick` re-point, S14 gate floors) — filed in `0026`; Architect's ruling on the now-REOPENED `rawSort`; Owner's answer to the correctness-vs-phone re-ranking question; MUSE/custodian relay note reflecting the refined ruling (ring visual gone, top-three stays) and the stale pin lines; Z.ai to re-run the composite and file VERIFY §26; Contract A/B label reconciliation; Cloudflare account/product type; Owner's seat-retirement decisions.
 - **End-of-chat gate:** `node tools/preserve.mjs check` exits 1 for OTHER worktrees only. My `council/porca` is clean after the session's commits. Do not touch another seat's worktree.
 
 ## Files in this lane
@@ -42,7 +51,8 @@
 - `inbox/20261120-2210-porca-P-287-review-dispatchasync-contract-c12-callsites.md` — session 11 Architect review.
 - `inbox/20261120-2348-porca-IDEA-cakepanz-s14-implications.md` — session 12 brainstorm (item 1 corrected).
 - `inbox/20261120-2349-porca-cakepanz-14-review.md` — session 12 review (scope correction appended).
-- `inbox/20261120-2359-porca-review-of-seats-s14.md` — session 13 cross-seat review (current).
+- `inbox/20261120-2359-porca-review-of-seats-s14.md` — session 13 cross-seat review (second correction appended).
+- `inbox/20261121-0026-porca-REVIEW-architect-dfdb887.md` — session 14 review of the Architect's new tip (current).
 - Historical idea files (`0452`, `1615`, `2003`, `2031`) are superseded but kept for the record. No build copies or lane code (advisor role).
 
 ## Role
