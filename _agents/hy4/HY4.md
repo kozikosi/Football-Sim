@@ -4,7 +4,12 @@
 - **Seat:** HY4 · **Model / how reached:** HY4 / API (OpenChamber) · **State:** advisor
 - **Admitted:** 2026-11-18 by the Owner (`tools/admit-seat.sh`). Not retired.
 - **Role:** propose, test, review, dissent, measure. Core status is the Owner's call after 3 verified items.
-- **Worktree:** `/Users/kosi/Desktop/wt/hy4` · **branch:** `council/hy4` · **merge-base with base:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` · **HEAD at session end:** the session-end commit (this file is inside it); prior session end `793bb6384a`.
+- **Worktree:** `/Users/kosi/Desktop/wt/hy4` · **branch:** `council/hy4` · **merge-base with base:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` · **HEAD at session end:** the session-end commit (this file is inside it); prior session end `b3f9d3b09` (review commit), mirror commit `d601e63c5`.
+
+## Current work (Owner-direct session, 2026-11-21T16:23Z — S15 close-out mirror + review + ideas)
+- **Mirrored the close-out folder** (`1623`): Owner asked to push `/Users/kosi/Desktop/Football Sim/zai-s15-closeout-2026-11-21` so anyone can read it. Copied byte-identically to repo root (508 files, 19 MB, `diff -rq` exit 0, no `node_modules`/`.git`), staged by path with `ALLOW_BULK=1`, no root-protected file staged, pushed `council/hy4@d601e63c5`, `ls-remote` verified. The folder is now readable by every seat.
+- **Thorough review** (`1623`, `inbox/20261121-1623-hy4-zai-s15-closeout-review.md`): `ok` on engineering substance — **NOT acceptable as a final delivery**. Verified landed: D1 dual-width digest regex, D5 `metaNow()`→`engineVersion()` + no ENGINE_PIN, probe-w14 re-point, brag `VITE_BRAG_URL` + verbatim "20-0", `base: '/'`, a11y native `<button class="cp-sr">` with N26 re-pinned, ring-law retirement table (6 named), gh-pages README HISTORICAL fix, gate-manifest PASS (311) + gate-numerals CLEAN ×2 (both run). **Blockers:** B1 `verify-package.mjs .` → exit 1, `364 OK / 1 FAILED` — the handover's own sha256 in `CHECKSUMS.txt:63` is stale after the final edit (handover §1 claims "361 OK / exit 0"); B2 delivered `SHELL-STATUS.md` stale (02:01Z, `index-BXNAqTAg`/`BZF5JLE6`, "ring at a fixed seed") while actual dist is `index-BHOhZuA_`/`Cb5sVPrX` — generator fixed, artifact not regenerated. **Majors:** M1 side-by-side not filed (3 right-only PNGs, no doc/receipt; §9 vs §84 contradiction); M2 composite stopped at step 12, steps 13–17b unrun, no F30/F31 logs despite §3's "DIED". Minors: 0-byte fence receipt; tree-name/361-count drift. Battery counts are REPORTED from receipts (no `node_modules` here), labelled as such.
+- **Implications + ideas** (`1624`, `inbox/20261121-1624-hy4-cakepanz-15-implications-and-ideas.md`): brainstorming discipline applied, ranked for cakepanz/shell — A single DOM-hook registry (kill the 6-site selector drift), B generated-artifact freshness gate, C resumable composite with byte-identity checkpoints + mid-run byte guard, D Owner parity-board release gate, E why-chip provenance from `planWhy` (Owner's 0020 ask), F spatial badge-field + play-call card spike (Owner's pfd-01/pfd-02 north star, post-v1.1, no faces/scouting/GM), G a11y/micro-copy polish. Parked: career-stats card (account-sync absent), envelope lint, any pin/protected-constant change. Open Architect question: present the INTERIM display-rounded tie as a distinct "all tied" state, keeping the caveat. Advisory only; nothing built, no assignment.
 
 ## Current work (Owner-direct sessions, 2026-11-21T02:55Z → 03:22Z)
 - **Mirrored S15 WIP** `67-cakepanz-15-WIP-2026-11-21/` (545 files, 18 MB) from the Owner's desktop folder (`/Users/kosi/Desktop/Football Sim/…`) to `council/hy4 @ e9ceeef8b` so any seat can read it — Owner's request. `diff -rq` exit 0, no `node_modules` (beam's copy carries one), `ALLOW_BULK=1`, no protected file staged. Pushed; `ls-remote` = local HEAD.
@@ -51,6 +56,9 @@
 
 ## Files in this lane
 - `_agents/hy4/HY4.md` — this file.
+- `inbox/20261121-1623-hy4-zai-s15-closeout-review.md` — S15 close-out review (ok on code, delivery blocked B1/B2/M1/M2).
+- `inbox/20261121-1624-hy4-cakepanz-15-implications-and-ideas.md` — ranked implications + ideas A–G for the shell.
+- `zai-s15-closeout-2026-11-21/` — read-only mirror of Z.ai's close-out (508 files) pushed for council visibility; do not edit.
 - `inbox/20261121-0555-hy4-MUSE-sweep-unique-catches.md` — verified-new items from MUSE; 0551 corrected against it.
 - `inbox/20261121-0551-hy4-TO-ZAI-FULL-PROMPT-self-contained.md` — the rewritten Z.ai prompt (use this, not 0550; corrected 0555).
 - `inbox/20261121-0551-hy4-TO-ZAI-SHORT-read-the-full-prompt.md` — short pointer to send.
