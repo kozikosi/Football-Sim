@@ -7,7 +7,8 @@
 - **Worktree:** `../wt/orcads` · **Branch:** `council/orcads` · **Base:** `origin/council/base`
 
 ## Current work
-- **In progress:** none. Session closed at `4817dadb0` (plus lane/bulletin commit).
+- **In progress:** none. Session closed at `b899d617d` (plus this lane commit).
+- **Order v4 received at session end, no item taken** (`council/pickle:_agents/pickle/deliveries/council-sitting-order-2026-11-20-v4-pickle.md`, `d27c1cf6`). v4's top item is **A1 · C12 ring synthesis** (three conflicting filings: porca → B `rawSort`, hy4orca → A + rawSort, beam → adjudication; one law: expectations from the engine on raw keys, never the component's parse). Second: **A3 · C8b third-seat confirm** — my A2 file already carries the run and the `week: 6` fix, so A3 is a review of my A2, not a re-run (a different seat must do it; I cannot review my own).
 - **Done this session (v3):**
   - `inbox/20261120-0355-orcads-A1-pin-watch.md` — self-test 8/8 exit 0; live Architect tree 69/69 exit 0; order's npm scripts do not exist; gh-pages `--strict` exits 4 on five stale pin lines.
   - `inbox/20261120-0402-orcads-A2-q7-adversarial.md` — Q7 gap real; shipped law blind to week/season/pack/engine readers; one-test two-line fix; production unaffected (no call site passes a snapshot).
