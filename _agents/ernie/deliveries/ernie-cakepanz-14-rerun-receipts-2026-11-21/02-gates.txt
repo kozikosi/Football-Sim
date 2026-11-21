@@ -1,0 +1,48 @@
+
+## 7. the gates re-run at my machine (fresh preview :4291, this tree's dist asserted by scripts/fresh-server.mjs)
+$ npm run test:engine | tail
+ℹ tests 430
+ℹ pass 430
+ℹ fail 0
+$ npm run battery:node | tail
+ℹ tests 35
+ℹ pass 35
+ℹ fail 0
+$ CP_PORT=4291 npm run battery:board
+   PASS  L24 the PRIMARY top-three ring is the first three ARRAY POSITIONS of the engine-sorted rows — under every sort at pick 1 and at every checkpoint of the walk — never derived from rendered text or .cp-suggest nodes (the scoped no-display-parse law; the tie extension stays INTERIM — display-rounded, awaiting rawSort) — Wins:array-exact · Priority:array-exact · OVR:array-exact · pick 1 (early):array-exact · pick 13 (mid):array-exact · pick 27 (late):array-exact
+   PASS  L23 the ringed rows' one-click button carries the ported w89 pulse (zpbBtnPulse, 1.5s infinite) and prefers-reduced-motion turns it off (the w89 :948 guard) (S14 §3.5) — animation=zpbBtnPulse/1.5s reduced=none
+   PASS  L25 the ring is EXPLAINED (one plain reason per ringed row, from the shared VM mapping — never parsed text) and PERSISTED (the autosave carries suggestIds; a reload shows the SAME three from the stored data; the next interaction recomputes and re-persists) (S14 §3.6) — why 3/3 matched=true · persisted=true · restored screen=board ring===stored=true · after interaction: ring=4 rows, saved===ring=true moved=true errs=0
+== BOARD BATTERY (uniform) · 19 pass · 0 fail ==
+$ CP_PORT=4291 npm run battery:visual
+   PASS  W12 after a reload-restore the URL seed === the store seed (the restored draft is shareable — the D2 law) — url=b36:a3f2 store=470990 screen=board errs=0
+   PASS  W13 the new-seed affordance clears the tab pin: it shows when pinned, vanishes on click, and the next START draws a FRESH seed whose code rides the URL (explicit replay untouched) — pinned=1 cleared=true seed 470990→4596508 url=b36:2qios errs=0
+   PASS  W14 the explicit ?seed= link wins over a DIFFERENT autosave (no restore, the URL keeps the link, the notice shows, the local save is left untouched) and a SAME-seed reload still restores — the W9 exception is load-bearing (S14/P0) — link: screen=team store=null notice=shown savedSeed=470990(want 470990) savedPicks=43 url=k1x9 · START: seed=935613 url=b36:k1x9 · same-seed reload: screen=board seed=935613 notice=none errs=0
+== SEEDED VISUAL BATTERY · 18 pass · 0 fail · seeds a3f2, k1x9 ==
+$ CP_PORT=4291 npm run battery:slot
+== P-317 node laws: START/undo/restore carry the chosen slot ==
+== P-317 browser laws: Team Select → slot → DRAFT through the real flow ==
+== P-317 SLOT BATTERY · 28 pass · 0 fail · 0 skip ==
+$ CP_PORT=4291 node --import ./scripts/node-port-register.mjs batteries/shell.battery.mjs
+$ CP_PORT=4291 npm run battery  (slice)
+== SLICE 1 BATTERY · 29 pass · 0 fail · 10 skip (loud, with reasons) · 3 deferred to cutover ==
+$ contrast (with the Part-D register)
+== CONTRAST GUARDRAIL · 2 pass · 0 fail · AA 4.5:1 · 3 team hole(s), 0 new token hole(s) ==
+$ viewport matrix
+== VIEWPORT MATRIX · 45 checks · 0 overflow · 0 console/page errors ==
+$ golden seam
+golden-seam: MATCH — the seam output equals the committed golden (sha256 e8fed8ab7ca1493b7dd20298fa2e85947188bed7ecc1d6f865b187ead1e024e8)
+}
+
+Node.js v26.13.0
+   PASS  S28 file:// zero blocked requests
+
+== SHELL BATTERY · 48 pass · 0 fail ==
+
+## 8. the law is not a tautology — I re-planted the F25 mutant myself (a scratch copy, never the delivered tree)
+$ cp -R <delivered tree> /tmp/ernie-mut   # scratch only
+$ python3: replace  const payload = ids.length ? ({ ...rec, suggestIds: ids } as SaveRecord) : rec;
+           with    const payload = rec;   // MUTANT
+$ npm run build && npx vite preview --port 4293 --strictPort
+$ CP_PORT=4293 node --import ./scripts/node-port-register.mjs batteries/board.battery.mjs | grep -E "FAIL|BOARD"
+   FAIL  L25 the ring is EXPLAINED (one plain reason per ringed row, from the shared VM mapping — never parsed text) and PERSISTED (the autosave carries suggestIds; a reload shows the SAME three from the stored data; the next interaction recomputes and re-persists) (S14 §3.6) — why 3/3 matched=true · persisted=false · restored screen=board ring===stored=false · after interaction: ring=4 rows, saved===ring=null moved=null errs=0
+== BOARD BATTERY (uniform) · 18 pass · 1 fail ==

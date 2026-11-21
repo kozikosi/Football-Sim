@@ -1,0 +1,16 @@
+
+## 9. the engine fence (the pin is 408410477; the Architect's head is 7d8d71c3)
+$ git cat-file -t 408410477
+commit
+$ git ls-tree -r 408410477 colors/src | grep -c "\.ts$"
+69
+$ git diff --stat 408410477 7d8d71c3 -- colors/src   (empty = no engine drift at his head)
+(empty above)
+$ diff -rq <(git archive 408410477 colors/src) src/engine
+IDENTICAL: 69/69 files byte-for-byte
+$ sha256(src/engine/sports/nfl/view/draftBoard.ts)
+  mirror: e9e6e01a31d7024e6eb2bd9ece7034dadb93aa75316ca2826f96eb26a63f4251
+  pin   : e9e6e01a31d7024e6eb2bd9ece7034dadb93aa75316ca2826f96eb26a63f4251
+$ git ls-tree -r 408410477 --name-only | grep -c "^colors/test/"
+60
+$ git ls-tree -r 408410477 --name-only | grep "colors/test/engine" ; echo "(no colors/test/engine.test.ts at the pin — D1 was right)"

@@ -1,0 +1,19 @@
+
+## 10. D5 — the shell stamps a STALE PIN into every save and then warns about it (product bytes, not docs)
+$ grep -n "ENGINE_PIN" src/App.svelte
+83:  const ENGINE_PIN = '67-cakepanz@d3bd81d2';   // the informational engineVersion stamp (the pin, named)
+200:    engineVersion: ENGINE_PIN,
+$ grep -n "engineVersion" src/lib/port/savesApp.ts | sed -n 5p   # metaNow stamps ENGINE_PIN into the envelope
+  if (sum.state !== 'ok' || !sum.engineVersion) return null;
+  if (sum.engineVersion === runningVersion) return null;
+  return 'this save came from build ' + sum.engineVersion + ' (running: ' + runningVersion + ') — logged picks hold; un-made picks may differ';
+};
+
+$ grep -n "olderBuildNote" src/lib/components/Saves.svelte
+4:  import { SLOTS, readSlot, saveDraftSlot, loadDraftSlot, olderBuildNote } from '../port/savesApp.ts';
+80:          {#if olderBuildNote(sum, engineVersion())}
+81:            <p class="cp-slot-older">{olderBuildNote(sum, engineVersion())}</p>
+$ CP_PORT=4291 node probe-stamp3.mjs   # draft -> Saves -> "Save draft here" on slot A
+slotA now: Slot A DRAFT · rev 21 20 picks · Chicago Bears saved 2026-11-21 03:06 this save came from build 67-cakepanz@d3bd81d2 (running: nfl1.1ac56c28928eff) — logged picks hold; un-made picks may differ Load draft Save draft here
+olderBuildNote: ["this save came from build 67-cakepanz@d3bd81d2 (running: nfl1.1ac56c28928eff) — logged picks hold; un-made picks may differ"]
+slot A envelope engineVersion: 67-cakepanz@d3bd81d2 | picks: 20

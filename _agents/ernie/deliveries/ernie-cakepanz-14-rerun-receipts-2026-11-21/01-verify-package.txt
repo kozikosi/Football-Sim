@@ -1,0 +1,91 @@
+# ERNIE S14 RE-RUN — 2026-11-21 (VERIFIED, my machine, node v26.13.0)
+
+## 1. the DELIVERED bytes verify (pristine, as shipped)
+$ node tools/verify-package.mjs .
+verify-package: 467 OK / 0 FAILED / 0 missing (467 entries in CHECKSUMS.txt)
+verify-package: converse clean — the tree carries no unlisted file
+exit=0
+
+## 2. E1 — gate-manifest FAILS on the SHIPPED bytes (composite step 15)
+$ node scripts/gate-manifest.mjs
+MANIFEST FAIL (hash): batteries/board.battery.mjs
+MANIFEST FAIL (hash): batteries/shell.battery.mjs
+MANIFEST FAIL (hash): batteries/slot.battery.mjs
+MANIFEST FAIL (hash): batteries/visual.battery.mjs
+MANIFEST FAIL (hash): deliverables/HANDOFF-SNAPSHOT-2026-11-20.md
+MANIFEST FAIL (hash): deliverables/MERGE-MANIFEST.md
+MANIFEST FAIL (hash): deliverables/sitting-report-s13-2026-11-20.md
+MANIFEST FAIL (missing): dist/assets/index-Bymoqk0d.js
+MANIFEST FAIL (missing): dist/assets/index-CoyTk5bV.css
+MANIFEST FAIL (hash): dist/index.html
+MANIFEST FAIL (hash): dist/single.html
+MANIFEST FAIL (hash): README.md
+MANIFEST FAIL (hash): scripts/falsify-board.mjs
+MANIFEST FAIL (hash): SNAPSHOT.md
+MANIFEST FAIL (hash): src/App.svelte
+MANIFEST FAIL (hash): src/lib/assets/shell.css
+MANIFEST FAIL (hash): src/lib/components/BoardRow.svelte
+MANIFEST FAIL (hash): src/lib/components/DraftBoard.svelte
+MANIFEST FAIL (hash): src/lib/port/seedCode.ts
+MANIFEST FAIL (hash): START-OF-CHAT-ZAI.md
+MANIFEST FAIL (hash): tools/verify-package.mjs
+MANIFEST FAIL (hash): VERIFY-§25-append.txt
+MANIFEST FAIL (boot target hash): dist/assets/index-BZF5JLE6.js
+MANIFEST FAIL (boot target hash): dist/assets/index-BXNAqTAg.css
+boot target: 2 referenced asset(s) checked against the manifest
+MANIFEST FAIL (unlisted): VERIFY-§26-append.txt
+MANIFEST FAIL (unlisted): bulletin-entry-s14.md
+MANIFEST FAIL (unlisted): deliverables/sitting-report-s14-2026-11-20.md
+MANIFEST FAIL (unlisted): dist/assets/index-BXNAqTAg.css
+MANIFEST FAIL (unlisted): dist/assets/index-BZF5JLE6.js
+MANIFEST FAIL (unlisted): inbox/20261120-2218-zai-S14-proposal-rawSort-engine-half.md
+MANIFEST FAIL (unlisted): scripts/fresh-server.mjs
+MANIFEST FAIL (unlisted): scripts/probe-w14.mjs
+MANIFEST FAIL (unlisted): src/lib/port/suggestWhy.ts
+gate-manifest: FAIL
+exit=1
+
+## 3. E1b — after the composite's step 14 (regen-manifest) gate PASSES but verify-package FAILS
+$ node scripts/regen-manifest.mjs
+regen: 357 entries
+$ node scripts/gate-manifest.mjs
+boot target: 2 referenced asset(s) checked against the manifest
+gate-manifest: PASS (357 entries verified, dist/ covered, converse clean)
+exit=0
+$ node tools/verify-package.mjs .
+EXTRA (not in CHECKSUMS.txt): tools/verify-package.mjs
+EXTRA (not in CHECKSUMS.txt): tsconfig.json
+EXTRA (not in CHECKSUMS.txt): vite.config.js
+verify-package: 467 EXTRA file(s) on the tree that the manifest does not list — exit 1
+
+## 4. the digest algorithms differ (md5 vs sha256) — CHECKSUMS after regen:
+7aae73af160b9672195a20dbefa5e032a704b13eca6221a00d68abd8d1f2f41b  _agents_zai_inbox/20261116-0000-zai-cakepanz-shell-slice10.md
+4aa5b8dc0cfe837dc09d6a3eebc6231c814803fcd955838647b7a3bf3c9dab7a  _agents_zai_inbox/20261116-0000-zai-cakepanz-shell-slice11.md
+line-length of first digest: 64
+
+## 5. E2 — SHELL-STATUS.md (pinned, hashed in CHECKSUMS) disagrees with the shipped dist/
+shipped dist/ actual:
+  c05faa33c65c65058fb5badb0c49c94e5626e7aeffb10747e6dd4e3b9bcb41c4  dist/assets/index-BZF5JLE6.js
+  277ff0b7fc6e58d4fc433dfb5c02a73ecb6643811374028050df8f91e1980db4  dist/index.html
+  45fea6cd33280d072e1e51d4959db7e76d5ecc16d24dc1b8ac76ddb7cec84c8d  dist/single.html
+  390846 dist/assets/index-BZF5JLE6.js
+  536259 dist/single.html
+SHELL-STATUS.md says:
+  ## dist (the shipped bytes)
+  - dist/assets/index-Bymoqk0d.js — 389211 B — sha256 8c9ef26b61d696ef…
+  - dist/assets/index-CoyTk5bV.css — 144053 B — sha256 a7164161fd444eb9…
+  - dist/index.html — 650 B — sha256 403340a1056861d8…
+  - dist/single.html — 533812 B — sha256 31ed5e67e9e2f1c3…
+  
+
+CHECKSUMS pins SHELL-STATUS.md as: 68ad7c9eb77736def79ad040e158e5f7  SHELL-STATUS.md
+its own GENERATED stamp: GENERATED 2026-11-20T18:26:53Z — do not edit (node tools/shell-status.mjs)
+  (step 13d regenerates it; the composite never reached 13d, so the shipped copy describes an EARLIER build)
+
+## 6. E3 — the share notice overpromises: START on the link DESTROYS the local save
+$ node probe-recover.mjs   (fresh preview :4291, 1180x900, seed a3f2-class draw)
+A. MY SAVE            : {"url":"?dev=1&seed=b36%3A4orvr","savedSeed":7874343,"savedPicks":43,"screen":"board","notice":null}
+B. FRIEND LINK        : {"url":"?dev=1&seed=k1x9","savedSeed":7874343,"savedPicks":43,"screen":"team","notice":"shared link opened; your local save is untouched"}
+C. AFTER START ON LINK: {"url":"?dev=1&seed=b36%3Ak1x9","savedSeed":935613,"savedPicks":20,"screen":"board","notice":null}
+D. STRIP ?seed= BY HAND: {"url":"?dev=1&seed=b36%3Ak1x9","savedSeed":935613,"savedPicks":20,"screen":"board","notice":null}  <-- my save should be back
+pageErrors: 0
