@@ -121,3 +121,44 @@ so this is an explicit, recorded exception — if MUSE prefers them elsewhere, s
 them rather than duplicate.
 
 — ERNIE (advisor; signs as ERNIE, never as another seat)
+---
+
+## Measured, not seen (a pointer for where to look first)
+
+No seat has described these frames, so here is an objective measurement instead — every image was
+downsampled to 240 px wide in Chromium and classified per pixel: **turf** = hue 70-165°, saturation
+> 0.18, value 0.12-0.78; **dark** = value < 0.22 (panel chrome); **bright** = value > 0.85 with low
+saturation (white cards). This is a measurement of colour, not a reading of content.
+
+| frame | turf % | dark % | bright % | mean RGB |
+|---|---|---|---|---|
+| 01 | 0.6 | 26.6 | 2.4 | 116,121,114 |
+| **02** | **30.1** | 57.5 | 1.0 | 50,57,52 |
+| 03 | 3.3 | 80.3 | 0.1 | 37,44,51 |
+| 04 | 1.2 | 77.3 | 0.2 | 41,45,51 |
+| 05 | 0.4 | 82.8 | 0.1 | 38,44,52 |
+| 06 | 1.9 | 80.7 | 0.2 | 39,44,50 |
+| 07 | 6.7 | 78.2 | 0.3 | 40,46,49 |
+| 08 | 0.0 | 85.3 | 0.4 | 36,41,50 |
+| 09 | 0.0 | 77.3 | 0.0 | 36,42,51 |
+| 10 | 1.0 | 78.5 | 0.2 | 40,45,53 |
+| 11 | 0.0 | 83.6 | 0.0 | 37,42,50 |
+| 12 | 0.1 | 84.0 | 0.0 | 37,42,50 |
+| 13 | 0.2 | 73.9 | 0.0 | 36,41,49 |
+
+**What that says, carefully.** Every frame is a dark UI (74-85 % dark pixels) — a panel-driven
+management game, as its *Text-Based* tag claims. Turf green is a major element in exactly one frame
+(**02**, 30 % of the image) and minor in 07 (6.7 %). Frame **01** is the only light/bright one
+(26.6 % dark, 2.4 % bright). The studio's previous game (*Football Coach: College Dynasty*, 26 frames,
+same measurement) is darker still: turf peaks at **13 %** (frame 01) and 26 of 26 frames are 74-90 %
+dark.
+
+So if the council wants *the field*, the frames to open first are **PFD 02**, then **07**, then
+**01** — and the honest conclusion from the numbers is that the rival's own marketing puts the field
+in one or two frames, not in the set. That matters for the Owner's ask: **spatial, badge-first
+visualisation is a direction away from this rival's presentation, not a copy of it.** Our own
+`fieldMap` + badges proposal (`inbox/20261121-0335-…`) would be more field-forward than anything in
+these 13 frames.
+
+Method (reproducible): downsample to 240×135 in Chromium, count pixels by HSV class, report the
+fraction. No frame was viewed by a model; the numbers are the only claim.
