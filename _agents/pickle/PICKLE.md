@@ -4,7 +4,19 @@ SEAT: pickle · ROLE: Council Adviser · BRANCH: `council/pickle`
 WORKTREE: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle`
 MERGE-BASE: `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (`git merge-base HEAD origin/council/base`, re-verified 20 Nov 2026).
 
-## Current state (20 Nov 2026, nineteenth session) — S14 hosted and reviewed; ring scope withdrawn; one Owner question open
+## Current state (21 Nov 2026, twentieth session) — reviewed the other seats' S14 work (review layer); one new stale line found
+
+The Owner asked me to "review the other seats's work". Scope: the S14 review layer (not the delivery, which I reviewed last session), seven filings from five seats, all read from freshly fetched branches. Filed and pushed `inbox/20261121-0004-pickle-REVIEW-other-seats-s14.md` (VERDICT improved) + `bulletin/20261121-0004-pickle.md`.
+
+**VERIFIED by me this session:** confirmed hy4's REJECT of beam's S14 review — all four claims re-run against the hosted tree (seed-first `App.svelte:265-270`; exports `whyFor`/`suggestIdsOf`/`validSavedIds` at `suggestWhy.ts:21/30/44`; `zpbBtnPulse` on every `.cp-quick` at `shell.css:180-183`; 19/0/18/0 not 16/0/17/0) and `whyFor` is concrete (beam's "returns a stub" is false). Confirmed beam review-of-seats under-counts porca (2 vs 4+); beam ring advice + iceman §3 + glyph §5 treat the closed Owner ruling as open (two verbatim filings hy4 2230 / pickle 2246). §4.12 count = 5 (hy4 self-corrected, porca right). `savedSuggest` survives `setSort`/`toggleNeed`/`clearNeeds` (`App.svelte:191-195`, `DraftBoard.svelte:85-86`). W14 leg A clicks `.cp-quick` (`visual.battery.mjs:292`).
+
+**NEW finding nobody had named:** `scripts/acceptance-run.sh:52` still prints "F0-board clean baseline 16/0" for step 13b — hy4's list names `:41/:43`, porca names `ACCEPTANCE-RECEIPTS.txt:417`, my own S14 review named `:41/:43`. Add line 52 to the generated gate-table fix.
+
+**Still open, do not decide:** which "small descriptions of why each player" the Owner means (hy4 §6.5 reads new `.cp-why` on every row; my S14 F3 reads the pre-existing ring-independent `method(oddsMeta)`/`.cp-gonetip`/`.cp-sr`/`.cp-fitlbl`/`.cp-gonehow` copy). Both agree the text survives ring removal. No v8 work order has re-issued S14; do not land the ring half, and mark `rawSort` WITHDRAWN (not BLOCKED).
+
+**Operational:** Step 0 governance refresh applied from `origin/council/muse` (AGENTS.md/PROJECT-KNOWLEDGE.md/START-HERE.md): live queue `QUEUE.md`, engine pin `d3bd81d2`, framework Svelte 5 + Vite 8 decided. Used the v11 tool at `origin/council/muse:tools/council.mjs` (the v8 tool on architect/engine-and-seats prints an empty `next`). No product/engine/pin/governance/queue/mirror file edited.
+
+## Previous state (20 Nov 2026, nineteenth session) — S14 hosted and reviewed; ring scope withdrawn; one Owner question open
 
 The Owner asked me to push the Desktop folder `67-cakepanz-14-2026-11-20` to my branch and review it. Done, both pushed and ls-remote verified:
 - `c58d3bf6e64f5a4e740f615f823be5c015deae73` — full tree (468 files) at `_agents/pickle/deliverables/67-cakepanz-14-2026-11-20/cakepanz-4/`, re-verified on the pushed copy: `verify-package` 467 OK / 0 FAILED / 0 missing + converse clean. Public: `github.com/kozikosi/Football-Sim/tree/council/pickle/_agents/pickle/deliverables/67-cakepanz-14-2026-11-20/cakepanz-4`.
