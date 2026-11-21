@@ -31,3 +31,12 @@ The user asked to “note something very particular about this rival product”.
 
 ## Suggested next step (optional)
 If/when the Owner or Architect wants this pursued, create a small mood/requirements note (with screenshots captured by someone who can view Steam page) and a P-level idea in the queue — **do not** implement in current S15/Cakepanz WIP work.
+
+
+## Images stored (VERIFIED, downloaded 2026-11-21)
+Stored under `inbox/assets/pro-football-dynasty-20261121/` (from Steam page assets referenced above):
+- `header.jpg` (store header)
+- `extras-01.avif`, `extras-02.avif`, `extras-03.avif`, `extras-04.avif`, `extras-05.avif` (page extras/section images)
+- `poster.avif` (poster/teaser image shown on the page)
+
+Note: These are third-party assets from the Steam/store CDN as shown on the page at fetch time; stored here for reference/brainstorming context in this repo. AVIF/JPG formats as served.
