@@ -1,0 +1,28 @@
+node-port: src/engine-node missing (never generated) — regenerating (npm run precompile does the same step explicitly)
+node-port: engine-node: generated 69 files (1 transformed: platform/localstorage.ts) — snapshot untouched
+   FAIL  L16 the ring is PRESENT (3+ rows, C'1's minimum) and the ringed rows carry a ONE-CLICK draft button that names the player AND the slot — and only the ringed rows carry it (T2) — ringBefore=0 ringed=0 quick=0 named=true e.g. "(none)"
+   FAIL  L16 one click on a ringed row lands EXACTLY one user pick — no expand, no confirm banner — and the CPU picks on (T2) — the one-click button NEVER APPEARED — the ring is dead; the walk is skipped so the later laws still evaluate
+   FAIL  L17 undo reverses the one-click pick: zero user picks, the board order and the ring return (T2) — skipped — the one-click path is dead (the ring died first)
+   FAIL  L17 a non-ringed row still expands into the flex chip path (the expand path is kept, T2) — skipped — the one-click path is dead (the ring died first)
+   FAIL  L17 keyboard-only: Tab reaches the one-click button with a visible focus ring and Enter drafts with it (T2) — skipped — the one-click path is dead (the ring died first)
+   FAIL  L18 a fast double activation on the one-click button (two clicks in one task — the double-click / Enter auto-repeat class) lands EXACTLY ONE pick — the guard window keeps one interaction one pick (R1) — skipped loud — the ring is dead (the F20 mutant class); the law needs a ringed row
+   FAIL  L19 the staged confirm banner is GONE after the pick lands — a second PICK is not possible (S2) — skipped loud — the ring is dead; the staged path needs a ringed row
+   FAIL  L22 a fast double click on the staged CONFIRM (two clicks in one task) lands EXACTLY ONE pick, the banner disarms, zero page errors — the staged path is guarded like the one-click path (S13) — skipped loud — the ring is dead; the staged path needs a ringed row
+   PASS  L20 the numeric cells announce their VALUES to the screen reader — the accessible name contains the number, never a bare column name (D2) — ovr="97 overall" wins="+3.0 wins" prio="+3.0 priority" gone="99% gone odds"
+   FAIL  L21 the gone% METHOD is keyboard-reachable: the Tab order main → quick → the focusable method copy holds, and the copy reveals on focus (S3) — firstStop="cp-sr svelte-q412k" method="" visible=true position=static outlined=true
+   FAIL  L13 the top THREE available draft controls are highlighted by the board's active order — sampled early/mid/late; ids exact against the VM — INTERIM — display-rounded, awaiting rawSort (the oracle and the tie path stay PAIRED until rawSort lands, S14 §3.4.3); more than three only on an order tie (cakepanz-9 C′1) — pick 1 (early): 0 highlighted (expected 3, ids WRONG) · pick 13 (mid): 0 highlighted (expected 41, ids WRONG) · pick 27 (late): 0 highlighted (expected 60, ids WRONG) · pageErrors=0
+   FAIL  L24 the PRIMARY top-three ring is the first three ARRAY POSITIONS of the engine-sorted rows — under every sort at pick 1 and at every checkpoint of the walk — never derived from rendered text or .cp-suggest nodes (the scoped no-display-parse law; the tie extension stays INTERIM — display-rounded, awaiting rawSort) — Wins:WRONG (got  want nfl-p00016,nfl-p00037,nfl-p00061) · Priority:WRONG (got  want nfl-p00016,nfl-p00037,nfl-p00001) · OVR:WRONG (got  want nfl-p00001,nfl-p00004,nfl-p00005) · pick 1 (early):WRONG (got  want nfl-p00016,nfl-p00037,nfl-p00061) · pick 13 (mid):WRONG (got  want nfl-p00404,nfl-p00314,nfl-p00443) · pick 27 (late):WRONG (got  want nfl-p00669,nfl-p00724,nfl-p00811)
+   FAIL  L23 the ringed rows' one-click button carries the ported w89 pulse (zpbBtnPulse, 1.5s infinite) and prefers-reduced-motion turns it off (the w89 :948 guard) (S14 §3.5) — skipped loud — the ring is dead; the glow law needs a ringed row
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('.cp-rows .cp-row.cp-suggest .cp-quick').first()
+
+    at /tmp/cp-board-falsify-38qIn7/batteries/board.battery.mjs:401:70 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.22.3

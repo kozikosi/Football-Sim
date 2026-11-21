@@ -1,0 +1,15 @@
+F0-board clean baseline · unmutated board battery green · == BOARD BATTERY (uniform) · 19 pass · 0 fail ==
+F0-shell clean baseline · unmutated shell battery green · == SHELL BATTERY · 48 pass · 0 fail ==
+F15-board last-pick law     · mutation: the go('complete') handoff deleted · DIED — FAIL  L8 the last pick lands on Complete: the user's 32nd pick, taken through the real UI,
+F17 new-draft law           · mutation: the startDraft order reverted (go before START) · DIED — FAIL  L10 a NEW draft after a finished draft lands on the BOARD: Team Select → DRAFT → dat
+F18 partial-Complete law    · mutation: the unconditional h1 + the live CTA re-planted · DIED — FAIL  L11 the Complete screen does not lie in partial state: a deep link mid-draft renders
+F19 uniform-board law       · mutation: the simple branch planted (data-form + a .cp-simplerow node) · DIED — FAIL  L12 the uniform board (the Owner's ruling, cakepanz-9 §5): picks 1..12 render ONE an
+F13→F20 suggestion law      · mutation: suggest={false} (the top-three highlight killed) · DIED — FAIL  L13 the top THREE available draft controls are highlighted by the board's active ord
+F21 roster-print law        · mutation: the Complete roster block deleted · DIED — FAIL  L14 Complete prints the roster the engine would field: the lineup rows equal lineupF
+F22 wall-slip law           · mutation: the cascade keyframes deleted · DIED — FAIL  L15 the wall-slip reveal: entering Complete cascades (title → the stats hint → the b
+F23-w14 link-beats-autosave   · mutation: the naive guard re-planted (if has seed return — the W9 exception dropped) · DIED — FAIL  W14 the explicit ?seed= link wins over a DIFFERENT autosave (no restore, the URL kee
+F24 no-display-parse law     · mutation: the primary re-derived from rendered text (localeCompare sort) · DIED — FAIL  L24 the PRIMARY top-three ring is the first three ARRAY POSITIONS of the engine-sort
+F25 ring-persistence law     · mutation: the autosave drops suggestIds (the raw record written) · DIED — FAIL  L25 the ring is EXPLAINED (one plain reason per ringed row, from the shared VM mappi
+F26 glow law (L23)           · mutation: the ported zpbBtnPulse rule removed · DIED — FAIL  L23 the ringed rows' one-click button carries the ported w89 pulse (zpbBtnPulse, 1.5
+the uniform-board battery is falsifiable — L8 dies without the completing-pick handoff; L10 dies with the reverted startDraft order; L11 dies with the unconditional h1 + the live CTA; L12 dies with the planted simple branch; L13 dies without the suggestion wiring; L14 dies without the roster print; L15 dies without the cascade; W14 dies with the naive link guard (the same-seed exception dropped); L24 dies with the primary re-derived from rendered text; L25 dies without the ring persistence; L23 dies without the ported w89 pulse
+FALSIFY_EXIT=0
