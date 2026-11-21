@@ -84,7 +84,7 @@ The `runs` primary key makes a retry or a local-migration replay a no-op (`INSER
 | `PUT /api/saves/:sport/:slot` | session | Body `{ envelope, base }`. Validates with the same `parseEnvelope` the client uses plus the sport's inner check. 200 `{ server_rev }`, 409 `{ current }`, 413 too big, 422 invalid, 426 if `schemaVersion` is newer than the server knows (never overwrite a newer build's save). |
 | `DELETE /api/saves/:sport/:slot` | session | Body `{ base }`; soft delete. |
 | `POST /api/saves/:sport/:slot/restore` | session | Restores a rung-back into a slot (body: `archived_seq`, `base`). |
-| `POST /api/runs` | session | Body: one or an array (≤ 50) of run records. Server **recomputes** the derived columns from `detail` and ignores client-sent flags that disagree. Idempotent. |
+| `POST /api/runs` | session | Body `{ envelopes: [≤ 50 finished season saves] }` (`statsRecorded: true`). The server **derives the whole ledger row from the envelope** (W-L-T, PF/PA, outcome from the playoff games, `undefeated`, `perfect`) and ignores the payload's own `userOutcome`. A week save, an unfinished season or a run that does not end the season is 422. Idempotent (`inserted` / `ignored` counts). |
 | `GET /api/stats` | session | The folded career summary (legend, first Super Bowl per franchise, top player seasons, best records, 17-0 and 20-0 counts). |
 | `POST /api/shares` · `DELETE /api/shares/:id` | session | Create/revoke. Returns the token once. |
 | `GET /api/share/:token` | **public** | Read-only snapshot; any other method on this path: **403**; revoked/expired: **410**. Exposes no email, no user id. |
@@ -115,7 +115,7 @@ Errors are `{ error: <code>, message }`; unknown route 404. Every response carri
 - **Migrations:** a numbered `migrations/` folder applied with `wrangler d1 migrations apply`; the Worker refuses to serve if `d1_migration` is behind what the code needs (a `/api/health` check reports it).
 
 ## 8. Tests (node:test, Miniflare + real D1 binding; engine untouched)
-1. **Boundary:** users A and B; for every route A touching B's slot/run/share gets 404 (never 403); no session or a tampered cookie → 401. A mutation test removes the `user_id` predicate and must fail this.
+1. **Boundary:** users A and B. B sees an empty account of its own (list empty, GET 404, history empty, stats zero); B's write/delete/restore with a guessed `server_rev` is refused (409 `current: null`) and leaks none of A's data; B cannot revoke A's share (404); no session → 401 on every protected route. (Tampered-cookie rejection belongs to Better Auth's own layer and is tested at the rehearsal.) Mutation-checked: dropping the `user_id` predicate fails it.
 2. **One door:** a source test fails if any SQL naming `saves`, `save_history`, `runs` or `shares` appears outside `scopedDb`.
 3. **Share scope:** a token reads exactly one snapshot; write methods → 403; slot X's token cannot read Y; revoked → 410; the response contains no email or user id.
 4. **No credential routes:** list all `/api/auth/*` routes; only OAuth start, callback, session, sign-out. `emailAndPassword` off.
@@ -131,6 +131,9 @@ Errors are `{ error: <code>, message }`; unknown route 404. Every response carri
 - `sports/nfl/app/saves.ts` and the week flow: `playerLines` (sparse), `pickOverall`, `seed`, `confSeed` folded into the run `detail`; a `statsRecorded`-time call that produces the run record.
 - A sync module (new file, no engine import): the push/pull/queue logic and the `sim:nfl:sync` record. It talks to the existing `StorageModule` and a new `SyncTransport` interface, so tests can run it against a fake server.
 Everything else (Worker, `wrangler.jsonc`, migrations, auth config, tests) is new files outside `colors/src`.
+
+## 9b. Built so far (21 Nov, `server/`, outside `colors/`; V = run here)
+`server/` is a separate package (no change to `colors/`): `migrations/0001_init.sql`, `src/store.ts` (the one door), `src/derive.ts`, `src/api.ts`, and 27 tests (`cd server && npm test`, 27/27). Tests run against a D1-shaped adapter over `node:sqlite`, **not real D1**; a Miniflare/real-D1 run is a rehearsal gate. 11 deliberate breakages (drop the user predicate, drop the base check, never archive, never prune, writable shares, ignore revocation, perfect without the title, ties as undefeated, no envelope cap, non-idempotent run insert, accept non-season runs) were each caught by a failing test (2 survived the first pass and got tests). **Not built:** Better Auth wiring (`/api/auth/*` answers 501), the `wrangler.jsonc`, the client sync module, the legend-points fold (its weights must be written down first; the stats route returns raw counts), the 30-day purge of soft-deleted rows, rate limiting.
 
 ## 10. Open, in order
 1. Owner provisioning (free CF account, subdomain, GitHub OAuth App, two secrets) — U.
