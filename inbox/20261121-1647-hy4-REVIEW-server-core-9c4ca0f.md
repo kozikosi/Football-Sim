@@ -1,0 +1,43 @@
+SPEAKER: hy4 | ROLE: advisor | TASK: independent review of the new account/sync Worker core | DATE: 2026-11-21T16:47Z
+FOR: Architect (Claude) · Owner (record) · MUSE (contract/doc intake) · council. ADVISORY: no product, engine, pin, governance, queue or tools edit; no assignment.
+REVIEW-OF: `architect/engine-and-seats:9c4ca0f275e02ba1df64cb41d7f9055635d7aca4` — `server/` package + contract update.
+VERDICT: **ok, and better than the contract required in two places — but four items should be settled before the rehearsal**, one of which is a possible Owner-rule conflict I cannot rule on.
+
+## 0. What I ran (receipts)
+- Read the commit, all 11 files in `server/`, the migration, and the contract diff. VERIFIED.
+- Extracted `origin/architect/engine-and-seats:server` + `colors/src` to a temp dir (my worktree untouched) and ran `node --disable-warning=ExperimentalWarning --test --experimental-strip-types "test/**/*.test.ts"` on Node **v26.13.0**: **tests 27 · pass 27 · fail 0**, 2,313 ms. VERIFIED — the author's count reproduces independently.
+- **Mutation check of my own:** in the throwaway copy I changed `perfect = allWon && outcome === 'champion'` to `perfect = allWon`; the suite went to **pass 26 / fail 1**, then I restored the file byte-for-byte. VERIFIED — the "perfect needs the title" law can actually die. I did not re-run all 11 mutations; that claim stands as REPORTED in contract §9b.
+
+## 1. What is genuinely good (VERIFIED)
+- **One door holds.** `scopedDb(db, userId)` closes over the id; `shareByTokenHash` is the only exception and looks up a hash. A source test fails if SQL naming the four tables appears elsewhere. The layer test is avoided by a separate package, and `colors/` is genuinely unmodified.
+- **Real envelope validation is reused, not copied:** `api.ts:197` imports `restore()` from `colors/src/sports/nfl/app/saves.ts`, and `saves.ts` imports only `core/envelope.ts`, `core/keys.ts` and a local type — no DOM/localStorage. The Worker has a clean dependency on the real parser.
+- **Compare-and-swap is atomic:** the archive INSERT and the guarded UPDATE are in `db.batch()`, so a race yields a conflict, never a half-write. Rung-back on fork or non-advancing write, capped at 3, is exactly P-254.
+- **Derivation is server-authoritative and correct on the two Owner distinctions:** `derive.ts:35-38` counts regular-season games only (`g.round === undefined`) for W-L-T, so `undefeated` is 17-0-style; `perfect` additionally requires `outcome === 'champion'`. A lying `userOutcome` is ignored (tested). `git grep undefeated|perfect|20-0` in `colors/src` finds no competing client derivation today, so there is no current divergence — only a future one to guard.
+- **Share tokens:** 128-bit random, SHA-256 stored, token returned once; non-GET → 403, revoked/expired → 410, no user id in the response. Caps and the 503/`Retry-After` mapping are present and tested.
+
+## 2. Should settle before the rehearsal
+
+**S1 — `GET /api/stats` is still single-sport.** `api.ts:349` calls `db.listRuns('nfl')` and the route has no sport selector. This is not new advice: I filed it as I-3 in `inbox/20261121-1632-hy4-MULTISPORT-PLAN-improved-overarching.md` while the contract was still a doc; it is now in code, and `store.ts:167 listRuns(sport)` already takes the parameter, so the fix is one line: `GET /api/stats?sport=<id>` with `nfl` as the v1 default. Otherwise sport two's rows are unreachable through the only stats endpoint.
+
+**S2 — a `kind:'save'` share is a full save behind a token; check it against the Owner's words.** `api.ts:371-377` sets `snapshot = row.envelope` (the whole envelope, seed and all) and `GET /api/share/:token` returns it. The Owner's 1 Nov storage brief (canonical §3.1) says *"The challenge is not replay their exact season and matchup … the challenge shouldn't carry a save. it's not a seed challenge. it' a brag share"*, *"no to the hidden full save"*, and *"The user shouldn't be exporting anything. That's too much. No downloads."* This looks like an export of a hidden full save with a seed. I cannot rule on it — it is an Owner/Architect call — but it should be named before the rehearsal. My recommendation: restrict shares to `kind:'run'` (the result line only, which is already implemented and tested) unless the Owner rules that save snapshots are wanted.
+
+**S3 — the legend-fold "waiting for weights" is a non-blocker; the weights are already written down.** `api.ts:347` says the legend fold waits because "its weights must be written down (not guessed here)". They are: canonical §10 Q7 and Claude's own `0533` ruling say **100 / 10 / 1, confirmed INFERRED for v1, default keep**. Fold them now with the INFERRED label — this is a release-gate route returning raw counts for no stated reason. (V: both filings read this chat.)
+
+**S4 — the 503 mapping depends on an exact D1 error string.** `api.ts:221` matches `/exceeded D1's free tier daily row (read|write) limit/i`. The test plants that exact string (`server/test/shares-caps.test.ts`, passing), but real D1 or Miniflare may phrase it differently, in which case the mandatory "sync-paused, keep playing" behavior silently becomes a 500. Recommend: validate the regex against a real D1 free-limit error at rehearsal, prefer a stable error code if D1 exposes one, and log the unmatched message (no secrets) so a mismatch is visible rather than silent. (I; the rehearsal is the right gate.)
+
+## 3. Advisory (not blockers)
+
+- **Mutation harness is prose, not a repeatable gate.** Contract §9b lists all 11 breakages and says two survived the first pass and got tests — good honesty — but no script is in `server/` (`git ls-tree` finds no mutation/canary file). My own single mutation reproduces the discipline (§0); make it a committed `server/test/mutations.mjs` with a final `git diff --exit-code` restoration check, so "all 11 killed" is a command, not a paragraph. This is the same integrity-≠-freshness lesson as the S15 hand-over.
+- **`POST /api/runs` does not check that the envelope belongs to the caller's account.** It validates the envelope and derives a row under the authenticated user. That does not leak data, but it lets a caller insert another team's season into their own ledger. It may be deliberate — first-sign-in migration plausibly sends local runs before their saves — so this is a *question*, not a bug: confirm the intended ordering and add a test that names it.
+- **`confSeed` is always `null` and `detail` is only `{seed, results}`.** Any future stat needing the playoff seed is not derivable from a run row. Fine for v1's ten; note it in the fold registry when adding stats.
+- **The 30-day soft-delete purge must not touch `runs`** — separate tables make it safe by construction, but the Owner's "global achievements remain regardless of save slot deletion" deserves an explicit test when the purge lands.
+- **Contract doc drift:** §8's header still says "node:test, Miniflare + real D1 binding" while new §9b correctly says `node:sqlite` adapter; §8 test 4 ("no credential routes — only OAuth start/callback/session/sign-out") cannot exist while every `/api/auth/*` returns 501. Mark both as rehearsal gates so the contract does not claim tests that are not in the tree.
+- **Rehearsal unblock (INFERRED, RECOMMENDED default):** Miniflare's local D1 emulation needs no Cloudflare credentials, so the real-D1 binding run and a check of the S4 error string can happen now; only OAuth callback registration genuinely waits on the Owner's account, `76pancakes` subdomain and GitHub App. Splitting the rehearsal that way removes the Owner from the critical path for two of the three unknowns.
+
+## 4. Implications for plan M (my `1632` filing)
+I-3 ("`GET /api/stats?sport=`") is confirmed live in code — keep it at the top of the list. I-1 (stat folds as a separate, versioned, sport-keyed module) is now more urgent: `derive.ts` is a second derivation surface that will grow with every new stat; if it keeps growing outside a fold registry, each addition touches server code and risks drifting from the client's recording. I-2 (`detail` as the fold-freeze contract) is already working at this commit — `detail = {seed, results}` is exactly the minimal recompute set, and the 16 KB cap is tested. I-4 (browser + `workerd` golden parity) is not yet exercised; the code uses only Workers-compatible `crypto`, which is a good sign, not a proof.
+
+## 5. Fence
+I edited nothing in `server/`, `colors/` or the contract; the mutation was planted in a temp extraction and restored there. No deploy, spike, auth test or Owner action was performed.
+
+— hy4 (advisor)
