@@ -18,7 +18,7 @@ Read together with the 04:2xZ ruling (filed `inbox/20261121-0420-pickle-RELEASE-
 What the new line settles, precisely:
 - **Sign-in stays OPTIONAL for the player.** The core simulator still works with no account — the 1 Nov rule is NOT reversed. My earlier filing said the stored "optional sign-in" default was superseded; that was overstated and I withdraw that part. The stored rule survives.
 - **What is mandatory is capability completeness at deploy** — the ability to sign in must be built and working before we ship. Optional to use ≠ optional to build.
-- This answers the open question I left in 0420: an account is NOT required to play; it is required to exist, finished, at release.
+- This answers the open question I left in 0420: an account is NOT required to play; it is required to exist, finished, at release. The second open question — stat scope — is settled in §3 below.
 
 ## 2. Findings — the plan already exists (paths VERIFIED read this sitting)
 
@@ -36,18 +36,18 @@ Full retrieval filing: `inbox/20261121-0430-pickle-RETRIEVAL-existing-account-an
 - **P-254 conflict rule is already decided** — per-slot last-write-wins on the WHOLE save, never field merge, losing lineage kept as rung-back, keep both at slot level, additive `deviceId`. Do not design a CRDT or mutation log; I withdrew that idea. Implement the approved rule.
 - **Architect's collision (his call):** v8 deferred migration to keep engine bytes and pin frozen through the merge; migration now ships. Either keep the envelope/account contracts outside the engine bytes, or deliberately re-freeze the pin — not silently.
 - **Hosting:** backend = a Worker (rate limiting, Workers Logs/Logpush, Source Maps, native DO are Workers-only). Front end = one Worker with static assets if the release domain's nameservers are on Cloudflare; otherwise Pages + a separate Worker — the only reason to keep Pages. Domain custody is the Owner's and still unspecified. Free tier covers the whole feature set.
-- **Open question still with the Owner:** "stats beyond a single season" — I read it as the existing cross-run global career stats (the 1 Nov lifecycle locked out multi-season franchise play). If it means franchise continuity across years, that is a new product call and conflicts with the locked single-season lifecycle.
+- **"Stats beyond a single season" — RESOLVED by the Owner (04:5xZ, verbatim): "the cross-run career stats already locked".** My INFERRED reading was correct. It means the ten global career stats in P-208, accumulated across runs via the elimination trigger — NOT franchise continuity across years. The single-season lifecycle from the 1 Nov brief stands unchanged. No new product call; no work item from this question.
 
 ## 4. What the council is asked to do (no assignments — work comes from the queue)
 
-- **MUSE:** record the two 21 Nov Owner rulings verbatim in `_agents/owner-notes/`, sort them into `_agents/QUEUE.md`, and reconcile the stale governance text (§3 "one self-contained HTML" was reversed 11-04 per P-251; §7 "optional sign-in... separate optional module" now needs the "complete before deploy" qualifier). Custodian standing permission applies.
+- **MUSE:** record the three 21 Nov Owner rulings verbatim in `_agents/owner-notes/` (release scope, optional sign-in, stat scope), sort them into `_agents/QUEUE.md`, and reconcile the stale governance text (§3 "one self-contained HTML" was reversed 11-04 per P-251; §7 "optional sign-in... separate optional module" now needs the "complete before deploy" qualifier). Custodian standing permission applies.
 - **Architect (Claude):** decide the technical shape — account schema/auth library, how the envelope attaches to an account, sync and migration mechanics, and the pin-freeze question. Product/engine files stay yours alone.
 - **Seats:** the account schema, sync protocol and local→account migration have no design in the repo. Proposals, tests and dissents go to `inbox/` per the normal review chain; three different seats per item. Research any item; no waiting on a named seat.
-- **Owner:** one decision still needed — the "stats beyond a single season" meaning in §3.
+- **Owner:** no decision outstanding from this prompt — the sign-in scope and the stat-scope question are both settled. The domain/nameserver question in §3 remains the Owner's to answer before the front-end substrate is final, but it does not block the council starting the design work.
 
 ## 5. Labels and authority
 
-Owner words quoted above: verbatim, authoritative. File paths and quoted 1 Nov lines: VERIFIED (read this sitting). Absence of schema: VERIFIED negative search across four named refs. Hosting behaviour: REPORTED from Cloudflare primary docs (no account or deploy run). Reconciliations: INFERRED, mine. Product scope and domain: Owner's decision. Technical implementation: Architect's decision. No seat is authorised to implement from this prompt.
+Owner words quoted above: verbatim, authoritative. File paths and quoted 1 Nov lines: VERIFIED (read this sitting). Absence of schema: VERIFIED negative search across four named refs. Hosting behaviour: REPORTED from Cloudflare primary docs (no account or deploy run). Reconciliations: INFERRED, mine (the stat-scope reading was mine and is now Owner-confirmed). Product scope and domain: Owner's decision. Technical implementation: Architect's decision. No seat is authorised to implement from this prompt.
 
 — pickle (council seat; advisor)
 
