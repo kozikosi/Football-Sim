@@ -4,7 +4,7 @@
 - **Seat:** HY4 · **Model / how reached:** HY4 / API (OpenChamber) · **State:** advisor
 - **Admitted:** 2026-11-18 by the Owner (`tools/admit-seat.sh`). Not retired.
 - **Role:** propose, test, review, dissent, measure. Core status is the Owner's call after 3 verified items.
-- **Worktree:** `/Users/kosi/Desktop/wt/hy4` · **branch:** `council/hy4` · **merge-base with base:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` · **HEAD at session end:** the session-end commit (this file is inside it); last push `af72cd95f`.
+- **Worktree:** `/Users/kosi/Desktop/wt/hy4` · **branch:** `council/hy4` · **merge-base with base:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` · **HEAD at session end:** the session-end commit (this file is inside it); prior session end `2d2e58a5a`.
 
 ## Current work (long session, 2026-11-20T23:45Z → 2026-11-21T01:00Z)
 - **Mirrored S14** `67-cakepanz-14-2026-11-20/` (468 files, 18M) from the Owner's shared tree to `council/hy4 @ 871c3edc1` so any seat can read it — Owner's request. `diff -rq` exit 0; `ALLOW_BULK=1` for the deliberate by-path mirror; no protected file staged. Pushed, ls-remote verified.
@@ -16,6 +16,7 @@
 - **Architect dfdb887 review** (`0030`, `inbox/20261121-0030-hy4-REVIEW-architect-dfdb887.md`): all his reported doc fixes verified and accepted; two byte-proven defects — inverted w89 glow scope, and `cp-quick` removal leaves six `visual.battery.mjs` selectors unpointed (`:98,175,199,206,230,292`; `:292` is W14 leg A). Later check: **Claude timed out; architect tip still `dfdb887`, no new commit** — both defects remain in his v8.
 - **Cloudflare decision brief** (`0040`, `inbox/20261121-0040-hy4-OWNER-CLOUDFLARE-DECISION-BRIEF-and-Claude-parallel-work.md`): Owner directed Claude + council decide. Recommended Pages direct upload over Git integration (auto-deploy breaks the go-after-side-by-side trigger); account facts remain UNKNOWN and need the Owner. Ranked Claude's non-blocking work.
 - **Draft reply to Claude** (`0050`, `inbox/20261121-0050-hy4-TO-ARCHITECT-reply-dfdb887.md`) and **long self-contained Z.ai continuation prompt** (`0100`, `inbox/20261121-0100-hy4-TO-ZAI-continuation-prompt-S15-long.md`): the prompt folds in the two v8 corrections so the timeout doesn't propagate; includes Owner words, byte anchors, fence, laws, handover, first actions.
+- **Supplementary council work order (short follow-up session, 0251Z):** Owner/pickle offered a self-contained council work order for filing on `council/pickle`. I verified the claims that touch my lane before answering: all three named filings exist on the stated branches/tips (pickle `bafa80cb`/`0110` v2, porca `7d035feb`/`0033`, my `af72cd95`/`0100`), architect tip still `dfdb887`, `tools/post-merge-smoke.mjs:421` still lists `tabGuideBtn`, and pickle's v2 carries both corrections (every-button pulse + top-3 `animation:none`; six-selector re-point with W14 leg A at `:292`). I said **file and push it unchanged** — relay-only work orders aren't `git show`-able. Noted that reviewers should keep my `0100` prompt in view even though pickle's v2 governs. No new inbox filing; this session was verification + advice only.
 - **Claimed / blocked:** none. I edited no product, engine, pin, governance, queue or delivery-mirror file. All edits are my lane, inbox and bulletin on `council/hy4`.
 
 ## Standing context (still in force — do not reopen)
