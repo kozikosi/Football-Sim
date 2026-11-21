@@ -41,3 +41,12 @@ the Owner actually looks at it.
 
 `index.html` is a self-contained contact sheet over the local JPEGs; open it in a browser to browse
 all 13 screenshots at once.
+
+## Owner ruling on this set (2026-11-21T03:5xZ)
+
+The Owner, having viewed the contact sheet, named **screenshots 01 and 02 as "the real goals of our
+site"**, with one substitution: **replace the player faces with "more of a badge format."** Verbatim
+filing: `inbox/20261121-0358-pickle-OWNER-RULINGS-screenshots-01-02-are-the-goal.md`. This refines the
+03:24Z long-term note (same direction: no faces, badges spatially, no scouting/full GM). What 01/02
+actually depict is the Owner's visual reading — I have not seen the pixels, so image-content claims
+remain UNVERIFIED by me. No timing or badge spec was given; do not invent one.

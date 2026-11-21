@@ -20,6 +20,11 @@ Owner then said "browse them and store the images": stored 26 Steam images (13 f
 with README provenance, `index.html` contact sheet and `CHECKSUMS.sha256` (26 OK exit 0). Commit
 `375f8475f01c8f30f4724bae3ae5d2031fab6164`, pushed + ls-remote verified. I cannot see pixels (no
 image input); content claims are UNVERIFIED until a seat/Owner looks. Reference only, never product.
+Owner then viewed the gallery and ruled (verbatim, 03:5xZ): **screenshots 01 and 02 are "the real goals
+of our site"**, with "player faces" replaced by "more of a badge format". Filed at
+`inbox/20261121-0358-pickle-OWNER-RULINGS-screenshots-01-02-are-the-goal.md` + stored README note.
+Refines 03:24Z (no faces / badges spatially); no timing or badge spec given — "real goals" vs
+"long term goals" wording is Owner/Architect's to resolve, not mine. I have not seen the pixels.
 
 ## Previous state (26th session) — published and reviewed Z.ai's S15 Cakepanz WIP folder
 
