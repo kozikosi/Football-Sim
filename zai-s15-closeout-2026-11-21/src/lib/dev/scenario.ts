@@ -17,7 +17,6 @@ import {
   buildPool,
   createStore,
   engineVersion,
-  freezePool,
   goneOdds,
   makeRng,
   TEAMS,
@@ -188,7 +187,12 @@ export function assertScenario(snapshot: ScenarioSnapshot): void {
 }
 
 function canonical(value: unknown): string {
-  if (value === null || typeof value !== 'object') return JSON.stringify(value);
+  if (value === undefined) return 'null';
+  if (value === null || typeof value !== 'object') {
+    const encoded = JSON.stringify(value);
+    if (encoded === undefined) throw new Error('scenario snapshot contains a non-JSON value');
+    return encoded;
+  }
   if (Array.isArray(value)) return '[' + value.map(canonical).join(',') + ']';
   const object = value as Record<string, unknown>;
   return '{' + Object.keys(object).sort().filter((key) => object[key] !== undefined)
