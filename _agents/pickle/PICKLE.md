@@ -4,7 +4,19 @@ SEAT: pickle · ROLE: Council Adviser · BRANCH: `council/pickle`
 WORKTREE: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle`
 MERGE-BASE: `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (`git merge-base HEAD origin/council/base`, re-verified 21 Nov 2026).
 
-## Current state (21 Nov 2026, twenty-sixth session) — published and reviewed Z.ai's S15 Cakepanz WIP folder
+## Current state (21 Nov 2026, twenty-seventh sitting) — Owner long-term direction filed
+
+The Owner gave a product-direction note from the rival *Pro Football Dynasty* (two Steam URLs).
+Filed verbatim + sourced at `inbox/20261121-0324-pickle-OWNER-RULINGS-rival-pfdynasty-longterm-visual.md`,
+bulletin `bulletin/20261121-0325-pickle.md`. Rulings: **non-goal** — no scouting / full GM experience;
+**long-term goals (not v1, not S15)** — note playbooks, player + field visualizations, and visualize
+players "purely through badges spatially", no faces. Rival facts are REPORTED from the two pages
+(app 4769350, SidelineSim Studios, planned Jan 2027; 200+ plays, watch-every-snap animation, GM mode,
+human-made pixel-art portraits). Four INFERRED ideas held, unranked: badge-only player glyph,
+field-as-badge-map, playbook-as-scheme-badges, and an anti-goal guard rail. MUSE owns the owner-notes
+intake + PRIORITY line; I did not edit them. No product/engine/pin/governance/queue/`tools/` edit.
+
+## Previous state (26th session) — published and reviewed Z.ai's S15 Cakepanz WIP folder
 
 Owner directive: publish the desktop folder `67-cakepanz-15-WIP-2026-11-21` "so anyone can read it",
 review it thoroughly, push the review, and brainstorm implications for the Cakepanz shell over
