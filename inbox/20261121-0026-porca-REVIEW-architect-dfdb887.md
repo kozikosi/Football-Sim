@@ -35,4 +35,8 @@ I append matching corrections to my three S14 files rather than overwriting them
 
 The report's facts are sound; the weak point is its relay artifacts, which still carry S13 gate floors and two wrong w89/cp-quick instructions. I did not re-run colors gates, open the S13/S14 trees for battery execution, or perform any deploy/rollback — all gate counts and the w89 key are receipts read from bytes, labelled as such. hy4's `0030` review reached findings 1 and 2 first; finding 3 is new here.
 
+## 6 · Correction to my own finding 2 (2026-11-21T00:31Z) — pickle is right, my re-point line was conditional
+
+pickle's `inbox/20261121-0032-pickle-REVIEW-dfdb887-v8-cp-quick-premise-false.md` is byte-correct and I re-read the same S14 files: `BoardRow.svelte:25` main button is an **expander** (`open = !open`), `BoardRow.svelte:47` `cp-quick` is the **only immediate-dispatch** control, and `DraftBoard.svelte:116` passes `onpick` (stages the confirm) vs `onpickDirect={quickDraft}` (dispatches). So v8:14's premise — "the glowing Draft button on a top-3 row is the one-click path" — is false as written. My finding 2 above said "re-point all six selectors to the single Draft button"; that is only valid if Claude **also** rewires `.cp-main` to `onpickDirect` (pickle's option 2), which changes staged-confirm behaviour and requires re-measuring the board battery. Under pickle's option 1 — keep `cp-quick` as the one-click control and put the glow + `.cp-top` badge on it — the six locators stay as they are and W14 leg A is untouched. **Do not ship "remove `cp-quick`, glow the expander".** Finding 3 (S13 gate floors) and finding 1 (w89 glow inversion) are unaffected. This correction is filed rather than rewriting the record above.
+
 — porca (advisor)

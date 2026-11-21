@@ -6,7 +6,14 @@
 - **Worktree:** `/Users/kosi/Desktop/wt/porca` · **Branch:** `council/porca` · `git merge-base HEAD origin/council/base` → `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 - **Evidence standard:** receipts come from fresh `git show`/`git grep`/`shasum`/node runs or real file reads. No shared tree writes, product file, engine, pin or other seat's file touched. A wrong claim is kept in the record with a superseding correction.
 
-## Current work — session 14 (verify Architect dfdb887 + second self-correction, 2026-11-21T00:26Z)
+## Current work — session 15 (Owner directive + reply draft, 2026-11-21T00:31Z)
+- **Owner directive relayed by seats** (pickle `a90401933`, hy4 `6b93ce9b`): Cloudflare *how* is now a Claude + council decision, not an Owner question. Council input on record: Pages + explicit Direct Upload (`wrangler pages deploy dist`) over Git auto-deploy and Workers static assets — auto-deploy makes the "go only after side-by-side + receipts" trigger unenforceable. Owner still provisions the account/project/token.
+- **Drafted the Owner's reply to Claude** at `inbox/20261121-0031-porca-TO-ARCHITECT-reply-dfdb887.md` (self-contained, ready to relay): authority change, verification of `dfdb887`, three v8 fixes, ranked parallel work, what waits on Z.ai.
+- **Third self-correction:** pickle's `cd5095fb2` is byte-correct and I re-read S14 `BoardRow.svelte:25,47` / `DraftBoard.svelte:116` — the main Draft button is an expander, `cp-quick` is the only one-click path. My "re-point six battery selectors" line is valid only if Claude also rewires `.cp-main` to `onpickDirect`; under "keep `cp-quick`" no re-point is needed. Appended as §6 of `0026`, record not rewritten.
+- **Added to my own finding set:** v8 §3 / runbook `:36` gate floors are S13 (16/0, 17/0) while the build tree is S14 (19/0, 18/0) — a regression would pass. hy4 independently filed the w89 glow inversion and the `cp-quick` re-point need (before pickle's premise correction).
+- **Answer to "is Claude just waiting?":** no — two blocking doc fixes (now three with the premise correction), Cloudflare mechanism, Playwright pin, `releases.md` schema, visual-acceptance harness spec, devgame one-liner, D13 purity + pin-watch CI. Engine-byte work stays after cutover. MUSE owns the `AGENTS.md` pin drift.
+
+## Prior work — session 14 (verify Architect dfdb887 + second self-correction, 2026-11-21T00:26Z)
 - **Owner pasted Claude's report** of new tip `dfdb887966a61ce8cbffa1d9ec0a107e55fea4a0` (parent `7d8d71c`, 4 files, +61/−23). Filed `inbox/20261121-0026-porca-REVIEW-architect-dfdb887.md`, VERDICT improved.
 - **Verified report claims:** contract residuals closed (`__cp` VERIFIED + six keys + both LOAD calls at S13 `:61/:170`, S14 `:66/:175` + L-ERR); runbook five gh-pages lines + Playwright + w89 key + gate 5 + rollback + visual wording all rewritten; NOW.md decisions and multisport parked. `claude/releases.md` absent, consistent with "create at merge".
 - **New finding (mine):** v8 §3 and runbook gate 5 (`:36`) use **S13 floors** (board 15→16/0, visual 15→17/0) while v8 builds on the **S14 tree** whose finals are board 19/0 / visual 18/0 (`README.md:3`, `START:67-68`). A 19→16 regression would pass. Fix: S14 finals as floors; keep 15→16/17 as labelled S13 provenance. hy4's `0010` §1 had warned against exactly this.
@@ -39,7 +46,7 @@
 - Session 14 self-corrections: the Owner's 00:1xZ answers keep the top-three highlight + why copy; the 23:59Z "withdraw everything ring-related / rawSort" line is itself superseded. Three files carry second correction sections; `rawSort` is REOPENED, not withdrawn.
 
 ## What the next session needs
-- **Read first:** `inbox/20261121-0026-porca-REVIEW-architect-dfdb887.md` (newest), then `inbox/20261120-2359-porca-review-of-seats-s14.md` and its second correction, then the two corrected S14 review/idea files.
+- **Read first:** `inbox/20261121-0031-porca-TO-ARCHITECT-reply-dfdb887.md` (the reply draft), then `inbox/20261121-0026-porca-REVIEW-architect-dfdb887.md` (with §6 correction), then `inbox/20261120-2359-porca-review-of-seats-s14.md` and its second correction.
 - **Do not redo:** C1–C12, A1/A2/A3, c10/c12/c13/c14 relays and reviews, ancestry re-check, S13/S14 review rounds, the 11-draft Z.ai prompt review, the second-pass review of updated drafts, the 4-audit seat ranking, the latest-draft ranking, the P-287 contract review, this S14 seat-review round.
 - **Still open (not mine):** Architect to fold three v8 fixes before Z.ai starts (w89 every-button pulse, six `cp-quick` re-point, S14 gate floors) — filed in `0026`; Architect's ruling on the now-REOPENED `rawSort`; Owner's answer to the correctness-vs-phone re-ranking question; MUSE/custodian relay note reflecting the refined ruling (ring visual gone, top-three stays) and the stale pin lines; Z.ai to re-run the composite and file VERIFY §26; Contract A/B label reconciliation; Cloudflare account/product type; Owner's seat-retirement decisions.
 - **End-of-chat gate:** `node tools/preserve.mjs check` exits 1 for OTHER worktrees only. My `council/porca` is clean after the session's commits. Do not touch another seat's worktree.
@@ -52,7 +59,8 @@
 - `inbox/20261120-2348-porca-IDEA-cakepanz-s14-implications.md` — session 12 brainstorm (item 1 corrected).
 - `inbox/20261120-2349-porca-cakepanz-14-review.md` — session 12 review (scope correction appended).
 - `inbox/20261120-2359-porca-review-of-seats-s14.md` — session 13 cross-seat review (second correction appended).
-- `inbox/20261121-0026-porca-REVIEW-architect-dfdb887.md` — session 14 review of the Architect's new tip (current).
+- `inbox/20261121-0026-porca-REVIEW-architect-dfdb887.md` — session 14 review of the Architect's new tip (§6 correction appended).
+- `inbox/20261121-0031-porca-TO-ARCHITECT-reply-dfdb887.md` — session 15 self-contained reply draft for the Owner to relay (current).
 - Historical idea files (`0452`, `1615`, `2003`, `2031`) are superseded but kept for the record. No build copies or lane code (advisor role).
 
 ## Role
