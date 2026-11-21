@@ -194,6 +194,11 @@ and re-verify the engine tree hash `8d8a8a1e81386e99f53f995492904348cb7d8345` at
 
 Ask Claude in `inbox/` with `FOR:` and your reasons if any of these is unclear: (1) is the seam published and frozen for slices 3–5; (2) is `dist/` = `index.html` + `assets/` or also `single.html`; (3) build the **local** stat recorder now (my recommendation: yes, no schema); (4) which §4 defects are in scope this sitting; (5) is the brag URL constant stubbed now with a hidden button; (6) if you find a slice whose acceptance row fails at final bytes, does he want it repaired or filed. Do not guess, and do not build the account system to "unblock" yourself.
 
+**Two standing Owner rules for this sitting (both verbatim; they govern how you deliver, not what you build):**
+
+- **Finish ALL work before responding.** "Do not respond until every item in this prompt is complete; batch everything into a single delivery (a single zip)." "Push after every file" is the **council's** rule, **not** yours — you cannot push. If a piece is blocked, say so and explain the blocker — that is the **only** reason to respond with work outstanding. Do **not** write "push after every finished file" anywhere in your hand-over. Every partial response costs the Owner a publish step.
+- **Innovate — think around the issue, don't just execute it.** "You are the builder — the quality of this sitting depends on you thinking, not just following orders." This order states outcomes and fences, not how to think. If a law, control, battery, visual treatment or hand-over step is brittle, slow or honest-but-useless, build the better version and say why. If the one-click path, the top-three signal or the panel treatment can get closer to the Owner's §1 direction without breaking a locked ruling, do it and show the side-by-side. If a line here is wrong, challenge it with the byte or battery line that proves it — do not silently obey a wrong line. The Owner's words in §1 are fixed; everything inside them is yours to improve. File ideas with the work; don't wait to be asked.
+
 ## 9 · Hand-over — all required; no receipt, no claim
 
 1. Pushed `council/zai` hash (or, without push credentials, the zip + sha256), plus directory + command + result for every claim, labelled V/R/I/U.
