@@ -1,12 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { memoryD1 } from './sqlite-d1.ts';
+import type { TestDb } from './sqlite-d1.ts';
 import { call, draftEnv } from './helpers.ts';
 
-const put = (db: ReturnType<typeof memoryD1>, user: string, slot: 'A' | 'B' | 'C', env: unknown, base: number | null) => call(db, user, 'PUT', '/api/saves/nfl/' + slot, { envelope: env, base, deviceId: 'dev-1' });
+const put = (db: TestDb, user: string, slot: 'A' | 'B' | 'C', env: unknown, base: number | null) => call(db, user, 'PUT', '/api/saves/nfl/' + slot, { envelope: env, base, deviceId: 'dev-1' });
 
 test('first write needs base null; a later write needs the base it last saw', async () => {
-  const db = memoryD1();
+  const db = await memoryD1();
   assert.deepEqual((await put(db, 'u1', 'A', draftEnv('A', 's1', 1), null)).json, { serverRev: 1, archived: false });
   assert.deepEqual((await put(db, 'u1', 'A', draftEnv('A', 's1', 2), 1)).json, { serverRev: 2, archived: false });
   const stale = await put(db, 'u1', 'A', draftEnv('A', 's1', 3), 1);
@@ -17,7 +18,7 @@ test('first write needs base null; a later write needs the base it last saw', as
 });
 
 test('a fork (different saveId) or a non-advancing write keeps the overwritten save as a rung-back', async () => {
-  const db = memoryD1();
+  const db = await memoryD1();
   await put(db, 'u1', 'A', draftEnv('A', 's1', 5), null);
   const fork = await put(db, 'u1', 'A', draftEnv('A', 's2', 1), 1);
   assert.deepEqual(fork.json, { serverRev: 2, archived: true });
@@ -28,7 +29,7 @@ test('a fork (different saveId) or a non-advancing write keeps the overwritten s
 });
 
 test('rung-back keeps exactly three', async () => {
-  const db = memoryD1();
+  const db = await memoryD1();
   await put(db, 'u1', 'A', draftEnv('A', 'l0', 1), null);
   for (let i = 1; i <= 5; i++) assert.equal((await put(db, 'u1', 'A', draftEnv('A', 'l' + i, 1), i)).json.archived, true);
   const h = (await call(db, 'u1', 'GET', '/api/saves/nfl/A/history')).json.history;
@@ -37,7 +38,7 @@ test('rung-back keeps exactly three', async () => {
 });
 
 test('a stale delete cannot erase a newer save; a good delete hides it, and the slot can be reused', async () => {
-  const db = memoryD1();
+  const db = await memoryD1();
   await put(db, 'u1', 'B', draftEnv('B', 's1', 1), null);
   await put(db, 'u1', 'B', draftEnv('B', 's1', 2), 1);
   assert.equal((await call(db, 'u1', 'DELETE', '/api/saves/nfl/B', { base: 1 })).status, 409);
@@ -50,7 +51,7 @@ test('a stale delete cannot erase a newer save; a good delete hides it, and the 
 });
 
 test('a save from a newer schema is refused (426), and a mismatched slot is invalid (422)', async () => {
-  const db = memoryD1();
+  const db = await memoryD1();
   const newer = { ...draftEnv('A', 's1', 1), schemaVersion: 99 };
   assert.equal((await put(db, 'u1', 'A', newer, null)).status, 426);
   assert.equal((await put(db, 'u1', 'B', draftEnv('A', 's1', 1), null)).status, 422);
@@ -59,7 +60,7 @@ test('a save from a newer schema is refused (426), and a mismatched slot is inva
 });
 
 test('restore puts a rung-back into the slot and archives what it replaced', async () => {
-  const db = memoryD1();
+  const db = await memoryD1();
   await put(db, 'u1', 'A', draftEnv('A', 's1', 4), null);
   await put(db, 'u1', 'A', draftEnv('A', 's2', 1), 1);                    // s1 archived at seq 1
   const r = await call(db, 'u1', 'POST', '/api/saves/nfl/A/restore', { archivedSeq: 1, base: 2 });

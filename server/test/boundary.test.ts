@@ -1,10 +1,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { memoryD1 } from './sqlite-d1.ts';
+import type { TestDb } from './sqlite-d1.ts';
 import { call, draftEnv, results, seasonEnv, W17 } from './helpers.ts';
 
 async function seeded() {
-  const db = memoryD1();
+  const db = await memoryD1();
   assert.equal((await call(db, 'alice', 'PUT', '/api/saves/nfl/A', { envelope: draftEnv('A', 'alice-secret-lineage', 1), base: null })).status, 200);
   const season = seasonEnv('B', 'alice-season', 1, results(W17, [['Divisional', 'W'], ['Conference', 'W'], ['Super Bowl', 'W']]));
   assert.equal((await call(db, 'alice', 'POST', '/api/runs', { envelopes: [season] })).status, 200);
@@ -33,7 +34,7 @@ test('a second user cannot write, delete or restore over Alice\'s slot, and lear
   ]) { assert.ok([404, 409].includes(r.status)); assert.ok(!blob(r).includes('alice')); }
   const still = await call(db, 'alice', 'GET', '/api/saves/nfl/A');
   assert.equal(still.json.envelope.saveId, 'alice-secret-lineage'); assert.equal(still.json.serverRev, 1);
-  assert.equal(db.raw.prepare('SELECT COUNT(*) n FROM saves').get()!.n, 1, 'Bob\'s attempts created no row');
+  assert.equal((await db.get('SELECT COUNT(*) n FROM saves')).n, 1, 'Bob\'s attempts created no row');
 });
 
 test('Bob cannot revoke Alice\'s share link; Alice can', async () => {
@@ -43,7 +44,7 @@ test('Bob cannot revoke Alice\'s share link; Alice can', async () => {
 });
 
 test('no session gets 401 on every protected route, and the public share route needs none', async () => {
-  const db = memoryD1();
+  const db = await memoryD1();
   for (const [m, p] of [['GET', '/api/saves'], ['GET', '/api/saves/nfl/A'], ['PUT', '/api/saves/nfl/A'], ['DELETE', '/api/saves/nfl/A'], ['GET', '/api/saves/nfl/A/history'],
     ['POST', '/api/saves/nfl/A/restore'], ['POST', '/api/runs'], ['GET', '/api/stats'], ['POST', '/api/shares'], ['DELETE', '/api/shares/x']] as const)
     assert.equal((await call(db, null, m, p, m === 'GET' ? undefined : {})).status, 401, m + ' ' + p);
@@ -52,7 +53,7 @@ test('no session gets 401 on every protected route, and the public share route n
 });
 
 test('unknown routes, sports and slots are 404; /api/auth is explicitly not wired', async () => {
-  const db = memoryD1();
+  const db = await memoryD1();
   assert.equal((await call(db, 'u', 'GET', '/api/nope')).status, 404);
   assert.equal((await call(db, 'u', 'GET', '/api/saves/nba/A')).status, 404);
   assert.equal((await call(db, 'u', 'GET', '/api/saves/nfl/Z')).status, 404);

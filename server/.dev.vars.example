@@ -1,0 +1,5 @@
+# Copy to .dev.vars (git-ignored) for `wrangler dev`. Use a SECOND, throwaway GitHub OAuth App whose callback is http://localhost:8787/api/auth/callback/github
+BASE_URL=http://localhost:8787
+BETTER_AUTH_SECRET=generate-with-openssl-rand-hex-32
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=

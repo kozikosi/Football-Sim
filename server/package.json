@@ -4,7 +4,17 @@
   "type": "module",
   "description": "76 Pancakes account + sync Worker (contract: claude/account-sync-contract-2026-11-21.md). Imports colors/src for envelope validation only; colors/ is not modified by this package. Tests run against a D1-shaped adapter over node:sqlite, NOT real D1: a Miniflare/real-D1 run happens at the rehearsal. Auth (Better Auth) is injected as a function and not wired yet.",
   "scripts": {
-    "test": "node --disable-warning=ExperimentalWarning --test --experimental-strip-types \"test/**/*.test.ts\""
+    "test": "node --disable-warning=ExperimentalWarning --test --experimental-strip-types \"test/**/*.test.ts\"",
+    "test:d1": "D1_BACKEND=miniflare node --disable-warning=ExperimentalWarning --test --experimental-strip-types \"test/**/*.test.ts\""
   },
-  "engines": { "node": ">=22.13" }
+  "engines": {
+    "node": ">=22.13"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "miniflare": "^4.20260730.0"
+  },
+  "dependencies": {
+    "better-auth": "^1.7.27"
+  }
 }

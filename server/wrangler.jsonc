@@ -1,0 +1,18 @@
+{
+  // NOT deployed yet. The rehearsal creates the Worker + D1 and replaces the placeholders. No secret belongs in this file.
+  "name": "play",
+  "main": "./src/worker.ts",
+  // 2026-08-06 is the newest date the local runtime binary here accepts; production Workers accept it too.
+  "compatibility_date": "2026-08-06",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "./dist",               // the Z.ai release build, unpacked here (claude/releases.md has its sha256)
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [{ "binding": "DB", "database_name": "play", "database_id": "REPLACE_AT_CREATE", "migrations_dir": "migrations" }],
+  "vars": { "BASE_URL": "https://play.76pancakes.workers.dev" }   // the exact hostname is pinned at the rehearsal (the account subdomain is the Owner's)
+  // Secrets, set by the Owner with `wrangler secret put <NAME>` (never in this repo, a chat, or a log):
+  //   BETTER_AUTH_SECRET   (32+ random bytes)   GITHUB_CLIENT_ID   GITHUB_CLIENT_SECRET   [optional: GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET]
+}

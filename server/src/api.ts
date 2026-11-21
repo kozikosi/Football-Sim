@@ -66,7 +66,7 @@ async function route(req: Request, env: Env, auth: Auth, nowD: Date): Promise<Re
     if (row.revoked_at !== null || (row.expires_at !== null && row.expires_at <= now)) return err(410, 'gone', 'this link was revoked or has expired');
     return reply(200, { kind: row.kind, sport: row.sport, createdAt: row.created_at, snapshot: JSON.parse(row.snapshot) });
   }
-  if (parts[1] === 'auth') return err(501, 'auth-not-wired', 'sign-in is not wired in this build');
+  if (parts[1] === 'auth') return err(501, 'auth-not-wired', 'handle() does not serve /api/auth; src/worker.ts routes it to Better Auth');
 
   const userId = await auth(req);
   if (userId === null) return err(401, 'unauthenticated', 'sign in to sync');

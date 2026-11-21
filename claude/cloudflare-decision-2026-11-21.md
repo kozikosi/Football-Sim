@@ -36,5 +36,8 @@ Authority: Owner, 21 Nov (filed by pickle, `a904019`): "i want claude and the co
 - **Known limit, recorded not fixed:** after a rollback, a page loaded from the newer version can request an asset the older version lacks (V, versions-and-deployments/version-skew). Saves are unaffected.
 - **Write budget (D1 Free, V, enforced since 1 Sep 2026):** 100,000 rows written a day, 5 M read, 5 GB total, 50 queries per invocation (a `batch()` counts as one). Debounce and budget rules go in the account/sync contract.
 
+## Verified locally since (21 Nov, Miniflare/workerd, not production)
+The `wrangler.jsonc` shape above now exists at `server/wrangler.jsonc` with the Worker in `server/src/worker.ts`; the Worker + Better Auth + D1 ran end to end under Miniflare with GitHub mocked (`claude/account-sync-contract-2026-11-21.md` section 9a). The local runtime accepts compatibility dates up to 2026-08-06; the config uses that.
+
 ## Still the Owner's (U)
 Cloudflare account (free, no card); the account subdomain string; creating the GitHub OAuth App and setting the two Worker secrets himself once the hostname is pinned; who holds the account. No repo work creates these.
