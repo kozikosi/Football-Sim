@@ -6,38 +6,25 @@
 - **Worktree:** `/Users/kosi/Desktop/wt/orcatide`, branch `council/orcatide`; `git merge-base HEAD origin/council/base`: `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 
 ## Current work
-- **In progress:** nothing — the sitting v4 (live order — Pickle's consolidated v4) was taken; work comes from the standing workflow, one item per reply, pushed after each file.
+- **In progress:** nothing — the user said "end session". The Z.ai S15 WIP delivery was relayed and reviewed; the brainstorm of shell-UX improvements was delivered in chat.
 
-## Done this session
-- **End-of-session re-run (this session — the third end):** no new work — the state stands from the previous sessions (the ring-fix synthesis, the A3 confirm, the C24 provenance third seat, the Architect resumption pack, the reviews). Bulletins: `bulletin/20261120-1551-orcatide.md`, `bulletin/20261120-2343-orcatide.md`.
-- Preservation gate: the worktree `council/orcatide` is 0 dirty / 0 unpushed.
-
-## Done (previous sessions, 2026-11-20, with the command that proves it)
-- **C12 — the ring-fix adjudication** (the council's first — superseded by the synthesis below): `inbox/20261120-0342-orcatide-C12-ring-fix-adjudication.md`.
-- **A1 — the ring-fix synthesis** (the council's ONE recommendation — Contract B — rawSort on BoardRowVM): `inbox/20261120-0707-orcatide-A1-ring-fix-synthesis.md` — corrected per MUSE (the re-pin owed + Pickle's S1 added — commit `cf9d974bbc951ac8901274bb624b83787e133c7d`).
-- **A3 — the C8b third-seat confirm on the Q7 week/season gap**: `inbox/20261120-0712-orcatide-A3-c8b-q7-week-season-confirm.md` — CONFIRMED.
-- **B1 — the C24 Part 0 provenance third seat**: `inbox/20261120-0715-orcatide-B1-part0-provenance-review.md` — VERIFIED absent + improved; corrected per MUSE (the prepared dist is missing, not empty — commit `86001f19402137dfeda80157ed37362630261a98`).
-- **A2 — the Architect resumption pack**: `inbox/20261120-0852-orcatide-A2-architect-resumption-pack.md` — commit `30ebedfd1ccbf4bbe0b6554c47d9db1bbcc27fb7`.
-- **Reviews:** `inbox/20261120-0411-orcatide-C14-review.md` (Beam — improved), `inbox/20261120-0411-orcatide-C12-review.md` (Beam — ok), `inbox/20261120-0442-orcatide-C13-review.md` (Ernie — ok — the four-host claim verified: beam/glyph/pickle/inkling/orcaink CHECKSUMS line-18 receipts), `inbox/20261120-0448-orcatide-B8-review.md` (Beam B8 = C28 — improved).
+## Done this session (the end of the third, 2026-11-21)
+- **The relay:** the Z.ai delivery folder `67-cakepanz-15-WIP-2026-11-21` (the Owner's desktop, `~/Desktop/Football Sim/67-cakepanz-15-WIP-2026-11-21`) is now committed to `council/orcatide` (commit `5ac1c789e7f7696d0750d3d54603f843812fef60`, pushed; `git ls-remote` verified `93a018746..5ac1c789e council/orcatide -> council/orcatide`). The mirror at `origin/council/beam` was already there — verified byte-identical: `diff -rq` exit 0, 0 differing files, both 545 files.
+- **The thorough review** (diff vs the S14 tree of record, `origin/council/glyph:67-cakepanz-14-2026-11-20` @ `96f1ed60`): `App.svelte`, `BoardRow.svelte`, `DraftBoard.svelte`, `BoardFooter.svelte`, `TeamSelect.svelte`, `shell.css`, `tokens-w89.css`, `tools/shell-status.mjs`; batteries `board`/`node`/`shell`/`slice1`/`visual`; scripts `acceptance-run.sh`, `falsify-board`, `falsify-slot`, `shell-falsifier`, the new `gate-table.mjs`. Every claim matches the code (the review read the diffs; the w89 citations `:494/:496, :534/:536, .panel :625, zpbsheen :1169, :1749-1752, :1807, toptag :6488` were spot-checked against `origin/gh-pages:Football-Sim-Z-post-blue-w89.html`).
+- **Gaps noted (not covered by the handover):** `scripts/probe-w14.mjs` still clicks the retired classes (dead); `src/engine-node/` is new (a dev/E2E page, per its `.stamp.json`); `dist/` and `shots/motion/*` differ from S14 (rebuild + visual — unclaimed); `scripts/falsify-slot.mjs`/`probe-w14.mjs` re-anchor need.
+- **Brainstorm delivered (the shell UX list)** — 8 ideas + 2 design questions, in the session chat.
 
 ## What the next session needs
-- **Read first:** `inbox/20261120-0707-orcatide-A1-ring-fix-synthesis.md` (the council's ring ruling — the Architect rules on B vs the A-shape); `inbox/20261120-0852-orcatide-A2-architect-resumption-pack.md` (the Architect's delta — he answers N1/N2/N3); `_agents/ernie/deliveries/council-sitting-order-2026-11-20-v4-pickle.md` (the live order — work from v4).
-- **Open questions (≤5):** the Architect's A1 ruling (B — confirm or reject); the C23 fix shape (the DOM-presence filter in `tools/post-merge-smoke.mjs` — Architect/MUSE-owned); the improved C24 wording (the Architect writes it); N3 (baseball vs basketball — the Owner at MS-2); the B8 L-T1d label (the council unifies with the C19 decision — "Draft {name} at {slot}").
-- **Do not redo:** the c10 rehearsal ×3 (settled — sitting v4 §1.2); the four gates (verified — sitting v4 §1.3 + my B1); the passgap numbers (the standing); the ring rehearsal (A1 filed).
+- **Read first:** the delivery's `deliveries/zai-s15-WIP-handover-2026-11-21.md` (its NOT-DONE list is the resume order): falsify-board @ the S15 bytes → the final composite §5.6 → doc regen (CUTOVER-CHECKLIST/ONE-PAGER/SLICE-STATUS) → §7 packaging (verify-package, dist shas, delivery zip, selector note) → push test → the START-OF-CHAT §2 rewrite. The brainstorm ideas are ready to spike or de-prioritize.
+- **Open questions (≤5):** the Owner's direction on the brainstorm; the re-anchor of `probe-w14.mjs`/`falsify-slot.mjs`; the speech for the `engine-node` build check.
+- **Do not redo:** the relay (done, verified); the review (done, with receipts in chat).
 
 ## Files in this lane
-- `inbox/20261120-0342-orcatide-C12-ring-fix-adjudication.md` (superseded by A1)
-- `inbox/20261120-0707-orcatide-A1-ring-fix-synthesis.md`
-- `inbox/20261120-0712-orcatide-A3-c8b-q7-week-season-confirm.md`
-- `inbox/20261120-0715-orcatide-B1-part0-provenance-review.md`
-- `inbox/20261120-0852-orcatide-A2-architect-resumption-pack.md`
-- `inbox/20261120-0411-orcatide-C14-review.md`
-- `inbox/20261120-0411-orcatide-C12-review.md`
-- `inbox/20261120-0442-orcatide-C13-review.md`
-- `inbox/20261120-0448-orcatide-B8-review.md`
+- `67-cakepanz-15-WIP-2026-11-21/` — the relayed Z.ai delivery (committed to `council/orcatide`, root of the seat tree).
+- `deliveries/zai-s15-WIP-handover-2026-11-21.md` — Z.ai's handover, read in full this session.
 
 ## Next session
-- The live order: Pickle's v4 — `origin/council/pickle:_agents/pickle/deliveries/council-sitting-order-2026-11-20-v4-pickle.md`. Track B: C13 (Beam — 2 seats needed), C23 (orcaman — 2 seats needed). Track C: C15–C16 (Z.ai's choose-team draft — the standing: C16 runs P-315 — heavy). One item + one file per reply; push after each file.
+- The Owner may approve the brainstorm (spin-off) or send the delivery through the council queue (`tools/council.mjs next`). Resume the handover's NOT-DONE list; nothing waits on a particular seat.
 
 ## Role
 general advisor. Admitted by the Owner on 2026-11-19. Advisor level: propose, test, dissent, measure. Core status is the Owner's call after 3 verified items.
