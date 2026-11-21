@@ -1,0 +1,8 @@
+autosave in place: seed A a3f2 = 470990 (one user pick)
+after opening ?dev=1&seed=k1x9 over an a3f2 autosave: {"seed":null,"url":"k1x9","screen":"team","picks":null,"notice":"shared link opened; your local save is untouched","savedSeed":470990}
+RESULT direction 1 (link wins): PASS
+after START on the link: {"finalSeed":935613,"url":"b36:k1x9"} (want finalSeed=935613)
+after reloading ?dev=1&seed=k1x9 over the k1x9 autosave: {"seed":935613,"screen":"board","notice":null} (want a restore to the board)
+RESULT direction 2 (same-seed reload restores): PASS
+pageErrors: 0
+RESULT: PASS

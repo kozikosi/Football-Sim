@@ -1,0 +1,110 @@
+§26 CAKEPANZ-S14 — THE RING-REVIVAL + P0-COLLISION-FIX SITTING (2026-11-20; every stdout below is this sitting's own print at the final bytes)
+
+§26.1 THE BASE (proven BEFORE any edit, §0.2): the S13 tree re-hosted from
+  council/iceman:67-cakepanz-13-2026-11-20/cakepanz-4/ — `git cat-file -t 408410477` → commit ·
+  `git ls-tree -r 408410477 colors/src | grep -c '\.ts$'` → 69 · `node tools/verify-package.mjs .`
+  → 445 OK / 0 FAILED / 0 missing + converse clean, exit 0 · pin colors/src ≡ src/engine
+  (`git archive` extract, `diff -rq` clean) · `git diff 408410477 ee3b6e1 -- colors/src` → 0 bytes ·
+  draftBoard.ts sha256 `e9e6e01a…` identical both sides. NO engine re-sync was needed.
+
+§26.2 P0 AT THE FINAL BYTES: law W14 PASS (visual battery **18/0** — 17 + W14; the run's own
+  print: `link: screen=team store=null notice=shown savedSeed=470990(want 470990) savedPicks=43
+  url=k1x9 · START: seed=935613 url=b36:k1x9 · same-seed reload: screen=board seed=935613
+  notice=none errs=0`). The real-browser probe BOTH directions:
+  `deliveries/receipts/w14-probe-latest.log` — RESULT: PASS (the dump shape mirrors the on-record
+  probe: `{"seed":null,"url":"k1x9","screen":"team",…}` → START → `{"finalSeed":935613,"url":"b36:k1x9"}`).
+  W14 falsified by name: F23-w14 DIED — FAIL W14 (child log
+  `deliveries/receipts/partH-s14/f23-w14-child.log`; the naive guard also kills W9 — the measured
+  16/1 class — named in the same log).
+
+§26.3 P2 AT THE FINAL BYTES: board battery **19/0** (16 + L24 + L25 + L23 — stated, not silent).
+  L24 PASS (the run's own print: `Wins:array-exact · Priority:array-exact · OVR:array-exact ·
+  pick 1 (early):array-exact · pick 13 (mid):array-exact · pick 27 (late):array-exact`). L23 PASS
+  (`animation=zpbBtnPulse/1.5s reduced=none`). L25 PASS (`why 3/3 matched=true · persisted=true ·
+  restored screen=board ring===stored=true · after interaction: saved===ring=true moved=true
+  errs=0`). L13 PASS on the INTERIM paired oracle (labelled in the law text; the tie extension and
+  the oracle stay display-rounded until rawSort lands — the §5 proposal,
+  `inbox/20261120-2218-zai-S14-proposal-rawSort-engine-half.md`, is **BLOCKED (engine half)**).
+
+§26.4 THE FALSIFIERS AT THE FINAL BYTES (the FULL standalone run, exit 0 — stdout
+  `deliveries/receipts/partH-s14/falsify-board-s14.log`, child logs alongside): F0-board 19/0 +
+  F0-shell 48/0 baselines green; F15→L8, F17→L10, F18→L11, F19→L12, F20→**FAIL L13 NAMED** (the
+  strict form — dieReport now prints the planted-law line, §4.5), F21→L14, F22→L15,
+  F23-w14→W14, F24→L24, F25→L25, F26→L23 — ALL DIED; `FALSIFIER EXIT: 0`; the closing summary
+  names all eleven. 13b the DISPUTE stays CLOSED (§1.3 of the order) — this run is the pipeline's
+  stage discipline, not a re-litigation.
+
+§26.5 THE CLOSING COMPOSITE — HONEST STATE AT PACKAGING TIME (the S14 sitting hit its time
+  budget): the composite was PARTIAL at packaging time — steps 1–12 `EXIT_CODE=0` (the measured
+  receipts: npm ci · engine 430/430 · precompile · node 35/35 · contrast 2/0 · build · distfile ·
+  preview · slice 29/0/10/3 · shell 48/0 · board **19/0** · slot 28/0 · visual **18/0** · probes ·
+  the receipt falsifiers), step 13 (the shell falsifiers) `EXIT_CODE=0` recorded (16 total), step
+  13b BEGUN — `$ node --import ./scripts/node-port-register.mjs scripts/falsify-board.mjs` printed,
+  no step output — and steps 13b–17 are absent from ACCEPTANCE-RECEIPTS.txt. THE 13b EVIDENCE DOES
+  NOT RIDE THE COMPOSITE: the complete standalone falsifier run AT THE SAME PRODUCT BYTES is
+  §26.4 (F0×2 green + nine mutants ALL DIED by name, exit 0, child logs filed) — the discipline is
+  satisfied outside the staged run. The next sitting's FIRST command: re-run
+  `bash scripts/acceptance-run.sh` from this tree (npm ci is cached in the lockfile state; expect
+  steps 13b–17 to record EXIT_CODE=0 each and "ACCEPTANCE RUN COMPLETE"), then file the finished
+  tail HERE. The per-step prints that DID record (through step 13) are green at the final bytes —
+  every gate the S13 composite carried is green this sitting too, plus the new laws.
+
+§26.6 THE GATES AT THE S14 FINAL BYTES (the sitting's own prints, each receipted in §26.2–§26.5
+  or in the composite's recorded steps): engine **430/430** · node **35/35** (W14 is NOT here) ·
+  board **19/0** · visual **18/0** · slot **28/0** · shell **48/0** · slice **29/0/10/3** ·
+  contrast **2/0** (no NEW token holes; the 3 KNOWN team holes stay named) · viewport **45/45,
+  0 overflow, 0 console/page errors** (`deliveries/receipts/viewport-matrix-latest.json`) ·
+  golden seam MATCH (N34 inside the node battery's 35/35) · the standalone falsifier set exit 0 ·
+  gate-manifest/gate-numerals: NOT YET RECORDED THIS SITTING (they are composite steps 14–17 —
+  the next sitting's composite re-run records them; the S13 run's PASS/CLEAN ×2 are historical,
+  not re-asserted here).
+
+§26.7 THE RECEIPT-PATH FIXES (§4.4): the S13 citations corrected to `deliveries/receipts/…`
+  (sitting report ×3, VERIFY-§25-append :38, README's `partH-c13/../partH-s13` construction
+  simplified); zero `deliverables/receipts` hits remain (the §4.12 grep, in the sitting report).
+
+§26.8 THE S15 OPENING — THE §5.2 COMPOSITE AT THE S14 BYTES (2026-11-21, receipted in this file):
+  steps 1-13 EXIT_CODE=0 each (uninterrupted), the wrapper's timeout 1500 killed 13b mid-run (NO
+  acceptance step failed), steps 13b-17 resumed at the SAME bytes with the acceptance-run.sh step()
+  discipline (no edit between the halves): F0-board 19/0 + F0-shell 48/0 baselines green, eleven
+  mutants ALL DIED by name, gate-manifest PASS (357 entries), gate-numerals CLEAN ×2, the run ends
+  "ACCEPTANCE RUN COMPLETE" — 23/23 steps EXIT_CODE=0, zero non-zero. THE S14 EVIDENTIARY GAP IS
+  CLOSED: 13b-17 are now recorded at the S14 bytes. The S15 EDITS then landed per the continuation
+  order §2 (the WIP hand-over: deliveries/zai-s15-WIP-handover-2026-11-21.md) and the PRE-FLIGHT
+  at the S15 bytes ran green: board 23/0 (L23 the CORRECTED glow, L26/L27/L28/L30 the new laws),
+  shell 51/0 (S32 L-ERR both halves, S33 the glass law), visual 18/0 (the six selectors re-pointed
+  + W14 both directions), slot 28/0, node 35/35 (N26 re-pointed), slice 29/0/10/3, contrast 2/0
+  (0 new token holes), receipt-falsifier F0-F12 ALL DIED, shell-falsifier FA/FB/FC/FD ALL DIED,
+  falsify-slot F-S1 DIED at the dispatchAsync anchor. NOT YET RECORDED AT THE S15 BYTES:
+  falsify-board (F27-F30 must DIE), the final composite, the doc/gate regen, the §7 packaging —
+  the next chat resumes from deliveries/zai-s15-WIP-handover-2026-11-21.md, in that order.
+
+
+§26.9 THE S15 FINAL COMPOSITE — THE HONEST STATE AT SITTING END (2026-11-21)
+
+- ATTEMPT 1 (the pre-edit baseline, the order's §7.2): steps 1-13 EXIT_CODE=0 each, step 13b STOPPED
+  the run (exit 1) — its FIRST-EVER F27 run proved the L26/L27/L28 laws TAUTOLOGICAL at the post-walk
+  state (the INTERIM display-rounded tie marks every row late in the walk: top3=60 badges=60
+  "exact=true"). THE BASELINE FOUND A REAL DEFECT. Receipt: deliveries/receipts/partH-s15/
+  baseline-preedit-composite-stopped-13b.log. The fix: the L26/L27/L28 probe re-homed to a fresh
+  pick-1 board (own context) — the mutants now die by name.
+- ATTEMPT 2: KILLED MID-RUN BY Z.AI (my error): the brag ask-line fix (the Owner's verbatim
+  "Can you go 20-0?" vs the order §4.8's paraphrase — the conflict REPORTED in the hand-over §0)
+  landed on live bytes while the composite ran. The receipt law holds: a receipt at changed bytes
+  is not a receipt. Partial receipt preserved: deliveries/receipts/partH-s15/
+  composite-attempt2-killed-midrun-brag-template-fix.log.
+- ATTEMPT 3 (the receipt of record AT THE TRUE FINAL BYTES): steps 1-12 EXIT_CODE=0 each,
+  UNINTERRUPTED — engine 430/430 · node 37/37 (N36+N37 in) · contrast 2/0 (3 KNOWN holes) ·
+  build + single-file dist · shell 53/0 (S34+S35 in) · board 24/0 (L31 in; L26 top3=4 badges=4
+  exact at the fresh pick-1 probe) · slot 28/0 · visual 18/0 · the probes green. Step 12 (the
+  receipt falsifiers) was interrupted mid-run (F0-F4 ALL DIED; F4 logged) BY THE SITTING'S STEP
+  BUDGET — steps 13-17b did NOT run in this sitting. Receipt:
+  deliveries/receipts/partH-s15/composite-attempt3-interrupted-step12-sitting-budget.log.
+  THE NEXT CHAT RESUMES AT STEP 12/13b: re-run `bash scripts/acceptance-run.sh` at these bytes
+  (no edits since attempt 3's step 1 — the tree is the final bytes) and file the completed tail
+  here. The pre-composite receipts at THE SAME BYTES cover every battery the composite re-runs:
+  node 37/37 · board 24/0 · shell 53/0 · visual 18/0 · slot 28/0 · slice 29/0/10/3 · contrast 2/0 ·
+  verify-package clean BOTH trees (361 + 467, converse clean, exit 0 ×2) · the a11y warning zero ·
+  the file:// laws S26-S28 green. The falsifier BY-NAME evidence: the baseline's F15-F26 + F29
+  DIED (receipt above); F27/F28 DIED in the smoke falsifier runs... the by-name run of the FULL
+  set at the final bytes is step 13b of the resumed composite (the next chat's first item).
