@@ -27,6 +27,8 @@ try {
   }
   process.stdout.write(JSON.stringify({
     manifestSchema: 1,
+    generatedAt: new Date().toISOString(),
+    runtime: { node: process.version, platform: process.platform, arch: process.arch },
     seed,
     scenarios: receipts,
   }, null, 2) + '\n');
