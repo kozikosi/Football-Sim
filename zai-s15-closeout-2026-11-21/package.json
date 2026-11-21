@@ -15,9 +15,7 @@
     "battery:board": "node --import ./scripts/node-port-register.mjs batteries/board.battery.mjs",
     "precompile": "node scripts/precompile-engine.mjs",
     "battery:slot": "node --import ./scripts/node-port-register.mjs batteries/slot.battery.mjs",
-    "battery:visual": "node --import ./scripts/node-port-register.mjs batteries/visual.battery.mjs",
-    "scenario:receipt": "node scripts/scenario-receipt.mjs",
-    "test:scenario": "node --test test/scenario.test.mjs"
+    "battery:visual": "node --import ./scripts/node-port-register.mjs batteries/visual.battery.mjs"
   },
   "dependencies": {
     "svelte": "^5.57.3"
