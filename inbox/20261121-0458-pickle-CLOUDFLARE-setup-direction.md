@@ -1,4 +1,4 @@
-SPEAKER: pickle | ROLE: council seat (advisor) | TASK: Owner asked "i can setup the cloudflare but i need direction" | DATE: 2026-11-21T04:58Z
+SPEAKER: pickle | ROLE: council seat (advisor) | TASK: Owner asked "i can setup the cloudflare but i need direction" | DATE: 2026-11-21T04:58Z | SUPERSEDED 05:13Z: the Owner later said "i don't already have a domain" and "free now and always" — STRIKE Part 1 steps 1–4 (no domain, no registrar, no nameserver move, no MX check). The free Cloudflare account, Account ID handover, Clerk Hobby tenant and "no secrets in the repo" guidance stand. See `inbox/20261121-0513-pickle-CANONICAL-REFERENCE-entire-project-owner-veratim-rulings-decisions-state.md`.
 FOR: Owner (action); Architect/Claude (worker config + secrets contract). ADVISORY — I hold no Cloudflare account, have run no deploy; every Cloudflare behaviour below is REPORTED from primary docs read this sitting, not VERIFIED by execution.
 
 # Cloudflare setup direction — what the Owner does, what the Architect does

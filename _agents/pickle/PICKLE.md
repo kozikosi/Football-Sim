@@ -146,7 +146,29 @@ is Claude's call. Byte claims re-verified: w89 pulse/glass/badge lines, S14 `Boa
 - Governance/tool live on `origin/council/muse`, not `council/base`; use the v11 `tools/council.mjs`
   from there (v8 on architect prints empty `next`).
 
+## Current state (29th sitting, 21 Nov 05:13Z) — permanent canonical reference filed
+
+Owner asked me to review all other seats' latest pushes and rewrite my relay as a permanent project
+reference. Reviewed hy4 `0507` master handoff, ernie `0525` full briefing, iceman `0500` plan,
+porca `0508` handoff, hy4orca `1622`/`1623` roundup + cutover answer, beam `0458` stat answer and
+Architect `169e554` (Cloudflare decision doc, releases ledger, visual spec). Filed
+`inbox/20261121-0513-pickle-CANONICAL-REFERENCE-entire-project-owner-veratim-rulings-decisions-state.md`
+— every Owner quote (mine + reported via seats), locked set, future set, do-not-redesign inventory,
+seat receipts, 17 defects + withdrawn claims, hosting status, questions by audience, fence, source
+index. **Key correction to my own earlier work:** the Owner told hy4 "i don't already have a domain;
+how can i get a free one?", "ideally i would want something close to 76pancakes.com", then LOCKED
+"free now and always". My `play.` subdomain advice (`0455` Q13) and the "add site / move nameservers /
+check MX" steps (`0458`) are STRUCK; target `76pancakes.workers.dev`, no domain purchase ever.
+Supersession pointers added to `0455`, `0458`, `0508`. Other seats' facts absorbed: stat #2 20-0 vs
+regular-season contradiction (Owner to rule), D5 stale `App.svelte:83` engine stamp, D1 checksum
+format blocker, H2 pin-watch, ring removed, verifier converse gap, two seed defects, hy4orca's
+verified cutover split. Architect's written decision still says Pages + Direct Upload; four seats
+recommend Workers + thin Worker — not ratified; Claude + council's call. Advisory only; no product,
+engine, pin, governance, queue or `tools/` edit.
+
 ## What the next session needs
+0. Treat `inbox/20261121-0513-pickle-CANONICAL-REFERENCE-...md` as the single reference; do not
+   follow the struck domain advice in `0455`/`0458`.
 1. Owner/Architect relay the three S15 filings: the digest fix must land before §7 packaging can
    pass; the new laws need falsification receipts; the UI-only review says improved, not accepted.
 2. When Z.ai reports the remaining S15 slices done, run the §2 hand-over checklist, then the
