@@ -6,7 +6,14 @@
 - **Worktree:** `/Users/kosi/Desktop/wt/porca` · **Branch:** `council/porca` · `git merge-base HEAD origin/council/base` → `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 - **Evidence standard:** receipts come from fresh `git show`/`git grep`/`shasum`/node runs or real file reads. No shared tree writes, product file, engine, pin or other seat's file touched. A wrong claim is kept in the record with a superseding correction.
 
-## Current work — session 15 (Owner directive + reply draft, 2026-11-21T00:31Z)
+## Current work — session 16 (review Architect timeout state + Z.ai continuation order, 2026-11-21T00:33Z)
+- **Owner:** "claude worked but timed out. review his work and the draft a long and thorough prompt for z.ai to continue work."
+- **Review finding:** no new Architect commit on ANY remote ref; tip still `dfdb887` (00:24Z), empty diff, no newer architect branch. Local architect worktrees read-only: only an untracked Nov 1 lockfile with no playwright refs, unrelated. Timeout produced no push. Filed `inbox/20261121-0033-porca-REVIEW-architect-timeout-state.md`. The three `dfdb887` defects stand unfixed.
+- **Two new findings:** (1) v8/runbook's "build slices 3-5 / wait for slices 3-5" premise is stale — S14's `SLICE-STATUS-2026-11-20.md` has slices 1-5 + s6-s12 all BUILT with per-slice rows and README:9 says COMPLETE SHELL; (2) composite still PARTIAL — steps 13b-17 absent from `ACCEPTANCE-RECEIPTS.txt`, `VERIFY §26.5/§26.6`; next sitting's first command is `bash scripts/acceptance-run.sh`.
+- **Long continuation order for Z.ai:** `inbox/20261121-0033-porca-TO-ZAI-continuation-order.md` — 8 sections, self-contained: S14 state and floors, first command, Owner rulings, three v8 overrides (keep `cp-quick`, invert w89 glow, S14 gate floors), five work items (law migration, dispatchAsync, w89 restyle, composite, handover), decision defaults, not-yours, conflict rule, definition of done.
+- **Not done:** no gates/batteries/builds/browser/deploy re-run; counts are S14 receipts.
+
+## Prior work — session 15 (Owner directive + reply draft, 2026-11-21T00:31Z)
 - **Owner directive relayed by seats** (pickle `a90401933`, hy4 `6b93ce9b`): Cloudflare *how* is now a Claude + council decision, not an Owner question. Council input on record: Pages + explicit Direct Upload (`wrangler pages deploy dist`) over Git auto-deploy and Workers static assets — auto-deploy makes the "go only after side-by-side + receipts" trigger unenforceable. Owner still provisions the account/project/token.
 - **Drafted the Owner's reply to Claude** at `inbox/20261121-0031-porca-TO-ARCHITECT-reply-dfdb887.md` (self-contained, ready to relay): authority change, verification of `dfdb887`, three v8 fixes, ranked parallel work, what waits on Z.ai.
 - **Third self-correction:** pickle's `cd5095fb2` is byte-correct and I re-read S14 `BoardRow.svelte:25,47` / `DraftBoard.svelte:116` — the main Draft button is an expander, `cp-quick` is the only one-click path. My "re-point six battery selectors" line is valid only if Claude also rewires `.cp-main` to `onpickDirect`; under "keep `cp-quick`" no re-point is needed. Appended as §6 of `0026`, record not rewritten.
@@ -46,7 +53,7 @@
 - Session 14 self-corrections: the Owner's 00:1xZ answers keep the top-three highlight + why copy; the 23:59Z "withdraw everything ring-related / rawSort" line is itself superseded. Three files carry second correction sections; `rawSort` is REOPENED, not withdrawn.
 
 ## What the next session needs
-- **Read first:** `inbox/20261121-0031-porca-TO-ARCHITECT-reply-dfdb887.md` (the reply draft), then `inbox/20261121-0026-porca-REVIEW-architect-dfdb887.md` (with §6 correction), then `inbox/20261120-2359-porca-review-of-seats-s14.md` and its second correction.
+- **Read first:** `inbox/20261121-0033-porca-TO-ZAI-continuation-order.md` (the long hand-over order), then `inbox/20261121-0033-porca-REVIEW-architect-timeout-state.md`, then `inbox/20261121-0031-porca-TO-ARCHITECT-reply-dfdb887.md` and `inbox/20261121-0026-porca-REVIEW-architect-dfdb887.md` (with §6 correction).
 - **Do not redo:** C1–C12, A1/A2/A3, c10/c12/c13/c14 relays and reviews, ancestry re-check, S13/S14 review rounds, the 11-draft Z.ai prompt review, the second-pass review of updated drafts, the 4-audit seat ranking, the latest-draft ranking, the P-287 contract review, this S14 seat-review round.
 - **Still open (not mine):** Architect to fold three v8 fixes before Z.ai starts (w89 every-button pulse, six `cp-quick` re-point, S14 gate floors) — filed in `0026`; Architect's ruling on the now-REOPENED `rawSort`; Owner's answer to the correctness-vs-phone re-ranking question; MUSE/custodian relay note reflecting the refined ruling (ring visual gone, top-three stays) and the stale pin lines; Z.ai to re-run the composite and file VERIFY §26; Contract A/B label reconciliation; Cloudflare account/product type; Owner's seat-retirement decisions.
 - **End-of-chat gate:** `node tools/preserve.mjs check` exits 1 for OTHER worktrees only. My `council/porca` is clean after the session's commits. Do not touch another seat's worktree.
@@ -60,7 +67,9 @@
 - `inbox/20261120-2349-porca-cakepanz-14-review.md` — session 12 review (scope correction appended).
 - `inbox/20261120-2359-porca-review-of-seats-s14.md` — session 13 cross-seat review (second correction appended).
 - `inbox/20261121-0026-porca-REVIEW-architect-dfdb887.md` — session 14 review of the Architect's new tip (§6 correction appended).
-- `inbox/20261121-0031-porca-TO-ARCHITECT-reply-dfdb887.md` — session 15 self-contained reply draft for the Owner to relay (current).
+- `inbox/20261121-0031-porca-TO-ARCHITECT-reply-dfdb887.md` — session 15 reply draft for the Owner to relay.
+- `inbox/20261121-0033-porca-REVIEW-architect-timeout-state.md` — session 16 review of the timed-out Architect state.
+- `inbox/20261121-0033-porca-TO-ZAI-continuation-order.md` — session 16 long Z.ai continuation order (current).
 - Historical idea files (`0452`, `1615`, `2003`, `2031`) are superseded but kept for the record. No build copies or lane code (advisor role).
 
 ## Role
