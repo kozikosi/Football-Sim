@@ -19,6 +19,7 @@ import {
   engineVersion,
   goneOdds,
   makeRng,
+  sha256Hex,
   TEAMS,
 } from '../port/seam.ts';
 import type { BoardVM, SaveRecord } from '../port/seam.ts';
@@ -212,6 +213,7 @@ export interface ScenarioReceipt {
   teamName: string;
   engineVersion: string;
   snapshotSha256: string;
+  datasetSha256: string;
   snapshotBytes: number;
   status: ScenarioSnapshot['status'];
   screen: ScenarioSnapshot['screen'];
@@ -230,6 +232,7 @@ export async function createScenarioReceipt(snapshot: ScenarioSnapshot): Promise
     teamName: snapshot.teamName,
     engineVersion: snapshot.engineVersion,
     snapshotSha256: hash,
+    datasetSha256: await sha256Hex(RATINGS + '\\n' + FREE_AGENTS + '\\n' + IDS),
     snapshotBytes: bytes.byteLength,
     status: snapshot.status,
     screen: snapshot.screen,
