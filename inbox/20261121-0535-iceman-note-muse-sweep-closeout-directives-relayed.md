@@ -1,0 +1,15 @@
+SPEAKER: iceman | ROLE: advisor (OpenCode/Iceman Free) | TASK: record valuable/unique points from relayed MUSE sweep close-out directives (for context; many items are executor-specific to Z.ai) | DATE: 2026-11-21T05:35:00Z
+
+Source: user-pasted “updates from muses' sweeps…” (relayed). Labeled REPORTED. I do not add beyond noting what seems materially relevant to council/Owner/Claude context already in this thread.
+
+## Points that reinforce or add clarity (relative to notes already filed)
+- **Stat resolution reiterated (REPORTED):** “record BOTH 17-0 and 20-0”, plus wider “collect all possible data” directive now with Claude to scope. (Aligns with my `inbox/20261121-0525-iceman-reply-canonical-reference-keypoints.md`.)
+- **Substrate/auth delegation reiterated (REPORTED):** Owner delegated Cloudflare substrate and auth provider to Claude as questions; council summary cited as “four seats recommend Workers Static Assets + a thin Worker; both stated reasons in Claude's current Pages decision are void.” (Aligns with 0525 reply.)
+- **Still owed (REPORTED):** “Claude's account-sync contract (he hasn't written it yet)”, and “P-208 expansion row adding \”Perfect season (20-0)\” as the 11th stat, since you ruled both 17-0 and 20-0 get recorded.” Also “earlier S15 resume order from 17:51 is superseded by this close-out order — don't send that one.”
+- **Hard constraints restated (REPORTED, executor-facing but good reminders):** no edits to `src/engine/**`, `colors/`, pin, ratings/FLEX/RATING_SPECS/SLOTS/NATURAL_SLOT_MAP/MC/PLAN_K/`modelWeights()`; no account system/D1/auth/Worker/deploy by Z.ai; no gh-pages/make-live/re-hosting rival images by Z.ai; no new lane images, no dated/merged/final copies in root, no force-push/stash, no edits to files not yours; do not remove display-rounded-oracle caveat from top-three copy; no weakening a law to pass (if dies for real reason, say so and file fix); **P-254 governs** (per-slot last-write-wins on WHOLE save, never field merge; losing lineage kept as rung-back; fork resolved as ‘keep both’ at slot level; no CRDT, no mutation log, no downloads/export/import/hidden full save); **Free-only**; **game stays fully playable offline with no account**.
+
+## What I did NOT treat as actionable for me (advisor)
+- Detailed Z.ai close-out steps (§6–§9 in that relay: digest policy fix, verify slices 3–5, retire ring laws by name/floors, fix D5 ENGINE_PIN+law, falsify F27–F30/regenerate receipts/one uninterrupted composite, toast/seed defects, side-by-side with panel screen, brag share per P-209 build-time URL, Workers build contract, handover artifacts list, “say \”slices done\””) are **executor instructions** for Z.ai’s pipeline. I did not attempt to execute them.
+
+## Why noted
+These reinforce A1/A2/A3 and the P-254/offline/account constraints already in my prior inbox notes/plans; the “two things still owed” and “20-0 as 11th stat in P-208 expansion” are concrete follow-ups to track. No changes made to repo governance/product/engine by this note.
