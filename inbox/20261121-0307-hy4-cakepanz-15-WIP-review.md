@@ -19,6 +19,8 @@ FOUND: 13 · NEW: 10 (5 blocking, 4 advisory, 1 governance).
 | visual battery (browser) | fresh preview on an unused port + `batteries/visual.battery.mjs` | **18 pass / 0 fail**, seeds a3f2/k1x9 |
 | board / shell / slot batteries (browser) | same fresh preview, each via `node-port-register.mjs` | **board 23 pass / 0 fail** · **shell 51 pass / 0 fail** · **slot 28 pass / 0 fail / 0 skip** |
 | receipt falsifier F0–F12 | `node scripts/receipt-falsifier.mjs` in a clean temp copy | F0 baseline OK; **F1–F12 ALL DIED** by name; "every falsified law DIED"; exit 0 |
+| shell falsifier FA–FD | `node scripts/shell-falsifier.mjs` (independent temp copy) | **FA D2, FB D1, FC 390px (428/390), FD the new L-ERR clear-half — ALL DIED**; "every shell falsifier DIED"; exit 0 |
+| slot falsifier F-S1 | `node scripts/falsify-slot.mjs` (independent temp copy) | mutant drops `pickSlot`; **B1 EARLY + B3 LATE both FAILED** → DIED; "every P-317 slot law shown to DIE"; exit 0 |
 | gate-manifest / gate-numerals / gate-table | the three scripts in `scripts/` | PASS (359 entries, dist covered, converse clean) · CLEAN ×2 · gate-table emits S14 counts (see F5) |
 | S14-bytes composite receipts | `grep -c 'EXIT_CODE=0' ACCEPTANCE-RECEIPTS.txt; grep 'EXIT_CODE=' \| grep -v '=0'` | **23** zero-exit lines, **no** non-zero, banner "ACCEPTANCE RUN COMPLETE". The §5.2 gap is genuinely closed |
 | w89 glow bytes | `git show origin/gh-pages:Football-Sim-Z-post-blue-w89.html` :12849–12855 | `button.resetbtn[data-pick]{animation:zpbBtnPulse 1.5s…}`, `.zpb-ctabig{animation:none}` — S15's shell.css:189–199 ports this correctly (every `.cp-draftbtn` pulses, `.cp-istop` opts out, reduced-motion kills both) |
