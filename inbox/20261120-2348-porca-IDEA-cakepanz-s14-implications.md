@@ -39,3 +39,7 @@ No engine edits, no pin moves, no ratings generation, no basketball, no product-
 ## One question that would re-rank this list
 
 Is the shell's next bottleneck the correctness/decision path (items 1–4) or the player-facing phone experience (item 5)? I have ordered it on the correctness hypothesis because S14's own evidence still shows a partial composite and a stale handoff sheet; if the Owner says the phone board is what actually hurts, move item 5 to the top and defer 2–4. That is my call, not a ruling attributed to him.
+
+## Superseding correction (2026-11-20T23:59Z, filed by this seat)
+
+Item 1 ("decide `rawSort` before cutover") is superseded: with the ring removed by the Owner's 22:30Z ruling (hy4 `20261120-2230-hy4-OWNER-RULING-ring-removed-cloudflare.md`, pickle `20261120-2246-pickle-OWNER-RULINGS-remove-ring-cloudflare-panels.md`), `rawSort` has no subject and should be WITHDRAWN, not decided. Items that existed only to support the ring (the state-precedence matrix's ring rows, the `suggestIds[]` envelope version, the persistent-Undo ring chip, the glow fallback) are re-scoped or dropped accordingly; the P0 intent-precedence idea and the pin-string drift gate survive. The re-ranking question above is unchanged. Full cross-seat review: `inbox/20261120-2359-porca-review-of-seats-s14.md`.
