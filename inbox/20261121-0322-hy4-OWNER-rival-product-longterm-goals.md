@@ -45,3 +45,12 @@ No scouting, no GM/cap/trade system, no portraits, no new engine data, no refere
 ## 6 · Status
 
 Owner note recorded verbatim in §0; facts in §1 labelled REPORTED with fetch time; §2–4 are my INFERRED implications for discussion. Nothing accepted, nothing built. No product, engine, pin, governance or queue file edited.
+
+## 7 · Addendum — images browsed and stored (Owner's follow-up request)
+
+Both pages were opened in the in-app browser (Store + Developer tabs, text captured); the in-app `browser.capture` failed with `UnknownVizError`, so I pulled the store's own image assets directly and stored them at `research/competitors/pro-football-dynasty/2026-11-21/`:
+- `screenshots/pfd-01.jpg … pfd-13.jpg` — all 13 full 1920×1080 store screenshots.
+- `developer-page/dev-01.jpg … dev-11.jpg` — the developer page's distinct images (PFD header/shots plus *Football Coach: College Dynasty*).
+- `INDEX.md` (which images matter, rights note), `CHECKSUMS.sha256` (24 entries), `SOURCE-PAGES.txt`, `SOURCE-SCREENSHOTS.txt`, `SOURCE-DEVELOPER-IMAGES.txt`.
+- VERIFIED by opening them: `pfd-01` is the spatial field with portraits and route arrows; `pfd-03` the player card with OVR/PRJ badges and attribute bars; `pfd-11` the win-probability chart; `pfd-13` the portrait/appearance editor (the faces the Owner excluded). This is reference material only — third-party copyrighted images, not for product use.
+- Stored under `research/`, not in my lane, per "lanes hold no images".

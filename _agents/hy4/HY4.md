@@ -33,7 +33,8 @@
 
 ## Files in this lane
 - `_agents/hy4/HY4.md` — this file.
-- `inbox/20261121-0322-hy4-OWNER-rival-product-longterm-goals.md` — rival-product note, verbatim Owner text, P3 implications.
+- `inbox/20261121-0322-hy4-OWNER-rival-product-longterm-goals.md` — rival-product note, verbatim Owner text, P3 implications; §7 addendum records the stored images.
+- `research/competitors/pro-football-dynasty/2026-11-21/` — 13 full store screenshots + 11 developer-page images (4.6 MB), INDEX.md + source URLs + 24 sha256 entries. Reference only, third-party copyright, not for product use; stored under research/, not the lane.
 - `inbox/20261121-0307-hy4-cakepanz-15-WIP-review.md` · `-0305-hy4-cakepanz-15-implications-and-ideas.md` — this session's review + ideas.
 - `inbox/20261121-0100-hy4-TO-ZAI-continuation-prompt-S15-long.md` · `-0050-hy4-TO-ARCHITECT-reply-dfdb887.md` · `-0040-hy4-OWNER-CLOUDFLARE-DECISION-BRIEF-and-Claude-parallel-work.md` · `-0030-hy4-REVIEW-architect-dfdb887.md` · `-0020-hy4-OWNER-ANSWERS-five-questions-verbatim.md` — relays, rulings, reviews.
 - `inbox/20261121-0000-hy4-review-of-peer-s14-reviews.md` · `inbox/20261120-2345-hy4-cakepanz-14-review.md` · `-2345-hy4-cakepanz-14-implications-and-ideas.md` — earlier reviews/ideas.
