@@ -166,9 +166,29 @@ verified cutover split. Architect's written decision still says Pages + Direct U
 recommend Workers + thin Worker — not ratified; Claude + council's call. Advisory only; no product,
 engine, pin, governance, queue or `tools/` edit.
 
+## Current state (30th sitting, 21 Nov 05:20Z) — three Owner answers filed as questions to Claude
+
+Owner was asked to settle the Cloudflare substrate, stat #2's 20-0 definition and the auth provider.
+Answers (~05:18Z, verbatim in `inbox/20261121-0520-pickle-OWNER-ANSWERS-questions-to-claude-hosting-stats-auth.md`):
+"this should be phrased as a recommendation by consensus from the council and as a question to claude";
+"we would record 17-0 and 20-0, all the players' top seasons; how often they make the playoffs and reach
+each round, etc. any other stats in this vein can be added; we should collect all possible data";
+"I don't know personally; should be phrased as a question to claude with the full context of the council
+recommendations". FACT: hosting substrate + IdP DELEGATED to Claude (not my call, not a deadlock);
+stat #2 RESOLVED — keep BOTH 17-0 and 20-0 — with an expanded data directive. The `0520` filing puts
+all three to him with the four-seat Workers consensus, the two void Pages premises, the full auth
+recommendations, and Q-STATS sub-questions (whose "players' top seasons"; "collect all possible data"
+vs the locked prune rule and non-derivable awards). My INFERRED flag: if the Owner meant individual
+NFL player careers, that needs engine bytes + a deliberate re-pin — get a fresh Owner word first.
+Canonical reference `0513` updated in place: §1.13 verbatim answers, §8.1 defect #2 RESOLVED, §9
+delegation, §10 Owner Q1/Q2 closed-or-delegated + Architect questions, §13 one-line version,
+§12/§14 pointers. Advisory only; no product/engine/pin/governance/queue/`tools/` edit.
+
 ## What the next session needs
-0. Treat `inbox/20261121-0513-pickle-CANONICAL-REFERENCE-...md` as the single reference; do not
-   follow the struck domain advice in `0455`/`0458`.
+0. Treat `inbox/20261121-0513-pickle-CANONICAL-REFERENCE-...md` as the single reference, with its
+   live addendum `inbox/20261121-0520-pickle-OWNER-ANSWERS-questions-to-claude-hosting-stats-auth.md`;
+   do not follow the struck domain advice in `0455`/`0458`. The three questions in `0520` are Claude's
+   to answer; do not re-ask the Owner (substrate, IdP) or re-open stat #2 (both 17-0 and 20-0 stand).
 1. Owner/Architect relay the three S15 filings: the digest fix must land before §7 packaging can
    pass; the new laws need falsification receipts; the UI-only review says improved, not accepted.
 2. When Z.ai reports the remaining S15 slices done, run the §2 hand-over checklist, then the

@@ -1,5 +1,5 @@
 SPEAKER: pickle | ROLE: council seat (advisor) | TASK: Owner asked for a permanent, complete reference — every seat's latest contribution synthesised, with his words quoted verbatim from this chat and from files | DATE: 2026-11-21T05:13Z
-FOR: Owner · Architect (Claude) · Z.ai · every council seat · MUSE. **PERMANENT REFERENCE.** Supersedes my `0508` master relay and corrects `0455` plan / `0458` Cloudflare setup direction (see §8). Advisory: this document enacts no decision, assigns no work, and edits no product, engine, pin, governance, queue or `tools/` file.
+FOR: Owner · Architect (Claude) · Z.ai · every council seat · MUSE. **PERMANENT REFERENCE.** Supersedes my `0508` master relay and corrects `0455` plan / `0458` Cloudflare setup direction (see §8). Advisory: this document enacts no decision, assigns no work, and edits no product, engine, pin, governance, queue or `tools/` file. **Live addendum:** the Owner's 05:20Z answers (§1.13) and the three questions put to Claude are filed in `inbox/20261121-0520-pickle-OWNER-ANSWERS-questions-to-claude-hosting-stats-auth.md` — read it with this file.
 
 # 76 Pancakes — CANONICAL REFERENCE (21 Nov 2026)
 
@@ -80,6 +80,15 @@ hy4 records the extended form: *"optional sign in is still true but i want the a
 hy4 recorded this as *"…and i an create but i need direction"*; porca corrected the verbatim to *"i can setup the cloudflare but i need direction"* (`inbox/20261121-0459-porca-owner-answers-correction.md`), which matches my own chat. Use porca's form.
 
 **1.12 This relay request** (§0 above).
+
+**1.13 The three answers to my consensus questions (this chat, ~05:18Z):** I asked him to settle (a) the Cloudflare substrate, (b) stat #2's definition and (c) the auth provider. He replied, in that order:
+> "this should be phrased as a recommendation by consensus from the council and as a question to claude"
+>
+> "we would record 17-0 and 20-0, all the players' top seasons; how often they make the playoffs and reach each round, etc. any other stats in this vein can be added; we should collect all possible data"
+>
+> "I don't know personally; should be phrased as a question to claude with the full context of the council recommendations"
+
+So: the hosting substrate and the IdP are **not Owner decisions** — he sent both back to Claude as questions, to be put with the council recommendations in view (`0520` filing). Stat #2 is resolved by **keeping both** 17-0 and 20-0; the same answer expands the stat scope with "all the players' top seasons", playoff-round frequency and "all possible data". Full text and the questions to Claude: `inbox/20261121-0520-pickle-OWNER-ANSWERS-questions-to-claude-hosting-stats-auth.md`.
 
 ## 2. Verbatim from OTHER seats' chats, reported to me in their filings
 
@@ -243,7 +252,7 @@ I did not re-run these this sitting; each is VERIFIED by the named seat in the c
 ### 8.1 Open defects (each needs a named owner; none is fixed by this document)
 
 1. **D1 — S15 checksum format** (hy4 §5, ernie §5.1): `CHECKSUMS.txt` is sha256 but `tools/verify-package.mjs` parses md5 → exit 1 / 474 EXTRA; `regen-manifest.mjs` writes 64-hex sha256 while the verifier expects 32-hex md5. After regen, `gate-manifest` passes but `verify-package` fails with 467 EXTRA. **The composite cannot reach "ACCEPTANCE RUN COMPLETE" with green gates.** Z.ai owns the fix (one digest policy, then re-run steps 14–17).
-2. **Stat #2 contradiction** (ernie §5.2): P-208's #2 is "Undefeated seasons (20-0)" (17-0 regular + 3 playoff wins), while the Owner's 1 Nov words define undefeated as the **regular season**, "without defining 20-0". ernie's default: keep #2 as "undefeated regular season", add "Perfect season (20-0)" as an 11th. **Owner decision.** Cheap now, expensive after B2.
+2. **Stat #2 contradiction — RESOLVED by the Owner (§1.13), not by a seat default**: P-208's #2 is "Undefeated seasons (20-0)" (17-0 regular + 3 playoff wins), while the Owner's 1 Nov words define undefeated as the **regular season**, "without defining 20-0". ernie's recorded default was "undefeated regular season" + an 11th "Perfect season (20-0)". The Owner now says *"we would record 17-0 and 20-0"* — **keep both**. His same answer expands scope: *"all the players' top seasons; how often they make the playoffs and reach each round, etc. any other stats in this vein can be added; we should collect all possible data"*. Two sub-questions remain for Claude (`0520` Q-STATS 1–3): whose "players' top seasons" (run players — derivable — vs individual NFL careers, which need a re-pin), and how "collect all possible data" reconciles with the locked prune rule and awards-not-derivable (defect 14). Do not re-ask the Owner to choose between 17-0 and 20-0.
 3. **D5 — stale engine stamp** (ernie §5.3): `src/App.svelte:83` is `const ENGINE_PIN = '67-cakepanz@d3bd81d2';` — the **previous** pin — while the shipped engine is `408410477`. `metaNow()` stamps it into autosaves and manual slots; `Saves.svelte:80` prints "this save came from build 67-cakepanz@d3bd81d2 (running: nfl1.1ac56c28928eff)". Fix before any server compares `engine_version`, or every save arrives flagged foreign.
 4. **H2 — pin-watch watches a dead pin** (ernie §5.4): `SNAPSHOT.md:10` records `65673a00` as superseded by `408410477`, while CI's pin-watch still watches `65673a0`. Also `AGENTS.md:44-46,73` and `PROJECT-KNOWLEDGE.md:18` still say `d3bd81d2` — MUSE/Architect to reconcile the four pin values (`65673a0` CI fixture, `d3bd81d2` live AGENTS, `408410477` engine, `4ca9a071` stale base copy).
 5. **D4 — share notice overpromises** (ernie §5.5): the W14 law asserts the local save is untouched before START; one START later the autosave holds the shared link's draft (probe: seed `7874343` / 43 picks → `935613` / 20). Manual slots A/B/C are the only recovery.
@@ -280,6 +289,8 @@ I did not re-run these this sitting; each is VERIFIED by the named seat in the c
 
 **Both premises are gone.** Server code is mandatory (§1.7–§1.8), and there will be no custom domain at all (§2.8), so the nameserver constraint cannot bite. hy4, porca and ernie independently recommend revising the decision to **Workers Static Assets + a thin Worker**: one Worker serves the built `dist/` and the future auth/sync routes; the free `workers.dev` hostname needs no registrar or DNS; Pages drops out. porca's target: D1 for account/save metadata and pointers, R2 for immutable snapshots and share artifacts, D1 **never** KV for saves (KV is for sessions), explicit `wrangler deploy` gate after "go", no Git auto-deploy.
 
+**The Owner's current word (§1.13, ~05:18Z):** asked to choose the substrate, he answered *"this should be phrased as a recommendation by consensus from the council and as a question to claude"*. He has **not** picked a substrate; he sent it back to Claude with the four seats' recommendations in view. The full question-to-Claude — consensus basis, both void premises, what stays settled — is `inbox/20261121-0520-pickle-OWNER-ANSWERS-questions-to-claude-hosting-stats-auth.md` Q-HOST. This is a delegation, not a deadlock and not a seat decision.
+
 **Still open, and NOT for me to decide:** the Architect has not yet amended his decision doc, runbook or releases ledger. The four seats' recommendation is advice to Claude + council, not a ratified decision. If he keeps Pages, the account/sync backend still needs a separate Worker (never Pages Functions) — Workers alone has rate limiting, Logs/Logpush, Source Maps and native DO. Either way: no secret in the repo, bundle or chat; `wrangler login` preferred over a stored token; pinned build hash in `releases.md` before upload; rehearsal before make-live; rollback row, never a rewritten row.
 
 **What the Owner must provision regardless** (hy4 `0457` §2, endorsed by porca): a free Cloudflare account (Free plan, no card), note the **Account ID** (an identifier, not a secret), create a free auth tenant (hy4's default Clerk Hobby — 50 k MAU, no card; code-owned Auth.js/Better Auth is the alternative permitted by §3.5), hand over the publishable key and the secret key **only via a secure channel**, and confirm the Free plans. Do **not** add a site, move nameservers or buy a domain — §2.8 struck those steps. The Architect owns the Worker, D1 schema/migrations, R2 buckets and deploy command.
@@ -293,16 +304,16 @@ I did not re-run these this sitting; each is VERIFIED by the named seat in the c
 No assignments. Work comes from `node tools/council.mjs next` on `origin/council/muse`. Answers go in `inbox/` with `FOR: Q<n>` (or the queue ID) and are reviewed by three different seats.
 
 **Owner (only the Owner can close these):**
-- Q1 **Stat #2** — "undefeated" = regular season (his 1 Nov words) or 20-0? Default: regular season + optional 11th "Perfect season (20-0)". Blocks stat-schema sign-off.
-- Q2 **Auth provider** — Clerk Hobby (hy4/porca/ernie default), WorkOS fallback, or code-owned Auth.js/Better Auth (the 1 Nov baseline). Any maintained OIDC satisfies §3.5. Blocks callback URLs and the account schema.
 - Q3 **Hostname** — confirm `76pancakes.workers.dev` as the target; if claimed at creation, accept a short free variant (hy4's RDAP/NXDOMAIN checks cannot reserve it). Default: take the closest free variant; record the exact string in `releases.md`. "free now and always" is already locked; this is a naming detail.
 - Q4 **Achievements** — ship the API stub with no invented list? Default yes.
 - Q5 **Account deletion** — out of scope for v1, documented honestly? Default yes.
 - Q6 **Brag form** — text only (P-209) or also a PNG card? Default text only; a card is post-v1.
 - Q7 **Legend weights 100/10/1** — INFERRED; keep for v1? Default keep, labelled.
+- **Closed / delegated this sitting (§1.13):** former Q1 (stat #2) → **resolved**, record both 17-0 and 20-0 plus the wider directive; former Q2 (auth provider) → **delegated to Claude**; hosting substrate → **delegated to Claude as a council-consensus recommendation**. All three now sit with Claude in `0520` (Q-HOST / Q-STATS / Q-AUTH). Do not re-ask the Owner any of the three.
 
 **Architect (Claude) — technical decisions, no Owner wait needed:**
-- Ratify or amend the Cloudflare decision (§9); choose IdP integration; design the account/session schema and how the envelope attaches to an account; decide migration idempotency and undo.
+- **Three questions put to you this sitting** (`0520` Q-HOST / Q-STATS / Q-AUTH, §1.13): ratify or amend the hosting substrate with the four seats' consensus recommendation in view; rule whose "players' top seasons" the Owner's expanded stat directive means and how "collect all possible data" fits the prune rule and non-derivable awards; choose the IdP with the council recommendations in view. The Owner expressly declined to make the first and third. Answer in `inbox/` with `FOR:` and your reasons.
+- Ratify or amend the Cloudflare decision (§9); design the account/session schema and how the envelope attaches to an account; decide migration idempotency and undo.
 - P-254 mechanics: `deviceId`, revision, rung-back depth, keep-both UI; LWW tie-break (hy4orca's earlier three-way-merge idea is withdrawn — P-254 already decides it).
 - Q8 **Stat authority** — server recomputes from accepted envelopes, client cache updated atomically? Default yes.
 - Q9 **Session lifetime** — long-lived refresh, offline play always works, re-auth only on successful reconnect? Default yes.
@@ -331,7 +342,7 @@ No assignments. Work comes from `node tools/council.mjs next` on `origin/council
 
 ## 12. Source index
 
-**My filings:** `inbox/20261121-0324-pickle-OWNER-RULINGS-rival-pfdynasty-longterm-visual.md` · `...0358-...screenshots-01-02...` · `...0410-pickle-COUNSEL-cloudflare-portfolio-reassessment.md` · `...0415-pickle-FINAL-cloudflare-counsel-accounts-sync.md` · `...0420-pickle-RELEASE-SCOPE-RULING-accounts-mandatory.md` · `...0430-pickle-RETRIEVAL-existing-account-and-stats-plan.md` · `...0447-pickle-PROMPT-to-council-signin-optional-but-ship-complete.md` · `...0455-pickle-FINAL-PLAN-remaining-mandatory-features.md` (Q1–Q17) · `...0458-pickle-CLOUDFLARE-setup-direction.md` (partly struck) · `...0508-pickle-MASTER-RELAY-all-owner-words-and-decisions.md` (superseded by this file).
+**My filings:** `inbox/20261121-0324-pickle-OWNER-RULINGS-rival-pfdynasty-longterm-visual.md` · `...0358-...screenshots-01-02...` · `...0410-pickle-COUNSEL-cloudflare-portfolio-reassessment.md` · `...0415-pickle-FINAL-cloudflare-counsel-accounts-sync.md` · `...0420-pickle-RELEASE-SCOPE-RULING-accounts-mandatory.md` · `...0430-pickle-RETRIEVAL-existing-account-and-stats-plan.md` · `...0447-pickle-PROMPT-to-council-signin-optional-but-ship-complete.md` · `...0455-pickle-FINAL-PLAN-remaining-mandatory-features.md` (Q1–Q17) · `...0458-pickle-CLOUDFLARE-setup-direction.md` (partly struck) · `...0508-pickle-MASTER-RELAY-all-owner-words-and-decisions.md` (superseded by this file) · `...0513-pickle-CANONICAL-REFERENCE-...` (this file) · `...0520-pickle-OWNER-ANSWERS-questions-to-claude-hosting-stats-auth.md` (live addendum: §1.13 answers + three questions to Claude).
 
 **Seat relays reviewed:** `origin/council/hy4:inbox/20261121-0507-hy4-MASTER-HANDOFF-everything-to-know.md` (+ its `0040`, `0457`, `0500`, `0502`, `0505`, `2230` filings) · `origin/council/ernie:inbox/20261121-0525-ernie-P-317-FULL-BRIEFING-everything-to-know.md` · `origin/council/iceman:inbox/20261121-0500-iceman-plan-remaining-features-questions-for-council-claude-zai.md` · `origin/council/porca:inbox/20261121-0508-porca-FULL-HANDOFF-accounts-sync-stats-brag.md` (+ `0459`) · `origin/council/hy4orca:inbox/20261120-1622-hy4orca-seat-reviews-roundup.md` and `...1623-...cutover-lane-answer.md` · `origin/council/beam:inbox/20261121-0458-beam-answer-stats-beyond-single-season.md`.
 
@@ -341,7 +352,7 @@ No assignments. Work comes from `node tools/council.mjs next` on `origin/council
 
 ## 13. One-line version
 
-> **Ship before deploy — optional for the player, mandatory to build — on the frozen engine pin `408410477`, free-only and offline-first, with no domain ever (`76pancakes.workers.dev`): cross-run career stats (P-208's ten, with stat #2's 20-0 contradiction still to be ruled on), maintained OIDC sign-in, whole-envelope per-slot LWW with rung-back and keep-both (P-254), idempotent local-save migration, and a text-plus-bare-URL brag share. The ring is removed; 01/02-with-badges is the visual goal; Z.ai owns the shell and S15 gates, Claude owns the engine and the merge, MUSE owns the record, and a Verifier who wrote none of it signs off.**
+> **Ship before deploy — optional for the player, mandatory to build — on the frozen engine pin `408410477`, free-only and offline-first, with no domain ever (`76pancakes.workers.dev`): cross-run career stats (P-208's ten — the Owner resolved stat #2 on 21 Nov: record BOTH 17-0 and 20-0, plus the wider "collect all possible data" directive now with Claude to scope), maintained OIDC sign-in, whole-envelope per-slot LWW with rung-back and keep-both (P-254), idempotent local-save migration, and a text-plus-bare-URL brag share. The ring is removed; 01/02-with-badges is the visual goal; Z.ai owns the shell and S15 gates, Claude owns the engine, the merge and the three questions put to him in `0520`, MUSE owns the record, and a Verifier who wrote none of it signs off.**
 
 — pickle (council seat; advisor). This is a record, not a ruling. Owner words govern; the Architect decides technical matters; nothing here authorises a seat to implement anything.
 
@@ -350,3 +361,4 @@ No assignments. Work comes from `node tools/council.mjs next` on `origin/council
 - `0508` master relay: **superseded by this file** — it lacked the domain rulings (§2.6–§2.8), the stat #2 contradiction, D5/H2/D1 and the cutover-lane facts, and its Q13 recommendation was wrong.
 - `0455` plan Q13: the `play.` subdomain recommendation is **struck**; Q13 now resolves to a free `workers.dev` hostname.
 - `0458` Cloudflare setup direction: the "add site / move nameservers / check MX" steps are **struck** (no domain). The free Cloudflare account, Account ID handover, Clerk Hobby tenant, secure secret handling and "no secrets in the repo" guidance stand.
+- `0520` three questions to Claude: **live addendum to this file** — records the Owner's §1.13 answers and puts hosting substrate, expanded stat scope and IdP to him with full council context. It decides nothing; the Architect rules.
