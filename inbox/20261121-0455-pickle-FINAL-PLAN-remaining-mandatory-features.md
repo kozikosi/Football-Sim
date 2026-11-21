@@ -9,7 +9,7 @@ FOR: Owner; Architect (Claude); Z.ai; council seats. ADVISORY — I write no pro
 
 **Goal:** ship, before public deployment, the account capability, cross-device save sync, offline-conflict resolution, local-save migration, career stats and brag share — on the existing engine pin, with zero engine bytes changed, free-only, offline-first.
 
-**Architecture:** the already-REVIEWED storage envelope and async facade (P-207/P-214) stay the seam between UI and engine. Local save remains the source of truth for offline play; a Worker-side API holds account identity, per-slot save heads, stats and preferences; sync reconciles whole envelopes per the already-APPROVED P-254 rule (never a field merge). The front end is a static build served by a Worker with assets, or by Pages beside a separate Worker, depending on one unanswered domain question.
+**Architecture:** the already-REVIEWED storage envelope and async facade (P-207/P-214) stay the seam between UI and engine. Local save remains the source of truth for offline play; a Worker-side API holds account identity, per-slot save heads, stats and preferences; sync reconciles whole envelopes per the already-APPROVED P-254 rule (never a field merge). Front end and backend are **one Cloudflare Worker with static assets** (Owner direction, 21 Nov 04:5xZ — nameservers at Cloudflare); Pages drops out of the release topology. The exact hostname is still needed for the brag URL.
 
 **Tech Stack:** Svelte 5 + Vite 8 (Owner, 2026-11-19, final); TypeScript; Cloudflare Workers + D1/KV (free tier); maintained OAuth 2.0/OIDC implementation (Auth.js, Better Auth or managed provider — provider is an OPEN question); Playwright for UI batteries; Node 22.23.5 locally / CI Node 24.
 
@@ -107,8 +107,7 @@ Owner locked "a maintained OAuth 2.0 / OpenID Connect implementation (Auth.js, B
 **Q3 — Where does server-authoritative state live: D1, KV, or both?**
 *Question:* save heads and stats in D1 (relational, per-user/per-slot), sessions in KV (fast expiry), preferences in D1 or KV? *Recommended:* D1 for saves/stats/preferences, KV for sessions; R2 only if rung-backs outgrow D1. *Blocked:* D1 schema, Task D1.
 
-**Q4 — Is the release domain's nameservers on Cloudflare?** (Owner's call.)
-*Question:* custom domain on Cloudflare, or off-Cloudflare? *Recommended:* if on Cloudflare, one Worker with static assets (`assets.directory`, SPA `not_found_handling`, `.assetsignore`), simplest and gives rate limiting/Logs/Source Maps/native DO; if off, Pages front end + separate Worker API. *Blocked:* final hosting topology, the build-time brag URL, CI deploy step. Does not block design work. **REPORTED from Cloudflare docs:** Workers cannot serve a domain whose nameservers are not on Cloudflare; Pages can via CNAME.
+**Q4 — Domain nameservers — ANSWERED by the Owner (21 Nov, verbatim): "why wouldn't the nameservers be at cloudflare; and i can setup the cloudflare but i need direction".** I asked only because Cloudflare docs (REPORTED, read this sitting) state a Worker cannot serve a domain whose nameservers are not on Cloudflare — Pages can via CNAME. The Owner's direction resolves it: **nameservers go on Cloudflare → one Worker with static assets (`assets.directory`, SPA `not_found_handling`, `.assetsignore`) carries both front end and backend.** No Pages, no split Worker for hosting. Why I asked, in one line; the answer changes the topology from a fork to a single path. The Owner needs setup direction — provided in `inbox/20261121-0458-pickle-CLOUDFLARE-setup-direction.md`. Still needed from the Owner: the domain itself and which hostname (apex or `play.` subdomain) — see Q13.
 
 **Q5 — What breaks a tie in per-slot LWW?** (P-254 says LWW, not how "last" is measured.)
 *Question:* server receipt sequence, or client `savedAt`? *Recommended:* server-monotonic `(userId, slot)` sequence as "last", client `savedAt` for display only, `deviceId` as deterministic tie-break. *Blocked:* Task D2 exact rule. **This is a question about mechanism, not a re-opening of the locked LWW rule.**
@@ -134,10 +133,10 @@ P-207 gap 2 proposed an API but no achievement list exists. *Question:* do we sh
 **Q12 — What is the engineVersion replay policy?** (P-217 shows OPEN/auto-retire but this plan needs it.)
 *Question:* when a save's `engineVersion` is older than the shipped engine, do we replay, refuse with a clear message, or open read-only? *Recommended:* refuse replay of old envelopes (frozen payloads make replay unsafe), show an honest "this save was made with an older engine" message, keep the bytes for reference. *Blocked:* Task A3 version handling, P-217 closure. **Owner/Architect call; do not let P-217 auto-retire with this unanswered.**
 
-**Q13 — What is the deployed URL for the brag share?**
-P-209 requires a build-time constant, never `window.location`; the domain is not settled (Q4). *Question:* what exact origin/path string ships? *Recommended:* set it in the deploy config only at make-live; hide the button when unset. *Blocked:* final brag acceptance; not blocked for local build.
+**Q13 — What is the deployed URL for the brag share? — OPEN, narrowed by Q4.**
+P-209 requires a build-time constant, never `window.location`. The hosting is now settled (one Worker on a Cloudflare-managed domain), so the only missing input is the exact hostname. *Question for the Owner:* what is the domain, and do we publish at the apex (`https://example.com`) or a subdomain (`https://play.example.com`)? *Recommended:* a `play.` subdomain — it keeps any existing apex site/email untouched and makes the DNS change smaller. Set the constant at make-live; hide the button when unset. *Blocked:* final brag acceptance and OAuth callback registration; not blocked for local build.
 
-**Q14 — Does "track stats beyond a single season" need any schema beyond P-208?** Locked answer: cross-run career stats, no franchise continuity. *Question for the Architect only:* confirm the `(userId, scope, franchise)` stats table satisfies this with no new gameplay state. *Recommended:* yes; no engine state added. *Blocked:* D1 schema sign-off.
+**Q14 — Stat scope — REAFFIRMED by the Owner (21 Nov, verbatim): "locked cross run career stats".** Already locked in §0.1; the Owner repeated it in answer to Q14. No franchise continuity, no multi-season gameplay state, no new stats beyond P-208's ten. The only remaining sub-item is mechanical, for the Architect: confirm the `(userId, scope, franchise)` stats table satisfies cross-run accumulation with no engine state added. Not a product question and not blocked on the Owner.
 
 **Q15 — What is the account deletion / data-export policy?**
 *Question:* can a user delete their account, and what happens to stats and rung-backs? *Recommended:* out of scope for release unless the Owner requires it; document honestly. *Blocked:* legal/privacy copy only.
@@ -232,7 +231,9 @@ Each task ends with an independently testable deliverable and a commit by its ow
 ### Phase F — Deployment
 
 **Task F1 — Hosting topology and measurements**
-- Questions: Q4, Q13. [ ] P-210 measurements tabled with browser versions and dates: `file://` survival, Safari ~7-day eviction, host-change loss. [ ] Choose Worker+assets or Pages+Worker; record the exact reason. Commit the decision in the Architect's work order.
+- Q4 ANSWERED: one Worker with static assets on a Cloudflare-managed domain; no Pages, no split. Q13 still needs the exact hostname from the Owner.
+- [ ] P-210 measurements tabled with browser versions and dates: `file://` survival, Safari ~7-day eviction, host-change loss.
+- [ ] Owner completes the Cloudflare setup checklist in `inbox/20261121-0458-pickle-CLOUDFLARE-setup-direction.md`; Architect records the chosen hostname and the resulting build-time brag URL in the work order. Commit by each owner.
 
 **Task F2 — CI, gates and handover**
 - [ ] Gates 1–10 from `claude/cutover-runbook-2026-11-20.md` §2–3, plus the new account/sync/migration gates, all green with receipts. [ ] Protected constants re-pinned in the same commit. [ ] CI green on the pushed branch. [ ] Owner reviews the running app; only then go/no-go. Deployment is by the Architect and the Owner; Z.ai hands over a static build and does not deploy.
