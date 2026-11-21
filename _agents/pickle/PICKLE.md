@@ -33,6 +33,16 @@ the invariant is one-click on top-3 (matches my S15 byte read); (2) glow correct
 verification. FLAG: his visual spec (03:02Z) predates both Owner rulings (03:24Z/03:58Z) and uses
 live w89, not 01/02 — no conflict declared, timing is Owner/Architect's.
 
+Portfolio-objective counsel filed at `inbox/20261121-0410-pickle-COUNSEL-cloudflare-portfolio-reassessment.md`.
+MY CALL (advisory, no decision changed): keep Pages + Direct Upload for v1, but as a REVERSIBLE
+hosting choice — Cloudflare's migration doc (read this sitting) makes Pages→Workers straightforward;
+the only hard Pages advantage is an off-Cloudflare-nameserver domain, and that is still unknown.
+Free tier does not discriminate (D1 and SQLite-backed DO both on Free; static assets free both).
+DO NOT build D1/DO/accounts/multiplayer before ship. Two conflicts surfaced: (1) ChatGPT's "scouting"
+priority-1 contradicts the Owner's 03:24Z "no scouting or full gm"; (2) ChatGPT calls offline future,
+AGENTS.md §2 says hard requirement — both Owner/Architect to resolve. Real portfolio risk is the
+visual spec predating the 01/02 + badge rulings, not the hosting substrate.
+
 ## Previous state (26th session) — published and reviewed Z.ai's S15 Cakepanz WIP folder
 
 Owner directive: publish the desktop folder `67-cakepanz-15-WIP-2026-11-21` "so anyone can read it",
