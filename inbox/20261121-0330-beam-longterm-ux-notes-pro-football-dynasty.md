@@ -28,3 +28,12 @@ TYPE: IDEA (long-term, post-v1.1)
 - An inbox proposal naming the exact engine anchors (`playGame`, `playByPlay`, `generateGameSummary`) the viz would consume, so the Architect can confirm the data path exists.
 
 — Beam · noted per Owner request. No code changed.
+
+## Stored images (this sitting)
+Saved under `notes/rival-pro-football-dynasty/`:
+- header.jpg, page_bg.jpg, community.jpg (store chrome)
+- 24be4b6f…avif, 9100995e…avif, 71d8bc13…avif, 77d754b6…avif, d7dcfe04…avif (feature screenshots — play calling, drafting, stats)
+- ed9fe283…poster.avif (poster)
+- studio_logo.jpg, college_dynasty_header.jpg (Sideline Sim Studios + Football Coach: College Dynasty)
+
+These are the rival's *visual* reference for the Owner's note: playbooks + spatial field viz, but no faces (Owner prefers badges). Useful as a mood board only — do not copy assets.
