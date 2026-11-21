@@ -1,17 +1,17 @@
 # Cutover runbook: Z.ai's finished UI into `colors/` (Architect, 20 Nov 2026)
 
-Replaces the v20↔donor `MERGE-CHECKLIST.md`. Lane: **Z.ai builds slices 3-5 and lands c12; the Architect performs this merge after Z.ai says "slices done".** Nothing below touches `gh-pages`. Push only `architect/engine-and-seats`. Labels: V = verified this session, I = inferred, U = unknown.
+Replaces the v20↔donor `MERGE-CHECKLIST.md`. Lane (Owner, 20-21 Nov): **Z.ai builds slices 3-5 and lands c12; the Architect performs this merge after Z.ai says "slices done"; Z.ai hands over a Cloudflare-ready static build; the Architect and the Owner deploy it to Cloudflare.** gh-pages is not a target and Z.ai does not deploy. Push only `architect/engine-and-seats`. Labels: V = verified this session, R = reported by another seat, I = inferred, U = unknown.
 
 ## 0. Starting state (V)
 - Engine pin **408410477**; `git rev-parse 408410477:colors/src` = `ee3b6e1:colors/src` = `8d8a8a1e81386e99f53f995492904348cb7d8345`. Keep it; nothing to bump.
 - `colors/`: 430/430 tests, tsc 89/89 (ratchet), `vite build` OK (Node 22.23.5 here, CI Node 24). `colors/` has 0 Svelte files, but it already has `vite.config.js` (svelte plugin), `index.html` ("20-0") and `src/main.ts` (a framework-free one-game box-score page over the real pools pack).
-- Z.ai's tree: `67-cakepanz/` on `gh-pages` (slices 1-2: 10 `.svelte`, `draftStore.ts`, `valuation.ts`, `App.svelte`, `main.ts`). Its engine copy `src/engine/**` differs from `colors/src` in 12 files and lacks `dispatchAsync`.
+- Z.ai's tree: c12 / S13-S14 (his own lane; the `67-cakepanz/` copy on `gh-pages` is the old slices 1-2 snapshot and only a reference). Its engine copy `src/engine/**` differed from `colors/src` in 12 files and lacked `dispatchAsync` on the old snapshot, so build against the pin.
 
 ## 1. Preconditions (all must be true before I start)
 1. Z.ai reports slices 3-5 done against pin `408410477`, with **zero engine bytes changed**: `git diff --name-only 408410477 <his tip> -- colors/src` is empty, or his `src/engine/**` hashes equal `colors/src`.
 2. His shell uses `dispatchAsync` / `selectBoardAsync` per `claude/dispatchasync-contract-2026-11-20.md` and has no sync `dispatch` in product code.
 3. His own battery is green on the built app and he has handed me the commit and the path.
-4. The two test re-point (277→286) and c12 landing on gh-pages are Z.ai's deploy and are **not** merge preconditions; they do not block `colors/`.
+4. Anything about `gh-pages` (the 277→286 test re-point, landing c12 there) is retired and is **not** a precondition. The only hand-over is the c12 commit plus a Cloudflare-ready static build (`dist/` and its sha256).
 
 ## 2. What moves (mechanical, one commit each so each can be reverted)
 Target layout: UI under `colors/src/ui/`; everything else already matches.
@@ -23,7 +23,7 @@ Target layout: UI under `colors/src/ui/`; everything else already matches.
 | `index.html` | `index.html` | Title becomes the product name, not "20-0". |
 | `src/data/*.csv`, `data/nfl/*.csv` copies | **delete**; import from repo-root `data/nfl/*.csv?raw` | Single source. `vite.config.js` already has `server.fs.allow: ['..']`; confirm for `build`. |
 | `package.json` | **colors' wins** (svelte ^5.57, plugin ^7, Vite 8). Z.ai's pins (plugin ^6, Vite 7) are dropped | If a component fails to compile on Vite 8, fix the component. Do not downgrade `colors/`. |
-| `batteries/`, `shots/`, `CHECKSUMS-*.txt` | `colors/test/ui/` (battery), `claude/ref/` (shots/checksums) | Battery needs Playwright (not in `colors/` deps; adding it is a dev-dependency change = Owner approval, or keep it run-by-hand). |
+| `batteries/`, `shots/`, `CHECKSUMS-*.txt` | `colors/test/ui/` (battery), `claude/ref/` (shots/checksums) | **Decided (Owner said add it): Playwright goes into `colors/` devDependencies.** Receipt required in the commit: the exact version pinned, `package-lock.json` regenerated with `npm install` in `colors/`, then `npm ci` clean on a fresh checkout, `npx playwright --version` printed, browsers installed with `npx playwright install chromium`, CI updated to cache them. Batteries live in `colors/test/ui/` and are not part of `npm test` (the engine gate stays fast); they run as `npm run test:ui`. |
 
 **Deleted, never copied:** `67-cakepanz/src/engine/**`, `test/engine/**` (old 284-test copy), `tools/**` (the repo-root `tools/` is canonical), `vite.config.js`/`package-lock.json` of the cakepanz tree. After the merge there is exactly one engine: `colors/src`.
 
@@ -33,7 +33,7 @@ Run from `colors/` after `npm ci`, with the WHOLE repo checked out (tests read `
 2. **Engine bytes unchanged:** `git rev-parse HEAD:colors/src/core HEAD:colors/src/sports` equals the same paths at `408410477` (UI lives in `src/ui` and `src/main.ts`, so compare `core`, `sports`, `platform`).
 3. **tsc ratchet:** `npm run tsc:check` ≤ 89 (V baseline 89/89). New `.svelte`/UI TypeScript must add 0 errors; if `svelte-check` is wanted it is a new dev dependency (Owner).
 4. **Build:** `npm run build` OK; record the JS/CSS sizes next to today's 23 kB JS / 4.6 MB pack.
-5. **Board / slot / visual 15/0:** the Owner's gate. U: I cannot map "15" to a current count (Z.ai's slice-1/2 battery reports 26 pass · 0 fail · 10 skip · 3 defer). Z.ai to name the 15 assertions; they go into `colors/test/ui/` verbatim.
+5. **Board / slot / visual batteries, 0 fail.** Baselines are S13 receipts, not thresholds, and they may only go up (R, pickle, `CUTOVER-CHECKLIST.md:20-22`): board 15/0 → 16/0, slot 28/0, visual 15/0 → 17/0. The cutover swap test ends 29 pass / 0 fail / 10 skip / 3 deferred in both c7 and c8 (R, `swap-test.log:30`); its "26 pass" line is stale. Any count below its baseline, or any fail, stops the merge. Z.ai names the assertions; they go into `colors/test/ui/` verbatim.
 6. **The 3 cutover-battery DEFER laws** (V, Cakepanz README): gone-odds method equality (30 sims, real CPU logic); the 84-assertion w77 DOM battery's laws; witness-export parity. Per the contract the gone-odds comparison is of method, not digits.
 7. **390 px and desktop:** Playwright screenshots at 390×844 and 1180×950, Team Select, board, a pick confirm, finished draft. No horizontal scroll at 390.
 8. **No console errors/pageerrors** across START → 3 picks → UNDO → reload/LOAD → finish.
@@ -43,13 +43,21 @@ Run from `colors/` after `npm ci`, with the WHOLE repo checked out (tests read `
 ## 4. Order of work
 1. Preconditions. 2. Branch tip noted (`git rev-parse HEAD`) as the rollback point. 3. Commit A: engine untouched, add `src/ui/` + rewritten imports. 4. Commit B: entry/index/dev-page collision, data single-sourcing. 5. Commit C: delete nothing in `colors/`; record that the cakepanz engine copy is retired (the copy lives on `gh-pages`, which I do not touch). 6. Run gates 1-10; paste receipts (directory + command + result) into `claude/cutover-receipts-<date>.md`. 7. Push; wait for CI. 8. Owner reviews the running app; only then the go/no-go.
 
-## 5. Make-live and w89 (not mine to execute)
-Z.ai deploys c12 and retires w89 at make-live per the Owner (20 Nov). Before that: the live w89 shell keeps its own saves; whether its localStorage keys collide with `sim:nfl:draft` / envelope slots is U (not checked). **Check this before make-live**, because a new build that reads an old key would hit `parseRecord`/`newer-version` paths.
+## 5. Make-live (Architect + Owner, on Cloudflare)
+- **Visual acceptance (decided, Architect, 21 Nov; Owner delegated): w89 parity, shown, not asserted.** (a) A filed side-by-side of the built tree against live w89 at 390×844 and 1180×950: Team Select, board (with a top-3 row), pick confirm, finished draft. The Owner is shown it before make-live. "Directionally similar" is a FAIL; a named difference the Owner accepts in writing is the only waiver. (b) Measurable anchors, asserted in the battery so they cannot drift: glass tokens `--glass`, `--glassbd`, `--shadow` equal w89's values; 22 px radii on the large panels; `.panel` styling matches w89 (`:625`); contrast battery 2/0; 390 px no horizontal scroll; DESC-1 green. The seam golden (`e8fed8ab…`) pins VM shape and engine output, so it does not change; only this wording moved. pickle coordinates the side-by-side from the built tree.
+- **w89 saves (R):** w89 uses `KEY='zpb:season'` (`:18080`) and has zero `sim:nfl` keys, so no collision with `sim:nfl:draft` or the envelope slots (pickle, against S13 receipts; I did not re-run). Residual U: whether anyone needs their w89 season carried over. Default: no import; the new build starts clean and never reads `zpb:season`.
+- **Make-live trigger:** the Owner says "go" after seeing the side-by-side and the gate receipts. Not before.
+- **Before every make-live, record** in `claude/releases.md` (append-only): the prior production deployment id/URL, the `dist/` bundle sha256, the golden seam hash, the zip sha256, the source commit, and the date.
 
-## 6. Rollback
-- Pre-push: the three commits are independent, so `git revert` C, B, A in that order (no `reset --hard`, no force-push, per the rules). The rollback tip from step 2 is the state to compare against.
-- Post-push, pre-make-live: nothing public changed (`gh-pages` untouched); revert commits C, B, A on the Architect branch and re-run gate 1.
-- Post-make-live: Z.ai restores the frozen reference `Football-Sim-PreColors.html` (sha256 prefix `40233d6be00e987c`, REPORTED) and the previous `gh-pages` commit; saves written by the new build stay valid (envelope `schemaVersion 1`, no migration at v1).
+## 6. Rollback (decided, Architect, 21 Nov; Owner delegated)
+Both inputs are used. They cover different failure windows.
+- **Primary: Cloudflare's own deployment history.** Re-promote the prior production deployment from the dashboard (Deployments → the prior production deployment → rollback). Fast, and it needs no rebuild. R, from Cloudflare's docs via pickle, not performed: only successful, non-deleted production deployments qualify, and old ones age out, so a target can disappear.
+- **Fallback: a pinned artifact in the repo.** Each make-live adds a row to `claude/releases.md` with the `dist/` sha256 and the zip sha256, and the zip is kept by the Owner. If history has aged out, or the account state is wrong, redeploy that exact artifact and compare its hash. This is hy4's Plan B, and the reason the table exists.
+- **Trigger:** any failed gate on the live URL (re-run 390 px and console gates after deploy), or a failed side-by-side acceptance, or an error in the first-run save path.
+- **After any rollback:** verify the live hashes equal the recorded ones, re-run the 390 px and console gates, write the result into `claude/cutover-receipts-<date>.md`.
+- **Code-side (before push):** the three commits are independent: `git revert` C, B, A in that order (no `reset --hard`, no force-push). Compare against the tip noted in step 2 of section 4. After push but before make-live nothing public has changed: revert on the Architect branch and re-run gate 1.
+- **Last resort:** the frozen reference `Football-Sim-PreColors.html` (sha256 prefix `40233d6be00e987c`, R) stays kept. Saves from the new build remain valid across a rollback (envelope `schemaVersion 1`, no migration at v1).
+- **UNKNOWN until the account exists:** the Cloudflare project does not exist (no `wrangler.toml`, deploy script or Cloudflare config in the repo, V). So the product type (Pages vs Workers static assets, which changes the rollback screen), the project name, the retention behaviour and whether rollback works as documented are all U. Nothing here has been performed. The first deploy is a rehearsal: deploy, record the row, roll back once to a throwaway deployment, record the result, then go live.
 
 ## 7. Open items (U)
-Playwright as a dev dependency (Owner); the identity of the "15" assertions; w89 save-key collision; whether `devgame` stays or is retired.
+Cloudflare product type and account (Owner, with me); devgame keep or retire (hy4: keep as `src/devgame.ts`, decide at merge); Playwright version to pin; whether w89 season carry-over is ever wanted (default no).
