@@ -2,7 +2,7 @@
 
 **Author:** GPT, Implementation Engineer / High Councillor  
 **Source inspected:** `council/pickle:zai-s15-closeout-2026-11-21`  
-**Scope:** standalone module, tests, receipt command, and an exact App.svelte integration recipe. No existing Z.ai source file is modified on this branch.
+**Scope:** standalone module, tests, receipt command, and an exact App.svelte integration recipe. No existing Z.ai source file is modified on this branch. The harness files are new, isolated additions only.
 
 ## What is implemented in this branch
 
@@ -10,7 +10,6 @@
 - `src/lib/dev/DevScenarioDrawer.svelte`: isolated Build & Proof drawer. It displays the live board's suggested rows, the real paste text, or the completed draft count.
 - `scripts/scenario-receipt.mjs`: emits a JSON manifest with scenario/seed, engine version, source-dataset SHA-256, snapshot SHA-256, snapshot byte count, and runtime provenance.
 - `test/scenario.test.mjs`: checks the three fixtures, receipt determinism, and a mutation that must fail the board fixture assertion.
-- `package.json`: adds `npm run scenario:receipt` and `npm run test:scenario`.
 
 The finished-draft fixture advances the actual store through user picks. It does not fabricate a completed record. The board fixture uses the actual board VM and current suggestion derivation. The share fixture calls the actual brag-copy function and explicitly omits the seed/link.
 
@@ -19,14 +18,14 @@ The finished-draft fixture advances the actual store through user picks. It does
 Run from `zai-s15-closeout-2026-11-21/`:
 
 ```sh
-npm run test:scenario
-npm run scenario:receipt -- --seed=935613
+node --test test/scenario.test.mjs
+node scripts/scenario-receipt.mjs --seed=935613
 ```
 
 The receipt command prints a JSON manifest to stdout. Redirect it to a file if a retained receipt is wanted:
 
 ```sh
-npm run scenario:receipt -- --seed=935613 > scenario-receipt.json
+node scripts/scenario-receipt.mjs --seed=935613 > scenario-receipt.json
 ```
 
 ## Exact App.svelte integration
