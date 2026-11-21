@@ -1,0 +1,37 @@
+node-port: src/engine-node missing (never generated) — regenerating (npm run precompile does the same step explicitly)
+node-port: engine-node: generated 69 files (1 transformed: platform/localstorage.ts) — snapshot untouched
+== P-317 node laws: START/undo/restore carry the chosen slot ==
+   PASS  N-S1 slot 2 · Buffalo Bills (natural 1): the record carries pickSlot=2 and no error — pickSlot=2 error=null
+   PASS  N-S2 slot 2 · Buffalo Bills (natural 1): the CPU has made exactly 1 picks, none by the user's team — logged=1
+   PASS  N-S3 slot 2 · Buffalo Bills (natural 1): the user is on the clock at overall pick 2 — pos=1 order[pos]=0
+   PASS  N-S4 slot 2 · Buffalo Bills (natural 1): the full 1,024 order equals the independent oracle (the swap stands in EVERY round) — len=1024
+   PASS  N-S5 slot 2 · Buffalo Bills (natural 1): the displaced team holds the user's natural round-1 position — order[natural]=1 expected=1
+   PASS  N-S6 slot 2 · Buffalo Bills (natural 1): every logged pick rides the oracle order — checked=1
+   PASS  N-S1 slot 32 · San Francisco 49ers (natural 31): the record carries pickSlot=32 and no error — pickSlot=32 error=null
+   PASS  N-S2 slot 32 · San Francisco 49ers (natural 31): the CPU has made exactly 31 picks, none by the user's team — logged=31
+   PASS  N-S3 slot 32 · San Francisco 49ers (natural 31): the user is on the clock at overall pick 32 — pos=31 order[pos]=30
+   PASS  N-S4 slot 32 · San Francisco 49ers (natural 31): the full 1,024 order equals the independent oracle (the swap stands in EVERY round) — len=1024
+   PASS  N-S5 slot 32 · San Francisco 49ers (natural 31): the displaced team holds the user's natural round-1 position — order[natural]=31 expected=31
+   PASS  N-S6 slot 32 · San Francisco 49ers (natural 31): every logged pick rides the oracle order — checked=31
+   PASS  N-S7 undo after a slotted pick: the record (incl. pickSlot) returns byte-for-byte to the pre-pick state and the user is back on the clock — pos=1 (pre-pick: 1) recordIdentical=true
+   PASS  N-S8 the user pick lands exactly at overall pick 2 and on the user roster (the CPU then picks on) — pick@2 team=0 userPicks=1
+   PASS  N-S9 save → restore replays the slotted order (no "pick is out of order") — writeErr="" r.ok=true error=null restoredPickSlot=32
+   PASS  N-S10 the natural slot (slot = team index + 1) is OMITTED from the record and the plain snake runs — pickSlotPresent=false onClock=0
+   PASS  N-S11 a bad slot (33, 2.5) is REJECTED with a named error, no draft mounts — e1="start: bad pick slot" e2="start: bad pick slot"
+== P-317 browser laws: Team Select → slot → DRAFT through the real flow ==
+   PASS  B1 the DRAFT button NAMES the chosen slot — DRAFT AS BUFFALO BILLS · SLOT 2
+   FAIL  B1 EARLY slot: START carried pickSlot through the real flow — pickSlot=null userTeam=0
+   FAIL  B1 EARLY slot: the displaced team made overall pick 1 (the slot is not ignored) — logged=0 first=undefined onClock=0 pos=0
+   FAIL  B1 EARLY slot: the live order equals the independent oracle — len=0
+   FAIL  B1 the real pick lands exactly at overall pick 2 on the chosen roster (the CPU then picks on) — pick@2=1 userPicks=1 roster=1
+   PASS  B1 the mode lock fired at START and holds after the pick — atStart=true afterPick=true
+   FAIL  B2 the reload replays the SAME slotted order (pickSlot restored, no "pick is out of order") — error=null pickSlot=null sameOrder=true onClock=0
+   FAIL  B2b the restore-replay reassurance RENDERS on the restore path (a reloaded slotted draft shows the pickSlot note without a live requestedSlot — S4) — screen=complete present=false text="…"
+   FAIL  B3 LATE slot: START carried pickSlot=32; 31 CPU picks ride the oracle; the user is on the clock at pick 32 — pickSlot=null logged=30 onClock=30
+   PASS  B4 the natural slot omits pickSlot and the plain snake runs (on clock at the natural pick) — pickSlot=null onClock=1 first=0
+   PASS  B5 zero page errors across the whole P-317 walk — clean
+
+== P-317 SLOT BATTERY · 21 pass · 7 fail · 0 skip ==
+   FAILED LAWS: B1 EARLY slot: START carried pickSlot through the real flow | B1 EARLY slot: the displaced team made overall pick 1 (the slot is not ignored) | B1 EARLY slot: the live order equals the independent oracle | B1 the real pick lands exactly at overall pick 2 on the chosen roster (the CPU then picks on) | B2 the reload replays the SAME slotted order (pickSlot restored, no "pick is out of order") | B2b the restore-replay reassurance RENDERS on the restore path (a reloaded slotted draft shows the pickSlot note without a live requestedSlot — S4) | B3 LATE slot: START carried pickSlot=32; 31 CPU picks ride the oracle; the user is on the clock at pick 32
+store: action rejected: START start: bad pick slot
+store: action rejected: START start: bad pick slot
