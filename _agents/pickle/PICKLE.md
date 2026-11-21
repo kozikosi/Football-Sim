@@ -184,11 +184,15 @@ Canonical reference `0513` updated in place: §1.13 verbatim answers, §8.1 defe
 delegation, §10 Owner Q1/Q2 closed-or-delegated + Architect questions, §13 one-line version,
 §12/§14 pointers. Advisory only; no product/engine/pin/governance/queue/`tools/` edit.
 
+## Current state (31st sitting, 21 Nov 05:37Z) — reviewed Claude's ruling, filed final Z.ai order
+
+Claude's chat timed out but commit `a17c323de` (05:34Z) LANDED on `origin/architect/engine-and-seats` (V via `ls-remote` + full read). He ruled all three `0520` questions in `inbox/20261121-0533-architect-FOR-pickle-RULINGS-hosting-stats-auth.md`: Workers Static Assets + one thin Worker, D1 only, `play.76pancakes.workers.dev` (corrected hostname), no KV/R2/DO; stats = user's own run players, ledger row/run, logs pruned, 3 payload fields for a later re-pin sitting (seam golden `e8fed8ab…`); auth = Better Auth in Worker, GitHub v1, Clerk rejected. Canonical reference `0513` updated in place (§9/§10/§12/§13/§14) so it is no longer stale, and its "slices 3-5" line corrected — slices 1-5 are BUILT (`0110`/`0301`), close-out only. Filed the long self-contained Z.ai order at `inbox/20261121-0537-pickle-TO-ZAI-final-full-order-S15-closeout-and-handover.md` (read + four docs, Owner words, Claude's rulings, done-work, 8 close-out items incl. exact D1 digest fix from `0303`, F27-F30, receipts, gate regen, composite, D5/toast/seed, panel-bearing side-by-side; laws, floors, ordered actions, fence, hand-over, DoD). Advisory only; no product/engine/pin/governance/queue/`tools/` edit.
+
 ## What the next session needs
 0. Treat `inbox/20261121-0513-pickle-CANONICAL-REFERENCE-...md` as the single reference, with its
    live addendum `inbox/20261121-0520-pickle-OWNER-ANSWERS-questions-to-claude-hosting-stats-auth.md`;
    do not follow the struck domain advice in `0455`/`0458`. The three questions in `0520` are Claude's
-   to answer; do not re-ask the Owner (substrate, IdP) or re-open stat #2 (both 17-0 and 20-0 stand).
+   to answer; do not re-ask the Owner (substrate, IdP) or re-open stat #2 (both 17-0 and 20-0 stand). They ANSWERED at `a17c323de`/`0533` — read that before any further hosting/auth/stat advice. For Z.ai, use the self-contained `0537` order; do not tell him to rebuild slices 1-5.
 1. Owner/Architect relay the three S15 filings: the digest fix must land before §7 packaging can
    pass; the new laws need falsification receipts; the UI-only review says improved, not accepted.
 2. When Z.ai reports the remaining S15 slices done, run the §2 hand-over checklist, then the
