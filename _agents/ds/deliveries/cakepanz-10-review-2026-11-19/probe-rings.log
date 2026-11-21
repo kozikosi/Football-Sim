@@ -1,0 +1,29 @@
+--- sort=wins (default), pick 1 ---
+rows=60 ringed=3 (law: 3, or more only on an equal-sort-value run)
+  Josh Allen [99 +3.3 +3.3 99%] RING
+  Matthew Stafford [98 +3.2 +3.2 99%] RING
+  Joe Burrow [97 +3.0 +3.0 99%] RING
+  Lamar Jackson [95 +2.8 +2.8 99%] -
+  Patrick Mahomes [94 +2.7 +2.7 99%] -
+  Brock Purdy [92 +2.4 +1.6 67%] -
+--- sort=priority, pick 1 ---
+rows=60 ringed=3 (law: 3, or more only on an equal-sort-value run)
+  Josh Allen [99 +3.3 +3.3 99%] RING
+  Matthew Stafford [98 +3.2 +3.2 99%] RING
+  Joe Burrow [97 +3.0 +3.0 99%] RING
+  Lamar Jackson [95 +2.8 +2.8 99%] -
+  Patrick Mahomes [94 +2.7 +2.7 99%] -
+  Ja'Marr Chase [99 +2.2 +2.2 99%] -
+--- sort=ovr, pick 1 ---
+rows=60 ringed=5 (law: 3, or more only on an equal-sort-value run)
+  Ja'Marr Chase [99 +2.2 +2.2 99%] RING
+  Jaxon Smith-Njigba [99 +2.2 +2.2 99%] RING
+  Josh Allen [99 +3.3 +3.3 99%] RING
+  Myles Garrett [99 +1.9 +1.9 99%] RING
+  Trey McBride [99 +0.8 +0.8 99%] RING
+  Bijan Robinson [98 +0.7 +0.7 99%] -
+  ringed beyond the third (2):
+    Myles Garrett [99 +1.9 +1.9 99%]
+    Trey McBride [99 +0.8 +0.8 99%]
+--- page errors ---
+[]

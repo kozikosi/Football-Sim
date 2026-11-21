@@ -1,0 +1,24 @@
+import { chromium } from '/Users/kosi/.npm-global/lib/node_modules/@playwright/test/index.mjs';
+const dist = '/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-ds/_agents/ds/deliveries/cakepanz-10-2026-11-19/_agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/dist/single.html';
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1180, height: 900 } });
+const errors = [];
+page.on('pageerror', (e) => errors.push(String(e)));
+await page.goto('file://' + dist + '?dev=1');
+await page.waitForTimeout(1200);
+await page.evaluate(() => {
+  const cp = window.__cp;
+  cp.store.dispatch({ type: 'START', seed: 777, userTeam: 0 });
+  cp.go('board');
+  cp.refresh();
+});
+await page.waitForTimeout(500);
+const snap = await page.locator('.cp-row .cp-main').first().ariaSnapshot();
+const html = await page.locator('.cp-row .cp-main').first().evaluate((el) => el.outerHTML.replace(/></g, '>\n<'));
+console.log('--- aria snapshot (first board row button) ---');
+console.log(snap);
+console.log('--- outerHTML (the numeric cells) ---');
+console.log(html);
+console.log('--- page errors ---');
+console.log(JSON.stringify(errors));
+await browser.close();

@@ -1,0 +1,5 @@
+after GO: {"screen":"board","user":20}
+before reload: {"screen":"board","activeSort":"Priority","totalPicks":43,"myPicks":1,"vmRows":60,"vmSort":"priority","hash":"#/board","error":""}
+after reload : {"screen":"board","activeSort":"Wins","totalPicks":43,"myPicks":1,"vmRows":60,"vmSort":"wins","hash":"#/board","error":""}
+after reload2: {"screen":"board","activeSort":"Wins","totalPicks":43,"myPicks":1,"vmRows":60,"vmSort":"wins","hash":"#/board","error":""}
+page errors: []

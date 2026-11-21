@@ -1,0 +1,128 @@
+{
+ "count": 59,
+ "hits": [
+  {
+   "name": "Sonny Styles",
+   "team": "Washington Commanders",
+   "ovr": "81",
+   "overlapPx": 41,
+   "teamBox": 34,
+   "teamText": 80,
+   "whiteSpace": "normal",
+   "overflow": "visible",
+   "textOverflow": "clip",
+   "minWidth": "auto"
+  },
+  {
+   "name": "Justin Reid",
+   "team": "New Orleans Saints",
+   "ovr": "81",
+   "overlapPx": 7,
+   "teamBox": 34,
+   "teamText": 46,
+   "whiteSpace": "normal",
+   "overflow": "visible",
+   "textOverflow": "clip",
+   "minWidth": "auto"
+  },
+  {
+   "name": "John Franklin-Myers",
+   "team": "Tennessee Titans",
+   "ovr": "80",
+   "overlapPx": 25,
+   "teamBox": 34,
+   "teamText": 64,
+   "whiteSpace": "normal",
+   "overflow": "visible",
+   "textOverflow": "clip",
+   "minWidth": "auto"
+  },
+  {
+   "name": "David Edwards",
+   "team": "New Orleans Saints",
+   "ovr": "79",
+   "overlapPx": 7,
+   "teamBox": 34,
+   "teamText": 46,
+   "whiteSpace": "normal",
+   "overflow": "visible",
+   "textOverflow": "clip",
+   "minWidth": "auto"
+  },
+  {
+   "name": "Matthew Bergeron",
+   "team": "Atlanta Falcons",
+   "ovr": "79",
+   "overlapPx": 7,
+   "teamBox": 34,
+   "teamText": 46,
+   "whiteSpace": "normal",
+   "overflow": "visible",
+   "textOverflow": "clip",
+   "minWidth": "auto"
+  },
+  {
+   "name": "Jacob Rodriguez",
+   "team": "Miami Dolphins",
+   "ovr": "80",
+   "overlapPx": 13,
+   "teamBox": 34,
+   "teamText": 52,
+   "whiteSpace": "normal",
+   "overflow": "visible",
+   "textOverflow": "clip",
+   "minWidth": "auto"
+  },
+  {
+   "name": "Mack Wilson Sr",
+   "team": "Arizona Cardinals",
+   "ovr": "80",
+   "overlapPx": 17,
+   "teamBox": 34,
+   "teamText": 56,
+   "whiteSpace": "normal",
+   "overflow": "visible",
+   "textOverflow": "clip",
+   "minWidth": "auto"
+  },
+  {
+   "name": "Alohi Gilman",
+   "team": "Kansas City Chiefs",
+   "ovr": "80",
+   "overlapPx": 4,
+   "teamBox": 34,
+   "teamText": 43,
+   "whiteSpace": "normal",
+   "overflow": "visible",
+   "textOverflow": "clip",
+   "minWidth": "auto"
+  },
+  {
+   "name": "Bryan Cook",
+   "team": "Cincinnati Bengals",
+   "ovr": "80",
+   "overlapPx": 20,
+   "teamBox": 34,
+   "teamText": 59,
+   "whiteSpace": "normal",
+   "overflow": "visible",
+   "textOverflow": "clip",
+   "minWidth": "auto"
+  },
+  {
+   "name": "Braden Fiske",
+   "team": "Los Angeles Rams",
+   "ovr": "79",
+   "overlapPx": 9,
+   "teamBox": 34,
+   "teamText": 48,
+   "whiteSpace": "normal",
+   "overflow": "visible",
+   "textOverflow": "clip",
+   "minWidth": "auto"
+  }
+ ],
+ "mainCols": "42px 30px 34px 40px 52px 58px 46px",
+ "mainDisplay": "grid",
+ "mainWidth": 340
+}

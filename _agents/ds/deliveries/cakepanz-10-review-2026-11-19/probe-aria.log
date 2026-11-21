@@ -1,0 +1,10 @@
+--- aria snapshot (first board row button) ---
+- button "Josh Allen QB Buffalo Bills OVR WINS PRIO 99%": Josh Allen QB Buffalo Bills 99 +3.3 +3.3 99%
+--- outerHTML (the numeric cells) ---
+<button class="cp-main svelte-q412k" aria-expanded="false" aria-controls="cp-fit-nfl-p00003">
+<span class="cp-name svelte-q412k">Josh Allen</span> <span class="cp-pos svelte-q412k">QB</span> <span class="cp-nflteam svelte-q412k">Buffalo Bills</span> <span class="cp-num cp-ovr svelte-q412k" aria-label="OVR" title="OVR — the raw rating; the board never ranks by it by default">99</span> <span class="cp-num svelte-q412k" aria-label="WINS" title="Wins — what the board ranks by">+3.3</span> <span class="cp-num svelte-q412k" aria-label="PRIO" title="Priority — what the board ranks by while the Priority sort is on">+3.3</span> <span class="cp-gone-wrap svelte-q412k">
+<span class="cp-num cp-gone svelte-q412k">99%</span> <span class="cp-gonetip svelte-q412k" role="tooltip" aria-hidden="true">GONE% — how often the CPU took him before your next pick: the 62 picks between now and your turn were replayed 30 times with the real CPU logic. It is a chance, not a promise — the weird pick is still yours.</span>
+</span>
+</button>
+--- page errors ---
+[]

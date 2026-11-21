@@ -1,0 +1,16 @@
+{
+  "buttons": 14,
+  "navHeight": 126,
+  "rows": 4,
+  "firstRowTops": [
+    127,
+    160,
+    193,
+    226
+  ],
+  "viewport": 390,
+  "docScrollW": 390,
+  "docClientW": 390,
+  "bodyScrollH": 2092,
+  "firstScreenVisible": 0
+}
