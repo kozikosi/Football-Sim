@@ -43,6 +43,16 @@ priority-1 contradicts the Owner's 03:24Z "no scouting or full gm"; (2) ChatGPT 
 AGENTS.md §2 says hard requirement — both Owner/Architect to resolve. Real portfolio risk is the
 visual spec predating the 01/02 + badge rulings, not the hosting substrate.
 
+Owner added four factors (accounts/security, cross-device sync, offline conflict resolution, local-save
+migration). FINAL counsel at `inbox/20261121-0415-pickle-FINAL-cloudflare-counsel-accounts-sync.md`:
+CONVERTED my earlier "preserve the possibility" — the seam must be real. STILL v1 static Pages +
+Direct Upload (offline hard requirement; online additive). Stateful backend, when built, = SEPARATE
+WORKER, never Pages Functions (Workers alone has rate limiting, Logs/Logpush, Source Maps, native DO).
+D1/KV/R2 free and ✅ on both, so substrate unchanged. Define versioned save envelope + account-identity
+abstraction in docs now, zero engine bytes (pin frozen). Real engineering risk is conflict resolution:
+LWW-by-clock is broken; need versioned mutation log + merge policy + product call on authoritative state.
+Seeded RNG + D13 fence are the enablers. No implementation; decision remains Owner/Architect's.
+
 ## Previous state (26th session) — published and reviewed Z.ai's S15 Cakepanz WIP folder
 
 Owner directive: publish the desktop folder `67-cakepanz-15-WIP-2026-11-21` "so anyone can read it",
