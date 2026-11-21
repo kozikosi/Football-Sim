@@ -4,220 +4,118 @@ SEAT: pickle · ROLE: Council Adviser · BRANCH: `council/pickle`
 WORKTREE: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle`
 MERGE-BASE: `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (`git merge-base HEAD origin/council/base`, re-verified 21 Nov 2026).
 
-## Current state (21 Nov 2026, twenty-seventh sitting) — Owner long-term direction filed
+## Current state (21 Nov 2026, 33rd sitting) — sweep check; final Z.ai order completed
 
-The Owner gave a product-direction note from the rival *Pro Football Dynasty* (two Steam URLs).
-Filed verbatim + sourced at `inbox/20261121-0324-pickle-OWNER-RULINGS-rival-pfdynasty-longterm-visual.md`,
-bulletin `bulletin/20261121-0325-pickle.md`. Rulings: **non-goal** — no scouting / full GM experience;
-**long-term goals (not v1, not S15)** — note playbooks, player + field visualizations, and visualize
-players "purely through badges spatially", no faces. Rival facts are REPORTED from the two pages
-(app 4769350, SidelineSim Studios, planned Jan 2027; 200+ plays, watch-every-snap animation, GM mode,
-human-made pixel-art portraits). Four INFERRED ideas held, unranked: badge-only player glyph,
-field-as-badge-map, playbook-as-scheme-badges, and an anti-goal guard rail. MUSE owns the owner-notes
-intake + PRIORITY line; I did not edit them. No product/engine/pin/governance/queue/`tools/` edit.
-Owner then said "browse them and store the images": stored 26 Steam images (13 full-res screenshots
-+ 13 store assets, 4.7 MB) at `_agents/pickle/deliverables/ref-pro-football-dynasty-2026-11-21/`
-with README provenance, `index.html` contact sheet and `CHECKSUMS.sha256` (26 OK exit 0). Commit
-`375f8475f01c8f30f4724bae3ae5d2031fab6164`, pushed + ls-remote verified. I cannot see pixels (no
-image input); content claims are UNVERIFIED until a seat/Owner looks. Reference only, never product.
-Owner then viewed the gallery and ruled (verbatim, 03:5xZ): **screenshots 01 and 02 are "the real goals
-of our site"**, with "player faces" replaced by "more of a badge format". Filed at
-`inbox/20261121-0358-pickle-OWNER-RULINGS-screenshots-01-02-are-the-goal.md` + stored README note.
-Refines 03:24Z (no faces / badges spatially); no timing or badge spec given — "real goals" vs
-"long term goals" wording is Owner/Architect's to resolve, not mine. I have not seen the pixels.
-Architect report reconciled at `inbox/20261121-0400-pickle-RECONCILE-claude-169e554-v8.md`:
-his `169e554` (03:02Z) VERIFIED, no `colors/src` bytes changed (engine tree `8d8a8a1e`), three pins
-clarified (`65673a0` is a CI selftest fixture, not a live pin; AGENTS.md still `d3bd81d2`). TWO of
-my earlier notes superseded: (1) "cp-quick removal STANDS" → revised v8 leaves the mechanism to Z.ai,
-the invariant is one-click on top-3 (matches my S15 byte read); (2) glow correction matches my w89
-verification. FLAG: his visual spec (03:02Z) predates both Owner rulings (03:24Z/03:58Z) and uses
-live w89, not 01/02 — no conflict declared, timing is Owner/Architect's.
+PICKLE is an **adviser**. No product, engine, pin, governance, queue or `tools/` file has ever been
+edited by this seat; every deliverable is an `inbox/` filing, a bulletin entry, or a read-only byte
+mirror in this lane. Head at session end: `9dacd3540a7ee1127e5058e92db882aa74432f56` (pushed,
+ls-remote verified).
 
-Portfolio-objective counsel filed at `inbox/20261121-0410-pickle-COUNSEL-cloudflare-portfolio-reassessment.md`.
-MY CALL (advisory, no decision changed): keep Pages + Direct Upload for v1, but as a REVERSIBLE
-hosting choice — Cloudflare's migration doc (read this sitting) makes Pages→Workers straightforward;
-the only hard Pages advantage is an off-Cloudflare-nameserver domain, and that is still unknown.
-Free tier does not discriminate (D1 and SQLite-backed DO both on Free; static assets free both).
-DO NOT build D1/DO/accounts/multiplayer before ship. Two conflicts surfaced: (1) ChatGPT's "scouting"
-priority-1 contradicts the Owner's 03:24Z "no scouting or full gm"; (2) ChatGPT calls offline future,
-AGENTS.md §2 says hard requirement — both Owner/Architect to resolve. Real portfolio risk is the
-visual spec predating the 01/02 + badge rulings, not the hosting substrate.
-
-Owner added four factors (accounts/security, cross-device sync, offline conflict resolution, local-save
-migration). FINAL counsel at `inbox/20261121-0415-pickle-FINAL-cloudflare-counsel-accounts-sync.md`:
-CONVERTED my earlier "preserve the possibility" — the seam must be real. STILL v1 static Pages +
-Direct Upload (offline hard requirement; online additive). Stateful backend, when built, = SEPARATE
-WORKER, never Pages Functions (Workers alone has rate limiting, Logs/Logpush, Source Maps, native DO).
-D1/KV/R2 free and ✅ on both, so substrate unchanged. Define versioned save envelope + account-identity
-abstraction in docs now, zero engine bytes (pin frozen). Real engineering risk is conflict resolution:
-LWW-by-clock is broken; need versioned mutation log + merge policy + product call on authoritative state.
-Seeded RNG + D13 fence are the enablers. No implementation; decision remains Owner/Architect's.
-
-Owner 04:2xZ RELEASE SCOPE RULING (verbatim + full analysis at `inbox/20261121-0420-pickle-RELEASE-SCOPE-RULING-accounts-mandatory.md`):
-accounts, multi-season stat tracking, save sync, offline-conflict resolution, local-save migration and brag
-share are ALL MANDATORY TO RELEASE. Other sports, the 01/02 visuals, multiplayer = future. This SUPERSEDES my
-0410/0415 "do not build before ship" advice, the stored "optional sign-in" default
-(`COLORS-V1-UI-ARCHITECTURE.md:44-45`), and GPT's "don't delay release for accounts". MY CORRECTION: my 0415
-"mutation log / CRDT for conflicts" was WRONG — Owner approved the rule 2026-11-05 in P-254: per-slot LWW on
-the WHOLE save, never field merge, rung-back, keep both at slot level, additive deviceId. I flagged that
-conflict myself; implement the approved rule, do not redesign. FINAL DEPLOY COUNSEL: backend = Workers either
-way (rate limiting, Logs/Logpush, Source Maps, native DO are Workers-only); static front end = one Worker with
-assets IF domain on Cloudflare nameservers, else Pages + separate Worker (only reason to keep Pages). Free
-tier holds. COLLISION for Claude: v8 deferred migration to keep pin frozen; migration now ships — either
-envelope/contracts stay outside engine bytes or the pin is deliberately re-frozen. His call. Open question:
-must an account exist to PLAY, or only for history/sync? I took the narrow reading; Owner to confirm.
-
-## Previous state (26th session) — published and reviewed Z.ai's S15 Cakepanz WIP folder
-
-Owner directive: publish the desktop folder `67-cakepanz-15-WIP-2026-11-21` "so anyone can read it",
-review it thoroughly, push the review, and brainstorm implications for the Cakepanz shell over
-Claude's engine. All three done. **No product, engine, pin, governance, queue or `tools/` file
-edited** — advisory filings and a read-only byte mirror only.
-
-**Pushed + ls-remote verified:** `8154c1b3421debe040a2931ab894549bfb5ddc3d` — the folder publication
-commit (545 files, 18 MB, no `node_modules`, no embedded `.git`), byte-identical to the desktop source
-(`diff -rq` clean). Hosted read-only at `_agents/pickle/deliverables/67-cakepanz-15-WIP-2026-11-21/`;
-committed with `ALLOW_BULK=1` (seatbelt blocks >40 added files) staging only hosted paths.
-
-**Three inbox files filed this sitting** (committed at session end together with this lane and the
-bulletin entry):
-- `inbox/20261121-0301-pickle-S15-WIP-review.md` — REVIEW-OF the hosted tree + hand-over. VERDICT
-  **improved**: UI byte-faithful to w89 and engine fence clean, but one SHOWN packaging defect and a
-  receipt gap block calling the bytes "gated".
-- `inbox/20261121-0303-pickle-S15-manifest-drift-fix.md` — exact 3-line fix for the MD5/SHA256
-  verifier drift + a `17b` gate step, with HOW TO CHECK.
-- `inbox/20261121-0305-pickle-S15-UX-implications.md` — 5 improvements (honest toast, panel-bearing
-  side-by-side capture, staggered/paused pulse, sort-named badge, keyboard focus continuation) plus a
-  "new law must be falsified" process gate.
-
-**Receipts (all run this sitting, VERIFIED):** `shasum -c CHECKSUMS.txt` → 359 OK exit 0. Engine
-fence: `git archive origin/architect/engine-and-seats:colors/src` vs `src/engine` → `diff -rq` empty;
-pin tree `8d8a8a1e81386e99f53f995492904348cb7d8345`. All seven w89 citations checked at
-`:494/:496, :534/:536, :625, :1169, :1749-1752, :6488, :12849-12856`. Ring classes live only in
-comments/assertions. One `.cp-draftbtn` per row with `onpickDirect ?? onpick`; `--glow` defined at
-`shell.css:5`. `dispatchAsync` at `App.svelte:163/:199/:212/:250`, `busy` flag and `error =
-st.error ?? ''` at each site.
-
-**Key findings:** (1) `node tools/verify-package.mjs .` in S15 → 359 UNPARSEABLE, 474 EXTRA, exit 1
-(`regen-manifest.mjs:17` writes SHA256 64-hex; `verify-package.mjs:29,46` parse 32-hex MD5). Same
-command on the hosted S14 tree → 467 OK / 0 FAILED / 0 missing, exit 0. Hand-over's "node_modules +
-pending regen" diagnosis is wrong (no node_modules; regen already ran). (2) No raw stdout prints
-`BOARD BATTERY · 23 pass` / `SHELL BATTERY · 51 pass` — only prose in hand-over and
-`VERIFY-§26-append.txt:74-80`; root logs end `SHELL_EXIT=1` / TimeoutError; `partH-s15/` has no
-F27–F30. Counts are REPORTED, not VERIFIED; L26–L30/S32/S33 never falsified. (3) WIP state verified as
-declared — falsify-board, final composite, doc/gate regen and §7 packaging absent; S14-bytes
-composite in `ACCEPTANCE-RECEIPTS.txt` complete (23/23) but not an S15 result. (4) RISK (INFERRED):
-`draftedToast` set synchronously in `quickDraft` before async `pick()` can refuse a PICK → toast can
-contradict S32's "illegal fit". (5) CALIBRATION: `.cp-panel` renders on season screens only; a
-board-only side-by-side cannot prove the glass law.
-
-**Do not call S15 accepted** until the digest fix lands, F27–F30 show DIED by name, and the final
-composite runs uninterrupted at the final bytes.
-
-## Previous state (25th session) — supplementary work order executed
-
-Executed all six items; filed five inbox deliverables + one bulletin at `e6ad5d9b`, pushed and
-ls-remote verified. Key carry-forward: S14 falsifier (F26/L23) and law L25 are ring-coupled, so the
-Owner's ring removal breaks them (re-scope missing from all three S15 briefs); 9-section hand-over
-checklist; Cloudflare counsel (ENDORSE hy4 + 2 improvements); 32-capture side-by-side spec; Biome
-2.6.2 selftest RAN and FAILS (exit 3, nested-root-config + deprecated `recommended`) — AGENTS.md §9's
-"UNVERIFIED until a passing selftest" now has a seat posting the opposite; `tools/` is Architect/MUSE
--owned, not fixed by me. Three seat disagreements resolved: `cp-quick` removal STANDS (refactor the
-Draft button, do not just delete it); `suggestIds[]` default keep (grounded in L25); `rawSort` label
-is Claude's call. Byte claims re-verified: w89 pulse/glass/badge lines, S14 `BoardRow.svelte:25/:47`,
-`DraftBoard.svelte:116`, `shell.css:181`, `scripts/falsify-board.mjs:12-18,203-320`, stale
-`acceptance-run.sh:41,43,52` S13 numbers. Golden seam
-`e8fed8ab7ca1493b7dd20298fa2e85947188bed7ecc1d6f865b187ead1e024e8`.
-
-## Live files
-- **This sitting:** the three `inbox/20261121-030{1,3,5}-pickle-S15-*` files above; bulletin
-  `bulletin/20261121-0306-pickle.md`; hosted S15 mirror
-  `_agents/pickle/deliverables/67-cakepanz-15-WIP-2026-11-21/` (read-only).
-- **Governing briefs:** `inbox/20261121-0110-pickle-TO-ZAI-continuation-v2-S15.md` (Z.ai); five
-  25th-session filings `inbox/20261121-024{4,6,8}-pickle-*` and `-025{0,2}-pickle-*`.
-- Owner verbatim: `inbox/20261121-0018-pickle-OWNER-RULINGS-top-three-stays-why-copy-stays.md`,
-  `inbox/20261121-0028-pickle-OWNER-DIRECTIVE-cloudflare-decision-to-claude-and-council.md`,
-  `inbox/20261120-2246-pickle-OWNER-RULINGS-remove-ring-cloudflare-panels.md`.
-- Reviews: `inbox/20261121-0032-pickle-REVIEW-dfdb887-v8-cp-quick-premise-false.md`,
-  `inbox/20261121-0004-pickle-REVIEW-other-seats-s14.md`, `inbox/20261120-2349-pickle-S14-review.md`.
-- Hosted S14 tree (read-only): `_agents/pickle/deliverables/67-cakepanz-14-2026-11-20/cakepanz-4/`.
-- Claude docs (read via `git show`, never edit): `claude/NOW.md`, `cutover-runbook`,
-  `dispatchasync-contract`, `zai-work-order-v8` on `origin/architect/engine-and-seats`.
-- Governance/tool live on `origin/council/muse`, not `council/base`; use the v11 `tools/council.mjs`
-  from there (v8 on architect prints empty `next`).
-
-## Current state (29th sitting, 21 Nov 05:13Z) — permanent canonical reference filed
-
-Owner asked me to review all other seats' latest pushes and rewrite my relay as a permanent project
-reference. Reviewed hy4 `0507` master handoff, ernie `0525` full briefing, iceman `0500` plan,
-porca `0508` handoff, hy4orca `1622`/`1623` roundup + cutover answer, beam `0458` stat answer and
-Architect `169e554` (Cloudflare decision doc, releases ledger, visual spec). Filed
+**The single durable reference** is
 `inbox/20261121-0513-pickle-CANONICAL-REFERENCE-entire-project-owner-veratim-rulings-decisions-state.md`
-— every Owner quote (mine + reported via seats), locked set, future set, do-not-redesign inventory,
-seat receipts, 17 defects + withdrawn claims, hosting status, questions by audience, fence, source
-index. **Key correction to my own earlier work:** the Owner told hy4 "i don't already have a domain;
-how can i get a free one?", "ideally i would want something close to 76pancakes.com", then LOCKED
-"free now and always". My `play.` subdomain advice (`0455` Q13) and the "add site / move nameservers /
-check MX" steps (`0458`) are STRUCK; target `76pancakes.workers.dev`, no domain purchase ever.
-Supersession pointers added to `0455`, `0458`, `0508`. Other seats' facts absorbed: stat #2 20-0 vs
-regular-season contradiction (Owner to rule), D5 stale `App.svelte:83` engine stamp, D1 checksum
-format blocker, H2 pin-watch, ring removed, verifier converse gap, two seed defects, hy4orca's
-verified cutover split. Architect's written decision still says Pages + Direct Upload; four seats
-recommend Workers + thin Worker — not ratified; Claude + council's call. Advisory only; no product,
-engine, pin, governance, queue or `tools/` edit.
+(371+ lines): every Owner quote verbatim, the locked set, the future set, the do-not-redesign list,
+defects + withdrawn claims, hosting status, questions by audience, the fence, and a source index. Its
+live addendum is `inbox/20261121-0520-pickle-OWNER-ANSWERS-questions-to-claude-hosting-stats-auth.md`
+(three Owner questions to Claude). `0508` master relay and `0455`/`0458` domain advice are SUPERSEDED
+(struck: no domain, no nameservers, no registrar).
 
-## Current state (30th sitting, 21 Nov 05:20Z) — three Owner answers filed as questions to Claude
+**The final sendable Z.ai order** is
+`inbox/20261121-0551-pickle-TO-ZAI-FINAL-SELF-CONTAINED-complete-briefing-and-work-order.md`
+(supersedes `0537`, `0539`, `0545`, `0550`). Fully self-contained: Owner words verbatim, Claude's
+three rulings, exact D1 digest fix + converse check, ring-law retirement by name with new floors,
+all defects, F27–F30, S14 floors, brag P-209, visual bar, Workers hand-over, local seam, fence,
+hand-over, DoD, both seat disagreements (§12), and — added this sitting to §8 — the two standing
+Owner rules: **finish ALL work before responding** (single zip; "push after every file" is the
+council's rule, not Z.ai's; a stated blocker is the only reason to reply with work outstanding) and
+**innovate / think around the issue** (challenge a wrong line with the byte that proves it).
 
-Owner was asked to settle the Cloudflare substrate, stat #2's 20-0 definition and the auth provider.
-Answers (~05:18Z, verbatim in `inbox/20261121-0520-pickle-OWNER-ANSWERS-questions-to-claude-hosting-stats-auth.md`):
-"this should be phrased as a recommendation by consensus from the council and as a question to claude";
-"we would record 17-0 and 20-0, all the players' top seasons; how often they make the playoffs and reach
-each round, etc. any other stats in this vein can be added; we should collect all possible data";
-"I don't know personally; should be phrased as a question to claude with the full context of the council
-recommendations". FACT: hosting substrate + IdP DELEGATED to Claude (not my call, not a deadlock);
-stat #2 RESOLVED — keep BOTH 17-0 and 20-0 — with an expanded data directive. The `0520` filing puts
-all three to him with the four-seat Workers consensus, the two void Pages premises, the full auth
-recommendations, and Q-STATS sub-questions (whose "players' top seasons"; "collect all possible data"
-vs the locked prune rule and non-derivable awards). My INFERRED flag: if the Owner meant individual
-NFL player careers, that needs engine bytes + a deliberate re-pin — get a fresh Owner word first.
-Canonical reference `0513` updated in place: §1.13 verbatim answers, §8.1 defect #2 RESOLVED, §9
-delegation, §10 Owner Q1/Q2 closed-or-delegated + Architect questions, §13 one-line version,
-§12/§14 pointers. Advisory only; no product/engine/pin/governance/queue/`tools/` edit.
+**Claude's three rulings are DECIDED** (`a17c323de` / `0533`, read in full): hosting = Workers Static
+Assets + one thin Worker, D1 only (no KV/R2/DO), explicit `wrangler deploy`, hostname
+`play.76pancakes.workers.dev`; stats = the user's own run players, one ledger row/run, aggregates
+maximised, logs pruned, 3 payload fields deferred to one re-pin sitting after the merge (seam golden
+`e8fed8ab7ca1493b7dd20298fa2e85947188bed7ecc1d6f865b187ead1e024e8` must hold); auth = Better Auth
+in the Worker, GitHub v1, Google only on a passing spike, Clerk rejected (needs an owned domain).
+Domain is "free now and always" — no domain ever. Release gates (mandatory, not future): accounts +
+security, cross-run career stats, cross-device sync, offline conflict resolution, local-save
+migration, brag share. Sign-in optional for the player, mandatory to build. P-254 conflict rule is
+fixed by the Owner: per-slot whole-envelope LWW, rung-back, keep-both at slot level, additive
+`deviceId`; no field merge, no CRDT, no mutation log.
 
-## Current state (31st sitting, 21 Nov 05:37Z) — reviewed Claude's ruling, filed final Z.ai order
+**Owner product-direction rulings filed verbatim:** no scouting / full-GM experience; long-term
+playbooks + player/field visualizations, players as badges spatially with no faces (`0324`);
+screenshots 01 and 02 "the real goals of our site", faces replaced by "more of a badge format"
+(`0358`) — long-term, **not** a v1 gate and not folded into the w89 visual bar; stat scope
+"record 17-0 and 20-0, all the players' top seasons … collect all possible data" (`0520`, stat #2
+no longer open).
 
-Claude's chat timed out but commit `a17c323de` (05:34Z) LANDED on `origin/architect/engine-and-seats` (V via `ls-remote` + full read). He ruled all three `0520` questions in `inbox/20261121-0533-architect-FOR-pickle-RULINGS-hosting-stats-auth.md`: Workers Static Assets + one thin Worker, D1 only, `play.76pancakes.workers.dev` (corrected hostname), no KV/R2/DO; stats = user's own run players, ledger row/run, logs pruned, 3 payload fields for a later re-pin sitting (seam golden `e8fed8ab…`); auth = Better Auth in Worker, GitHub v1, Clerk rejected. Canonical reference `0513` updated in place (§9/§10/§12/§13/§14) so it is no longer stale, and its "slices 3-5" line corrected — slices 1-5 are BUILT (`0110`/`0301`), close-out only. Filed the long self-contained Z.ai order at `inbox/20261121-0537-pickle-TO-ZAI-final-full-order-S15-closeout-and-handover.md` (read + four docs, Owner words, Claude's rulings, done-work, 8 close-out items incl. exact D1 digest fix from `0303`, F27-F30, receipts, gate regen, composite, D5/toast/seed, panel-bearing side-by-side; laws, floors, ordered actions, fence, hand-over, DoD). Advisory only; no product/engine/pin/governance/queue/`tools/` edit.
-
-## Current state (32nd sitting, 21 Nov 05:51Z) — reviewed seat replies, rewrote the Z.ai order self-contained
-
-Read all six seat replies to the relay (`hy4 0525`, `porca 0525`, `ernie 0535`, `glyph 0526`, `gpt 0525`, `beam 0530`, `iceman 0525`) and the three existing Z.ai prompts (`hy4 0550`, `porca 0539`, `ernie 0545`). Two corrections to `0537`: ring laws (L13/L16–L25) must be **retired by name with new floors**, not reworded (hy4/ernie right); KV/R2 + Clerk Hobby recommendations are **superseded** by Claude's D1-only + Better Auth. hy4 verified the `account-sync-contract-2026-11-21.md` does not exist at `a17c323de` — don't wait for it. Slices conflict flagged to Architect: `SLICE-STATUS-2026-11-20.md` (V) says 1–5 + s6–s12 BUILT; seats' "build 3–5" is from v8/S14. Filed `inbox/20261121-0551-pickle-TO-ZAI-FINAL-SELF-CONTAINED-complete-briefing-and-work-order.md` — every decision, defect, exact command and fence inlined, no prior reading assumed; §12 states both seat disagreements. Canonical `0513` pointer now 0551 (supersedes 0537). Advisory only; no product/engine/pin/governance/queue/`tools/` edit.
+**This sitting's work (sweep check):** verified from the bytes that the canonical reference already
+covers every durable MUSE sweep item. Found one real gap and closed it — `0551` lacked the two
+standing Owner rules, now inlined in §8. Recorded in canonical §15: DS's BoardRow a11y patch
+(`council/ds` `8de747340`, REPORTED, not re-run; ring-on-41/60 likely antiquated) and the two still-
+owed items (Claude's `account-sync-contract-2026-11-21.md` absent at `a17c323de`; P-208 needs a
+"Perfect season (20-0)" 11th row). Receipt in `bulletin/20261121-0325-pickle.md`.
 
 ## What the next session needs
-0. Treat `inbox/20261121-0513-pickle-CANONICAL-REFERENCE-...md` as the single reference, with its
-   live addendum `inbox/20261121-0520-pickle-OWNER-ANSWERS-questions-to-claude-hosting-stats-auth.md`;
-   do not follow the struck domain advice in `0455`/`0458`. The three questions in `0520` are Claude's
-   to answer; do not re-ask the Owner (substrate, IdP) or re-open stat #2 (both 17-0 and 20-0 stand). They ANSWERED at `a17c323de`/`0533` — read that before any further hosting/auth/stat advice. For Z.ai, use the final self-contained `0551` order (supersedes 0537/0539/0545/0550); do not tell him to rebuild slices 1-5 or to reword ring laws — retire them by name.
-1. Owner/Architect relay the three S15 filings: the digest fix must land before §7 packaging can
-   pass; the new laws need falsification receipts; the UI-only review says improved, not accepted.
-2. When Z.ai reports the remaining S15 slices done, run the §2 hand-over checklist, then the
-   Architect merges and runs gates 1–10. Side-by-side (my 32-capture spec) needs a gated build and
-   must include a panel-bearing season screen, not just the board.
-3. Architect: fix the Biome selftest (exit 3) and record the Cloudflare "how" decision with the two
-   improvements; apply the P-033 tool edit. Cloudflare account/project/domain/token custody are the
-   Owner's provisioning step. Do not treat a recommendation as a decision.
-4. `rawSort` label (WITHDRAWN vs REOPENED) is Claude's; do not pick it. Engine stays frozen
-   (`8d8a8a1e81386e99f53f995492904348cb7d8345` tree).
-5. MUSE: pin drift in `AGENTS.md:44,45,46,73` + `PROJECT-KNOWLEDGE.md:18`; four Owner rulings into
-   `_agents/owner-notes/` + intake ledger; withdraw beam's wrong-tree review. MUSE's files, not mine.
-6. Step 0 governance refresh from `origin/council/muse` each new chat. Take the top item from the
-   live queue/tool; no named-seat assignments. Never edit product/engine/pin/governance/queue or
-   another seat's lane/inbox. Run `node tools/preserve.mjs check` at clean-up; other seats' dirty
-   trees (flint, GH, glm, glyph, hy4, mimo, q, vloc and 2 stashes this sitting) are not ours to touch.
+0. Use `0513` (with addendum `0520`) as the one reference; use `0551` as the one Z.ai order. Do not
+   re-ask the Owner substrate/IdP/stat #2 — answered at `a17c323de`/`0533`. Do not tell Z.ai to
+   rebuild slices 1–5 (BUILT per `0110`/`0301` + `SLICE-STATUS-2026-11-20.md`) or to reword ring
+   laws (retire by name with new floors). If a newer written Claude order contradicts `0551`, stop
+   and report the conflicting lines with hashes — do not implement both.
+1. Do not implement; propose only. Nobody but the Architect writes `Football-Sim-*.html` / `colors/**`.
+   Work comes from `node tools/council.mjs next` on `origin/council/muse` (v11 tool there; v8 on
+   architect prints empty `next`). `council/base` is a stale ghost — never take work from it.
+2. Engine fence stays frozen: tree `8d8a8a1e81386e99f53f995492904348cb7d8345`, pin `408410477`,
+   `draftBoard.ts` sha256 `e9e6e01a…`, zero engine bytes for UI/account work. `rawSort` label
+   (WITHDRAWN vs REOPENED) is Claude's call. D5 stale `ENGINE_PIN` (`App.svelte:83/:88` stamps
+   `d3bd81d2`) must be fixed before any server compares `engineVersion`.
+3. MUSE's files (do not edit): pin drift in `AGENTS.md:44-46,73` + `PROJECT-KNOWLEDGE.md:18`
+   (four pin values: `65673a0` CI fixture, `d3bd81d2` live doc, `408410477` engine, `4ca9a071` stale
+   base); 21 Nov Owner rulings into `_agents/owner-notes/` + intake ledger; re-rank P-208/209/210;
+   supersession line on the 1 Nov "no accounts" brief. Architect's files: Biome selftest (exit 3,
+   nested-root config + deprecated `recommended`), pin-watch CI gate, `releases.md` schema,
+   `account-sync-contract`, P-208 "Perfect season (20-0)" row.
+4. Step 0 governance refresh from `origin/council/muse` each new chat. No named-seat assignments.
+   Never edit product/engine/pin/governance/queue or another seat's lane/inbox. Run
+   `node tools/preserve.mjs check` at clean-up; other seats' dirty trees (`council/q`, `council/vloc`
+   at this check) are not ours to touch.
 
-## History (compressed; full detail in the filed inbox files)
-- Earlier sessions: reviewed cakepanz-10/11/12/13/14 deliveries; executed v4 sitting order;
-  meta-reviewed peer reviews; contract/resume audit; Cloudflare rollback research (dashboard history
-  primary, pinned artifact fallback — REPORTED, not executed); devgame keep/retire asked repeatedly,
-  default **keep** stands; multisport parked per Owner 20 Nov.
-- Operational lesson: self-contained replies to Claude and short relay prompts were chat-only; if
-  the Owner wants durable copies, file them verbatim on `council/pickle`.
+## Open questions (not mine to decide)
+- Visual bar timing: the Architect's w89 visual spec (03:02Z) predates the Owner's 03:24Z/03:58Z
+  01/02-with-badges rulings. `0513` declares **no conflict for S15** — live w89 is the S15 bar;
+  01/02-with-badges is the long-term goal. Owner/Architect to confirm that reading.
+- P-208 stat #2 is a **pair** now (17-0 regular-season + 20-0 perfect season), not a swap; the 11th
+  row still needs adding. "Playoffs/reach each round" expanded scope is Claude's payload-ruling.
+- Identity provider rehearsal (Google on a `workers.dev` origin; Better Auth/Kysely-D1) UNKNOWN until
+  a spike. Owner provisions the free Cloudflare account + GitHub OAuth App and hands over secrets;
+  no secret in repo, bundle or chat.
+
+## Live files
+- Reference + orders: `inbox/20261121-0513-…-CANONICAL-REFERENCE-…md`, `…0520-…-OWNER-ANSWERS-…md`,
+  `…0551-…-TO-ZAI-FINAL-SELF-CONTAINED-…md`; exact digest fix `…0303-pickle-S15-manifest-drift-fix.md`;
+  side-by-side spec `…0250-pickle-S15-side-by-side-spec.md`.
+- Owner verbatim filings: `…0018`, `…0028`, `0324`, `0358`, `0420`, `0508` (all `inbox/` this lane).
+- Reviews: `…0032-pickle-REVIEW-dfdb887-v8-cp-quick-premise-false.md`, `…0004-…-other-seats-s14.md`,
+  `20261120-2349-pickle-S14-review.md`. Z.ai continuation `…0110-pickle-TO-ZAI-continuation-v2-S15.md`.
+- Hosted read-only mirrors: `_agents/pickle/deliverables/67-cakepanz-15-WIP-2026-11-21/` (545 files,
+  18 MB, no node_modules) and `…/67-cakepanz-14-2026-11-20/cakepanz-4/`; rival ref images at
+  `_agents/pickle/deliverables/ref-pro-football-dynasty-2026-11-21/` (26 images, 4.7 MB, 26 OK exit 0;
+  pixels not seen by me — content UNVERIFIED).
+- Claude docs (read via `git show`, never edit): `claude/NOW.md`, `cloudflare-decision-2026-11-21.md`,
+  `cutover-runbook`, `dispatchasync-contract`, `zai-work-order-v8`, `visual-acceptance-spec` on
+  `origin/architect/engine-and-seats`.
+- Bulletin: `bulletin/20261121-0325-pickle.md` (this session's single entry, with the 07:31Z receipt).
+
+## History (compressed — full detail in the filed inbox files)
+- Sessions 26–32: hosted + reviewed the S15 WIP (verdict improved, not accepted); filed the S15
+  manifest digest fix, UX implications, the 32-capture side-by-side spec and the 9-section hand-over
+  checklist; Biome 2.6.2 selftest RAN and FAILED (exit 3); filed canonical reference, three Owner
+  answers, reviewed Claude's `a17c323de` ruling, and wrote the final self-contained Z.ai order.
+  Three seat disagreements resolved: ring laws retired by name; KV/R2 + Clerk Hobby superseded by
+  Claude's D1-only + Better Auth; slices 1–5 BUILT. Operational lesson: chat-only replies to Claude
+  were not durable — file them verbatim on `council/pickle` when the Owner wants a record.
+- Earlier sessions: reviewed cakepanz-10/11/12/13/14; executed v4 sitting order; meta-reviewed peer
+  reviews; contract/resume audit; Cloudflare rollback research (REPORTED, not executed); devgame
+  keep/retire asked repeatedly, default **keep** stands; multisport parked per Owner 20 Nov.
+- Operational rule: self-contained replies beat pointers; label VERIFIED / REPORTED / INFERRED /
+  UNKNOWN; a number without a command is prose; every count names its unit; no force-push, no stash,
+  no images in lanes, no dated/merged/final copies in the root.
