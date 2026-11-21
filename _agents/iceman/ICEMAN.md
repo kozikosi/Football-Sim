@@ -3,35 +3,38 @@
 ## Identity
 - **Seat:** iceman · **Model / how reached:** Iceman Free (OpenCode) · **State:** advisor
 - **ID block:** (none) · **First seen:** 2026-11-09 (admitted by Owner)
-- **Strengths shown so far (evidence, not claims):** `d327bc310` (C23/B4), `eaaad8578` (A3 C8b Q7), `a53473fa7` (P-309), `33c32aa0c`/`eb1bf4e27` (queue/sweep reviews), `a66358040` (zip-root-cakepanz-10), `d07ccf104`/`76369a0f4` (zai-cakepanz-12 package+review), `9a3ba5ff6` (P-163/164/165 review-chain reviews).
+- **Strengths shown so far (evidence, not claims):** queue/sweep & review-chain work (`33c32aa0c`, `eb1bf4e27`, `9a3ba5ff6`); cakepanz package/review work (`e00712cac`, `8664efd33`, `8222d20ff`, `20735f542`, `732f4aa80`, `5ed1158ef`, `cd3969ab5`); earlier product-doc/queue reviews (`d327bc310`, `eaaad8578`, `a53473fa7`, `a66358040`, `d07ccf104`, `76369a0f4`).
 
 ## Current work
 - **Claimed / in progress:** none.
-- **Done this session (2026-11-20, continued):**
-  - Prior segment: pushed `zai-cakepanz-12-2026-11-20/` (`d07ccf104`) and thorough review `zai-cakepanz-12-2026-11-20/ICEMAN-REVIEW.md` (`76369a0f4`) with implications/UX brainstorm for Cakepanz shell (Claude engine).
-  - Reviewed other seats’ reviews (queue REVIEW chains) and pushed: `inbox/20261120-1620-iceman-P-163-review.md`, `inbox/20261120-1620-iceman-P-164-review.md`, `inbox/20261120-1620-iceman-P-165-review.md` (commit `9a3ba5ff6`, VERIFIED on `origin/council/iceman`). Evidence checks via `git show`/`grep`/`sed` against Pre-Colors, `origin/gh-pages:index.html`, and `origin/architect/engine-and-seats` (Colors feed/team colors); verdicts improved with findings on re-targeting, root-cause/evidence gaps, and Colors seam (`mvpLine: null`) implications.
-- **Blocked / waiting on:** relay/application items owned by others (gh-pages c10 repair/T3 apply where applicable), runtime/seeded repros for cinematic/glitch/POTG cases, Contract B ring integration — as noted in reviewed packages/chains.
+- **Done this session (2026-11-20→2026-11-21 UTC):**
+  - Added `67-cakepanz-14-2026-11-20/` (from Desktop, 468 files, no `node_modules/`) and pushed for council review (`732f4aa80`, `origin/council/iceman`).
+  - Thorough byte-grounded review + implications/UX-shell brainstorm for Cakepanz/Colors shell: `inbox/20261120-2345-iceman-review-67-cakepanz-14.md` (`5ed1158ef`).
+  - Reviewed other seats’ recent work (representative c12 reviews/meta-reviews by ernie, hy4, pickle, beam, orcabeam, glyph, porca, orcaman context): reported convergence (13b OPEN vs README contradiction, T2/T3/T4 realities, T8 READY-vs-blocked correction, seed/restore/parse/doc defects, run-variant receipt class) and process lessons (verify blockers/provenance).
+  - Acted on relayed “Council Supplementary Work Order — S15” §1 (highest value): verified accessible byte claims against S14 package/batteries/receipts and assessed the three substantive calls; filed `inbox/20261121-0205-iceman-S15-review.md` (`cd3969ab5`). **Limitation:** cited S15 brief commits/paths (`bafa80cbc`, `af72cd95`, `7d035feb`) and v8 §2.2 (`dfdb887966:claude/zai-work-order-v8.md`) not retrievable on accessible refs; `origin/gh-pages:Football-Sim-Z-post-blue-w89.html` absent so exact w89 source line numbers UNVERIFIED.
+- **Blocked / waiting on:** operative S15 brief(s) published at stable refs for prose/decision-split review; Z.ai S15 handover build + full composite 13b–17 at final bytes; Architect ruling on `rawSort` engine-half/paired diff and ring-related decisions; Owner/relay/deploy items (Cloudflare/make-live context) owned elsewhere.
 
 ## What the next session needs
 - **Read first:**
   1. `_agents/iceman/ICEMAN.md` (this file).
-  2. `git show origin/council/muse:_agents/START-HERE.md` (Step 0 governance refresh if clean).
-  3. `zai-cakepanz-12-2026-11-20/ICEMAN-REVIEW.md`, `inbox/20261120-1620-iceman-P-163-review.md`, `P-164`, `P-165`.
+  2. `git show origin/council/muse:_agents/START-HERE.md` then live queue/docs from `origin/council/muse` (Step 0 refresh).
+  3. `inbox/20261120-2345-iceman-review-67-cakepanz-14.md`, `inbox/20261121-0205-iceman-S15-review.md`, `67-cakepanz-14-2026-11-20/` (key: `deliverables/sitting-report-s14-2026-11-20.md`, `VERIFY-§26-append.txt`, `inbox/20261120-2218-zai-S14-proposal-rawSort-engine-half.md`).
   4. Live queue: `git fetch -q origin && git show origin/council/muse:tools/council.mjs > ./.council_tool.mjs && node ./.council_tool.mjs next`.
-- **Open questions:** none urgent for iceman. P-163/164/165 need target-build/runtime evidence and (for P-165 Colors) POTG seam decisions (REPORTED/INFERRED in reviews).
-- **Do not redo:** commits `d07ccf104`, `76369a0f4`, `9a3ba5ff6` and their review files; prior reviews `33c32aa0c`, `eb1bf4e27`, `a66358040`.
+- **Open questions:** locate/publish operative S15 brief texts + v8 §2.2 at verifiable refs; confirm w89 source artifact/lines if S15 depends on them; independent rerun/closure of S14→S15 composite 13b–17 when a build exists.
+- **Do not redo:** commits `732f4aa80`, `5ed1158ef`, `cd3969ab5` and their inbox/package artifacts; prior cakepanz-12/c13 review work already on branch.
 
 ## Files in this lane
 - `_agents/iceman/ICEMAN.md` — lane file (live).
-- `zai-cakepanz-12-2026-11-20/` (+ `ICEMAN-REVIEW.md`).
-- `inbox/20261120-1620-iceman-P-163-review.md`, `inbox/20261120-1620-iceman-P-164-review.md`, `inbox/20261120-1620-iceman-P-165-review.md`.
-- Earlier inbox reviews/files from prior sessions.
+- `67-cakepanz-14-2026-11-20/` — S14 package (added this session).
+- `inbox/20261120-2345-iceman-review-67-cakepanz-14.md` — cakepanz-14/S14 review + brainstorm.
+- `inbox/20261121-0205-iceman-S15-review.md` — S15 supplementary §1 byte-claim/calls review.
+- Earlier inbox reviews and `zai-cakepanz-12-2026-11-20/` (prior sessions).
 
 ## Role
 General advisor. Propose, test, review, dissent, measure. Never edit product/governance/protected files; never push other seats’ branches; never force-push/stash.
 
 ## Worktree / branch
 - **Path:** `/Users/kosi/wt/iceman`
-- **Branch:** `council/iceman` @ `9a3ba5ff697bb81d021b447ab7b1b31d7185b603` (pushed, VERIFIED by `git ls-remote`)
-- **merge-base HEAD origin/council/base:** base ref context `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (prior session note)
-- **merge-base HEAD origin/council/muse:** not recomputed
+- **Branch:** `council/iceman` @ `cd3969ab5d43f9ef2c2b74644f24036c9eda4f52` (pushed, VERIFIED by `git ls-remote origin refs/heads/council/iceman`)
+- **merge-base HEAD origin/council/base:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
+- **merge-base HEAD origin/council/muse:** (not resolved by command this session; recompute next session)
