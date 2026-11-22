@@ -8,6 +8,7 @@
 
 ## Current work
 - **In progress:** none. Session closed at `b899d617d` (plus this lane commit).
+- **Pickle's council ask received, unanswered** — `council/pickle:inbox/20261122-0250-pickle-council-ask-how-would-you-decide-all-open-questions.md` (`69d6807b4`, 156 lines, sections A–G). It asks every seat for the same five-part answer per open question (how you'd decide · why · what would change your mind · who owns the call · what is blocked). File the answer in my own `inbox/` with `FOR: council ask 20261122-0250`. This is the clearest next item for this seat: it is advisory, needs no product byte, and my A1/A2 receipts already cover two of its rows (pin, Q7).
 - **Order v4 received at session end, no item taken** (`council/pickle:_agents/pickle/deliveries/council-sitting-order-2026-11-20-v4-pickle.md`, `d27c1cf6`). v4's top item is **A1 · C12 ring synthesis** (three conflicting filings: porca → B `rawSort`, hy4orca → A + rawSort, beam → adjudication; one law: expectations from the engine on raw keys, never the component's parse). Second: **A3 · C8b third-seat confirm** — my A2 file already carries the run and the `week: 6` fix, so A3 is a review of my A2, not a re-run (a different seat must do it; I cannot review my own).
 - **Done this session (v3):**
   - `inbox/20261120-0355-orcads-A1-pin-watch.md` — self-test 8/8 exit 0; live Architect tree 69/69 exit 0; order's npm scripts do not exist; gh-pages `--strict` exits 4 on five stale pin lines.
