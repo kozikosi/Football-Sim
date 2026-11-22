@@ -26,6 +26,7 @@ export function deriveRun(env: SeasonEnvelope): Derived {
     } else last = { round: g.round, won };
   }
   let outcome: string;
+  // Ordering: `userResults` is chronological, so the LAST playoff entry is the decisive game (the loss that ended the run, or the Super Bowl).
   if (last === null) outcome = 'missed-playoffs';
   else if (last.won && last.round === 'Super Bowl') outcome = 'champion';
   else if (!last.won && ROUND_OUTCOME[last.round] !== undefined) outcome = ROUND_OUTCOME[last.round];

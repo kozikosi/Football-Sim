@@ -97,3 +97,31 @@ test('e2e: sign-in, isolation, CSRF, route allowlist, sign-out, token encryption
   assert.equal((await send('/api/saves', { cookie: alice.cookie })).status, 401);
   assert.equal((await send('/api/saves', { cookie: bob.cookie })).status, 200, "Bob's session is unaffected");
 });
+
+test('e2e: DELETE /api/account removes the user and every row, kills the session, spares others, and she can start over', { skip: !live && 'needs D1_BACKEND=miniflare' }, async () => {
+  const carol = await login('carol'), dave = await login('dave');
+  const del = (cookie: string, body: unknown, origin: string | null = ORIGIN) => send('/api/account', { method: 'DELETE', cookie, origin, body: JSON.stringify(body) });
+  for (const c of [carol, dave])
+    assert.equal((await send('/api/saves/nfl/A', { method: 'PUT', cookie: c.cookie, body: JSON.stringify({ envelope: draftEnv('A', 'lineage-' + c.cookie.slice(-6), 1), base: null }) })).status, 200);
+  const userId = async (email: string) => ((await d1.prepare('SELECT id FROM "user" WHERE email = ?').bind(email).first()) as any)?.id as string | undefined;
+  const carolId = (await userId('carol@example.com'))!, daveId = (await userId('dave@example.com'))!;
+  assert.ok(carolId && daveId);
+
+  assert.equal((await del(carol.cookie, { confirm: true }, 'https://evil.example')).status, 403, 'cross-origin delete refused');
+  assert.equal((await del(carol.cookie, {})).status, 422, 'no confirm, no delete');
+  assert.equal((await send('/api/saves', { cookie: carol.cookie })).status, 200);
+
+  const r = await del(carol.cookie, { confirm: true });
+  assert.equal(r.status, 200);
+  assert.equal(((await r.json()) as any).deleted.users, 1);
+  for (const t of ['saves', 'save_history', 'runs', 'shares']) assert.equal(((await d1.prepare(`SELECT COUNT(*) n FROM ${t} WHERE user_id = ?`).bind(carolId).first()) as any).n, 0, t);
+  for (const t of ['session', 'account']) assert.equal(((await d1.prepare(`SELECT COUNT(*) n FROM "${t}" WHERE "userId" = ?`).bind(carolId).first()) as any).n, 0, t);
+  assert.equal(await userId('carol@example.com'), undefined);
+  assert.equal((await send('/api/saves', { cookie: carol.cookie })).status, 401, 'her old cookie no longer works');
+  assert.equal((await send('/api/saves', { cookie: dave.cookie })).status, 200, "Dave's session is unaffected");
+  assert.equal(((await (await send('/api/saves', { cookie: dave.cookie })).json()) as any).saves.length, 1);
+
+  const again = await login('carol');
+  assert.deepEqual(((await (await send('/api/saves', { cookie: again.cookie })).json()) as any).saves, [], 'a fresh, empty account');
+  assert.notEqual(await userId('carol@example.com'), carolId, 'a new user id');
+});

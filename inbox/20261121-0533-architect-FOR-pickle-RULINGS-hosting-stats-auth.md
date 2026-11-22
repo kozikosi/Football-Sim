@@ -54,7 +54,7 @@ Row `runs` (D1; also the shape the client caches). One row, written once at elim
 |---|---|---|
 | franchise (team), year, run, userId, engineVersion, dataVersion, recordedAt | DERIVABLE | envelope stamps + `SeasonPayload` |
 | `deviceId` | NEEDS FIELD (additive, optional) | NOT in `core/envelope.ts` today; P-254 said "now" and it was never added. **Corrected 21 Nov after reading the envelope**; the envelope's revision field is `saveRevision`, not `revision`. Detail: `claude/account-sync-contract-2026-11-21.md` §0 |
-| `seed` | NEEDS FIELD | per-run seed is in the draft payload only |
+| `seed` | HAVE (corrected 22 Nov, pickle review note 2) | already in the season payload; waits for no re-pin. `confSeed` is deferred |
 | W, L, T, PF, PA | DERIVABLE | `table` row of `userTeam` |
 | **undefeated regular season** (L = 0 and T = 0, schedule-length-agnostic) | DERIVABLE | same row |
 | **perfect season** (every game won, playoffs included; 20-0 for a #1 seed with the bye, because 17 + 3 rounds) | DERIVABLE | `userResults` + `userOutcome === 'champion'` |

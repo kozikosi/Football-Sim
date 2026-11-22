@@ -104,6 +104,21 @@ export function scopedDb(db: D1Like, userId: string) {
     async getRun(sport: string, saveId: string, run: number): Promise<{ detail: string; franchise: string; year: number; outcome: string; w: number; l: number; t: number; pf: number; pa: number; undefeated: number; perfect: number } | null> {
       return db.prepare('SELECT detail, franchise, year, outcome, w, l, t, pf, pa, undefeated, perfect FROM runs WHERE user_id = ? AND sport = ? AND save_id = ? AND run = ?').bind(userId, sport, saveId, run).first();
     },
+    // "Delete my account and data": every row this user owns, in our tables and Better Auth's, in ONE atomic batch.
+    // (Better Auth's `verification` rows are keyed by identifier, not user, and OAuth-only sign-in leaves none worth chasing.)
+    async deleteAccount(): Promise<{ saves: number; history: number; runs: number; shares: number; sessions: number; accounts: number; users: number }> {
+      const r = await db.batch([
+        db.prepare('DELETE FROM shares WHERE user_id = ?').bind(userId),
+        db.prepare('DELETE FROM runs WHERE user_id = ?').bind(userId),
+        db.prepare('DELETE FROM save_history WHERE user_id = ?').bind(userId),
+        db.prepare('DELETE FROM saves WHERE user_id = ?').bind(userId),
+        db.prepare('DELETE FROM "session" WHERE "userId" = ?').bind(userId),
+        db.prepare('DELETE FROM "account" WHERE "userId" = ?').bind(userId),
+        db.prepare('DELETE FROM "user" WHERE "id" = ?').bind(userId),
+      ]);
+      const n = (i: number) => r[i].meta.changes;
+      return { shares: n(0), runs: n(1), history: n(2), saves: n(3), sessions: n(4), accounts: n(5), users: n(6) };
+    },
     async countActiveShares(now: string): Promise<number> {
       const r = await db.prepare('SELECT COUNT(*) AS n FROM shares WHERE user_id = ? AND revoked_at IS NULL AND (expires_at IS NULL OR expires_at > ?)').bind(userId, now).first<{ n: number }>();
       return r ? r.n : 0;

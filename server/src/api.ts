@@ -104,6 +104,11 @@ async function route(req: Request, env: Env, auth: Auth, nowD: Date): Promise<Re
     }
   }
 
+  if (parts[1] === 'account' && parts.length === 2 && m === 'DELETE') {
+    const b = await readJson(req); if (!b.ok) return b.res;
+    if (b.body.confirm !== true) return err(422, 'invalid', 'send { "confirm": true } to delete your account and every save, run and share link');
+    return reply(200, { deleted: await db.deleteAccount() });
+  }
   if (parts[1] === 'runs' && parts.length === 2 && m === 'POST') return postRuns(req, db, now);
   if (parts[1] === 'stats' && parts.length === 2 && m === 'GET') return reply(200, await statsOf(db));
 

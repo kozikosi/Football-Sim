@@ -69,9 +69,9 @@ test('the daily D1 free limit becomes 503 sync-paused with Retry-After, not a 50
   assert.equal((await call(db, 'u1', 'GET', '/api/saves')).status, 500);
 });
 
-test('one door: SQL on the four tables exists only in src/store.ts, and nothing else prepares a statement', () => {
+test('one door: SQL on our four tables and Better Auth\'s four exists only in src/store.ts, and nothing else prepares a statement', () => {
   const dir = new URL('../src/', import.meta.url);
-  const sql = /\b(FROM|INTO|UPDATE|JOIN)\s+(saves|save_history|runs|shares)\b/i;
+  const sql = /\b(FROM|INTO|UPDATE|JOIN)\s+"?(saves|save_history|runs|shares|user|session|account|verification)"?\b/i;
   const offenders: string[] = [];
   for (const f of readdirSync(dir)) {
     if (f === 'store.ts') continue;

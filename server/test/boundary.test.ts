@@ -46,7 +46,7 @@ test('Bob cannot revoke Alice\'s share link; Alice can', async () => {
 test('no session gets 401 on every protected route, and the public share route needs none', async () => {
   const db = await memoryD1();
   for (const [m, p] of [['GET', '/api/saves'], ['GET', '/api/saves/nfl/A'], ['PUT', '/api/saves/nfl/A'], ['DELETE', '/api/saves/nfl/A'], ['GET', '/api/saves/nfl/A/history'],
-    ['POST', '/api/saves/nfl/A/restore'], ['POST', '/api/runs'], ['GET', '/api/stats'], ['POST', '/api/shares'], ['DELETE', '/api/shares/x']] as const)
+    ['POST', '/api/saves/nfl/A/restore'], ['DELETE', '/api/account'], ['POST', '/api/runs'], ['GET', '/api/stats'], ['POST', '/api/shares'], ['DELETE', '/api/shares/x']] as const)
     assert.equal((await call(db, null, m, p, m === 'GET' ? undefined : {})).status, 401, m + ' ' + p);
   assert.equal((await call(db, null, 'GET', '/api/share/nope')).status, 404, 'unknown token is a 404, not a 401');
   assert.equal((await call(db, null, 'GET', '/api/health')).status, 200);

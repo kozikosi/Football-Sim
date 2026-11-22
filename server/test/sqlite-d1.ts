@@ -16,7 +16,8 @@ export interface TestDb extends D1Like {
   /** Sum of rows_written reported by the backend (Miniflare only; null on the sqlite adapter). */
   rowsWritten(): number | null;
 }
-const migrationStatements = (): string[] => readFileSync(new URL('../migrations/0001_init.sql', import.meta.url), 'utf8').split(/;\s*\n/).map((s) => s.replace(/^(\s*--.*\n)+/g, '').trim()).filter(Boolean);
+const MIGRATIONS = ['0001_init.sql', '0002_better_auth.sql'];
+const migrationStatements = (): string[] => MIGRATIONS.flatMap((f) => readFileSync(new URL('../migrations/' + f, import.meta.url), 'utf8').split(/;\s*\n/).map((s) => s.replace(/^(\s*--.*\n)+/g, '').trim()).filter(Boolean));
 
 export async function memoryD1(): Promise<TestDb> {
   let fail: string | null = null, written = 0;
@@ -34,7 +35,7 @@ export async function memoryD1(): Promise<TestDb> {
     written = 0;
   } else {
     const raw = new DatabaseSync(':memory:');
-    raw.exec(readFileSync(new URL('../migrations/0001_init.sql', import.meta.url), 'utf8'));
+    for (const f of MIGRATIONS) raw.exec(readFileSync(new URL('../migrations/' + f, import.meta.url), 'utf8'));
     const stmt = (sql: string, params: unknown[] = []): D1Stmt => ({
       bind: (...v: unknown[]) => stmt(sql, v),
       first: async <T>() => ((raw.prepare(sql).get(...(params as never[])) as T | undefined) ?? null),
