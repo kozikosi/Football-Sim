@@ -134,6 +134,19 @@ export function scopedDb(db: D1Like, userId: string) {
 }
 export type Scoped = ReturnType<typeof scopedDb>;
 
+export const PURGE_DAYS = 30;
+// Scheduled cleanup (cross-user by nature, so it lives here with the rest of the SQL): soft-deleted saves older than PURGE_DAYS go, with their
+// rung-back history, and so do share links that expired or were revoked that long ago. One atomic batch; live data is never matched.
+export async function purgeExpired(db: D1Like, now: Date): Promise<{ saves: number; history: number; shares: number }> {
+  const cutoff = new Date(now.getTime() - PURGE_DAYS * 86400000).toISOString();
+  const r = await db.batch([
+    db.prepare('DELETE FROM save_history WHERE EXISTS (SELECT 1 FROM saves s WHERE s.user_id = save_history.user_id AND s.sport = save_history.sport AND s.slot = save_history.slot AND s.deleted_at IS NOT NULL AND s.deleted_at < ?)').bind(cutoff),
+    db.prepare('DELETE FROM saves WHERE deleted_at IS NOT NULL AND deleted_at < ?').bind(cutoff),
+    db.prepare('DELETE FROM shares WHERE (expires_at IS NOT NULL AND expires_at < ?) OR (revoked_at IS NOT NULL AND revoked_at < ?)').bind(cutoff, cutoff),
+  ]);
+  return { history: r[0].meta.changes, saves: r[1].meta.changes, shares: r[2].meta.changes };
+}
+
 // Public, read-only: found by the SHA-256 of a 128-bit random token. Returns no user id.
 export async function shareByTokenHash(db: D1Like, tokenHash: string): Promise<ShareRow | null> {
   return db.prepare('SELECT id, sport, kind, created_at, expires_at, revoked_at, snapshot FROM shares WHERE token_hash = ?').bind(tokenHash).first<ShareRow>();
