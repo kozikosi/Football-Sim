@@ -69,6 +69,13 @@ test('stats are folds over the ledger', async () => {
   const s = (await call(db, 'u1', 'GET', '/api/stats')).json;
   assert.deepEqual([s.runs, s.titles, s.superBowls, s.playoffs, s.undefeatedSeasons, s.perfectSeasons], [3, 1, 1, 2, 2, 1]);
   assert.equal(s.byFranchise.Me.runs, 3);
+  // legend = 1 title x 100 + 2 playoff appearances x 10 + best 17 wins = 137
+  assert.deepEqual([s.byFranchise.Me.playoffs, s.byFranchise.Me.bestWins, s.byFranchise.Me.legendPoints, s.legendPoints], [2, 17, 137, 137]);
+});
+
+test('legend points: an empty ledger is 0, and a second franchise is scored on its own runs', async () => {
+  const db = await memoryD1();
+  assert.equal((await call(db, 'u1', 'GET', '/api/stats')).json.legendPoints, 0);
 });
 
 test('"perfect" needs the title: all wins but no playoff run is not perfect', async () => {

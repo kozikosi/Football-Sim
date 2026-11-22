@@ -156,22 +156,26 @@ async function postRuns(req: Request, db: Scoped, _now: string): Promise<Respons
   return reply(200, { inserted, ignored: rows.length - inserted });
 }
 
-// Folds over the ledger; nothing here is a stored counter. The legend-points fold waits for its weights to be written down (not guessed here).
+// Folds over the ledger; nothing here is a stored counter.
+// legendPoints = titles x 100 + playoff appearances x 10 + best regular-season wins (per franchise; `legendPoints` overall is the best franchise).
+// INFERRED weights (canonical reference + Q-STATS, 21 Nov); the Owner may retune. They live only here, so a change re-folds every account's history for free.
 async function statsOf(db: Scoped): Promise<Record<string, unknown>> {
   const runs = await db.listRuns('nfl');
-  const byFranchise: Record<string, { runs: number; titles: number; bestWins: number }> = {};
+  const byFranchise: Record<string, { runs: number; titles: number; playoffs: number; bestWins: number; legendPoints: number }> = {};
   let titles = 0, superBowls = 0, playoffs = 0, undefeated = 0, perfect = 0;
   for (const r of runs) {
     const o = r.outcome as string, f = r.franchise as string;
-    const x = (byFranchise[f] ??= { runs: 0, titles: 0, bestWins: 0 });
+    const x = (byFranchise[f] ??= { runs: 0, titles: 0, playoffs: 0, bestWins: 0, legendPoints: 0 });
     x.runs++; x.bestWins = Math.max(x.bestWins, r.w as number);
     if (o === 'champion') { titles++; x.titles++; }
     if (o === 'champion' || o === 'super-bowl-loss') superBowls++;
-    if (o !== 'missed-playoffs') playoffs++;
+    if (o !== 'missed-playoffs') { playoffs++; x.playoffs++; }
     if (r.undefeated === 1) undefeated++;
     if (r.perfect === 1) perfect++;
   }
-  return { runs: runs.length, titles, superBowls, playoffs, undefeatedSeasons: undefeated, perfectSeasons: perfect, byFranchise };
+  for (const x of Object.values(byFranchise)) x.legendPoints = x.titles * 100 + x.playoffs * 10 + x.bestWins;
+  const legendPoints = Math.max(0, ...Object.values(byFranchise).map((x) => x.legendPoints));
+  return { runs: runs.length, titles, superBowls, playoffs, undefeatedSeasons: undefeated, perfectSeasons: perfect, legendPoints, byFranchise };
 }
 
 async function postShare(req: Request, db: Scoped, now: string, nowD: Date): Promise<Response> {
