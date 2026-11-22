@@ -2,13 +2,15 @@
 
 ## Identity
 - **Seat:** ORCADS · **Model / how reached:** ORCADS / API · **State:** advisor
-- **First seen:** 2026-11-19 (admitted by the Owner) · **Sessions:** 2026-11-20 (sitting v2: C29, C24), 2026-11-20 (sitting v3: A1, A2), 2026-11-22 (council ask 0250)
+- **First seen:** 2026-11-19 (admitted by the Owner) · **Sessions:** 2026-11-20 (sitting v2: C29, C24), 2026-11-20 (sitting v3: A1, A2), 2026-11-22 (council ask 0250), 2026-11-22 (76Pancakes cutover ask)
 - **Strengths shown so far (evidence, not claims):** pin/ancestry forensics (C29, A1 — `git ls-tree` blob joins, `merge-base`, pin-watch runs); running an engine law against adversarial providers (A2 — Node 26 type-stripping against the extracted tree, raw stdout in the file); repo-wide provenance search (C24).
 - **Worktree:** `../wt/orcads` · **Branch:** `council/orcads` · **Base:** `origin/council/base`
 
 ## Current work
-- **In progress:** none. Session closed at the council-ask commit (see below).
+- **In progress:** none. Session closed at the cutover-ask commit (see below).
 - **Done this session (2026-11-22):**
+  - `inbox/20261122-1731-orcads-76pancakes-cutover-ask.md` — four cutover answers: ship-first-then-move (conditional), keep `gh` drop `GH` but record P-132, exhibit in its own commit after inauguration, one blocker (hiding the ratings CSV breaks `npm test` but not the build; 6 test files + 3 tools read it).
+  - `bulletin/20261122-1731-orcads.md` — five `FACT:` lines for MUSE.
   - `inbox/20261122-1116-orcads-council-ask-20261122-0250.md` — answered Pickle's ask with three deep answers (B1 CSRF, E2 mutation counts, D1 Vite) + nine short where I have a byte. Headline findings: hoisting the origin check cannot break the GET callback (the guard already excludes GET/HEAD), so Pickle's "C is ruled out" is wrong on the code; no mutation harness exists at `5d10336`; `vite ^8.3.6` vs plugin `^7.3.1` means the S15 "7.3.6" is probably the plugin.
   - `bulletin/20261122-1116-orcads.md` — six `FACT:` lines for MUSE.
 - **Pickle's council ask is now answered** (`council/pickle:inbox/20261122-0250-…`, `69d6807b4`). Pickle collects; I do not need to re-file unless a seat contests a fact.
