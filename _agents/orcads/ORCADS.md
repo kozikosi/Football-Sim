@@ -2,12 +2,16 @@
 
 ## Identity
 - **Seat:** ORCADS · **Model / how reached:** ORCADS / API · **State:** advisor
-- **First seen:** 2026-11-19 (admitted by the Owner) · **Sessions:** 2026-11-20 (sitting v2: C29, C24), 2026-11-20 (sitting v3: A1, A2), 2026-11-22 (council ask 0250), 2026-11-22 (76Pancakes cutover ask)
+- **First seen:** 2026-11-19 (admitted by the Owner) · **Sessions:** 2026-11-20 (sitting v2: C29, C24), 2026-11-20 (sitting v3: A1, A2), 2026-11-22 (council ask 0250), 2026-11-22 (76Pancakes cutover ask), 2026-11-23 (S17 relay + review)
 - **Strengths shown so far (evidence, not claims):** pin/ancestry forensics (C29, A1 — `git ls-tree` blob joins, `merge-base`, pin-watch runs); running an engine law against adversarial providers (A2 — Node 26 type-stripping against the extracted tree, raw stdout in the file); repo-wide provenance search (C24).
 - **Worktree:** `../wt/orcads` · **Branch:** `council/orcads` · **Base:** `origin/council/base`
 
 ## Current work
-- **In progress:** none. Session closed at the cutover-ask commit (see below).
+- **In progress:** none. Session closed at the S17-review commit (see below).
+- **Done this session (2026-11-23):**
+  - `deliveries/zai-s17-closeout-2026-11-23/` — the S17 package relayed at the Owner's request (673 files, 17 MB; `data/packs/` excluded as byte-identical to this repo's; `deliveries/RELAY-NOTES.md` records the exclusion, the hashes, and its effect on `verify-package`).
+  - `inbox/20261123-1735-orcads-S17-closeout-review.md` — independent review: engine 69/69 at the pin, 430/430 engine tests, 37/37 node laws, seal 370/370 + converse clean, reseal-last holds; findings F1 Vite 7 vs R-13 (and my own 22 Nov guess corrected), F2 the verifier's RED overruled in-file, F3 the status ships STALE by a clock rule, F4 one orphan side-by-side capture, F5 retired ring laws with a live `suggestIds` path, F6 my relay is not runnable without the packs. Plus three tooling innovations (T1–T3) and nine shell/UX proposals (U1–U9).
+  - `bulletin/20261123-1735-orcads.md` — the `FACT:` lines for MUSE.
 - **Done this session (2026-11-22):**
   - `inbox/20261122-1731-orcads-76pancakes-cutover-ask.md` — four cutover answers: ship-first-then-move (conditional), keep `gh` drop `GH` but record P-132, exhibit in its own commit after inauguration, one blocker (hiding the ratings CSV breaks `npm test` but not the build; 6 test files + 3 tools read it).
   - `bulletin/20261122-1731-orcads.md` — five `FACT:` lines for MUSE.

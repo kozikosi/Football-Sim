@@ -24,3 +24,7 @@ Everything else crossed: 673 files, 17 MB, including `shots/` (9.6 MB of evidenc
 ## Use
 
 Read it in place (`git show` / checkout of this branch), or copy the directory out. To build or run its tests, restore the excluded packs into `data/packs/` first (they are in this repo at `data/packs/`), then `npm ci`.
+
+## Effect of the exclusion on the package's own checks
+
+`node tools/verify-package.mjs .` on this relay prints `366 OK / 0 FAILED / 4 missing` — the four missing entries are exactly the excluded `data/packs/*.json`, which the tool names. On the original tree it is 370/370. Likewise `npm run test:engine` fails with `ENOENT ... data/packs/nfl-pools-fit2016-2022.json` until the packs are restored. Both are the relay's exclusion, not the delivery's state.
