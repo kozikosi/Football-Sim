@@ -1,0 +1,17 @@
+# anchor-check-2026-11-22 — the F30/F31 re-anchor receipt (the v3 continuation, sitting 2)
+
+# run 2 stopped at step 13b: mustReplace threw at scripts/falsify-board.mjs:53 (from :398) — F30's anchor had drifted:
+#   the delivered comment reads 'a DERIVED view' (the close-out prose polish) vs the anchor's 'a derived view'.
+# Fix 1 (F30): scripts/falsify-board.mjs anchor re-pointed at the current bytes (DERIVED), replacement unchanged.
+# Fix 2 (F31): the DraftBoard.svelte anchor re-pointed — the delivered code reads rowName BEFORE the await
+#   ('read BEFORE the await — the board changes while the dispatch is in flight'), so the toast line is now
+#   'draftedToast = { name: rowName };' — the old inline vm.rows.find(...) anchor was stale. Mutation semantics unchanged:
+#   the await/guard lines replaced by a bare onpick + immediate toast (the sync-toast lie re-planted).
+
+# systematic check (scripts/check-falsifier-anchors.mjs, written for this sitting): every mustReplace anchor in
+# falsify-board.mjs + shell-falsifier.mjs + falsify-slot.mjs asserted present in the current tree bytes:
+anchor check: 18/18 anchors present in the current bytes, 0 drifted
+ANCHOR_CHECK_EXIT=0
+
+# receipt-falsifier.mjs anchors: proven by composite run 2's step 12 (F0-F14 ALL DIED, EXIT_CODE=0 at these bytes).
+# run 2's step-12 receipt: ACCEPTANCE-RECEIPTS.txt (run-2 bytes) + deliveries/receipts/partH-s15/composite-run2-stopped-13b-nodecrash.log
