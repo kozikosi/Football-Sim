@@ -1,0 +1,31 @@
+node-port: src/engine-node missing (never generated) — regenerating (npm run precompile does the same step explicitly)
+node-port: engine-node: generated 69 files (1 transformed: platform/localstorage.ts) — snapshot untouched
+   FAIL  L16 the top-three treatment is PRESENT (3+ rows, C'1's minimum) and EVERY row carries EXACTLY ONE visible Draft button (.cp-draftbtn) that names the SLOT — the S15 one-button design, cp-quick retired (the Architect decision, the continuation order §2.3) — top3=0 rows=60 oneButtonPerRow=true named=true e.g. "(none)"
+   FAIL  L16 one click on a top-three row lands EXACTLY one user pick — no expand, no confirm banner — and the CPU picks on (T2) — the one-click button NEVER APPEARED — the top-three is dead; the walk is skipped so the later laws still evaluate
+   FAIL  L17 undo reverses the one-click pick: zero user picks, the board order and the top-three treatment return (T2) — skipped — the one-click path is dead (the top-three died first)
+   FAIL  L17 a non-top-three row still expands into the flex chip path (the expand path is kept, T2) — skipped — the one-click path is dead (the top-three died first)
+   FAIL  L17 keyboard-only: Tab reaches the one-click button with a visible focus ring and Enter drafts with it (T2) — skipped — the one-click path is dead (the top-three died first)
+   FAIL  L18 a fast double activation on the one-click button (two clicks in one task — the double-click / Enter auto-repeat class) lands EXACTLY ONE pick — the guard window keeps one interaction one pick (R1) — skipped loud — the top-three is dead (the F20 mutant class); the law needs a top-three row
+   FAIL  L19 the staged confirm banner is GONE after the pick lands — a second PICK is not possible (S2) — skipped loud — the top-three is dead; the staged path needs a top-three row
+   FAIL  L22 a fast double click on the staged CONFIRM (two clicks in one task) lands EXACTLY ONE pick, the banner disarms, zero page errors — the staged path is guarded like the one-click path (S13) — skipped loud — the top-three is dead; the staged path needs a top-three row
+   PASS  L20 the numeric cells announce their VALUES to the screen reader — the accessible name contains the number, never a bare column name (D2) — ovr="97 overall" wins="+3.0 wins" prio="+3.0 priority" gone="99% gone odds"
+   PASS  L21 the gone% METHOD is keyboard-reachable: the Tab order main → Draft → the focusable method copy holds, and the copy reveals on focus (S3) — firstStop="cp-draftbtn svelte-q412k" method="cp-gone-desc-nfl-p00016" visible=true position=static outlined=true
+   FAIL  L13 the top THREE rows carry the top-three treatment (the sheen + TOP badge on the Draft button) by the board's active order — sampled early/mid/late; ids exact against the VM — INTERIM — display-rounded, awaiting rawSort (the oracle and the tie path stay PAIRED until rawSort lands, S14 §3.4.3); more than three only on an order tie (cakepanz-9 C′1) — pick 1 (early): 0 highlighted (expected 3, ids WRONG) · pick 13 (mid): 0 highlighted (expected 25, ids WRONG) · pick 27 (late): 0 highlighted (expected 60, ids WRONG) · pageErrors=0
+   FAIL  L24 the PRIMARY top-three TREATMENT is the first three ARRAY POSITIONS of the engine-sorted rows — under every sort at pick 1 and at every checkpoint of the walk — never derived from rendered text or .cp-top3 nodes (the scoped no-display-parse law; the ring-era "ring" word is retired with the ring, the oracle is unchanged; the tie extension stays INTERIM — display-rounded, awaiting rawSort) — Wins:WRONG (got  want nfl-p00016,nfl-p00061,nfl-p00071) · Priority:WRONG (got  want nfl-p00016,nfl-p00012,nfl-p00004) · OVR:WRONG (got  want nfl-p00004,nfl-p00005,nfl-p00006) · pick 1 (early):WRONG (got  want nfl-p00016,nfl-p00061,nfl-p00071) · pick 13 (mid):WRONG (got  want nfl-p00422,nfl-p00338,nfl-p00314) · pick 27 (late):WRONG (got  want nfl-p00759,nfl-p00766,nfl-p00819)
+   FAIL  L23 the w89 W66 glow, CORRECTED (S15 §2.2): EVERY Draft button carries the pulse (zpbBtnPulse, 1.5s infinite), the top-three buttons OPT OUT (animation none) and carry the sheen sweep instead (zpbsheen ::after), and prefers-reduced-motion disables BOTH — plain=zpbBtnPulse/1.5s top(0)=undefined sheen=missing (buttons=60) · reduced: plain=none top=missing sheen=missing errs=0
+   PASS  L26 the separate TOP badge (.cp-toptag, w89 :6432) sits EXACTLY on the top-three rows — no badge anywhere else (S15 §2.2; the Owner's answer 3: "there is a separate top badge") — top3=0 badges=0 exact=true errs=0
+   PASS  L27 the sheen treatment (.cp-istop, w89 :1749-1752) sits EXACTLY on the top-three rows — badge and sheen travel together on the three and nowhere else (S15 §2.2) — top3=0 istop=0 exact=true errs=0
+   PASS  L28 the retired classes are GONE and the why copy rides exactly the top-three rows: zero .cp-quick and zero .cp-suggest nodes anywhere on the board, the reason line only on the three (S15 §2.1/§2.5) — cp-quick=0 cp-suggest=0 why=0 top3=0 exact=true
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('.cp-rows .cp-row.cp-top3 .cp-draftbtn').first()
+
+    at /tmp/cp-board-falsify-khY7YI/batteries/board.battery.mjs:490:70 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.22.3
