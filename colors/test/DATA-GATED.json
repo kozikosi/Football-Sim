@@ -1,0 +1,17 @@
+{
+  "note": "Test files that need data/nfl/madden27-ratings.csv at import time, with their test counts. Used by tools/test-gate.mjs when the file is absent (public repo). Regenerate with: node tools/test-gate.mjs --record",
+  "files": {
+    "test/nfl/boxscore.test.ts": 5,
+    "test/nfl/draft.test.ts": 6,
+    "test/nfl/legacyprovider.test.ts": 5,
+    "test/nfl/lineup.test.ts": 35,
+    "test/nfl/playerids.test.ts": 6,
+    "test/nfl/players.test.ts": 6,
+    "test/nfl/recap.test.ts": 11,
+    "test/nfl/resume-determinism.test.ts": 5,
+    "test/nfl/store.test.ts": 15,
+    "test/nfl/valueprovider.test.ts": 10,
+    "test/nfl/versions.test.ts": 7,
+    "test/nfl/viewboard.test.ts": 8
+  }
+}

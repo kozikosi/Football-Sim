@@ -4,7 +4,8 @@
   "type": "module",
   "description": "Colors: the 76 Pancakes engine (TypeScript: core, sports/nfl engine/app/view, platform adapters). Engine, app and view code import no framework. npm test needs the WHOLE repo checked out (tests read ../data and ../tools). The only app entry is src/main.ts, a framework-free dev page that plays one game on the baked pools pack (data/packs) and shows its box score; it is not the product UI, which waits on the framework verdict. dev/build/preview run Vite against index.html. Framework: Svelte 5 + Vite 8 (decided; React removed at cutover prep, 20 Nov 2026). svelte, vite and @sveltejs/vite-plugin-svelte are installed for the product UI; nothing in src, test or tools imports them yet. The old esbuild bundler (build/build.mjs) was removed on 2026-11-13.",
   "scripts": {
-    "test": "node --test --experimental-strip-types \"test/**/*.test.ts\"",
+    "test": "node tools/test-gate.mjs",
+    "test:gate-verify": "node tools/test-gate.mjs --verify",
     "build": "vite build",
     "dev": "vite",
     "preview": "vite preview",
