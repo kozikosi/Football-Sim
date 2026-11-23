@@ -1,0 +1,100 @@
+{
+  "seeds": [
+    "a3f2",
+    "k1x9"
+  ],
+  "results": [
+    {
+      "law": "W1 seed a3f2: exactly 3 top-three rows (.cp-top3) at pick 1 (more ONLY on an order tie — C′1's rule; the ring class is retired, S15)",
+      "verdict": "PASS",
+      "detail": "ring=4 userPicks=0 · TIE at the cutoff: vals[2..3]=2.2/2.2, next=2.1"
+    },
+    {
+      "law": "W2 seed a3f2: the top-three treatment is contiguous from the top",
+      "verdict": "PASS",
+      "detail": "top3=nfl-p00061,nfl-p00071,nfl-p00002 ring=nfl-p00061,nfl-p00071,nfl-p00002,nfl-p00081"
+    },
+    {
+      "law": "W6 seed a3f2: the footer shows the PREFIXED seed code and it matches ?seed=",
+      "verdict": "PASS",
+      "detail": "code=b36:a3f2 seed=470990 expected=b36:a3f2 roundtrip=470990"
+    },
+    {
+      "law": "W3 seed a3f2: one-click Draft on a ringed row lands exactly one pick",
+      "verdict": "PASS",
+      "detail": "userPicks=1 err=\"\""
+    },
+    {
+      "law": "W1 seed k1x9: exactly 3 top-three rows (.cp-top3) at pick 1 (more ONLY on an order tie — C′1's rule; the ring class is retired, S15)",
+      "verdict": "PASS",
+      "detail": "ring=3 userPicks=0"
+    },
+    {
+      "law": "W2 seed k1x9: the top-three treatment is contiguous from the top",
+      "verdict": "PASS",
+      "detail": "top3=nfl-p00061,nfl-p00071,nfl-p00081 ring=nfl-p00061,nfl-p00071,nfl-p00081"
+    },
+    {
+      "law": "W6 seed k1x9: the footer shows the PREFIXED seed code and it matches ?seed=",
+      "verdict": "PASS",
+      "detail": "code=b36:k1x9 seed=935613 expected=b36:k1x9 roundtrip=935613"
+    },
+    {
+      "law": "W7 two loads at seed a3f2 give identical boards (60-row id order + ring + footer)",
+      "verdict": "PASS",
+      "detail": "idsEqual=true ringEqual=true footerEqual=true rows=60"
+    },
+    {
+      "law": "W8 a garbage seed falls back to the widened random draw WITHOUT throwing (a valid record mounts, a prefixed code displays, the resolved seed rides the URL)",
+      "verdict": "PASS",
+      "detail": "seed=8389906 code=b36:4ztoy range=[100000,9999999] urlSeed=b36:4ztoy rendered=true"
+    },
+    {
+      "law": "W8 an integer seed pins the exact integer (777777)",
+      "verdict": "PASS",
+      "detail": "seed=777777 code=b36:go4x"
+    },
+    {
+      "law": "W10 the displayed code round-trips to the SAME seed: 1000–9999 → 0 failures (the PORCA S1 bug mis-replayed 700), the widened range 100,000–9,999,999 → 0 failures, a strided sweep of 1…2^31-1 → 0 failures, the boundaries hold, and the legacy URL forms keep their contracts",
+      "verdict": "PASS",
+      "detail": "old-range failures=0 · wide-range failures=0 · stride failures=0 · boundaries=true · legacy=true"
+    },
+    {
+      "law": "W4 seed a3f2: no horizontal scroll at 390 across the walk",
+      "verdict": "PASS",
+      "detail": "board 390/390 · after pick 390/390"
+    },
+    {
+      "law": "W5 zero console/page errors across every load (both viewports)",
+      "verdict": "PASS",
+      "detail": "clean"
+    },
+    {
+      "law": "W9 seed a3f2 survives save → restore (reload replays the same seed, no \"pick is out of order\")",
+      "verdict": "PASS",
+      "detail": "seed=470990 err=\"\""
+    },
+    {
+      "law": "W11 the wrap band holds at 768px: no horizontal scroll, the one-click button renders and stays usable (one click lands one pick, zero page errors)",
+      "verdict": "PASS",
+      "detail": "scrollW=768 clientW=768 quick=true(99×29) userPicks=1 errs=0"
+    },
+    {
+      "law": "W12 after a reload-restore the URL seed === the store seed (the restored draft is shareable — the D2 law)",
+      "verdict": "PASS",
+      "detail": "url=b36:a3f2 store=470990 screen=board errs=0"
+    },
+    {
+      "law": "W13 the new-seed affordance clears the tab pin: it shows when pinned, vanishes on click, and the next START draws a FRESH seed whose code rides the URL (explicit replay untouched)",
+      "verdict": "PASS",
+      "detail": "pinned=1 cleared=true seed 470990→485200 url=b36:aeds errs=0"
+    },
+    {
+      "law": "W14 the explicit ?seed= link wins over a DIFFERENT autosave (no restore, the URL keeps the link, the notice shows, the local save is left untouched) and a SAME-seed reload still restores — the W9 exception is load-bearing (S14/P0)",
+      "verdict": "PASS",
+      "detail": "link: screen=team store=null notice=shown savedSeed=470990(want 470990) savedPicks=43 url=k1x9 · START: seed=935613 url=b36:k1x9 · same-seed reload: screen=board seed=935613 notice=none errs=0"
+    }
+  ],
+  "pass": 18,
+  "fail": 0
+}
