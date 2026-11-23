@@ -1,0 +1,18 @@
+# reseal-final2-2026-11-23 — the FINAL seal v2 (post the 41-capture side-by-side, the backlog filing, the doc updates, the SHELL-STATUS final-bytes regen; nothing edited after this)
+$ node scripts/regen-manifest.mjs
+regen: 370 entries
+regen_exit=0
+$ node tools/verify-package.mjs .
+verify-package: 370 OK / 0 FAILED / 0 missing (370 entries in CHECKSUMS.txt)
+verify-package: converse clean — the tree carries no unlisted file
+verify_exit=0
+$ node scripts/gate-manifest.mjs
+boot target: 2 referenced asset(s) checked against the manifest
+gate-manifest: PASS (370 entries verified, dist/ covered, converse clean)
+gate_exit=0
+$ env CP_PIN=408410477 node scripts/gate-numerals.mjs (1st)
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+n1_exit=0
+$ env CP_PIN=408410477 node scripts/gate-numerals.mjs (2nd)
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+n2_exit=0

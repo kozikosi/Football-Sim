@@ -1,0 +1,20 @@
+# composite run 3 (2026-11-23) — STOPPED AT STEP 15: the gate-manifest boot-target parse — the finding and the fix
+
+# WHAT RAN: steps 1-14 ALL GREEN (every EXIT_CODE=0; the falsifier gauntlets 13/13b/13c/13d all DIED by name:
+#   F24 DIED — FAIL L24 (the first by-name kill at the final bytes; the uiPick one-retry hardening held), F30/F31 DIED (the re-anchors),
+#   FE/FF DIED (the S35 re-home), F-S1, F0-F14, FA-FD all DIED). Receipt: ACCEPTANCE-REIPTS.txt at the run-3 bytes =
+#   /home/z/my-project/work/acceptance-receipts-run3.txt; the run log: /home/z/my-project/work/composite-run3.log.
+
+# WHERE IT STOPPED: step 15 node scripts/gate-manifest.mjs —
+#   'MANIFEST FAIL (boot target): dist/index.html references no assets' / 'boot target: 0 referenced asset(s) checked'.
+# ROOT CAUSE (a GATE-SIDE parser gap, not a tree defect): the boot-target law's ref regex (gate-manifest.mjs:31)
+#   matched ONLY './'-prefixed refs; vite.config.js base '/' emits '/assets/index-*.js' — the law read ZERO
+#   referenced assets. The law NEVER RAN GREEN at the delivered bytes: the shipped receipt
+#   deliveries/receipts/gate-manifest-shipped.log is from a 311-entry tree (the delivered tree is 368) — the
+#   first composite ever to reach step 15 is run 3. Proof the dist is NOT the problem: the delivered zip's
+#   CHECKSUMS dist entries === the rebuilt dist byte-for-byte (index.html 3edb5c6f..., js edc51cd0..., css 753997b6...).
+# THE FIX (mechanism repair, the law unchanged, coverage 0→2 — strictly more checked): the regex accepts both
+#   './x' and '/x' ((\.?\/[^"]+)) and the rel normalizes a leading '/'. Standalone at the fixed bytes:
+#   'boot target: 2 referenced asset(s) checked against the manifest' (js+css, both hash-verified).
+# gate-numerals ×2 pre-run at the fixed bytes: CLEAN ×2, exit 0 ×2.
+# THEN: reseal (the gate's own hash changes) + composite run 4 — the uninterrupted complete run.
