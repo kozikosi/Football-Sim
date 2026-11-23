@@ -1,0 +1,44 @@
+F1 M1 grep-law            · mutation: engine import planted in a screen  · DIED (the law's grep catches the plant)
+F2 offline-no-CDN law     · mutation: CDN url planted in the card CSS  · DIED — ✖ N14: every shareable card is ONE self-contained blob (no CDN, no network, provenance ins
+F3 saves-roundtrip        · mutation: roster → empty (0 players)            · DIED — ✖ N12a: the week payload round-trips (serialize → restore → hydrate) (2.722487ms)
+F4 gone%-values law       · mutation: every gone% zeroed in goneodds.ts · DIED — ✖ N19: gone% values are TRUE — a direct engine replay agrees with the board, and the envel
+F5 season-brag truth law  · mutation: champion line swapped to the user team · DIED — ✖ N14b: the season brag names the REAL champion and the honest record (case-insensitive) (
+F6 save-service slot law  · mutation: the composition drops the slot check    · DIED — ✖ N20 (F8): the save service refuses a slot/key mismatch — the engine asserts the pair, th
+F7 older-build note law  · mutation: the panel stops rendering the note           · DIED — ✖ N21: the older-build note names another build on the slot card, and is silent for the ru
+F8 packs law             · mutation: the 2023-2025 pack removed from data/packs     · DIED — ✖ N22 (the packs law): the sim boots on a non-empty pool, and the current-era pack hashes 
+F9 team-takeover law     · mutation: the solver always reads the wrong team         · DIED — ✖ N23 (Part A): picking a team changes at least three accent tokens, and --zcream is uncha
+F10 body-font law        · mutation: body copy set back in Cinzel                  · DIED — ✖ N24 (Part D): the body copy is a system sans, the slogan rides home + Guide, the 900 fac
+F11 resume law (N28)     · mutation: the c7 `if (!r.draft)` gate planted back          · DIED — ✖ N28 (RESUME, cakepanz-8 A1): a refresh with BOTH autosaves lands on the hub — the season
+F12 done-draft law (N29) · mutation: the go() redirect deleted                     · DIED — ✖ N29 (DONE-DRAFT, cakepanz-8 A1): a refresh with a done draft and no week lands on Comple
+F13 stamp law (N36)       · mutation: the stale 67-cakepanz@d3bd81d2 literal re-planted   · DIED — ✖ N36: the envelope stamp is TRUTHFUL — App.svelte stamps the RUNNING engineVersion() (the
+F14 brag law (N37)        · mutation: the downloadShare import re-planted              · DIED — ✖ N37: the P-209 brag text — the season template is exact, the link rides ONLY the build-t
+every falsified law DIED — the battery is falsifiable
+EXIT_CODE=0
+
+=================================================================
+== 13. the shell falsifiers FA/FB/FC/FD/FE/FF (the render laws must die too; S15: FD the L-ERR clear-half reverted → S32 must DIE, FE the stale hardcoded stamp re-planted → S34 must DIE, FF a hardcoded brag URL planted → S35 must DIE; every child log filed under deliveries/receipts/partH-s15/)
+=================================================================
+$ node scripts/shell-falsifier.mjs
+[serveAndRun 4273] bytes=1147 verdict=CRASH-MID-FLOW
+FA D2 Complete-prop law   · mutation: {recordTyped} shorthand reintroduced · DIED — FAIL  S5 the draft-complete state renders with the provenance stamp — TimeoutError: page.waitForSelector: Timeout 20000m
+FB mutation applied · restoreSeason definition removed (the template reference stays)
+[serveAndRun 4274] bytes=3994 verdict=CRASH-MID-FLOW
+FB D1 restore law         · mutation: restoreSeason deleted (ReferenceError path) · DIED — the flow crashed on ReferenceError: restoreSeason is not defined (receipted in S15/battery death)
+[serveAndRun 4275] bytes=6119 verdict=VERDICT
+FC board-at-390 law       · mutation: the phone grid media query removed · DIED — FAIL  S25b the DRAFT BOARD fits 390px (scrollWidth <= clientWidth — the board-at-390 law) — 427/390
+FD mutation applied · the L-ERR clear-half reverted (the old never-clearing read)
+[serveAndRun 4276] bytes=6118 verdict=VERDICT
+FD L-ERR clear-half law     · mutation: the L-ERR clear reverted to the never-clearing read · DIED — PASS  S32 L-ERR half 1: a FAILED action (illegal PICK, the rejected fit) shows its message — the shell error text equals
+FE mutation applied · the stale hardcoded engineVersion stamp re-planted
+[serveAndRun 4277] bytes=6120 verdict=VERDICT
+FE envelope-stamp law       · mutation: the stale previous-pin stamp re-planted · DIED — FAIL  S34 the envelope stamp law (S15 §4.4): the draft autosave's engineVersion EQUALS the running engineVersion() — no 
+FF mutation applied · a hardcoded brag URL planted as the constant fallback
+[serveAndRun 4278] bytes=6119 verdict=VERDICT
+FF brag-surface law         · mutation: a hardcoded URL planted as the constant fallback · TAUTOLOGY (S35 still green)
+TAUTOLOGIES: FF — must be named, not kept
+EXIT_CODE=1
+ACCEPTANCE RUN STOPPED AT: 13. the shell falsifiers FA/FB/FC/FD/FE/FF (the render laws must die too; S15: FD the L-ERR clear-half reverted → S32 must DIE, FE the stale hardcoded stamp re-planted → S34 must DIE, FF a hardcoded brag URL planted → S35 must DIE; every child log filed under deliveries/receipts/partH-s15/) (exit 1)
+COMPOSITE_EXIT=1
+TAUTOLOGIES: FF — must be named, not kept
+EXIT_CODE=1
+ACCEPTANCE RUN STOPPED AT: 13. the shell falsifiers FA/FB/FC/FD/FE/FF (the render laws must die too; S15: FD the L-ERR clear-half reverted → S32 must DIE, FE the stale hardcoded stamp re-planted → S34 must DIE, FF a hardcoded brag URL planted → S35 must DIE; every child log filed under deliveries/receipts/partH-s15/) (exit 1)
