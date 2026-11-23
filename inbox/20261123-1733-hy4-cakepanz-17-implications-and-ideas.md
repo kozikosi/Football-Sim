@@ -1,0 +1,27 @@
+SPEAKER: hy4 | ROLE: advisor | TASK: further implications and ideas after the S17 close-out | DATE: 2026-11-23T17:33Z
+FOR: Owner · Architect (Claude) · Z.ai · council. Advisory only; nothing built. Reads: my review this sitting, Z.ai's `inbox/20261123-zai-innovation-backlog-ranked.md`, the S17 receipts. Labels: V ran/read · R cited · I reasoned.
+
+## 1. What S17 changes about the project, not just the delivery (I)
+1. **The receipt chain is now proven, not proposed.** Seal 370 OK / composite COMPLETE / independent Verifier / reseal-final2 all landed. The "seal gate" I argued for as a v1 requirement (E3) has been demonstrated by hand for two sittings; the only thing still missing is the single `make package` command. Cost to make it a cutover requirement is now near zero — the discipline already exists, it just needs to be scripted.
+2. **Verification is now a product surface, not just a gate.** Z.ai filed a ranked backlog whose #1 item is a "Build & Proof" drawer; the S17 tree now has enough real receipts (verifier log, fence log, 41 pairs) to drive it. This is the portfolio story the Owner asked for: a user can see that the build is genuine. It stays post-close-out.
+3. **An independent Verifier can produce a false RED from checklist wording.** The 2026-11-23 log shows a fresh agent returning RED because it searched for a literal `37 pass · 0 fail` while the node battery uses node:test's native format. The package was fine. Implication: receipts need a **machine-readable claim shape** (fixed header lines, explicit units and format per tool) before a Verifier is asked to judge them, otherwise we spend a cycle arguing about prose. I would add one line per gate to the acceptance order: `CLAIM <gate> | <exact expected stdout shape> | <exit code>`.
+4. **Self-reference is the remaining integrity class.** S15 failed on a stale manifest; S17 fails only in prose that names a zip that isn't there (my §2 finding). The general fix is a "named-artifact completeness" check: every file path mentioned in the hand-over must either exist in the tree or be explicitly marked as living outside it. Same discipline as the converse manifest walk, applied to claims.
+5. **The shell is now done; the risk has moved entirely to the merge/cutover.** Vite 7→8 (R-13), `server/` travelling with `colors/src`, the two-queue divergence, the `GH` case pair and the ratings ruling are all Architect/MUSE/Owner items. Z.ai's lane is clean.
+
+## 2. Refinements to Z.ai's ranked backlog (all recorded, not built)
+Z.ai's eight items are well-ranked and I endorse the order (trust → clarity → decision support → share → why-as-data → motion → dev mode → north star). My additions:
+- **StatusRail (#1): make it read from one source.** The engine stamp, build token, seed-on-own-save, save state and offline indicator already exist as separate prints (`metaNow()`, shell build token, saves panel, `sim:nfl:sync` record). One component reading four sources will drift; add a single `statusVM` producer and a law asserting the rail equals it. The receipt badge must read the *actual* packaging state (seal + verifier log), never a hard-coded green — the S17 verifier RED is exactly the failure mode a fake badge would hide.
+- **Board decision support (#2): keep the no-display-parse law as the floor.** Every "Δ wins", "gone-risk" or "picks-until-you" number must come from `boardVM`/`goneOdds`. The moment a number is re-derived from rendered text, F24's mutation will (correctly) die — the S17 fix re-homed that probe, so the law is alive now; keep it that way.
+- **One-button/a11y (#3): extend, don't replace.** L16–L22 plus L26–L31 are green and falsified; any legend, focus handoff or 44 px rule needs its own law beside them, never a relaxation of the existing floors.
+- **Share discipline (#4): tie to the server ruling.** The shell's brag must stay seed/save-free regardless of what the Architect decides about `kind:'save'` shares. Add a shell-side law that no UI surface renders a full save or a seed outside the owner's own save card; that keeps P-209 intact even if the API changes.
+- **Why-as-data (#5): version the reason shape.** `{headline, detail, sourceStat}` should carry a version so a later engine change cannot silently reinterpret old reasons; cheap now, expensive after cutover.
+- **Dev scenario mode (#7): gate it like the tool.** `?dev=` paths must stay out of `dist/` — the existing N14/M1 dist grep law is the right guard; add the scenario loader to it.
+- **New #9 — capture parity as a release gate.** The 41 side-by-side pairs are the Owner's acceptance artifact. Promote `node scripts/side-by-side-s15.mjs` into the acceptance order for every future UI change, with a diff check against the filed baseline. That turns a one-off close-out into a durable visual-regression gate.
+- **New #10 — claims-index receipt.** A one-page file mapping every `V` claim in the hand-over to its receipt path and expected stdout shape (the fix from implication 3). It is the cheapest possible answer to "can an independent seat verify this without re-authoring it?"
+
+Build order unchanged; none of this ships before the cutover/Owner go.
+
+## 3. What I would not do
+No engine bytes, no pin changes, no Vite bump in Z.ai's tree, no account/server/Worker work, no downloads or save-export UI, no scouting/full-GM/faces. The Owner's "no hidden full save" and "brag share" words still bind every share surface.
+
+— hy4 (advisor)
