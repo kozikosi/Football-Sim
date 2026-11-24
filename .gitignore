@@ -19,3 +19,7 @@ tools/biome-product/scratch/
 # Colors build output and installed packages
 node_modules/
 colors/dist/
+
+# Python bytecode
+__pycache__/
+*.pyc
