@@ -10,9 +10,17 @@
 - **Worktree:** `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-ds` (OpenChamber worktree; the equivalent of `../wt/ds`)
 - **Branch:** `council/ds`
 - **merge-base HEAD origin/council/base:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
-- **Last session end:** 2026-11-19 (R-13 tools evaluation; c81/c9 review standing)
+- **Last session end:** 2026-11-23 (S15 WIP + S17 close-out hosted; S17 review and shell ideas filed)
 
-## Current state (19 Nov 2026)
+## Current state (23 Nov 2026)
+
+### S15 WIP + S17 close-out — hosted and reviewed (23 Nov)
+- **Hosted:** the Owner's `67-cakepanz-15-WIP-2026-11-21` at `aaaee04f4` (545 files, 18 MB) and `zai-s17-closeout-2026-11-23` at `7b94a40ec` (677 files, 24 MB), both byte-identical to the desktop copies (`diff -r`); no `node_modules`/`.git`/symlinks.
+- **Review:** `inbox/20261123-1756-ds-zai-s17-closeout-review.md` — **TRUSTWORTHY BYTES · NOT UI-ACCEPTED**. Seal 370 OK/0/converse clean (the S15 WIP `verify-package` md5 bug is fixed); engine fence 69/69 @`408410477`; `dist/` byte-reproducible; node 37/37, engine 430/430, board 24/0, shell 53/0, visual 18/0, slot 28/0, slice 29/0/10/3, contrast 2/0 (3 known AA holes), viewport 45/45; manifest/numerals gates PASS/CLEAN.
+- **Board falsifier (independent):** F0 both baselines green; **F15/F17–F31 all DIED by name; EXIT 0; zero TAUTOLOGY/COULD-NOT-RUN** (the S15 WIP F24/F27/F28 tautologies and F30/F31 anchor failures are fixed). Caveat: F27/F28 die at pick 1; at pick 13 the product's own top3=36 makes the same all-rows mutants indistinguishable — the law needs `top3 === 3` at late checkpoints too.
+- **P1s:** the "top three" is 4–45 rows (L13 says 36 at pick 13, 60 at pick 27; my probe 4→45); the 390 board is unreadable (42 px name, 34 px team vs 58 px content, 85–169 px rows; the no-h-scroll law is blind); both themes below AA (light gold 1.51/1.65:1, dark text 3.17:1; contrast gate records them as known). **P2s:** top rows shift the team/OVR columns 62 px; sort at y3307 after 60 rows leaves the user at the bottom; 216 tab stops; panel and row both say "Draft at QB" but behave differently; accessible name starts "TOPBrock Purdy"; left side-by-side board shots are the w89 intro overlay.
+- **Ideas:** `inbox/20261123-1756-ds-cakepanz-shell-ideas.md` — cap at 3 until `rawSort`; phone card + collapsed needs; fixed action rail/columns; sticky board toolbar; one method disclosure; text-safe palette; motion budget; status rail; layout/a11y battery. **No engine edit proposed; `rawSort` is the Architect's move.**
+- S15 WIP is the pre-close-out tree; its review is folded into the S17 file (the close-out supersedes it). The folder name says S17; every internal doc says S15 close-out — see F12.
 
 ### R-13 tools evaluation — filed this session
 - `inbox/20261119-0451-ds-R-13-w89-stats-tools-svelte-vue.md` — **recommendation: stay on Svelte 5 + Vite**, measured, with falsifiers (§6) and the framework-free `statsTable` VM hedge. Contains the T1–T10 reframing of the w89 "Your team stats" / "Playoff stats" screens.
@@ -33,11 +41,12 @@
 - **Open filings:** relay spec `inbox/20261115-1132-ds-delivery-fix-relay.md` (the tool is MUSE's); direction `inbox/20261115-1149-ds-direction-innovation.md` (`file://` root cause, 11,569 B gz delta); pin-watch retired (canonical is `council/inkling` @ `0bd76860`).
 
 ## What the next session needs
-1. Read the live round prompt and **check the tip before working**; `node tools/council.mjs next` (from `origin/council/muse`) is the queue truth.
-2. **Round K — still owed.** (a) merge gate: the five checks, four fixes documented; (b) 4-3/3-4: the ~947 floor appears in no council filing, Ernie's EDGE→ILB=0 + EDGE→DT=2 gives gap 0 / bias +334, and "947 worse than 720" is a category error; (c) Wins calibration: policy→outcome exists (greedy N=1000: 89.5% playoffs, 11.43 mean wins), the slope and the 20-0 rate do not.
-3. If a new delivery lands, check **D1 and D2 first** (receipts above); do not re-run the whole review.
-4. Do not rebuild pin-watch or bucket-bar variants.
-5. If R-13 is taken, the harness is ready — re-run it before changing any number.
+1. **The S17 close-out review is filed** (`inbox/20261123-1756-ds-zai-s17-closeout-review.md`). Two more seats should confirm F1/F2/F3; the shell round starts with the cap, the phone card, and the contrast tokens. `rawSort` is the Architect's engine move; do not build a shell oracle against raw values until it lands.
+2. Read the live round prompt and **check the tip before working**; `node tools/council.mjs next` (from `origin/council/muse`) is the queue truth.
+3. **Round K — still owed.** (a) merge gate: the five checks, four fixes documented; (b) 4-3/3-4: the ~947 floor appears in no council filing, Ernie's EDGE→ILB=0 + EDGE→DT=2 gives gap 0 / bias +334, and "947 worse than 720" is a category error; (c) Wins calibration: policy→outcome exists (greedy N=1000: 89.5% playoffs, 11.43 mean wins), the slope and the 20-0 rate do not.
+4. If a new delivery lands, check **D1 and D2 first** (receipts above); do not re-run the whole review.
+5. Do not rebuild pin-watch or bucket-bar variants.
+6. If R-13 is taken, the harness is ready — re-run it before changing any number.
 
 ## Open questions (mine, not the council's)
 - GLM sack bias source: league drift vs model form (the score-state sign flip points to model form; INFERRED). Claude's source analysis is the open input.
@@ -45,7 +54,7 @@
 - Does "one adapter" mean one facade over the six VMs, or a new interface layer?
 
 ## Live files
-`inbox/20261119-0451-ds-R-13-w89-stats-tools-svelte-vue.md` · `_agents/ds/deliveries/tools-eval-2026-11-19/` · `inbox/20261119-0455-ds-c81-addendum-c9.md` · `inbox/20261119-0427-ds-c81-review.md` · `inbox/20261119-0427-ds-c81-ui-ideas.md` · `inbox/20261119-0427-ds-OP-add-cakepanz-8-2-close-the-two-she.md` · `_agents/ds/deliveries/cakepanz-8.1-review-2026-11-18/` · `inbox/20261118-1956-ds-P-337-cakepanz-8-review.md` · `inbox/20261118-1956-ds-R-13-cakepanz-shell-innovations.md` · `_agents/ds/deliveries/prompt-zai-cakepanz-9-2026-11-18.md` · `inbox/20261117-2056-ds-GLM-state-bucket.md` · `_agents/ds/deliveries/glm-state-bucket-2026-11-17/` · `inbox/20261116-2102-ds-CAKEPANZ-SHELL-{pin,neutrality,seam}.md` · `inbox/20261115-1149-ds-direction-innovation.md` · `inbox/20261115-1132-ds-delivery-fix-relay.md`
+`inbox/20261123-1756-ds-zai-s17-closeout-review.md` · `inbox/20261123-1756-ds-cakepanz-shell-ideas.md` · `inbox/20261119-0451-ds-R-13-w89-stats-tools-svelte-vue.md` · `_agents/ds/deliveries/tools-eval-2026-11-19/` · `inbox/20261119-0455-ds-c81-addendum-c9.md` · `inbox/20261119-0427-ds-c81-review.md` · `inbox/20261119-0427-ds-c81-ui-ideas.md` · `inbox/20261119-0427-ds-OP-add-cakepanz-8-2-close-the-two-she.md` · `_agents/ds/deliveries/cakepanz-8.1-review-2026-11-18/` · `inbox/20261118-1956-ds-P-337-cakepanz-8-review.md` · `inbox/20261118-1956-ds-R-13-cakepanz-shell-innovations.md` · `_agents/ds/deliveries/prompt-zai-cakepanz-9-2026-11-18.md` · `inbox/20261117-2056-ds-GLM-state-bucket.md` · `_agents/ds/deliveries/glm-state-bucket-2026-11-17/` · `inbox/20261116-2102-ds-CAKEPANZ-SHELL-{pin,neutrality,seam}.md` · `inbox/20261115-1149-ds-direction-innovation.md` · `inbox/20261115-1132-ds-delivery-fix-relay.md`
 
 ## Method notes
 - zsh: `$r:tools/...` is a **parameter modifier** (`:t` = tail) — quote the whole ref, and print the ref + byte count beside every hash.
