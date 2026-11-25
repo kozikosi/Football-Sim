@@ -4,12 +4,14 @@
 data/nfl/madden27-ratings.csv
 data/nfl/madden27-raw-paste.txt
 data/nfl/free-agents-old-ratings.csv
-# ARCHITECT ADDITIONS (same data, found by the exposure scan; Owner to ratify):
+# ARCHITECT ADDITIONS (same data, found by the exposure scan; ratified by the Owner delegation of 25 Nov):
 data/nfl/old-names-absent-in-new.txt
 Football-Sim-PreColors.html
 _agents/ds/snapshots/Madden NFL 27 Team Power Rankings & Draft Simulator (9) (DS Flash).html
 _agents/ds/snapshots/NFL Draft Simulator (pre-v10 backup) (DS Flash).html
 _archive/builds/NFL Draft Simulator v20 Claude.html
 _archive/builds/NFL Draft Simulator.html
-# NOT HIDDEN, OWNER TO RULE (names/positions/teams only, no ratings): data/nfl/player-ids.csv
-# NOT HIDDEN, REVIEW BEFORE FREEZE (names in evidence output): tools/mathlab/results/flexeval-2026-11-08.json, flexeval-pick-2026-11-08.json
+# OWNER DELEGATED THE REST (25 Nov: "you can answer all the other questions"); Architect rulings, ratifiable:
+data/nfl/player-ids.csv
+tools/mathlab/results/flexeval-2026-11-08.json
+tools/mathlab/results/flexeval-pick-2026-11-08.json
