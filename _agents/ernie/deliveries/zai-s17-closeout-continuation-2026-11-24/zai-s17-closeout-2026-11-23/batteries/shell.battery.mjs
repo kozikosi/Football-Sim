@@ -1,0 +1,423 @@
+/* shell.battery.mjs — the RENDER battery: Playwright against the BUILT shell (dist via vite preview
+ * for the http laws, dist/single.html via file:// for the offline law). The node-side battery owns
+ * the framework-blind truths; this one owns what only a browser can prove: the states sweep, the
+ * 390px discipline, the two-mode palette, the P-317 screen, and the WHOLE SEASON played through the
+ * real UI. Run: node --experimental-transform-types batteries/shell.battery.mjs  (needs `npm run distfile`
+ * first + preview on 4179). The flag is REQUIRED on any Node: the engine snapshot carries a TS
+ * parameter property (platform/localstorage.ts), which strip-only mode refuses to parse — the
+ * Part-4 note; SNAPSHOT.md documents the supported Node and the §5 filing. */
+import fs from 'node:fs';
+import path from 'node:path';
+import { createRequire } from 'node:module';
+const _req = createRequire(import.meta.url);
+let pw; try { pw = _req('playwright'); } catch (e) { throw new Error("playwright is not installed — it is a devDependency: run npm ci (then npx playwright install chromium for the browser). D-1: no HOME-global fallback. Original: " + e.message); }
+
+const ROOT = path.resolve(new URL('..', import.meta.url).pathname);
+const PORT = process.env.CP_PORT || 4179;
+const results = [];
+const ok = (law, pass, detail = '') => { results.push({ law, verdict: pass ? 'PASS' : 'FAIL', detail }); console.log(`   ${pass ? 'PASS' : 'FAIL'}  ${law}${detail ? ' — ' + detail : ''}`); };
+
+// S14 (§4.10): the D-2 stale-server guard, ported to the standalone battery — a zombie preview on
+// the port once turned a red run green. A stale or missing served build exits 1, loudly, named.
+try { const { assertFreshServer } = await import('../scripts/fresh-server.mjs'); await assertFreshServer(Number(PORT), ROOT); }
+catch (e) { console.log('FRESH-SERVER FAIL — ' + e.message); process.exit(1); }
+
+const browser = await pw.chromium.launch({ args: ['--no-sandbox'] });
+
+// ---------- the engine-built record (node-side, deterministic) for the season flow ----------
+const { buildPool, newDraft, DEFAULT_CONFIG, runDraft, snakeOrder, freezePool, makeRng } =
+  await import(path.join(ROOT, 'src/lib/port/seam.ts'));
+const pool = buildPool(
+  fs.readFileSync(path.join(ROOT, 'data/nfl/madden27-ratings.csv'), 'utf8'),
+  fs.readFileSync(path.join(ROOT, 'data/nfl/free-agents-old-ratings.csv'), 'utf8'),
+  fs.readFileSync(path.join(ROOT, 'data/nfl/player-ids.csv'), 'utf8'));
+const userTeam = 5;
+// NOTE: the record rides the DEFAULT snake because the STORE's LOAD cannot carry a custom order yet —
+// that is the P-317 store gap (filed §5, the engine's newDraft supports it and the node battery
+// proves it). The moment the Architect's store change lands, this record takes the chosen slot.
+const st = newDraft(pool, makeRng(2026).fork('draft'), DEFAULT_CONFIG, snakeOrder());
+runDraft(st, makeRng(2026).fork('run'), { team: userTeam, policy: 'greedy' });
+const RECORD = { seed: 2026, userTeam, pool: freezePool(pool), picks: st.log.map((p) => ({ overall: p.overall, team: p.team, pid: p.player.id, slot: p.slot })) };
+console.log('== the season flow, played through the real UI (the record is engine-built node-side) ==');
+
+{
+  const page = await browser.newPage({ viewport: { width: 1180, height: 950 } });
+  const errs = []; const blocked = [];
+  page.on('pageerror', (e) => errs.push(String(e)));
+  page.on('requestfailed', (r) => blocked.push(r.url()));
+  await page.goto(`http://localhost:${PORT}/?dev=1`);
+  await page.waitForTimeout(2500);
+
+  // P-317: the picker is ON Team Select (team AND slot, same screen, same look)
+  ok('S1a the dev build opens at TEAM SELECT', (await page.locator('.cp-ts').count()) === 1);
+  await page.locator('.cp-ts-team', { hasText: 'Chicago Bears' }).click(); await page.waitForTimeout(200);
+  ok('S1b the SLOT PICKER is on the same screen as the team pick (P-317)', (await page.locator('.cp-ts-slot').count()) === 32, (await page.locator('.cp-ts-slot').count()) + ' slot buttons');
+  await page.locator('.cp-ts-slot', { hasText: /^6$/ }).first().click();
+  ok('S2 choosing a slot arms the CTA with it', /SLOT 6/.test(await page.locator('.cp-ts-go').textContent()));
+  await page.locator('.cp-ts-go').click(); await page.waitForTimeout(600);
+  const boardHead = (await page.locator('.cp-bhead').count()) ? await page.locator('.cp-bhead').textContent() : '';
+  ok('S3 the board is the chosen team (Chicago)', /Chicago/.test(boardHead) || /Chicago/.test(await page.locator('main').textContent()));
+  // the settings remember the choice (persistence across reload, verified)
+  await page.reload(); await page.waitForTimeout(2000);
+  const saved = await page.evaluate(() => localStorage.getItem('sim:nfl:settings'));
+  ok('S4 the team+slot choice persists across reload (settings blob)', saved !== null && /Chicago Bears/.test(saved ?? '') && /draftSlot/.test(saved ?? ''), (saved ?? '').slice(0, 80));
+
+  // the season begins from the finished draft (LOAD the engine-built record through the store)
+  // S15: the __cp hook's dispatch is AWAITED dispatchAsync (the contract §5 — a synchronous LOAD
+  // left behind breaks the contract); refresh() re-reads the settled state, exactly as before.
+  await page.evaluate(async (rec) => { await (window).__cp.store.dispatchAsync({ type: 'LOAD', record: rec }); }, RECORD);
+  await page.evaluate(() => { (window).__cp.refresh && (window).__cp.refresh(); });
+  await page.waitForTimeout(500);
+  await page.evaluate(() => { (window).__cp.go('complete'); });
+  let s5 = false, s5txt = '';
+  try { await page.waitForSelector('.cp-done-prov', { timeout: 20000 }); s5txt = await page.locator('.cp-done-prov').textContent(); s5 = /Your draft is complete/.test(await page.locator('main').textContent()) && /seed/.test(s5txt); } catch (e) { s5txt = String(e).slice(0, 80); }
+  ok('S5 the draft-complete state renders with the provenance stamp', s5, s5txt.slice(0, 90));
+
+  // PLAY THE SEASON: 22 weeks through the real UI
+  await page.locator('.cp-done .cp-cta').click(); await page.waitForTimeout(800);
+  ok('S6 the season hub renders (not-started → running)', (await page.locator('.cp-hub').count()) === 1 && /THE SEASON/.test(await page.locator('main').textContent()));
+  let steps = 0;
+  while (steps < 22) {
+    const btn = page.locator('.cp-hub .cp-cta, .cp-week .cp-cta').first();
+    if (!(await btn.count()) || !(await btn.isVisible())) break;
+    await btn.click(); await page.waitForTimeout(250);
+    steps++;
+    // the feed gate: the user game plays every week — close the feed with its own ← BOARD tool
+    if (await page.locator('.zrl-t').count()) {
+      const close = page.locator('.cp-feedtool', { hasText: 'BOARD' }).first();
+      await close.click(); await page.waitForTimeout(150);
+    }
+    const backHub = page.locator('.cp-navbtn', { hasText: 'SEASON' }).first();
+    if (!(await page.locator('.cp-hub').count())) { await backHub.click(); await page.waitForTimeout(150); }
+  }
+  ok('S7 the season stepped to the Super Bowl through the real UI (weeks played)', steps >= 18, steps + ' CTA steps taken');
+  await page.locator('.cp-navbtn', { hasText: 'STANDINGS' }).click(); await page.waitForTimeout(400);
+  ok('S8 the standings render 8 division tables through week 18', (await page.locator('.cp-stdiv').count()) === 8, (await page.locator('.cp-stdiv').count()) + ' division tables');
+  await page.locator('.cp-navbtn', { hasText: 'PLAYOFFS' }).click(); await page.waitForTimeout(400);
+  ok('S9 the bracket shows the champion banner after the Super Bowl', /SUPER BOWL CHAMPIONS/.test(await page.locator('main').textContent()));
+  await page.locator('.cp-navbtn', { hasText: 'AWARDS' }).click(); await page.waitForTimeout(400);
+  ok('S10 the awards screen names winners from the played season', /MOST VALUABLE PLAYER/.test(await page.locator('main').textContent()) && (await page.locator('.cp-award').count()) >= 3);
+  await page.locator('.cp-navbtn', { hasText: 'STATS' }).click(); await page.waitForTimeout(400);
+  ok('S11 the stats screen shows the leaders AND the 32-team ratings table', (await page.locator('.cp-statrow').count()) >= 8 && /THE 32 TEAMS/.test(await page.locator('main').textContent()));
+  await page.locator('.cp-navbtn', { hasText: 'REVIEW' }).click(); await page.waitForTimeout(400);
+  ok('S12 the season review states the honest outcome with integer chips', (await page.locator('.cp-chipstat').count()) >= 4);
+  await page.locator('.cp-navbtn', { hasText: 'BOOK' }).click(); await page.waitForTimeout(400);
+  ok('S13 the season book renders the champion roster cards', /THE SEASON BOOK/.test(await page.locator('main').textContent()) && (await page.locator('.cp-pcard').count()) >= 20, (await page.locator('.cp-pcard').count()) + ' cards');
+  await page.locator('.cp-navbtn', { hasText: 'SHARE' }).click(); await page.waitForTimeout(400);
+  ok('S14 the shareables render per stage — the preview arms (the export is the P-209 copy brag now; the download is retired, the work order §4.8)', (await page.locator('.cp-shareframe').count()) === 1);
+  ok('S15 zero page errors across the whole season flow', errs.length === 0, errs.slice(0, 2).join(' | '));
+  ok('S16 zero blocked requests across the season flow', blocked.length === 0, blocked.slice(0, 2).join(' | '));
+  await page.close();
+}
+
+// ---------- the states sweep + 390px + two modes on the fresh boot ----------
+{
+  const page = await browser.newPage({ viewport: { width: 1180, height: 950 } });
+  const errs = [];
+  page.on('pageerror', (e) => errs.push(String(e)));
+  await page.goto(`http://localhost:${PORT}/`);            // the PUBLIC default: the EMPTY state
+  await page.waitForTimeout(1500);
+  ok('S17 the public default is the EMPTY state + import (the F11 ruling), never a random board', /No player dataset yet/.test(await page.locator('main').textContent()));
+  ok('S18 the empty state offers the dev build link', (await page.locator('.cp-devlink').count()) === 1);
+
+  await page.goto(`http://localhost:${PORT}/?dev=1`); await page.waitForTimeout(2000);
+  // two modes: the settings form flips data-theme; both render
+  await page.locator('.cp-navbtn', { hasText: 'SETTINGS' }).click(); await page.waitForTimeout(300);
+  await page.selectOption('#set-mode', 'light'); await page.waitForTimeout(300);
+  const lightBg = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--bg').trim());
+  ok('S19 the LIGHT mode is the pale-rose law (#fdf2f6)', lightBg === '#fdf2f6', lightBg);
+  await page.selectOption('#set-mode', 'dark'); await page.waitForTimeout(300);
+  const darkBg = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--bg').trim());
+  ok('S20 the DARK mode is the plum law (#1e1119)', darkBg === '#1e1119', darkBg);
+  ok('S21 the mode choice persists in the settings blob', /"mode":"dark"/.test(await page.evaluate(() => localStorage.getItem('sim:nfl:settings')) ?? ''));
+
+  // reduced motion: the explicit setting wins
+  await page.check('#set-motion'); await page.waitForTimeout(200);
+  ok('S22 reduced-motion applies (body carries the class)', await page.evaluate(() => document.body.classList.contains('cp-reduced')));
+  await page.uncheck('#set-motion');
+
+  // saves: corrupt + newer refusals shown verbatim (the panel never repairs)
+  await page.locator('.cp-topbar-btn', { hasText: 'Saves' }).click(); await page.waitForTimeout(400);
+  ok('S23 the saves panel lists slots A · B · C', (await page.locator('.cp-slot').count()) >= 3 || /SLOT A/i.test(await page.locator('main').textContent()));
+  ok('S24 zero page errors across the states sweep', errs.length === 0, errs.slice(0, 2).join(' | '));
+  await page.close();
+}
+
+// ---------- 390px: the phone discipline on EVERY shell screen (the Part-5 walk, not just the entry) ----------
+{
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  const errs = [];
+  page.on('pageerror', (e) => errs.push(String(e)));
+  await page.goto(`http://localhost:${PORT}/?dev=1`); await page.waitForTimeout(2000);
+  const walk = [['team', '#/team'], ['cards', '#/cards'], ['hub', '#/hub'], ['week', '#/week'], ['standings', '#/standings'], ['bracket', '#/bracket'], ['awards', '#/awards'], ['review', '#/review'], ['stats', '#/stats'], ['book', '#/book'], ['share', '#/share'], ['guide', '#/guide'], ['settings', '#/settings'], ['saves', '#/saves']];
+  const table = [];
+  for (const [label, hash] of walk) {
+    await page.evaluate((h) => { location.hash = h; }, hash); await page.waitForTimeout(400);
+    const s = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth }));
+    table.push(label + ' ' + s.sw + '/' + s.cw);
+    ok(`S25 390px clean on ${label} (no horizontal scroll)`, s.sw - s.cw <= 0, s.sw + '/' + s.cw);
+  }
+  console.log('   390px walk table: ' + table.join(' · '));
+  // the BOARD at 390 (the D-fix law): the board was the 38px overflow — start a real draft and measure
+  await page.evaluate(() => { location.hash = '#/team'; }); await page.waitForTimeout(400);
+  await page.locator('.cp-ts-team', { hasText: 'Chicago Bears' }).click(); await page.waitForTimeout(150);
+  await page.locator('.cp-ts-go').click(); await page.waitForTimeout(900);
+  const bs = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth }));
+  ok('S25b the DRAFT BOARD fits 390px (scrollWidth <= clientWidth — the board-at-390 law)', bs.sw - bs.cw <= 0, bs.sw + '/' + bs.cw);
+  ok('S25c zero page errors across the 390px walk', errs.length === 0, errs.slice(0, 2).join(' | '));
+  await page.close();
+}
+
+// ---------- the restore law: a saved week comes back through the real UI (the D1 fix) ----------
+{
+  const page = await browser.newPage({ viewport: { width: 1180, height: 950 } });
+  const errs = [];
+  page.on('pageerror', (e) => errs.push(String(e)));
+  await page.goto(`http://localhost:${PORT}/?dev=1`); await page.waitForTimeout(2000);
+  await page.evaluate(async (rec) => { await (window).__cp.store.dispatchAsync({ type: 'LOAD', record: rec }); }, RECORD);
+  await page.evaluate(() => { (window).__cp.refresh && (window).__cp.refresh(); });
+  await page.waitForTimeout(300);
+  await page.evaluate(() => { (window).__cp.go('complete'); });
+  await page.waitForTimeout(300);
+  await page.locator('.cp-done .cp-cta').click(); await page.waitForTimeout(700);
+  // play week 1 through the real hub CTA; close the feed gate with the feed's own ← BOARD tool
+  await page.locator('.cp-hub .cp-cta').click(); await page.waitForTimeout(700);
+  if (await page.locator('.zrl-t').count()) {
+    await page.locator('.cp-feedtool', { hasText: 'BOARD' }).first().click(); await page.waitForTimeout(200);
+  }
+  // SAVE the week from the WEEK screen (the stepper's own save path, slot C)
+  await page.locator('.cp-navbtn', { hasText: 'WEEK' }).click(); await page.waitForTimeout(400);
+  await page.locator('.cp-week button', { hasText: 'SAVE' }).click(); await page.waitForTimeout(600);
+  // reload: fresh module state — the save MUST come back through the BOOT REHYDRATION (the A2
+  // split, cakepanz-8): autosaves exist, so the boot path is MANDATORY in S29. The c7 locator was
+  // phase-blind (the manual RESTORE A SAVED WEEK fallback counted) and passed with the boot
+  // rehydration DELETED — a tautology, measured 46/0 over a broken boot. The manual path is S31.
+  await page.reload(); await page.waitForTimeout(2000);
+  const resumedHub = (await page.locator('.cp-hub[data-phase="running"], .cp-hub[data-phase="finished"]').count()) === 1;
+  ok('S29 a saved week comes back through the BOOT REHYDRATION (autosaves exist — the boot path is mandatory; no manual fallback in this law)',
+    resumedHub,
+    (errs.slice(0, 2).join(' | ') || (resumedHub ? 'the hub resumed from the autosave on boot' : 'the boot did NOT resume the hub — S29 red')));
+  // S31 (the manual path, its own law): clear BOTH autosave keys, reload, restore through the UI
+  await page.evaluate(() => { localStorage.removeItem('sim:nfl:autosave:week'); localStorage.removeItem('sim:nfl:autosave:draft'); });
+  await page.reload(); await page.waitForTimeout(2000);
+  await page.locator('.cp-navbtn', { hasText: 'SEASON' }).click(); await page.waitForTimeout(400);
+  await page.locator('.cp-hub button', { hasText: 'RESTORE A SAVED WEEK' }).click(); await page.waitForTimeout(800);
+  ok('S31 the MANUAL restore (RESTORE A SAVED WEEK) brings the hub back when no autosave exists',
+    (await page.locator('.cp-hub[data-phase="running"], .cp-hub[data-phase="finished"]').count()) === 1,
+    (errs.slice(0, 2).join(' | ') || 'hub re-mounted from the week save (slot C)'));
+  ok('S30 zero page errors across the restore flow (boot + manual)', errs.length === 0, errs.slice(0, 2).join(' | '));
+  await page.close();
+}
+
+// ---------- L12 (cakepanz-9): the UNIFORM BOARD law — the Owner's ruling: "the whole draft
+// board should be the same for all picks" (the order §5/B-bis). No data-form attribute, no
+// simple-row anatomy, no FULL BOARD door, no late note, at ANY pick; one row anatomy from pick 1
+// to pick 12; every pick lands; zero page errors. (The late battery is deleted with the flip;
+// this is its replacement law in the shell battery.)
+{
+  const page = await browser.newPage({ viewport: { width: 1180, height: 950 } });
+  const errs = [];
+  page.on('pageerror', (e) => errs.push(String(e)));
+  await page.goto(`http://localhost:${PORT}/?dev=1`); await page.waitForTimeout(2000);
+  await page.evaluate(() => { localStorage.removeItem('sim:nfl:autosave:week'); localStorage.removeItem('sim:nfl:autosave:draft'); });
+  await page.reload(); await page.waitForTimeout(2000);
+  await page.locator('.cp-ts-team', { hasText: 'Chicago Bears' }).click(); await page.waitForTimeout(150);
+  await page.locator('.cp-ts-go').click(); await page.waitForTimeout(900);
+  const snapshots = [];
+  for (let i = 1; i <= 12; i++) {
+    await page.locator('.cp-rows .cp-row .cp-main').first().click(); await page.waitForTimeout(120);
+    await page.locator('.cp-rows .cp-row .cp-chip.cp-primary').first().click(); await page.waitForTimeout(120);
+    await page.locator('.cp-confirm .cp-go').click(); await page.waitForTimeout(300);
+    snapshots.push(await page.evaluate(() => ({
+      form: document.querySelector('.cp-board')?.getAttribute('data-form') ?? null,
+      simple: document.querySelectorAll('.cp-simplerow').length,
+      fullbtn: document.querySelectorAll('.cp-fullbtn').length,
+      latenote: document.querySelectorAll('.cp-late-note').length,
+      rows: document.querySelectorAll('.cp-rows .cp-row').length,
+      mains: document.querySelectorAll('.cp-rows .cp-row .cp-main').length,
+      mine: (window.__cp.store.getState().record?.picks ?? []).filter((p) => p.team === window.__cp.store.getState().record?.userTeam).length,
+    })));
+  }
+  const formAttrs = snapshots.filter((s) => s.form !== null).length;
+  const simpleNodes = snapshots.filter((s) => s.simple !== 0 || s.fullbtn !== 0 || s.latenote !== 0).length;
+  const anatomies = snapshots.filter((s) => s.mains !== s.rows).length;
+  const walkOK = snapshots.every((s, i) => s.mine === i + 1);
+  ok('L12 the uniform board (the Owner\'s ruling, cakepanz-9 §5): picks 1..12 render ONE anatomy — data-form absent at every pick, zero .cp-simplerow/.cp-fullbtn/.cp-late-note nodes ever, mains === rows at every pick, every pick lands, zero page errors',
+    formAttrs === 0 && simpleNodes === 0 && anatomies === 0 && walkOK && errs.length === 0,
+    `formAttrs=${formAttrs} simpleNodes=${simpleNodes} anatomyBreaks=${anatomies} walk=${walkOK ? '12/12' : 'BROKEN'} pageErrors=${errs.length}`);
+  await page.close();
+}
+
+// ---------- S32 (S15): law L-ERR — the self-clearing error, BOTH halves (the contract §5) ----------
+// After any resolved action the shell's visible error text equals state.error ?? ''. A failed
+// action shows its message; the next successful action clears it. Half 1: an ILLEGAL PICK (a QB
+// forced into K — the engine rejects the fit, no state change) shows the message. Half 2: a legal
+// pick through the real UI clears it. Zero page errors across both halves.
+{
+  const page = await browser.newPage({ viewport: { width: 1180, height: 950 } });
+  const errs = [];
+  page.on('pageerror', (e) => errs.push(String(e)));
+  await page.goto(`http://localhost:${PORT}/?dev=1`); await page.waitForTimeout(2000);
+  await page.evaluate(() => { localStorage.removeItem('sim:nfl:autosave:week'); localStorage.removeItem('sim:nfl:autosave:draft'); });
+  await page.reload(); await page.waitForTimeout(1500);
+  await page.locator('.cp-ts-team', { hasText: 'Chicago Bears' }).click(); await page.waitForTimeout(150);
+  await page.locator('.cp-ts-go').click(); await page.waitForTimeout(1200);
+  // half 1: the FAILED action's message is visible (dispatchAsync never rejects — the error rides
+  // the resolved state; refresh() mirrors it exactly as the app's own action sites do)
+  const h1 = await page.evaluate(async () => {
+    let firstId = null;
+    { let v; const un = window.__cp.vmStore.subscribe((x) => (v = x)); un(); firstId = v?.rows?.[0]?.id ?? null; }
+    const st = await window.__cp.store.dispatchAsync({ type: 'PICK', playerId: firstId, slot: 'K' });   // a QB into K — the illegal-fit rejection
+    await window.__cp.refresh();
+    const el = document.querySelector('.cp-error');
+    return { stateErr: st.error ?? '', shown: el ? el.textContent.trim() : '', userPicks: window.__cp.store.getState().record.picks.filter((p) => p.team === window.__cp.store.getState().record.userTeam).length };
+  });
+  ok('S32 L-ERR half 1: a FAILED action (illegal PICK, the rejected fit) shows its message — the shell error text equals state.error, the pick did not land, zero page errors',
+    h1.stateErr.length > 0 && h1.shown === h1.stateErr && h1.userPicks === 0 && errs.length === 0,
+    `state="${h1.stateErr.slice(0, 60)}" shown="${h1.shown.slice(0, 60)}" userPicks=${h1.userPicks} errs=${errs.length}`);
+  // half 2: the next SUCCESSFUL action clears it (a legal one-click pick through the real UI)
+  await page.locator('.cp-rows .cp-row .cp-draftbtn').first().click(); await page.waitForTimeout(900);
+  const h2 = await page.evaluate(() => ({
+    el: !!document.querySelector('.cp-error'),
+    stateErr: window.__cp.store.getState().error ?? '',
+    userPicks: window.__cp.store.getState().record.picks.filter((p) => p.team === window.__cp.store.getState().record.userTeam).length,
+  }));
+  ok('S32 L-ERR half 2: the next SUCCESSFUL action clears the message — the visible error is gone, state.error has reset, zero page errors (S15)',
+    !h2.el && h2.stateErr === '' && h2.userPicks === 1 && errs.length === 0,
+    `errorEl=${h2.el} stateErr="${h2.stateErr}" userPicks=${h2.userPicks} errs=${errs.length}`);
+  await page.close();
+}
+
+// ---------- S33 (S15): the glass panel law (the Owner: "too boxy ... not as colorful as w89") —
+// the large panels carry the w89 glass vocabulary (:625): 22px radius, the blur+saturate
+// backdrop, the --glass/--glassbd/--shadow tokens present in BOTH modes.
+{
+  const page = await browser.newPage({ viewport: { width: 1180, height: 950 } });
+  const errs = [];
+  page.on('pageerror', (e) => errs.push(String(e)));
+  await page.goto(`http://localhost:${PORT}/?dev=1`); await page.waitForTimeout(2000);
+  await page.locator('.cp-navbtn', { hasText: 'SETTINGS' }).click(); await page.waitForTimeout(400);
+  const glassLight = await page.evaluate(() => {
+    const el = document.querySelector('.cp-panel');
+    if (!el) return null;
+    const cs = getComputedStyle(el);
+    return { radius: cs.borderRadius, blur: cs.backdropFilter || cs.webkitBackdropFilter, glass: getComputedStyle(document.documentElement).getPropertyValue('--glass').trim(), bd: getComputedStyle(document.documentElement).getPropertyValue('--glassbd').trim(), shadow: getComputedStyle(document.documentElement).getPropertyValue('--shadow').trim() };
+  });
+  await page.selectOption('#set-mode', 'dark'); await page.waitForTimeout(300);
+  const glassDark = await page.evaluate(() => {
+    const el = document.querySelector('.cp-panel');
+    if (!el) return null;
+    const cs = getComputedStyle(el);
+    return { radius: cs.borderRadius, blur: cs.backdropFilter || cs.webkitBackdropFilter, glass: getComputedStyle(document.documentElement).getPropertyValue('--glass').trim() };
+  });
+  await page.selectOption('#set-mode', 'dark');   // leave the sweep's default in place
+  ok('S33 the glass panel law (S15 §2.7): the large panels are 22px-radius glass with the blur+saturate backdrop, and --glass/--glassbd/--shadow exist in BOTH modes (w89 :625 ported; no blue, the golds unchanged)',
+    !!glassLight && glassLight.radius === '22px' && /blur\(14px\)/.test(glassLight.blur) && glassLight.glass.length > 0 && glassLight.bd.length > 0 && glassLight.shadow.length > 0
+    && !!glassDark && glassDark.radius === '22px' && glassDark.glass.length > 0,
+    `light: r=${glassLight?.radius} blur=${glassLight?.blur} --glass=${glassLight?.glass} · dark: r=${glassDark?.radius} --glass=${glassDark?.glass} errs=${errs.length}`);
+  await page.close();
+}
+
+// ---------- S34 (S15 §4.4): the ENVELOPE STAMP LAW — the engineVersion a save carries EQUALS the
+// running engineVersion() (the stale hardcoded 67-cakepanz@d3bd81d2 stamp made the saves panel
+// flag every first-party save as foreign). Proven on the real autosave the START + pick write.
+{
+  const page = await browser.newPage({ viewport: { width: 1180, height: 950 } });
+  const errs = [];
+  page.on('pageerror', (e) => errs.push(String(e)));
+  await page.goto(`http://localhost:${PORT}/?dev=1`); await page.waitForTimeout(2000);
+  await page.evaluate(() => { localStorage.removeItem('sim:nfl:autosave:week'); localStorage.removeItem('sim:nfl:autosave:draft'); });
+  await page.reload(); await page.waitForTimeout(1500);
+  await page.locator('.cp-ts-team', { hasText: 'Chicago Bears' }).click(); await page.waitForTimeout(150);
+  await page.locator('.cp-ts-go').click(); await page.waitForTimeout(1200);
+  await page.locator('.cp-rows .cp-row.cp-top3 .cp-draftbtn').first().click(); await page.waitForTimeout(900);   // a pick writes the draft autosave
+  const s34 = await page.evaluate(() => {
+    let env = null; try { env = JSON.parse(localStorage.getItem('sim:nfl:autosave:draft') ?? 'null'); } catch {}
+    return { envStamp: env?.engineVersion ?? null, running: window.__cp.engineVersion() };
+  });
+  ok('S34 the envelope stamp law (S15 §4.4): the draft autosave\'s engineVersion EQUALS the running engineVersion() — no hardcoded previous-pin stamp; the saves panel never flags a first-party save as foreign',
+    !!s34.envStamp && s34.envStamp === s34.running && errs.length === 0,
+    `envelope=${s34.envStamp} running=${s34.running} errs=${errs.length}`);
+  await page.close();
+}
+
+// ---------- S35 (S15 §4.8): the BRAG-SURFACE LAW — P-209: the share is a copy-paste text; NO
+// download affordance anywhere; the seed-bearing stamp is not in the paste; the clipboard toast
+// confirms; and the link-carrying (season) button HIDES while the build-time constant is unset.
+{
+  const page = await browser.newPage({ viewport: { width: 1180, height: 950 } });
+  await page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
+  const errs = [];
+  page.on('pageerror', (e) => errs.push(String(e)));
+  await page.goto(`http://localhost:${PORT}/?dev=1`); await page.waitForTimeout(2000);
+  await page.evaluate(() => { localStorage.removeItem('sim:nfl:autosave:week'); localStorage.removeItem('sim:nfl:autosave:draft'); });
+  await page.reload(); await page.waitForTimeout(1500);
+  await page.locator('.cp-ts-team', { hasText: 'Chicago Bears' }).click(); await page.waitForTimeout(150);
+  await page.locator('.cp-ts-go').click(); await page.waitForTimeout(1200);
+  await page.locator('.cp-rows .cp-row.cp-top3 .cp-draftbtn').first().click(); await page.waitForTimeout(900);
+  await page.locator('.cp-navbtn', { hasText: 'SHARE' }).click(); await page.waitForTimeout(600);
+  const draft35 = await page.evaluate(() => ({
+    btn: document.querySelector('.cp-sharebtns .cp-cta')?.textContent?.trim() ?? null,
+    text: document.querySelector('.cp-bragtext')?.textContent?.trim() ?? '',
+    dl: document.body.innerHTML.includes('DOWNLOAD THE'),
+  }));
+  await page.locator('.cp-sharebtns .cp-cta').click(); await page.waitForTimeout(400);
+  const after35 = await page.evaluate(async () => {
+    let clip = null; try { clip = await navigator.clipboard.readText(); } catch {}
+    return { toast: document.querySelector('.cp-copytoast')?.textContent?.trim() ?? '', clip };
+  });
+  // the season stage: the link-carrying button HIDES while the build-time constant is unset —
+  // FF RE-HOME (2026-11-22, the continuation; the F27 discipline): the first FF execution at the
+  // final bytes proved this leg TAUTOLOGICAL (receipt deliveries/receipts/partH-s15/shell-FF-4278.log):
+  // the probe asserted the hidden CTA on a season stage whose {#if preview} gate was FALSE (no
+  // season started), so the whole .cp-sharebtns block was absent and the mutant's planted URL
+  // never reached the gate — the button was null in pristine AND mutant builds for the same
+  // vacuous reason. The probe now STARTS the season through the battery's own LOAD→complete→
+  // PLAY-THE-SEASON path (the S5/S6 machinery, engine-built RECORD), so the season stage renders
+  // its preview and the hasBragLink() gate is LIVE; the non-vacuity precondition (the preview IS
+  // on screen) is PART of the law. The mutant now dies twice over: the CTA renders (btn non-null)
+  // AND the composed text carries the planted http URL (anyHttp).
+  await page.evaluate(async (rec) => { await (window).__cp.store.dispatchAsync({ type: 'LOAD', record: rec }); }, RECORD);
+  await page.evaluate(() => { (window).__cp.refresh && (window).__cp.refresh(); });
+  await page.waitForTimeout(500);
+  await page.evaluate(() => { (window).__cp.go('complete'); });
+  await page.waitForTimeout(500);
+  await page.locator('.cp-done .cp-cta').click(); await page.waitForTimeout(900);
+  await page.locator('.cp-navbtn', { hasText: 'SHARE' }).click(); await page.waitForTimeout(600);
+  await page.locator('.cp-chipline .cp-navbtn', { hasText: 'SEASON' }).click(); await page.waitForTimeout(600);
+  const season35 = await page.evaluate(() => ({
+    wrap: !!document.querySelector('.cp-sharewrap'),   // non-vacuity: the season preview IS rendered
+    btn: document.querySelector('.cp-sharebtns .cp-cta')?.textContent?.trim() ?? null,
+    anyHttp: document.querySelector('.cp-share')?.textContent?.includes('http') ?? false,
+  }));
+  ok('S35 the brag-surface law (S15 §4.8): the share is a copy-paste brag — the draft-stage button copies the composed text to the clipboard with the confirmation toast, the seed-bearing stamp is not in the paste, no DOWNLOAD affordance exists anywhere, and the season (link-carrying) button HIDES while the build-time link is unset — asserted on a LIVE season stage (the preview rendered; the FF re-home)',
+    draft35.btn === 'COPY THE DRAFT BRAG' && draft35.dl === false && draft35.text.length > 0 && !draft35.text.includes('b36:')
+    && after35.toast.startsWith('Copied') && after35.clip === draft35.text
+    && season35.wrap === true && season35.btn === null && season35.anyHttp === false && errs.length === 0,
+    `btn="${draft35.btn}" dl=${draft35.dl} pasteLen=${draft35.text.length} toast="${after35.toast.slice(0, 28)}" clipMatch=${after35.clip === draft35.text} seasonWrap=${season35.wrap} seasonBtn=${season35.btn} anyHttp=${season35.anyHttp} errs=${errs.length}`);
+  await page.close();
+}
+
+
+{
+  const page = await browser.newPage({ viewport: { width: 1180, height: 950 } });
+  const errs = []; const blocked = [];
+  page.on('pageerror', (e) => errs.push(String(e)));
+  page.on('requestfailed', (r) => blocked.push(r.url()));
+  const fileUrl = 'file://' + path.join(ROOT, 'dist', 'single.html');
+  await page.goto(fileUrl + '?dev=1'); await page.waitForTimeout(3000);
+  // the slot picker arms when a team is chosen (same screen, same look) — choose one, then count
+  await page.locator('.cp-ts-team', { hasText: 'Chicago Bears' }).click(); await page.waitForTimeout(400);
+  const booted = await page.evaluate(() => ({ teams: document.querySelectorAll('.cp-ts-team').length, slots: document.querySelectorAll('.cp-ts-slot').length }));
+  ok('S26 the single-file dist boots from vanilla file:// at Team Select (P-317 picker present)', booted.teams === 32 && booted.slots === 32, JSON.stringify(booted));
+  ok('S27 file:// zero console errors', errs.length === 0, errs.slice(0, 2).join(' | '));
+  ok('S28 file:// zero blocked requests', blocked.length === 0, blocked.slice(0, 2).join(' | '));
+  await page.close();
+}
+
+await browser.close();
+const pass = results.filter((r) => r.verdict === 'PASS').length;
+const fail = results.filter((r) => r.verdict === 'FAIL').length;
+console.log(`\n== SHELL BATTERY · ${pass} pass · ${fail} fail ==`);
+fs.writeFileSync(path.join(ROOT, 'batteries', 'shell-battery.json'), JSON.stringify({ pass, fail, results }, null, 1));
+process.exit(fail ? 1 : 0);

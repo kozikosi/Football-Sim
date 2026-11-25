@@ -1,0 +1,7 @@
+# w89 reference bytes — the side-by-side LEFT source (2026-11-24 sitting)
+# extracted: git show origin/gh-pages:Football-Sim-Z-post-blue-w89.html > /tmp/w89ref/w89.html
+# the capture run used W89_URL=file:///tmp/w89ref/w89.html (the script's own fallback path — the
+# local byte-copy of the same gh-pages bytes; the live URL was not needed)
+sha256: dbb8c27ad6444115fcac60963e45e91a832c9cb8abc4abeda9b740cc5cca514c
+bytes:  1922769
+gh-pages tip at fetch: 66096fb (66096fb, on top of 3e69567 Publish w89)
