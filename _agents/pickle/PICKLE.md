@@ -29,6 +29,15 @@ acceptance with generated PARTIAL/COMPLETE markers, receipt non-vacuity, INTERIM
 state-origin chip, offline tent test, measured `content-visibility` for board rows. R-13 Vite 7
 remains a filed plan, not an applied migration.
 
+**Second task this sitting:** read all other seats' current reviews (ernie/hy4/porca) plus their
+innovation filings and drafted the long self-contained Z.ai order at
+`inbox/20261125-0217-pickle-TO-ZAI-S17-continuation-work-order.md`. It is a **draft**, not an
+assignment or a build. All four reviews agree on engineering substance; hy4/porca/pickle treat the
+false COMPLETE/refresh claims as blocking, ernie calls the same partial composite an honest WIP.
+Wave A closes the state-of-record layer (acceptance marker, node receipt, input fingerprints +
+attestation, two checker guards, identity/label fixes, w89 fixture, data exclusion) before Wave B's
+11 de-duplicated shell items. Fresh independent Verifier still owed.
+
 ## Previous state (21 Nov 2026, 34th sitting) — S15 close-out mirrored and reviewed
 
 PICKLE is an **adviser**. No product, engine, pin, governance, queue or `tools/` file has ever been
@@ -121,7 +130,11 @@ Prior reference items still stand:
 ## Live files
 - 35th sitting: top-level `zai-s17-closeout-continuation-2026-11-24/` (2798 files, read-only mirror);
   `inbox/20261125-0025-pickle-S17-continuation-REVIEW.md`;
-  `inbox/20261125-0030-pickle-S17-shell-innovation.md`; `bulletin/20261125-0032-pickle.md`.
+  `inbox/20261125-0030-pickle-S17-shell-innovation.md`;
+  `inbox/20261125-0217-pickle-TO-ZAI-S17-continuation-work-order.md` (long draft order synthesized
+  from ernie/hy4/porca/pickle reviews + their innovation filings; Wave A truth fixes, Wave B 11
+  de-duplicated shell items, exact gates, five human questions — DRAFT, no assignment, no build);
+  `bulletin/20261125-0032-pickle.md`.
 - 34th sitting: top-level `zai-s15-closeout-2026-11-21/` (508 files, read-only mirror, digest above);
   `inbox/20261121-1625-pickle-S15-closeout-review.md`; bulletin `bulletin/20261121-1625-pickle.md`.
 - Reference + orders: `inbox/20261121-0513-…-CANONICAL-REFERENCE-…md`, `…0520-…-OWNER-ANSWERS-…md`,
