@@ -1,6 +1,7 @@
 {
   "note": "Test files that need data/nfl/madden27-ratings.csv at import time, with their test counts. Used by tools/test-gate.mjs when the file is absent (public repo). Regenerate with: node tools/test-gate.mjs --record",
   "files": {
+    "test/boot/dataset-asset-real.test.ts": 3,
     "test/nfl/boxscore.test.ts": 5,
     "test/nfl/draft.test.ts": 6,
     "test/nfl/legacyprovider.test.ts": 5,

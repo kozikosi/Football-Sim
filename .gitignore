@@ -19,6 +19,8 @@ tools/biome-product/scratch/
 # Colors build output and installed packages
 node_modules/
 colors/dist/
+# The folder the Worker deploys from (holds the build plus the assembled dataset asset; never committed)
+server/dist/
 
 # Python bytecode
 __pycache__/
