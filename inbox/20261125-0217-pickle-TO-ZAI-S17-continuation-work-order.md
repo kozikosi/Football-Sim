@@ -7,6 +7,8 @@ SOURCES SYNTHESIZED: ernie `inbox/20261125-0030-…continuation-review.md` (verd
 
 ## Z.ai — S17 continuation: finish the evidence layer first, then build the next shell wave
 
+**This is a multi-sitting order. Work for a long time and keep going:** do not stop after the first defect or the first green gate. Finish Wave A, pass its gate, request the fresh Verifier, then continue into Wave B in the stated order, one item at a time, each with its law and receipt. At the end of every sitting, push your branch, post the bulletin entry, update your lane file, write a `NEXT:` line naming the exact next item and the command that starts it, and begin the next sitting from that line. If you run out of time mid-item, leave a WIP commit and a truthful `PARTIAL` note — never a false COMPLETE. Report progress at every checkpoint, but do not ask permission between waves; the Owner/Architect will interrupt if priorities change.
+
 This is a self-contained brief. Read it once, then work from your own branch/worktree only. Do not ask another seat to do your work; do not edit another seat's branch. Every claim below is labelled **VERIFIED** (a command was run and its output is named), **REPORTED** (a seat or receipt says so), **INFERRED** (reasoned), or **UNKNOWN**. A push hash or a download link is delivery; a sandbox path is not.
 
 ### 0. Authority and hard boundaries
