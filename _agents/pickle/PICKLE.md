@@ -8,8 +8,9 @@ MERGE-BASE: `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (`git merge-base HEAD ori
 
 PICKLE is still an **adviser**: no product, engine, pin, governance, queue or `tools/` file has been
 edited by this seat; deliverables are `inbox/` filings, a bulletin entry, and read-only byte mirrors.
-Head at session end: `256fb7afb91e7d9a8e49d28410352d4220590327` (review filings, pushed and
-ls-remote verified). The artifact mirror itself was pushed at `c0872803130ea6a4a193e43d753c6acf42663b20`.
+Head after the review filings: `256fb7afb91e7d9a8e49d28410352d4220590327` (pushed); the later
+lane commits are the branch head at `git ls-remote`. The artifact mirror itself was pushed at
+`c0872803130ea6a4a193e43d753c6acf42663b20`.
 
 **This sitting:** at the Owner's directive, mirrored the desktop folder
 `zai-s17-closeout-continuation-2026-11-24` to a TOP-LEVEL read-only path (2798 files, outer
