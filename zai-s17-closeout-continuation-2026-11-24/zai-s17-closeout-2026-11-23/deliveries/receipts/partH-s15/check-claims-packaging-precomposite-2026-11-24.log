@@ -1,0 +1,26 @@
+OK    [claims-exist] the claim list itself is on the tree (the T2 protocol is installed)
+OK    [claims-tool-exists] the claims checker is on the tree
+OK    [seal-count] the seal carries exactly 374 content entries (measured 2026-11-24 at the continuation bytes: 370 delivered + claims.json + check-claims.mjs + README-S17-PACKAGE-NOTE.md + the R-13 filing)
+OK    [manifest-identity] MANIFEST.txt is byte-identical to CHECKSUMS.txt (the regen writes both; the ernie check, in code)
+OK    [seal-verifies] verify-package green at these bytes: every entry OK, zero FAILED/missing, converse clean, and OK == the seal count
+OK    [dist-in-seal-and-status] all four shipped dist bytes' sha256 prefixes are exactly what SHELL-STATUS.md prints (css, js, index, single)
+OK    [node-battery-live] the node battery ran LIVE in the SHELL-STATUS regen: 37 pass / 0 fail in the native node:test format (the 2026-11-23 RED's claim-2 expectation, corrected to the real format)
+OK    [contrast-live] the contrast guardrail ran LIVE in the SHELL-STATUS regen: 2 pass · 0 fail
+OK    [freshness-content-based] the browser-battery freshness verdicts are CONTENT-based (the T1 rule) — no bare clock-age STALE flag survives in the generated status
+OK    [no-bare-stale-flag] the retired misleading signal is gone: no 'STALE — re-run the battery' line next to green receipts
+OK    [sbs-receipt] the side-by-side receipt: 41 captures, the 40-cell matrix COMPLETE, zero fallback captures, zero right-verdict FAIL rows, and the doc's fallback cells equal the receipt's fallbacks (0)
+OK    [sbs-nonvacuity] every one of the 41 captures carries a met non-vacuity marker — the JSON states it twice per capture (the capture record + the nonVacuity block), so the count is 82
+OK    [sbs-orphan-renamed] the orphan Settings capture is named new-only-… (the orcads F4 rename)
+OK    [lineage-note] the package identity + lineage note exists (the porca/pickle finding)
+OK    [r13-plan-filed] the R-13/Vite-8 compatibility RECEIPT PLAN is filed (plan only — no dependency change)
+OK    [no-stale-zip-claim] the 2026-11-22 zip promise is RETRACTED in the hand-over prose (the hy4 finding) — the promise sentence no longer stands
+OK    [no-zip-file-claim-active] no doc still claims the 2026-11-22 continuation SHIPPED the named zip (the sentence is gone, not hedged)
+OK    [boot-docs-current] the boot docs carry the 2026-11-24 sitting's state blocks (the ernie F1 rewrite)
+OK    [start-doc-current] the START file's state block is the 2026-11-24 sitting
+OK    [handover-left-correction] the hand-over §13.3 carries the 2026-11-24 LEFT s1–s3 correction (boot-state fallbacks named, re-drive pointed at)
+SKIP  [acceptance-complete] not in phase packaging
+SKIP  [acceptance-no-stops] not in phase packaging
+SKIP  [engine-430] not in phase packaging
+SKIP  [node-battery-receipt] not in phase packaging
+SKIP  [falsifier-verdicts] not in phase packaging
+check-claims: 20 OK · 0 RED · 5 skipped (phase packaging; the claim list is claims.json — the T2 protocol, the orcads F2 fix)

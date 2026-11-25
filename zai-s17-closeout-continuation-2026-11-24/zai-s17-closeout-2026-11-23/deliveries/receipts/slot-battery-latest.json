@@ -1,0 +1,148 @@
+{
+  "results": [
+    {
+      "law": "N-S1 slot 2 · Buffalo Bills (natural 1): the record carries pickSlot=2 and no error",
+      "verdict": "PASS",
+      "detail": "pickSlot=2 error=null"
+    },
+    {
+      "law": "N-S2 slot 2 · Buffalo Bills (natural 1): the CPU has made exactly 1 picks, none by the user's team",
+      "verdict": "PASS",
+      "detail": "logged=1"
+    },
+    {
+      "law": "N-S3 slot 2 · Buffalo Bills (natural 1): the user is on the clock at overall pick 2",
+      "verdict": "PASS",
+      "detail": "pos=1 order[pos]=0"
+    },
+    {
+      "law": "N-S4 slot 2 · Buffalo Bills (natural 1): the full 1,024 order equals the independent oracle (the swap stands in EVERY round)",
+      "verdict": "PASS",
+      "detail": "len=1024"
+    },
+    {
+      "law": "N-S5 slot 2 · Buffalo Bills (natural 1): the displaced team holds the user's natural round-1 position",
+      "verdict": "PASS",
+      "detail": "order[natural]=1 expected=1"
+    },
+    {
+      "law": "N-S6 slot 2 · Buffalo Bills (natural 1): every logged pick rides the oracle order",
+      "verdict": "PASS",
+      "detail": "checked=1"
+    },
+    {
+      "law": "N-S1 slot 32 · San Francisco 49ers (natural 31): the record carries pickSlot=32 and no error",
+      "verdict": "PASS",
+      "detail": "pickSlot=32 error=null"
+    },
+    {
+      "law": "N-S2 slot 32 · San Francisco 49ers (natural 31): the CPU has made exactly 31 picks, none by the user's team",
+      "verdict": "PASS",
+      "detail": "logged=31"
+    },
+    {
+      "law": "N-S3 slot 32 · San Francisco 49ers (natural 31): the user is on the clock at overall pick 32",
+      "verdict": "PASS",
+      "detail": "pos=31 order[pos]=30"
+    },
+    {
+      "law": "N-S4 slot 32 · San Francisco 49ers (natural 31): the full 1,024 order equals the independent oracle (the swap stands in EVERY round)",
+      "verdict": "PASS",
+      "detail": "len=1024"
+    },
+    {
+      "law": "N-S5 slot 32 · San Francisco 49ers (natural 31): the displaced team holds the user's natural round-1 position",
+      "verdict": "PASS",
+      "detail": "order[natural]=31 expected=31"
+    },
+    {
+      "law": "N-S6 slot 32 · San Francisco 49ers (natural 31): every logged pick rides the oracle order",
+      "verdict": "PASS",
+      "detail": "checked=31"
+    },
+    {
+      "law": "N-S7 undo after a slotted pick: the record (incl. pickSlot) returns byte-for-byte to the pre-pick state and the user is back on the clock",
+      "verdict": "PASS",
+      "detail": "pos=1 (pre-pick: 1) recordIdentical=true"
+    },
+    {
+      "law": "N-S8 the user pick lands exactly at overall pick 2 and on the user roster (the CPU then picks on)",
+      "verdict": "PASS",
+      "detail": "pick@2 team=0 userPicks=1"
+    },
+    {
+      "law": "N-S9 save → restore replays the slotted order (no \"pick is out of order\")",
+      "verdict": "PASS",
+      "detail": "writeErr=\"\" r.ok=true error=null restoredPickSlot=32"
+    },
+    {
+      "law": "N-S10 the natural slot (slot = team index + 1) is OMITTED from the record and the plain snake runs",
+      "verdict": "PASS",
+      "detail": "pickSlotPresent=false onClock=0"
+    },
+    {
+      "law": "N-S11 a bad slot (33, 2.5) is REJECTED with a named error, no draft mounts",
+      "verdict": "PASS",
+      "detail": "e1=\"start: bad pick slot\" e2=\"start: bad pick slot\""
+    },
+    {
+      "law": "B1 the DRAFT button NAMES the chosen slot",
+      "verdict": "PASS",
+      "detail": "DRAFT AS BUFFALO BILLS · SLOT 2"
+    },
+    {
+      "law": "B1 EARLY slot: START carried pickSlot through the real flow",
+      "verdict": "PASS",
+      "detail": "pickSlot=2 userTeam=0"
+    },
+    {
+      "law": "B1 EARLY slot: the displaced team made overall pick 1 (the slot is not ignored)",
+      "verdict": "PASS",
+      "detail": "logged=1 first=1 onClock=0 pos=1"
+    },
+    {
+      "law": "B1 EARLY slot: the live order equals the independent oracle",
+      "verdict": "PASS",
+      "detail": "len=1"
+    },
+    {
+      "law": "B1 the real pick lands exactly at overall pick 2 on the chosen roster (the CPU then picks on)",
+      "verdict": "PASS",
+      "detail": "pick@2=0 userPicks=1 roster=1"
+    },
+    {
+      "law": "B1 the mode lock fired at START and holds after the pick",
+      "verdict": "PASS",
+      "detail": "atStart=true afterPick=true"
+    },
+    {
+      "law": "B2 the reload replays the SAME slotted order (pickSlot restored, no \"pick is out of order\")",
+      "verdict": "PASS",
+      "detail": "error=null pickSlot=2 sameOrder=true onClock=0"
+    },
+    {
+      "law": "B2b the restore-replay reassurance RENDERS on the restore path (a reloaded slotted draft shows the pickSlot note without a live requestedSlot — S4)",
+      "verdict": "PASS",
+      "detail": "screen=complete present=true text=\"You drafted at slot 2 — the store traded Buffalo Bills into that slot an…\""
+    },
+    {
+      "law": "B3 LATE slot: START carried pickSlot=32; 31 CPU picks ride the oracle; the user is on the clock at pick 32",
+      "verdict": "PASS",
+      "detail": "pickSlot=32 logged=31 onClock=30"
+    },
+    {
+      "law": "B4 the natural slot omits pickSlot and the plain snake runs (on clock at the natural pick)",
+      "verdict": "PASS",
+      "detail": "pickSlot=null onClock=1 first=0"
+    },
+    {
+      "law": "B5 zero page errors across the whole P-317 walk",
+      "verdict": "PASS",
+      "detail": "clean"
+    }
+  ],
+  "pass": 28,
+  "fail": 0,
+  "skip": 0,
+  "distHash": "8144ae6ce0205936fe6676a760d88284e0fc4dbc317391dea179c721de3968c5"
+}

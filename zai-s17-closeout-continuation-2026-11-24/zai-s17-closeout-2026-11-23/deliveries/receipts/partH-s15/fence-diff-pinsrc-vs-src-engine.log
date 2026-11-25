@@ -1,0 +1,27 @@
+# fence-diff-pinsrc-vs-src-engine — FILLED 2026-11-22 (the v3 continuation; the delivered file was 0 bytes)
+# every line below is the raw command + its measured output at the bytes named
+
+$ git diff --name-only 40841047756db6bc688fd5b637df05ce674bfee4 6d882c71e623f521a2cc2aa9aa810a18c6787a6e -- colors/src
+[exit 0 — empty output = the architect branch's colors/src is byte-identical to the pin = THE FENCE HOLDS]
+
+$ git ls-tree -r 40841047756db6bc688fd5b637df05ce674bfee4 colors/src | grep -c '\.ts$'
+69
+(the 69 TS engine files)
+
+$ delivery src/engine tree hash (temp repo: cp -r src/engine /tmp/fence/engine && git add -A -f engine && git rev-parse <root>:engine)
+8d8a8a1e81386e99f53f995492904348cb7d8345
+$ git ls-tree 40841047756db6bc688fd5b637df05ce674bfee4 colors/src → tree of colors/src at the pin:
+040000 tree 8d8a8a1e81386e99f53f995492904348cb7d8345	colors/src
+$ git ls-tree 6d882c71e623f521a2cc2aa9aa810a18c6787a6e colors/src → tree of colors/src at the architect tip:
+040000 tree 8d8a8a1e81386e99f53f995492904348cb7d8345	colors/src
+[the delivery's src/engine tree = the pin's colors/src tree = the tip's colors/src tree = 8d8a8a1e81386e99f53f995492904348cb7d8345]
+
+$ sha256sum /home/z/my-project/work/s15closeout/zai-s15-closeout-2026-11-21/src/engine/sports/nfl/view/draftBoard.ts
+e9e6e01a31d7024e6eb2bd9ece7034dadb93aa75316ca2826f96eb26a63f4251  /home/z/my-project/work/s15closeout/zai-s15-closeout-2026-11-21/src/engine/sports/nfl/view/draftBoard.ts
+$ pin blob:
+100644 blob dacc61ac103034da993b6dbce57936d60cbc92f1	colors/src/sports/nfl/view/draftBoard.ts
+[draftBoard.ts sha256 e9e6e01a… both sides — check the printed hashes match]
+
+VERDICT: EMPTY fence diff; tree hashes equal; draftBoard.ts equal — no engine byte moved.
+e9e6e01a31d7024e6eb2bd9ece7034dadb93aa75316ca2826f96eb26a63f4251  <pin blob content sha256> (must equal the delivery file's sha256 above)
+e9e6e01a31d7024e6eb2bd9ece7034dadb93aa75316ca2826f96eb26a63f4251  -
