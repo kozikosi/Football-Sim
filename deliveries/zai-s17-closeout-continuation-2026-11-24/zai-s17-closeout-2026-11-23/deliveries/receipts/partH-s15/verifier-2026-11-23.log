@@ -1,0 +1,26 @@
+# verifier-2026-11-23 — the INDEPENDENT post-reseal Verifier (the v3 order's Step G)
+# A fresh general-purpose subagent, no shared context, read-only; it ran every tool itself.
+# ITS VERDICT LINE: "VERDICT: RED — claim 2, node battery line: the literal '37 pass · 0 fail'
+#   appears in no line of ACCEPTANCE-RECEIPTS.txt".
+# RESOLUTION (the package is GREEN; the expectation was mis-specified by the author of the check
+# list, not by the package): the node battery runs under node:test's NATIVE reporter — its receipt
+# line is "ℹ tests 37 / ℹ pass 37 / ℹ fail 0" + EXIT_CODE=0 (the "· N pass · 0 fail" banner format
+# is the browser batteries' custom format). The Verifier's own output confirms the substance:
+#   "the node battery's 37-pass/0-fail result IS receipted, but only as raw node:test output
+#    ('ℹ tests 37 / ℹ pass 37 / ℹ fail 0', followed by EXIT_CODE=0), the expectation line
+#    'expect 37/37' (line 62), and the floors line '… node 37/37 …' (line 471)".
+# Every measured claim passed: seal 369 OK/0 FAILED/converse clean exit 0 · gate-manifest PASS
+# 369 + boot target 2 assets · numerals CLEAN ×2 · ACCEPTANCE RUN COMPLETE (no STOPPED, 24 ×
+# EXIT_CODE=0, 39 DIED, zero TAUTOLOGY/COULD-NOT-RUN verdict tokens) · side-by-side 30 captures,
+# 0 failing checks, all PNGs >20KB · placeholder scan clean across the nine delivered docs ·
+# dist boot verified (index.html 3edb5c6f…, zero googleapis/gstatic) · 151 child logs ·
+# the fence stable (src/engine tree sha 3663a0d2…, uniform 2026-11-22 mtimes — untouched).
+# Full subagent transcript retained in the session log; the verdict is accepted with the
+# claim-2 format correction above. The receipt layer is excluded from the seal — this file
+# post-dates reseal-final-2026-11-23.log without breaking it.
+
+# POST-VERIFIER DELTA (the audit this continuation ran after the Verifier): the seal moved 369→370
+# (reseal-final2-2026-11-23.log) — the delta is the audit-gap closings only: the LEFT s4/s5 + RIGHT s5
+# side-by-side captures (the 5x2x2x2 matrix completed, 41 files), inbox/20261123-zai-innovation-backlog-ranked.md
+# (the v3 §9 filing), the §13.3/§26.10 count updates to the measured 41, and the SHELL-STATUS
+# final-bytes regeneration (live: node 37/37, contrast 2/0). No law touched; gates re-run GREEN at 370.
