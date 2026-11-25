@@ -1,0 +1,63 @@
+§24 CAKEPANZ-12 — THE FIX ROUND (2026-11-20; every stdout below is this sitting's own print)
+
+§24.1 THE RECONSTRUCTION (the base re-validated before any fix): c9 full tree (inkling's hosted
+  copy) + the c10 delta overlay + the c11 diffs + the engine re-pin procedure at 408410477
+  (colors/src → src/engine, 69 TS files; precompile regenerated; 1 transformed file). The
+  reproduced counts: engine 430/430 · node 33/33 · contrast 2/0 · slice 29/0/10/3 · shell 48/0 ·
+  board 11/0 · slot 27/0 · visual 13/0 · and stage 13b stopped on the F20 TAUTOLOGY exactly as the
+  c11 sitting recorded (receipt: receipts/partH-c12/baseline-13b-tautology.log).
+
+§24.2 THE SEED-CODE ROUND-TRIP (T2/PORCA S1 — receipt: receipts/partH-c12/seed-roundtrip.log):
+  BEFORE (the c11 bytes): failures 700 / 9000, first=1296 · "1296 displayed '100' replayed 100".
+  AFTER (cakepanz-12): 1000–9999 → 0; the widened range 100,000–9,999,999 → 0; the strided sweep
+  1…2147483647 (step 997) → 0; boundaries OK; the legacy forms OK. Exit 0. Law W10 (visual battery)
+  imports the PRODUCT's module — no copy, no tautology.
+
+§24.3 THE PACKAGING VERIFY (T4 — receipt: receipts/partH-c12/t4-verify-package-proof.log):
+  TAMPERED (a byte appended to README.md): `verify-package: 39 OK / 2 FAILED / 0 missing` —
+  CHECKSUMS.txt: FAILED (the empty-hash self-line) and README.md: FAILED named — EXIT 1.
+  CLEAN (self-line omitted — the fixed convention): `verify-package: 40 OK / 0 FAILED / 0 missing`
+  — EXIT 0. The convention: CHECKSUMS.txt never lists itself (a file cannot contain its own
+  digest); `md5 -c` is a macOS no-op and `md5sum` is absent on a stock Mac — node crypto only.
+
+§24.4 THE GH-PAGES TEST RE-POINT (T3 — receipt: receipts/partH-c12/t3-ghpages-repoint.log):
+  The Architect's ruling (`17e79b1a` + claude/NOW.md: "NOT applied: I push only my branch;
+  Z.ai/Owner apply to gh-pages"). BEFORE (the unpatched deployed bytes): tests 286 / pass 277 /
+  fail 9. The patch (tests-only: lineup.test.ts, versions.test.ts) dry-run clean, applied.
+  AFTER: tests 286 / pass 286 / fail 0, exit 0 (bare Node, 44 s). The two files ride
+  deliverables/gh-pages-repoint/; the relay applies with one `patch -p1` at the branch root.
+
+§24.5 THE C10 HOSTS (T8 — receipt: receipts/partH-c12/t8-host-counts-and-refusal.log):
+  All four hosts (beam, glyph, inkling, orcaink), fresh fetches: 48 OK / 1 missing / 51 files /
+  49 CHECKSUMS entries — the missing entry is line 18 (slice1-battery.json, 6,418 B /
+  0a2869538a706e7e6ea864664b7e5c9f). The repair BYTES are not in any fetched branch or history
+  (14 tips + depth-30 walks) — they live only in the Owner's zip root. A regenerated receipt is
+  NOT a substitute (the slice receipt is run-variant: two runs differ — Mahomes vs Purdy draws).
+  The script's refusal VERIFIED on all four hosts: `REFUSE: repair file is 6423 B / 333c588a…,
+  expected 6418 B / 0a2869…` — exit 2, nothing written. The relay action + the STOP rule are in
+  the four inbox notes. BLOCKED, not forced.
+
+§24.6 THE FALSIFIER (T1 — receipt: receipts/partH-c12/falsify-board-13b.log):
+  The D-2 stale-server guard carried into falsify-board.mjs (per-case lsof kill, polled
+  readiness, served-hash === this-copy-hash, UNRUNNABLE-is-failure, per-case child log kept).
+  The guarded run at the pre-hardening bytes: F0-board 15/0 + F0-shell 48/0 baselines green;
+  F15/F17/F18/F19/F21/F22 ALL DIED; F20 = RED ELSEWHERE — a FAILURE, exit 1 (the false green is
+  dead). The guard exposed the deeper root cause: the mutant battery CRASHED before L13 and L16a
+  passed vacuously (ringed=0, empty every()). The battery is HARDENED (L16a requires 3+ ringed
+  rows; the one-click walk fails loud and skips; L21's focus row no longer needs .cp-suggest) and
+  a planted-mutant run shows the laws failing loudly with no crash. OPEN: the full 9-case DIED
+  run (expect F20 … DIED — FAIL L13) is the next sitting's first command — ~20 min.
+
+§24.7 THE BATTERIES AT THE FINAL BYTES (this sitting's re-runs): board 15/0 (L16 ring-present +
+  L18 the double-activation guard · L19 the staged-banner disarm · L20 the value cells announce
+  their values ("99 overall / +3.3 wins / +3.3 priority / 99% gone odds") · L21 the Tab walk
+  main→quick→method with the reveal) · slot 28/0 (+B2b the restore-path reassurance: "You drafted
+  at slot 2 — …") · visual 15/0 (+W10 the round-trip · +W11 the 768px band: scrollW=768/768,
+  quick 181×29, one pick, zero errors; the W8 draw rode the URL: seed 5288417 → b36:35ckh) ·
+  node 33/33 · slice 29/0/10/3 · contrast 2/0.
+
+§24.8 THE DOC STATE: README carries the fix banner + the counts + the portable verify; the C25
+  corrections are FILED (inbox, not edited — the ring line says Contract B, `?seed=` is done,
+  P-316's slice 3 is BUILT); the c11 gaps restored (battery:slot/battery:visual in package.json;
+  this §24 written where the c11 report promised one). SHELL-STATUS.md regenerates by the tool at
+  stage 13d — not re-run at the final bytes this sitting (UNKNOWN, named in the report §8).
