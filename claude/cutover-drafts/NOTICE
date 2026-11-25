@@ -1,0 +1,11 @@
+76 Pancakes
+Copyright (c) 2026 kozikosi. MIT licence: see LICENSE.
+
+Player data
+Player ratings, free-agent and player-id files are not part of this repository. They are supplied privately when a site is released, or by you as your own file. The MIT licence covers the code and documents here and grants nothing over player data.
+
+Play-by-play packs (data/packs/)
+Made from nflverse play-by-play data (https://github.com/nflverse/nflverse-data), published under Creative Commons Attribution 4.0 (https://creativecommons.org/licenses/by/4.0/). Changes made: penalty and no-play rows removed; plays grouped into game situations and counted; pass-play models fitted from the same rows.
+
+No affiliation
+This project is not affiliated with or endorsed by the NFL, its clubs, the NFL Players Association, Electronic Arts or any data provider. Names and marks belong to their owners.

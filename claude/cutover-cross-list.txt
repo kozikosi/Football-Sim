@@ -1,0 +1,35 @@
+# What crosses into the new 76pancakes repo with unchanged paths (a trailing / means the whole folder). Everything else stays frozen in the old repo.
+# Source: inbox/20261122-1302-…-CUTOVER-MANIFEST.md section 2; the _agents entries are the files that crossing code and rules name by path.
+# Hidden files (claude/cutover-hide-list.txt) are removed afterwards. inbox/ crosses by the evidence rule, computed by tools/cutover-rehearsal.py.
+.github/
+.gitattributes
+.gitignore
+.nvmrc
+biome.json
+AGENTS.md
+CLAUDE.md
+BASELINES.md
+colors/
+server/
+data/
+tools/
+claude/
+_agents/BUILD.txt
+_agents/COUNCIL.md
+_agents/END-OF-CHAT.md
+_agents/ENGINE-MATH-SPEC.md
+_agents/MULTISPORT-NAMESPACING.md
+_agents/PRIORITIES.md
+_agents/QUEUE.md
+_agents/README.md
+_agents/RETIRED.txt
+_agents/RETIREMENT.md
+_agents/STALE-EPOCH.txt
+_agents/START-OF-CHAT.md
+_agents/TEMPLATE-LANE.md
+_agents/V23-OWNER-NOTES-INTAKE-LEDGER.md
+_agents/TEST-ORDERS/
+_agents/data/nflverse-margins-ot-2020-2024.json
+_agents/muse/deliveries/prompts-2026-11-05/claude-play-level-question-2026-11-10.md
+_agents/owner-notes/
+_agents/seats/
