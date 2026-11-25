@@ -1,0 +1,6 @@
+# composite WIP state at handover (2026-11-24, the turn's time budget)
+# run log: /tmp/acceptance-run.log (sandbox-internal); ACCEPTANCE-RECEIPTS.txt is MID-WRITE (the meta layer — excluded from the seal)
+steps EXIT_CODE=0 so far: 16
+last step line: == 13b. the uniform-board falsifier (cakepanz-12 + S15: the D-2 STALE-SERVER GUARD carried in — served-hash asserted p
+latest board-falsifier child log: deliveries/receipts/partH-s15/board.battery-F21-4591.log
+# next session resumes: relaunch bash scripts/acceptance-run.sh at these bytes (script + claims + batteries already fixed); then Phase C per ZAI.md
