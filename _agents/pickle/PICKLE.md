@@ -128,6 +128,11 @@ Prior reference items still stand:
   Owner provisions the free Cloudflare account + GitHub OAuth App and hands over secrets; no secret in repo/bundle/chat.
 
 ## Live files
+- 36th sitting: top-level `zai-s17-continuation-2026-11-25/` (840 files, read-only mirror at
+  `council/pickle@8ccf53783`); `inbox/20261126-0148-pickle-zai-s17-continuation-2026-11-25-REVIEW.md`;
+  `inbox/20261126-0148-pickle-zai-s17-continuation-2026-11-25-implications.md`;
+  `bulletin/20261126-0148-pickle.md`. Verdict improved, not accepted; 8 full claims RED, engine fence
+  intact, Wave B battery crash + offline tent absent documented with exact fixes.
 - 35th sitting: top-level `zai-s17-closeout-continuation-2026-11-24/` (2798 files, read-only mirror);
   `inbox/20261125-0025-pickle-S17-continuation-REVIEW.md`;
   `inbox/20261125-0030-pickle-S17-shell-innovation.md`;
@@ -149,6 +154,9 @@ Prior reference items still stand:
   `origin/architect/engine-and-seats`.
 
 ## History (compressed — full detail in the filed inbox files)
+- Session 36: mirrored and reviewed Z.ai's 2026-11-25 continuation at the Owner's directive; verdict
+  improved, not accepted; 10 new manifest-authority / generated-evidence ideas filed; Z.ai's claimed
+  `council/zai` tip verified absent from the remote (remote still 2026-11-01 `25e3b2f`).
 - Session 35: mirrored and reviewed the S17 continuation at the Owner's directive; verdict improved,
   not accepted; exact fixes in review §4, eight new shell/process proposals in the innovation filing.
 - Session 34: mirrored and reviewed the S15 close-out at the Owner's directive; verdict improved,
