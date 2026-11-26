@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>67 Cakepanz — proposed 390px board (mock-up)</title>
+<style>
+  /* Static mock-up, orcads, 2026-11-26. No external refs, no JS.
+     Proposes: collapsed needs line, gone-ribbon, sticky column header,
+     two-line row (name line + number chips), 44px draft control.
+     Tokens approximated from src/lib/port/tokens.ts (DARK). */
+  :root{
+    --bg:#1a1220; --panel:#291a24; --hair:rgba(230,198,125,.16);
+    --gold:#e6c67d; --paper:#f2e7d5; --ink:#0d0a10; --sub:#c8a48f;
+    --team:#e6c67d;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--paper);
+    font:14px/1.35 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+  .wrap{max-width:390px;margin:0 auto;padding:10px 12px 28px}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:8px;
+    padding-bottom:8px;border-bottom:1px solid var(--hair)}
+  .brand{font-weight:600;letter-spacing:.02em}
+  .brand b{color:var(--gold)}
+  .status{font-size:11.5px;color:var(--sub);border:1px solid var(--hair);
+    border-radius:999px;padding:3px 9px;white-space:nowrap}
+  /* collapsed needs: one line, top three + disclosure */
+  .needs{display:flex;align-items:center;gap:6px;margin:9px 0 0;font-size:11.5px;
+    color:var(--sub);white-space:nowrap;overflow:hidden}
+  .needs .k{color:var(--gold);letter-spacing:.06em;font-size:10.5px}
+  .needs .chip{border:1px solid var(--hair);border-radius:999px;padding:2px 8px;color:var(--paper)}
+  .needs .all{margin-left:auto;color:var(--gold);text-decoration:none;padding-right:2px}
+  /* gone ribbon: one line, the engine already computed it */
+  .ribbon{margin:8px 0 0;padding:7px 10px;border:1px solid var(--hair);border-radius:10px;
+    background:linear-gradient(180deg,rgba(230,198,125,.06),transparent);
+    font-size:12px;color:var(--paper)}
+  .ribbon b{color:var(--gold);font-weight:600}
+  .ribbon span{color:var(--sub)}
+  /* the pick card: the only question a new player asks, answered once */
+  .pickcard{margin:12px 0 0;padding:12px;border:1px solid var(--hair);border-radius:14px;
+    background:var(--panel);position:relative;overflow:hidden}
+  .pickcard::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--team)}
+  .pc-k{font-size:10px;letter-spacing:.14em;color:var(--gold);text-transform:uppercase}
+  .pc-name{font-size:19px;font-weight:600;margin:3px 0 1px}
+  .pc-meta{font-size:12px;color:var(--sub)}
+  .pc-why{font-size:12.5px;color:var(--paper);margin:8px 0 0;padding-left:10px;
+    border-left:2px solid var(--hair)}
+  .pc-cta{display:block;width:100%;margin-top:10px;padding:12px;border:0;border-radius:10px;
+    background:var(--gold);color:var(--ink);font-weight:700;font-size:14px;letter-spacing:.03em}
+  /* sticky header on the same grid as the row */
+  .thead{position:sticky;top:0;z-index:2;display:grid;
+    grid-template-columns:1fr 60px 52px 44px 46px 44px;gap:4px;
+    padding:12px 0 6px;background:linear-gradient(180deg,var(--bg) 70%,transparent);
+    font-size:9.5px;letter-spacing:.1em;color:var(--sub);text-align:right}
+  .thead .h1{text-align:left}
+  .row{display:grid;grid-template-columns:1fr 44px;gap:8px;align-items:center;
+    border-top:1px solid var(--hair);padding:7px 0}
+  .row.top3{background:linear-gradient(90deg,rgba(230,198,125,.07),transparent 60%)}
+  .who{min-width:0}                     /* the fix: grid children may shrink */
+  .l1{display:flex;align-items:baseline;gap:6px;min-width:0}
+  .name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+  .pos{color:var(--gold);font-size:10.5px;letter-spacing:.06em;flex:0 0 auto}
+  .tm{color:var(--sub);font-size:10.5px;flex:0 0 auto;border-left:1px solid var(--hair);padding-left:6px}
+  .nums{display:grid;grid-template-columns:60px 52px 44px 46px;gap:4px;
+    margin-top:2px;font-variant-numeric:tabular-nums;font-size:12px;text-align:right;color:var(--sub)}
+  .nums b{color:var(--paper);font-weight:600}
+  .nums .gone{color:#c8a48f}
+  .draft{width:44px;height:44px;border:1px solid var(--hair);border-radius:10px;
+    background:rgba(230,198,125,.08);color:var(--gold);font-size:16px;line-height:1}
+  .top3 .draft{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+  .foot{margin-top:10px;font-size:10.5px;color:var(--sub)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand"><b>67</b> Cakepanz</div>
+    <div class="status">Round 1 · Pick 21 · on the clock</div>
+  </div>
+
+  <div class="needs">
+    <span class="k">MY NEEDS · 32 OPEN</span>
+    <span class="chip">TE</span><span class="chip">CB</span><span class="chip">EDGE</span>
+    <a class="all" href="#">ALL 32</a>
+  </div>
+
+  <p class="ribbon"><b>Before your next pick:</b> 3 of your top 10 likely gone
+    <span>— WR1 · QB2 · CB4</span></p>
+
+  <section class="pickcard" aria-label="the recommended pick">
+    <div class="pc-k">The pick</div>
+    <div class="pc-name">Brock Purdy</div>
+    <div class="pc-meta">QB · SF · OVR 92 · +2.4 wins · 7% gone</div>
+    <p class="pc-why">2.4 wins now; the next best QB is likely gone before your pick.</p>
+    <button class="pc-cta">DRAFT BROCK PURDY</button>
+  </section>
+
+  <div class="thead" aria-hidden="true">
+    <span class="h1">PLAYER</span><span>OVR</span><span>WINS</span><span>PRIO</span><span>GONE</span><span></span>
+  </div>
+
+  <div class="row top3">
+    <div class="who">
+      <div class="l1"><span class="name">Brock Purdy</span><span class="pos">QB</span><span class="tm">SF</span></div>
+      <div class="nums"><b>92</b><b>+2.4</b><b>+0.2</b><span class="gone">7%</span></div>
+    </div>
+    <button class="draft" aria-label="Draft Brock Purdy">✚</button>
+  </div>
+
+  <div class="row top3">
+    <div class="who">
+      <div class="l1"><span class="name">Trent Williams</span><span class="pos">LT</span><span class="tm">SF</span></div>
+      <div class="nums"><b>91</b><b>+1.9</b><b>+0.1</b><span class="gone">11%</span></div>
+    </div>
+    <button class="draft" aria-label="Draft Trent Williams">✚</button>
+  </div>
+
+  <div class="row top3">
+    <div class="who">
+      <div class="l1"><span class="name">Will Anderson Jr</span><span class="pos">EDGE</span><span class="tm">HOU</span></div>
+      <div class="nums"><b>90</b><b>+1.7</b><b>+0.0</b><span class="gone">14%</span></div>
+    </div>
+    <button class="draft" aria-label="Draft Will Anderson Jr">✚</button>
+  </div>
+
+  <div class="row">
+    <div class="who">
+      <div class="l1"><span class="name">DeVonta Smith</span><span class="pos">WR</span><span class="tm">PHI</span></div>
+      <div class="nums"><b>88</b><b>+1.1</b><b>+0.0</b><span class="gone">22%</span></div>
+    </div>
+    <button class="draft" aria-label="Draft DeVonta Smith">✚</button>
+  </div>
+
+  <div class="row">
+    <div class="who">
+      <div class="l1"><span class="name">D'Andre Swift</span><span class="pos">RB</span><span class="tm">CHI</span></div>
+      <div class="nums"><b>86</b><b>+0.9</b><b>+0.0</b><span class="gone">31%</span></div>
+    </div>
+    <button class="draft" aria-label="Draft D'Andre Swift">✚</button>
+  </div>
+
+  <div class="row">
+    <div class="who">
+      <div class="l1"><span class="name">Mike Evans</span><span class="pos">WR</span><span class="tm">TB</span></div>
+      <div class="nums"><b>85</b><b>+0.8</b><b>+0.0</b><span class="gone">38%</span></div>
+    </div>
+    <button class="draft" aria-label="Draft Mike Evans">✚</button>
+  </div>
+
+  <p class="foot">Mock-up: 6 players in the space the shipped board gives 3.
+    Numbers are placeholders from the S17 screenshots, not new data.</p>
+</div>
+</body>
+</html>
