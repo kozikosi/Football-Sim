@@ -1,0 +1,24 @@
+node-port: src/engine-node missing (never generated) — regenerating (npm run precompile does the same step explicitly)
+node-port: engine-node: generated 69 files (1 transformed: platform/localstorage.ts) — snapshot untouched
+== the season flow, played through the real UI (the record is engine-built node-side) ==
+   PASS  S1a the dev build opens at TEAM SELECT
+   PASS  S1b the SLOT PICKER is on the same screen as the team pick (P-317) — 32 slot buttons
+   PASS  S2 choosing a slot arms the CTA with it
+   PASS  S3 the board is the chosen team (Chicago)
+   PASS  S4 the team+slot choice persists across reload (settings blob) — {"mode":"system","reducedMotion":false,"newestFirst":true,"teamName":"Chicago Be
+   FAIL  S5 the draft-complete state renders with the provenance stamp — TimeoutError: page.waitForSelector: Timeout 20000ms exceeded.
+Call log:
+  - wait
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('.cp-done .cp-cta')
+
+    at /tmp/cp-shellfalsify-5nWk5E/batteries/shell.battery.mjs:77:42 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.22.3
