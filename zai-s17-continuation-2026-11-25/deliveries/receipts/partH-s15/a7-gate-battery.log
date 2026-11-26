@@ -1,0 +1,17 @@
+=== A7 gate battery at final bytes (2026-11-25, the S17 close-out)
+--- engine suite:
+ℹ tests 430
+ℹ pass 430
+ℹ fail 0
+--- node battery:
+ℹ tests 37
+ℹ pass 37
+ℹ fail 0
+--- board battery:
+FRESH-SERVER FAIL — fresh-server: STALE SERVER on :4179 — served nothing, this tree built assets/index-Cb5sVPrX.js. Kill the listener (lsof -t -i:4179 | xargs -r kill -9), rebuild, re-run.
+--- slot battery:
+   SKIP  all browser laws — nothing is served on http://localhost:4179 (start vite preview first)
+
+== P-317 SLOT BATTERY · 17 pass · 0 fail · 1 skip ==
+--- visual battery:
+   SKIP  all laws — nothing is served on http://localhost:4179 (start vite preview first)

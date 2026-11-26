@@ -1,0 +1,150 @@
+[
+ {
+  "started": "2026-11-25T04:13:54Z",
+  "command": "bash scripts/acceptance-run.sh",
+  "mode": "fresh",
+  "complete": false,
+  "tree_sha_start": "fb667aecb5d9beaf88da6228fd4a65f389a4ab9464af1e296c1b40a7b6943462",
+  "steps": [
+   {
+    "n": 1,
+    "name": "1. npm ci (clean lock — no --legacy-peer-deps)",
+    "command": "npm ci",
+    "blockSha256": "60e0fb7132548444a7f02ed00fab4fc56eb8e1bc8a78f894a71f6ebf6ceaecee",
+    "exitCode": 0
+   },
+   {
+    "n": 2,
+    "name": "2. npm run test:engine (the pin's own suite — expect 430/430 at pin 408410477, exit 0)",
+    "command": "npm run test:engine",
+    "blockSha256": "e355f5a0a047a1920fb71f2af85691ed8823f9a88477ee851d1178ecbbbd7646",
+    "exitCode": 0
+   },
+   {
+    "n": 3,
+    "name": "2b. npm run precompile (the Part-D generated copy src/engine-node — the node suites' freshness gate regenerates it too, this makes the step explicit)",
+    "command": "npm run precompile",
+    "blockSha256": "18b771c014fe755e0d4a9e67e681d394a8694bd4f8c471014ede300e53c765c2",
+    "exitCode": 0
+   },
+   {
+    "n": 4,
+    "name": "3. the node battery via the Part-D register (expect 37/37: the 33 c12 laws + N34 the seam golden + N35 the b36 anchor (S13) + N36 the truthful engine stamp (S15 §4.4) + N37 the brag-share text law (S15 §4.8); runs on Node 24 AND 26) — A2: stdout tees into deliveries/receipts/node-battery.log so the FILED receipt is this live run",
+    "command": "bash -c set -o pipefail; npm run battery:node 2>&1 | tee deliveries/receipts/node-battery.log",
+    "blockSha256": "74fd03a351ab7de542551b7d9f2d5435638a61054d0007f63f75d9232cbde3ed",
+    "exitCode": 0
+   },
+   {
+    "n": 5,
+    "name": "3b. the contrast guardrail (T6/W5 — the 32 team inks × 2 modes + the token audit; the six KNOWN holes stay named, a NEW hole FAILS)",
+    "command": "node --import ./scripts/node-port-register.mjs batteries/contrast.battery.mjs",
+    "blockSha256": "553c78274b7f88fbf6c651173d53bfb8a8187a09721ee4c6feb17360b67f68bc",
+    "exitCode": 0
+   },
+   {
+    "n": 6,
+    "name": "4. npm run build (green; dist/assets ships)",
+    "command": "npm run build",
+    "blockSha256": "6b6994d13d45a1d484f70910425086ec0415a03b5e03064b21d88f7e343bf400",
+    "exitCode": 0
+   },
+   {
+    "n": 7,
+    "name": "5. npm run distfile (single-file dist/single.html)",
+    "command": "npm run distfile",
+    "blockSha256": "c59b53cfd138a13d0486b79e778506b82491987b39024e2c7c64647e9db3e457",
+    "exitCode": 0
+   },
+   {
+    "n": 8,
+    "name": "6. vite preview serves dist/ (the D3 + D-2 guards as ONE steppable command: HTTP 200 + the served js asset must equal the on-disk dist asset — a zombie preview once served a stale build and poisoned a receipt; the server stays up for the browser batteries)",
+    "command": "bash scripts/preview-serve.sh 4179",
+    "blockSha256": "db69cf143b1a4ceac55c39ef75fc27ecb12d8ef68535b432b343c02b7bb53197",
+    "exitCode": 0
+   },
+   {
+    "n": 9,
+    "name": "7. npm run battery (the slice battery — expect 29/0/10/3: 26 carried + 3 Slice-3 laws)",
+    "command": "npm run battery",
+    "blockSha256": "126f22c83a05f199132f6fc2157b8c4237a830f32172e10d562f2825eecffb4a",
+    "exitCode": 0
+   },
+   {
+    "n": 10,
+    "name": "8. the shell battery S1a–S31 + L12 + S32/S33/S34/S35 (one uninterrupted run, exit 0 — 53/0: the A2 split, the boot path MANDATORY when an autosave exists, S31 the manual path, L12 the uniform-board law (cakepanz-9); S15: +S32 law L-ERR both halves (the dispatchAsync contract), +S33 the glass panel law (w89 :625), +S34 the envelope stamp law (the engineVersion the save carries equals the running engineVersion(), §4.4), +S35 the brag-surface law (P-209: no download, the link only from the build-time constant, hidden while unset); 53 = 51 + the stamp law + the brag law; Part-D register)",
+    "command": "node --import ./scripts/node-port-register.mjs batteries/shell.battery.mjs",
+    "blockSha256": "d52f10972a1c09b21875181eb31ef0b2e3150613e40e1fceea5d6ba3d369b796",
+    "exitCode": 0
+   },
+   {
+    "n": 11,
+    "name": "8b. the uniform-board battery (cakepanz-9 + T2 + cakepanz-12 + S13 + S15 — expect 24/0: L16 EVERY row carries ONE visible Draft button (.cp-draftbtn) naming the slot, one click lands one pick (the S15 one-button design, cp-quick retired) + L17 undo/expand/keyboard + L18 the double-click guard, L19 the staged-banner disarm, L20 the value cells announce their values, L21 the keyboard path to the gone% method (cakepanz-12), L22 the staged-Confirm double-click guard (S13); carried: L13 the top-three treatment, L8 the last pick lands on Complete (re-quoted), L14 the Complete roster print, L15 the wall-slip reveal, L10 the new draft after a done draft, L11 the partial Complete screen; S15: L23 the CORRECTED w89 glow (EVERY button pulses, the three opt out to the sheen, reduced-motion kills both), L26 the TOP badge exactly on the three, L27 the sheen exactly on the three, L28 zero cp-quick / zero ring class / the why copy exactly on the three, L30 sort-after-restore (the pickle F4 law), L31 the toast-truth law (the one-click toast rides a LANDED pick — a refused pick shows only the error line, the 0305 finding); Part-D register)",
+    "command": "node --import ./scripts/node-port-register.mjs batteries/board.battery.mjs",
+    "blockSha256": "c3cdb00da9c67c57fc2f2e32c7f6b81be3c66b2c33502638b795062d88113a8d",
+    "exitCode": 0
+   },
+   {
+    "n": 12,
+    "name": "8c. the P-317 slot battery (T1 + S4 — expect 28/0: the draft-position selector end-to-end, node + browser laws, the independent order oracle)",
+    "command": "node --import ./scripts/node-port-register.mjs batteries/slot.battery.mjs",
+    "blockSha256": "d6c26f44e31eceb227433f2a229e6c6adb029fc0741370c624b705378b09fe1a",
+    "exitCode": 0
+   },
+   {
+    "n": 13,
+    "name": "8d. the seeded visual battery (T5/T3 — expect 18/0 at named seeds a3f2,k1x9: the top-three laws (the ring retired, S15 — every selector rides .cp-top3 .cp-draftbtn), the 390 walk, the identical-boards replay, the seed code, W12 the restored-draft URL law, W13 the new-seed affordance law, W14 the link-beats-autosave law (S14/P0))",
+    "command": "node --import ./scripts/node-port-register.mjs batteries/visual.battery.mjs",
+    "blockSha256": "723660fd2820853c33a14b73a6a9613d9f82f095266bfc357038641df65e196e",
+    "exitCode": 0
+   },
+   {
+    "n": 14,
+    "name": "10. the P-369 node-count probe (five screens, 1180px + 390px; Part-D register)",
+    "command": "node --import ./scripts/node-port-register.mjs scripts/probe-node-counts.mjs",
+    "blockSha256": "cb2809a2e11b8c035a5115cbb6251d9f5a724fa0cbc8a7002ce12969d23179ea",
+    "exitCode": 0
+   },
+   {
+    "n": 15,
+    "name": "11. the reduced-motion screenshot pairs (normal vs reduced, both modes; Part-D register)",
+    "command": "node --import ./scripts/node-port-register.mjs scripts/probe-motion-shots.mjs",
+    "blockSha256": "2f235d8de98de358b16a48ffee664db171417d8a9d4d5bc5f72042f340f06ab2",
+    "exitCode": 0
+   },
+   {
+    "n": 16,
+    "name": "12. the receipt falsifiers F0–F14 (every law must DIE — zero tautologies, zero could-not-run; F11/F12 the cakepanz-8 A1 falsifiers; S15: F13 the stale stamp re-planted → N36 must DIE, F14 the download path re-planted → N37 must DIE)",
+    "command": "node scripts/receipt-falsifier.mjs",
+    "blockSha256": "630e89c6d19ea05beb9cb8c113be92dffec3aac26af431effa745b454c60efb4",
+    "exitCode": 0
+   }
+  ],
+  "resumed": true,
+  "resumeCount": 3,
+  "stoppedAt": "13. the shell falsifiers FA/FB/FC/FD/FE/FF (the render laws must die too; S15: FD the L-ERR clear-half reverted → S32 must DIE, FE the stale hardcoded stamp re-planted → S34 must DIE, FF a hardcoded brag URL planted → S35 must DIE; every child log filed under deliveries/receipts/partH-s15/) (interrupted)",
+  "failedStep": "13. the shell falsifiers FA/FB/FC/FD/FE/FF (the render laws must die too; S15: FD the L-ERR clear-half reverted → S32 must DIE, FE the stale hardcoded stamp re-planted → S34 must DIE, FF a hardcoded brag URL planted → S35 must DIE; every child log filed under deliveries/receipts/partH-s15/)",
+  "failedExit": 143,
+  "terminalMarker": "ACCEPTANCE RUN PARTIAL — stopped after step 16",
+  "log_sha256": "a20485ab85300276b321dfd1312305e46e5c97c95df1acc8016fe7d798be4a11",
+  "tree_sha_end": "f9349e1290bd64cab6a0e108c0ef3a14336fcd361425ff3c1e83bceecfcf635d",
+  "finished": "2026-11-25T04:28:42Z",
+  "per_step_exit_codes": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ }
+]

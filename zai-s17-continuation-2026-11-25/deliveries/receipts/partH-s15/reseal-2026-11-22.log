@@ -1,0 +1,6 @@
+# reseal-2026-11-22 — the continuation's reseal receipt (raw stdout; rewritten when the bytes changed — the receipt law)
+$ node scripts/regen-manifest.mjs .
+regen: (see above line for the entry count)
+$ node tools/verify-package.mjs .
+verify-package: 366 OK / 0 FAILED / 0 missing (366 entries in CHECKSUMS.txt)
+verify-package: converse clean — the tree carries no unlisted file
