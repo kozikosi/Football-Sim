@@ -1,0 +1,3947 @@
+(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))s(t);new MutationObserver(t=>{for(const r of t)if(r.type==="childList")for(const o of r.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&s(o)}).observe(document,{childList:!0,subtree:!0});function a(t){const r={};return t.integrity&&(r.integrity=t.integrity),t.referrerPolicy&&(r.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?r.credentials="include":t.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function s(t){if(t.ep)return;t.ep=!0;const r=a(t);fetch(t.href,r)}})();const Bl=!1;var Tt=Array.isArray,Qc=Array.prototype.indexOf,Rs=Array.prototype.includes,St=Array.from,Br=Object.defineProperty,za=Object.getOwnPropertyDescriptor,Cl=Object.getOwnPropertyDescriptors,jc=Object.prototype,Uc=Array.prototype,Cr=Object.getPrototypeOf,no=Object.isExtensible;const wa=()=>{};function qc(n){return n()}function qt(n){for(var e=0;e<n.length;e++)n[e]()}function yl(){var n,e,a=new Promise((s,t)=>{n=s,e=t});return{promise:a,resolve:n,reject:e}}function Zc(n,e){if(Array.isArray(n))return n;if(!(Symbol.iterator in n))return Array.from(n);const a=[];for(const s of n)if(a.push(s),a.length===e)break;return a}const ae=2,qa=4,Fs=8,Tl=1<<24,Ee=16,We=32,ma=64,Zt=128,yr=256,Je=512,qn=1024,Mn=2048,he=4096,oe=8192,ne=16384,rs=32768,Es=1<<25,Za=65536,ot=1<<17,Xc=1<<18,os=1<<19,Sl=1<<20,Ve=1<<25,lt=1<<21,Qa=1<<22,va=1<<23,ta=Symbol("$state"),kl=Symbol("component"),$c=Symbol("legacy props"),nf=Symbol(""),wl=Symbol("attributes"),Xt=Symbol("class"),$t=Symbol("style"),nr=Symbol("text"),Ws=new class extends Error{name="StaleReactionError";message="The reaction that called `getAbortSignal()` was re-run or destroyed"},ef=1,af=2,Dl=4,sf=8,tf=16,rf=1,of=2,lf=4,cf=8,ff=16,uf=1,df=2,bl={},jn=Symbol("uninitialized"),pf="http://www.w3.org/1999/xhtml";function hf(){console.warn("https://svelte.dev/e/derived_inert")}function vf(){console.warn("https://svelte.dev/e/select_multiple_invalid_value")}function mf(){console.warn("https://svelte.dev/e/svelte_boundary_reset_noop")}function Rl(n){return n===this.v}function El(n,e){return n!=n?e==e:n!==e||n!==null&&typeof n=="object"||typeof n=="function"}function Ll(n){return!El(n,this.v)}function gf(n){throw new Error("https://svelte.dev/e/lifecycle_outside_component")}function Bf(){throw new Error("https://svelte.dev/e/async_derived_orphan")}function Cf(n,e,a){throw new Error("https://svelte.dev/e/each_key_duplicate")}function yf(n){throw new Error("https://svelte.dev/e/effect_in_teardown")}function Tf(){throw new Error("https://svelte.dev/e/effect_in_unowned_derived")}function Sf(n){throw new Error("https://svelte.dev/e/effect_orphan")}function kf(){throw new Error("https://svelte.dev/e/effect_update_depth_exceeded")}function wf(n){throw new Error("https://svelte.dev/e/props_invalid_value")}function Df(){throw new Error("https://svelte.dev/e/state_descriptors_fixed")}function bf(){throw new Error("https://svelte.dev/e/state_prototype_fixed")}function Rf(){throw new Error("https://svelte.dev/e/state_unsafe_mutation")}function Ef(){throw new Error("https://svelte.dev/e/svelte_boundary_reset_onerror")}let ls=!1,Lf=!1;function Af(){ls=!0}let Pn=null;function Xa(n){Pn=n}function En(n,e=!1,a){Pn={p:Pn,i:!1,c:null,e:null,s:n,x:null,r:Cn,l:ls&&!e?{s:null,u:null,$:[]}:null}}function Ln(n){var e=Pn,a=e.e;if(a!==null){e.e=null;for(var s of a)zl(s)}return e.i=!0,Pn=e.p,Tr(n)}function Tr(n={}){return Br(n,kl,{value:!0}),n}function Ps(){return!ls||Pn!==null&&Pn.l===null}let Ia=[];function Mf(){var n=Ia;Ia=[],qt(n)}function ha(n){if(Ia.length===0){var e=Ia;queueMicrotask(()=>{e===Ia&&Mf()})}Ia.push(n)}const Jf=-7169;function On(n,e){n.f=n.f&Jf|e}function Sr(n){(n.f&Je)!==0||n.deps===null?On(n,qn):On(n,he)}function Al(n,e){(n.f&Mn)!==0?e.set(n,Mn):(n.f&he)!==0&&e.get(n)!==Mn&&e.set(n,he),On(n,qn)}function kt(n){var e=gn,a=Cn;Te(null),Ue(null);try{return n()}finally{Te(e),Ue(a)}}function _f(n,e,a,s){const t=Ps()?$a:kr;var r=n.filter(d=>!d.settled),o=e.map(t);if(a.length===0&&r.length===0){s(o);return}var l=Cn,i=Ff(),f=r.length===1?r[0].promise:r.length>1?Promise.all(r.map(d=>d.promise)):null;function u(d){if((l.f&ne)===0){i();try{s([...o,...d])}catch(v){Oe(v,l)}it()}}var p=Ml();if(a.length===0){f.then(()=>u([])).finally(p);return}function h(){Promise.all(a.map(d=>Wf(d))).then(u).catch(d=>Oe(d,l)).finally(p)}f?f.then(()=>{if((l.f&ne)!==0){p();return}i(),h(),it()}):h()}function Ff(){var n=Cn,e=gn,a=Pn,s=Sn;return function(r=!0){Ue(n),Te(e),Xa(a),r&&(n.f&ne)===0&&(s?.activate(),s?.apply())}}function it(n=!0){Ue(null),Te(null),Xa(null),n&&Sn?.deactivate()}function Ml(){var n=Cn,e=n.b,a=Sn,s=!!e?.is_rendered();return e?.update_pending_count(1,a),a.increment(s,n),()=>{e?.update_pending_count(-1,a),a.decrement(s,n)}}function $a(n){var e=ae|Mn;return Cn!==null&&(Cn.f|=os),{ctx:Pn,deps:null,effects:null,equals:Rl,f:e,fn:n,reactions:null,rv:0,v:jn,wv:0,parent:Cn,ac:null}}const vs=Symbol("obsolete");function Wf(n,e,a){let s=Cn;s===null&&Bf();var t=void 0,r=Ra(jn),o=!gn,l=new Set;return Uf(()=>{var i=Cn,f=yl();t=f.promise;try{Promise.resolve(n()).then(f.resolve,d=>{d!==Ws&&f.reject(d)}).finally(it)}catch(d){f.reject(d),it()}var u=Sn;if(o){if((i.f&rs)!==0)var p=Ml();if(s.b?.is_rendered())u.async_deriveds.get(i)?.reject(vs);else for(const d of l.values())d.reject(vs);l.add(f),u.async_deriveds.set(i,f)}const h=(d,v=void 0)=>{p?.(),l.delete(f),v!==vs&&(u.activate(),v?(r.f|=va,ns(r,v)):((r.f&va)!==0&&(r.f^=va),ns(r,d)),u.deactivate())};f.promise.then(h,d=>h(null,d||"unknown"))}),Er(()=>{for(const i of l)i.reject(vs)}),new Promise(i=>{function f(u){function p(){u===t?i(r):f(t)}u.then(p,p)}f(t)})}function ln(n){const e=$a(n);return Xl(e),e}function kr(n){const e=$a(n);return e.equals=Ll,e}function Pf(n){var e=n.effects;if(e!==null){n.effects=null;for(var a=0;a<e.length;a+=1)fe(e[a])}}function wr(n){var e,a=Cn,s=n.parent;if(!la&&s!==null&&n.v!==jn&&(s.f&(ne|oe))!==0)return hf(),n.v;Ue(s);try{Pf(n),e=ai(n)}finally{Ue(a)}return e}function Jl(n){var e=wr(n);if(!n.equals(e)&&(n.wv=ni(),(!Sn?.is_fork||n.deps===null)&&(Sn!==null?(Sn.capture(n,e,!0),er?.capture(n,e,!0)):n.v=e,n.deps===null))){On(n,qn);return}la||(Le!==null?(Rr()||Sn?.is_fork)&&Le.set(n,e):Sr(n))}function Gf(n){if(n.effects!==null)for(const e of n.effects)(e.teardown||e.ac)&&(e.teardown?.(),e.ac!==null&&kt(()=>{e.ac.abort(Ws),e.ac=null}),e.fn!==null&&(e.teardown=wa),Ms(e,0),Ar(e))}function _l(n){if(n.effects!==null)for(const e of n.effects)e.teardown&&e.fn!==null&&es(e)}let _t=null,Ja=null,Sn=null,er=null,Le=null,ar=null,Ft=!1,Ts=null,at=null;var eo=0;let Nf=1;class ga{id=Nf++;started=!1;linked=!0;prev=null;next=null;async_deriveds=new Map;current=new Map;previous=new Map;#e=new Set;#i=new Set;#n=0;#o=new Map;#a=null;#s=[];#r=[];#t=new Map;#l=new Map;#p=new Set;is_fork=!1;#c=!1;constructor(){Ja===null?_t=Ja=this:(Ja.next=this,this.prev=Ja),Ja=this}#h(){if(this.is_fork)return!0;for(const e of this.#o.keys())if(!this.#g(e))return!0;return!1}#g(e){for(var a=e;a!==null;a=a.parent)if(this.#l.has(a))return!0;return!1}skip_effect(e){this.#l.has(e)||this.#l.set(e,{d:[],m:[]}),this.#p.delete(e)}unskip_effect(e,a=s=>this.schedule(s)){var s=this.#l.get(e);if(s){this.#l.delete(e);for(var t of s.d)On(t,Mn),a(t);for(t of s.m)On(t,he),a(t)}this.#p.add(e)}#f(){var e=[];for(const r of this.#s)if(!((r.f&ne)!==0||(r.f&(Mn|he))===0)){for(var a=r,s=!1;a.parent!==null;){a=a.parent;var t=a.f;if((t&(ma|We))!==0){if((t&qn)===0){s=!0;break}a.f^=qn}}s||e.push(a)}return this.#s=[],e}#v(){this.started=!0;for(const[l,i]of this.#t)On(l,i),this.schedule(l);this.apply();for(var e=Ts=[],a=[],s=at=[];this.#s.length>0;){eo++>1e3&&(this.#d(),If());for(const l of this.#f())try{this.#C(l,e,a)}catch(i){throw Pl(l),this.#h()||this.discard(),i}}if(Sn=null,s.length>0){var t=ga.ensure();for(const l of s)t.schedule(l)}if(Ts=null,at=null,this.#h()){this.#m(a),this.#m(e);for(const[l,i]of this.#l)Wl(l,i);s.length>0&&Sn.#v();return}const r=this.#S();if(r){this.#m(a),this.#m(e),r.#u(this);return}this.#t.clear();for(const l of this.#e)l(this);this.#e.clear(),er=this,ao(a),ao(e),er=null,this.#a?.resolve();var o=Sn;this.#n===0&&(this.#s.length===0||o!==null)&&this.#d(),o!==null&&(ze.clear(),o.#v())}#C(e,a,s){e.f^=qn;for(var t=e.first;t!==null;){var r=t.f,o=(r&(We|ma))!==0,l=o&&(r&qn)!==0,i=l||(r&oe)!==0||this.#l.has(t);if(!i&&t.fn!==null){o?t.f^=qn:(r&qa)!==0?a.push(t):Ns(t)&&((r&Ee)!==0&&this.add_dirty_reaction(t,he),es(t));var f=t.first;if(f!==null){t=f;continue}}for(;t!==null;){var u=t.next;if(u!==null){t=u;break}t=t.parent}}}#S(){for(var e=this.prev;e!==null;e=e.prev)if(!e.is_fork&&this.#B(e))return e;return null}#B(e){for(const[a,[,s]]of this.current)if(!s&&e.current.has(a))return!0;return!1}#u(e){for(const[s,t]of e.current)!this.previous.has(s)&&e.previous.has(s)&&this.previous.set(s,e.previous.get(s)),this.current.set(s,t);for(const[s,t]of e.async_deriveds){const r=this.async_deriveds.get(s);r&&t.promise.then(r.resolve).catch(r.reject)}e.async_deriveds.clear(),this.transfer_reactions(e.#t);const a=s=>{var t=s.reactions;if(t!==null&&!((s.f&ae)!==0&&(s.f&(Mn|he))===0))for(const l of t){var r=l.f;if((r&ae)!==0)a(l);else{var o=l;r&(Qa|Ee)&&!this.async_deriveds.has(o)&&(this.#t.delete(o),On(o,Mn),this.schedule(o))}}};for(const s of this.current.keys())a(s);this.oncommit(()=>e.discard()),e.#d(),Sn=this,this.#v()}#m(e){for(var a=0;a<e.length;a+=1)Al(e[a],this.#t)}capture(e,a,s=!1){e.v!==jn&&!this.previous.has(e)&&this.previous.set(e,e.v),(e.f&va)===0&&(this.current.set(e,[a,s]),Le?.set(e,a)),this.is_fork||(e.v=a)}activate(){Sn=this}deactivate(){Sn=null,Le=null}flush(){try{Ft=!0,Sn=this,this.#v()}finally{eo=0,ar=null,Ts=null,at=null,Ft=!1,Sn=null,Le=null,ze.clear()}}discard(){for(const e of this.#i)e(this);this.#i.clear();for(const e of this.async_deriveds.values())e.reject(vs);this.#d(),this.#a?.resolve()}register_created_effect(e){this.#r.push(e)}#y(){for(let p=_t;p!==null;p=p.next){var e=p.id<this.id,a=[];for(const[h,[d,v]]of this.current){if(p.current.has(h)){var s=p.current.get(h)[0];if(e&&d!==s)p.current.set(h,[d,v]);else continue}a.push(h)}if(e)for(const[h,d]of this.async_deriveds){const v=p.async_deriveds.get(h);v&&d.promise.then(v.resolve).catch(v.reject)}var t=[...p.current.keys()].filter(h=>!p.current.get(h)[1]);if(!(!p.started||t.length===0)){var r=t.filter(h=>!this.current.has(h));if(r.length===0)e&&p.discard();else if(a.length>0){if(e)for(const h of this.#p)p.unskip_effect(h,d=>{(d.f&(Ee|Qa))!==0?p.schedule(d):p.#m([d])});p.activate();var o=new Set,l=new Map;for(var i of a)Fl(i,r,o,l);l=new Map;var f=[...p.current].filter(([h,d])=>{const v=this.current.get(h);return v?v[0]!==d[0]||v[1]!==d[1]:!0}).map(([h])=>h);if(f.length>0)for(const h of this.#r)(h.f&(ne|oe|ot))===0&&Dr(h,f,l)&&((h.f&(Qa|Ee))!==0?(On(h,Mn),p.schedule(h)):p.add_dirty_reaction(h,Mn));if(p.#s.length>0&&!p.#c){p.apply();for(var u of p.#f())p.#C(u,[],[])}p.deactivate()}}}}increment(e,a){if(this.#n+=1,e){let s=this.#o.get(a)??0;this.#o.set(a,s+1)}}decrement(e,a){if(this.#n-=1,e){let s=this.#o.get(a)??0;s===1?this.#o.delete(a):this.#o.set(a,s-1)}this.#c||(this.#c=!0,ha(()=>{this.#c=!1,this.linked&&this.flush()}))}transfer_reactions(e){for(const[a,s]of e)this.add_dirty_reaction(a,s);e.clear()}add_dirty_reaction(e,a){(a===Mn||this.#t.get(e)!==Mn)&&this.#t.set(e,a)}oncommit(e){this.#e.add(e)}ondiscard(e){this.#i.add(e)}settled(){return(this.#a??=yl()).promise}static ensure(){if(Sn===null){const e=Sn=new ga;Ft||ha(()=>{e.started||e.flush()})}return Sn}apply(){{Le=null;return}}schedule(e){if(ar=e,e.b?.is_pending&&(e.f&(qa|Fs|Tl))!==0&&(e.f&rs)===0){e.b.defer_effect(e);return}this.#s.push(e)}#d(){if(this.linked){var e=this.prev,a=this.next;e===null?_t=a:e.next=a,a===null?Ja=e:a.prev=e,this.linked=!1}}}function If(){try{kf()}catch(n){Oe(n,ar)}}let aa=null;function ao(n){var e=n.length;if(e!==0){for(var a=0;a<e;){var s=n[a++];if((s.f&(ne|oe))===0&&Ns(s)&&(aa=new Set,es(s),s.deps===null&&s.first===null&&s.nodes===null&&s.teardown===null&&s.ac===null&&Ul(s),aa?.size>0)){ze.clear();for(const t of aa){if((t.f&(ne|oe))!==0)continue;const r=[t];let o=t.parent;for(;o!==null;)aa.has(o)&&(aa.delete(o),r.push(o)),o=o.parent;for(let l=r.length-1;l>=0;l--){const i=r[l];(i.f&(ne|oe))===0&&es(i)}}aa.clear()}}aa=null}}function Fl(n,e,a,s){if(!a.has(n)&&(a.add(n),n.reactions!==null))for(const t of n.reactions){const r=t.f;(r&ae)!==0?Fl(t,e,a,s):(r&(Qa|Ee))!==0&&(r&Mn)===0&&Dr(t,e,s)&&(On(t,Mn),br(t))}}function Dr(n,e,a){const s=a.get(n);if(s!==void 0)return s;if(n.deps!==null)for(const t of n.deps){if(Rs.call(e,t))return!0;if((t.f&ae)!==0&&Dr(t,e,a))return a.set(t,!0),!0}return a.set(n,!1),!1}function br(n){Sn.schedule(n)}function Wl(n,e){if(!((n.f&We)!==0&&(n.f&qn)!==0)){(n.f&Mn)!==0?e.d.push(n):(n.f&he)!==0&&e.m.push(n),On(n,qn);for(var a=n.first;a!==null;)Wl(a,e),a=a.next}}function Pl(n){On(n,qn);for(var e=n.first;e!==null;)Pl(e),e=e.next}let ct=new Set;const ze=new Map;let Gl=!1;function Ra(n,e){var a={f:0,v:n,reactions:null,equals:Rl,rv:0,wv:0};return a}function pn(n,e){const a=Ra(n);return Xl(a),a}function Nl(n,e=!1,a=!0){const s=Ra(n);return e||(s.equals=Ll),ls&&a&&Pn!==null&&Pn.l!==null&&(Pn.l.s??=[]).push(s),s}function V(n,e,a=!1){gn!==null&&(!Ae||(gn.f&ot)!==0)&&Ps()&&(gn.f&(ae|Ee|Qa|ot))!==0&&(Qe===null||!Qe.has(n))&&Rf();let s=a?sa(e):e;return ns(n,s,at)}var Ta=null,sr=0;function ns(n,e,a=null){if(!n.equals(e)){la?ze.set(n,e):ze.has(n)||ze.set(n,n.v);var s=ga.ensure();if(s.capture(n,e),(n.f&ae)!==0){const t=n;(n.f&Mn)!==0&&wr(t),Le===null&&Sr(t)}n.wv=ni(),Ta=null,sr=0,Il(n,Mn,a),Ta=null,Ps()&&Cn!==null&&(Cn.f&qn)!==0&&(Cn.f&(We|ma))===0&&(Ce===null?Xf([n]):Ce.push(n)),!s.is_fork&&ct.size>0&&!Gl&&Hf()}return e}function Hf(){Gl=!1;for(const n of ct){(n.f&qn)!==0&&On(n,he);let e;try{e=Ns(n)}catch{e=!0}e&&es(n)}ct.clear()}function Ss(n){V(n,n.v+1)}function Il(n,e,a){var s=n.reactions;if(s!==null){var t=Ps(),r=s.length;if(sr+=r,sr>1e5&&Ta===null&&(Ta=new Set),Ta!==null){if(Ta.has(n))return;Ta.add(n)}for(var o=0;o<r;o++){var l=s[o],i=l.f;if(!(!t&&l===Cn)){var f=(i&Mn)===0;if(f&&On(l,e),(i&ot)!==0)ct.add(l);else if((i&ae)!==0){var u=l;Le?.delete(u),Il(u,he,a)}else if(f){var p=l;(i&Ee)!==0&&aa!==null&&aa.add(p),a!==null?a.push(p):br(p)}}}}}function sa(n){if(typeof n!="object"||n===null||ta in n||kl in n)return n;const e=Cr(n);if(e!==jc&&e!==Uc)return n;var a=new Map,s=Tt(n),t=pn(0),r=ba,o=l=>{if(ba===r)return l();var i=gn,f=ba;Te(null),oo(r);var u=l();return Te(i),oo(f),u};return s&&a.set("length",pn(n.length)),new Proxy(n,{defineProperty(l,i,f){(!("value"in f)||f.configurable===!1||f.enumerable===!1||f.writable===!1)&&Df();var u=a.get(i);return u===void 0?o(()=>{var p=pn(f.value);return a.set(i,p),p}):V(u,f.value,!0),!0},deleteProperty(l,i){var f=a.get(i);if(f===void 0){if(i in l){const u=o(()=>pn(jn));a.set(i,u),Ss(t)}}else V(f,jn),Ss(t);return!0},get(l,i,f){if(i===ta)return n;var u=a.get(i),p=i in l;if(u===void 0&&(!p||za(l,i)?.writable)&&(u=o(()=>{var d=sa(p?l[i]:jn),v=pn(d);return v}),a.set(i,u)),u!==void 0){var h=c(u);return h===jn?void 0:h}return Reflect.get(l,i,f)},getOwnPropertyDescriptor(l,i){this.has?.(l,i);var f=Reflect.getOwnPropertyDescriptor(l,i),u=a.get(i);if(u!==void 0){var p=c(u);if(p===jn)return;if(f&&"value"in f)f.value=p;else return{enumerable:!0,configurable:!0,value:p,writable:!0}}return f},has(l,i){if(i===ta)return!0;var f=a.get(i),u=f!==void 0&&f.v!==jn||Reflect.has(l,i);if(f!==void 0||(Cn!==null||gn!==null)&&(!u||za(l,i)?.writable)){f===void 0&&(f=o(()=>{var h=u?sa(l[i]):jn,d=pn(h);return d}),a.set(i,f));var p=c(f);if(p===jn)return!1}return u},set(l,i,f,u){var p=a.get(i),h=i in l;if(s&&i==="length")for(var d=f;d<p.v;d+=1){var v=a.get(d+"");v!==void 0?V(v,jn):d in l&&(v=o(()=>pn(jn)),a.set(d+"",v))}if(p===void 0)(!h||za(l,i)?.writable)&&(p=o(()=>pn(void 0)),V(p,sa(f)),a.set(i,p));else{h=p.v!==jn;var g=o(()=>sa(f));V(p,g)}var B=Reflect.getOwnPropertyDescriptor(l,i);if(B?.set&&B.set.call(u,f),!h){if(s&&typeof i=="string"){var y=a.get("length"),k=Number(i);Number.isInteger(k)&&k>=y.v&&V(y,k+1)}Ss(t)}return!0},ownKeys(l){c(t);var i=Reflect.ownKeys(l).filter(p=>{var h=a.get(p);return h===void 0||h.v!==jn});for(var[f,u]of a)u.v!==jn&&!(f in l)&&i.push(f);return i},setPrototypeOf(){bf()}})}function so(n){try{if(n!==null&&typeof n=="object"&&ta in n)return n[ta]}catch{}return n}function Hl(n,e){return Object.is(so(n),so(e))}var to,Kl,xl,Ol;function Kf(){if(to===void 0){to=window,Kl=/Firefox/.test(navigator.userAgent);var n=Element.prototype,e=Node.prototype,a=Text.prototype;xl=za(e,"firstChild").get,Ol=za(e,"nextSibling").get,no(n)&&(n[Xt]=void 0,n[wl]=null,n[$t]=void 0,n.__e=void 0),no(a)&&(a[nr]=void 0)}}function ra(n=""){return document.createTextNode(n)}function Ls(n){return xl.call(n)}function Gs(n){return Ol.call(n)}function W(n,e){return Ls(n)}function wn(n,e=!1){{var a=Ls(n);return a instanceof Comment&&a.data===""?Gs(a):a}}function S(n,e=!1){return Ls(n)}function m(n,e=1,a=!1){let s=n;for(;e--;)s=Gs(s);return s}function xf(n){n.textContent=""}function Vl(){return!1}function Of(n,e,a){return a?document.createElement(n,{is:a}):document.createElement(n)}function Vf(n){var e=Cn;if(e===null)return gn.f|=va,n;if((e.f&rs)===0&&(e.f&qa)===0)throw n;Oe(n,e)}function Oe(n,e){if(n===bl)throw n;if(!(e!==null&&(e.f&ne)!==0)){for(;e!==null;){if((e.f&Zt)!==0&&(e.f&(ne|Es))===0){if((e.f&rs)===0)throw n;try{e.b.error(n);return}catch(a){n=a}}e=e.parent}throw n}}function Yl(n){Cn===null&&(gn===null&&Sf(),Tf()),la&&yf()}function Yf(n,e){var a=e.last;a===null?e.last=e.first=n:(a.next=n,n.prev=a,e.last=n)}function Ze(n,e){var a=Cn;a!==null&&(a.f&oe)!==0&&(n|=oe);var s={ctx:Pn,deps:null,nodes:null,f:n|Mn|Je,first:null,fn:e,last:null,next:null,parent:a,b:a&&a.b,prev:null,teardown:null,wv:0,ac:null};Sn?.register_created_effect(s);var t=s;if((n&qa)!==0)Ts!==null?Ts.push(s):ga.ensure().schedule(s);else if(e!==null){try{es(s)}catch(o){throw fe(s),o}t.deps===null&&t.teardown===null&&t.nodes===null&&t.first===t.last&&(t.f&os)===0&&(t=t.first,(n&Ee)!==0&&(n&Za)!==0&&t!==null&&(t.f|=Za))}if(t!==null&&(t.parent=a,a!==null&&Yf(t,a),gn!==null&&(gn.f&ae)!==0&&(n&ma)===0)){var r=gn;(r.effects??=[]).push(t)}return s}function Rr(){return gn!==null&&!Ae}function Er(n){const e=Ze(Fs,null);return On(e,qn),e.teardown=n,e}function As(n){Yl();var e=Cn.f,a=!gn&&(e&We)!==0&&Pn!==null&&!Pn.i;if(a){var s=Pn;(s.e??=[]).push(n)}else return zl(n)}function zl(n){return Ze(qa|Sl,n)}function zf(n){return Yl(),Ze(Fs|Sl,n)}function Qf(n){ga.ensure();const e=Ze(ma|os,n);return(a={})=>new Promise(s=>{a.outro?Da(e,()=>{fe(e),s(void 0)}):(fe(e),s(void 0))})}function jf(n){return Ze(qa,n)}function Uf(n){return Ze(Qa|os,n)}function Ql(n,e=0){return Ze(Fs|e,n)}function K(n,e=[],a=[],s=[]){_f(s,e,a,t=>{Ze(Fs,()=>{n(...t.map(c))})})}function Lr(n,e=0){var a=Ze(Ee|e,n);return a}function ye(n){return Ze(We|os,n)}function jl(n){var e=n.teardown;if(e!==null){const a=la,s=gn;ro(!0),Te(null);try{e.call(null)}catch(t){Oe(t,n.parent)}finally{ro(a),Te(s)}}}function Ar(n,e=!1){var a=n.first;for(n.first=n.last=null;a!==null;){const t=a.ac;t!==null&&kt(()=>{t.abort(Ws)});var s=a.next;(a.f&ma)!==0?a.parent=null:fe(a,e),a=s}}function qf(n){for(var e=n.first;e!==null;){var a=e.next;(e.f&We)===0&&fe(e),e=a}}function fe(n,e=!0){var a=!1;(e||(n.f&Xc)!==0)&&n.nodes!==null&&n.nodes.end!==null&&(Zf(n.nodes.start,n.nodes.end),a=!0),n.f|=Es,Ar(n,e&&!a),Ms(n,0);var s=n.nodes&&n.nodes.t;if(s!==null)for(const r of s)r.stop();jl(n),n.f^=Es,n.f|=ne;var t=n.parent;t!==null&&t.first!==null&&Ul(n),n.next=n.prev=n.teardown=n.ctx=n.deps=n.fn=n.nodes=n.ac=n.b=null}function Zf(n,e){for(;n!==null;){var a=n===e?null:Gs(n);n.remove(),n=a}}function Ul(n){var e=n.parent,a=n.prev,s=n.next;a!==null&&(a.next=s),s!==null&&(s.prev=a),e!==null&&(e.first===n&&(e.first=s),e.last===n&&(e.last=a))}function Da(n,e,a=!0){var s=[];n.f|=yr,ql(n,s,!0);var t=()=>{a&&fe(n),e&&e()},r=s.length;if(r>0){var o=()=>--r||t();for(var l of s)l.out(o)}else t()}function ql(n,e,a){if((n.f&oe)===0){n.f^=oe;var s=n.nodes&&n.nodes.t;if(s!==null)for(const l of s)(l.is_global||a)&&e.push(l);for(var t=n.first;t!==null;){var r=t.next;if((t.f&ma)===0){var o=(t.f&Za)!==0||(t.f&We)!==0&&(n.f&Ee)!==0;ql(t,e,o?a:!1)}t=r}}}function ft(n){n.f&=~yr,Zl(n,!0)}function Zl(n,e){if((n.f&yr)===0&&(n.f&oe)!==0){n.f^=oe,(n.f&qn)===0&&(On(n,Mn),ga.ensure().schedule(n));for(var a=n.first;a!==null;){var s=a.next,t=(a.f&Za)!==0||(a.f&We)!==0;Zl(a,t?e:!1),a=s}var r=n.nodes&&n.nodes.t;if(r!==null)for(const o of r)(o.is_global||e)&&o.in()}}function Mr(n,e){if(n.nodes)for(var a=n.nodes.start,s=n.nodes.end;a!==null;){var t=a===s?null:Gs(a);e.append(a),a=t}}let la=!1;function ro(n){la=n}let gn=null,Ae=!1;function Te(n){gn=n}let Cn=null;function Ue(n){Cn=n}let Qe=null;function Xl(n){gn!==null&&((gn.f&lt)!==0||(gn.f&ae)!==0)&&(Qe??=new Set).add(n)}let ce=null,pe=0,Ce=null;function Xf(n){Ce=n}let $l=1,Sa=0,ba=Sa;function oo(n){ba=n}function ni(){return++$l}function Ns(n){var e=n.f;if((e&Mn)!==0)return!0;if((e&he)!==0){for(var a=n.deps,s=a.length,t=0;t<s;t++){var r=a[t];if(Ns(r)&&Jl(r),r.wv>n.wv)return!0}(e&Je)!==0&&Le===null&&On(n,qn)}return!1}function ei(n,e,a=!0){var s=n.reactions;if(s!==null&&!(Qe!==null&&Qe.has(n)))for(var t=0;t<s.length;t++){var r=s[t];(r.f&ae)!==0?ei(r,e,!1):e===r&&(a?On(r,Mn):(r.f&qn)!==0&&On(r,he),br(r))}}function ai(n){var e=ce,a=pe,s=Ce,t=gn,r=Qe,o=Pn,l=Ae,i=ba,f=n.f;ce=null,pe=0,Ce=null,gn=(f&(We|ma))===0?n:null,Qe=null,Xa(n.ctx),Ae=!1,ba=++Sa,n.ac!==null&&(kt(()=>{n.ac.abort(Ws)}),n.ac=null);try{n.f|=lt;var u=n.fn,p=u();n.f|=rs;var h=lo(n);if(Ps()&&Ce!==null&&!Ae&&h!==null&&(n.f&(ae|he|Mn))===0)for(var d=0;d<Ce.length;d++)ei(Ce[d],n);if(t!==null&&t!==n){if(Sa++,t.deps!==null)for(let v=0;v<a;v+=1)t.deps[v].rv=Sa;if(e!==null)for(const v of e)v.rv=Sa;Ce!==null&&(s===null?s=Ce:s.push(...Ce))}return(n.f&va)!==0&&(n.f^=va),p}catch(v){return lo(n),Vf(v)}finally{n.f^=lt,ce=e,pe=a,Ce=s,gn=t,Qe=r,Xa(o),Ae=l,ba=i}}function lo(n){var e=n.deps,a=Sn?.is_fork;if(ce!==null){var s;if(a||Ms(n,pe),e!==null&&pe>0)for(e.length=pe+ce.length,s=0;s<ce.length;s++)e[pe+s]=ce[s];else n.deps=e=ce;if(Rr()&&(n.f&Je)!==0)for(s=pe;s<e.length;s++)(e[s].reactions??=[]).push(n)}else!a&&e!==null&&pe<e.length&&(Ms(n,pe),e.length=pe);return e}function $f(n,e){let a=e.reactions;if(a!==null){var s=Qc.call(a,n);if(s!==-1){var t=a.length-1;t===0?a=e.reactions=null:(a[s]=a[t],a.pop())}}if(a===null&&(e.f&ae)!==0&&(ce===null||!Rs.call(ce,e))){var r=e;(r.f&Je)!==0&&(r.f^=Je),r.v!==jn&&Sr(r),r.ac!==null&&kt(()=>{r.ac.abort(Ws),r.ac=null,On(r,Mn)}),Gf(r),Ms(r,0)}}function Ms(n,e){var a=n.deps;if(a!==null)for(var s=e;s<a.length;s++)$f(n,a[s])}function es(n){var e=n.f;if((e&ne)===0){On(n,qn);var a=Cn;Cn=n;try{(e&(Ee|Tl))!==0?qf(n):Ar(n),jl(n);var s=ai(n);n.teardown=typeof s=="function"?s:null,n.wv=$l;var t;Bl&&Lf&&(n.f&Mn)!==0&&n.deps}finally{Cn=a}}}function c(n){var e=n.f,a=(e&ae)!==0;if(gn!==null&&!Ae){var s=Cn!==null&&(Cn.f&ne)!==0;if(!s&&(Qe===null||!Qe.has(n))){var t=gn.deps;if((gn.f&lt)!==0)n.rv<Sa&&(n.rv=Sa,ce===null&&t!==null&&t[pe]===n?pe++:ce===null?ce=[n]:ce.push(n));else{gn.deps??=[],Rs.call(gn.deps,n)||gn.deps.push(n);var r=n.reactions;r===null?n.reactions=[gn]:Rs.call(r,gn)||r.push(gn)}}}if(la&&ze.has(n))return ze.get(n);if(a){var o=n;if(la){var l=o.v;return((o.f&qn)===0&&o.reactions!==null||ti(o))&&(l=wr(o)),ze.set(o,l),l}var i=(o.f&Je)===0&&!Ae&&gn!==null&&(gn.f&Je)!==0,f=(o.f&rs)===0;Ns(o)&&(i&&(o.f|=Je),Jl(o)),i&&!f&&(_l(o),si(o))}if(Le?.has(n))return Le.get(n);if((n.f&va)!==0)throw n.v;return n.v}function si(n){if(n.f|=Je,n.deps!==null)for(const a of n.deps){var e=a.reactions;e===null?a.reactions=[n]:Rs.call(e,n)||e.push(n),(a.f&ae)!==0&&(a.f&Je)===0&&(_l(a),si(a))}}function ti(n){if(n.v===jn)return!0;if(n.deps===null)return!1;for(const e of n.deps)if(ze.has(e)||(e.f&ae)!==0&&ti(e))return!0;return!1}function is(n){var e=Ae;try{return Ae=!0,n()}finally{Ae=e}}function n0(n){if(!(typeof n!="object"||!n||n instanceof EventTarget)){if(ta in n)tr(n);else if(!Array.isArray(n))for(let e in n){const a=n[e];typeof a=="object"&&a&&ta in a&&tr(a)}}}function tr(n,e=new Set){if(typeof n=="object"&&n!==null&&!(n instanceof EventTarget)&&!e.has(n)){e.add(n),n instanceof Date&&n.getTime();for(let s in n)try{tr(n[s],e)}catch{}const a=Cr(n);if(a!==Object.prototype&&a!==Array.prototype&&a!==Map.prototype&&a!==Set.prototype&&a!==Date.prototype){const s=Cl(a);for(let t in s){const r=s[t].get;if(r)try{r.call(n)}catch{}}}}}const e0=["touchstart","touchmove"];function a0(n){return e0.includes(n)}const ms=Symbol("events"),ri=new Set,rr=new Set;function on(n,e,a){(e[ms]??={})[n]=a}function Vn(n){for(var e=0;e<n.length;e++)ri.add(n[e]);for(var a of rr)a(n)}let Wt=null,Pt=!1;function io(n){var e=this,a=e.ownerDocument,s=n.type,t=n.composedPath?.()||[],r=t[0]||n.target;Wt=n,Pt||(Pt=!0,setTimeout(()=>{Pt=!1,Wt=null}));var o=0,l=Wt===n&&n[ms];if(l){var i=t.indexOf(l);if(i!==-1&&(e===document||e===window)){n[ms]=e;return}var f=t.indexOf(e);if(f===-1)return;i<=f&&(o=i)}if(r=t[o]||n.target,r!==e){Br(n,"currentTarget",{configurable:!0,get(){return r||a}});var u=gn,p=Cn;Te(null),Ue(null);try{for(var h,d=[];r!==null&&r!==e;){try{var v=r[ms]?.[s];v!=null&&(!r.disabled||n.target===r)&&v.call(r,n)}catch(g){h?d.push(g):h=g}if(n.cancelBubble)break;o++,r=o<t.length?t[o]:null}if(h){for(let g of d)queueMicrotask(()=>{throw g});throw h}}finally{n[ms]=e,delete n.currentTarget,Te(u),Ue(p)}}}const s0=globalThis?.window?.trustedTypes&&globalThis.window.trustedTypes.createPolicy("svelte-trusted-html",{createHTML:n=>n});function t0(n){return s0?.createHTML(n)??n}function r0(n){var e=Of("template");return e.innerHTML=t0(n.replaceAll("<!>","<!---->")),e.content}function ut(n,e){var a=Cn;a.nodes===null&&(a.nodes={start:n,end:e,a:null,t:null})}function M(n,e){var a=(e&uf)!==0,s=(e&df)!==0,t,r=!n.startsWith("<!>");return()=>{t===void 0&&(t=r0(r?n:"<!>"+n),a||(t=Ls(t)));var o=s||Kl?document.importNode(t,!0):t.cloneNode(!0);if(a){var l=Ls(o),i=o.lastChild;ut(l,i)}else ut(o,o);return o}}function zs(n=""){{var e=ra(n+"");return ut(e,e),e}}function o0(){var n=document.createDocumentFragment(),e=document.createComment(""),a=ra();return n.append(e,a),ut(e,a),n}function A(n,e){n!==null&&n.before(e)}function l0(n){let e=0,a=Ra(0),s;return()=>{Rr()&&(c(a),Ql(()=>(e===0&&(s=is(()=>n(()=>Ss(a)))),e+=1,()=>{ha(()=>{e-=1,e===0&&(s?.(),s=void 0,Ss(a))})})))}}var i0=Za|os;function c0(n,e,a,s){new f0(n,e,a,s)}class f0{parent;is_pending=!1;transform_error;#e;#i=null;#n;#o;#a;#s=null;#r=null;#t=null;#l=null;#p=0;#c=0;#h=!1;#g=new Map;#f=null;#v=l0(()=>(this.#f=Ra(this.#p),()=>{this.#f=null}));constructor(e,a,s,t){this.#e=e,this.#n=a,this.#o=r=>{var o=Cn;o.b=this,o.f|=Zt,s(r)},this.parent=Cn.b,this.transform_error=t??this.parent?.transform_error??(r=>r),this.#a=Lr(()=>{this.#y()},i0)}#C(){try{this.#s=ye(()=>this.#o(this.#e))}catch(e){this.error(e)}}#S(e){const a=this.#n.failed,{reset:s,invoke_onerror:t}=this.#B(e);ha(t),a&&(this.#t=ye(()=>{a(this.#e,()=>e,()=>s)}))}#B(e){var a=!1,s=!1;const t=()=>{if(!this.#u()){if(a){mf();return}a=!0,s&&Ef(),this.#t!==null&&Da(this.#t,()=>{this.#t=null}),this.#T(()=>{this.#y()})}};return{reset:t,invoke_onerror:()=>{if(!this.#u())try{s=!0,this.#n.onerror?.(e,t),s=!1}catch(o){Oe(o,this.#a&&this.#a.parent)}}}}#u(){return(this.#a.f&(ne|Es))!==0}#m(){const e=this.#n.pending;e&&(this.is_pending=!0,this.#r=ye(()=>e(this.#e)),ha(()=>{if(!this.#u()){var a=this.#l=document.createDocumentFragment(),s=ra(),t=!1;if(a.append(s),this.#s=this.#T(()=>{try{return ye(()=>this.#o(s))}catch(r){try{this.error(r),t=!0}catch(o){Oe(o,this.#a.parent)}return null}}),this.#s===null){this.#l=null,t&&this.#d(Sn);return}this.#c===0&&(this.#e.before(a),this.#l=null,Da(this.#r,()=>{this.#r=null}),this.#d(Sn))}}))}#y(){try{if(this.is_pending=this.has_pending_snippet(),this.#c=0,this.#p=0,this.#s=ye(()=>{this.#o(this.#e)}),this.#c>0){var e=this.#l=document.createDocumentFragment();Mr(this.#s,e);const a=this.#n.pending;this.#r=ye(()=>a(this.#e))}else this.#d(Sn)}catch(a){this.error(a)}}#d(e){this.is_pending=!1,e.transfer_reactions(this.#g)}defer_effect(e){Al(e,this.#g)}is_rendered(){return!this.is_pending&&(!this.parent||this.parent.is_rendered())}has_pending_snippet(){return!!this.#n.pending}#T(e){var a=Cn,s=gn,t=Pn;Ue(this.#a),Te(this.#a),Xa(this.#a.ctx);try{return ga.ensure(),e()}finally{Ue(a),Te(s),Xa(t)}}#k(e,a){if(!this.has_pending_snippet()){this.parent&&this.parent.#k(e,a);return}this.#c+=e,this.#c===0&&(this.#d(a),this.#r&&Da(this.#r,()=>{this.#r=null}),this.#l&&(this.#e.before(this.#l),this.#l=null))}update_pending_count(e,a){this.#k(e,a),this.#p+=e,!(!this.#f||this.#h)&&(this.#h=!0,ha(()=>{this.#h=!1,this.#f&&ns(this.#f,this.#p)}))}get_effect_pending(){return this.#v(),c(this.#f)}error(e){if(e===bl||!this.#n.onerror&&!this.#n.failed)throw e;Sn?.is_fork?(this.#s&&Sn.skip_effect(this.#s),this.#r&&Sn.skip_effect(this.#r),this.#t&&Sn.skip_effect(this.#t),Sn.oncommit(()=>{this.#u()||this.#w(e)})):this.#w(e)}#w(e){this.#s&&(fe(this.#s),this.#s=null),this.#r&&(fe(this.#r),this.#r=null),this.#t&&(fe(this.#t),this.#t=null);let a=this.#n.failed;const s=t=>{if(this.#u())return;const{reset:r,invoke_onerror:o}=this.#B(t);o(),a&&!this.#u()&&(this.#t=this.#T(()=>{try{return ye(()=>{var l=Cn;l.b=this,l.f|=Zt,a(this.#e,()=>t,()=>r)})}catch(l){return Oe(l,this.#a.parent),null}}))};ha(()=>{if(!this.#u()){var t;try{t=this.transform_error(e)}catch(r){Oe(r,this.#a&&this.#a.parent);return}t!==null&&typeof t=="object"&&typeof t.then=="function"?t.then(s,r=>Oe(r,this.#a&&this.#a.parent)):s(t)}})}}function T(n,e){var a=e==null?"":typeof e=="object"?`${e}`:e;a!==(n[nr]??=n.nodeValue)&&(n[nr]=a,n.nodeValue=`${a}`)}function u0(n,e){return d0(n,e)}const Qs=new Map;function d0(n,{target:e,anchor:a,props:s={},events:t,context:r,intro:o=!0,transformError:l}){Kf();var i=void 0,f=Qf(()=>{var u=a??e.appendChild(ra());c0(u,{pending:()=>{}},d=>{En({});var v=Pn;r&&(v.c=r),t&&(s.$$events=t),i=n(d,s)||Tr(),Ln()},l);var p=new Set,h=d=>{for(var v=0;v<d.length;v++){var g=d[v];if(!p.has(g)){p.add(g);var B=a0(g);for(const w of[e,document]){var y=Qs.get(w);y===void 0&&(y=new Map,Qs.set(w,y));var k=y.get(g);k===void 0?(w.addEventListener(g,io,{passive:B}),y.set(g,1)):y.set(g,k+1)}}}};return h(St(ri)),rr.add(h),()=>{for(var d of p)for(const B of[e,document]){var v=Qs.get(B),g=v.get(d);--g==0?(B.removeEventListener(d,io),v.delete(d),v.size===0&&Qs.delete(B)):v.set(d,g)}rr.delete(h),u!==a&&u.parentNode?.removeChild(u)}});return p0.set(i,f),i}let p0=new WeakMap;class h0{anchor;#e=new Map;#i=new Map;#n=new Map;#o=new Set;#a=!0;constructor(e,a=!0){this.anchor=e,this.#a=a}#s=e=>{if(this.#e.has(e)){var a=this.#e.get(e),s=this.#i.get(a);if(s)ft(s),this.#o.delete(a);else{var t=this.#n.get(a);t&&(ft(t.effect),this.#i.set(a,t.effect),this.#n.delete(a),t.fragment.lastChild.remove(),this.anchor.before(t.fragment),s=t.effect)}for(const[r,o]of this.#e){if(this.#e.delete(r),r===e)break;const l=this.#n.get(o);l&&(fe(l.effect),this.#n.delete(o))}for(const[r,o]of this.#i){if(r===a||this.#o.has(r))continue;const l=()=>{if(Array.from(this.#e.values()).includes(r)){var f=document.createDocumentFragment();Mr(o,f),f.append(ra()),this.#n.set(r,{effect:o,fragment:f})}else fe(o);this.#o.delete(r),this.#i.delete(r)};this.#a||!s?(this.#o.add(r),Da(o,l,!1)):l()}}};#r=e=>{this.#e.delete(e);const a=Array.from(this.#e.values());for(const[s,t]of this.#n)a.includes(s)||(fe(t.effect),this.#n.delete(s))};ensure(e,a){var s=Sn,t=Vl();if(a&&!this.#i.has(e)&&!this.#n.has(e))if(t){var r=document.createDocumentFragment(),o=ra();r.append(o),this.#n.set(e,{effect:ye(()=>a(o)),fragment:r})}else this.#i.set(e,ye(()=>a(this.anchor)));if(this.#e.set(s,e),t){for(const[l,i]of this.#i)l===e?s.unskip_effect(i):s.skip_effect(i);for(const[l,i]of this.#n)l===e?s.unskip_effect(i.effect):s.skip_effect(i.effect);s.oncommit(this.#s),s.ondiscard(this.#r)}else this.#s(s)}}function sn(n,e,a=!1){var s=new h0(n),t=a?Za:0;function r(o,l){s.ensure(o,l)}Lr(()=>{var o=!1;e((l,i=0)=>{o=!0,r(i,l)}),o||r(-1,null)},t)}function cs(n,e){return e}function v0(n,e,a){for(var s=[],t=e.length,r,o=e.length,l=0;l<t;l++){let p=e[l];Da(p,()=>{if(r){if(r.pending.delete(p),r.done.add(p),r.pending.size===0){var h=n.outrogroups;or(n,St(r.done)),h.delete(r),h.size===0&&(n.outrogroups=null)}}else o-=1},!1)}if(o===0){var i=s.length===0&&a!==null&&n.pending.size===0;if(i){var f=a,u=f.parentNode;xf(u),u.append(f),n.items.clear()}or(n,e,!i)}else r={pending:new Set(e),done:new Set},(n.outrogroups??=new Set).add(r)}function or(n,e,a=!0){var s;if(n.pending.size>0){s=new Set;for(const o of n.pending.values())for(const l of o)s.add(n.items.get(l).e)}for(var t=0;t<e.length;t++){var r=e[t];if(s?.has(r)){r.f|=Ve;const o=document.createDocumentFragment();Mr(r,o)}else fe(e[t],a)}}var co;function hn(n,e,a,s,t,r=null){var o=n,l=new Map,i=(e&Dl)!==0;if(i){var f=n;o=f.appendChild(ra())}var u=null,p=kr(()=>{var k=a();return Tt(k)?k:k==null?[]:St(k)}),h=new Map,d=!0;function v(k){if((y.effect.f&ne)===0){y.pending.delete(k);var w=c(p);y.fallback=u,m0(y,w,o,e,s),u!==null&&(w.length===0?(u.f&Ve)===0?ft(u):(u.f^=Ve,gs(u,null,o)):Da(u,()=>{u=null}))}}function g(k){y.pending.delete(k)}var B=Lr(()=>{for(var k=c(p),w=k.length,D=new Set,C=Sn,L=Vl(),F=0;F<w;F+=1){var G=k[F],E=s(G,F),J=d?null:l.get(E);J?(J.v&&ns(J.v,G),J.i&&ns(J.i,F),L&&C.unskip_effect(J.e)):(J=g0(l,d?o:co??=ra(),G,E,F,t,e,a),d||(J.e.f|=Ve),l.set(E,J)),D.add(E)}if(w===0&&r&&!u&&(d?u=ye(()=>r(o)):(u=ye(()=>r(co??=ra())),u.f|=Ve)),w>D.size&&Cf(),!d)if(h.set(C,D),L){for(const[N,x]of l)D.has(N)||C.skip_effect(x.e);C.oncommit(v),C.ondiscard(g)}else v(C);c(p)}),y={effect:B,items:l,pending:h,outrogroups:null,fallback:u};d=!1}function ps(n){for(;n!==null&&(n.f&We)===0;)n=n.next;return n}function m0(n,e,a,s,t){var r=(s&sf)!==0,o=e.length,l=n.items,i=ps(n.effect.first),f,u=null,p,h=[],d=[],v,g,B,y;if(r)for(y=0;y<o;y+=1)v=e[y],g=t(v,y),B=l.get(g).e,(B.f&Ve)===0&&(B.nodes?.a?.measure(),(p??=new Set).add(B));for(y=0;y<o;y+=1){if(v=e[y],g=t(v,y),B=l.get(g).e,n.outrogroups!==null)for(const J of n.outrogroups)J.pending.delete(B),J.done.delete(B);if((B.f&oe)!==0&&(ft(B),r&&(B.nodes?.a?.unfix(),(p??=new Set).delete(B))),(B.f&Ve)!==0)if(B.f^=Ve,B===i)gs(B,null,a);else{var k=u?u.next:i;B===n.effect.last&&(n.effect.last=B.prev),B.prev&&(B.prev.next=B.next),B.next&&(B.next.prev=B.prev),fa(n,u,B),fa(n,B,k),gs(B,k,a),u=B,h=[],d=[],i=ps(u.next);continue}if(B!==i){if(f!==void 0&&f.has(B)){if(h.length<d.length){var w=d[0],D;u=w.prev;var C=h[0],L=h[h.length-1];for(D=0;D<h.length;D+=1)gs(h[D],w,a);for(D=0;D<d.length;D+=1)f.delete(d[D]);fa(n,C.prev,L.next),fa(n,u,C),fa(n,L,w),i=w,u=L,y-=1,h=[],d=[]}else f.delete(B),gs(B,i,a),fa(n,B.prev,B.next),fa(n,B,u===null?n.effect.first:u.next),fa(n,u,B),u=B;continue}for(h=[],d=[];i!==null&&i!==B;)(f??=new Set).add(i),d.push(i),i=ps(i.next);if(i===null)continue}(B.f&Ve)===0&&h.push(B),u=B,i=ps(B.next)}if(n.outrogroups!==null){for(const J of n.outrogroups)J.pending.size===0&&(or(n,St(J.done)),n.outrogroups?.delete(J));n.outrogroups.size===0&&(n.outrogroups=null)}if(i!==null||f!==void 0){var F=[];if(f!==void 0)for(B of f)(B.f&oe)===0&&F.push(B);for(;i!==null;)(i.f&oe)===0&&i!==n.fallback&&F.push(i),i=ps(i.next);var G=F.length;if(G>0){var E=(s&Dl)!==0&&o===0?a:null;if(r){for(y=0;y<G;y+=1)F[y].nodes?.a?.measure();for(y=0;y<G;y+=1)F[y].nodes?.a?.fix()}v0(n,F,E)}}r&&ha(()=>{if(p!==void 0)for(B of p)B.nodes?.a?.apply()})}function g0(n,e,a,s,t,r,o,l){var i=(o&ef)!==0?(o&tf)===0?Nl(a,!1,!1):Ra(a):null,f=(o&af)!==0?Ra(t):null;return{v:i,i:f,e:ye(()=>(r(e,i??a,f??t,l),()=>{n.delete(s)}))}}function gs(n,e,a){if(n.nodes)for(var s=n.nodes.start,t=n.nodes.end,r=e&&(e.f&Ve)===0?e.nodes.start:a;s!==null;){var o=Gs(s);if(r.before(s),s===t)return;s=o}}function fa(n,e,a){e===null?n.effect.first=a:e.next=a,a===null?n.effect.last=e:a.prev=e}const fo=[...` 	
+\r\f \v\uFEFF`];function B0(n,e,a){var s=n==null?"":""+n;if(e&&(s=s?s+" "+e:e),a){for(var t of Object.keys(a))if(a[t])s=s?s+" "+t:t;else if(s.length)for(var r=t.length,o=0;(o=s.indexOf(t,o))>=0;){var l=o+r;(o===0||fo.includes(s[o-1]))&&(l===s.length||fo.includes(s[l]))?s=(o===0?"":s.substring(0,o))+s.substring(l+1):o=l}}return s===""?null:s}function C0(n,e){return n==null?null:String(n)}function Hn(n,e,a,s,t,r){var o=n[Xt];if(o!==a||o===void 0){var l=B0(a,s,r);l==null?n.removeAttribute("class"):n.className=l,n[Xt]=a}else if(r&&t!==r)for(var i in r){var f=!!r[i];(t==null||f!==!!t[i])&&n.classList.toggle(i,f)}return r}function Ie(n,e,a,s){var t=n[$t];if(t!==e){var r=C0(e);r==null?n.removeAttribute("style"):n.style.cssText=r,n[$t]=e}return s}function y0(n,e){e?n.hasAttribute("selected")||n.setAttribute("selected",""):n.removeAttribute("selected")}function T0(n,e){var a=n.__defaultValue,s=n.multiple,t=s?a??[]:null;if(!(s&&!Tt(t))){n.selectedIndex;for(var r of n.options){var o=lr(r);y0(r,s?t.includes(o):Hl(o,a))}}}function oi(n,e,a=!1){if(n.multiple){if(e==null)return;if(!Tt(e))return vf();for(var s of n.options)s.selected=e.includes(lr(s));return}for(s of n.options){var t=lr(s);if(Hl(t,e)){s.selected=!0;return}}(!a||e!==void 0)&&(n.selectedIndex=-1)}function S0(n){var e=new MutationObserver(a=>{a.every(k0)||("__defaultValue"in n&&T0(n),"__value"in n&&oi(n,n.__value))});e.observe(n,{childList:!0,subtree:!0,attributes:!0,attributeFilter:["value"]}),Er(()=>{e.disconnect()})}function lr(n){return"__value"in n?n.__value:n.value}function k0(n){if(n.target.closest("selectedcontent")!==null)return!0;if(n.type==="childList"){var e=[...n.addedNodes,...n.removedNodes];return e.length>0&&e.every(a=>a.nodeName==="SELECTEDCONTENT")}return!1}const w0=Symbol("is custom element"),D0=Symbol("is html");function uo(n,e){var a=li(n);a.checked!==(a.checked=e??void 0)&&(n.checked=e)}function fn(n,e,a,s){var t=li(n),r=t[e];r!==(t[e]=a)&&(e==="loading"&&(n[nf]=a),a==null?n.removeAttribute(e):typeof a!="string"&&b0(n).has(e)?n[e]=a:n.setAttribute(e,a))}function li(n){return n[wl]??={[w0]:n.nodeName.includes("-"),[D0]:n.namespaceURI===pf}}var po=new Map;function b0(n){var e=n.getAttribute("is")||n.nodeName,a=po.get(e);if(a)return a;po.set(e,a=new Set);for(var s,t=n,r=Element.prototype;r!==t;){s=Cl(t);for(var o in s)s[o].set&&o!=="innerHTML"&&o!=="textContent"&&o!=="innerText"&&a.add(o);t=Cr(t)}return a}function Gt(n,e){return n===e||n?.[ta]===e}function R0(n=Tr(),e,a,s){var t=Pn.r,r=Cn;return jf(()=>{var o,l;return Ql(()=>{o=l,l=[],is(()=>{Gt(a(...l),n)||(e(n,...l),o&&Gt(a(...o),n)&&e(null,...o))})}),()=>{let i=r;for(;i!==t&&i.parent!==null&&i.parent.f&Es;)i=i.parent;const f=()=>{l&&Gt(a(...l),n)&&e(null,...l)},u=i.teardown;i.teardown=()=>{f(),u?.()}}}),n}function E0(n=!1){const e=Pn,a=e.l.u;if(!a)return;let s=()=>n0(e.s);if(n){let t=0,r={};const o=$a(()=>{let l=!1;const i=e.s;for(const f in i)i[f]!==r[f]&&(r[f]=i[f],l=!0);return l&&t++,t});s=()=>c(o)}a.b.length&&zf(()=>{ho(e,s),qt(a.b)}),As(()=>{const t=is(()=>a.m.map(qc));return()=>{for(const r of t)typeof r=="function"&&r()}}),a.a.length&&As(()=>{ho(e,s),qt(a.a)})}function ho(n,e){if(n.l.s)for(const a of n.l.s)c(a);e()}function ii(n,e,a){if(n==null)return e(void 0),wa;const s=is(()=>n.subscribe(e,a));return s.unsubscribe?()=>s.unsubscribe():s}const _a=[];function ci(n,e){return{subscribe:Jr(n,e).subscribe}}function Jr(n,e=wa){let a=null;const s=new Set;function t(l){if(El(n,l)&&(n=l,a)){const i=!_a.length;for(const f of s)f[1](),_a.push(f,n);if(i){for(let f=0;f<_a.length;f+=2)_a[f][0](_a[f+1]);_a.length=0}}}function r(l){t(l(n))}function o(l,i=wa){const f=[l,i];return s.add(f),s.size===1&&(a=e(t,r)||wa),l(n),()=>{s.delete(f),s.size===0&&a&&(a(),a=null)}}return{set:t,update:r,subscribe:o}}function L0(n){let e;return ii(n,a=>e=a)(),e}let js=!1,ir=Symbol("unmounted");function He(n,e,a){const s=a[e]??={store:null,source:Nl(void 0),unsubscribe:wa};if(s.store!==n&&!(ir in a))if(s.unsubscribe(),s.store=n??null,n==null)s.source.v=void 0,s.unsubscribe=wa;else{var t=!0;s.unsubscribe=ii(n,r=>{t?s.source.v=r:V(s.source,r)}),t=!1}return n&&ir in a?L0(n):c(s.source)}function A0(){const n={};function e(){Er(()=>{for(var a in n)n[a].unsubscribe();Br(n,ir,{enumerable:!1,value:!0})})}return[n,e]}function M0(n){var e=js;try{return js=!1,[n(),js]}finally{js=e}}function xn(n,e,a,s){var t=!ls||(a&of)!==0,r=(a&cf)!==0,o=(a&ff)!==0,l=s,i=!0,f=void 0,u=()=>o&&t?(f??=$a(s),c(f)):(i&&(i=!1,l=o?is(s):s),l);let p;if(r){var h=ta in n||$c in n;p=za(n,e)?.set??(h&&e in n?D=>n[e]=D:void 0)}var d,v=!1;r?[d,v]=M0(()=>n[e]):d=n[e],d===void 0&&s!==void 0&&(d=u(),p&&(t&&wf(),p(d)));var g;if(t?g=()=>{var D=n[e];return D===void 0?u():(i=!0,D)}:g=()=>{var D=n[e];return D!==void 0&&(l=void 0),D===void 0?l:D},t&&(a&lf)===0)return g;if(p){var B=n.$$legacy;return(function(D,C){return arguments.length>0?((!t||!C||B||v)&&p(C?g():D),D):g()})}var y=!1,k=((a&rf)!==0?$a:kr)(()=>(y=!1,g()));r&&c(k);var w=Cn;return(function(D,C){if(arguments.length>0){const L=C?c(k):t&&r?sa(D):D;return V(k,L),y=!0,l!==void 0&&(l=L),D}return la&&y||(w.f&ne)!==0?k.v:c(k)})}function J0(n){Pn===null&&gf(),ls&&Pn.l!==null?_0(Pn).m.push(n):As(()=>{const e=is(n);if(typeof e=="function")return e})}function _0(n){var e=n.l;return e.u??={a:[],b:[],m:[]}}const F0="5";typeof window<"u"&&((window.__svelte??={}).v??=new Set).add(F0);const vo=`name,pos,team,ovr,spd,str
+Ja'Marr Chase,WR,Cincinnati Bengals,99,96,73
+Jaxon Smith-Njigba,WR,Seattle Seahawks,99,93,63
+Josh Allen,QB,Buffalo Bills,99,89,81
+Myles Garrett,REDG,Los Angeles Rams,99,86,96
+Trey McBride,TE,Arizona Cardinals,99,88,76
+Bijan Robinson,HB,Atlanta Falcons,98,96,81
+Christian Gonzalez,CB,New England Patriots,98,96,59
+Fred Warner,MIKE,San Francisco 49ers,98,87,80
+Matthew Stafford,QB,Los Angeles Rams,98,77,66
+Micah Parsons,REDG,Green Bay Packers,98,89,91
+Penei Sewell,LT,Detroit Lions,98,73,97
+Puka Nacua,WR,Los Angeles Rams,98,93,69
+Christian McCaffrey,HB,San Francisco 49ers,97,90,74
+George Kittle,TE,San Francisco 49ers,97,87,82
+Jahmyr Gibbs,HB,Detroit Lions,97,98,72
+Joe Burrow,QB,Cincinnati Bengals,97,83,68
+Justin Jefferson,WR,Minnesota Vikings,97,91,64
+Maxx Crosby,LEDG,Las Vegas Raiders,97,86,89
+Pat Surtain II,CB,Denver Broncos,97,94,63
+Trent Williams,LT,San Francisco 49ers,97,78,95
+Amon-Ra St. Brown,WR,Detroit Lions,96,90,67
+Creed Humphrey,C,Kansas City Chiefs,96,73,90
+Derrick Brown,DT,Carolina Panthers,96,75,98
+Garett Bolles,LT,Denver Broncos,96,74,87
+Jeffery Simmons,DT,Chicago Bears,96,78,97
+Joe Thuney,LG,Chicago Bears,96,72,90
+Jonathan Taylor,HB,Indianapolis Colts,96,94,82
+Quinn Meinerz,RG,Denver Broncos,96,75,95
+T.J. Watt,LEDG,Pittsburgh Steelers,96,83,88
+Trent McDuffie,CB,Los Angeles Rams,96,93,61
+Aaron Donald,DT,Los Angeles Rams,95,83,97
+Andrew Thomas,LT,NY Giants,95,68,90
+Brock Bowers,TE,Las Vegas Raiders,95,90,75
+Cam Heyward,DT,Pittsburgh Steelers,95,75,94
+CeeDee Lamb,WR,Dallas Cowboys,95,89,70
+Kenneth Walker,HB,Kansas City Chiefs,95,93,83
+Lamar Jackson,QB,Baltimore Ravens,95,95,63
+Quenton Nelson,LG,Seattle Seahawks,95,73,97
+Will Anderson Jr,LEDG,Houston Texans,95,87,91
+Aidan Hutchinson,LEDG,Detroit Lions,94,83,87
+Chris Jones,DT,Kansas City Chiefs,94,73,96
+Chris Lindstrom,RG,Atlanta Falcons,94,76,92
+Denzel Ward,CB,Cleveland Browns,94,93,61
+Derrick Henry,HB,Baltimore Ravens,94,93,87
+Jessie Bates III,FS,Atlanta Falcons,94,90,59
+Kyle Hamilton,SS,Baltimore Ravens,94,88,72
+Laremy Tunsil,LT,Washington Commanders,94,71,92
+Patrick Mahomes,QB,Kansas City Chiefs,94,85,70
+Tristan Wirfs,LT,Tampa Bay Buccaneers,94,76,94
+Vita Vea,DT,Tampa Bay Buccaneers,94,79,99
+Antoine Winfield Jr,FS,Tampa Bay Buccaneers,93,93,59
+Derwin James Jr,SS,Los Angeles Chargers,93,90,80
+Dexter Lawrence II,DT,Cincinnati Bengals,93,80,97
+Drake London,WR,Atlanta Falcons,93,88,77
+Kolton Miller,LT,Las Vegas Raiders,93,75,88
+Nick Bosa,LEDG,San Francisco 49ers,93,80,94
+Roquan Smith,MIKE,Baltimore Ravens,93,86,80
+Travis Kelce,TE,Kansas City Chiefs,93,85,81
+Trey Smith,RG,Kansas City Chiefs,93,71,95
+Zack Baun,WILL,Philadelphia Eagles,93,89,80
+Brock Purdy,QB,San Francisco 49ers,92,86,63
+Danielle Hunter,REDG,Houston Texans,92,87,82
+DeForest Buckner,DT,San Francisco 49ers,92,81,90
+Derek Stingley Jr,CB,Houston Texans,92,93,63
+DeVonta Smith,WR,Philadelphia Eagles,92,92,49
+Jalen Ramsey,FS,Pittsburgh Steelers,92,93,71
+James Cook III,HB,Buffalo Bills,92,93,67
+Rashawn Slater,LT,Los Angeles Chargers,92,74,93
+Xavier McKinney,SS,Green Bay Packers,92,88,67
+Brian Branch,SS,Detroit Lions,91,88,60
+Caleb Williams,QB,Chicago Bears,91,91,65
+Davante Adams,WR,Los Angeles Rams,91,91,63
+Devon Witherspoon,CB,Seattle Seahawks,91,91,60
+Jordan Mailata,LT,Philadelphia Eagles,91,76,97
+Mike Evans,WR,San Francisco 49ers,91,88,78
+Nik Bonitto,REDG,Denver Broncos,91,87,82
+Quinnen Williams,DT,Dallas Cowboys,91,83,94
+Saquon Barkley,HB,Philadelphia Eagles,91,95,81
+Aaron Brewer,C,Miami Dolphins,90,74,88
+Christian Darrisaw,LT,Minnesota Vikings,90,73,92
+Dak Prescott,QB,Dallas Cowboys,90,84,75
+Darnell Wright,RT,Chicago Bears,90,72,96
+Demario Davis,MIKE,NY Jets,90,88,85
+Greg Rousseau,LEDG,Buffalo Bills,90,86,83
+Kevin Dotson,RG,Los Angeles Rams,90,69,92
+Kyren Williams,HB,Los Angeles Rams,90,88,79
+Leonard Williams,DT,Seattle Seahawks,90,77,91
+Mark Andrews,TE,Baltimore Ravens,90,87,81
+Minkah Fitzpatrick,SS,NY Jets,90,91,64
+Nico Collins,WR,Houston Texans,90,93,67
+Nnamdi Madubuike,DT,Baltimore Ravens,90,80,92
+Quinyon Mitchell,CB,Philadelphia Eagles,90,94,66
+Zay Flowers,WR,Baltimore Ravens,90,93,55
+Brian Burns,REDG,NY Giants,89,88,76
+Chris Olave,WR,New Orleans Saints,89,93,59
+Dallas Goedert,TE,Philadelphia Eagles,89,86,78
+Dion Dawkins,LT,Buffalo Bills,89,75,92
+Drake Maye,QB,New England Patriots,89,89,62
+Drue Tranquill,WILL,Kansas City Chiefs,89,87,80
+Josh Hines-Allen,REDG,Jacksonville Jaguars,89,87,84
+Josh Jacobs,HB,Green Bay Packers,89,90,83
+Sauce Gardner,CB,Indianapolis Colts,89,92,65
+Talanoa Hufanga,SS,Denver Broncos,89,89,58
+Terry McLaurin,WR,Washington Commanders,89,95,67
+Tyler Smith,LG,Dallas Cowboys,89,71,97
+Zach Frazier,C,Pittsburgh Steelers,89,64,88
+Zach Allen,DT,Denver Broncos,89,76,94
+A.J. Terrell Jr,CB,Atlanta Falcons,88,91,60
+Budda Baker,SS,Arizona Cardinals,88,90,72
+Byron Murphy Jr,CB,Minnesota Vikings,88,92,60
+Charvarius Ward Sr,CB,Indianapolis Colts,88,90,65
+D'Andre Swift,HB,Chicago Bears,88,90,68
+Devin Lloyd,WILL,Carolina Panthers,88,86,78
+George Pickens,WR,Dallas Cowboys,88,91,61
+Jalen Carter,DT,Philadelphia Eagles,88,82,94
+Jared Verse,REDG,Cleveland Browns,88,89,92
+Jared Goff,QB,Detroit Lions,88,74,64
+Kerby Joseph,FS,Detroit Lions,88,88,64
+Kyle Juszczyk,FB,San Francisco 49ers,88,85,79
+Malik Nabers,WR,NY Giants,88,96,63
+Sam Cosmi,RG,Washington Commanders,88,76,87
+Sam LaPorta,TE,Detroit Lions,88,86,74
+Tee Higgins,WR,Cincinnati Bengals,88,90,71
+Trey Hendrickson,REDG,Baltimore Ravens,88,83,83
+Tyler Linderbaum,C,Las Vegas Raiders,88,78,85
+A.J. Brown,WR,New England Patriots,87,91,79
+Breece Hall,HB,NY Jets,87,92,76
+Brian O'Neill,RT,Minnesota Vikings,87,76,86
+Chase Young,LEDG,New Orleans Saints,87,85,86
+Cooper DeJean,CB,Philadelphia Eagles,87,92,65
+Dalton Schultz,TE,Houston Texans,87,84,76
+Damien Lewis,LG,Carolina Panthers,87,67,89
+De'Von Achane,HB,Miami Dolphins,87,96,68
+DeMarcus Lawrence,LEDG,Seattle Seahawks,87,84,87
+Erik McCoy,C,New Orleans Saints,87,73,89
+Foyesade Oluokun,MIKE,Jacksonville Jaguars,87,87,70
+Garrett Wilson,WR,NY Jets,87,92,56
+Harrison Smith,FS,Minnesota Vikings,87,86,73
+Jack Campbell,MIKE,Detroit Lions,87,85,76
+Jake Matthews,LT,Atlanta Falcons,87,70,86
+Jamel Dean,CB,Pittsburgh Steelers,87,91,66
+Jaycee Horn,CB,Carolina Panthers,87,91,65
+Jaylon Johnson,CB,Chicago Bears,87,89,67
+Jonathan Allen,DT,Cincinnati Bengals,87,72,93
+Jordyn Brooks,WILL,Miami Dolphins,87,87,77
+Tetairoa McMillan,WR,Carolina Panthers,87,89,76
+Trevor Lawrence,QB,Jacksonville Jaguars,87,89,69
+Zach Bako-Bewele,RT,Green Bay Packers,87,74,81
+Alex Singleton,MIKE,Denver Broncos,86,85,72
+Alex Highsmith,REDG,Pittsburgh Steelers,86,84,85
+Alim McNeill,DT,Detroit Lions,86,74,94
+Bernhard Raimann,LT,Indianapolis Colts,86,70,92
+Brandon Aubrey,K,Dallas Cowboys,86,81,49
+Bucky Irving,HB,Tampa Bay Buccaneers,86,89,65
+Courtland Sutton,WR,Denver Broncos,86,90,75
+Devin Bush,MIKE,Chicago Bears,86,87,74
+Hunter Henry,TE,New England Patriots,86,85,75
+Isaiah Rodgers Sr,CB,Minnesota Vikings,86,96,50
+Jalen Pitre,CB,Houston Texans,86,90,62
+Jaylen Warren,HB,Pittsburgh Steelers,86,90,75
+Joe Alt,RT,Los Angeles Chargers,86,71,89
+Joey Porter Jr,CB,Dallas Cowboys,86,90,67
+Jordan Love,QB,Green Bay Packers,86,85,62
+Julian Love,FS,Seattle Seahawks,86,89,62
+Khalil Mack,REDG,Los Angeles Chargers,86,84,87
+Mike Onwenu,RG,New England Patriots,86,65,91
+Milton Williams,DT,New England Patriots,86,82,92
+Nick Emmanwori,SS,Seattle Seahawks,86,93,70
+Paris Johnson Jr,LT,Arizona Cardinals,86,73,89
+Ronnie Stanley,LT,Baltimore Ravens,86,70,92
+Stefon Diggs,WR,Washington Commanders,86,88,62
+Alaric Jackson,LT,Los Angeles Rams,85,63,88
+Ashton Jeanty,HB,Las Vegas Raiders,85,90,80
+Byron Murphy II,DT,Seattle Seahawks,85,77,91
+Byron Young,LEDG,Los Angeles Rams,85,92,74
+Carlton Davis III,CB,New England Patriots,85,90,65
+Carson Schwesinger,MIKE,Cleveland Browns,85,87,75
+Charles Cross,LT,Seattle Seahawks,85,73,84
+Chris Boswell,K,Pittsburgh Steelers,85,72,44
+Christian Watson,WR,Green Bay Packers,85,96,65
+Chuba Hubbard,HB,Carolina Panthers,85,91,75
+Dre Greenlaw,WILL,San Francisco 49ers,85,85,72
+Ernest Jones IV,MIKE,Seattle Seahawks,85,87,74
+Jameson Williams,WR,Detroit Lions,85,98,63
+Javonte Williams,HB,Dallas Cowboys,85,88,82
+Jaylen Waddle,WR,Denver Broncos,85,96,57
+Jevon Holland,FS,NY Giants,85,91,65
+Jonathan Greenard,REDG,Philadelphia Eagles,85,86,81
+Josh Sweat,REDG,Arizona Cardinals,85,85,81
+Kamari Lassiter,CB,Houston Texans,85,92,52
+Kevin Byard III,FS,New England Patriots,85,88,73
+Kevin Zeitler,RG,Green Bay Packers,85,72,91
+Kobie Turner,DT,Los Angeles Rams,85,74,89
+Marlon Humphrey,CB,Baltimore Ravens,85,91,74
+Michael Dickson,P,Seattle Seahawks,85,77,47
+Rashee Rice,WR,Kansas City Chiefs,85,90,71
+Ryan Neuzil,C,Atlanta Falcons,85,69,85
+Spencer Brown,RT,Buffalo Bills,85,73,91
+Travis Hunter,CB,Jacksonville Jaguars,85,93,61
+Tucker Kraft,TE,Green Bay Packers,85,88,76
+Alec Pierce,WR,Indianapolis Colts,84,94,67
+Andrew Van Ginkel,REDG,Minnesota Vikings,84,86,76
+Blake Cashman,MIKE,Minnesota Vikings,84,87,70
+Camryn Bynum,FS,Indianapolis Colts,84,88,66
+Chase Brown,HB,Cincinnati Bengals,84,93,69
+Colton McKivitz,RT,San Francisco 49ers,84,71,84
+D.J. Reader,DT,NY Giants,84,70,95
+Daron Payne,DT,Washington Commanders,84,77,95
+DJ Moore,WR,Buffalo Bills,84,91,66
+DJ Turner II,CB,Cincinnati Bengals,84,96,43
+Jalen Redmond,DT,Minnesota Vikings,84,79,85
+Jalen Thompson,SS,Dallas Cowboys,84,90,60
+Jonathon Cooper,LEDG,Denver Broncos,84,85,82
+Jordan Addison,WR,Minnesota Vikings,84,90,52
+Luke Goedeke,RT,Tampa Bay Buccaneers,84,66,88
+Nate Wiggins,CB,Baltimore Ravens,84,96,49
+Nate Landman,MIKE,Los Angeles Rams,84,82,76
+Parker Washington,WR,Jacksonville Jaguars,84,89,66
+Patrick Ricard,FB,NY Giants,84,72,88
+Peter Skoronski,LG,Tennessee Titans,84,67,89
+Quentin Lake,SS,Los Angeles Rams,84,89,57
+Sam Darnold,QB,Seattle Seahawks,84,82,60
+Spencer Shrader,K,Indianapolis Colts,84,67,42
+Tanor Bortolini,C,Indianapolis Colts,84,74,88
+Taron Johnson,CB,Las Vegas Raiders,84,92,63
+Taylor Moton,RT,Carolina Panthers,84,68,88
+Terrel Bernard,MIKE,Buffalo Bills,84,85,67
+Tony Pollard,HB,Tennessee Titans,84,90,69
+Travis Etienne Jr,HB,New Orleans Saints,84,92,70
+Tyler Warren,TE,Indianapolis Colts,84,84,80
+Tyler Booker,RG,Dallas Cowboys,84,60,95
+Will Reichard,K,Minnesota Vikings,84,78,42
+Aaron Jones Sr,HB,Minnesota Vikings,83,88,71
+Abraham Lucas,RT,Seattle Seahawks,83,74,87
+Alijah Vera-Tucker,LG,New England Patriots,83,75,91
+Armand Membou,RT,NY Jets,83,74,91
+Azeez Al-Shaair,MIKE,Houston Texans,83,86,77
+Bobby Okereke,MIKE,Carolina Panthers,83,88,73
+Brandon Jones,FS,Denver Broncos,83,88,58
+Cam Skattebo,HB,NY Giants,83,85,83
+Chidobe Awuzie,CB,Baltimore Ravens,83,89,69
+Cooper Kupp,WR,Seattle Seahawks,83,87,66
+Dalton Kincaid,TE,Buffalo Bills,83,86,71
+Deommodore Lenoir,CB,San Francisco 49ers,83,90,59
+DK Metcalf,WR,Pittsburgh Steelers,83,94,79
+Dominick Puni,RG,San Francisco 49ers,83,61,91
+Evan Williams,FS,Green Bay Packers,83,86,62
+George Karlaftis,LEDG,Kansas City Chiefs,83,81,85
+Grover Stewart,DT,Indianapolis Colts,83,73,90
+Hjalte Froholdt,C,Arizona Cardinals,83,72,91
+Jermaine Eluemunor,RT,NY Giants,83,68,92
+Jonah Jackson,RG,Chicago Bears,83,68,86
+Josh Metellus,SS,Minnesota Vikings,83,88,66
+Justin Herbert,QB,Los Angeles Chargers,83,88,71
+Kaden Elliss,WILL,New Orleans Saints,83,85,75
+Kam Curl,SS,Los Angeles Rams,83,89,70
+Khalil Shakir,WR,Buffalo Bills,83,90,63
+Kyler Gordon,CB,Chicago Bears,83,88,66
+Ladd McConkey,WR,Los Angeles Chargers,83,92,57
+Nick Folk,K,Atlanta Falcons,83,66,59
+Nolan Smith Jr,LEDG,Philadelphia Eagles,83,90,69
+Poona Ford,DT,Los Angeles Rams,83,71,88
+Reggie Gilliam,FB,New England Patriots,83,87,81
+Rigoberto Sanchez,P,Indianapolis Colts,83,69,51
+Riq Woolen,CB,Philadelphia Eagles,83,96,60
+Robert Spillane,MIKE,New England Patriots,83,87,71
+T.J. Hockenson,TE,Minnesota Vikings,83,83,80
+Zach Charbonnet,HB,Seattle Seahawks,83,88,79
+Zach Sieler,DT,Miami Dolphins,83,78,89
+A.J. Cole,P,Las Vegas Raiders,82,71,47
+Abdul Carter,LEDG,NY Giants,82,88,80
+Arvell Reese,WILL,NY Giants,82,90,80
+Braden Smith,RT,Houston Texans,82,66,92
+Bryce Young,QB,Carolina Panthers,82,87,54
+Calais Campbell,DT,Baltimore Ravens,82,73,89
+Chris Godwin Jr,WR,Tampa Bay Buccaneers,82,88,72
+Colston Loveland,TE,Chicago Bears,82,86,78
+Dallas Turner,LEDG,Minnesota Vikings,82,90,76
+David Montgomery,HB,Houston Texans,82,87,77
+Donte Jackson,CB,Los Angeles Chargers,82,93,49
+Ed Oliver,DT,Buffalo Bills,82,82,89
+Elgton Jenkins,C,Cleveland Browns,82,73,89
+Evan McPherson,K,Cincinnati Bengals,82,74,37
+Grant Delpit,SS,Cleveland Browns,82,90,60
+Isaiah Likely,TE,NY Giants,82,84,66
+Jaelan Phillips,LEDG,Carolina Panthers,82,87,83
+Jakobi Meyers,WR,Jacksonville Jaguars,82,88,62
+Jason Myers,K,Seattle Seahawks,82,69,43
+Jeremiah Owusu-Koramoah,WILL,Cleveland Browns,82,87,65
+Jeremiyah Love,HB,Arizona Cardinals,82,94,76
+Jeremy Chinn,SS,Las Vegas Raiders,82,91,70
+Jeremy Crawshaw,P,Denver Broncos,82,77,60
+Joe Tippmann,RG,NY Jets,82,73,89
+Jordan Davis,DT,Philadelphia Eagles,82,81,96
+Jourdan Lewis,CB,Jacksonville Jaguars,82,88,67
+Landon Dickerson,LG,Philadelphia Eagles,82,66,93
+Leo Chenal,MIKE,Washington Commanders,82,87,82
+Lukas Van Ness,LEDG,Green Bay Packers,82,86,81
+Mansoor Delane,CB,Kansas City Chiefs,82,93,59
+Marcus Jones,CB,New England Patriots,82,92,48
+Michael Wilson,WR,Arizona Cardinals,82,89,72
+Mike McGlinchey,RT,Denver Broncos,82,70,88
+Morgan Moses,RT,New England Patriots,82,65,90
+Nick Bolton,MIKE,Kansas City Chiefs,82,87,74
+Rasheed Walker,LT,Carolina Panthers,82,63,87
+Rico Dowdle,HB,Pittsburgh Steelers,82,89,75
+Rome Odunze,WR,Chicago Bears,82,91,65
+Tony Jefferson,SS,Los Angeles Chargers,82,87,74
+Tre'von Moehrig,FS,Carolina Panthers,82,89,64
+Tremaine Edmunds,MIKE,NY Giants,82,85,75
+TreVeyon Henderson,HB,New England Patriots,82,95,71
+Wan'Dale Robinson,WR,Tennessee Titans,82,91,61
+Amani Hooker,SS,Tennessee Titans,81,87,62
+Antonio Johnson,SS,Jacksonville Jaguars,81,88,55
+Bhayshul Tuten,HB,Jacksonville Jaguars,81,95,75
+C.J. Stroud,QB,Houston Texans,81,82,61
+Calen Bullock,FS,Houston Texans,81,90,54
+Cam Taylor-Britt,CB,Indianapolis Colts,81,92,64
+Chase McLaughlin,K,Tampa Bay Buccaneers,81,73,39
+Cobie Durant,CB,Dallas Cowboys,81,92,50
+Connor McGovern,C,Buffalo Bills,81,68,87
+Craig Woodson,SS,New England Patriots,81,91,59
+Daiyan Henley,WILL,Los Angeles Chargers,81,88,65
+Darren Waller,TE,Carolina Panthers,81,87,70
+David Bailey,REDG,NY Jets,81,89,80
+Divine Deablo,MIKE,Atlanta Falcons,81,88,69
+Emeka Egbuka,WR,Tampa Bay Buccaneers,81,90,60
+Gervon Dexter Sr,DT,Atlanta Falcons,81,76,85
+Grady Jarrett,DT,Chicago Bears,81,71,89
+Harold Landry III,REDG,New England Patriots,81,84,78
+J.K. Dobbins,HB,Denver Broncos,81,90,74
+Jadeveon Clowney,LEDG,Houston Texans,81,82,84
+Jauan Jennings,WR,Minnesota Vikings,81,88,78
+JK Scott,P,Los Angeles Chargers,81,75,51
+Josh Harris,LS,Los Angeles Chargers,81,76,68
+Josh Simmons,LT,Kansas City Chiefs,81,78,88
+Josh Downs,WR,Indianapolis Colts,81,90,51
+Justin Reid,FS,New Orleans Saints,81,90,66
+Ka'imi Fairbairn,K,Houston Texans,81,79,39
+Keenan Allen,WR,Indianapolis Colts,81,88,72
+Kyle Pitts Sr,TE,Atlanta Falcons,81,90,71
+Mason Graham,DT,Cleveland Browns,81,78,90
+Michael Pittman,WR,Pittsburgh Steelers,81,88,71
+Mike Jackson,CB,Carolina Panthers,81,90,61
+Montez Sweat,LEDG,Chicago Bears,81,87,80
+Nick Cross,SS,Washington Commanders,81,92,67
+Omarion Hampton,HB,Los Angeles Chargers,81,90,78
+Patrick Paul,LT,Miami Dolphins,81,68,90
+Quincy Williams,WILL,Cleveland Browns,81,87,67
+Robert Hunt,RG,Carolina Panthers,81,65,89
+Sheldon Rankins,DT,Houston Texans,81,75,87
+Sonny Styles,MIKE,Washington Commanders,81,90,74
+Steve Avila,LG,Los Angeles Rams,81,65,88
+T.J. Edwards,WILL,Chicago Bears,81,85,72
+Tarheeb Still,CB,Los Angeles Chargers,81,89,56
+Tyler Allgeier,HB,Arizona Cardinals,81,85,80
+Tyler Shough,QB,New Orleans Saints,81,87,56
+Will Campbell,LT,New England Patriots,81,73,87
+Woody Marks,HB,Houston Texans,81,88,70
+Zyon McCollum,CB,Tampa Bay Buccaneers,81,93,60
+Akheem Mesidor,REDG,Los Angeles Chargers,80,86,81
+Alohi Gilman,FS,Kansas City Chiefs,80,87,63
+Andrew DePaola,LS,Minnesota Vikings,80,74,75
+Baker Mayfield,QB,Tampa Bay Buccaneers,80,87,69
+Bo Nix,QB,Denver Broncos,80,89,60
+Bryan Cook,FS,Cincinnati Bengals,80,89,67
+Caleb Downs,SS,Dallas Cowboys,80,89,73
+Cam Little,K,Jacksonville Jaguars,80,74,41
+Cameron Dicker,K,Los Angeles Chargers,80,75,51
+Christian Benford,CB,Buffalo Bills,80,89,65
+Christian Barmore,DT,New England Patriots,80,74,89
+Cor'Dale Flott,CB,Tennessee Titans,80,91,50
+Corey Bojorquez,P,Cleveland Browns,80,70,41
+D.J. Reed,CB,Detroit Lions,80,89,52
+DeShon Elliott,SS,Pittsburgh Steelers,80,87,57
+Edgerrin Cooper,WILL,Green Bay Packers,80,89,72
+Ethan Evans,P,Los Angeles Rams,80,68,55
+Ezra Cleveland,RG,Jacksonville Jaguars,80,76,88
+Harold Fannin Jr,TE,Cleveland Browns,80,82,75
+Harrison Butker,K,Kansas City Chiefs,80,74,44
+Ikem Ekwonu,LT,Carolina Panthers,80,74,93
+Isaac Seumalo,LG,Arizona Cardinals,80,68,84
+Jacob Rodriguez,MIKE,Miami Dolphins,80,87,76
+Jacory Croskey-Merritt,HB,Washington Commanders,80,92,67
+Jake Elliott,K,Philadelphia Eagles,80,75,34
+Jaquan Brisker,SS,Pittsburgh Steelers,80,89,68
+Javon Hargrave,DT,Green Bay Packers,80,74,87
+Jayden Reed,WR,Green Bay Packers,80,94,58
+Jaylen Watson,CB,Los Angeles Rams,80,92,66
+JC Latham,RT,Tennessee Titans,80,63,94
+John Simpson,LG,Baltimore Ravens,80,69,92
+John Franklin-Myers,DT,Tennessee Titans,80,77,90
+Jordan Mason,HB,Minnesota Vikings,80,89,78
+Juwan Johnson,TE,New Orleans Saints,80,86,69
+Kayshon Boutte,WR,Houston Texans,80,91,58
+Kenny Moore II,CB,Philadelphia Eagles,80,90,61
+Kyle Monangai,HB,Chicago Bears,80,86,77
+Kyle Van Noy,REDG,Minnesota Vikings,80,82,76
+Laiatu Latu,LEDG,Indianapolis Colts,80,84,77
+Luther Burden III,WR,Chicago Bears,80,92,69
+Mack Wilson Sr,MIKE,Arizona Cardinals,80,86,79
+Mason McCormick,LG,Pittsburgh Steelers,80,70,90
+Matthew Golden,WR,Green Bay Packers,80,95,61
+Michael Mayer,TE,Las Vegas Raiders,80,82,79
+Odafe Oweh,LEDG,Washington Commanders,80,88,80
+Quay Walker,WILL,Las Vegas Raiders,80,88,75
+Quentin Johnston,WR,Los Angeles Chargers,80,93,70
+Quinshon Judkins,HB,Cleveland Browns,80,90,77
+Rhamondre Stevenson,HB,New England Patriots,80,88,82
+Ricky Pearsall,WR,San Francisco 49ers,80,92,61
+Travon Walker,LEDG,Jacksonville Jaguars,80,87,88
+Tyler Biadasz,C,Los Angeles Chargers,80,74,85
+Tytus Howard,RT,Cleveland Browns,80,72,85
+Alex Anzalone,WILL,Tampa Bay Buccaneers,79,88,74
+Alvin Kamara,HB,New Orleans Saints,79,87,77
+Amik Robertson,CB,Washington Commanders,79,90,56
+Anton Harrison,LT,Jacksonville Jaguars,79,73,84
+Blake Corum,HB,Los Angeles Rams,79,93,75
+Boye Mafe,REDG,Cincinnati Bengals,79,89,75
+Braden Mann,P,Philadelphia Eagles,79,77,45
+Braden Fiske,DT,Los Angeles Rams,79,80,93
+Brenton Strange,TE,Jacksonville Jaguars,79,83,77
+Brian Thomas Jr,WR,Jacksonville Jaguars,79,97,59
+Brian Robinson Jr,HB,Atlanta Falcons,79,87,81
+Bryan Anger,P,Dallas Cowboys,79,73,55
+Cameron Jordan,REDG,New Orleans Saints,79,76,87
+Carl Granderson,REDG,New Orleans Saints,79,85,80
+Cole Bishop,FS,Buffalo Bills,79,91,64
+Coleman Shelton,C,Los Angeles Rams,79,72,83
+DaQuan Jones,DT,New England Patriots,79,70,88
+David Edwards,LG,New Orleans Saints,79,67,82
+Deebo Samuel Sr,WR,San Francisco 49ers,79,91,80
+Dorance Armstrong,LEDG,Washington Commanders,79,78,82
+Dru Phillips,CB,NY Giants,79,90,62
+Dylan Parham,LG,NY Jets,79,74,86
+Elijah Molden,FS,Los Angeles Chargers,79,89,57
+Eric Wilson,WILL,Minnesota Vikings,79,88,79
+Francis Mauigoa,RG,NY Giants,79,68,91
+Frankie Luvu,WILL,Washington Commanders,79,85,83
+Greg Newsome II,CB,NY Giants,79,91,60
+Ja'Quan McMillian,CB,Denver Broncos,79,90,56
+Jack Fox,P,Detroit Lions,79,87,50
+Jacob Parrish,CB,Tampa Bay Buccaneers,79,94,65
+Jalen Hurts,QB,Philadelphia Eagles,79,88,76
+Jalon Walker,LEDG,Atlanta Falcons,79,86,80
+James Pearce Jr,REDG,Atlanta Falcons,79,90,76
+James Conner,HB,Arizona Cardinals,79,88,83
+Jerry Jeudy,WR,Cleveland Browns,79,91,64
+Jihaad Campbell,MIKE,Philadelphia Eagles,79,89,72
+Kamren Kinchens,FS,Los Angeles Rams,79,86,59
+Kenny Clark,DT,Dallas Cowboys,79,74,91
+Kristian Fulton,CB,Kansas City Chiefs,79,91,59
+L'Jarius Sneed,CB,Kansas City Chiefs,79,94,60
+Matthew Bergeron,LG,Atlanta Falcons,79,63,89
+Mike Gesicki,TE,Cincinnati Bengals,79,84,76
+Nakobe Dean,MIKE,Las Vegas Raiders,79,87,66
+Nohl Williams,CB,Kansas City Chiefs,79,89,63
+Pat Freiermuth,TE,Pittsburgh Steelers,79,83,78
+Patrick Queen,MIKE,Pittsburgh Steelers,79,87,73
+Reed Blankenship,SS,Houston Texans,79,87,61
+RJ Harvey,HB,Denver Broncos,79,92,73
+Romeo Doubs,WR,New England Patriots,79,91,60
+Spencer Fano,LT,Cleveland Browns,79,75,90
+T'Vondre Sweat,DT,NY Jets,79,63,94
+Tank Dell,WR,Houston Texans,79,92,50
+Travis Jones,DT,Baltimore Ravens,79,74,95
+Trent Brown,RT,Houston Texans,79,68,91
+Trenton Simpson,WILL,Baltimore Ravens,79,91,77
+Tuli Tuipulotu,LEDG,Los Angeles Chargers,79,77,88
+Tykee Smith,SS,Tampa Bay Buccaneers,79,90,58
+Tyler Loop,K,Baltimore Ravens,79,74,40
+Tyson Campbell,CB,Cleveland Browns,79,92,58
+Xavier Worthy,WR,Kansas City Chiefs,79,99,47
+Yaya Diaby,REDG,Tampa Bay Buccaneers,79,89,74
+Zach Wood,LS,New Orleans Saints,79,71,75
+A'Shawn Robinson,DT,Tampa Bay Buccaneers,78,64,85
+Aaron Rodgers,QB,Pittsburgh Steelers,78,77,59
+Alontae Taylor,CB,Tennessee Titans,78,95,60
+Ar'Darius Washington,FS,NY Giants,78,84,57
+Bradley Chubb,REDG,Buffalo Bills,78,84,89
+Bryce Baringer,P,New England Patriots,78,73,50
+Cairo Santos,K,Chicago Bears,78,72,33
+Calvin Ridley,WR,Tennessee Titans,78,92,59
+Carnell Tate,WR,Tennessee Titans,78,91,68
+Cedric Gray,WILL,Tennessee Titans,78,84,69
+Christian Kirk,WR,San Francisco 49ers,78,90,65
+Chuck Clark,FS,Detroit Lions,78,87,67
+Cody Barton,MIKE,Tennessee Titans,78,85,78
+Cole Kmet,TE,Chicago Bears,78,85,76
+Dane Belton,FS,NY Jets,78,91,63
+Dax Hill,CB,Cincinnati Bengals,78,92,56
+Deonte Banks,CB,NY Giants,78,95,60
+Derrick Harmon,DT,Pittsburgh Steelers,78,74,93
+Devonte Wyatt,DT,Green Bay Packers,78,80,86
+Dontayvion Wicks,WR,Philadelphia Eagles,78,89,60
+Ed Ingram,RG,Houston Texans,78,71,87
+Evan Engram,TE,Denver Broncos,78,86,66
+Garrett Williams,CB,Arizona Cardinals,78,88,63
+Hogan Hatten,LS,Detroit Lions,78,78,68
+Isaiah McDuffie,SAM,Green Bay Packers,78,88,73
+Jackson Powers-Johnson,RG,Las Vegas Raiders,78,70,88
+Jake Brendel,C,San Francisco 49ers,78,68,84
+Jake Ferguson,TE,Dallas Cowboys,78,81,69
+Jake Bailey,P,Atlanta Falcons,78,81,43
+Jalen Coker,WR,Carolina Panthers,78,91,63
+Jarran Reed,DT,Seattle Seahawks,78,71,89
+Javon Bullard,SS,Green Bay Packers,78,89,70
+Jaxson Dart,QB,NY Giants,78,84,63
+Jordan Battle,SS,Cincinnati Bengals,78,88,63
+Kayvon Thibodeaux,LEDG,NY Giants,78,88,81
+Keisean Nixon,CB,Green Bay Packers,78,92,54
+Keldric Faulk,LEDG,Tennessee Titans,78,83,84
+Kelvin Banks Jr,LT,New Orleans Saints,78,67,86
+Kenny Gainwell,HB,Tampa Bay Buccaneers,78,89,70
+Kwity Paye,REDG,Las Vegas Raiders,78,84,86
+Malachi Lawrence,REDG,Dallas Cowboys,78,88,79
+Malaki Starks,FS,Baltimore Ravens,78,89,63
+Malcolm Koonce,LEDG,Las Vegas Raiders,78,84,75
+Maliek Collins,DT,Cleveland Browns,78,70,84
+Malik Hooker,FS,Dallas Cowboys,78,87,76
+Matt Goncalves,RG,Indianapolis Colts,78,66,84
+Nick Herbig,REDG,Pittsburgh Steelers,78,84,74
+Omar Speights,WILL,Los Angeles Rams,78,84,78
+Rachaad White,HB,Washington Commanders,78,89,74
+Rashan Gary,LEDG,Dallas Cowboys,78,85,83
+Rashid Shaheed,WR,Seattle Seahawks,78,95,61
+Renardo Green,CB,San Francisco 49ers,78,90,59
+Riley Moss,CB,Denver Broncos,78,91,53
+Roger Rosengarten,RT,Baltimore Ravens,78,75,82
+Rueben Bain Jr,LEDG,Tampa Bay Buccaneers,78,84,84
+Sebastian Joseph-Day,DT,Pittsburgh Steelers,78,73,86
+Tommy Townsend,P,Tennessee Titans,78,81,43
+Tre Tucker,WR,Las Vegas Raiders,78,95,53
+Trent Sieg,LS,Dallas Cowboys,78,75,72
+Trey Amos,CB,Washington Commanders,78,91,64
+Troy Franklin,WR,Denver Broncos,78,92,58
+Tyleik Williams,DT,Detroit Lions,78,75,91
+Tyler Guyton,LT,Dallas Cowboys,78,67,86
+Tyrone Tracy Jr,HB,NY Giants,78,90,72
+Vega Ioane,RG,Baltimore Ravens,78,62,89
+Wil Lutz,K,Denver Broncos,78,69,54
+Will McDonald IV,LEDG,NY Jets,78,82,69
+Xavier Watts,SS,Atlanta Falcons,78,86,62
+Zaire Franklin,MIKE,Green Bay Packers,78,84,80
+Zion Johnson,LG,Cleveland Browns,78,66,90
+Adonai Mitchell,WR,NY Jets,77,94,51
+Andre Cisco,SS,NY Jets,77,91,65
+Andre Szmyt,K,Cleveland Browns,77,73,41
+Andrew Wingard,FS,Arizona Cardinals,77,88,55
+Benjamin St-Juste,CB,Green Bay Packers,77,90,60
+Bradley Pinion,P,Miami Dolphins,77,70,53
+Brandon Stephens,CB,NY Jets,77,90,68
+Calijah Kancey,DT,Tampa Bay Buccaneers,77,83,84
+Carrington Valentine,CB,Green Bay Packers,77,91,49
+Cashius Howell,REDG,Cincinnati Bengals,77,86,76
+Chris Johnson,CB,Miami Dolphins,77,91,63
+Coby Bryant,FS,Chicago Bears,77,90,63
+Cody Mauch,RG,Tampa Bay Buccaneers,77,70,87
+Corliss Waitman,P,San Francisco 49ers,77,70,46
+Daniel Carlson,K,New Orleans Saints,77,70,52
+DaRon Bland,CB,Dallas Cowboys,77,91,60
+David Onyemata,DT,NY Jets,77,72,89
+David Njoku,TE,Los Angeles Chargers,77,86,72
+DeMario Douglas,WR,New England Patriots,77,91,57
+Deone Walker,DT,Buffalo Bills,77,66,84
+Derick Hall,LEDG,Seattle Seahawks,77,87,76
+Derrick Moore,LEDG,Detroit Lions,77,82,85
+Dillon Thieneman,SS,Chicago Bears,77,92,64
+Donovan Ezeiruaku,REDG,Dallas Cowboys,77,83,79
+Dre'Mont Jones,LEDG,New England Patriots,77,82,82
+Eddy Pineiro,K,San Francisco 49ers,77,75,42
+Elic Ayomanor,WR,Tennessee Titans,77,91,68
+Eric Stokes,CB,Las Vegas Raiders,77,95,58
+Harrison Phillips,DT,NY Jets,77,69,93
+Jalen Nailor,WR,Las Vegas Raiders,77,90,58
+James Pierre,CB,Minnesota Vikings,77,94,60
+Jamien Sherwood,WILL,NY Jets,77,86,67
+Jarrian Jones,CB,Jacksonville Jaguars,77,93,43
+Jayden Higgins,WR,Houston Texans,77,89,67
+Jaylinn Hawkins,FS,Baltimore Ravens,77,87,63
+Jermaine Johnson II,REDG,Tennessee Titans,77,85,82
+Josh Jobe,CB,Seattle Seahawks,77,89,63
+Justice Hill,HB,Baltimore Ravens,77,90,67
+Kadyn Proctor,LG,Miami Dolphins,77,65,90
+Keeanu Benton,DT,Pittsburgh Steelers,77,70,89
+Keon Coleman,WR,Buffalo Bills,77,87,72
+Kimani Vidal,HB,Los Angeles Chargers,77,90,70
+Kirk Cousins,QB,Las Vegas Raiders,77,69,52
+Kyler Murray,QB,Minnesota Vikings,77,92,59
+Luke Rhodes,LS,Indianapolis Colts,77,80,80
+Luke Wattenberg,C,Denver Broncos,77,65,79
+Mack Hollins,WR,New England Patriots,77,90,73
+Malik Mustapha,SS,San Francisco 49ers,77,88,66
+Martin Emerson Jr,CB,New Orleans Saints,77,88,65
+Marvin Mims Jr,WR,Denver Broncos,77,92,55
+Marvin Harrison Jr,WR,Houston Texans,77,88,57
+Maxwell Hairston,CB,Buffalo Bills,77,96,59
+Mike Danna,LEDG,Buffalo Bills,77,80,82
+Moro Ojomo,DT,Philadelphia Eagles,77,71,84
+Mykel Williams,REDG,San Francisco 49ers,77,81,86
+Omar Cooper Jr,WR,NY Jets,77,93,72
+Osa Odighizuwa,DT,San Francisco 49ers,77,76,85
+Quan Martin,FS,Washington Commanders,77,90,61
+R Mason Thomas,LEDG,Kansas City Chiefs,77,83,80
+Rashod Bateman,WR,Baltimore Ravens,77,90,60
+Rasul Douglas,CB,Washington Commanders,77,88,73
+Sean Murphy-Bunting,CB,Pittsburgh Steelers,77,90,59
+Shelby Harris,DT,NY Giants,77,74,85
+Tank Bigsby,HB,Philadelphia Eagles,77,92,75
+Tate Ratledge,RG,Detroit Lions,77,73,88
+Teair Tart,DT,Los Angeles Chargers,77,70,88
+Theo Johnson,TE,NY Giants,77,87,75
+TJ Parker,REDG,Buffalo Bills,77,83,82
+Trey Smack,K,Green Bay Packers,77,73,43
+Tyjae Spears,HB,Tennessee Titans,77,88,71
+Tyrel Dodson,WILL,Carolina Panthers,77,88,74
+Von Miller,LEDG,Dallas Cowboys,77,83,84
+Walker Little,LT,Jacksonville Jaguars,77,65,86
+Walter Nolen III,DT,Arizona Cardinals,77,81,87
+Will Fries,RG,Minnesota Vikings,77,58,87
+Will Johnson,CB,Arizona Cardinals,77,89,62
+Za'Darius Smith,LEDG,Atlanta Falcons,77,80,86
+Zaven Collins,LEDG,Arizona Cardinals,77,88,76
+Al-Quadin Muhammad,LEDG,Tampa Bay Buccaneers,76,79,78
+Amarius Mims,RT,Cincinnati Bengals,76,70,91
+Anfernee Jennings,LEDG,New Orleans Saints,76,82,81
+Antonio Williams,WR,Washington Commanders,76,92,61
+Arik Armstead,DT,Jacksonville Jaguars,76,73,91
+Arnold Ebiketie,LEDG,Philadelphia Eagles,76,83,76
+Austin Barber,RG,Cleveland Browns,76,68,86
+Austin Corbett,LG,Buffalo Bills,76,68,85
+B.J. Hill,DT,Cincinnati Bengals,76,72,88
+Blake Miller,RT,Detroit Lions,76,71,92
+Brady Christensen,RG,Carolina Panthers,76,73,88
+Brandon Dorlus,DT,Atlanta Falcons,76,77,84
+Caleb Banks,DT,Minnesota Vikings,76,71,87
+Caleb Lomu,RT,New England Patriots,76,73,85
+Cesar Ruiz,RG,New Orleans Saints,76,76,87
+Chamarri Conner,SS,Kansas City Chiefs,76,89,66
+Charles Omenihu,DT,Washington Commanders,76,73,83
+Cooper Beebe,C,Dallas Cowboys,76,71,87
+D.J. Jones,DT,Denver Broncos,76,72,88
+D.J. Wonnum,REDG,Detroit Lions,76,81,82
+Dalton Risner,RG,Cincinnati Bengals,76,69,86
+Darnell Mooney,WR,NY Giants,76,90,58
+Darnell Washington,TE,Pittsburgh Steelers,76,84,81
+Davon Godchaux,DT,New Orleans Saints,76,70,93
+Dawson Knox,TE,Buffalo Bills,76,86,72
+De'Zhaun Stribling,WR,San Francisco 49ers,76,94,72
+Dee Alford,CB,Buffalo Bills,76,91,49
+Demarcus Robinson,WR,San Francisco 49ers,76,87,60
+Denzel Boston,WR,Cleveland Browns,76,88,71
+Denzel Perryman,MIKE,Los Angeles Chargers,76,81,84
+Devaughn Vele,WR,New Orleans Saints,76,90,58
+Donovan Jackson,LG,Minnesota Vikings,76,67,90
+Drake Thomas,WILL,Seattle Seahawks,76,82,66
+Emmanuel McNeil-Warren,FS,Cleveland Browns,76,88,61
+Gabe Jacas,LEDG,New England Patriots,76,83,87
+Garrett Bradbury,C,Chicago Bears,76,76,90
+Graham Barton,C,Tampa Bay Buccaneers,76,74,87
+Grey Zabel,LG,Seattle Seahawks,76,74,88
+Isiah Pacheco,HB,Detroit Lions,76,93,80
+Ivan Pace Jr,MIKE,Minnesota Vikings,76,85,72
+Jack Jones,CB,San Francisco 49ers,76,94,53
+Jacob Martin,LEDG,Tennessee Titans,76,86,77
+Jadarian Price,HB,Seattle Seahawks,76,89,72
+Jaden Hicks,SS,Kansas City Chiefs,76,89,67
+Jahdae Barron,CB,Denver Broncos,76,93,54
+Jake Bates,K,Detroit Lions,76,72,35
+Jalyx Hunt,REDG,Philadelphia Eagles,76,84,79
+Jarvis Brownlee Jr,CB,NY Jets,76,92,63
+Jason Sanders,K,NY Jets,76,76,37
+Jayden Daniels,QB,Washington Commanders,76,91,59
+Jer'Zhan Newton,DT,Washington Commanders,76,78,85
+Jonas Sanker,SS,New Orleans Saints,76,90,58
+Jordan Stout,P,NY Giants,76,83,45
+Jordyn Tyson,WR,New Orleans Saints,76,90,73
+Joshua Uche,REDG,Miami Dolphins,76,86,73
+Julian Blackmon,SS,New Orleans Saints,76,88,57
+Kalif Raymond,WR,Chicago Bears,76,91,53
+KaVontae Turpin,WR,Dallas Cowboys,76,97,48
+KC Concepcion Jr,WR,Cleveland Browns,76,91,70
+Keaton Mitchell,HB,Los Angeles Chargers,76,94,60
+Kendre Miller,HB,New Orleans Saints,76,90,75
+Kenyon Sadiq,TE,NY Jets,76,91,76
+Kingsley Suamataia,LG,Kansas City Chiefs,76,71,89
+Kool-Aid McKinstry,CB,New Orleans Saints,76,90,53
+Kyle Dugger,SS,Cincinnati Bengals,76,88,77
+Logan Cooke,P,Jacksonville Jaguars,76,71,56
+Makai Lemon,WR,Philadelphia Eagles,76,89,69
+Malcolm Roach,DT,Denver Broncos,76,74,93
+Marques Sigle,SS,San Francisco 49ers,76,92,64
+Mekhi Blackmon,CB,Cleveland Browns,76,90,55
+Mike Green,REDG,Baltimore Ravens,76,88,79
+Mitch Wishnowsky,P,New England Patriots,76,83,56
+Monroe Freeling,RT,Carolina Panthers,76,75,86
+Nate Hobbs,CB,San Francisco 49ers,76,90,65
+Olu Fashanu,LT,NY Jets,76,69,88
+Paulson Adebo,CB,NY Giants,76,92,64
+Payton Wilson,WILL,Pittsburgh Steelers,76,92,67
+Riley Dixon,P,Tampa Bay Buccaneers,76,76,56
+Romello Height,LEDG,San Francisco 49ers,76,84,81
+Ronnie Hickman,FS,Cleveland Browns,76,86,65
+Ryan Flournoy,WR,Dallas Cowboys,76,92,62
+Ryan Fitzgerald,K,Carolina Panthers,76,72,53
+Samaje Perine,HB,Cincinnati Bengals,76,86,84
+Samson Ebukam,REDG,Atlanta Falcons,76,83,83
+Taliese Fuaga,RT,New Orleans Saints,76,68,93
+Ted Karras,C,Cincinnati Bengals,76,68,86
+Terrion Arnold,CB,Seattle Seahawks,76,90,58
+Tommy Togiai,DT,Houston Texans,76,76,91
+Tommy Doman Jr,P,Buffalo Bills,76,75,51
+Treydan Stukes,FS,Las Vegas Raiders,76,94,62
+Ty Johnson,HB,Buffalo Bills,76,90,64
+Tyler Higbee,TE,Los Angeles Rams,76,82,79
+Tyquan Thornton,WR,Kansas City Chiefs,76,92,55
+Uchenna Nwosu,REDG,Seattle Seahawks,76,82,73
+Zion Young,LEDG,Baltimore Ravens,76,81,88
+A.J. Epenesa,REDG,Philadelphia Eagles,75,78,85
+A.J. Barner,TE,Seattle Seahawks,75,78,78
+Akeem Davis-Gaither,MIKE,Indianapolis Colts,75,86,70
+Andrew Wylie,RG,Washington Commanders,75,68,85
+Arden Key,REDG,Indianapolis Colts,75,80,79
+Austin McNamara,P,NY Jets,75,76,45
+Avieon Terrell,CB,Atlanta Falcons,75,88,61
+Azareye'h Thomas,CB,NY Jets,75,86,67
+Benjamin Morrison,CB,Tampa Bay Buccaneers,75,92,57
+Braelon Allen,HB,NY Jets,75,88,79
+Brandin Echols,CB,Pittsburgh Steelers,75,91,52
+Brandon McManus,K,Los Angeles Rams,75,75,56
+Brandon Aiyuk,WR,San Francisco 49ers,75,90,65
+Bryan Bresee,DT,New Orleans Saints,75,78,88
+Bud Clark,FS,Seattle Seahawks,75,91,65
+C.J. Gardner-Johnson,SS,Buffalo Bills,75,90,68
+Cade Otton,TE,Tampa Bay Buccaneers,75,81,77
+Calvin Austin,WR,NY Giants,75,94,53
+Cam Jurgens,C,Baltimore Ravens,75,74,83
+Chad Ryland,K,Arizona Cardinals,75,73,40
+Chase Bisontis,RG,Arizona Cardinals,75,72,89
+Chop Robinson,LEDG,Miami Dolphins,75,88,73
+Christen Miller,DT,New Orleans Saints,75,68,88
+Christian Elliss,WILL,New England Patriots,75,88,74
+Clark Phillips III,CB,Chicago Bears,75,89,60
+Cole Holcomb,WILL,Pittsburgh Steelers,75,87,72
+Colton Hood,CB,NY Giants,75,91,57
+D'Angelo Ponds,CB,NY Jets,75,94,54
+Dalvin Tomlinson,DT,Los Angeles Chargers,75,69,89
+Daniel Jones,QB,Indianapolis Colts,75,87,67
+Dante Fowler Jr,REDG,Seattle Seahawks,75,81,73
+DaVon Hamilton,DT,Jacksonville Jaguars,75,70,91
+Deatrich Wise Jr,DT,Washington Commanders,75,74,85
+DeMarvion Overshown,MIKE,Dallas Cowboys,75,88,64
+Derrick Barnes,WILL,Detroit Lions,75,85,79
+Devin Singletary,HB,NY Giants,75,86,70
+Dominic Zvada,K,NY Giants,75,72,44
+Dylan Sampson,HB,Cleveland Browns,75,92,65
+E.J. Speed,SAM,Houston Texans,75,89,74
+Emanuel Wilson,HB,Seattle Seahawks,75,90,72
+Emmanuel Forbes Jr,CB,Los Angeles Rams,75,94,44
+Germie Bernard,WR,Pittsburgh Steelers,75,91,71
+Greg Van Roten,RG,New England Patriots,75,67,84
+Henry To'oTo'o,WILL,Houston Texans,75,85,65
+Jahan Dotson,WR,Atlanta Falcons,75,92,61
+Jahlani Tavai,MIKE,Jacksonville Jaguars,75,84,78
+James Winchester,LS,Kansas City Chiefs,75,79,67
+Jason Pinnock,SS,NY Giants,75,90,61
+Jawaan Taylor,RT,Atlanta Falcons,75,66,87
+Jaylin Lane,WR,Washington Commanders,75,94,58
+Joey Slye,K,Tennessee Titans,75,71,66
+John Jenkins,DT,Baltimore Ravens,75,70,90
+Jon Runyan,LG,NY Giants,75,71,87
+Jonah Elliss,LEDG,Denver Broncos,75,81,74
+Jonathon Brooks,HB,Carolina Panthers,75,90,70
+Jonnu Smith,TE,Green Bay Packers,75,88,78
+Joshua Palmer,WR,Buffalo Bills,75,87,65
+Joshua Williams,CB,Tennessee Titans,75,92,59
+Josiah Trotter,MIKE,Tampa Bay Buccaneers,75,88,76
+K'Lavon Chaisson,REDG,Washington Commanders,75,86,78
+Kayden McDonald,DT,Houston Texans,75,65,88
+Kendrick Bourne,WR,Arizona Cardinals,75,87,65
+Kenneth Grant,DT,Miami Dolphins,75,68,92
+Kevin Winston Jr,FS,Tennessee Titans,75,89,64
+Keyron Crawford,REDG,Las Vegas Raiders,75,80,78
+Lloyd Cushenberry,C,Buffalo Bills,75,70,85
+Mac Jones,QB,San Francisco 49ers,75,84,60
+Marcus Epps,SS,Philadelphia Eagles,75,87,63
+Marquise Brown,WR,Philadelphia Eagles,75,94,44
+Matt Gay,K,Las Vegas Raiders,75,73,41
+Matt Araiza,P,Kansas City Chiefs,75,82,49
+Max Iheanachor,RT,Pittsburgh Steelers,75,75,88
+Micah McFadden,MIKE,NY Giants,75,84,72
+Michael Hoecht,LEDG,Buffalo Bills,75,83,83
+Michael Penix Jr,QB,Atlanta Falcons,75,84,57
+Mike Sainristil,CB,Washington Commanders,75,90,51
+Nahshon Wright,CB,NY Jets,75,90,54
+Nic Scourton,LEDG,Carolina Panthers,75,82,83
+Nick Scott,SS,Carolina Panthers,75,89,64
+O'Cyrus Torrence,RG,Buffalo Bills,75,61,91
+Ollie Gordon II,HB,Miami Dolphins,75,86,76
+Orlando Brown Jr,LT,Cincinnati Bengals,75,59,94
+Oronde Gadsden,TE,Los Angeles Chargers,75,86,73
+Pete Werner,MIKE,New Orleans Saints,75,84,72
+Peter Woods,DT,Kansas City Chiefs,75,76,89
+Ray Davis,HB,Buffalo Bills,75,88,78
+Roger McCreary,CB,Detroit Lions,75,88,65
+Ryan Rehkow,P,Cincinnati Bengals,75,68,53
+Ryan Wright,P,New Orleans Saints,75,80,62
+Teddye Buchanan,WILL,Baltimore Ravens,75,86,78
+Teven Jenkins,RG,Cleveland Browns,75,74,91
+Tony Adams,SS,Tennessee Titans,75,89,62
+Tory Taylor,P,Chicago Bears,75,81,61
+Tory Horton,WR,Seattle Seahawks,75,93,68
+Troy Fautanu,LT,Pittsburgh Steelers,75,72,87
+Tutu Atwell,WR,Los Angeles Rams,75,93,40
+Ty Okada,FS,Seattle Seahawks,75,90,62
+Tyler Nubin,SS,NY Giants,75,87,62
+Tyrice Knight,WILL,Seattle Seahawks,75,85,71
+Tyrique Stevenson Sr,CB,Chicago Bears,75,91,60
+Upton Stout,CB,San Francisco 49ers,75,91,57
+A.J. Dillon,HB,Carolina Panthers,74,87,85
+A.J. Haulcy,SS,Indianapolis Colts,74,88,72
+Alec Ingold,FB,Los Angeles Chargers,74,82,78
+Andres Borregales,K,New England Patriots,74,75,46
+Andrew Mukuba,FS,Philadelphia Eagles,74,91,64
+Anthony Nelson,REDG,Tampa Bay Buccaneers,74,80,77
+Anthony Hill Jr.,MIKE,Tennessee Titans,74,89,73
+Asante Samuel,CB,Pittsburgh Steelers,74,91,54
+Austin Ekeler,HB,Washington Commanders,74,89,80
+Austin Hooper,TE,Atlanta Falcons,74,84,73
+Ben Bredeson,LG,Tampa Bay Buccaneers,74,70,86
+Ben Powers,LG,Denver Broncos,74,70,82
+Blake Gillikin,P,Arizona Cardinals,74,72,49
+Bobby Brown III,DT,Carolina Panthers,74,71,86
+Brandin Cooks,WR,San Francisco 49ers,74,92,54
+Brashard Smith,HB,Kansas City Chiefs,74,93,64
+Braxton Jones,LT,Chicago Bears,74,73,88
+Cade Mays,C,Detroit Lions,74,64,82
+Cam Hart,CB,Los Angeles Chargers,74,91,59
+Cam Lewis,SS,Chicago Bears,74,90,51
+Cameron Thomas,REDG,Atlanta Falcons,74,78,77
+Chigoziem Okonkwo,TE,Washington Commanders,74,88,67
+Chimere Dike,WR,Tennessee Titans,74,94,65
+Christian Izien,SS,Detroit Lions,74,92,52
+Da'Shawn Hand,DT,Atlanta Falcons,74,76,88
+Dameon Pierce,HB,Philadelphia Eagles,74,89,84
+Dani Dennis-Sutton,REDG,Green Bay Packers,74,84,83
+Daniel Whelan,P,Green Bay Packers,74,77,57
+Darien Porter,CB,Las Vegas Raiders,74,96,61
+Darrell Baker Jr,CB,Miami Dolphins,74,91,57
+Davison Igbinosun,CB,Buffalo Bills,74,91,56
+Demetrius Knight Jr,WILL,Cincinnati Bengals,74,86,72
+Dennis Gardeck,SAM,Jacksonville Jaguars,74,86,81
+Devin Duvernay,WR,Arizona Cardinals,74,93,68
+Dorian Williams,WILL,Buffalo Bills,74,89,63
+Drew Stevens,K,Washington Commanders,74,72,48
+Elijah Ponder,REDG,New England Patriots,74,85,76
+Emmanuel Pregnon,LG,Jacksonville Jaguars,74,65,89
+Eric Murray,FS,Jacksonville Jaguars,74,86,63
+Felix Anudike-Uzomah,REDG,Kansas City Chiefs,74,81,72
+Folorunso Fatukasi,DT,Las Vegas Raiders,74,65,91
+Geno Smith,QB,NY Jets,74,84,58
+Ifeatu Melifonwu,SS,Tampa Bay Buccaneers,74,88,64
+Isaac TeSlaa,WR,Detroit Lions,74,91,65
+J.J. Jansen,LS,Carolina Panthers,74,63,70
+Jacoby Brissett,QB,Arizona Cardinals,74,81,73
+Jaishawn Barham,WILL,Dallas Cowboys,74,87,73
+Jake Golday,WILL,Minnesota Vikings,74,88,76
+Jalen McMillan,WR,Tampa Bay Buccaneers,74,90,60
+Jaylin Noel,WR,Houston Texans,74,93,66
+Jedrick Wills Jr,LT,Arizona Cardinals,74,72,92
+Jermod McCoy,CB,Las Vegas Raiders,74,92,58
+Ji'Ayir Brown,FS,San Francisco 49ers,74,86,64
+Jordan Howden,FS,New Orleans Saints,74,89,58
+Josaiah Stewart,LEDG,Los Angeles Rams,74,82,79
+Jowon Briggs,DT,NY Jets,74,72,88
+JT Tuimoloau,REDG,Indianapolis Colts,74,80,82
+Justin Strnad,WILL,Denver Broncos,74,87,71
+Kai Kroeger,P,Houston Texans,74,80,53
+Kaleb Johnson,HB,Green Bay Packers,74,88,76
+Kei'Trel Clark,CB,Arizona Cardinals,74,92,51
+Keylan Rutledge,LG,Houston Texans,74,71,87
+Kris Jenkins Jr,DT,Cincinnati Bengals,74,75,87
+Laken Tomlinson,LG,Green Bay Packers,74,69,86
+Landon Jackson,DT,Buffalo Bills,74,83,81
+Lee Hunter,DT,Carolina Panthers,74,66,88
+Levi Onwuzurike,DT,Detroit Lions,74,78,87
+Logan Hall,DT,Houston Texans,74,78,85
+Malcolm Rodriguez,SAM,Detroit Lions,74,86,80
+Mason Taylor,TE,NY Jets,74,83,75
+Max Melton,CB,Arizona Cardinals,74,93,60
+Michael Carter II,SS,Philadelphia Eagles,74,91,55
+Mike Hughes,CB,Atlanta Falcons,74,88,66
+Montaric Brown,CB,Jacksonville Jaguars,74,87,57
+Myles Murphy,LEDG,Cincinnati Bengals,74,88,82
+Nathan Shepherd,DT,New Orleans Saints,74,72,90
+Nehemiah Pritchett,CB,Seattle Seahawks,74,94,50
+Noah Fant,TE,New Orleans Saints,74,87,72
+P.J. Locke,FS,Dallas Cowboys,74,90,66
+Robert Hainsey,C,Jacksonville Jaguars,74,63,87
+Sam Martin,P,Carolina Panthers,74,75,46
+Shemar Stewart,LEDG,Cincinnati Bengals,74,86,87
+Tavius Robinson,LEDG,Baltimore Ravens,74,84,79
+Terence Steele,RT,Dallas Cowboys,74,74,88
+Tershawn Wharton,DT,Carolina Panthers,74,78,87
+Tim Patrick,WR,NY Jets,74,87,69
+Tress Way,P,Washington Commanders,74,72,44
+Trevin Wallace,MIKE,NY Jets,74,89,70
+Trevon Diggs,CB,Seattle Seahawks,74,91,69
+Treylon Burks,WR,Washington Commanders,74,89,74
+Tyler Steen,RG,Philadelphia Eagles,74,64,91
+Tyler Davis,DT,Los Angeles Rams,74,72,89
+Tyler Bass,K,Buffalo Bills,74,85,40
+Will Shipley,HB,Philadelphia Eagles,74,91,68
+Wyatt Teller,LG,Houston Texans,74,71,93
+Xavier Legette,WR,Carolina Panthers,74,93,73
+Zane Gonzalez,K,Miami Dolphins,74,71,45
+Aaron Banks,LG,Green Bay Packers,73,60,87
+Adam Butler,DT,Las Vegas Raiders,73,70,85
+Aireontae Ersery,LT,Houston Texans,73,72,85
+Albert Regis,DT,Jacksonville Jaguars,73,76,87
+Ameer Abdullah,HB,Jacksonville Jaguars,73,88,68
+Andrei Iosivas,WR,Cincinnati Bengals,73,92,67
+Andrew Billings,DT,Arizona Cardinals,73,69,89
+Ashtyn Davis,FS,San Francisco 49ers,73,92,60
+Austin Jackson,RT,Miami Dolphins,73,71,84
+Austin Booker,LEDG,Chicago Bears,73,79,76
+Baron Browning,LEDG,Arizona Cardinals,73,86,75
+Billy Bowman Jr,CB,Atlanta Falcons,73,92,61
+Blake Grupe,K,Los Angeles Rams,73,76,28
+Brett Thorson,P,Minnesota Vikings,73,74,51
+C.J. Henderson,CB,Atlanta Falcons,73,91,64
+Caden Curry,LEDG,Indianapolis Colts,73,76,83
+Caleb Ransaw,FS,Jacksonville Jaguars,73,95,62
+Cam Ward,QB,Tennessee Titans,73,82,66
+Cameron Johnston,P,Pittsburgh Steelers,73,75,48
+Chau Smith-Wade,CB,Carolina Panthers,73,88,57
+Chauncey Golston,DT,NY Giants,73,78,81
+Chris Paul,LG,Washington Commanders,73,75,82
+Chris Rodriguez Jr,HB,Jacksonville Jaguars,73,89,74
+Christian Mahogany,LG,Detroit Lions,73,68,89
+Christian Rozeboom,WILL,Tampa Bay Buccaneers,73,81,67
+CJ Allen,MIKE,Indianapolis Colts,73,88,75
+Colby Parkinson,TE,Los Angeles Rams,73,85,73
+Connor Heyward,FB,Las Vegas Raiders,73,85,68
+Damar Hamlin,FS,Buffalo Bills,73,87,62
+Darius Cooper,WR,Philadelphia Eagles,73,92,65
+Dayo Odeyingbo,REDG,Chicago Bears,73,79,84
+Derek Barnett,LEDG,Cleveland Browns,73,76,85
+Devin White,WILL,Detroit Lions,73,87,76
+Domonique Orange,DT,Minnesota Vikings,73,67,86
+Dyami Brown,WR,Washington Commanders,73,92,63
+Elijah Moore,WR,Philadelphia Eagles,73,91,59
+Fernando Mendoza,QB,Las Vegas Raiders,73,84,70
+Greg Dortch,WR,Buffalo Bills,73,90,43
+Greg Gaines,DT,Buffalo Bills,73,70,87
+Hezekiah Masses,CB,Las Vegas Raiders,73,90,58
+Isaiah McGuire,REDG,Cleveland Browns,73,79,79
+Isaiah Simmons,FS,Carolina Panthers,73,91,73
+Jack Gibbens,MIKE,Arizona Cardinals,73,86,68
+Jack Bech,WR,Las Vegas Raiders,73,89,67
+Jadon Canady,SS,Kansas City Chiefs,73,90,63
+Jake Slaughter,C,Los Angeles Chargers,73,69,86
+Jakobe Thomas,SS,Minnesota Vikings,73,87,66
+Jakorian Bennett,CB,Philadelphia Eagles,73,95,54
+Jaleel McLaughlin,HB,Cleveland Browns,73,92,66
+Jalen Tolbert,WR,Miami Dolphins,73,91,61
+Javon Kinlaw,DT,Washington Commanders,73,72,86
+Jaylen Wright,HB,Miami Dolphins,73,93,76
+Jaylon Jones,CB,Tennessee Titans,73,89,62
+Jeremy Reaves,FS,Washington Commanders,73,85,61
+Joe Flacco,QB,Cincinnati Bengals,73,75,66
+John Metchie III,WR,Carolina Panthers,73,90,66
+Jonah Coleman,HB,Denver Broncos,73,87,80
+Jonathan Bullard,DT,Dallas Cowboys,73,70,81
+Jordan James,HB,San Francisco 49ers,73,89,72
+Jordan Meredith,RG,NY Jets,73,67,83
+Jordan Burch,REDG,Arizona Cardinals,73,83,81
+Joseph Ossai,LEDG,NY Jets,73,83,80
+Josh Conerly Jr,RT,Washington Commanders,73,71,82
+Josh Oliver,TE,Minnesota Vikings,73,85,75
+JuJu Brents,CB,Miami Dolphins,73,88,52
+Justin Eboigbe,DT,Los Angeles Chargers,73,66,83
+Kaelon Black,HB,San Francisco 49ers,73,91,79
+Keion White,REDG,San Francisco 49ers,73,82,85
+Keionte Scott,CB,Tampa Bay Buccaneers,73,95,55
+Kelee Ringo,CB,Philadelphia Eagles,73,94,58
+Khyiris Tonga,DT,Kansas City Chiefs,73,68,91
+Kingsley Enagbare,REDG,NY Jets,73,80,83
+Kris Abrams-Draine,CB,Denver Broncos,73,91,40
+Kyle Williams,WR,New England Patriots,73,94,66
+Malachi Fields,WR,NY Giants,73,87,73
+Malik Harrison,MIKE,NY Giants,73,85,75
+Malik Davis,HB,Dallas Cowboys,73,88,64
+Malik Washington,WR,Miami Dolphins,73,90,59
+Malik Muhammad II,CB,Chicago Bears,73,92,58
+MarShawn Lloyd,HB,Green Bay Packers,73,90,73
+Mike Washington Jr,HB,Las Vegas Raiders,73,94,73
+Noah Gray,TE,Kansas City Chiefs,73,87,69
+Olamide Zaccheaus,WR,Atlanta Falcons,73,90,54
+Oluwafemi Oladejo,REDG,Tennessee Titans,73,85,81
+Ozzy Trapilo,LT,Chicago Bears,73,65,87
+Pat Bryant II,WR,Denver Broncos,73,89,69
+Patrick Mekari,RG,Jacksonville Jaguars,73,71,85
+Payton Turner,LEDG,Detroit Lions,73,79,82
+Quincy Riley,CB,New Orleans Saints,73,90,64
+Robbie Ouzts,FB,Seattle Seahawks,73,75,82
+Ruke Orhorhoro,DT,Jacksonville Jaguars,73,76,90
+Ryan Eckley,P,Baltimore Ravens,73,75,47
+Sam Williams,LEDG,Cleveland Browns,73,88,79
+Starling Thomas V,CB,Arizona Cardinals,73,93,56
+Sydney Brown,SS,Atlanta Falcons,73,90,69
+T.J. Sanders,DT,Buffalo Bills,73,74,88
+Tez Johnson,WR,Tampa Bay Buccaneers,73,91,58
+Tommy Tremble,TE,Carolina Panthers,73,86,75
+Tre' Harris,WR,Los Angeles Chargers,73,88,68
+Tyler Ott,LS,Washington Commanders,73,74,72
+Tyler Onyedim,DT,Denver Broncos,73,70,86
+Tyree Wilson,LEDG,New Orleans Saints,73,81,85
+Ventrell Miller,WILL,Jacksonville Jaguars,73,83,74
+Warren McClendon Jr,RT,Los Angeles Rams,73,69,88
+Wesley Williams,REDG,Jacksonville Jaguars,73,76,80
+Xavier Hutchinson,WR,Houston Texans,73,88,62
+Zach Harrison,DT,Atlanta Falcons,73,83,81
+Zachariah Branch,WR,Atlanta Falcons,73,95,64
+Adetomiwa Adebawore,DT,Indianapolis Colts,72,87,84
+Alex Wright,LEDG,Cleveland Browns,72,79,73
+Alfred Collins,DT,San Francisco 49ers,72,73,92
+Anthony Bradford,RG,Seattle Seahawks,72,70,92
+Ashton Dulin,WR,Indianapolis Colts,72,92,61
+Ashton Gillotte,REDG,Kansas City Chiefs,72,84,78
+Avonte Maddox,FS,Detroit Lions,72,91,55
+Ben Bartch,LG,Detroit Lions,72,67,85
+Bo Melton,WR,Green Bay Packers,72,94,65
+Brandon Cisse,CB,Green Bay Packers,72,92,59
+Braxton Berrios,WR,NY Giants,72,90,55
+Brenen Thompson,WR,Los Angeles Chargers,72,97,55
+Bud Dupree,LEDG,Los Angeles Chargers,72,83,76
+Caleb Douglas,WR,Miami Dolphins,72,93,68
+Caleb Tiernan,RT,Minnesota Vikings,72,65,87
+Chris Brazzell II,WR,Carolina Panthers,72,93,60
+Chris McClellan,DT,Green Bay Packers,72,71,87
+Cole Strange,RG,Los Angeles Chargers,72,71,87
+Cole Van Lanen,RT,Jacksonville Jaguars,72,67,79
+Dadrion Taylor-Demerson,FS,Arizona Cardinals,72,92,57
+Dan Moore Jr,LT,Tennessee Titans,72,64,88
+Daniel Faalele,LG,Jacksonville Jaguars,72,57,90
+Darius Robinson,DT,Arizona Cardinals,72,74,87
+Darius Alexander,DT,NY Giants,72,74,86
+Darrell Jackson Jr,DT,NY Jets,72,67,88
+Daylen Everette,CB,Pittsburgh Steelers,72,93,63
+Dee Winters,WILL,Dallas Cowboys,72,89,66
+Denzel Burke,CB,Arizona Cardinals,72,90,61
+Dillon Radunz,LG,New Orleans Saints,72,69,84
+DJ Glaze,RT,Las Vegas Raiders,72,65,88
+Efton Chism III,WR,New England Patriots,72,86,66
+Eli Stowers,TE,Philadelphia Eagles,72,89,73
+Ennis Rakestraw Jr,CB,Detroit Lions,72,89,57
+Evan Brown,C,Houston Texans,72,68,90
+Febechi Nwaiwu,RG,Houston Texans,72,62,88
+Foster Moreau,TE,Houston Texans,72,83,76
+Genesis Smith,SS,Los Angeles Chargers,72,89,62
+Gennings Dunker,LG,Pittsburgh Steelers,72,66,89
+Gracen Halton,DT,San Francisco 49ers,72,78,84
+Hunter Luepke,FB,Dallas Cowboys,72,86,69
+Isaac Yiadom,CB,Washington Commanders,72,88,54
+Isaac Guerendo,HB,San Francisco 49ers,72,92,71
+J.J. McCarthy,QB,NY Giants,72,85,68
+Ja'Kobi Lane,WR,Baltimore Ravens,72,90,62
+Ja'Marcus Ingram,CB,Houston Texans,72,90,68
+Jack Sawyer,LEDG,Pittsburgh Steelers,72,80,77
+Jake Tonges,TE,San Francisco 49ers,72,86,73
+Jalen Farmer,RG,Indianapolis Colts,72,75,87
+Jamal Adams,WILL,Minnesota Vikings,72,87,77
+Jaylon Moore,RT,Kansas City Chiefs,72,62,84
+Jeremy McNichols,HB,Washington Commanders,72,87,72
+Jonathan Jones,CB,Philadelphia Eagles,72,91,63
+Jordan Whittington,WR,Los Angeles Rams,72,89,64
+Jordan Morgan,LT,Green Bay Packers,72,71,87
+Josh Myers,C,NY Jets,72,61,89
+Joshua Josephs,LEDG,Washington Commanders,72,82,82
+Kamari Ramsey,FS,Houston Texans,72,90,62
+Kindle Vildor,CB,New England Patriots,72,88,56
+Logan Jones,C,Chicago Bears,72,66,83
+Luke McCaffrey,WR,Washington Commanders,72,90,55
+Malik Willis,QB,Miami Dolphins,72,90,72
+Marcus Mariota,QB,Washington Commanders,72,86,60
+Mario Edwards Jr,DT,Houston Texans,72,74,88
+Markel Bell,RT,Philadelphia Eagles,72,64,87
+Markquese Bell,SS,Dallas Cowboys,72,91,68
+Matt Pryor,RG,New England Patriots,72,59,86
+Mike Hall Jr,DT,Cleveland Browns,72,81,79
+Mike Ford Jr,CB,Atlanta Falcons,72,89,58
+Ogbo Okoronkwo,LEDG,San Francisco 49ers,72,81,83
+Patrick Jones II,REDG,Carolina Panthers,72,76,78
+Princely Umanmielen,REDG,Carolina Panthers,72,82,79
+Roschon Johnson,HB,Chicago Bears,72,86,78
+Ross Matiscik,LS,Jacksonville Jaguars,72,70,73
+Roy Robertson-Harris,DT,NY Giants,72,76,82
+Roy Lopez,DT,Arizona Cardinals,72,66,90
+Shavon Revel Jr,CB,Dallas Cowboys,72,93,66
+Shemar Turner,REDG,Chicago Bears,72,80,88
+SirVocea Dennis,MIKE,Tampa Bay Buccaneers,72,85,66
+Skyy Moore,WR,Green Bay Packers,72,88,69
+Solomon Thomas,DT,Tennessee Titans,72,82,87
+Ted Hurst III,WR,Tampa Bay Buccaneers,72,92,65
+Thomas Hennessy,LS,NY Jets,72,73,67
+Tim Settle Jr,DT,Washington Commanders,72,69,88
+Trey Zuhn III,RT,Las Vegas Raiders,72,72,89
+Trey Moore,LEDG,Miami Dolphins,72,87,79
+Ty Robinson,DT,Philadelphia Eagles,72,78,89
+Ty Chandler,HB,New Orleans Saints,72,92,65
+Tyler Conklin,TE,Detroit Lions,72,83,66
+Willie Gay Jr,SAM,Miami Dolphins,72,86,73
+Zavion Thomas,WR,Chicago Bears,72,96,63
+Adam Trautman,TE,Denver Broncos,71,81,74
+Akayleb Evans,CB,Carolina Panthers,71,90,65
+Andrew Vorhees,LG,Baltimore Ravens,71,65,97
+Bam Knight,HB,Arizona Cardinals,71,88,69
+Beaux Limmer,RG,Los Angeles Rams,71,65,85
+Blake Brandel,C,Minnesota Vikings,71,68,87
+Brandon Coleman,LT,Washington Commanders,71,73,85
+Broderick Jones,LT,Dallas Cowboys,71,73,86
+Broderick Washington Jr,DT,Baltimore Ravens,71,70,83
+Chandler Rivers,CB,Baltimore Ravens,71,92,57
+Chris Bell,WR,Miami Dolphins,71,90,74
+Chris Manhertz,TE,NY Giants,71,78,77
+Christian Haynes,LG,Seattle Seahawks,71,71,87
+D'Marco Jackson,WILL,Chicago Bears,71,87,69
+Damone Clark,MIKE,Detroit Lions,71,89,67
+Danny Stutsman,MIKE,New Orleans Saints,71,87,74
+Dante Stills,DT,Arizona Cardinals,71,76,80
+Darrick Forrest,FS,San Francisco 49ers,71,90,67
+David Walker,REDG,Tampa Bay Buccaneers,71,83,78
+David Moore,WR,Carolina Panthers,71,87,74
+DeAndre Carter,WR,Detroit Lions,71,88,60
+Del'Shawn Phillips,SAM,Los Angeles Chargers,71,87,72
+Devin Moore,CB,Dallas Cowboys,71,90,58
+Devontez Walker,WR,Baltimore Ravens,71,94,63
+Dylan Fairchild,LG,Cincinnati Bengals,71,71,86
+Elijah Sarratt,WR,Baltimore Ravens,71,89,62
+Elijah Arroyo,TE,Seattle Seahawks,71,87,77
+Elijah Wilkinson,RT,Arizona Cardinals,71,69,85
+Emery Jones Jr,RG,Baltimore Ravens,71,70,88
+Emmett Johnson,HB,Kansas City Chiefs,71,89,74
+Fabian Moreau,CB,Washington Commanders,71,90,65
+Gunnar Helm,TE,Tennessee Titans,71,78,74
+Isaiah Pola-Mao,FS,Las Vegas Raiders,71,91,57
+Ja'Sir Taylor,CB,Cincinnati Bengals,71,92,53
+Jack Sanborn,MIKE,Chicago Bears,71,80,72
+Jacob Cowing,WR,San Francisco 49ers,71,93,52
+Jake Andrews,C,Houston Texans,71,67,87
+Jalen Royals,WR,Kansas City Chiefs,71,92,64
+Jamaree Caldwell,DT,Los Angeles Chargers,71,67,87
+Jameis Winston,QB,NY Giants,71,76,72
+James Houston IV,LEDG,Dallas Cowboys,71,83,72
+Jared Wilson,C,New England Patriots,71,78,86
+Jay Ward,SS,Minnesota Vikings,71,87,58
+Jeremiah Wright,RG,New Orleans Saints,71,61,87
+Jerry Tillery,DT,Indianapolis Colts,71,74,85
+Jonathan Mingo,WR,Dallas Cowboys,71,90,71
+Jonathan Owens,FS,Indianapolis Colts,71,90,66
+Jordan Phillips,DT,Miami Dolphins,71,72,89
+Josh Jones,LT,Seattle Seahawks,71,66,85
+Josh Newton,CB,Cincinnati Bengals,71,89,61
+Joshua Farmer,DT,New England Patriots,71,69,88
+Juice Scruggs,C,Detroit Lions,71,65,87
+Julian Neal,CB,Seattle Seahawks,71,89,64
+K'Von Wallace,FS,Baltimore Ravens,71,86,64
+Kage Casey,LG,Denver Broncos,71,66,86
+Kaleb Elarms-Orr,WILL,Buffalo Bills,71,90,71
+Kaleb Proctor,DT,Arizona Cardinals,71,79,83
+Kaytron Allen,HB,Miami Dolphins,71,89,79
+Keagen Trost,RT,Los Angeles Rams,71,66,86
+Khristian Boyd,DT,New Orleans Saints,71,63,88
+Konata Mumpfield,WR,Los Angeles Rams,71,86,63
+Kyle Louis,SS,Miami Dolphins,71,88,68
+LeQuint Allen Jr,HB,Jacksonville Jaguars,71,89,72
+LT Overton,DT,Dallas Cowboys,71,77,87
+Luke Fortner,C,Carolina Panthers,71,65,87
+Maason Smith,DT,Atlanta Falcons,71,72,83
+Mac McWilliams,CB,Philadelphia Eagles,71,92,59
+Malachi Moore,FS,NY Jets,71,87,61
+Marcus Harris,CB,Tennessee Titans,71,93,59
+Max Bredeson,FB,Minnesota Vikings,71,78,79
+Michael Carter,HB,Tennessee Titans,71,86,66
+Michael Taaffe,FS,Miami Dolphins,71,89,61
+Micheal Clemons,LEDG,Indianapolis Colts,71,77,80
+Mo Alie-Cox,TE,Indianapolis Colts,71,82,70
+Neville Gallimore,DT,Chicago Bears,71,79,80
+Nick Allegretti,C,Washington Commanders,71,67,83
+Nick Martin,WILL,San Francisco 49ers,71,88,74
+Noah Igbinoghene,CB,Cleveland Browns,71,90,61
+Omarr Norman-Lott,DT,Kansas City Chiefs,71,67,85
+Que Robinson,LEDG,Denver Broncos,71,84,73
+Reid Ferguson,LS,Buffalo Bills,71,72,65
+Rock Ya-Sin,CB,Detroit Lions,71,89,68
+Rodney Thomas II,FS,Seattle Seahawks,71,88,61
+Roman Wilson,WR,Pittsburgh Steelers,71,93,56
+Ronnie Harrison Jr,WILL,Miami Dolphins,71,85,72
+Sean Tucker,HB,Tampa Bay Buccaneers,71,92,76
+Shy Tuttle,DT,Washington Commanders,71,74,82
+Skyler Bell,WR,Buffalo Bills,71,92,67
+Tacario Davis,CB,Cincinnati Bengals,71,92,58
+Tahj Brooks,HB,Cincinnati Bengals,71,88,68
+Tai Felton,WR,Minnesota Vikings,71,93,59
+Tanoh Kpassagnon,REDG,Tennessee Titans,71,79,82
+Terrell Burgess,FS,Tennessee Titans,71,88,62
+Tre Brown,CB,NY Jets,71,90,55
+Trevis Gipson Sr,LEDG,Carolina Panthers,71,82,79
+Trevor Penning,LG,Los Angeles Chargers,71,75,89
+Trevor Etienne,HB,Carolina Panthers,71,92,69
+Troy Dye,WILL,Los Angeles Chargers,71,86,71
+Tua Tagovailoa,QB,Atlanta Falcons,71,82,61
+Ty Simpson,QB,Los Angeles Rams,71,79,62
+Tylan Wallace,WR,Cleveland Browns,71,90,64
+Will Lee III,CB,Carolina Panthers,71,88,62
+Wyatt Milum,RG,Jacksonville Jaguars,71,63,87
+Zakee Wheatley,FS,Carolina Panthers,71,87,64
+Alec Anderson,LG,Buffalo Bills,70,60,86
+Alex Palczewski,RG,Denver Broncos,70,63,82
+Andy Dalton,QB,Atlanta Falcons,70,73,54
+Anthony Belton,RT,Green Bay Packers,70,64,86
+Audric Estime,HB,Cleveland Browns,70,87,75
+Barion Brown,WR,New Orleans Saints,70,92,56
+Barryn Sorrell,REDG,Green Bay Packers,70,83,82
+Beau Stephens,RG,Seattle Seahawks,70,61,87
+Ben Skowronek,WR,Pittsburgh Steelers,70,85,68
+Blake Fisher,LT,Houston Texans,70,66,83
+Brennan Jackson,LEDG,Las Vegas Raiders,70,83,80
+Bryce Boettcher,WILL,Indianapolis Colts,70,87,74
+Bryce Lance,WR,New Orleans Saints,70,94,69
+Caleb Rogers,RG,Las Vegas Raiders,70,69,86
+Cam Jackson,DT,Carolina Panthers,70,67,87
+Casey Kreiter,LS,Arizona Cardinals,70,71,67
+Cedric Johnson,LEDG,Cincinnati Bengals,70,85,79
+Charles Grant,LT,Las Vegas Raiders,70,75,85
+Charlie Jones,WR,NY Giants,70,90,56
+Cody Simon,WILL,Arizona Cardinals,70,87,73
+Colbie Young,WR,Cincinnati Bengals,70,89,67
+Collin Oliver,REDG,Green Bay Packers,70,87,77
+Cyrus Allen,WR,Kansas City Chiefs,70,89,57
+Damarri Mathis,CB,Cleveland Browns,70,92,61
+Daniel Bellinger,TE,Tennessee Titans,70,84,79
+Demond Claiborne,HB,Minnesota Vikings,70,93,73
+Demonte Capehart,DT,Tampa Bay Buccaneers,70,77,89
+Derius Davis,WR,Los Angeles Chargers,70,94,63
+Deshaun Watson,QB,Cleveland Browns,70,85,69
+DeWayne Carter,DT,Buffalo Bills,70,73,82
+DJ Giddens,HB,Indianapolis Colts,70,91,70
+Dondrea Tillman,REDG,Denver Broncos,70,73,77
+Durham Smythe,TE,Baltimore Ravens,70,80,75
+Elijah Roberts,DT,Tampa Bay Buccaneers,70,80,83
+Ephesians Prysock,CB,San Francisco 49ers,70,91,63
+Ethan Pocic,C,Baltimore Ravens,70,70,88
+Fernando Carmona Jr,RG,Tennessee Titans,70,65,86
+Gardner Minshew II,QB,Arizona Cardinals,70,80,62
+George Gumbs Jr,REDG,Indianapolis Colts,70,84,75
+Greg Dulcich,TE,Miami Dolphins,70,84,67
+Isaiah Davis,HB,NY Jets,70,87,73
+Jaden Crumedy,DT,Houston Texans,70,73,84
+Jalen Huskey,FS,Jacksonville Jaguars,70,87,57
+Jalen Travis,RT,Indianapolis Colts,70,68,88
+Jarrett Patterson,C,San Francisco 49ers,70,61,83
+Jaylin Smith,CB,Houston Texans,70,91,54
+Joe Milton,QB,Philadelphia Eagles,70,86,64
+Jon Gaines II,RG,Arizona Cardinals,70,72,77
+Jordan Hancock,SS,Buffalo Bills,70,91,60
+Jovaughn Gwyn,C,Baltimore Ravens,70,68,89
+Justin Fields,QB,Kansas City Chiefs,70,90,65
+Justin Walley,CB,Indianapolis Colts,70,92,55
+Karl Brooks,DT,Green Bay Packers,70,70,84
+KeAndre Lambert-Smith,WR,Los Angeles Chargers,70,93,60
+Kendrick Law,WR,Detroit Lions,70,91,66
+Kentavius Street,DT,Chicago Bears,70,76,89
+Kevin Coleman Jr,WR,Miami Dolphins,70,89,59
+LaJohntay Wester,WR,Baltimore Ravens,70,90,62
+Larry Borom,RT,Detroit Lions,70,66,83
+Lathan Ransom,SS,Carolina Panthers,70,86,66
+Logan Lee,DT,Pittsburgh Steelers,70,71,83
+Lucas Patrick,C,Washington Commanders,70,69,84
+Luke Musgrave,TE,Green Bay Packers,70,89,75
+M.J. Stewart Jr,SS,Houston Texans,70,87,66
+Mason Tipton,WR,New Orleans Saints,70,94,59
+Max Klare,TE,Los Angeles Rams,70,84,74
+Mekhi Wingo,DT,Detroit Lions,70,77,79
+Myles Harden,CB,Cleveland Browns,70,89,59
+Nick McCloud,CB,Chicago Bears,70,89,58
+Nick Moore,LS,Baltimore Ravens,70,70,70
+Nick Barrett,DT,Los Angeles Chargers,70,69,89
+Noah Sewell,SAM,Chicago Bears,70,82,80
+Percy Butler,FS,Washington Commanders,70,91,57
+R.J. Mickens,FS,Los Angeles Chargers,70,89,63
+Sai'vion Jones,DT,Denver Broncos,70,81,80
+Savion Williams,WR,Green Bay Packers,70,90,71
+Sean Rhyan,C,Green Bay Packers,70,63,84
+Spencer Burford,LG,Las Vegas Raiders,70,65,86
+T.J. Bass,LG,Dallas Cowboys,70,56,85
+T.J. Tampa Jr,CB,Baltimore Ravens,70,88,60
+T.J. Slaton Jr,DT,Cincinnati Bengals,70,68,87
+Tatum Bethune,MIKE,San Francisco 49ers,70,81,67
+Terrance Ferguson,TE,Los Angeles Rams,70,85,73
+Theo Jackson,FS,Minnesota Vikings,70,90,58
+Thomas Harper,FS,Detroit Lions,70,89,60
+Travis Burke,RT,Los Angeles Chargers,70,67,86
+Ty Hamilton,DT,Los Angeles Rams,70,75,89
+Tyler Goodson,HB,Dallas Cowboys,70,91,57
+Vernon Broughton,DT,New Orleans Saints,70,72,86
+Zach Durfee,LEDG,Jacksonville Jaguars,70,86,77
+Zak Zinter,LG,Cleveland Browns,70,63,88
+Aaron Stinnie,LG,NY Giants,69,69,83
+Adin Huntington,DT,Cleveland Browns,69,82,81
+Anthony Gould,WR,Indianapolis Colts,69,94,47
+Barrett Carter,MIKE,Cincinnati Bengals,69,85,72
+Ben Sinnott,TE,Washington Commanders,69,83,70
+Bilhal Kone,CB,Baltimore Ravens,69,91,58
+Billy Schrauth,LG,Tampa Bay Buccaneers,69,64,87
+Bo Richter,REDG,Minnesota Vikings,69,87,72
+Brock Hoffman,RG,Pittsburgh Steelers,69,60,81
+Byron Young,DT,Philadelphia Eagles,69,71,82
+Charles Demmings,CB,Minnesota Vikings,69,92,59
+Charles Snowden,LEDG,Atlanta Falcons,69,82,69
+Chris Rumph II,REDG,New Orleans Saints,69,80,74
+Christian Harris,MIKE,Atlanta Falcons,69,89,69
+CJ West,DT,San Francisco 49ers,69,74,84
+Colby Wooden,DT,New Orleans Saints,69,79,78
+Connor Lew,C,Cincinnati Bengals,69,68,87
+Darius Muasau,MIKE,New England Patriots,69,82,63
+Darrell Luter Jr,CB,Las Vegas Raiders,69,90,50
+David Sills V,WR,Tampa Bay Buccaneers,69,90,60
+David Quessenberry,LT,Los Angeles Rams,69,67,85
+Decamerion Richardson,CB,New Orleans Saints,69,94,52
+Deion Burks,WR,Indianapolis Colts,69,95,64
+Dell Pettus,SS,New England Patriots,69,89,64
+DeMarcco Hellams,FS,Atlanta Falcons,69,87,70
+Dominique Robinson,LEDG,Houston Texans,69,79,79
+Drew Allar,QB,Pittsburgh Steelers,69,80,67
+Eli Heidenreich,HB,Pittsburgh Steelers,69,91,69
+Elijah Higgins,TE,Arizona Cardinals,69,89,69
+Eyioma Uwazurike,DT,Denver Broncos,69,61,83
+George Holani,HB,Seattle Seahawks,69,89,71
+Grant Calcaterra,TE,Philadelphia Eagles,69,84,72
+Ian Thomas,TE,Las Vegas Raiders,69,82,68
+Isaiah Bond,WR,Cleveland Browns,69,93,60
+Isaiah Adams,RG,Arizona Cardinals,69,65,86
+Ja'Tavion Sanders,TE,Carolina Panthers,69,83,67
+Jaden Dugger,SAM,San Francisco 49ers,69,86,71
+Jahdae Walker,WR,Chicago Bears,69,91,60
+Jake Bobo,WR,Seattle Seahawks,69,85,62
+Jalen Brooks,WR,Arizona Cardinals,69,86,61
+Jalen Sundell,C,Seattle Seahawks,69,66,84
+James Lynch,DT,Chicago Bears,69,71,82
+Jared Wiley,TE,Kansas City Chiefs,69,85,75
+Jason Marshall Jr,CB,Miami Dolphins,69,89,60
+Javon Solomon,REDG,Buffalo Bills,69,82,77
+Jaylen McCollough,SS,Los Angeles Rams,69,85,63
+Jaylen Reed,FS,New England Patriots,69,89,67
+Jaylon Jones,CB,Jacksonville Jaguars,69,91,63
+Jaylon Carlies,WILL,Indianapolis Colts,69,89,72
+JD Bertrand,SAM,Atlanta Falcons,69,83,70
+Jimmy Rolder,MIKE,Detroit Lions,69,86,69
+Joe Andreessen,MIKE,Buffalo Bills,69,84,77
+Jon Weeks,LS,San Francisco 49ers,69,69,69
+Jonah Laulu,DT,Las Vegas Raiders,69,74,84
+Jordan Watkins,WR,San Francisco 49ers,69,93,66
+Josh Wallace,CB,Los Angeles Rams,69,86,60
+Josh Hayes,CB,Tampa Bay Buccaneers,69,91,58
+Josh Whyle,TE,Green Bay Packers,69,83,71
+Jude Bowry,LT,Buffalo Bills,69,70,84
+Kendal Daniels,WILL,Atlanta Falcons,69,86,70
+Kylen Granson,TE,Tennessee Titans,69,84,69
+Levi Drake Rodriguez,DT,Minnesota Vikings,69,72,84
+Lil'Jordan Humphrey,WR,Denver Broncos,69,87,67
+Luke Schoonmaker,TE,Dallas Cowboys,69,85,72
+Malachi Corley,WR,Cleveland Browns,69,88,66
+Malik Benson,WR,Las Vegas Raiders,69,93,58
+Marist Liufau,LEDG,Dallas Cowboys,69,84,73
+Miles Frazier,RG,Detroit Lions,69,64,89
+Mitchell Evans,TE,Carolina Panthers,69,81,73
+Mitchell Tinsley,WR,Cincinnati Bengals,69,86,60
+Nick Singleton,HB,Tennessee Titans,69,93,78
+Oren Burks,WILL,Cincinnati Bengals,69,87,72
+Otito Ogbonnia,DT,Dallas Cowboys,69,61,86
+Pharaoh Brown,TE,Indianapolis Colts,69,79,75
+Raheim Sanders,HB,Cleveland Browns,69,90,72
+Rakeem Nunez-Roches Sr,DT,Tampa Bay Buccaneers,69,72,81
+Rasheen Ali,HB,Baltimore Ravens,69,92,74
+Reggie Virgil,WR,Arizona Cardinals,69,89,59
+Robert Longerbeam,CB,Atlanta Falcons,69,93,57
+Rylie Mills,DT,Seattle Seahawks,69,73,84
+Sam Mustipher,C,Jacksonville Jaguars,69,61,83
+Shaun Dolac,MIKE,Los Angeles Rams,69,85,73
+Shedeur Sanders,QB,Cleveland Browns,69,78,65
+Shemar James,MIKE,Dallas Cowboys,69,83,73
+Smael Mondon Jr,WILL,Philadelphia Eagles,69,86,70
+Spencer Rattler,QB,New Orleans Saints,69,83,56
+Terell Smith,CB,Pittsburgh Steelers,69,92,63
+Theo Benedet,RT,Chicago Bears,69,68,83
+Tommy Eichenberg,MIKE,Las Vegas Raiders,69,78,75
+Trey Pipkins III,LT,Los Angeles Chargers,69,69,83
+Tyler Badie,HB,Denver Broncos,69,89,74
+Tyler Huntley,QB,Baltimore Ravens,69,85,53
+Tyler Baron,REDG,NY Jets,69,85,76
+Tyrion Ingram-Dawkins,LEDG,Minnesota Vikings,69,77,83
+Tyrod Taylor,QB,Green Bay Packers,69,85,57
+Zane Durant,DT,Buffalo Bills,69,79,87
+Aaron Hall,DT,Carolina Panthers,68,71,81
+Adam Prentice,FB,Denver Broncos,68,77,76
+Ahmed Hassanein,REDG,Detroit Lions,68,80,83
+Ajani Cornelius,RG,Dallas Cowboys,68,64,86
+Alex Harkey,RG,Los Angeles Chargers,68,66,84
+Andrew Beck,FB,NY Jets,68,85,77
+Anez Cooper,RG,NY Jets,68,55,85
+Anthony Richardson Sr,QB,Indianapolis Colts,68,90,73
+Arian Smith,WR,NY Jets,68,94,64
+Austin Schlottmann,C,Tennessee Titans,68,69,86
+Brevin Jordan,TE,Houston Texans,68,86,73
+Brian Parker II,LG,Cincinnati Bengals,68,68,89
+British Brooks,FB,Houston Texans,68,86,78
+Brycen Tremayne,WR,Carolina Panthers,68,87,68
+Caedan Wallace,RT,Miami Dolphins,68,67,87
+Camden Brown,WR,Dallas Cowboys,68,88,63
+Carson Beck,QB,Arizona Cardinals,68,79,62
+Carson Wentz,QB,Minnesota Vikings,68,82,72
+Charlie Kolar,TE,Los Angeles Chargers,68,84,68
+Chris Brooks,HB,Green Bay Packers,68,89,71
+CJ Daniels,WR,Los Angeles Rams,68,87,61
+Cody White,WR,Las Vegas Raiders,68,83,69
+Connor Colby,LG,San Francisco 49ers,68,69,83
+Cory Durden,DT,New England Patriots,68,65,79
+Dalton Johnson,SS,Las Vegas Raiders,68,90,56
+Dan Feeney,C,Tampa Bay Buccaneers,68,66,88
+Dante Trader Jr,SS,Miami Dolphins,68,84,62
+Dare Ogunbowale,HB,Houston Texans,68,87,71
+David Long Jr,CB,New Orleans Saints,68,89,61
+Dawand Jones,LT,Cleveland Browns,68,61,95
+Dohnte Meyers,WR,Cincinnati Bengals,68,88,59
+Dont'e Thornton Jr,WR,Las Vegas Raiders,68,96,70
+Donte Kent,CB,Pittsburgh Steelers,68,93,56
+Drew Shelton,RT,Dallas Cowboys,68,67,83
+Drew Lock,QB,Seattle Seahawks,68,82,68
+Drew Sample,TE,Cincinnati Bengals,68,81,73
+Dylan Laube,HB,Las Vegas Raiders,68,88,67
+Emari Demercado,HB,Dallas Cowboys,68,91,65
+Enrique Cruz Jr,LT,San Francisco 49ers,68,74,85
+Erick All Jr,TE,Cincinnati Bengals,68,86,72
+J. Michael Sturdivant,WR,Green Bay Packers,68,92,61
+Jackie Marshall,DT,Tennessee Titans,68,76,87
+Jackson Hawes,TE,Buffalo Bills,68,78,72
+Jackson Slater,RG,Tennessee Titans,68,72,89
+Jarrett Kingston,LG,Miami Dolphins,68,72,90
+Jaylin Simpson,CB,Miami Dolphins,68,90,53
+Jeremiah Trotter Jr,SAM,Philadelphia Eagles,68,78,69
+Jeremy Ruckert,TE,NY Jets,68,81,78
+Johnny Mundt,TE,Philadelphia Eagles,68,83,74
+Jonah Savaiinaea,RG,Miami Dolphins,68,74,84
+Jordan van den Berg,DT,Chicago Bears,68,74,89
+Jordan Magee,WILL,Washington Commanders,68,87,64
+Jordon Riley,DT,Green Bay Packers,68,63,88
+Josh Cameron,WR,Jacksonville Jaguars,68,88,75
+Joshua Dobbs,QB,Detroit Lions,68,87,74
+Julius Chestnut,HB,Tennessee Titans,68,88,76
+Justin Joly,TE,Miami Dolphins,68,83,73
+Kaden Wetjen,WR,Pittsburgh Steelers,68,90,58
+Karon Prunty,CB,New England Patriots,68,91,59
+Keith Abney II,CB,Detroit Lions,68,91,57
+Korie Black,CB,NY Giants,68,94,58
+L.J. Collier,DT,Arizona Cardinals,68,77,83
+LaCale London,DT,Atlanta Falcons,68,71,83
+Laquon Treadwell,WR,Indianapolis Colts,68,84,70
+Matt Henningsen,DT,Denver Broncos,68,72,82
+Micah Morris,RG,Philadelphia Eagles,68,69,89
+Mike Morris,DT,Seattle Seahawks,68,74,82
+Mitchell Fraboni,LS,Denver Broncos,68,79,75
+Pierre Strong Jr,HB,Green Bay Packers,68,92,66
+Qwan'tez Stiggers,CB,NY Jets,68,91,60
+Russ Yeast,FS,Cincinnati Bengals,68,86,62
+Sam Okuayinonu,LEDG,San Francisco 49ers,68,79,83
+Sam Franklin Jr,FS,Buffalo Bills,68,85,66
+Sam Hecht,C,Carolina Panthers,68,69,81
+Scott Matlock,DT,Los Angeles Chargers,68,74,85
+Sione Vaki,HB,Detroit Lions,68,89,74
+Tanner Hudson,TE,Cincinnati Bengals,68,82,70
+Tom Kennedy,WR,Detroit Lions,68,86,64
+Tonka Hemingway,DT,Las Vegas Raiders,68,72,81
+Travis Homer,HB,Pittsburgh Steelers,68,90,62
+Tremon Smith,CB,Houston Texans,68,91,58
+Velus Jones Jr,HB,Seattle Seahawks,68,94,64
+Wade Woodaz,MIKE,Houston Texans,68,88,73
+Yahya Black,DT,Pittsburgh Steelers,68,60,87
+Aeneas Peebles,DT,Baltimore Ravens,67,73,81
+Aidan O'Connell,QB,Las Vegas Raiders,67,75,55
+Alex Forsyth,C,Denver Broncos,67,66,86
+Anterio Thompson,DT,Atlanta Falcons,67,78,88
+Beaux Collins,WR,Atlanta Falcons,67,88,73
+Ben VanSumeren,FB,Kansas City Chiefs,67,87,75
+Braiden McGregor,LEDG,NY Jets,67,80,73
+Brenton Cox,LEDG,Green Bay Packers,67,78,81
+Brevyn Spann-Ford,TE,Dallas Cowboys,67,80,72
+Cade Klubnik,QB,NY Jets,67,83,64
+Cade Stover,TE,Houston Texans,67,84,74
+Carson Vinson,LT,Baltimore Ravens,67,68,81
+Carver Willis,LG,San Francisco 49ers,67,69,83
+Chris Roland-Wallace,FS,Kansas City Chiefs,67,86,64
+Chris Blair,WR,Atlanta Falcons,67,88,62
+Chukwuebuka Godrick,LT,Miami Dolphins,67,68,85
+Chukwuma Okorafor,RT,NY Jets,67,67,85
+Cole Payton,QB,Philadelphia Eagles,67,87,68
+Corey Kiner,HB,New England Patriots,67,88,73
+Dametrious Crownover,LT,New England Patriots,67,68,85
+Daniel Hardy,REDG,Chicago Bears,67,82,71
+Davis Allen,TE,Los Angeles Rams,67,82,69
+Deane Leonard,CB,Los Angeles Chargers,67,92,60
+DeeJay Dallas,HB,Minnesota Vikings,67,87,75
+DJ Campbell,RG,Miami Dolphins,67,72,78
+DJ Ivey,CB,Cincinnati Bengals,67,90,54
+Dylan Horton,LEDG,Houston Texans,67,81,73
+Elijah Hicks,SS,Chicago Bears,67,87,58
+Elijah Simmons,DT,Tampa Bay Buccaneers,67,63,89
+Eric Saubert,TE,Seattle Seahawks,67,82,75
+Gabe Rubio,DT,Pittsburgh Steelers,67,64,86
+Giovanni Manu,LT,Detroit Lions,67,70,86
+Harold Perkins Jr,WILL,Atlanta Falcons,67,88,68
+Isaiah Williams,WR,NY Jets,67,87,59
+J.C. Davis,LT,NY Giants,67,67,84
+Jack Kelly,WILL,NY Giants,67,87,69
+Jack Kiser,MIKE,Cincinnati Bengals,67,83,70
+Jager Burton,C,Green Bay Packers,67,72,86
+Jalen Rivers,LG,Cincinnati Bengals,67,63,83
+Jalon Kilgore,SS,Buffalo Bills,67,91,64
+Jamree Kromah,LEDG,Chicago Bears,67,79,82
+Jared Wayne,WR,Miami Dolphins,67,89,64
+Javon Foster,LT,Cincinnati Bengals,67,62,83
+Jaylan Ford,MIKE,New Orleans Saints,67,82,73
+Jeffrey Bassa,WILL,Kansas City Chiefs,67,85,69
+Jelani Woods,TE,NY Jets,67,85,78
+JJ Pegues,DT,Las Vegas Raiders,67,67,84
+John Michael Schmitz Jr,C,NY Giants,67,61,84
+Justin Jefferson,MIKE,Cleveland Browns,67,87,69
+Justin Skule,RT,Tampa Bay Buccaneers,67,64,85
+Justin Dedich,RG,Los Angeles Rams,67,60,89
+Kahlil Benson,LT,Kansas City Chiefs,67,70,83
+Kalia Davis,DT,Cleveland Browns,67,69,84
+Kamal Hadden,CB,Green Bay Packers,67,87,65
+Kene Nwangwu,HB,NY Jets,67,92,68
+Keyshaun Elliott,WILL,Chicago Bears,67,86,73
+Khalid Kareem,REDG,San Francisco 49ers,67,78,84
+Kitan Oladapo,SS,Green Bay Packers,67,86,68
+Larrell Murchison,DT,Los Angeles Rams,67,70,87
+Logan Taylor,LT,Los Angeles Chargers,67,66,88
+Malik McClain,WR,NY Jets,67,90,65
+Marcus Mbow,RT,NY Giants,67,71,84
+Mason Rudolph,QB,Pittsburgh Steelers,67,73,66
+Matt Peart,LT,Denver Broncos,67,68,86
+Matt Hennessy,C,Dallas Cowboys,67,65,85
+Micah Robinson,CB,Tennessee Titans,67,92,58
+Miles Killebrew,SS,Tampa Bay Buccaneers,67,86,76
+Namdi Obiazor,WILL,New England Patriots,67,88,71
+Nate Boerkircher,TE,Jacksonville Jaguars,67,80,78
+Nikko Remigio,WR,Kansas City Chiefs,67,87,63
+Oscar Delp,TE,New Orleans Saints,67,88,75
+Parker Brailsford,C,Cleveland Browns,67,72,83
+Quintayvious Hutchins,REDG,New England Patriots,67,81,74
+Riley Leonard,QB,Indianapolis Colts,67,86,70
+Robert Tonyan,TE,Pittsburgh Steelers,67,85,74
+Robert Henry Jr.,HB,Seattle Seahawks,67,88,69
+Simi Fehoko,WR,Arizona Cardinals,67,90,66
+Skyler Thomas,FS,Chicago Bears,67,89,64
+Spencer Anderson,RG,Pittsburgh Steelers,67,67,88
+Tanner McKee,QB,Philadelphia Eagles,67,77,61
+Tay Martin,WR,Detroit Lions,67,89,62
+Tim Smith,DT,Indianapolis Colts,67,68,83
+Tony Fields II,MIKE,Chicago Bears,67,85,64
+Toriano Pride Jr,CB,Cleveland Browns,67,93,55
+Tyler Owens,SS,Washington Commanders,67,93,63
+Winston Reid,WILL,Cleveland Browns,67,85,77
+Zach Wilson,QB,New Orleans Saints,67,83,61
+Ali Gaye,REDG,Houston Texans,66,82,73
+Ar'maj Reed-Adams,RG,Buffalo Bills,66,63,85
+Bobby Jamison-Travis,DT,NY Giants,66,64,83
+Brenden Schooler,SS,New England Patriots,66,92,64
+Bryan Hudson,C,NY Giants,66,62,84
+Bryce Cabeldue,LG,Las Vegas Raiders,66,74,90
+C.J. Williams,WR,Jacksonville Jaguars,66,88,65
+Cameron Williams,RT,Atlanta Falcons,66,66,88
+Channing Canada,CB,New England Patriots,66,91,61
+Charles Woods,CB,New England Patriots,66,86,55
+Charlie Woerner,TE,Atlanta Falcons,66,82,77
+Dallis Flowers,CB,Chicago Bears,66,91,51
+Daniel Thomas,SS,Cleveland Browns,66,87,65
+Danny Pinter,C,Baltimore Ravens,66,73,82
+Dareke Young,WR,Las Vegas Raiders,66,90,71
+Davis Mills,QB,Houston Texans,66,81,56
+Dean Connors,HB,Los Angeles Rams,66,91,71
+Dillon Gabriel,QB,Cleveland Browns,66,83,58
+DJ Herman,FB,Miami Dolphins,66,75,78
+Drew Kendall,LG,Philadelphia Eagles,66,71,81
+Drew Ogletree,TE,Indianapolis Colts,66,81,74
+Ethan Onianwa,RT,Atlanta Falcons,66,65,84
+Gunner Olszewski,WR,NY Giants,66,87,56
+Hunter Long,TE,Arizona Cardinals,66,81,72
+Hunter Nourzad,C,Kansas City Chiefs,66,67,83
+Jack Endries,TE,Cincinnati Bengals,66,84,72
+Jacob Saylors,HB,Detroit Lions,66,88,73
+Jacob Monk,RG,Green Bay Packers,66,69,83
+Jalen Milroe,QB,Seattle Seahawks,66,93,69
+Jalen Davis,CB,Cincinnati Bengals,66,88,53
+James Williams Sr,WILL,Tennessee Titans,66,84,71
+James Thompson Jr,DT,San Francisco 49ers,66,72,87
+Javontae Jean-Baptiste,REDG,Washington Commanders,66,84,77
+Jayden Loving,DT,Chicago Bears,66,70,85
+Jaylen Harrell,LEDG,Tennessee Titans,66,83,75
+JL Skinner,SS,Denver Broncos,66,89,59
+Joe Royer,TE,Cleveland Browns,66,84,75
+John Ridgeway III,DT,New Orleans Saints,66,62,86
+John Bates,TE,Washington Commanders,66,77,75
+Jordan McFadden,LG,Chicago Bears,66,73,82
+Joshua Ezeudu,RG,Kansas City Chiefs,66,65,81
+Juanyeh Thomas,SS,Dallas Cowboys,66,87,65
+Julius Wood,FS,Miami Dolphins,66,88,63
+Kaevon Merriweather,SS,Jacksonville Jaguars,66,85,63
+Kain Medrano,WILL,Washington Commanders,66,90,71
+Karson Sharar,WILL,Arizona Cardinals,66,87,67
+Kenny Pickett,QB,Carolina Panthers,66,81,68
+Kevin Jobity Jr,DT,Pittsburgh Steelers,66,71,82
+Kiko Mauigoa,MIKE,NY Jets,66,84,73
+Kitan Crawford,SS,Arizona Cardinals,66,92,64
+Landon Robinson,DT,Cincinnati Bengals,66,77,86
+Lorenzo Styles Jr,SS,New Orleans Saints,66,97,54
+Luke Newman,RG,Chicago Bears,66,70,87
+Luke Gifford,SAM,San Francisco 49ers,66,85,75
+Luke Wypler,C,Cleveland Browns,66,68,85
+Marcellas Dial Jr,CB,Miami Dolphins,66,91,62
+Matt Gulbin,RG,Washington Commanders,66,64,79
+Max Mitchell,LT,NY Jets,66,61,85
+Michael Deiter,C,Denver Broncos,66,68,86
+Michael Burton,FB,Cleveland Browns,66,80,82
+Montorie Foster Jr,WR,Seattle Seahawks,66,88,58
+Morgan Cox,LS,Tennessee Titans,66,70,73
+Myles Price,WR,Minnesota Vikings,66,92,53
+Nathan Thomas,LT,Houston Texans,66,66,85
+Nazir Stackhouse,DT,Tennessee Titans,66,67,85
+Nick Gargiulo,LG,Denver Broncos,66,64,87
+Nick Niemann,MIKE,Green Bay Packers,66,88,71
+Olusegun Oluwatimi,C,Seattle Seahawks,66,60,84
+Parker Hughes,WILL,Jacksonville Jaguars,66,88,71
+Patrick Johnson,REDG,Las Vegas Raiders,66,82,75
+Rayuan Lane III,SS,Jacksonville Jaguars,66,87,59
+Reese Taylor,CB,Miami Dolphins,66,90,54
+Rodney McGraw,REDG,Miami Dolphins,66,80,76
+Ronnie Rivers,HB,Los Angeles Rams,66,87,63
+Sebastian Valdez,DT,San Francisco 49ers,66,72,85
+Sedrick Van Pran-Granger,C,Indianapolis Colts,66,66,82
+Seth McGowan,HB,Indianapolis Colts,66,89,75
+Siran Neal,SS,San Francisco 49ers,66,90,60
+Thomas Incoom,LEDG,Carolina Panthers,66,84,77
+Thomas Booker IV,DT,Las Vegas Raiders,66,74,85
+Trace Ford,REDG,NY Giants,66,84,75
+Trevor Keegan,RG,Minnesota Vikings,66,64,85
+Trey Sermon,HB,Atlanta Falcons,66,84,78
+Ty'Ron Hopper,WILL,Green Bay Packers,66,83,66
+Tyler Lacy,REDG,Detroit Lions,66,69,86
+Vederian Lowe,RT,San Francisco 49ers,66,64,82
+Warren Brinson,DT,Green Bay Packers,66,70,83
+Wesley Bailey,LEDG,Los Angeles Rams,66,83,77
+Zach Carter,DT,Arizona Cardinals,66,72,76
+Zayne Anderson,SS,Miami Dolphins,66,90,59
+Adam Randall,HB,Baltimore Ravens,65,90,70
+Alijah Clark,FS,Dallas Cowboys,65,89,64
+Ameer Speed,CB,Dallas Cowboys,65,95,62
+Asim Richards,LT,New Orleans Saints,65,67,87
+Austen Pleasants,LT,San Francisco 49ers,65,62,84
+Austin Ajiake,MIKE,Indianapolis Colts,65,86,65
+Austin Brinkman,LS,Houston Texans,65,70,65
+Ben Brown,C,New England Patriots,65,60,85
+Ben Mann,LS,NY Giants,65,72,65
+Bill Murray,LG,Los Angeles Rams,65,66,82
+Brady Russell,FB,Seattle Seahawks,65,80,71
+Branson Taylor,LG,Los Angeles Chargers,65,63,85
+Britain Covey,WR,Philadelphia Eagles,65,88,41
+Brock Wright,TE,Detroit Lions,65,85,79
+Bryan Thomas Jr,LEDG,Jacksonville Jaguars,65,79,72
+Bryson Eason,DT,Kansas City Chiefs,65,69,80
+Case Keenum,QB,Chicago Bears,65,76,54
+Chaz Chambliss,LEDG,Minnesota Vikings,65,81,79
+Chigozie Anusiem,CB,Las Vegas Raiders,65,91,60
+Dalton Tucker,LG,Indianapolis Colts,65,66,82
+Danny Striggow,LEDG,Jacksonville Jaguars,65,78,75
+Desjuan Johnson,REDG,Los Angeles Rams,65,72,79
+Devon Key,FS,Denver Broncos,65,86,66
+Dylan Cook,RT,Pittsburgh Steelers,65,69,80
+Eli Raridon,TE,New England Patriots,65,85,74
+Elijah Garcia,DT,Dallas Cowboys,65,71,83
+Eric O'Neill,LEDG,Detroit Lions,65,79,79
+Fred Johnson,RT,Philadelphia Eagles,65,62,85
+Hayden Conner,LG,Arizona Cardinals,65,65,86
+Haynes King,QB,Carolina Panthers,65,90,70
+Hunter Wohler,SS,Indianapolis Colts,65,87,63
+Isaiah Stalbird,WILL,New Orleans Saints,65,89,66
+Jack Driscoll,LT,Pittsburgh Steelers,65,70,83
+Jack Pyburn,LEDG,Kansas City Chiefs,65,79,76
+Jackson Meeks,TE,Detroit Lions,65,84,65
+Jackson Kuwatch,MIKE,Carolina Panthers,65,84,69
+Jayden Williams,LT,Arizona Cardinals,65,72,84
+Jordan Jackson,DT,Denver Broncos,65,73,78
+Josh Blackwell,CB,Chicago Bears,65,94,53
+Josh Cuevas,TE,Baltimore Ravens,65,83,74
+Julian Ashby,LS,New England Patriots,65,74,68
+Kalen King,CB,Arizona Cardinals,65,87,47
+Kapena Gushiken,CB,Indianapolis Colts,65,92,59
+Keyon Martin,CB,Baltimore Ravens,65,92,54
+Ko Kieft,TE,Tampa Bay Buccaneers,65,72,75
+Kohl Levao,LG,NY Jets,65,56,86
+Kyle McCord,QB,Miami Dolphins,65,75,62
+Leonard Taylor III,DT,New England Patriots,65,68,84
+Matt Dickerson,DT,Jacksonville Jaguars,65,71,81
+Matt Hibner,TE,Baltimore Ravens,65,87,75
+Michael Jerrell,LT,Atlanta Falcons,65,74,82
+Mike Caliendo,LG,Kansas City Chiefs,65,60,82
+Mitchell Trubisky,QB,Tennessee Titans,65,83,71
+Myles Hinton,RT,Cincinnati Bengals,65,66,82
+Nephi Sewell,WILL,Chicago Bears,65,83,68
+Pat Coogan,C,Tennessee Titans,65,66,82
+Rejzohn Wright,CB,New Orleans Saints,65,89,53
+Robert Spears-Jennings,SS,Pittsburgh Steelers,65,93,62
+Rocco Underwood,LS,Philadelphia Eagles,65,74,66
+Rodney Shelley,CB,Los Angeles Chargers,65,91,59
+Sabastian Harsh,REDG,Houston Texans,65,84,82
+Sam Roush,TE,Chicago Bears,65,82,80
+Sam Howell,QB,Dallas Cowboys,65,82,64
+Segun Olubi,MIKE,Las Vegas Raiders,65,89,66
+Skyler Gill-Howard,DT,Detroit Lions,65,70,81
+Tanner Koziol,TE,Jacksonville Jaguars,65,82,73
+Taylen Green,QB,Cleveland Browns,65,92,66
+Theo Wease Jr,WR,Los Angeles Chargers,65,88,62
+Thomas Fidone II,TE,NY Giants,65,81,71
+Tip Reiman,TE,Arizona Cardinals,65,84,77
+Truman Jones,LEDG,Tennessee Titans,65,83,71
+Tycen Anderson,SS,Denver Broncos,65,91,59
+Tyrell Shavers,WR,Buffalo Bills,65,91,55
+Tyrus Wheat,REDG,Dallas Cowboys,65,84,74
+VJ Payne,SS,NY Jets,65,91,61
+Walter Rouse,LG,New England Patriots,65,64,83
+Will Kacmarek,TE,Miami Dolphins,65,81,77
+Will Mallory,TE,Indianapolis Colts,65,87,72
+Zaire Barnes,WILL,NY Giants,65,88,67
+Zeek Biggers,DT,Miami Dolphins,65,69,84
+Zemaiah Vaughn,CB,Minnesota Vikings,65,91,66
+Alex Bachman,WR,Los Angeles Rams,64,87,61
+Alijah Huzzie,CB,Jacksonville Jaguars,64,93,64
+Anthony Campbell,DT,Green Bay Packers,64,72,83
+Ayden Garnes,CB,Tampa Bay Buccaneers,64,91,54
+BJ Green II,REDG,Jacksonville Jaguars,64,82,80
+Branson Combs,WILL,Jacksonville Jaguars,64,83,71
+Caleb Murphy,REDG,Los Angeles Chargers,64,79,70
+Cameron Latu,TE,New England Patriots,64,80,73
+Carson Bruener,MIKE,Pittsburgh Steelers,64,86,67
+Chazz Surratt,SAM,Seattle Seahawks,64,85,75
+Connor O'Toole,REDG,Seattle Seahawks,64,84,81
+Cooper McDonald,MIKE,Kansas City Chiefs,64,84,73
+Corey Levin,C,Atlanta Falcons,64,63,84
+D.J. Montgomery,WR,Indianapolis Colts,64,89,53
+Darryl Peterson III,REDG,Los Angeles Rams,64,77,72
+Doneiko Slaughter,CB,Pittsburgh Steelers,64,92,58
+Donovan Jennings,LG,Green Bay Packers,64,72,86
+Dylan McMahon,C,Los Angeles Rams,64,69,80
+Easton Mascarenas-Arnold,WILL,Cleveland Browns,64,86,73
+Elliott Davison,FS,New England Patriots,64,91,58
+Erick Hunter,MIKE,New England Patriots,64,90,69
+Ethan Burke,REDG,Baltimore Ravens,64,74,71
+Frank Crum,LT,Denver Broncos,64,74,85
+Garrett Dellinger,LG,Tennessee Titans,64,67,88
+Gavin Bartholomew,TE,Minnesota Vikings,64,82,70
+Grant Stuard,WILL,Los Angeles Rams,64,84,76
+Jack Heflin,DT,NY Jets,64,60,83
+Jake Hansen,MIKE,Houston Texans,64,81,71
+Jalen McLeod,MIKE,Jacksonville Jaguars,64,81,77
+Jarrett Stidham,QB,Denver Broncos,64,82,62
+Joe Giles-Harris,SAM,Cincinnati Bengals,64,82,69
+Jordan Turner,WILL,Denver Broncos,64,81,75
+Justin Barron,MIKE,Dallas Cowboys,64,84,70
+Kameron Johnson,WR,Tampa Bay Buccaneers,64,90,63
+Kayode Awosika,LG,Los Angeles Chargers,64,65,86
+Kendall Williamson,FS,Los Angeles Chargers,64,91,63
+Kevin Knowles,CB,Tampa Bay Buccaneers,64,90,54
+Khalil Dorsey,CB,Detroit Lions,64,91,51
+Khalil Jacobs,MIKE,New England Patriots,64,82,75
+Kristian Welch,WILL,Green Bay Packers,64,85,75
+Liam McCullough,LS,Atlanta Falcons,64,75,64
+Luke Farrell,TE,San Francisco 49ers,64,77,77
+Luke Haggard,RG,Tampa Bay Buccaneers,64,67,84
+Marcelino McCrary-Ball,WILL,NY Jets,64,89,72
+Marcus Bryant,LT,New England Patriots,64,68,85
+Marlin Klein,TE,Houston Texans,64,85,74
+Marlowe Wax,MIKE,Los Angeles Chargers,64,85,71
+Nate Adkins,TE,Denver Broncos,64,77,74
+Nic Jones,CB,NY Giants,64,89,49
+Nick Vannett,TE,Baltimore Ravens,64,75,73
+Nikko Reed,CB,NY Giants,64,90,62
+Payne Durham,TE,Tampa Bay Buccaneers,64,77,73
+Riley Nowakowski,FB,Pittsburgh Steelers,64,84,72
+Ryan Van Demark,LT,Minnesota Vikings,64,63,83
+Seth McLaughlin,C,Detroit Lions,64,63,89
+Skylar Thompson,QB,Baltimore Ravens,64,77,65
+Stetson Bennett IV,QB,Los Angeles Rams,64,84,55
+Stone Forsythe,LT,Carolina Panthers,64,67,87
+Swayze Bozeman,MIKE,Cincinnati Bengals,64,89,72
+Travis Glover,RT,Green Bay Packers,64,63,86
+Trevor Nowaske,SAM,Detroit Lions,64,88,74
+Trey Lance,QB,Los Angeles Chargers,64,87,71
+Will Howard,QB,Pittsburgh Steelers,64,81,68
+Yasir Abdullah,SAM,Atlanta Falcons,64,90,70
+Avery Smith,CB,Seattle Seahawks,63,88,58
+Bam Martin-Scott,WILL,Carolina Panthers,63,85,74
+Bauer Sharp,TE,Tampa Bay Buccaneers,63,85,71
+Brandon Pili,DT,Seattle Seahawks,63,61,82
+Brayden Willis,TE,San Francisco 49ers,63,84,76
+C.J. Okoye,DT,NY Giants,63,58,89
+CJ Donaldson,HB,New Orleans Saints,63,87,72
+Cody Lindenberg,WILL,Las Vegas Raiders,63,82,71
+Corey Bullock,LG,Carolina Panthers,63,62,85
+Dallen Bentley,TE,Denver Broncos,63,85,71
+Ethan Downs,REDG,Kansas City Chiefs,63,83,83
+Garret Wallow,WILL,San Francisco 49ers,63,83,69
+Garrett Nussmeier,QB,Kansas City Chiefs,63,78,63
+Jackson Woodard,MIKE,Miami Dolphins,63,84,73
+Jacob Bayer,RG,Cincinnati Bengals,63,66,86
+Jacob Thomas,FS,Minnesota Vikings,63,91,63
+Jacob Hummel,WILL,Houston Texans,63,86,67
+Jake Briningstool,TE,Kansas City Chiefs,63,81,71
+James Hudson III,LT,Tennessee Titans,63,60,82
+Joey Blount,FS,Arizona Cardinals,63,91,65
+Jonah Monheim,C,Jacksonville Jaguars,63,72,80
+Jonathan Ford,DT,Green Bay Packers,63,56,84
+Josh Fryar,RT,Arizona Cardinals,63,70,86
+Julian Hill,TE,New England Patriots,63,83,75
+Kurtis Rourke,QB,San Francisco 49ers,63,76,67
+Kyle Hinton,LG,Atlanta Falcons,63,74,87
+Lew Nichols,HB,Pittsburgh Steelers,63,85,68
+Malik Herring,LEDG,Miami Dolphins,63,74,78
+Mark Redman,TE,Green Bay Packers,63,78,77
+Mason Richman,RT,Seattle Seahawks,63,60,84
+Mason Murphy,RT,New Orleans Saints,63,62,82
+Maximus Pulley,FS,Los Angeles Rams,63,88,62
+Mike Brown,FS,New England Patriots,63,88,66
+Nate Lynn,LEDG,NY Jets,63,78,69
+PJ Jules,FS,Cincinnati Bengals,63,89,65
+Quinn Ewers,QB,Jacksonville Jaguars,63,78,66
+Quintin Morris,TE,Jacksonville Jaguars,63,82,72
+Robert Beal Jr,REDG,Miami Dolphins,63,90,68
+Seydou Traore,TE,Miami Dolphins,63,85,72
+Storm Norton,LT,Atlanta Falcons,63,64,82
+Tahj Chambers,WILL,Indianapolis Colts,63,85,68
+Tanoa Togiai,LG,Washington Commanders,63,64,89
+Teagan Quitoriano,TE,Arizona Cardinals,63,74,78
+Tylan Grable,RT,Buffalo Bills,63,74,81
+Tyler Batty,LEDG,Minnesota Vikings,63,80,83
+William Wagner,LS,Cincinnati Bengals,63,73,71
+Willie Lampkin IV,LG,Philadelphia Eagles,63,65,82
+Xavier Nwankpa,FS,Kansas City Chiefs,63,90,62
+Albert Reese IV,RT,Arizona Cardinals,62,65,85
+Alex Ward,LS,Las Vegas Raiders,62,69,66
+Andrew Meyer,C,Miami Dolphins,62,70,86
+Athan Kaliakmanis,QB,Washington Commanders,62,75,65
+Atonio Mafi,RG,Tennessee Titans,62,55,84
+Benjamin Yurosek,TE,Minnesota Vikings,62,84,72
+Bishop Fitzgerald,FS,Detroit Lions,62,87,58
+Blake Whiteheart,TE,Cleveland Browns,62,82,72
+Brittain Brown,HB,Chicago Bears,62,82,73
+Carsen Ryan,TE,Cleveland Browns,62,82,77
+Chris Stoll,LS,Seattle Seahawks,62,75,65
+Christian Kuntz,LS,Pittsburgh Steelers,62,79,76
+David Martin-Robinson,TE,Tennessee Titans,62,85,70
+Donovan McMillon,SS,Cleveland Browns,62,90,65
+Dorian Mausi,WILL,Tennessee Titans,62,83,68
+Eku Leota,LEDG,Arizona Cardinals,62,78,78
+Elijah Campbell,FS,NY Giants,62,89,61
+Elijah Williams,DT,Minnesota Vikings,62,65,84
+Garrett DiGiorgio,RG,Jacksonville Jaguars,62,60,84
+Jack Cochrane,SAM,Kansas City Chiefs,62,83,70
+Jacob Spomer,C,Los Angeles Chargers,62,68,86
+Jake Haener,QB,NY Giants,62,83,61
+Joe Huber,LG,Minnesota Vikings,62,66,86
+John Williams,LT,Green Bay Packers,62,67,87
+John Michael Gyllenborg,TE,Kansas City Chiefs,62,86,76
+Karene Reid,MIKE,Denver Broncos,62,83,70
+Keleki Latu,TE,Buffalo Bills,62,76,67
+Luke Tenuta,RT,Indianapolis Colts,62,58,81
+Michael Jurgens,C,Minnesota Vikings,62,58,80
+Moliki Matavao,TE,New Orleans Saints,62,79,76
+Nick Samac,C,Minnesota Vikings,62,65,84
+Nick Muse,TE,Atlanta Falcons,62,81,80
+Sam Hagen,RT,Houston Texans,62,64,84
+Tanner Arkin,TE,New England Patriots,62,76,75
+TeRah Edwards,DT,Carolina Panthers,62,65,87
+Tristin McCollum,FS,Las Vegas Raiders,62,89,57
+Wydett Williams Jr,SS,Arizona Cardinals,62,88,62
+Anthony Tyus III,HB,Carolina Panthers,61,86,72
+Brandon Crenshaw-Dickson,RT,Tennessee Titans,61,61,86
+Colson Yankoff,TE,Washington Commanders,61,85,71
+Hayden Rucci,TE,Los Angeles Chargers,61,77,73
+Isaiah World,LT,Los Angeles Chargers,61,63,83
+Jalon Daniels,QB,Tampa Bay Buccaneers,61,84,62
+Jay Higgins IV,MIKE,Baltimore Ravens,61,78,68
+Josh Woods,MIKE,Atlanta Falcons,61,83,64
+Matt Orzech,LS,Green Bay Packers,61,77,73
+Princeton Fant,TE,Dallas Cowboys,61,87,72
+Tommy DeVito,QB,New England Patriots,61,84,62
+Torricelli Simpkins III,RG,Carolina Panthers,61,57,78
+Treyton Welch,TE,New Orleans Saints,61,84,77
+Behren Morton,QB,New England Patriots,60,76,61
+Benjamin Chukwuma,LT,Tampa Bay Buccaneers,60,61,82
+Caleb Lohner,TE,Denver Broncos,60,83,75
+Diego Pounds,RT,Kansas City Chiefs,60,67,81
+DJ Uiagalelei,QB,Los Angeles Chargers,60,75,65
+Evan Deckers,LS,Tampa Bay Buccaneers,60,67,62
+Graham Mertz,QB,Houston Texans,60,77,60
+Jack Strand,QB,Atlanta Falcons,60,80,64
+Jaren Kanak,TE,Tennessee Titans,60,88,76
+Joe Cardona,LS,Los Angeles Rams,60,74,80
+Josh Sills,RG,NY Giants,60,63,78
+Keondre Jackson,SS,Baltimore Ravens,60,83,65
+Kyle Allen,QB,Buffalo Bills,60,81,53
+Mike Reid,FS,New Orleans Saints,60,87,59
+Nick Kallerup,TE,Seattle Seahawks,60,81,72
+Shaka Heyward,MIKE,Miami Dolphins,60,88,74
+Amen Ogbongbemiga,WILL,Detroit Lions,59,82,68
+Jake Majors,C,Philadelphia Eagles,59,65,83
+Jared Ivey,LEDG,Atlanta Falcons,59,67,74
+Joe Fagnano,QB,Baltimore Ravens,59,78,64
+Max Brosmer,QB,Minnesota Vikings,59,79,70
+Scott Daly,LS,Chicago Bears,59,71,72
+Tyson Bagent,QB,Chicago Bears,59,79,59
+Rex Sunahara,LS,Cleveland Browns,58,69,62
+Hayden Large,TE,Chicago Bears,57,82,75
+Milo Eifler,MIKE,Tennessee Titans,57,85,64
+Patrick O'Connell,MIKE,Seattle Seahawks,57,82,62
+Sam Ehlinger,QB,Denver Broncos,57,84,67
+William Sherman,C,New Orleans Saints,57,65,81
+Tucker Addington,LS,Miami Dolphins,56,70,62
+Feleipe Franks,TE,Carolina Panthers,55,83,65
+Ryan McCollum,C,Pittsburgh Steelers,54,61,80
+`,W0=`name,pos,team,ovr,spd,str
+Darius Slayton,WR,Free Agent,78,93,57
+Xavier Woods,FS,Free Agent,78,88,71
+Najee Harris,HB,Free Agent,77,87,82
+Rayshawn Jenkins,FS,Free Agent,77,88,72
+Asante Samuel Jr,CB,Free Agent,76,91,54
+Harrison Mevis,K,Free Agent,76,70,44
+Odell Beckham Jr,WR,Free Agent,73,89,53
+Chris Moore,WR,Free Agent,72,88,58
+Marquez Valdes-Scantling,WR,Free Agent,72,92,63
+Riley Patterson,K,Free Agent,72,76,40
+Caelen Carson,CB,Free Agent,71,88,52
+KhaDarel Hodge,WR,Free Agent,71,89,60
+`,P0=`pid,name,pos,team
+nfl-p00001,Ja'Marr Chase,WR,Cincinnati Bengals
+nfl-p00002,Jaxon Smith-Njigba,WR,Seattle Seahawks
+nfl-p00003,Josh Allen,QB,Buffalo Bills
+nfl-p00004,Myles Garrett,REDG,Los Angeles Rams
+nfl-p00005,Trey McBride,TE,Arizona Cardinals
+nfl-p00006,Bijan Robinson,HB,Atlanta Falcons
+nfl-p00007,Christian Gonzalez,CB,New England Patriots
+nfl-p00008,Fred Warner,MIKE,San Francisco 49ers
+nfl-p00009,Matthew Stafford,QB,Los Angeles Rams
+nfl-p00010,Micah Parsons,REDG,Green Bay Packers
+nfl-p00011,Penei Sewell,LT,Detroit Lions
+nfl-p00012,Puka Nacua,WR,Los Angeles Rams
+nfl-p00013,Christian McCaffrey,HB,San Francisco 49ers
+nfl-p00014,George Kittle,TE,San Francisco 49ers
+nfl-p00015,Jahmyr Gibbs,HB,Detroit Lions
+nfl-p00016,Joe Burrow,QB,Cincinnati Bengals
+nfl-p00017,Justin Jefferson,WR,Minnesota Vikings
+nfl-p00018,Maxx Crosby,LEDG,Las Vegas Raiders
+nfl-p00019,Pat Surtain II,CB,Denver Broncos
+nfl-p00020,Trent Williams,LT,San Francisco 49ers
+nfl-p00021,Amon-Ra St. Brown,WR,Detroit Lions
+nfl-p00022,Creed Humphrey,C,Kansas City Chiefs
+nfl-p00023,Derrick Brown,DT,Carolina Panthers
+nfl-p00024,Garett Bolles,LT,Denver Broncos
+nfl-p00025,Jeffery Simmons,DT,Chicago Bears
+nfl-p00026,Joe Thuney,LG,Chicago Bears
+nfl-p00027,Jonathan Taylor,HB,Indianapolis Colts
+nfl-p00028,Quinn Meinerz,RG,Denver Broncos
+nfl-p00029,T.J. Watt,LEDG,Pittsburgh Steelers
+nfl-p00030,Trent McDuffie,CB,Los Angeles Rams
+nfl-p00031,Aaron Donald,DT,Los Angeles Rams
+nfl-p00032,Andrew Thomas,LT,NY Giants
+nfl-p00033,Brock Bowers,TE,Las Vegas Raiders
+nfl-p00034,Cam Heyward,DT,Pittsburgh Steelers
+nfl-p00035,CeeDee Lamb,WR,Dallas Cowboys
+nfl-p00036,Kenneth Walker,HB,Kansas City Chiefs
+nfl-p00037,Lamar Jackson,QB,Baltimore Ravens
+nfl-p00038,Quenton Nelson,LG,Seattle Seahawks
+nfl-p00039,Will Anderson Jr,LEDG,Houston Texans
+nfl-p00040,Aidan Hutchinson,LEDG,Detroit Lions
+nfl-p00041,Chris Jones,DT,Kansas City Chiefs
+nfl-p00042,Chris Lindstrom,RG,Atlanta Falcons
+nfl-p00043,Denzel Ward,CB,Cleveland Browns
+nfl-p00044,Derrick Henry,HB,Baltimore Ravens
+nfl-p00045,Jessie Bates III,FS,Atlanta Falcons
+nfl-p00046,Kyle Hamilton,SS,Baltimore Ravens
+nfl-p00047,Laremy Tunsil,LT,Washington Commanders
+nfl-p00048,Patrick Mahomes,QB,Kansas City Chiefs
+nfl-p00049,Tristan Wirfs,LT,Tampa Bay Buccaneers
+nfl-p00050,Vita Vea,DT,Tampa Bay Buccaneers
+nfl-p00051,Antoine Winfield Jr,FS,Tampa Bay Buccaneers
+nfl-p00052,Derwin James Jr,SS,Los Angeles Chargers
+nfl-p00053,Dexter Lawrence II,DT,Cincinnati Bengals
+nfl-p00054,Drake London,WR,Atlanta Falcons
+nfl-p00055,Kolton Miller,LT,Las Vegas Raiders
+nfl-p00056,Nick Bosa,LEDG,San Francisco 49ers
+nfl-p00057,Roquan Smith,MIKE,Baltimore Ravens
+nfl-p00058,Travis Kelce,TE,Kansas City Chiefs
+nfl-p00059,Trey Smith,RG,Kansas City Chiefs
+nfl-p00060,Zack Baun,WILL,Philadelphia Eagles
+nfl-p00061,Brock Purdy,QB,San Francisco 49ers
+nfl-p00062,Danielle Hunter,REDG,Houston Texans
+nfl-p00063,DeForest Buckner,DT,San Francisco 49ers
+nfl-p00064,Derek Stingley Jr,CB,Houston Texans
+nfl-p00065,DeVonta Smith,WR,Philadelphia Eagles
+nfl-p00066,Jalen Ramsey,FS,Pittsburgh Steelers
+nfl-p00067,James Cook III,HB,Buffalo Bills
+nfl-p00068,Rashawn Slater,LT,Los Angeles Chargers
+nfl-p00069,Xavier McKinney,SS,Green Bay Packers
+nfl-p00070,Brian Branch,SS,Detroit Lions
+nfl-p00071,Caleb Williams,QB,Chicago Bears
+nfl-p00072,Davante Adams,WR,Los Angeles Rams
+nfl-p00073,Devon Witherspoon,CB,Seattle Seahawks
+nfl-p00074,Jordan Mailata,LT,Philadelphia Eagles
+nfl-p00075,Mike Evans,WR,San Francisco 49ers
+nfl-p00076,Nik Bonitto,REDG,Denver Broncos
+nfl-p00077,Quinnen Williams,DT,Dallas Cowboys
+nfl-p00078,Saquon Barkley,HB,Philadelphia Eagles
+nfl-p00079,Aaron Brewer,C,Miami Dolphins
+nfl-p00080,Christian Darrisaw,LT,Minnesota Vikings
+nfl-p00081,Dak Prescott,QB,Dallas Cowboys
+nfl-p00082,Darnell Wright,RT,Chicago Bears
+nfl-p00083,Demario Davis,MIKE,NY Jets
+nfl-p00084,Greg Rousseau,LEDG,Buffalo Bills
+nfl-p00085,Kevin Dotson,RG,Los Angeles Rams
+nfl-p00086,Kyren Williams,HB,Los Angeles Rams
+nfl-p00087,Leonard Williams,DT,Seattle Seahawks
+nfl-p00088,Mark Andrews,TE,Baltimore Ravens
+nfl-p00089,Minkah Fitzpatrick,SS,NY Jets
+nfl-p00090,Nico Collins,WR,Houston Texans
+nfl-p00091,Nnamdi Madubuike,DT,Baltimore Ravens
+nfl-p00092,Quinyon Mitchell,CB,Philadelphia Eagles
+nfl-p00093,Zay Flowers,WR,Baltimore Ravens
+nfl-p00094,Brian Burns,REDG,NY Giants
+nfl-p00095,Chris Olave,WR,New Orleans Saints
+nfl-p00096,Dallas Goedert,TE,Philadelphia Eagles
+nfl-p00097,Dion Dawkins,LT,Buffalo Bills
+nfl-p00098,Drake Maye,QB,New England Patriots
+nfl-p00099,Drue Tranquill,WILL,Kansas City Chiefs
+nfl-p00100,Josh Hines-Allen,REDG,Jacksonville Jaguars
+nfl-p00101,Josh Jacobs,HB,Green Bay Packers
+nfl-p00102,Sauce Gardner,CB,Indianapolis Colts
+nfl-p00103,Talanoa Hufanga,SS,Denver Broncos
+nfl-p00104,Terry McLaurin,WR,Washington Commanders
+nfl-p00105,Tyler Smith,LG,Dallas Cowboys
+nfl-p00106,Zach Frazier,C,Pittsburgh Steelers
+nfl-p00107,Zach Allen,DT,Denver Broncos
+nfl-p00108,A.J. Terrell Jr,CB,Atlanta Falcons
+nfl-p00109,Budda Baker,SS,Arizona Cardinals
+nfl-p00110,Byron Murphy Jr,CB,Minnesota Vikings
+nfl-p00111,Charvarius Ward Sr,CB,Indianapolis Colts
+nfl-p00112,D'Andre Swift,HB,Chicago Bears
+nfl-p00113,Devin Lloyd,WILL,Carolina Panthers
+nfl-p00114,George Pickens,WR,Dallas Cowboys
+nfl-p00115,Jalen Carter,DT,Philadelphia Eagles
+nfl-p00116,Jared Verse,REDG,Cleveland Browns
+nfl-p00117,Jared Goff,QB,Detroit Lions
+nfl-p00118,Kerby Joseph,FS,Detroit Lions
+nfl-p00119,Kyle Juszczyk,FB,San Francisco 49ers
+nfl-p00120,Malik Nabers,WR,NY Giants
+nfl-p00121,Sam Cosmi,RG,Washington Commanders
+nfl-p00122,Sam LaPorta,TE,Detroit Lions
+nfl-p00123,Tee Higgins,WR,Cincinnati Bengals
+nfl-p00124,Trey Hendrickson,REDG,Baltimore Ravens
+nfl-p00125,Tyler Linderbaum,C,Las Vegas Raiders
+nfl-p00126,A.J. Brown,WR,New England Patriots
+nfl-p00127,Breece Hall,HB,NY Jets
+nfl-p00128,Brian O'Neill,RT,Minnesota Vikings
+nfl-p00129,Chase Young,LEDG,New Orleans Saints
+nfl-p00130,Cooper DeJean,CB,Philadelphia Eagles
+nfl-p00131,Dalton Schultz,TE,Houston Texans
+nfl-p00132,Damien Lewis,LG,Carolina Panthers
+nfl-p00133,De'Von Achane,HB,Miami Dolphins
+nfl-p00134,DeMarcus Lawrence,LEDG,Seattle Seahawks
+nfl-p00135,Erik McCoy,C,New Orleans Saints
+nfl-p00136,Foyesade Oluokun,MIKE,Jacksonville Jaguars
+nfl-p00137,Garrett Wilson,WR,NY Jets
+nfl-p00138,Harrison Smith,FS,Minnesota Vikings
+nfl-p00139,Jack Campbell,MIKE,Detroit Lions
+nfl-p00140,Jake Matthews,LT,Atlanta Falcons
+nfl-p00141,Jamel Dean,CB,Pittsburgh Steelers
+nfl-p00142,Jaycee Horn,CB,Carolina Panthers
+nfl-p00143,Jaylon Johnson,CB,Chicago Bears
+nfl-p00144,Jonathan Allen,DT,Cincinnati Bengals
+nfl-p00145,Jordyn Brooks,WILL,Miami Dolphins
+nfl-p00146,Tetairoa McMillan,WR,Carolina Panthers
+nfl-p00147,Trevor Lawrence,QB,Jacksonville Jaguars
+nfl-p00148,Zach Bako-Bewele,RT,Green Bay Packers
+nfl-p00149,Alex Singleton,MIKE,Denver Broncos
+nfl-p00150,Alex Highsmith,REDG,Pittsburgh Steelers
+nfl-p00151,Alim McNeill,DT,Detroit Lions
+nfl-p00152,Bernhard Raimann,LT,Indianapolis Colts
+nfl-p00153,Brandon Aubrey,K,Dallas Cowboys
+nfl-p00154,Bucky Irving,HB,Tampa Bay Buccaneers
+nfl-p00155,Courtland Sutton,WR,Denver Broncos
+nfl-p00156,Devin Bush,MIKE,Chicago Bears
+nfl-p00157,Hunter Henry,TE,New England Patriots
+nfl-p00158,Isaiah Rodgers Sr,CB,Minnesota Vikings
+nfl-p00159,Jalen Pitre,CB,Houston Texans
+nfl-p00160,Jaylen Warren,HB,Pittsburgh Steelers
+nfl-p00161,Joe Alt,RT,Los Angeles Chargers
+nfl-p00162,Joey Porter Jr,CB,Dallas Cowboys
+nfl-p00163,Jordan Love,QB,Green Bay Packers
+nfl-p00164,Julian Love,FS,Seattle Seahawks
+nfl-p00165,Khalil Mack,REDG,Los Angeles Chargers
+nfl-p00166,Mike Onwenu,RG,New England Patriots
+nfl-p00167,Milton Williams,DT,New England Patriots
+nfl-p00168,Nick Emmanwori,SS,Seattle Seahawks
+nfl-p00169,Paris Johnson Jr,LT,Arizona Cardinals
+nfl-p00170,Ronnie Stanley,LT,Baltimore Ravens
+nfl-p00171,Stefon Diggs,WR,Washington Commanders
+nfl-p00172,Alaric Jackson,LT,Los Angeles Rams
+nfl-p00173,Ashton Jeanty,HB,Las Vegas Raiders
+nfl-p00174,Byron Murphy II,DT,Seattle Seahawks
+nfl-p00175,Byron Young,LEDG,Los Angeles Rams
+nfl-p00176,Carlton Davis III,CB,New England Patriots
+nfl-p00177,Carson Schwesinger,MIKE,Cleveland Browns
+nfl-p00178,Charles Cross,LT,Seattle Seahawks
+nfl-p00179,Chris Boswell,K,Pittsburgh Steelers
+nfl-p00180,Christian Watson,WR,Green Bay Packers
+nfl-p00181,Chuba Hubbard,HB,Carolina Panthers
+nfl-p00182,Dre Greenlaw,WILL,San Francisco 49ers
+nfl-p00183,Ernest Jones IV,MIKE,Seattle Seahawks
+nfl-p00184,Jameson Williams,WR,Detroit Lions
+nfl-p00185,Javonte Williams,HB,Dallas Cowboys
+nfl-p00186,Jaylen Waddle,WR,Denver Broncos
+nfl-p00187,Jevon Holland,FS,NY Giants
+nfl-p00188,Jonathan Greenard,REDG,Philadelphia Eagles
+nfl-p00189,Josh Sweat,REDG,Arizona Cardinals
+nfl-p00190,Kamari Lassiter,CB,Houston Texans
+nfl-p00191,Kevin Byard III,FS,New England Patriots
+nfl-p00192,Kevin Zeitler,RG,Green Bay Packers
+nfl-p00193,Kobie Turner,DT,Los Angeles Rams
+nfl-p00194,Marlon Humphrey,CB,Baltimore Ravens
+nfl-p00195,Michael Dickson,P,Seattle Seahawks
+nfl-p00196,Rashee Rice,WR,Kansas City Chiefs
+nfl-p00197,Ryan Neuzil,C,Atlanta Falcons
+nfl-p00198,Spencer Brown,RT,Buffalo Bills
+nfl-p00199,Travis Hunter,CB,Jacksonville Jaguars
+nfl-p00200,Tucker Kraft,TE,Green Bay Packers
+nfl-p00201,Alec Pierce,WR,Indianapolis Colts
+nfl-p00202,Andrew Van Ginkel,REDG,Minnesota Vikings
+nfl-p00203,Blake Cashman,MIKE,Minnesota Vikings
+nfl-p00204,Camryn Bynum,FS,Indianapolis Colts
+nfl-p00205,Chase Brown,HB,Cincinnati Bengals
+nfl-p00206,Colton McKivitz,RT,San Francisco 49ers
+nfl-p00207,D.J. Reader,DT,NY Giants
+nfl-p00208,Daron Payne,DT,Washington Commanders
+nfl-p00209,DJ Moore,WR,Buffalo Bills
+nfl-p00210,DJ Turner II,CB,Cincinnati Bengals
+nfl-p00211,Jalen Redmond,DT,Minnesota Vikings
+nfl-p00212,Jalen Thompson,SS,Dallas Cowboys
+nfl-p00213,Jonathon Cooper,LEDG,Denver Broncos
+nfl-p00214,Jordan Addison,WR,Minnesota Vikings
+nfl-p00215,Luke Goedeke,RT,Tampa Bay Buccaneers
+nfl-p00216,Nate Wiggins,CB,Baltimore Ravens
+nfl-p00217,Nate Landman,MIKE,Los Angeles Rams
+nfl-p00218,Parker Washington,WR,Jacksonville Jaguars
+nfl-p00219,Patrick Ricard,FB,NY Giants
+nfl-p00220,Peter Skoronski,LG,Tennessee Titans
+nfl-p00221,Quentin Lake,SS,Los Angeles Rams
+nfl-p00222,Sam Darnold,QB,Seattle Seahawks
+nfl-p00223,Spencer Shrader,K,Indianapolis Colts
+nfl-p00224,Tanor Bortolini,C,Indianapolis Colts
+nfl-p00225,Taron Johnson,CB,Las Vegas Raiders
+nfl-p00226,Taylor Moton,RT,Carolina Panthers
+nfl-p00227,Terrel Bernard,MIKE,Buffalo Bills
+nfl-p00228,Tony Pollard,HB,Tennessee Titans
+nfl-p00229,Travis Etienne Jr,HB,New Orleans Saints
+nfl-p00230,Tyler Warren,TE,Indianapolis Colts
+nfl-p00231,Tyler Booker,RG,Dallas Cowboys
+nfl-p00232,Will Reichard,K,Minnesota Vikings
+nfl-p00233,Aaron Jones Sr,HB,Minnesota Vikings
+nfl-p00234,Abraham Lucas,RT,Seattle Seahawks
+nfl-p00235,Alijah Vera-Tucker,LG,New England Patriots
+nfl-p00236,Armand Membou,RT,NY Jets
+nfl-p00237,Azeez Al-Shaair,MIKE,Houston Texans
+nfl-p00238,Bobby Okereke,MIKE,Carolina Panthers
+nfl-p00239,Brandon Jones,FS,Denver Broncos
+nfl-p00240,Cam Skattebo,HB,NY Giants
+nfl-p00241,Chidobe Awuzie,CB,Baltimore Ravens
+nfl-p00242,Cooper Kupp,WR,Seattle Seahawks
+nfl-p00243,Dalton Kincaid,TE,Buffalo Bills
+nfl-p00244,Deommodore Lenoir,CB,San Francisco 49ers
+nfl-p00245,DK Metcalf,WR,Pittsburgh Steelers
+nfl-p00246,Dominick Puni,RG,San Francisco 49ers
+nfl-p00247,Evan Williams,FS,Green Bay Packers
+nfl-p00248,George Karlaftis,LEDG,Kansas City Chiefs
+nfl-p00249,Grover Stewart,DT,Indianapolis Colts
+nfl-p00250,Hjalte Froholdt,C,Arizona Cardinals
+nfl-p00251,Jermaine Eluemunor,RT,NY Giants
+nfl-p00252,Jonah Jackson,RG,Chicago Bears
+nfl-p00253,Josh Metellus,SS,Minnesota Vikings
+nfl-p00254,Justin Herbert,QB,Los Angeles Chargers
+nfl-p00255,Kaden Elliss,WILL,New Orleans Saints
+nfl-p00256,Kam Curl,SS,Los Angeles Rams
+nfl-p00257,Khalil Shakir,WR,Buffalo Bills
+nfl-p00258,Kyler Gordon,CB,Chicago Bears
+nfl-p00259,Ladd McConkey,WR,Los Angeles Chargers
+nfl-p00260,Nick Folk,K,Atlanta Falcons
+nfl-p00261,Nolan Smith Jr,LEDG,Philadelphia Eagles
+nfl-p00262,Poona Ford,DT,Los Angeles Rams
+nfl-p00263,Reggie Gilliam,FB,New England Patriots
+nfl-p00264,Rigoberto Sanchez,P,Indianapolis Colts
+nfl-p00265,Riq Woolen,CB,Philadelphia Eagles
+nfl-p00266,Robert Spillane,MIKE,New England Patriots
+nfl-p00267,T.J. Hockenson,TE,Minnesota Vikings
+nfl-p00268,Zach Charbonnet,HB,Seattle Seahawks
+nfl-p00269,Zach Sieler,DT,Miami Dolphins
+nfl-p00270,A.J. Cole,P,Las Vegas Raiders
+nfl-p00271,Abdul Carter,LEDG,NY Giants
+nfl-p00272,Arvell Reese,WILL,NY Giants
+nfl-p00273,Braden Smith,RT,Houston Texans
+nfl-p00274,Bryce Young,QB,Carolina Panthers
+nfl-p00275,Calais Campbell,DT,Baltimore Ravens
+nfl-p00276,Chris Godwin Jr,WR,Tampa Bay Buccaneers
+nfl-p00277,Colston Loveland,TE,Chicago Bears
+nfl-p00278,Dallas Turner,LEDG,Minnesota Vikings
+nfl-p00279,David Montgomery,HB,Houston Texans
+nfl-p00280,Donte Jackson,CB,Los Angeles Chargers
+nfl-p00281,Ed Oliver,DT,Buffalo Bills
+nfl-p00282,Elgton Jenkins,C,Cleveland Browns
+nfl-p00283,Evan McPherson,K,Cincinnati Bengals
+nfl-p00284,Grant Delpit,SS,Cleveland Browns
+nfl-p00285,Isaiah Likely,TE,NY Giants
+nfl-p00286,Jaelan Phillips,LEDG,Carolina Panthers
+nfl-p00287,Jakobi Meyers,WR,Jacksonville Jaguars
+nfl-p00288,Jason Myers,K,Seattle Seahawks
+nfl-p00289,Jeremiah Owusu-Koramoah,WILL,Cleveland Browns
+nfl-p00290,Jeremiyah Love,HB,Arizona Cardinals
+nfl-p00291,Jeremy Chinn,SS,Las Vegas Raiders
+nfl-p00292,Jeremy Crawshaw,P,Denver Broncos
+nfl-p00293,Joe Tippmann,RG,NY Jets
+nfl-p00294,Jordan Davis,DT,Philadelphia Eagles
+nfl-p00295,Jourdan Lewis,CB,Jacksonville Jaguars
+nfl-p00296,Landon Dickerson,LG,Philadelphia Eagles
+nfl-p00297,Leo Chenal,MIKE,Washington Commanders
+nfl-p00298,Lukas Van Ness,LEDG,Green Bay Packers
+nfl-p00299,Mansoor Delane,CB,Kansas City Chiefs
+nfl-p00300,Marcus Jones,CB,New England Patriots
+nfl-p00301,Michael Wilson,WR,Arizona Cardinals
+nfl-p00302,Mike McGlinchey,RT,Denver Broncos
+nfl-p00303,Morgan Moses,RT,New England Patriots
+nfl-p00304,Nick Bolton,MIKE,Kansas City Chiefs
+nfl-p00305,Rasheed Walker,LT,Carolina Panthers
+nfl-p00306,Rico Dowdle,HB,Pittsburgh Steelers
+nfl-p00307,Rome Odunze,WR,Chicago Bears
+nfl-p00308,Tony Jefferson,SS,Los Angeles Chargers
+nfl-p00309,Tre'von Moehrig,FS,Carolina Panthers
+nfl-p00310,Tremaine Edmunds,MIKE,NY Giants
+nfl-p00311,TreVeyon Henderson,HB,New England Patriots
+nfl-p00312,Wan'Dale Robinson,WR,Tennessee Titans
+nfl-p00313,Amani Hooker,SS,Tennessee Titans
+nfl-p00314,Antonio Johnson,SS,Jacksonville Jaguars
+nfl-p00315,Bhayshul Tuten,HB,Jacksonville Jaguars
+nfl-p00316,C.J. Stroud,QB,Houston Texans
+nfl-p00317,Calen Bullock,FS,Houston Texans
+nfl-p00318,Cam Taylor-Britt,CB,Indianapolis Colts
+nfl-p00319,Chase McLaughlin,K,Tampa Bay Buccaneers
+nfl-p00320,Cobie Durant,CB,Dallas Cowboys
+nfl-p00321,Connor McGovern,C,Buffalo Bills
+nfl-p00322,Craig Woodson,SS,New England Patriots
+nfl-p00323,Daiyan Henley,WILL,Los Angeles Chargers
+nfl-p00324,Darren Waller,TE,Carolina Panthers
+nfl-p00325,David Bailey,REDG,NY Jets
+nfl-p00326,Divine Deablo,MIKE,Atlanta Falcons
+nfl-p00327,Emeka Egbuka,WR,Tampa Bay Buccaneers
+nfl-p00328,Gervon Dexter Sr,DT,Atlanta Falcons
+nfl-p00329,Grady Jarrett,DT,Chicago Bears
+nfl-p00330,Harold Landry III,REDG,New England Patriots
+nfl-p00331,J.K. Dobbins,HB,Denver Broncos
+nfl-p00332,Jadeveon Clowney,LEDG,Houston Texans
+nfl-p00333,Jauan Jennings,WR,Minnesota Vikings
+nfl-p00334,JK Scott,P,Los Angeles Chargers
+nfl-p00335,Josh Harris,LS,Los Angeles Chargers
+nfl-p00336,Josh Simmons,LT,Kansas City Chiefs
+nfl-p00337,Josh Downs,WR,Indianapolis Colts
+nfl-p00338,Justin Reid,FS,New Orleans Saints
+nfl-p00339,Ka'imi Fairbairn,K,Houston Texans
+nfl-p00340,Keenan Allen,WR,Indianapolis Colts
+nfl-p00341,Kyle Pitts Sr,TE,Atlanta Falcons
+nfl-p00342,Mason Graham,DT,Cleveland Browns
+nfl-p00343,Michael Pittman,WR,Pittsburgh Steelers
+nfl-p00344,Mike Jackson,CB,Carolina Panthers
+nfl-p00345,Montez Sweat,LEDG,Chicago Bears
+nfl-p00346,Nick Cross,SS,Washington Commanders
+nfl-p00347,Omarion Hampton,HB,Los Angeles Chargers
+nfl-p00348,Patrick Paul,LT,Miami Dolphins
+nfl-p00349,Quincy Williams,WILL,Cleveland Browns
+nfl-p00350,Robert Hunt,RG,Carolina Panthers
+nfl-p00351,Sheldon Rankins,DT,Houston Texans
+nfl-p00352,Sonny Styles,MIKE,Washington Commanders
+nfl-p00353,Steve Avila,LG,Los Angeles Rams
+nfl-p00354,T.J. Edwards,WILL,Chicago Bears
+nfl-p00355,Tarheeb Still,CB,Los Angeles Chargers
+nfl-p00356,Tyler Allgeier,HB,Arizona Cardinals
+nfl-p00357,Tyler Shough,QB,New Orleans Saints
+nfl-p00358,Will Campbell,LT,New England Patriots
+nfl-p00359,Woody Marks,HB,Houston Texans
+nfl-p00360,Zyon McCollum,CB,Tampa Bay Buccaneers
+nfl-p00361,Akheem Mesidor,REDG,Los Angeles Chargers
+nfl-p00362,Alohi Gilman,FS,Kansas City Chiefs
+nfl-p00363,Andrew DePaola,LS,Minnesota Vikings
+nfl-p00364,Baker Mayfield,QB,Tampa Bay Buccaneers
+nfl-p00365,Bo Nix,QB,Denver Broncos
+nfl-p00366,Bryan Cook,FS,Cincinnati Bengals
+nfl-p00367,Caleb Downs,SS,Dallas Cowboys
+nfl-p00368,Cam Little,K,Jacksonville Jaguars
+nfl-p00369,Cameron Dicker,K,Los Angeles Chargers
+nfl-p00370,Christian Benford,CB,Buffalo Bills
+nfl-p00371,Christian Barmore,DT,New England Patriots
+nfl-p00372,Cor'Dale Flott,CB,Tennessee Titans
+nfl-p00373,Corey Bojorquez,P,Cleveland Browns
+nfl-p00374,D.J. Reed,CB,Detroit Lions
+nfl-p00375,DeShon Elliott,SS,Pittsburgh Steelers
+nfl-p00376,Edgerrin Cooper,WILL,Green Bay Packers
+nfl-p00377,Ethan Evans,P,Los Angeles Rams
+nfl-p00378,Ezra Cleveland,RG,Jacksonville Jaguars
+nfl-p00379,Harold Fannin Jr,TE,Cleveland Browns
+nfl-p00380,Harrison Butker,K,Kansas City Chiefs
+nfl-p00381,Ikem Ekwonu,LT,Carolina Panthers
+nfl-p00382,Isaac Seumalo,LG,Arizona Cardinals
+nfl-p00383,Jacob Rodriguez,MIKE,Miami Dolphins
+nfl-p00384,Jacory Croskey-Merritt,HB,Washington Commanders
+nfl-p00385,Jake Elliott,K,Philadelphia Eagles
+nfl-p00386,Jaquan Brisker,SS,Pittsburgh Steelers
+nfl-p00387,Javon Hargrave,DT,Green Bay Packers
+nfl-p00388,Jayden Reed,WR,Green Bay Packers
+nfl-p00389,Jaylen Watson,CB,Los Angeles Rams
+nfl-p00390,JC Latham,RT,Tennessee Titans
+nfl-p00391,John Simpson,LG,Baltimore Ravens
+nfl-p00392,John Franklin-Myers,DT,Tennessee Titans
+nfl-p00393,Jordan Mason,HB,Minnesota Vikings
+nfl-p00394,Juwan Johnson,TE,New Orleans Saints
+nfl-p00395,Kayshon Boutte,WR,Houston Texans
+nfl-p00396,Kenny Moore II,CB,Philadelphia Eagles
+nfl-p00397,Kyle Monangai,HB,Chicago Bears
+nfl-p00398,Kyle Van Noy,REDG,Minnesota Vikings
+nfl-p00399,Laiatu Latu,LEDG,Indianapolis Colts
+nfl-p00400,Luther Burden III,WR,Chicago Bears
+nfl-p00401,Mack Wilson Sr,MIKE,Arizona Cardinals
+nfl-p00402,Mason McCormick,LG,Pittsburgh Steelers
+nfl-p00403,Matthew Golden,WR,Green Bay Packers
+nfl-p00404,Michael Mayer,TE,Las Vegas Raiders
+nfl-p00405,Odafe Oweh,LEDG,Washington Commanders
+nfl-p00406,Quay Walker,WILL,Las Vegas Raiders
+nfl-p00407,Quentin Johnston,WR,Los Angeles Chargers
+nfl-p00408,Quinshon Judkins,HB,Cleveland Browns
+nfl-p00409,Rhamondre Stevenson,HB,New England Patriots
+nfl-p00410,Ricky Pearsall,WR,San Francisco 49ers
+nfl-p00411,Travon Walker,LEDG,Jacksonville Jaguars
+nfl-p00412,Tyler Biadasz,C,Los Angeles Chargers
+nfl-p00413,Tytus Howard,RT,Cleveland Browns
+nfl-p00414,Alex Anzalone,WILL,Tampa Bay Buccaneers
+nfl-p00415,Alvin Kamara,HB,New Orleans Saints
+nfl-p00416,Amik Robertson,CB,Washington Commanders
+nfl-p00417,Anton Harrison,LT,Jacksonville Jaguars
+nfl-p00418,Blake Corum,HB,Los Angeles Rams
+nfl-p00419,Boye Mafe,REDG,Cincinnati Bengals
+nfl-p00420,Braden Mann,P,Philadelphia Eagles
+nfl-p00421,Braden Fiske,DT,Los Angeles Rams
+nfl-p00422,Brenton Strange,TE,Jacksonville Jaguars
+nfl-p00423,Brian Thomas Jr,WR,Jacksonville Jaguars
+nfl-p00424,Brian Robinson Jr,HB,Atlanta Falcons
+nfl-p00425,Bryan Anger,P,Dallas Cowboys
+nfl-p00426,Cameron Jordan,REDG,New Orleans Saints
+nfl-p00427,Carl Granderson,REDG,New Orleans Saints
+nfl-p00428,Cole Bishop,FS,Buffalo Bills
+nfl-p00429,Coleman Shelton,C,Los Angeles Rams
+nfl-p00430,DaQuan Jones,DT,New England Patriots
+nfl-p00431,David Edwards,LG,New Orleans Saints
+nfl-p00432,Deebo Samuel Sr,WR,San Francisco 49ers
+nfl-p00433,Dorance Armstrong,LEDG,Washington Commanders
+nfl-p00434,Dru Phillips,CB,NY Giants
+nfl-p00435,Dylan Parham,LG,NY Jets
+nfl-p00436,Elijah Molden,FS,Los Angeles Chargers
+nfl-p00437,Eric Wilson,WILL,Minnesota Vikings
+nfl-p00438,Francis Mauigoa,RG,NY Giants
+nfl-p00439,Frankie Luvu,WILL,Washington Commanders
+nfl-p00440,Greg Newsome II,CB,NY Giants
+nfl-p00441,Ja'Quan McMillian,CB,Denver Broncos
+nfl-p00442,Jack Fox,P,Detroit Lions
+nfl-p00443,Jacob Parrish,CB,Tampa Bay Buccaneers
+nfl-p00444,Jalen Hurts,QB,Philadelphia Eagles
+nfl-p00445,Jalon Walker,LEDG,Atlanta Falcons
+nfl-p00446,James Pearce Jr,REDG,Atlanta Falcons
+nfl-p00447,James Conner,HB,Arizona Cardinals
+nfl-p00448,Jerry Jeudy,WR,Cleveland Browns
+nfl-p00449,Jihaad Campbell,MIKE,Philadelphia Eagles
+nfl-p00450,Kamren Kinchens,FS,Los Angeles Rams
+nfl-p00451,Kenny Clark,DT,Dallas Cowboys
+nfl-p00452,Kristian Fulton,CB,Kansas City Chiefs
+nfl-p00453,L'Jarius Sneed,CB,Kansas City Chiefs
+nfl-p00454,Matthew Bergeron,LG,Atlanta Falcons
+nfl-p00455,Mike Gesicki,TE,Cincinnati Bengals
+nfl-p00456,Nakobe Dean,MIKE,Las Vegas Raiders
+nfl-p00457,Nohl Williams,CB,Kansas City Chiefs
+nfl-p00458,Pat Freiermuth,TE,Pittsburgh Steelers
+nfl-p00459,Patrick Queen,MIKE,Pittsburgh Steelers
+nfl-p00460,Reed Blankenship,SS,Houston Texans
+nfl-p00461,RJ Harvey,HB,Denver Broncos
+nfl-p00462,Romeo Doubs,WR,New England Patriots
+nfl-p00463,Spencer Fano,LT,Cleveland Browns
+nfl-p00464,T'Vondre Sweat,DT,NY Jets
+nfl-p00465,Tank Dell,WR,Houston Texans
+nfl-p00466,Travis Jones,DT,Baltimore Ravens
+nfl-p00467,Trent Brown,RT,Houston Texans
+nfl-p00468,Trenton Simpson,WILL,Baltimore Ravens
+nfl-p00469,Tuli Tuipulotu,LEDG,Los Angeles Chargers
+nfl-p00470,Tykee Smith,SS,Tampa Bay Buccaneers
+nfl-p00471,Tyler Loop,K,Baltimore Ravens
+nfl-p00472,Tyson Campbell,CB,Cleveland Browns
+nfl-p00473,Xavier Worthy,WR,Kansas City Chiefs
+nfl-p00474,Yaya Diaby,REDG,Tampa Bay Buccaneers
+nfl-p00475,Zach Wood,LS,New Orleans Saints
+nfl-p00476,A'Shawn Robinson,DT,Tampa Bay Buccaneers
+nfl-p00477,Aaron Rodgers,QB,Pittsburgh Steelers
+nfl-p00478,Alontae Taylor,CB,Tennessee Titans
+nfl-p00479,Ar'Darius Washington,FS,NY Giants
+nfl-p00480,Bradley Chubb,REDG,Buffalo Bills
+nfl-p00481,Bryce Baringer,P,New England Patriots
+nfl-p00482,Cairo Santos,K,Chicago Bears
+nfl-p00483,Calvin Ridley,WR,Tennessee Titans
+nfl-p00484,Carnell Tate,WR,Tennessee Titans
+nfl-p00485,Cedric Gray,WILL,Tennessee Titans
+nfl-p00486,Christian Kirk,WR,San Francisco 49ers
+nfl-p00487,Chuck Clark,FS,Detroit Lions
+nfl-p00488,Cody Barton,MIKE,Tennessee Titans
+nfl-p00489,Cole Kmet,TE,Chicago Bears
+nfl-p00490,Dane Belton,FS,NY Jets
+nfl-p00491,Dax Hill,CB,Cincinnati Bengals
+nfl-p00492,Deonte Banks,CB,NY Giants
+nfl-p00493,Derrick Harmon,DT,Pittsburgh Steelers
+nfl-p00494,Devonte Wyatt,DT,Green Bay Packers
+nfl-p00495,Dontayvion Wicks,WR,Philadelphia Eagles
+nfl-p00496,Ed Ingram,RG,Houston Texans
+nfl-p00497,Evan Engram,TE,Denver Broncos
+nfl-p00498,Garrett Williams,CB,Arizona Cardinals
+nfl-p00499,Hogan Hatten,LS,Detroit Lions
+nfl-p00500,Isaiah McDuffie,SAM,Green Bay Packers
+nfl-p00501,Jackson Powers-Johnson,RG,Las Vegas Raiders
+nfl-p00502,Jake Brendel,C,San Francisco 49ers
+nfl-p00503,Jake Ferguson,TE,Dallas Cowboys
+nfl-p00504,Jake Bailey,P,Atlanta Falcons
+nfl-p00505,Jalen Coker,WR,Carolina Panthers
+nfl-p00506,Jarran Reed,DT,Seattle Seahawks
+nfl-p00507,Javon Bullard,SS,Green Bay Packers
+nfl-p00508,Jaxson Dart,QB,NY Giants
+nfl-p00509,Jordan Battle,SS,Cincinnati Bengals
+nfl-p00510,Kayvon Thibodeaux,LEDG,NY Giants
+nfl-p00511,Keisean Nixon,CB,Green Bay Packers
+nfl-p00512,Keldric Faulk,LEDG,Tennessee Titans
+nfl-p00513,Kelvin Banks Jr,LT,New Orleans Saints
+nfl-p00514,Kenny Gainwell,HB,Tampa Bay Buccaneers
+nfl-p00515,Kwity Paye,REDG,Las Vegas Raiders
+nfl-p00516,Malachi Lawrence,REDG,Dallas Cowboys
+nfl-p00517,Malaki Starks,FS,Baltimore Ravens
+nfl-p00518,Malcolm Koonce,LEDG,Las Vegas Raiders
+nfl-p00519,Maliek Collins,DT,Cleveland Browns
+nfl-p00520,Malik Hooker,FS,Dallas Cowboys
+nfl-p00521,Matt Goncalves,RG,Indianapolis Colts
+nfl-p00522,Nick Herbig,REDG,Pittsburgh Steelers
+nfl-p00523,Omar Speights,WILL,Los Angeles Rams
+nfl-p00524,Rachaad White,HB,Washington Commanders
+nfl-p00525,Rashan Gary,LEDG,Dallas Cowboys
+nfl-p00526,Rashid Shaheed,WR,Seattle Seahawks
+nfl-p00527,Renardo Green,CB,San Francisco 49ers
+nfl-p00528,Riley Moss,CB,Denver Broncos
+nfl-p00529,Roger Rosengarten,RT,Baltimore Ravens
+nfl-p00530,Rueben Bain Jr,LEDG,Tampa Bay Buccaneers
+nfl-p00531,Sebastian Joseph-Day,DT,Pittsburgh Steelers
+nfl-p00532,Tommy Townsend,P,Tennessee Titans
+nfl-p00533,Tre Tucker,WR,Las Vegas Raiders
+nfl-p00534,Trent Sieg,LS,Dallas Cowboys
+nfl-p00535,Trey Amos,CB,Washington Commanders
+nfl-p00536,Troy Franklin,WR,Denver Broncos
+nfl-p00537,Tyleik Williams,DT,Detroit Lions
+nfl-p00538,Tyler Guyton,LT,Dallas Cowboys
+nfl-p00539,Tyrone Tracy Jr,HB,NY Giants
+nfl-p00540,Vega Ioane,RG,Baltimore Ravens
+nfl-p00541,Wil Lutz,K,Denver Broncos
+nfl-p00542,Will McDonald IV,LEDG,NY Jets
+nfl-p00543,Xavier Watts,SS,Atlanta Falcons
+nfl-p00544,Zaire Franklin,MIKE,Green Bay Packers
+nfl-p00545,Zion Johnson,LG,Cleveland Browns
+nfl-p00546,Adonai Mitchell,WR,NY Jets
+nfl-p00547,Andre Cisco,SS,NY Jets
+nfl-p00548,Andre Szmyt,K,Cleveland Browns
+nfl-p00549,Andrew Wingard,FS,Arizona Cardinals
+nfl-p00550,Benjamin St-Juste,CB,Green Bay Packers
+nfl-p00551,Bradley Pinion,P,Miami Dolphins
+nfl-p00552,Brandon Stephens,CB,NY Jets
+nfl-p00553,Calijah Kancey,DT,Tampa Bay Buccaneers
+nfl-p00554,Carrington Valentine,CB,Green Bay Packers
+nfl-p00555,Cashius Howell,REDG,Cincinnati Bengals
+nfl-p00556,Chris Johnson,CB,Miami Dolphins
+nfl-p00557,Coby Bryant,FS,Chicago Bears
+nfl-p00558,Cody Mauch,RG,Tampa Bay Buccaneers
+nfl-p00559,Corliss Waitman,P,San Francisco 49ers
+nfl-p00560,Daniel Carlson,K,New Orleans Saints
+nfl-p00561,DaRon Bland,CB,Dallas Cowboys
+nfl-p00562,David Onyemata,DT,NY Jets
+nfl-p00563,David Njoku,TE,Los Angeles Chargers
+nfl-p00564,DeMario Douglas,WR,New England Patriots
+nfl-p00565,Deone Walker,DT,Buffalo Bills
+nfl-p00566,Derick Hall,LEDG,Seattle Seahawks
+nfl-p00567,Derrick Moore,LEDG,Detroit Lions
+nfl-p00568,Dillon Thieneman,SS,Chicago Bears
+nfl-p00569,Donovan Ezeiruaku,REDG,Dallas Cowboys
+nfl-p00570,Dre'Mont Jones,LEDG,New England Patriots
+nfl-p00571,Eddy Pineiro,K,San Francisco 49ers
+nfl-p00572,Elic Ayomanor,WR,Tennessee Titans
+nfl-p00573,Eric Stokes,CB,Las Vegas Raiders
+nfl-p00574,Harrison Phillips,DT,NY Jets
+nfl-p00575,Jalen Nailor,WR,Las Vegas Raiders
+nfl-p00576,James Pierre,CB,Minnesota Vikings
+nfl-p00577,Jamien Sherwood,WILL,NY Jets
+nfl-p00578,Jarrian Jones,CB,Jacksonville Jaguars
+nfl-p00579,Jayden Higgins,WR,Houston Texans
+nfl-p00580,Jaylinn Hawkins,FS,Baltimore Ravens
+nfl-p00581,Jermaine Johnson II,REDG,Tennessee Titans
+nfl-p00582,Josh Jobe,CB,Seattle Seahawks
+nfl-p00583,Justice Hill,HB,Baltimore Ravens
+nfl-p00584,Kadyn Proctor,LG,Miami Dolphins
+nfl-p00585,Keeanu Benton,DT,Pittsburgh Steelers
+nfl-p00586,Keon Coleman,WR,Buffalo Bills
+nfl-p00587,Kimani Vidal,HB,Los Angeles Chargers
+nfl-p00588,Kirk Cousins,QB,Las Vegas Raiders
+nfl-p00589,Kyler Murray,QB,Minnesota Vikings
+nfl-p00590,Luke Rhodes,LS,Indianapolis Colts
+nfl-p00591,Luke Wattenberg,C,Denver Broncos
+nfl-p00592,Mack Hollins,WR,New England Patriots
+nfl-p00593,Malik Mustapha,SS,San Francisco 49ers
+nfl-p00594,Martin Emerson Jr,CB,New Orleans Saints
+nfl-p00595,Marvin Mims Jr,WR,Denver Broncos
+nfl-p00596,Marvin Harrison Jr,WR,Houston Texans
+nfl-p00597,Maxwell Hairston,CB,Buffalo Bills
+nfl-p00598,Mike Danna,LEDG,Buffalo Bills
+nfl-p00599,Moro Ojomo,DT,Philadelphia Eagles
+nfl-p00600,Mykel Williams,REDG,San Francisco 49ers
+nfl-p00601,Omar Cooper Jr,WR,NY Jets
+nfl-p00602,Osa Odighizuwa,DT,San Francisco 49ers
+nfl-p00603,Quan Martin,FS,Washington Commanders
+nfl-p00604,R Mason Thomas,LEDG,Kansas City Chiefs
+nfl-p00605,Rashod Bateman,WR,Baltimore Ravens
+nfl-p00606,Rasul Douglas,CB,Washington Commanders
+nfl-p00607,Sean Murphy-Bunting,CB,Pittsburgh Steelers
+nfl-p00608,Shelby Harris,DT,NY Giants
+nfl-p00609,Tank Bigsby,HB,Philadelphia Eagles
+nfl-p00610,Tate Ratledge,RG,Detroit Lions
+nfl-p00611,Teair Tart,DT,Los Angeles Chargers
+nfl-p00612,Theo Johnson,TE,NY Giants
+nfl-p00613,TJ Parker,REDG,Buffalo Bills
+nfl-p00614,Trey Smack,K,Green Bay Packers
+nfl-p00615,Tyjae Spears,HB,Tennessee Titans
+nfl-p00616,Tyrel Dodson,WILL,Carolina Panthers
+nfl-p00617,Von Miller,LEDG,Dallas Cowboys
+nfl-p00618,Walker Little,LT,Jacksonville Jaguars
+nfl-p00619,Walter Nolen III,DT,Arizona Cardinals
+nfl-p00620,Will Fries,RG,Minnesota Vikings
+nfl-p00621,Will Johnson,CB,Arizona Cardinals
+nfl-p00622,Za'Darius Smith,LEDG,Atlanta Falcons
+nfl-p00623,Zaven Collins,LEDG,Arizona Cardinals
+nfl-p00624,Al-Quadin Muhammad,LEDG,Tampa Bay Buccaneers
+nfl-p00625,Amarius Mims,RT,Cincinnati Bengals
+nfl-p00626,Anfernee Jennings,LEDG,New Orleans Saints
+nfl-p00627,Antonio Williams,WR,Washington Commanders
+nfl-p00628,Arik Armstead,DT,Jacksonville Jaguars
+nfl-p00629,Arnold Ebiketie,LEDG,Philadelphia Eagles
+nfl-p00630,Austin Barber,RG,Cleveland Browns
+nfl-p00631,Austin Corbett,LG,Buffalo Bills
+nfl-p00632,B.J. Hill,DT,Cincinnati Bengals
+nfl-p00633,Blake Miller,RT,Detroit Lions
+nfl-p00634,Brady Christensen,RG,Carolina Panthers
+nfl-p00635,Brandon Dorlus,DT,Atlanta Falcons
+nfl-p00636,Caleb Banks,DT,Minnesota Vikings
+nfl-p00637,Caleb Lomu,RT,New England Patriots
+nfl-p00638,Cesar Ruiz,RG,New Orleans Saints
+nfl-p00639,Chamarri Conner,SS,Kansas City Chiefs
+nfl-p00640,Charles Omenihu,DT,Washington Commanders
+nfl-p00641,Cooper Beebe,C,Dallas Cowboys
+nfl-p00642,D.J. Jones,DT,Denver Broncos
+nfl-p00643,D.J. Wonnum,REDG,Detroit Lions
+nfl-p00644,Dalton Risner,RG,Cincinnati Bengals
+nfl-p00645,Darnell Mooney,WR,NY Giants
+nfl-p00646,Darnell Washington,TE,Pittsburgh Steelers
+nfl-p00647,Davon Godchaux,DT,New Orleans Saints
+nfl-p00648,Dawson Knox,TE,Buffalo Bills
+nfl-p00649,De'Zhaun Stribling,WR,San Francisco 49ers
+nfl-p00650,Dee Alford,CB,Buffalo Bills
+nfl-p00651,Demarcus Robinson,WR,San Francisco 49ers
+nfl-p00652,Denzel Boston,WR,Cleveland Browns
+nfl-p00653,Denzel Perryman,MIKE,Los Angeles Chargers
+nfl-p00654,Devaughn Vele,WR,New Orleans Saints
+nfl-p00655,Donovan Jackson,LG,Minnesota Vikings
+nfl-p00656,Drake Thomas,WILL,Seattle Seahawks
+nfl-p00657,Emmanuel McNeil-Warren,FS,Cleveland Browns
+nfl-p00658,Gabe Jacas,LEDG,New England Patriots
+nfl-p00659,Garrett Bradbury,C,Chicago Bears
+nfl-p00660,Graham Barton,C,Tampa Bay Buccaneers
+nfl-p00661,Grey Zabel,LG,Seattle Seahawks
+nfl-p00662,Isiah Pacheco,HB,Detroit Lions
+nfl-p00663,Ivan Pace Jr,MIKE,Minnesota Vikings
+nfl-p00664,Jack Jones,CB,San Francisco 49ers
+nfl-p00665,Jacob Martin,LEDG,Tennessee Titans
+nfl-p00666,Jadarian Price,HB,Seattle Seahawks
+nfl-p00667,Jaden Hicks,SS,Kansas City Chiefs
+nfl-p00668,Jahdae Barron,CB,Denver Broncos
+nfl-p00669,Jake Bates,K,Detroit Lions
+nfl-p00670,Jalyx Hunt,REDG,Philadelphia Eagles
+nfl-p00671,Jarvis Brownlee Jr,CB,NY Jets
+nfl-p00672,Jason Sanders,K,NY Jets
+nfl-p00673,Jayden Daniels,QB,Washington Commanders
+nfl-p00674,Jer'Zhan Newton,DT,Washington Commanders
+nfl-p00675,Jonas Sanker,SS,New Orleans Saints
+nfl-p00676,Jordan Stout,P,NY Giants
+nfl-p00677,Jordyn Tyson,WR,New Orleans Saints
+nfl-p00678,Joshua Uche,REDG,Miami Dolphins
+nfl-p00679,Julian Blackmon,SS,New Orleans Saints
+nfl-p00680,Kalif Raymond,WR,Chicago Bears
+nfl-p00681,KaVontae Turpin,WR,Dallas Cowboys
+nfl-p00682,KC Concepcion Jr,WR,Cleveland Browns
+nfl-p00683,Keaton Mitchell,HB,Los Angeles Chargers
+nfl-p00684,Kendre Miller,HB,New Orleans Saints
+nfl-p00685,Kenyon Sadiq,TE,NY Jets
+nfl-p00686,Kingsley Suamataia,LG,Kansas City Chiefs
+nfl-p00687,Kool-Aid McKinstry,CB,New Orleans Saints
+nfl-p00688,Kyle Dugger,SS,Cincinnati Bengals
+nfl-p00689,Logan Cooke,P,Jacksonville Jaguars
+nfl-p00690,Makai Lemon,WR,Philadelphia Eagles
+nfl-p00691,Malcolm Roach,DT,Denver Broncos
+nfl-p00692,Marques Sigle,SS,San Francisco 49ers
+nfl-p00693,Mekhi Blackmon,CB,Cleveland Browns
+nfl-p00694,Mike Green,REDG,Baltimore Ravens
+nfl-p00695,Mitch Wishnowsky,P,New England Patriots
+nfl-p00696,Monroe Freeling,RT,Carolina Panthers
+nfl-p00697,Nate Hobbs,CB,San Francisco 49ers
+nfl-p00698,Olu Fashanu,LT,NY Jets
+nfl-p00699,Paulson Adebo,CB,NY Giants
+nfl-p00700,Payton Wilson,WILL,Pittsburgh Steelers
+nfl-p00701,Riley Dixon,P,Tampa Bay Buccaneers
+nfl-p00702,Romello Height,LEDG,San Francisco 49ers
+nfl-p00703,Ronnie Hickman,FS,Cleveland Browns
+nfl-p00704,Ryan Flournoy,WR,Dallas Cowboys
+nfl-p00705,Ryan Fitzgerald,K,Carolina Panthers
+nfl-p00706,Samaje Perine,HB,Cincinnati Bengals
+nfl-p00707,Samson Ebukam,REDG,Atlanta Falcons
+nfl-p00708,Taliese Fuaga,RT,New Orleans Saints
+nfl-p00709,Ted Karras,C,Cincinnati Bengals
+nfl-p00710,Terrion Arnold,CB,Seattle Seahawks
+nfl-p00711,Tommy Togiai,DT,Houston Texans
+nfl-p00712,Tommy Doman Jr,P,Buffalo Bills
+nfl-p00713,Treydan Stukes,FS,Las Vegas Raiders
+nfl-p00714,Ty Johnson,HB,Buffalo Bills
+nfl-p00715,Tyler Higbee,TE,Los Angeles Rams
+nfl-p00716,Tyquan Thornton,WR,Kansas City Chiefs
+nfl-p00717,Uchenna Nwosu,REDG,Seattle Seahawks
+nfl-p00718,Zion Young,LEDG,Baltimore Ravens
+nfl-p00719,A.J. Epenesa,REDG,Philadelphia Eagles
+nfl-p00720,A.J. Barner,TE,Seattle Seahawks
+nfl-p00721,Akeem Davis-Gaither,MIKE,Indianapolis Colts
+nfl-p00722,Andrew Wylie,RG,Washington Commanders
+nfl-p00723,Arden Key,REDG,Indianapolis Colts
+nfl-p00724,Austin McNamara,P,NY Jets
+nfl-p00725,Avieon Terrell,CB,Atlanta Falcons
+nfl-p00726,Azareye'h Thomas,CB,NY Jets
+nfl-p00727,Benjamin Morrison,CB,Tampa Bay Buccaneers
+nfl-p00728,Braelon Allen,HB,NY Jets
+nfl-p00729,Brandin Echols,CB,Pittsburgh Steelers
+nfl-p00730,Brandon McManus,K,Los Angeles Rams
+nfl-p00731,Brandon Aiyuk,WR,San Francisco 49ers
+nfl-p00732,Bryan Bresee,DT,New Orleans Saints
+nfl-p00733,Bud Clark,FS,Seattle Seahawks
+nfl-p00734,C.J. Gardner-Johnson,SS,Buffalo Bills
+nfl-p00735,Cade Otton,TE,Tampa Bay Buccaneers
+nfl-p00736,Calvin Austin,WR,NY Giants
+nfl-p00737,Cam Jurgens,C,Baltimore Ravens
+nfl-p00738,Chad Ryland,K,Arizona Cardinals
+nfl-p00739,Chase Bisontis,RG,Arizona Cardinals
+nfl-p00740,Chop Robinson,LEDG,Miami Dolphins
+nfl-p00741,Christen Miller,DT,New Orleans Saints
+nfl-p00742,Christian Elliss,WILL,New England Patriots
+nfl-p00743,Clark Phillips III,CB,Chicago Bears
+nfl-p00744,Cole Holcomb,WILL,Pittsburgh Steelers
+nfl-p00745,Colton Hood,CB,NY Giants
+nfl-p00746,D'Angelo Ponds,CB,NY Jets
+nfl-p00747,Dalvin Tomlinson,DT,Los Angeles Chargers
+nfl-p00748,Daniel Jones,QB,Indianapolis Colts
+nfl-p00749,Dante Fowler Jr,REDG,Seattle Seahawks
+nfl-p00750,DaVon Hamilton,DT,Jacksonville Jaguars
+nfl-p00751,Deatrich Wise Jr,DT,Washington Commanders
+nfl-p00752,DeMarvion Overshown,MIKE,Dallas Cowboys
+nfl-p00753,Derrick Barnes,WILL,Detroit Lions
+nfl-p00754,Devin Singletary,HB,NY Giants
+nfl-p00755,Dominic Zvada,K,NY Giants
+nfl-p00756,Dylan Sampson,HB,Cleveland Browns
+nfl-p00757,E.J. Speed,SAM,Houston Texans
+nfl-p00758,Emanuel Wilson,HB,Seattle Seahawks
+nfl-p00759,Emmanuel Forbes Jr,CB,Los Angeles Rams
+nfl-p00760,Germie Bernard,WR,Pittsburgh Steelers
+nfl-p00761,Greg Van Roten,RG,New England Patriots
+nfl-p00762,Henry To'oTo'o,WILL,Houston Texans
+nfl-p00763,Jahan Dotson,WR,Atlanta Falcons
+nfl-p00764,Jahlani Tavai,MIKE,Jacksonville Jaguars
+nfl-p00765,James Winchester,LS,Kansas City Chiefs
+nfl-p00766,Jason Pinnock,SS,NY Giants
+nfl-p00767,Jawaan Taylor,RT,Atlanta Falcons
+nfl-p00768,Jaylin Lane,WR,Washington Commanders
+nfl-p00769,Joey Slye,K,Tennessee Titans
+nfl-p00770,John Jenkins,DT,Baltimore Ravens
+nfl-p00771,Jon Runyan,LG,NY Giants
+nfl-p00772,Jonah Elliss,LEDG,Denver Broncos
+nfl-p00773,Jonathon Brooks,HB,Carolina Panthers
+nfl-p00774,Jonnu Smith,TE,Green Bay Packers
+nfl-p00775,Joshua Palmer,WR,Buffalo Bills
+nfl-p00776,Joshua Williams,CB,Tennessee Titans
+nfl-p00777,Josiah Trotter,MIKE,Tampa Bay Buccaneers
+nfl-p00778,K'Lavon Chaisson,REDG,Washington Commanders
+nfl-p00779,Kayden McDonald,DT,Houston Texans
+nfl-p00780,Kendrick Bourne,WR,Arizona Cardinals
+nfl-p00781,Kenneth Grant,DT,Miami Dolphins
+nfl-p00782,Kevin Winston Jr,FS,Tennessee Titans
+nfl-p00783,Keyron Crawford,REDG,Las Vegas Raiders
+nfl-p00784,Lloyd Cushenberry,C,Buffalo Bills
+nfl-p00785,Mac Jones,QB,San Francisco 49ers
+nfl-p00786,Marcus Epps,SS,Philadelphia Eagles
+nfl-p00787,Marquise Brown,WR,Philadelphia Eagles
+nfl-p00788,Matt Gay,K,Las Vegas Raiders
+nfl-p00789,Matt Araiza,P,Kansas City Chiefs
+nfl-p00790,Max Iheanachor,RT,Pittsburgh Steelers
+nfl-p00791,Micah McFadden,MIKE,NY Giants
+nfl-p00792,Michael Hoecht,LEDG,Buffalo Bills
+nfl-p00793,Michael Penix Jr,QB,Atlanta Falcons
+nfl-p00794,Mike Sainristil,CB,Washington Commanders
+nfl-p00795,Nahshon Wright,CB,NY Jets
+nfl-p00796,Nic Scourton,LEDG,Carolina Panthers
+nfl-p00797,Nick Scott,SS,Carolina Panthers
+nfl-p00798,O'Cyrus Torrence,RG,Buffalo Bills
+nfl-p00799,Ollie Gordon II,HB,Miami Dolphins
+nfl-p00800,Orlando Brown Jr,LT,Cincinnati Bengals
+nfl-p00801,Oronde Gadsden,TE,Los Angeles Chargers
+nfl-p00802,Pete Werner,MIKE,New Orleans Saints
+nfl-p00803,Peter Woods,DT,Kansas City Chiefs
+nfl-p00804,Ray Davis,HB,Buffalo Bills
+nfl-p00805,Roger McCreary,CB,Detroit Lions
+nfl-p00806,Ryan Rehkow,P,Cincinnati Bengals
+nfl-p00807,Ryan Wright,P,New Orleans Saints
+nfl-p00808,Teddye Buchanan,WILL,Baltimore Ravens
+nfl-p00809,Teven Jenkins,RG,Cleveland Browns
+nfl-p00810,Tony Adams,SS,Tennessee Titans
+nfl-p00811,Tory Taylor,P,Chicago Bears
+nfl-p00812,Tory Horton,WR,Seattle Seahawks
+nfl-p00813,Troy Fautanu,LT,Pittsburgh Steelers
+nfl-p00814,Tutu Atwell,WR,Los Angeles Rams
+nfl-p00815,Ty Okada,FS,Seattle Seahawks
+nfl-p00816,Tyler Nubin,SS,NY Giants
+nfl-p00817,Tyrice Knight,WILL,Seattle Seahawks
+nfl-p00818,Tyrique Stevenson Sr,CB,Chicago Bears
+nfl-p00819,Upton Stout,CB,San Francisco 49ers
+nfl-p00820,A.J. Dillon,HB,Carolina Panthers
+nfl-p00821,A.J. Haulcy,SS,Indianapolis Colts
+nfl-p00822,Alec Ingold,FB,Los Angeles Chargers
+nfl-p00823,Andres Borregales,K,New England Patriots
+nfl-p00824,Andrew Mukuba,FS,Philadelphia Eagles
+nfl-p00825,Anthony Nelson,REDG,Tampa Bay Buccaneers
+nfl-p00826,Anthony Hill Jr.,MIKE,Tennessee Titans
+nfl-p00827,Asante Samuel,CB,Pittsburgh Steelers
+nfl-p00828,Austin Ekeler,HB,Washington Commanders
+nfl-p00829,Austin Hooper,TE,Atlanta Falcons
+nfl-p00830,Ben Bredeson,LG,Tampa Bay Buccaneers
+nfl-p00831,Ben Powers,LG,Denver Broncos
+nfl-p00832,Blake Gillikin,P,Arizona Cardinals
+nfl-p00833,Bobby Brown III,DT,Carolina Panthers
+nfl-p00834,Brandin Cooks,WR,San Francisco 49ers
+nfl-p00835,Brashard Smith,HB,Kansas City Chiefs
+nfl-p00836,Braxton Jones,LT,Chicago Bears
+nfl-p00837,Cade Mays,C,Detroit Lions
+nfl-p00838,Cam Hart,CB,Los Angeles Chargers
+nfl-p00839,Cam Lewis,SS,Chicago Bears
+nfl-p00840,Cameron Thomas,REDG,Atlanta Falcons
+nfl-p00841,Chigoziem Okonkwo,TE,Washington Commanders
+nfl-p00842,Chimere Dike,WR,Tennessee Titans
+nfl-p00843,Christian Izien,SS,Detroit Lions
+nfl-p00844,Da'Shawn Hand,DT,Atlanta Falcons
+nfl-p00845,Dameon Pierce,HB,Philadelphia Eagles
+nfl-p00846,Dani Dennis-Sutton,REDG,Green Bay Packers
+nfl-p00847,Daniel Whelan,P,Green Bay Packers
+nfl-p00848,Darien Porter,CB,Las Vegas Raiders
+nfl-p00849,Darrell Baker Jr,CB,Miami Dolphins
+nfl-p00850,Davison Igbinosun,CB,Buffalo Bills
+nfl-p00851,Demetrius Knight Jr,WILL,Cincinnati Bengals
+nfl-p00852,Dennis Gardeck,SAM,Jacksonville Jaguars
+nfl-p00853,Devin Duvernay,WR,Arizona Cardinals
+nfl-p00854,Dorian Williams,WILL,Buffalo Bills
+nfl-p00855,Drew Stevens,K,Washington Commanders
+nfl-p00856,Elijah Ponder,REDG,New England Patriots
+nfl-p00857,Emmanuel Pregnon,LG,Jacksonville Jaguars
+nfl-p00858,Eric Murray,FS,Jacksonville Jaguars
+nfl-p00859,Felix Anudike-Uzomah,REDG,Kansas City Chiefs
+nfl-p00860,Folorunso Fatukasi,DT,Las Vegas Raiders
+nfl-p00861,Geno Smith,QB,NY Jets
+nfl-p00862,Ifeatu Melifonwu,SS,Tampa Bay Buccaneers
+nfl-p00863,Isaac TeSlaa,WR,Detroit Lions
+nfl-p00864,J.J. Jansen,LS,Carolina Panthers
+nfl-p00865,Jacoby Brissett,QB,Arizona Cardinals
+nfl-p00866,Jaishawn Barham,WILL,Dallas Cowboys
+nfl-p00867,Jake Golday,WILL,Minnesota Vikings
+nfl-p00868,Jalen McMillan,WR,Tampa Bay Buccaneers
+nfl-p00869,Jaylin Noel,WR,Houston Texans
+nfl-p00870,Jedrick Wills Jr,LT,Arizona Cardinals
+nfl-p00871,Jermod McCoy,CB,Las Vegas Raiders
+nfl-p00872,Ji'Ayir Brown,FS,San Francisco 49ers
+nfl-p00873,Jordan Howden,FS,New Orleans Saints
+nfl-p00874,Josaiah Stewart,LEDG,Los Angeles Rams
+nfl-p00875,Jowon Briggs,DT,NY Jets
+nfl-p00876,JT Tuimoloau,REDG,Indianapolis Colts
+nfl-p00877,Justin Strnad,WILL,Denver Broncos
+nfl-p00878,Kai Kroeger,P,Houston Texans
+nfl-p00879,Kaleb Johnson,HB,Green Bay Packers
+nfl-p00880,Kei'Trel Clark,CB,Arizona Cardinals
+nfl-p00881,Keylan Rutledge,LG,Houston Texans
+nfl-p00882,Kris Jenkins Jr,DT,Cincinnati Bengals
+nfl-p00883,Laken Tomlinson,LG,Green Bay Packers
+nfl-p00884,Landon Jackson,DT,Buffalo Bills
+nfl-p00885,Lee Hunter,DT,Carolina Panthers
+nfl-p00886,Levi Onwuzurike,DT,Detroit Lions
+nfl-p00887,Logan Hall,DT,Houston Texans
+nfl-p00888,Malcolm Rodriguez,SAM,Detroit Lions
+nfl-p00889,Mason Taylor,TE,NY Jets
+nfl-p00890,Max Melton,CB,Arizona Cardinals
+nfl-p00891,Michael Carter II,SS,Philadelphia Eagles
+nfl-p00892,Mike Hughes,CB,Atlanta Falcons
+nfl-p00893,Montaric Brown,CB,Jacksonville Jaguars
+nfl-p00894,Myles Murphy,LEDG,Cincinnati Bengals
+nfl-p00895,Nathan Shepherd,DT,New Orleans Saints
+nfl-p00896,Nehemiah Pritchett,CB,Seattle Seahawks
+nfl-p00897,Noah Fant,TE,New Orleans Saints
+nfl-p00898,P.J. Locke,FS,Dallas Cowboys
+nfl-p00899,Robert Hainsey,C,Jacksonville Jaguars
+nfl-p00900,Sam Martin,P,Carolina Panthers
+nfl-p00901,Shemar Stewart,LEDG,Cincinnati Bengals
+nfl-p00902,Tavius Robinson,LEDG,Baltimore Ravens
+nfl-p00903,Terence Steele,RT,Dallas Cowboys
+nfl-p00904,Tershawn Wharton,DT,Carolina Panthers
+nfl-p00905,Tim Patrick,WR,NY Jets
+nfl-p00906,Tress Way,P,Washington Commanders
+nfl-p00907,Trevin Wallace,MIKE,NY Jets
+nfl-p00908,Trevon Diggs,CB,Seattle Seahawks
+nfl-p00909,Treylon Burks,WR,Washington Commanders
+nfl-p00910,Tyler Steen,RG,Philadelphia Eagles
+nfl-p00911,Tyler Davis,DT,Los Angeles Rams
+nfl-p00912,Tyler Bass,K,Buffalo Bills
+nfl-p00913,Will Shipley,HB,Philadelphia Eagles
+nfl-p00914,Wyatt Teller,LG,Houston Texans
+nfl-p00915,Xavier Legette,WR,Carolina Panthers
+nfl-p00916,Zane Gonzalez,K,Miami Dolphins
+nfl-p00917,Aaron Banks,LG,Green Bay Packers
+nfl-p00918,Adam Butler,DT,Las Vegas Raiders
+nfl-p00919,Aireontae Ersery,LT,Houston Texans
+nfl-p00920,Albert Regis,DT,Jacksonville Jaguars
+nfl-p00921,Ameer Abdullah,HB,Jacksonville Jaguars
+nfl-p00922,Andrei Iosivas,WR,Cincinnati Bengals
+nfl-p00923,Andrew Billings,DT,Arizona Cardinals
+nfl-p00924,Ashtyn Davis,FS,San Francisco 49ers
+nfl-p00925,Austin Jackson,RT,Miami Dolphins
+nfl-p00926,Austin Booker,LEDG,Chicago Bears
+nfl-p00927,Baron Browning,LEDG,Arizona Cardinals
+nfl-p00928,Billy Bowman Jr,CB,Atlanta Falcons
+nfl-p00929,Blake Grupe,K,Los Angeles Rams
+nfl-p00930,Brett Thorson,P,Minnesota Vikings
+nfl-p00931,C.J. Henderson,CB,Atlanta Falcons
+nfl-p00932,Caden Curry,LEDG,Indianapolis Colts
+nfl-p00933,Caleb Ransaw,FS,Jacksonville Jaguars
+nfl-p00934,Cam Ward,QB,Tennessee Titans
+nfl-p00935,Cameron Johnston,P,Pittsburgh Steelers
+nfl-p00936,Chau Smith-Wade,CB,Carolina Panthers
+nfl-p00937,Chauncey Golston,DT,NY Giants
+nfl-p00938,Chris Paul,LG,Washington Commanders
+nfl-p00939,Chris Rodriguez Jr,HB,Jacksonville Jaguars
+nfl-p00940,Christian Mahogany,LG,Detroit Lions
+nfl-p00941,Christian Rozeboom,WILL,Tampa Bay Buccaneers
+nfl-p00942,CJ Allen,MIKE,Indianapolis Colts
+nfl-p00943,Colby Parkinson,TE,Los Angeles Rams
+nfl-p00944,Connor Heyward,FB,Las Vegas Raiders
+nfl-p00945,Damar Hamlin,FS,Buffalo Bills
+nfl-p00946,Darius Cooper,WR,Philadelphia Eagles
+nfl-p00947,Dayo Odeyingbo,REDG,Chicago Bears
+nfl-p00948,Derek Barnett,LEDG,Cleveland Browns
+nfl-p00949,Devin White,WILL,Detroit Lions
+nfl-p00950,Domonique Orange,DT,Minnesota Vikings
+nfl-p00951,Dyami Brown,WR,Washington Commanders
+nfl-p00952,Elijah Moore,WR,Philadelphia Eagles
+nfl-p00953,Fernando Mendoza,QB,Las Vegas Raiders
+nfl-p00954,Greg Dortch,WR,Buffalo Bills
+nfl-p00955,Greg Gaines,DT,Buffalo Bills
+nfl-p00956,Hezekiah Masses,CB,Las Vegas Raiders
+nfl-p00957,Isaiah McGuire,REDG,Cleveland Browns
+nfl-p00958,Isaiah Simmons,FS,Carolina Panthers
+nfl-p00959,Jack Gibbens,MIKE,Arizona Cardinals
+nfl-p00960,Jack Bech,WR,Las Vegas Raiders
+nfl-p00961,Jadon Canady,SS,Kansas City Chiefs
+nfl-p00962,Jake Slaughter,C,Los Angeles Chargers
+nfl-p00963,Jakobe Thomas,SS,Minnesota Vikings
+nfl-p00964,Jakorian Bennett,CB,Philadelphia Eagles
+nfl-p00965,Jaleel McLaughlin,HB,Cleveland Browns
+nfl-p00966,Jalen Tolbert,WR,Miami Dolphins
+nfl-p00967,Javon Kinlaw,DT,Washington Commanders
+nfl-p00968,Jaylen Wright,HB,Miami Dolphins
+nfl-p00969,Jaylon Jones,CB,Tennessee Titans
+nfl-p00970,Jeremy Reaves,FS,Washington Commanders
+nfl-p00971,Joe Flacco,QB,Cincinnati Bengals
+nfl-p00972,John Metchie III,WR,Carolina Panthers
+nfl-p00973,Jonah Coleman,HB,Denver Broncos
+nfl-p00974,Jonathan Bullard,DT,Dallas Cowboys
+nfl-p00975,Jordan James,HB,San Francisco 49ers
+nfl-p00976,Jordan Meredith,RG,NY Jets
+nfl-p00977,Jordan Burch,REDG,Arizona Cardinals
+nfl-p00978,Joseph Ossai,LEDG,NY Jets
+nfl-p00979,Josh Conerly Jr,RT,Washington Commanders
+nfl-p00980,Josh Oliver,TE,Minnesota Vikings
+nfl-p00981,JuJu Brents,CB,Miami Dolphins
+nfl-p00982,Justin Eboigbe,DT,Los Angeles Chargers
+nfl-p00983,Kaelon Black,HB,San Francisco 49ers
+nfl-p00984,Keion White,REDG,San Francisco 49ers
+nfl-p00985,Keionte Scott,CB,Tampa Bay Buccaneers
+nfl-p00986,Kelee Ringo,CB,Philadelphia Eagles
+nfl-p00987,Khyiris Tonga,DT,Kansas City Chiefs
+nfl-p00988,Kingsley Enagbare,REDG,NY Jets
+nfl-p00989,Kris Abrams-Draine,CB,Denver Broncos
+nfl-p00990,Kyle Williams,WR,New England Patriots
+nfl-p00991,Malachi Fields,WR,NY Giants
+nfl-p00992,Malik Harrison,MIKE,NY Giants
+nfl-p00993,Malik Davis,HB,Dallas Cowboys
+nfl-p00994,Malik Washington,WR,Miami Dolphins
+nfl-p00995,Malik Muhammad II,CB,Chicago Bears
+nfl-p00996,MarShawn Lloyd,HB,Green Bay Packers
+nfl-p00997,Mike Washington Jr,HB,Las Vegas Raiders
+nfl-p00998,Noah Gray,TE,Kansas City Chiefs
+nfl-p00999,Olamide Zaccheaus,WR,Atlanta Falcons
+nfl-p01000,Oluwafemi Oladejo,REDG,Tennessee Titans
+nfl-p01001,Ozzy Trapilo,LT,Chicago Bears
+nfl-p01002,Pat Bryant II,WR,Denver Broncos
+nfl-p01003,Patrick Mekari,RG,Jacksonville Jaguars
+nfl-p01004,Payton Turner,LEDG,Detroit Lions
+nfl-p01005,Quincy Riley,CB,New Orleans Saints
+nfl-p01006,Robbie Ouzts,FB,Seattle Seahawks
+nfl-p01007,Ruke Orhorhoro,DT,Jacksonville Jaguars
+nfl-p01008,Ryan Eckley,P,Baltimore Ravens
+nfl-p01009,Sam Williams,LEDG,Cleveland Browns
+nfl-p01010,Starling Thomas V,CB,Arizona Cardinals
+nfl-p01011,Sydney Brown,SS,Atlanta Falcons
+nfl-p01012,T.J. Sanders,DT,Buffalo Bills
+nfl-p01013,Tez Johnson,WR,Tampa Bay Buccaneers
+nfl-p01014,Tommy Tremble,TE,Carolina Panthers
+nfl-p01015,Tre' Harris,WR,Los Angeles Chargers
+nfl-p01016,Tyler Ott,LS,Washington Commanders
+nfl-p01017,Tyler Onyedim,DT,Denver Broncos
+nfl-p01018,Tyree Wilson,LEDG,New Orleans Saints
+nfl-p01019,Ventrell Miller,WILL,Jacksonville Jaguars
+nfl-p01020,Warren McClendon Jr,RT,Los Angeles Rams
+nfl-p01021,Wesley Williams,REDG,Jacksonville Jaguars
+nfl-p01022,Xavier Hutchinson,WR,Houston Texans
+nfl-p01023,Zach Harrison,DT,Atlanta Falcons
+nfl-p01024,Zachariah Branch,WR,Atlanta Falcons
+nfl-p01025,Adetomiwa Adebawore,DT,Indianapolis Colts
+nfl-p01026,Alex Wright,LEDG,Cleveland Browns
+nfl-p01027,Alfred Collins,DT,San Francisco 49ers
+nfl-p01028,Anthony Bradford,RG,Seattle Seahawks
+nfl-p01029,Ashton Dulin,WR,Indianapolis Colts
+nfl-p01030,Ashton Gillotte,REDG,Kansas City Chiefs
+nfl-p01031,Avonte Maddox,FS,Detroit Lions
+nfl-p01032,Ben Bartch,LG,Detroit Lions
+nfl-p01033,Bo Melton,WR,Green Bay Packers
+nfl-p01034,Brandon Cisse,CB,Green Bay Packers
+nfl-p01035,Braxton Berrios,WR,NY Giants
+nfl-p01036,Brenen Thompson,WR,Los Angeles Chargers
+nfl-p01037,Bud Dupree,LEDG,Los Angeles Chargers
+nfl-p01038,Caleb Douglas,WR,Miami Dolphins
+nfl-p01039,Caleb Tiernan,RT,Minnesota Vikings
+nfl-p01040,Chris Brazzell II,WR,Carolina Panthers
+nfl-p01041,Chris McClellan,DT,Green Bay Packers
+nfl-p01042,Cole Strange,RG,Los Angeles Chargers
+nfl-p01043,Cole Van Lanen,RT,Jacksonville Jaguars
+nfl-p01044,Dadrion Taylor-Demerson,FS,Arizona Cardinals
+nfl-p01045,Dan Moore Jr,LT,Tennessee Titans
+nfl-p01046,Daniel Faalele,LG,Jacksonville Jaguars
+nfl-p01047,Darius Robinson,DT,Arizona Cardinals
+nfl-p01048,Darius Alexander,DT,NY Giants
+nfl-p01049,Darrell Jackson Jr,DT,NY Jets
+nfl-p01050,Daylen Everette,CB,Pittsburgh Steelers
+nfl-p01051,Dee Winters,WILL,Dallas Cowboys
+nfl-p01052,Denzel Burke,CB,Arizona Cardinals
+nfl-p01053,Dillon Radunz,LG,New Orleans Saints
+nfl-p01054,DJ Glaze,RT,Las Vegas Raiders
+nfl-p01055,Efton Chism III,WR,New England Patriots
+nfl-p01056,Eli Stowers,TE,Philadelphia Eagles
+nfl-p01057,Ennis Rakestraw Jr,CB,Detroit Lions
+nfl-p01058,Evan Brown,C,Houston Texans
+nfl-p01059,Febechi Nwaiwu,RG,Houston Texans
+nfl-p01060,Foster Moreau,TE,Houston Texans
+nfl-p01061,Genesis Smith,SS,Los Angeles Chargers
+nfl-p01062,Gennings Dunker,LG,Pittsburgh Steelers
+nfl-p01063,Gracen Halton,DT,San Francisco 49ers
+nfl-p01064,Hunter Luepke,FB,Dallas Cowboys
+nfl-p01065,Isaac Yiadom,CB,Washington Commanders
+nfl-p01066,Isaac Guerendo,HB,San Francisco 49ers
+nfl-p01067,J.J. McCarthy,QB,NY Giants
+nfl-p01068,Ja'Kobi Lane,WR,Baltimore Ravens
+nfl-p01069,Ja'Marcus Ingram,CB,Houston Texans
+nfl-p01070,Jack Sawyer,LEDG,Pittsburgh Steelers
+nfl-p01071,Jake Tonges,TE,San Francisco 49ers
+nfl-p01072,Jalen Farmer,RG,Indianapolis Colts
+nfl-p01073,Jamal Adams,WILL,Minnesota Vikings
+nfl-p01074,Jaylon Moore,RT,Kansas City Chiefs
+nfl-p01075,Jeremy McNichols,HB,Washington Commanders
+nfl-p01076,Jonathan Jones,CB,Philadelphia Eagles
+nfl-p01077,Jordan Whittington,WR,Los Angeles Rams
+nfl-p01078,Jordan Morgan,LT,Green Bay Packers
+nfl-p01079,Josh Myers,C,NY Jets
+nfl-p01080,Joshua Josephs,LEDG,Washington Commanders
+nfl-p01081,Kamari Ramsey,FS,Houston Texans
+nfl-p01082,Kindle Vildor,CB,New England Patriots
+nfl-p01083,Logan Jones,C,Chicago Bears
+nfl-p01084,Luke McCaffrey,WR,Washington Commanders
+nfl-p01085,Malik Willis,QB,Miami Dolphins
+nfl-p01086,Marcus Mariota,QB,Washington Commanders
+nfl-p01087,Mario Edwards Jr,DT,Houston Texans
+nfl-p01088,Markel Bell,RT,Philadelphia Eagles
+nfl-p01089,Markquese Bell,SS,Dallas Cowboys
+nfl-p01090,Matt Pryor,RG,New England Patriots
+nfl-p01091,Mike Hall Jr,DT,Cleveland Browns
+nfl-p01092,Mike Ford Jr,CB,Atlanta Falcons
+nfl-p01093,Ogbo Okoronkwo,LEDG,San Francisco 49ers
+nfl-p01094,Patrick Jones II,REDG,Carolina Panthers
+nfl-p01095,Princely Umanmielen,REDG,Carolina Panthers
+nfl-p01096,Roschon Johnson,HB,Chicago Bears
+nfl-p01097,Ross Matiscik,LS,Jacksonville Jaguars
+nfl-p01098,Roy Robertson-Harris,DT,NY Giants
+nfl-p01099,Roy Lopez,DT,Arizona Cardinals
+nfl-p01100,Shavon Revel Jr,CB,Dallas Cowboys
+nfl-p01101,Shemar Turner,REDG,Chicago Bears
+nfl-p01102,SirVocea Dennis,MIKE,Tampa Bay Buccaneers
+nfl-p01103,Skyy Moore,WR,Green Bay Packers
+nfl-p01104,Solomon Thomas,DT,Tennessee Titans
+nfl-p01105,Ted Hurst III,WR,Tampa Bay Buccaneers
+nfl-p01106,Thomas Hennessy,LS,NY Jets
+nfl-p01107,Tim Settle Jr,DT,Washington Commanders
+nfl-p01108,Trey Zuhn III,RT,Las Vegas Raiders
+nfl-p01109,Trey Moore,LEDG,Miami Dolphins
+nfl-p01110,Ty Robinson,DT,Philadelphia Eagles
+nfl-p01111,Ty Chandler,HB,New Orleans Saints
+nfl-p01112,Tyler Conklin,TE,Detroit Lions
+nfl-p01113,Willie Gay Jr,SAM,Miami Dolphins
+nfl-p01114,Zavion Thomas,WR,Chicago Bears
+nfl-p01115,Adam Trautman,TE,Denver Broncos
+nfl-p01116,Akayleb Evans,CB,Carolina Panthers
+nfl-p01117,Andrew Vorhees,LG,Baltimore Ravens
+nfl-p01118,Bam Knight,HB,Arizona Cardinals
+nfl-p01119,Beaux Limmer,RG,Los Angeles Rams
+nfl-p01120,Blake Brandel,C,Minnesota Vikings
+nfl-p01121,Brandon Coleman,LT,Washington Commanders
+nfl-p01122,Broderick Jones,LT,Dallas Cowboys
+nfl-p01123,Broderick Washington Jr,DT,Baltimore Ravens
+nfl-p01124,Chandler Rivers,CB,Baltimore Ravens
+nfl-p01125,Chris Bell,WR,Miami Dolphins
+nfl-p01126,Chris Manhertz,TE,NY Giants
+nfl-p01127,Christian Haynes,LG,Seattle Seahawks
+nfl-p01128,D'Marco Jackson,WILL,Chicago Bears
+nfl-p01129,Damone Clark,MIKE,Detroit Lions
+nfl-p01130,Danny Stutsman,MIKE,New Orleans Saints
+nfl-p01131,Dante Stills,DT,Arizona Cardinals
+nfl-p01132,Darrick Forrest,FS,San Francisco 49ers
+nfl-p01133,David Walker,REDG,Tampa Bay Buccaneers
+nfl-p01134,David Moore,WR,Carolina Panthers
+nfl-p01135,DeAndre Carter,WR,Detroit Lions
+nfl-p01136,Del'Shawn Phillips,SAM,Los Angeles Chargers
+nfl-p01137,Devin Moore,CB,Dallas Cowboys
+nfl-p01138,Devontez Walker,WR,Baltimore Ravens
+nfl-p01139,Dylan Fairchild,LG,Cincinnati Bengals
+nfl-p01140,Elijah Sarratt,WR,Baltimore Ravens
+nfl-p01141,Elijah Arroyo,TE,Seattle Seahawks
+nfl-p01142,Elijah Wilkinson,RT,Arizona Cardinals
+nfl-p01143,Emery Jones Jr,RG,Baltimore Ravens
+nfl-p01144,Emmett Johnson,HB,Kansas City Chiefs
+nfl-p01145,Fabian Moreau,CB,Washington Commanders
+nfl-p01146,Gunnar Helm,TE,Tennessee Titans
+nfl-p01147,Isaiah Pola-Mao,FS,Las Vegas Raiders
+nfl-p01148,Ja'Sir Taylor,CB,Cincinnati Bengals
+nfl-p01149,Jack Sanborn,MIKE,Chicago Bears
+nfl-p01150,Jacob Cowing,WR,San Francisco 49ers
+nfl-p01151,Jake Andrews,C,Houston Texans
+nfl-p01152,Jalen Royals,WR,Kansas City Chiefs
+nfl-p01153,Jamaree Caldwell,DT,Los Angeles Chargers
+nfl-p01154,Jameis Winston,QB,NY Giants
+nfl-p01155,James Houston IV,LEDG,Dallas Cowboys
+nfl-p01156,Jared Wilson,C,New England Patriots
+nfl-p01157,Jay Ward,SS,Minnesota Vikings
+nfl-p01158,Jeremiah Wright,RG,New Orleans Saints
+nfl-p01159,Jerry Tillery,DT,Indianapolis Colts
+nfl-p01160,Jonathan Mingo,WR,Dallas Cowboys
+nfl-p01161,Jonathan Owens,FS,Indianapolis Colts
+nfl-p01162,Jordan Phillips,DT,Miami Dolphins
+nfl-p01163,Josh Jones,LT,Seattle Seahawks
+nfl-p01164,Josh Newton,CB,Cincinnati Bengals
+nfl-p01165,Joshua Farmer,DT,New England Patriots
+nfl-p01166,Juice Scruggs,C,Detroit Lions
+nfl-p01167,Julian Neal,CB,Seattle Seahawks
+nfl-p01168,K'Von Wallace,FS,Baltimore Ravens
+nfl-p01169,Kage Casey,LG,Denver Broncos
+nfl-p01170,Kaleb Elarms-Orr,WILL,Buffalo Bills
+nfl-p01171,Kaleb Proctor,DT,Arizona Cardinals
+nfl-p01172,Kaytron Allen,HB,Miami Dolphins
+nfl-p01173,Keagen Trost,RT,Los Angeles Rams
+nfl-p01174,Khristian Boyd,DT,New Orleans Saints
+nfl-p01175,Konata Mumpfield,WR,Los Angeles Rams
+nfl-p01176,Kyle Louis,SS,Miami Dolphins
+nfl-p01177,LeQuint Allen Jr,HB,Jacksonville Jaguars
+nfl-p01178,LT Overton,DT,Dallas Cowboys
+nfl-p01179,Luke Fortner,C,Carolina Panthers
+nfl-p01180,Maason Smith,DT,Atlanta Falcons
+nfl-p01181,Mac McWilliams,CB,Philadelphia Eagles
+nfl-p01182,Malachi Moore,FS,NY Jets
+nfl-p01183,Marcus Harris,CB,Tennessee Titans
+nfl-p01184,Max Bredeson,FB,Minnesota Vikings
+nfl-p01185,Michael Carter,HB,Tennessee Titans
+nfl-p01186,Michael Taaffe,FS,Miami Dolphins
+nfl-p01187,Micheal Clemons,LEDG,Indianapolis Colts
+nfl-p01188,Mo Alie-Cox,TE,Indianapolis Colts
+nfl-p01189,Neville Gallimore,DT,Chicago Bears
+nfl-p01190,Nick Allegretti,C,Washington Commanders
+nfl-p01191,Nick Martin,WILL,San Francisco 49ers
+nfl-p01192,Noah Igbinoghene,CB,Cleveland Browns
+nfl-p01193,Omarr Norman-Lott,DT,Kansas City Chiefs
+nfl-p01194,Que Robinson,LEDG,Denver Broncos
+nfl-p01195,Reid Ferguson,LS,Buffalo Bills
+nfl-p01196,Rock Ya-Sin,CB,Detroit Lions
+nfl-p01197,Rodney Thomas II,FS,Seattle Seahawks
+nfl-p01198,Roman Wilson,WR,Pittsburgh Steelers
+nfl-p01199,Ronnie Harrison Jr,WILL,Miami Dolphins
+nfl-p01200,Sean Tucker,HB,Tampa Bay Buccaneers
+nfl-p01201,Shy Tuttle,DT,Washington Commanders
+nfl-p01202,Skyler Bell,WR,Buffalo Bills
+nfl-p01203,Tacario Davis,CB,Cincinnati Bengals
+nfl-p01204,Tahj Brooks,HB,Cincinnati Bengals
+nfl-p01205,Tai Felton,WR,Minnesota Vikings
+nfl-p01206,Tanoh Kpassagnon,REDG,Tennessee Titans
+nfl-p01207,Terrell Burgess,FS,Tennessee Titans
+nfl-p01208,Tre Brown,CB,NY Jets
+nfl-p01209,Trevis Gipson Sr,LEDG,Carolina Panthers
+nfl-p01210,Trevor Penning,LG,Los Angeles Chargers
+nfl-p01211,Trevor Etienne,HB,Carolina Panthers
+nfl-p01212,Troy Dye,WILL,Los Angeles Chargers
+nfl-p01213,Tua Tagovailoa,QB,Atlanta Falcons
+nfl-p01214,Ty Simpson,QB,Los Angeles Rams
+nfl-p01215,Tylan Wallace,WR,Cleveland Browns
+nfl-p01216,Will Lee III,CB,Carolina Panthers
+nfl-p01217,Wyatt Milum,RG,Jacksonville Jaguars
+nfl-p01218,Zakee Wheatley,FS,Carolina Panthers
+nfl-p01219,Alec Anderson,LG,Buffalo Bills
+nfl-p01220,Alex Palczewski,RG,Denver Broncos
+nfl-p01221,Andy Dalton,QB,Atlanta Falcons
+nfl-p01222,Anthony Belton,RT,Green Bay Packers
+nfl-p01223,Audric Estime,HB,Cleveland Browns
+nfl-p01224,Barion Brown,WR,New Orleans Saints
+nfl-p01225,Barryn Sorrell,REDG,Green Bay Packers
+nfl-p01226,Beau Stephens,RG,Seattle Seahawks
+nfl-p01227,Ben Skowronek,WR,Pittsburgh Steelers
+nfl-p01228,Blake Fisher,LT,Houston Texans
+nfl-p01229,Brennan Jackson,LEDG,Las Vegas Raiders
+nfl-p01230,Bryce Boettcher,WILL,Indianapolis Colts
+nfl-p01231,Bryce Lance,WR,New Orleans Saints
+nfl-p01232,Caleb Rogers,RG,Las Vegas Raiders
+nfl-p01233,Cam Jackson,DT,Carolina Panthers
+nfl-p01234,Casey Kreiter,LS,Arizona Cardinals
+nfl-p01235,Cedric Johnson,LEDG,Cincinnati Bengals
+nfl-p01236,Charles Grant,LT,Las Vegas Raiders
+nfl-p01237,Charlie Jones,WR,NY Giants
+nfl-p01238,Cody Simon,WILL,Arizona Cardinals
+nfl-p01239,Colbie Young,WR,Cincinnati Bengals
+nfl-p01240,Collin Oliver,REDG,Green Bay Packers
+nfl-p01241,Cyrus Allen,WR,Kansas City Chiefs
+nfl-p01242,Damarri Mathis,CB,Cleveland Browns
+nfl-p01243,Daniel Bellinger,TE,Tennessee Titans
+nfl-p01244,Demond Claiborne,HB,Minnesota Vikings
+nfl-p01245,Demonte Capehart,DT,Tampa Bay Buccaneers
+nfl-p01246,Derius Davis,WR,Los Angeles Chargers
+nfl-p01247,Deshaun Watson,QB,Cleveland Browns
+nfl-p01248,DeWayne Carter,DT,Buffalo Bills
+nfl-p01249,DJ Giddens,HB,Indianapolis Colts
+nfl-p01250,Dondrea Tillman,REDG,Denver Broncos
+nfl-p01251,Durham Smythe,TE,Baltimore Ravens
+nfl-p01252,Elijah Roberts,DT,Tampa Bay Buccaneers
+nfl-p01253,Ephesians Prysock,CB,San Francisco 49ers
+nfl-p01254,Ethan Pocic,C,Baltimore Ravens
+nfl-p01255,Fernando Carmona Jr,RG,Tennessee Titans
+nfl-p01256,Gardner Minshew II,QB,Arizona Cardinals
+nfl-p01257,George Gumbs Jr,REDG,Indianapolis Colts
+nfl-p01258,Greg Dulcich,TE,Miami Dolphins
+nfl-p01259,Isaiah Davis,HB,NY Jets
+nfl-p01260,Jaden Crumedy,DT,Houston Texans
+nfl-p01261,Jalen Huskey,FS,Jacksonville Jaguars
+nfl-p01262,Jalen Travis,RT,Indianapolis Colts
+nfl-p01263,Jarrett Patterson,C,San Francisco 49ers
+nfl-p01264,Jaylin Smith,CB,Houston Texans
+nfl-p01265,Joe Milton,QB,Philadelphia Eagles
+nfl-p01266,Jon Gaines II,RG,Arizona Cardinals
+nfl-p01267,Jordan Hancock,SS,Buffalo Bills
+nfl-p01268,Jovaughn Gwyn,C,Baltimore Ravens
+nfl-p01269,Justin Fields,QB,Kansas City Chiefs
+nfl-p01270,Justin Walley,CB,Indianapolis Colts
+nfl-p01271,Karl Brooks,DT,Green Bay Packers
+nfl-p01272,KeAndre Lambert-Smith,WR,Los Angeles Chargers
+nfl-p01273,Kendrick Law,WR,Detroit Lions
+nfl-p01274,Kentavius Street,DT,Chicago Bears
+nfl-p01275,Kevin Coleman Jr,WR,Miami Dolphins
+nfl-p01276,LaJohntay Wester,WR,Baltimore Ravens
+nfl-p01277,Larry Borom,RT,Detroit Lions
+nfl-p01278,Lathan Ransom,SS,Carolina Panthers
+nfl-p01279,Logan Lee,DT,Pittsburgh Steelers
+nfl-p01280,Lucas Patrick,C,Washington Commanders
+nfl-p01281,Luke Musgrave,TE,Green Bay Packers
+nfl-p01282,M.J. Stewart Jr,SS,Houston Texans
+nfl-p01283,Mason Tipton,WR,New Orleans Saints
+nfl-p01284,Max Klare,TE,Los Angeles Rams
+nfl-p01285,Mekhi Wingo,DT,Detroit Lions
+nfl-p01286,Myles Harden,CB,Cleveland Browns
+nfl-p01287,Nick McCloud,CB,Chicago Bears
+nfl-p01288,Nick Moore,LS,Baltimore Ravens
+nfl-p01289,Nick Barrett,DT,Los Angeles Chargers
+nfl-p01290,Noah Sewell,SAM,Chicago Bears
+nfl-p01291,Percy Butler,FS,Washington Commanders
+nfl-p01292,R.J. Mickens,FS,Los Angeles Chargers
+nfl-p01293,Sai'vion Jones,DT,Denver Broncos
+nfl-p01294,Savion Williams,WR,Green Bay Packers
+nfl-p01295,Sean Rhyan,C,Green Bay Packers
+nfl-p01296,Spencer Burford,LG,Las Vegas Raiders
+nfl-p01297,T.J. Bass,LG,Dallas Cowboys
+nfl-p01298,T.J. Tampa Jr,CB,Baltimore Ravens
+nfl-p01299,T.J. Slaton Jr,DT,Cincinnati Bengals
+nfl-p01300,Tatum Bethune,MIKE,San Francisco 49ers
+nfl-p01301,Terrance Ferguson,TE,Los Angeles Rams
+nfl-p01302,Theo Jackson,FS,Minnesota Vikings
+nfl-p01303,Thomas Harper,FS,Detroit Lions
+nfl-p01304,Travis Burke,RT,Los Angeles Chargers
+nfl-p01305,Ty Hamilton,DT,Los Angeles Rams
+nfl-p01306,Tyler Goodson,HB,Dallas Cowboys
+nfl-p01307,Vernon Broughton,DT,New Orleans Saints
+nfl-p01308,Zach Durfee,LEDG,Jacksonville Jaguars
+nfl-p01309,Zak Zinter,LG,Cleveland Browns
+nfl-p01310,Aaron Stinnie,LG,NY Giants
+nfl-p01311,Adin Huntington,DT,Cleveland Browns
+nfl-p01312,Anthony Gould,WR,Indianapolis Colts
+nfl-p01313,Barrett Carter,MIKE,Cincinnati Bengals
+nfl-p01314,Ben Sinnott,TE,Washington Commanders
+nfl-p01315,Bilhal Kone,CB,Baltimore Ravens
+nfl-p01316,Billy Schrauth,LG,Tampa Bay Buccaneers
+nfl-p01317,Bo Richter,REDG,Minnesota Vikings
+nfl-p01318,Brock Hoffman,RG,Pittsburgh Steelers
+nfl-p01319,Byron Young,DT,Philadelphia Eagles
+nfl-p01320,Charles Demmings,CB,Minnesota Vikings
+nfl-p01321,Charles Snowden,LEDG,Atlanta Falcons
+nfl-p01322,Chris Rumph II,REDG,New Orleans Saints
+nfl-p01323,Christian Harris,MIKE,Atlanta Falcons
+nfl-p01324,CJ West,DT,San Francisco 49ers
+nfl-p01325,Colby Wooden,DT,New Orleans Saints
+nfl-p01326,Connor Lew,C,Cincinnati Bengals
+nfl-p01327,Darius Muasau,MIKE,New England Patriots
+nfl-p01328,Darrell Luter Jr,CB,Las Vegas Raiders
+nfl-p01329,David Sills V,WR,Tampa Bay Buccaneers
+nfl-p01330,David Quessenberry,LT,Los Angeles Rams
+nfl-p01331,Decamerion Richardson,CB,New Orleans Saints
+nfl-p01332,Deion Burks,WR,Indianapolis Colts
+nfl-p01333,Dell Pettus,SS,New England Patriots
+nfl-p01334,DeMarcco Hellams,FS,Atlanta Falcons
+nfl-p01335,Dominique Robinson,LEDG,Houston Texans
+nfl-p01336,Drew Allar,QB,Pittsburgh Steelers
+nfl-p01337,Eli Heidenreich,HB,Pittsburgh Steelers
+nfl-p01338,Elijah Higgins,TE,Arizona Cardinals
+nfl-p01339,Eyioma Uwazurike,DT,Denver Broncos
+nfl-p01340,George Holani,HB,Seattle Seahawks
+nfl-p01341,Grant Calcaterra,TE,Philadelphia Eagles
+nfl-p01342,Ian Thomas,TE,Las Vegas Raiders
+nfl-p01343,Isaiah Bond,WR,Cleveland Browns
+nfl-p01344,Isaiah Adams,RG,Arizona Cardinals
+nfl-p01345,Ja'Tavion Sanders,TE,Carolina Panthers
+nfl-p01346,Jaden Dugger,SAM,San Francisco 49ers
+nfl-p01347,Jahdae Walker,WR,Chicago Bears
+nfl-p01348,Jake Bobo,WR,Seattle Seahawks
+nfl-p01349,Jalen Brooks,WR,Arizona Cardinals
+nfl-p01350,Jalen Sundell,C,Seattle Seahawks
+nfl-p01351,James Lynch,DT,Chicago Bears
+nfl-p01352,Jared Wiley,TE,Kansas City Chiefs
+nfl-p01353,Jason Marshall Jr,CB,Miami Dolphins
+nfl-p01354,Javon Solomon,REDG,Buffalo Bills
+nfl-p01355,Jaylen McCollough,SS,Los Angeles Rams
+nfl-p01356,Jaylen Reed,FS,New England Patriots
+nfl-p01357,Jaylon Jones,CB,Jacksonville Jaguars
+nfl-p01358,Jaylon Carlies,WILL,Indianapolis Colts
+nfl-p01359,JD Bertrand,SAM,Atlanta Falcons
+nfl-p01360,Jimmy Rolder,MIKE,Detroit Lions
+nfl-p01361,Joe Andreessen,MIKE,Buffalo Bills
+nfl-p01362,Jon Weeks,LS,San Francisco 49ers
+nfl-p01363,Jonah Laulu,DT,Las Vegas Raiders
+nfl-p01364,Jordan Watkins,WR,San Francisco 49ers
+nfl-p01365,Josh Wallace,CB,Los Angeles Rams
+nfl-p01366,Josh Hayes,CB,Tampa Bay Buccaneers
+nfl-p01367,Josh Whyle,TE,Green Bay Packers
+nfl-p01368,Jude Bowry,LT,Buffalo Bills
+nfl-p01369,Kendal Daniels,WILL,Atlanta Falcons
+nfl-p01370,Kylen Granson,TE,Tennessee Titans
+nfl-p01371,Levi Drake Rodriguez,DT,Minnesota Vikings
+nfl-p01372,Lil'Jordan Humphrey,WR,Denver Broncos
+nfl-p01373,Luke Schoonmaker,TE,Dallas Cowboys
+nfl-p01374,Malachi Corley,WR,Cleveland Browns
+nfl-p01375,Malik Benson,WR,Las Vegas Raiders
+nfl-p01376,Marist Liufau,LEDG,Dallas Cowboys
+nfl-p01377,Miles Frazier,RG,Detroit Lions
+nfl-p01378,Mitchell Evans,TE,Carolina Panthers
+nfl-p01379,Mitchell Tinsley,WR,Cincinnati Bengals
+nfl-p01380,Nick Singleton,HB,Tennessee Titans
+nfl-p01381,Oren Burks,WILL,Cincinnati Bengals
+nfl-p01382,Otito Ogbonnia,DT,Dallas Cowboys
+nfl-p01383,Pharaoh Brown,TE,Indianapolis Colts
+nfl-p01384,Raheim Sanders,HB,Cleveland Browns
+nfl-p01385,Rakeem Nunez-Roches Sr,DT,Tampa Bay Buccaneers
+nfl-p01386,Rasheen Ali,HB,Baltimore Ravens
+nfl-p01387,Reggie Virgil,WR,Arizona Cardinals
+nfl-p01388,Robert Longerbeam,CB,Atlanta Falcons
+nfl-p01389,Rylie Mills,DT,Seattle Seahawks
+nfl-p01390,Sam Mustipher,C,Jacksonville Jaguars
+nfl-p01391,Shaun Dolac,MIKE,Los Angeles Rams
+nfl-p01392,Shedeur Sanders,QB,Cleveland Browns
+nfl-p01393,Shemar James,MIKE,Dallas Cowboys
+nfl-p01394,Smael Mondon Jr,WILL,Philadelphia Eagles
+nfl-p01395,Spencer Rattler,QB,New Orleans Saints
+nfl-p01396,Terell Smith,CB,Pittsburgh Steelers
+nfl-p01397,Theo Benedet,RT,Chicago Bears
+nfl-p01398,Tommy Eichenberg,MIKE,Las Vegas Raiders
+nfl-p01399,Trey Pipkins III,LT,Los Angeles Chargers
+nfl-p01400,Tyler Badie,HB,Denver Broncos
+nfl-p01401,Tyler Huntley,QB,Baltimore Ravens
+nfl-p01402,Tyler Baron,REDG,NY Jets
+nfl-p01403,Tyrion Ingram-Dawkins,LEDG,Minnesota Vikings
+nfl-p01404,Tyrod Taylor,QB,Green Bay Packers
+nfl-p01405,Zane Durant,DT,Buffalo Bills
+nfl-p01406,Aaron Hall,DT,Carolina Panthers
+nfl-p01407,Adam Prentice,FB,Denver Broncos
+nfl-p01408,Ahmed Hassanein,REDG,Detroit Lions
+nfl-p01409,Ajani Cornelius,RG,Dallas Cowboys
+nfl-p01410,Alex Harkey,RG,Los Angeles Chargers
+nfl-p01411,Andrew Beck,FB,NY Jets
+nfl-p01412,Anez Cooper,RG,NY Jets
+nfl-p01413,Anthony Richardson Sr,QB,Indianapolis Colts
+nfl-p01414,Arian Smith,WR,NY Jets
+nfl-p01415,Austin Schlottmann,C,Tennessee Titans
+nfl-p01416,Brevin Jordan,TE,Houston Texans
+nfl-p01417,Brian Parker II,LG,Cincinnati Bengals
+nfl-p01418,British Brooks,FB,Houston Texans
+nfl-p01419,Brycen Tremayne,WR,Carolina Panthers
+nfl-p01420,Caedan Wallace,RT,Miami Dolphins
+nfl-p01421,Camden Brown,WR,Dallas Cowboys
+nfl-p01422,Carson Beck,QB,Arizona Cardinals
+nfl-p01423,Carson Wentz,QB,Minnesota Vikings
+nfl-p01424,Charlie Kolar,TE,Los Angeles Chargers
+nfl-p01425,Chris Brooks,HB,Green Bay Packers
+nfl-p01426,CJ Daniels,WR,Los Angeles Rams
+nfl-p01427,Cody White,WR,Las Vegas Raiders
+nfl-p01428,Connor Colby,LG,San Francisco 49ers
+nfl-p01429,Cory Durden,DT,New England Patriots
+nfl-p01430,Dalton Johnson,SS,Las Vegas Raiders
+nfl-p01431,Dan Feeney,C,Tampa Bay Buccaneers
+nfl-p01432,Dante Trader Jr,SS,Miami Dolphins
+nfl-p01433,Dare Ogunbowale,HB,Houston Texans
+nfl-p01434,David Long Jr,CB,New Orleans Saints
+nfl-p01435,Dawand Jones,LT,Cleveland Browns
+nfl-p01436,Dohnte Meyers,WR,Cincinnati Bengals
+nfl-p01437,Dont'e Thornton Jr,WR,Las Vegas Raiders
+nfl-p01438,Donte Kent,CB,Pittsburgh Steelers
+nfl-p01439,Drew Shelton,RT,Dallas Cowboys
+nfl-p01440,Drew Lock,QB,Seattle Seahawks
+nfl-p01441,Drew Sample,TE,Cincinnati Bengals
+nfl-p01442,Dylan Laube,HB,Las Vegas Raiders
+nfl-p01443,Emari Demercado,HB,Dallas Cowboys
+nfl-p01444,Enrique Cruz Jr,LT,San Francisco 49ers
+nfl-p01445,Erick All Jr,TE,Cincinnati Bengals
+nfl-p01446,J. Michael Sturdivant,WR,Green Bay Packers
+nfl-p01447,Jackie Marshall,DT,Tennessee Titans
+nfl-p01448,Jackson Hawes,TE,Buffalo Bills
+nfl-p01449,Jackson Slater,RG,Tennessee Titans
+nfl-p01450,Jarrett Kingston,LG,Miami Dolphins
+nfl-p01451,Jaylin Simpson,CB,Miami Dolphins
+nfl-p01452,Jeremiah Trotter Jr,SAM,Philadelphia Eagles
+nfl-p01453,Jeremy Ruckert,TE,NY Jets
+nfl-p01454,Johnny Mundt,TE,Philadelphia Eagles
+nfl-p01455,Jonah Savaiinaea,RG,Miami Dolphins
+nfl-p01456,Jordan van den Berg,DT,Chicago Bears
+nfl-p01457,Jordan Magee,WILL,Washington Commanders
+nfl-p01458,Jordon Riley,DT,Green Bay Packers
+nfl-p01459,Josh Cameron,WR,Jacksonville Jaguars
+nfl-p01460,Joshua Dobbs,QB,Detroit Lions
+nfl-p01461,Julius Chestnut,HB,Tennessee Titans
+nfl-p01462,Justin Joly,TE,Miami Dolphins
+nfl-p01463,Kaden Wetjen,WR,Pittsburgh Steelers
+nfl-p01464,Karon Prunty,CB,New England Patriots
+nfl-p01465,Keith Abney II,CB,Detroit Lions
+nfl-p01466,Korie Black,CB,NY Giants
+nfl-p01467,L.J. Collier,DT,Arizona Cardinals
+nfl-p01468,LaCale London,DT,Atlanta Falcons
+nfl-p01469,Laquon Treadwell,WR,Indianapolis Colts
+nfl-p01470,Matt Henningsen,DT,Denver Broncos
+nfl-p01471,Micah Morris,RG,Philadelphia Eagles
+nfl-p01472,Mike Morris,DT,Seattle Seahawks
+nfl-p01473,Mitchell Fraboni,LS,Denver Broncos
+nfl-p01474,Pierre Strong Jr,HB,Green Bay Packers
+nfl-p01475,Qwan'tez Stiggers,CB,NY Jets
+nfl-p01476,Russ Yeast,FS,Cincinnati Bengals
+nfl-p01477,Sam Okuayinonu,LEDG,San Francisco 49ers
+nfl-p01478,Sam Franklin Jr,FS,Buffalo Bills
+nfl-p01479,Sam Hecht,C,Carolina Panthers
+nfl-p01480,Scott Matlock,DT,Los Angeles Chargers
+nfl-p01481,Sione Vaki,HB,Detroit Lions
+nfl-p01482,Tanner Hudson,TE,Cincinnati Bengals
+nfl-p01483,Tom Kennedy,WR,Detroit Lions
+nfl-p01484,Tonka Hemingway,DT,Las Vegas Raiders
+nfl-p01485,Travis Homer,HB,Pittsburgh Steelers
+nfl-p01486,Tremon Smith,CB,Houston Texans
+nfl-p01487,Velus Jones Jr,HB,Seattle Seahawks
+nfl-p01488,Wade Woodaz,MIKE,Houston Texans
+nfl-p01489,Yahya Black,DT,Pittsburgh Steelers
+nfl-p01490,Aeneas Peebles,DT,Baltimore Ravens
+nfl-p01491,Aidan O'Connell,QB,Las Vegas Raiders
+nfl-p01492,Alex Forsyth,C,Denver Broncos
+nfl-p01493,Anterio Thompson,DT,Atlanta Falcons
+nfl-p01494,Beaux Collins,WR,Atlanta Falcons
+nfl-p01495,Ben VanSumeren,FB,Kansas City Chiefs
+nfl-p01496,Braiden McGregor,LEDG,NY Jets
+nfl-p01497,Brenton Cox,LEDG,Green Bay Packers
+nfl-p01498,Brevyn Spann-Ford,TE,Dallas Cowboys
+nfl-p01499,Cade Klubnik,QB,NY Jets
+nfl-p01500,Cade Stover,TE,Houston Texans
+nfl-p01501,Carson Vinson,LT,Baltimore Ravens
+nfl-p01502,Carver Willis,LG,San Francisco 49ers
+nfl-p01503,Chris Roland-Wallace,FS,Kansas City Chiefs
+nfl-p01504,Chris Blair,WR,Atlanta Falcons
+nfl-p01505,Chukwuebuka Godrick,LT,Miami Dolphins
+nfl-p01506,Chukwuma Okorafor,RT,NY Jets
+nfl-p01507,Cole Payton,QB,Philadelphia Eagles
+nfl-p01508,Corey Kiner,HB,New England Patriots
+nfl-p01509,Dametrious Crownover,LT,New England Patriots
+nfl-p01510,Daniel Hardy,REDG,Chicago Bears
+nfl-p01511,Davis Allen,TE,Los Angeles Rams
+nfl-p01512,Deane Leonard,CB,Los Angeles Chargers
+nfl-p01513,DeeJay Dallas,HB,Minnesota Vikings
+nfl-p01514,DJ Campbell,RG,Miami Dolphins
+nfl-p01515,DJ Ivey,CB,Cincinnati Bengals
+nfl-p01516,Dylan Horton,LEDG,Houston Texans
+nfl-p01517,Elijah Hicks,SS,Chicago Bears
+nfl-p01518,Elijah Simmons,DT,Tampa Bay Buccaneers
+nfl-p01519,Eric Saubert,TE,Seattle Seahawks
+nfl-p01520,Gabe Rubio,DT,Pittsburgh Steelers
+nfl-p01521,Giovanni Manu,LT,Detroit Lions
+nfl-p01522,Harold Perkins Jr,WILL,Atlanta Falcons
+nfl-p01523,Isaiah Williams,WR,NY Jets
+nfl-p01524,J.C. Davis,LT,NY Giants
+nfl-p01525,Jack Kelly,WILL,NY Giants
+nfl-p01526,Jack Kiser,MIKE,Cincinnati Bengals
+nfl-p01527,Jager Burton,C,Green Bay Packers
+nfl-p01528,Jalen Rivers,LG,Cincinnati Bengals
+nfl-p01529,Jalon Kilgore,SS,Buffalo Bills
+nfl-p01530,Jamree Kromah,LEDG,Chicago Bears
+nfl-p01531,Jared Wayne,WR,Miami Dolphins
+nfl-p01532,Javon Foster,LT,Cincinnati Bengals
+nfl-p01533,Jaylan Ford,MIKE,New Orleans Saints
+nfl-p01534,Jeffrey Bassa,WILL,Kansas City Chiefs
+nfl-p01535,Jelani Woods,TE,NY Jets
+nfl-p01536,JJ Pegues,DT,Las Vegas Raiders
+nfl-p01537,John Michael Schmitz Jr,C,NY Giants
+nfl-p01538,Justin Jefferson,MIKE,Cleveland Browns
+nfl-p01539,Justin Skule,RT,Tampa Bay Buccaneers
+nfl-p01540,Justin Dedich,RG,Los Angeles Rams
+nfl-p01541,Kahlil Benson,LT,Kansas City Chiefs
+nfl-p01542,Kalia Davis,DT,Cleveland Browns
+nfl-p01543,Kamal Hadden,CB,Green Bay Packers
+nfl-p01544,Kene Nwangwu,HB,NY Jets
+nfl-p01545,Keyshaun Elliott,WILL,Chicago Bears
+nfl-p01546,Khalid Kareem,REDG,San Francisco 49ers
+nfl-p01547,Kitan Oladapo,SS,Green Bay Packers
+nfl-p01548,Larrell Murchison,DT,Los Angeles Rams
+nfl-p01549,Logan Taylor,LT,Los Angeles Chargers
+nfl-p01550,Malik McClain,WR,NY Jets
+nfl-p01551,Marcus Mbow,RT,NY Giants
+nfl-p01552,Mason Rudolph,QB,Pittsburgh Steelers
+nfl-p01553,Matt Peart,LT,Denver Broncos
+nfl-p01554,Matt Hennessy,C,Dallas Cowboys
+nfl-p01555,Micah Robinson,CB,Tennessee Titans
+nfl-p01556,Miles Killebrew,SS,Tampa Bay Buccaneers
+nfl-p01557,Namdi Obiazor,WILL,New England Patriots
+nfl-p01558,Nate Boerkircher,TE,Jacksonville Jaguars
+nfl-p01559,Nikko Remigio,WR,Kansas City Chiefs
+nfl-p01560,Oscar Delp,TE,New Orleans Saints
+nfl-p01561,Parker Brailsford,C,Cleveland Browns
+nfl-p01562,Quintayvious Hutchins,REDG,New England Patriots
+nfl-p01563,Riley Leonard,QB,Indianapolis Colts
+nfl-p01564,Robert Tonyan,TE,Pittsburgh Steelers
+nfl-p01565,Robert Henry Jr.,HB,Seattle Seahawks
+nfl-p01566,Simi Fehoko,WR,Arizona Cardinals
+nfl-p01567,Skyler Thomas,FS,Chicago Bears
+nfl-p01568,Spencer Anderson,RG,Pittsburgh Steelers
+nfl-p01569,Tanner McKee,QB,Philadelphia Eagles
+nfl-p01570,Tay Martin,WR,Detroit Lions
+nfl-p01571,Tim Smith,DT,Indianapolis Colts
+nfl-p01572,Tony Fields II,MIKE,Chicago Bears
+nfl-p01573,Toriano Pride Jr,CB,Cleveland Browns
+nfl-p01574,Tyler Owens,SS,Washington Commanders
+nfl-p01575,Winston Reid,WILL,Cleveland Browns
+nfl-p01576,Zach Wilson,QB,New Orleans Saints
+nfl-p01577,Ali Gaye,REDG,Houston Texans
+nfl-p01578,Ar'maj Reed-Adams,RG,Buffalo Bills
+nfl-p01579,Bobby Jamison-Travis,DT,NY Giants
+nfl-p01580,Brenden Schooler,SS,New England Patriots
+nfl-p01581,Bryan Hudson,C,NY Giants
+nfl-p01582,Bryce Cabeldue,LG,Las Vegas Raiders
+nfl-p01583,C.J. Williams,WR,Jacksonville Jaguars
+nfl-p01584,Cameron Williams,RT,Atlanta Falcons
+nfl-p01585,Channing Canada,CB,New England Patriots
+nfl-p01586,Charles Woods,CB,New England Patriots
+nfl-p01587,Charlie Woerner,TE,Atlanta Falcons
+nfl-p01588,Dallis Flowers,CB,Chicago Bears
+nfl-p01589,Daniel Thomas,SS,Cleveland Browns
+nfl-p01590,Danny Pinter,C,Baltimore Ravens
+nfl-p01591,Dareke Young,WR,Las Vegas Raiders
+nfl-p01592,Davis Mills,QB,Houston Texans
+nfl-p01593,Dean Connors,HB,Los Angeles Rams
+nfl-p01594,Dillon Gabriel,QB,Cleveland Browns
+nfl-p01595,DJ Herman,FB,Miami Dolphins
+nfl-p01596,Drew Kendall,LG,Philadelphia Eagles
+nfl-p01597,Drew Ogletree,TE,Indianapolis Colts
+nfl-p01598,Ethan Onianwa,RT,Atlanta Falcons
+nfl-p01599,Gunner Olszewski,WR,NY Giants
+nfl-p01600,Hunter Long,TE,Arizona Cardinals
+nfl-p01601,Hunter Nourzad,C,Kansas City Chiefs
+nfl-p01602,Jack Endries,TE,Cincinnati Bengals
+nfl-p01603,Jacob Saylors,HB,Detroit Lions
+nfl-p01604,Jacob Monk,RG,Green Bay Packers
+nfl-p01605,Jalen Milroe,QB,Seattle Seahawks
+nfl-p01606,Jalen Davis,CB,Cincinnati Bengals
+nfl-p01607,James Williams Sr,WILL,Tennessee Titans
+nfl-p01608,James Thompson Jr,DT,San Francisco 49ers
+nfl-p01609,Javontae Jean-Baptiste,REDG,Washington Commanders
+nfl-p01610,Jayden Loving,DT,Chicago Bears
+nfl-p01611,Jaylen Harrell,LEDG,Tennessee Titans
+nfl-p01612,JL Skinner,SS,Denver Broncos
+nfl-p01613,Joe Royer,TE,Cleveland Browns
+nfl-p01614,John Ridgeway III,DT,New Orleans Saints
+nfl-p01615,John Bates,TE,Washington Commanders
+nfl-p01616,Jordan McFadden,LG,Chicago Bears
+nfl-p01617,Joshua Ezeudu,RG,Kansas City Chiefs
+nfl-p01618,Juanyeh Thomas,SS,Dallas Cowboys
+nfl-p01619,Julius Wood,FS,Miami Dolphins
+nfl-p01620,Kaevon Merriweather,SS,Jacksonville Jaguars
+nfl-p01621,Kain Medrano,WILL,Washington Commanders
+nfl-p01622,Karson Sharar,WILL,Arizona Cardinals
+nfl-p01623,Kenny Pickett,QB,Carolina Panthers
+nfl-p01624,Kevin Jobity Jr,DT,Pittsburgh Steelers
+nfl-p01625,Kiko Mauigoa,MIKE,NY Jets
+nfl-p01626,Kitan Crawford,SS,Arizona Cardinals
+nfl-p01627,Landon Robinson,DT,Cincinnati Bengals
+nfl-p01628,Lorenzo Styles Jr,SS,New Orleans Saints
+nfl-p01629,Luke Newman,RG,Chicago Bears
+nfl-p01630,Luke Gifford,SAM,San Francisco 49ers
+nfl-p01631,Luke Wypler,C,Cleveland Browns
+nfl-p01632,Marcellas Dial Jr,CB,Miami Dolphins
+nfl-p01633,Matt Gulbin,RG,Washington Commanders
+nfl-p01634,Max Mitchell,LT,NY Jets
+nfl-p01635,Michael Deiter,C,Denver Broncos
+nfl-p01636,Michael Burton,FB,Cleveland Browns
+nfl-p01637,Montorie Foster Jr,WR,Seattle Seahawks
+nfl-p01638,Morgan Cox,LS,Tennessee Titans
+nfl-p01639,Myles Price,WR,Minnesota Vikings
+nfl-p01640,Nathan Thomas,LT,Houston Texans
+nfl-p01641,Nazir Stackhouse,DT,Tennessee Titans
+nfl-p01642,Nick Gargiulo,LG,Denver Broncos
+nfl-p01643,Nick Niemann,MIKE,Green Bay Packers
+nfl-p01644,Olusegun Oluwatimi,C,Seattle Seahawks
+nfl-p01645,Parker Hughes,WILL,Jacksonville Jaguars
+nfl-p01646,Patrick Johnson,REDG,Las Vegas Raiders
+nfl-p01647,Rayuan Lane III,SS,Jacksonville Jaguars
+nfl-p01648,Reese Taylor,CB,Miami Dolphins
+nfl-p01649,Rodney McGraw,REDG,Miami Dolphins
+nfl-p01650,Ronnie Rivers,HB,Los Angeles Rams
+nfl-p01651,Sebastian Valdez,DT,San Francisco 49ers
+nfl-p01652,Sedrick Van Pran-Granger,C,Indianapolis Colts
+nfl-p01653,Seth McGowan,HB,Indianapolis Colts
+nfl-p01654,Siran Neal,SS,San Francisco 49ers
+nfl-p01655,Thomas Incoom,LEDG,Carolina Panthers
+nfl-p01656,Thomas Booker IV,DT,Las Vegas Raiders
+nfl-p01657,Trace Ford,REDG,NY Giants
+nfl-p01658,Trevor Keegan,RG,Minnesota Vikings
+nfl-p01659,Trey Sermon,HB,Atlanta Falcons
+nfl-p01660,Ty'Ron Hopper,WILL,Green Bay Packers
+nfl-p01661,Tyler Lacy,REDG,Detroit Lions
+nfl-p01662,Vederian Lowe,RT,San Francisco 49ers
+nfl-p01663,Warren Brinson,DT,Green Bay Packers
+nfl-p01664,Wesley Bailey,LEDG,Los Angeles Rams
+nfl-p01665,Zach Carter,DT,Arizona Cardinals
+nfl-p01666,Zayne Anderson,SS,Miami Dolphins
+nfl-p01667,Adam Randall,HB,Baltimore Ravens
+nfl-p01668,Alijah Clark,FS,Dallas Cowboys
+nfl-p01669,Ameer Speed,CB,Dallas Cowboys
+nfl-p01670,Asim Richards,LT,New Orleans Saints
+nfl-p01671,Austen Pleasants,LT,San Francisco 49ers
+nfl-p01672,Austin Ajiake,MIKE,Indianapolis Colts
+nfl-p01673,Austin Brinkman,LS,Houston Texans
+nfl-p01674,Ben Brown,C,New England Patriots
+nfl-p01675,Ben Mann,LS,NY Giants
+nfl-p01676,Bill Murray,LG,Los Angeles Rams
+nfl-p01677,Brady Russell,FB,Seattle Seahawks
+nfl-p01678,Branson Taylor,LG,Los Angeles Chargers
+nfl-p01679,Britain Covey,WR,Philadelphia Eagles
+nfl-p01680,Brock Wright,TE,Detroit Lions
+nfl-p01681,Bryan Thomas Jr,LEDG,Jacksonville Jaguars
+nfl-p01682,Bryson Eason,DT,Kansas City Chiefs
+nfl-p01683,Case Keenum,QB,Chicago Bears
+nfl-p01684,Chaz Chambliss,LEDG,Minnesota Vikings
+nfl-p01685,Chigozie Anusiem,CB,Las Vegas Raiders
+nfl-p01686,Dalton Tucker,LG,Indianapolis Colts
+nfl-p01687,Danny Striggow,LEDG,Jacksonville Jaguars
+nfl-p01688,Desjuan Johnson,REDG,Los Angeles Rams
+nfl-p01689,Devon Key,FS,Denver Broncos
+nfl-p01690,Dylan Cook,RT,Pittsburgh Steelers
+nfl-p01691,Eli Raridon,TE,New England Patriots
+nfl-p01692,Elijah Garcia,DT,Dallas Cowboys
+nfl-p01693,Eric O'Neill,LEDG,Detroit Lions
+nfl-p01694,Fred Johnson,RT,Philadelphia Eagles
+nfl-p01695,Hayden Conner,LG,Arizona Cardinals
+nfl-p01696,Haynes King,QB,Carolina Panthers
+nfl-p01697,Hunter Wohler,SS,Indianapolis Colts
+nfl-p01698,Isaiah Stalbird,WILL,New Orleans Saints
+nfl-p01699,Jack Driscoll,LT,Pittsburgh Steelers
+nfl-p01700,Jack Pyburn,LEDG,Kansas City Chiefs
+nfl-p01701,Jackson Meeks,TE,Detroit Lions
+nfl-p01702,Jackson Kuwatch,MIKE,Carolina Panthers
+nfl-p01703,Jayden Williams,LT,Arizona Cardinals
+nfl-p01704,Jordan Jackson,DT,Denver Broncos
+nfl-p01705,Josh Blackwell,CB,Chicago Bears
+nfl-p01706,Josh Cuevas,TE,Baltimore Ravens
+nfl-p01707,Julian Ashby,LS,New England Patriots
+nfl-p01708,Kalen King,CB,Arizona Cardinals
+nfl-p01709,Kapena Gushiken,CB,Indianapolis Colts
+nfl-p01710,Keyon Martin,CB,Baltimore Ravens
+nfl-p01711,Ko Kieft,TE,Tampa Bay Buccaneers
+nfl-p01712,Kohl Levao,LG,NY Jets
+nfl-p01713,Kyle McCord,QB,Miami Dolphins
+nfl-p01714,Leonard Taylor III,DT,New England Patriots
+nfl-p01715,Matt Dickerson,DT,Jacksonville Jaguars
+nfl-p01716,Matt Hibner,TE,Baltimore Ravens
+nfl-p01717,Michael Jerrell,LT,Atlanta Falcons
+nfl-p01718,Mike Caliendo,LG,Kansas City Chiefs
+nfl-p01719,Mitchell Trubisky,QB,Tennessee Titans
+nfl-p01720,Myles Hinton,RT,Cincinnati Bengals
+nfl-p01721,Nephi Sewell,WILL,Chicago Bears
+nfl-p01722,Pat Coogan,C,Tennessee Titans
+nfl-p01723,Rejzohn Wright,CB,New Orleans Saints
+nfl-p01724,Robert Spears-Jennings,SS,Pittsburgh Steelers
+nfl-p01725,Rocco Underwood,LS,Philadelphia Eagles
+nfl-p01726,Rodney Shelley,CB,Los Angeles Chargers
+nfl-p01727,Sabastian Harsh,REDG,Houston Texans
+nfl-p01728,Sam Roush,TE,Chicago Bears
+nfl-p01729,Sam Howell,QB,Dallas Cowboys
+nfl-p01730,Segun Olubi,MIKE,Las Vegas Raiders
+nfl-p01731,Skyler Gill-Howard,DT,Detroit Lions
+nfl-p01732,Tanner Koziol,TE,Jacksonville Jaguars
+nfl-p01733,Taylen Green,QB,Cleveland Browns
+nfl-p01734,Theo Wease Jr,WR,Los Angeles Chargers
+nfl-p01735,Thomas Fidone II,TE,NY Giants
+nfl-p01736,Tip Reiman,TE,Arizona Cardinals
+nfl-p01737,Truman Jones,LEDG,Tennessee Titans
+nfl-p01738,Tycen Anderson,SS,Denver Broncos
+nfl-p01739,Tyrell Shavers,WR,Buffalo Bills
+nfl-p01740,Tyrus Wheat,REDG,Dallas Cowboys
+nfl-p01741,VJ Payne,SS,NY Jets
+nfl-p01742,Walter Rouse,LG,New England Patriots
+nfl-p01743,Will Kacmarek,TE,Miami Dolphins
+nfl-p01744,Will Mallory,TE,Indianapolis Colts
+nfl-p01745,Zaire Barnes,WILL,NY Giants
+nfl-p01746,Zeek Biggers,DT,Miami Dolphins
+nfl-p01747,Zemaiah Vaughn,CB,Minnesota Vikings
+nfl-p01748,Alex Bachman,WR,Los Angeles Rams
+nfl-p01749,Alijah Huzzie,CB,Jacksonville Jaguars
+nfl-p01750,Anthony Campbell,DT,Green Bay Packers
+nfl-p01751,Ayden Garnes,CB,Tampa Bay Buccaneers
+nfl-p01752,BJ Green II,REDG,Jacksonville Jaguars
+nfl-p01753,Branson Combs,WILL,Jacksonville Jaguars
+nfl-p01754,Caleb Murphy,REDG,Los Angeles Chargers
+nfl-p01755,Cameron Latu,TE,New England Patriots
+nfl-p01756,Carson Bruener,MIKE,Pittsburgh Steelers
+nfl-p01757,Chazz Surratt,SAM,Seattle Seahawks
+nfl-p01758,Connor O'Toole,REDG,Seattle Seahawks
+nfl-p01759,Cooper McDonald,MIKE,Kansas City Chiefs
+nfl-p01760,Corey Levin,C,Atlanta Falcons
+nfl-p01761,D.J. Montgomery,WR,Indianapolis Colts
+nfl-p01762,Darryl Peterson III,REDG,Los Angeles Rams
+nfl-p01763,Doneiko Slaughter,CB,Pittsburgh Steelers
+nfl-p01764,Donovan Jennings,LG,Green Bay Packers
+nfl-p01765,Dylan McMahon,C,Los Angeles Rams
+nfl-p01766,Easton Mascarenas-Arnold,WILL,Cleveland Browns
+nfl-p01767,Elliott Davison,FS,New England Patriots
+nfl-p01768,Erick Hunter,MIKE,New England Patriots
+nfl-p01769,Ethan Burke,REDG,Baltimore Ravens
+nfl-p01770,Frank Crum,LT,Denver Broncos
+nfl-p01771,Garrett Dellinger,LG,Tennessee Titans
+nfl-p01772,Gavin Bartholomew,TE,Minnesota Vikings
+nfl-p01773,Grant Stuard,WILL,Los Angeles Rams
+nfl-p01774,Jack Heflin,DT,NY Jets
+nfl-p01775,Jake Hansen,MIKE,Houston Texans
+nfl-p01776,Jalen McLeod,MIKE,Jacksonville Jaguars
+nfl-p01777,Jarrett Stidham,QB,Denver Broncos
+nfl-p01778,Joe Giles-Harris,SAM,Cincinnati Bengals
+nfl-p01779,Jordan Turner,WILL,Denver Broncos
+nfl-p01780,Justin Barron,MIKE,Dallas Cowboys
+nfl-p01781,Kameron Johnson,WR,Tampa Bay Buccaneers
+nfl-p01782,Kayode Awosika,LG,Los Angeles Chargers
+nfl-p01783,Kendall Williamson,FS,Los Angeles Chargers
+nfl-p01784,Kevin Knowles,CB,Tampa Bay Buccaneers
+nfl-p01785,Khalil Dorsey,CB,Detroit Lions
+nfl-p01786,Khalil Jacobs,MIKE,New England Patriots
+nfl-p01787,Kristian Welch,WILL,Green Bay Packers
+nfl-p01788,Liam McCullough,LS,Atlanta Falcons
+nfl-p01789,Luke Farrell,TE,San Francisco 49ers
+nfl-p01790,Luke Haggard,RG,Tampa Bay Buccaneers
+nfl-p01791,Marcelino McCrary-Ball,WILL,NY Jets
+nfl-p01792,Marcus Bryant,LT,New England Patriots
+nfl-p01793,Marlin Klein,TE,Houston Texans
+nfl-p01794,Marlowe Wax,MIKE,Los Angeles Chargers
+nfl-p01795,Nate Adkins,TE,Denver Broncos
+nfl-p01796,Nic Jones,CB,NY Giants
+nfl-p01797,Nick Vannett,TE,Baltimore Ravens
+nfl-p01798,Nikko Reed,CB,NY Giants
+nfl-p01799,Payne Durham,TE,Tampa Bay Buccaneers
+nfl-p01800,Riley Nowakowski,FB,Pittsburgh Steelers
+nfl-p01801,Ryan Van Demark,LT,Minnesota Vikings
+nfl-p01802,Seth McLaughlin,C,Detroit Lions
+nfl-p01803,Skylar Thompson,QB,Baltimore Ravens
+nfl-p01804,Stetson Bennett IV,QB,Los Angeles Rams
+nfl-p01805,Stone Forsythe,LT,Carolina Panthers
+nfl-p01806,Swayze Bozeman,MIKE,Cincinnati Bengals
+nfl-p01807,Travis Glover,RT,Green Bay Packers
+nfl-p01808,Trevor Nowaske,SAM,Detroit Lions
+nfl-p01809,Trey Lance,QB,Los Angeles Chargers
+nfl-p01810,Will Howard,QB,Pittsburgh Steelers
+nfl-p01811,Yasir Abdullah,SAM,Atlanta Falcons
+nfl-p01812,Avery Smith,CB,Seattle Seahawks
+nfl-p01813,Bam Martin-Scott,WILL,Carolina Panthers
+nfl-p01814,Bauer Sharp,TE,Tampa Bay Buccaneers
+nfl-p01815,Brandon Pili,DT,Seattle Seahawks
+nfl-p01816,Brayden Willis,TE,San Francisco 49ers
+nfl-p01817,C.J. Okoye,DT,NY Giants
+nfl-p01818,CJ Donaldson,HB,New Orleans Saints
+nfl-p01819,Cody Lindenberg,WILL,Las Vegas Raiders
+nfl-p01820,Corey Bullock,LG,Carolina Panthers
+nfl-p01821,Dallen Bentley,TE,Denver Broncos
+nfl-p01822,Ethan Downs,REDG,Kansas City Chiefs
+nfl-p01823,Garret Wallow,WILL,San Francisco 49ers
+nfl-p01824,Garrett Nussmeier,QB,Kansas City Chiefs
+nfl-p01825,Jackson Woodard,MIKE,Miami Dolphins
+nfl-p01826,Jacob Bayer,RG,Cincinnati Bengals
+nfl-p01827,Jacob Thomas,FS,Minnesota Vikings
+nfl-p01828,Jacob Hummel,WILL,Houston Texans
+nfl-p01829,Jake Briningstool,TE,Kansas City Chiefs
+nfl-p01830,James Hudson III,LT,Tennessee Titans
+nfl-p01831,Joey Blount,FS,Arizona Cardinals
+nfl-p01832,Jonah Monheim,C,Jacksonville Jaguars
+nfl-p01833,Jonathan Ford,DT,Green Bay Packers
+nfl-p01834,Josh Fryar,RT,Arizona Cardinals
+nfl-p01835,Julian Hill,TE,New England Patriots
+nfl-p01836,Kurtis Rourke,QB,San Francisco 49ers
+nfl-p01837,Kyle Hinton,LG,Atlanta Falcons
+nfl-p01838,Lew Nichols,HB,Pittsburgh Steelers
+nfl-p01839,Malik Herring,LEDG,Miami Dolphins
+nfl-p01840,Mark Redman,TE,Green Bay Packers
+nfl-p01841,Mason Richman,RT,Seattle Seahawks
+nfl-p01842,Mason Murphy,RT,New Orleans Saints
+nfl-p01843,Maximus Pulley,FS,Los Angeles Rams
+nfl-p01844,Mike Brown,FS,New England Patriots
+nfl-p01845,Nate Lynn,LEDG,NY Jets
+nfl-p01846,PJ Jules,FS,Cincinnati Bengals
+nfl-p01847,Quinn Ewers,QB,Jacksonville Jaguars
+nfl-p01848,Quintin Morris,TE,Jacksonville Jaguars
+nfl-p01849,Robert Beal Jr,REDG,Miami Dolphins
+nfl-p01850,Seydou Traore,TE,Miami Dolphins
+nfl-p01851,Storm Norton,LT,Atlanta Falcons
+nfl-p01852,Tahj Chambers,WILL,Indianapolis Colts
+nfl-p01853,Tanoa Togiai,LG,Washington Commanders
+nfl-p01854,Teagan Quitoriano,TE,Arizona Cardinals
+nfl-p01855,Tylan Grable,RT,Buffalo Bills
+nfl-p01856,Tyler Batty,LEDG,Minnesota Vikings
+nfl-p01857,William Wagner,LS,Cincinnati Bengals
+nfl-p01858,Willie Lampkin IV,LG,Philadelphia Eagles
+nfl-p01859,Xavier Nwankpa,FS,Kansas City Chiefs
+nfl-p01860,Albert Reese IV,RT,Arizona Cardinals
+nfl-p01861,Alex Ward,LS,Las Vegas Raiders
+nfl-p01862,Andrew Meyer,C,Miami Dolphins
+nfl-p01863,Athan Kaliakmanis,QB,Washington Commanders
+nfl-p01864,Atonio Mafi,RG,Tennessee Titans
+nfl-p01865,Benjamin Yurosek,TE,Minnesota Vikings
+nfl-p01866,Bishop Fitzgerald,FS,Detroit Lions
+nfl-p01867,Blake Whiteheart,TE,Cleveland Browns
+nfl-p01868,Brittain Brown,HB,Chicago Bears
+nfl-p01869,Carsen Ryan,TE,Cleveland Browns
+nfl-p01870,Chris Stoll,LS,Seattle Seahawks
+nfl-p01871,Christian Kuntz,LS,Pittsburgh Steelers
+nfl-p01872,David Martin-Robinson,TE,Tennessee Titans
+nfl-p01873,Donovan McMillon,SS,Cleveland Browns
+nfl-p01874,Dorian Mausi,WILL,Tennessee Titans
+nfl-p01875,Eku Leota,LEDG,Arizona Cardinals
+nfl-p01876,Elijah Campbell,FS,NY Giants
+nfl-p01877,Elijah Williams,DT,Minnesota Vikings
+nfl-p01878,Garrett DiGiorgio,RG,Jacksonville Jaguars
+nfl-p01879,Jack Cochrane,SAM,Kansas City Chiefs
+nfl-p01880,Jacob Spomer,C,Los Angeles Chargers
+nfl-p01881,Jake Haener,QB,NY Giants
+nfl-p01882,Joe Huber,LG,Minnesota Vikings
+nfl-p01883,John Williams,LT,Green Bay Packers
+nfl-p01884,John Michael Gyllenborg,TE,Kansas City Chiefs
+nfl-p01885,Karene Reid,MIKE,Denver Broncos
+nfl-p01886,Keleki Latu,TE,Buffalo Bills
+nfl-p01887,Luke Tenuta,RT,Indianapolis Colts
+nfl-p01888,Michael Jurgens,C,Minnesota Vikings
+nfl-p01889,Moliki Matavao,TE,New Orleans Saints
+nfl-p01890,Nick Samac,C,Minnesota Vikings
+nfl-p01891,Nick Muse,TE,Atlanta Falcons
+nfl-p01892,Sam Hagen,RT,Houston Texans
+nfl-p01893,Tanner Arkin,TE,New England Patriots
+nfl-p01894,TeRah Edwards,DT,Carolina Panthers
+nfl-p01895,Tristin McCollum,FS,Las Vegas Raiders
+nfl-p01896,Wydett Williams Jr,SS,Arizona Cardinals
+nfl-p01897,Anthony Tyus III,HB,Carolina Panthers
+nfl-p01898,Brandon Crenshaw-Dickson,RT,Tennessee Titans
+nfl-p01899,Colson Yankoff,TE,Washington Commanders
+nfl-p01900,Hayden Rucci,TE,Los Angeles Chargers
+nfl-p01901,Isaiah World,LT,Los Angeles Chargers
+nfl-p01902,Jalon Daniels,QB,Tampa Bay Buccaneers
+nfl-p01903,Jay Higgins IV,MIKE,Baltimore Ravens
+nfl-p01904,Josh Woods,MIKE,Atlanta Falcons
+nfl-p01905,Matt Orzech,LS,Green Bay Packers
+nfl-p01906,Princeton Fant,TE,Dallas Cowboys
+nfl-p01907,Tommy DeVito,QB,New England Patriots
+nfl-p01908,Torricelli Simpkins III,RG,Carolina Panthers
+nfl-p01909,Treyton Welch,TE,New Orleans Saints
+nfl-p01910,Behren Morton,QB,New England Patriots
+nfl-p01911,Benjamin Chukwuma,LT,Tampa Bay Buccaneers
+nfl-p01912,Caleb Lohner,TE,Denver Broncos
+nfl-p01913,Diego Pounds,RT,Kansas City Chiefs
+nfl-p01914,DJ Uiagalelei,QB,Los Angeles Chargers
+nfl-p01915,Evan Deckers,LS,Tampa Bay Buccaneers
+nfl-p01916,Graham Mertz,QB,Houston Texans
+nfl-p01917,Jack Strand,QB,Atlanta Falcons
+nfl-p01918,Jaren Kanak,TE,Tennessee Titans
+nfl-p01919,Joe Cardona,LS,Los Angeles Rams
+nfl-p01920,Josh Sills,RG,NY Giants
+nfl-p01921,Keondre Jackson,SS,Baltimore Ravens
+nfl-p01922,Kyle Allen,QB,Buffalo Bills
+nfl-p01923,Mike Reid,FS,New Orleans Saints
+nfl-p01924,Nick Kallerup,TE,Seattle Seahawks
+nfl-p01925,Shaka Heyward,MIKE,Miami Dolphins
+nfl-p01926,Amen Ogbongbemiga,WILL,Detroit Lions
+nfl-p01927,Jake Majors,C,Philadelphia Eagles
+nfl-p01928,Jared Ivey,LEDG,Atlanta Falcons
+nfl-p01929,Joe Fagnano,QB,Baltimore Ravens
+nfl-p01930,Max Brosmer,QB,Minnesota Vikings
+nfl-p01931,Scott Daly,LS,Chicago Bears
+nfl-p01932,Tyson Bagent,QB,Chicago Bears
+nfl-p01933,Rex Sunahara,LS,Cleveland Browns
+nfl-p01934,Hayden Large,TE,Chicago Bears
+nfl-p01935,Milo Eifler,MIKE,Tennessee Titans
+nfl-p01936,Patrick O'Connell,MIKE,Seattle Seahawks
+nfl-p01937,Sam Ehlinger,QB,Denver Broncos
+nfl-p01938,William Sherman,C,New Orleans Saints
+nfl-p01939,Tucker Addington,LS,Miami Dolphins
+nfl-p01940,Feleipe Franks,TE,Carolina Panthers
+nfl-p01941,Ryan McCollum,C,Pittsburgh Steelers
+nfl-p01942,Darius Slayton,WR,Free Agent
+nfl-p01943,Xavier Woods,FS,Free Agent
+nfl-p01944,Najee Harris,HB,Free Agent
+nfl-p01945,Rayshawn Jenkins,FS,Free Agent
+nfl-p01946,Asante Samuel Jr,CB,Free Agent
+nfl-p01947,Harrison Mevis,K,Free Agent
+nfl-p01948,Odell Beckham Jr,WR,Free Agent
+nfl-p01949,Chris Moore,WR,Free Agent
+nfl-p01950,Marquez Valdes-Scantling,WR,Free Agent
+nfl-p01951,Riley Patterson,K,Free Agent
+nfl-p01952,Caelen Carson,CB,Free Agent
+nfl-p01953,KhaDarel Hodge,WR,Free Agent
+`,fi="sim",G0=/^[a-z][a-z0-9]*$/,N0=/^[a-z0-9][a-z0-9-]*$/i,I0=["theme","settings","profile"];function Is(n,e){if(!G0.test(n))throw new Error("keys: bad sport id "+n);if(e===""||!e.split(":").every(a=>N0.test(a)))throw new Error("keys: bad key name "+e);if(I0.includes(n))throw new Error("keys: a sport cannot be called "+n);return`${fi}:${n}:${e}`}const H0=n=>n.startsWith(fi+":"),K0=["A","B","C"];function x0(n){const e=n.split(":"),a=e[3];return e.length<4||e[2]!=="slot"||a===void 0?null:K0.includes(a)?a:null}const ui=1,O0=["nfl"],di={nfl:["draft","week","season"]},pi=["A","B","C"],ge=n=>({ok:!1,reason:"corrupt",message:n}),mo=n=>typeof n=="object"&&n!==null&&!Array.isArray(n),go=n=>typeof n=="number"&&Number.isInteger(n),ua=n=>typeof n=="string";function hi(n){if(!mo(n))return ge("envelope: not an object");const e=n.sport===void 0?"nfl":n.sport;return!ua(e)||!O0.includes(e)?ge("envelope: unknown sport"):!ua(n.kind)||!di[e].includes(n.kind)?ge("envelope: bad kind for "+e):!go(n.schemaVersion)||n.schemaVersion<1?ge("envelope: bad schemaVersion"):n.schemaVersion>ui?{ok:!1,reason:"newer-version",message:"envelope: written by a newer build (schema "+n.schemaVersion+")"}:!ua(n.engineVersion)||!n.engineVersion?ge("envelope: bad engineVersion"):!ua(n.dataVersion)||!n.dataVersion?ge("envelope: bad dataVersion"):!ua(n.saveId)||!n.saveId?ge("envelope: bad saveId"):!go(n.saveRevision)||n.saveRevision<1?ge("envelope: bad saveRevision"):!ua(n.createdAt)||Number.isNaN(Date.parse(n.createdAt))?ge("envelope: bad createdAt"):!ua(n.slot)||!pi.includes(n.slot)?ge("envelope: bad slot"):!ua(n.savedAt)||Number.isNaN(Date.parse(n.savedAt))?ge("envelope: bad savedAt"):mo(n.payload)?{ok:!0,value:{...n,sport:e}}:ge("envelope: payload is not an object")}function V0(n,e,a,s,t,r){if(!di[n].includes(e))throw new Error(`envelope: ${n} has no save kind '${e}'`);const o={sport:n,kind:e,schemaVersion:ui,engineVersion:s.engineVersion,dataVersion:s.dataVersion,saveId:s.saveId,saveRevision:s.saveRevision,createdAt:s.createdAt,slot:a,savedAt:r.toISOString(),payload:t};return cr(o,"envelope"),JSON.stringify(o)}function cr(n,e){if(!(n===null||typeof n=="string"||typeof n=="boolean")){if(typeof n=="number"){if(!Number.isFinite(n))throw new Error("not plain JSON at "+e+": non-finite number");return}if(Array.isArray(n)){n.forEach((a,s)=>cr(a,e+"["+s+"]"));return}if(typeof n=="object"&&Object.getPrototypeOf(n)===Object.prototype){for(const[a,s]of Object.entries(n))cr(s,e+"."+a);return}throw new Error("not plain JSON at "+e+": "+(n===void 0?"undefined":typeof n=="object"?"class instance, Map or Set":typeof n))}}const vi="nfl",Qn=n=>({ok:!1,reason:"corrupt",message:n}),pa=n=>typeof n=="object"&&n!==null&&!Array.isArray(n),Rn=n=>typeof n=="number"&&Number.isInteger(n),Un=n=>typeof n=="string",Y0=n=>pa(n)&&Un(n.id)&&Un(n.name)&&Un(n.pos)&&Un(n.role)&&Un(n.team)&&Rn(n.ovr)&&Rn(n.spd)&&Rn(n.str)&&typeof n.freeAgent=="boolean",Bo=n=>Array.isArray(n)&&n.every(e=>pa(e)&&Rn(e.week)&&Un(e.home)&&Un(e.away)&&Rn(e.hs)&&Rn(e.as));function mi(n){return Rn(n.seed)?!Rn(n.userTeam)||n.userTeam<0||n.userTeam>31?"draft: bad userTeam":n.pickSlot!==void 0&&!(Rn(n.pickSlot)&&n.pickSlot>=1&&n.pickSlot<=32)?"draft: bad pickSlot":!Array.isArray(n.picks)||!n.picks.every(e=>pa(e)&&Rn(e.overall)&&Rn(e.team)&&Un(e.pid)&&Un(e.slot))?"draft: bad picks":!Array.isArray(n.pool)||!n.pool.every(e=>Array.isArray(e)&&e.length===8&&Un(e[0])&&Un(e[1])&&Un(e[2])&&Un(e[3])&&Rn(e[4])&&Rn(e[5])&&Rn(e[6])&&(e[7]===0||e[7]===1))?"draft: bad pool":null:"payload: bad seed"}function z0(n){const e=n.payload;if(!Rn(e.seed))return Qn("payload: bad seed");if(n.kind==="draft"){const a=mi(e);if(a)return Qn(a)}else{if(!Rn(e.year)||!Rn(e.run)||e.run<0)return Qn(n.kind+": bad year/run");if(!Un(e.userTeam))return Qn(n.kind+": bad userTeam");if(!Array.isArray(e.roster)||e.roster.length!==32||!e.roster.every(Y0))return Qn(n.kind+": roster must be 32 frozen players");if(typeof e.statsRecorded!="boolean")return Qn(n.kind+": bad statsRecorded");if(n.kind==="week"){if(!Rn(e.gameSeed)||!Rn(e.nextWeek)||e.nextWeek<1)return Qn("week: bad gameSeed/nextWeek");if(!pa(e.ratings))return Qn("week: bad ratings");if(!Array.isArray(e.schedule)||!e.schedule.every(a=>pa(a)&&Rn(a.week)&&Un(a.home)&&Un(a.away)&&Un(a.kind)))return Qn("week: bad schedule");if(!Bo(e.scores))return Qn("week: bad scores");if(e.plan!==null&&!pa(e.plan))return Qn("week: bad plan");if(e.prevRank!==void 0&&!(pa(e.prevRank)&&Object.values(e.prevRank).every(Rn)))return Qn("week: bad prevRank");if(e.homeField!==void 0&&!(typeof e.homeField=="number"&&Number.isFinite(e.homeField)))return Qn("week: bad homeField")}else{if(!Array.isArray(e.table)||!e.table.every(a=>pa(a)&&Un(a.team)&&Rn(a.w)&&Rn(a.l)&&Rn(a.t)&&Rn(a.pf)&&Rn(a.pa)))return Qn("season: bad table");if(!Bo(e.userResults))return Qn("season: bad userResults");if(!Un(e.champion))return Qn("season: bad champion");if(!["missed-playoffs","wild-card","divisional","conference","super-bowl-loss","champion"].includes(e.userOutcome))return Qn("season: bad userOutcome")}}return{ok:!0,value:n}}function Hs(n,e,a,s,t){return V0(vi,n,e,a,s,t)}function wt(n){let e;try{e=JSON.parse(n)}catch{return Qn("envelope: not JSON")}const a=hi(e);return a.ok?a.value.sport!==vi?Qn("envelope: this is a "+a.value.sport+" save, not an nfl save"):z0(a.value):a}function Q0(n,e){const a=x0(e);return a&&a!==n?"envelope: slot "+n+" written under "+e+" (that key is slot "+a+")":null}const dt={QB:{FS:12},RB:{FB:0,WR:12,TE:6,SS:12,FS:12},FB:{RB:2,TE:2},WR:{RB:6,TE:6,CB:6,FS:6,SS:6,NICKEL:6,DIME:6},TE:{FB:0,WR:12,RB:6,C:6,OG:6,OT:12,EDGE:12,DT:12,OLB:6,ILB:12,SS:6,FS:12,NICKEL:6,DIME:12},OT:{OG:2,C:2,DT:6,EDGE:6,FB:0},OG:{OT:2,C:2,DT:6,EDGE:6,FB:0},C:{OG:6,OT:12,DT:12,FB:0},DT:{EDGE:6,C:6,OG:6,OT:6,FB:0},EDGE:{DT:2,OLB:2,ILB:6,C:6,OG:6,OT:6,SS:12,RB:6,FB:0,TE:6,NICKEL:6},ILB:{ILB:0,OLB:2,EDGE:12,FS:12,SS:2,FB:0,TE:6,NICKEL:6,DIME:12},OLB:{OLB:0,ILB:6,EDGE:12,FS:12,SS:6,FB:0,TE:6,NICKEL:6,DIME:12},SS:{NICKEL:0,DIME:0,FS:2,CB:6,WR:12,ILB:6,OLB:2,RB:12,TE:6},FS:{NICKEL:0,DIME:0,SS:2,CB:6,WR:12,OLB:6},CB:{FS:2,NICKEL:0,DIME:0,SS:2,WR:6},K:{P:2},P:{K:2},LS:{}},fr=8;function j0(n){if(n==="DT"||n==="EDGE")return 0;const e=dt[n].DT,a=dt[n].EDGE;return e===void 0?a:a===void 0?e:Math.min(e,a)}function je(n,e){if(n===e)return{penalty:0,emergency:!1,legal:!0};const a=e==="DL5"?j0(n):dt[n][e];return a!==void 0?{penalty:a,emergency:!1,legal:!0}:n==="QB"?{penalty:fr,emergency:!0,legal:!1}:{penalty:fr,emergency:!0,legal:!0}}function H(n,e){const a=n[e];if(a===void 0)throw new Error(`at(): no element at index ${e} (length ${n.length})`);return a}function Bs(n,e){const a=n[e];if(a===void 0)throw new Error(`need(): no entry for key "${e}"`);return a}const Se=[{id:"QB",weight:1e3,dest:"QB",unit:"offense"},{id:"WR1",weight:650,dest:"WR",unit:"offense"},{id:"OT1",weight:500,dest:"OT",unit:"offense"},{id:"OT2",weight:300,dest:"OT",unit:"offense"},{id:"WR2",weight:400,dest:"WR",unit:"offense"},{id:"C",weight:150,dest:"C",unit:"offense"},{id:"OG1",weight:400,dest:"OG",unit:"offense"},{id:"OG2",weight:250,dest:"OG",unit:"offense"},{id:"TE1",weight:250,dest:"TE",unit:"offense"},{id:"RB1",weight:250,dest:"RB",unit:"offense"},{id:"WR3",weight:100,dest:"WR",unit:"offense"},{id:"RB2",weight:100,dest:"RB",unit:"offense"},{id:"TE2",weight:150,dest:"TE",unit:"offense"},{id:"FB",weight:25,dest:"FB",unit:"offense"},{id:"TE3",weight:50,dest:"TE",unit:"offense"},{id:"WR4",weight:50,dest:"WR",unit:"offense"},{id:"DE1",weight:650,dest:"EDGE",unit:"defense"},{id:"DT1",weight:500,dest:"DT",unit:"defense"},{id:"DE2",weight:300,dest:"EDGE",unit:"defense"},{id:"DT2",weight:300,dest:"DT",unit:"defense"},{id:"DL5",weight:150,dest:"DL5",unit:"defense"},{id:"MIKE",weight:300,dest:"ILB",unit:"defense"},{id:"WILL",weight:150,dest:"OLB",unit:"defense"},{id:"SAM",weight:100,dest:"OLB",unit:"defense"},{id:"CB1",weight:400,dest:"CB",unit:"defense"},{id:"CB2",weight:250,dest:"CB",unit:"defense"},{id:"CB3",weight:100,dest:"NICKEL",unit:"defense"},{id:"DIME",weight:50,dest:"DIME",unit:"defense"},{id:"FS",weight:300,dest:"FS",unit:"defense"},{id:"SS",weight:300,dest:"SS",unit:"defense"},{id:"K",weight:50,dest:"K",unit:"special"},{id:"P",weight:50,dest:"P",unit:"special"}],ja=Se.map(n=>n.id);Object.fromEntries(Se.map(n=>[n.id,n.weight]));const U0={WR1:"WR1",MIKE:"MIKE",WILL:"WILL",SAM:"SAM",CB3:"Nickel",DE1:"DE1",DE2:"DE2"};function _r(n){return Se.map(e=>{const a={slot:e.id,dest:e.dest,row:e.id,label:U0[e.id]??e.id};if(n==="4-3")return a;switch(e.id){case"DT1":return{...a,label:"NT"};case"MIKE":return{...a,label:"ILB1"};case"DT2":return{slot:"DT2",dest:"ILB",row:"DT2",label:"ILB2"};case"WILL":return{slot:"WILL",dest:"OLB",row:"WILL",label:"OLB1"};case"SAM":return{...a,label:"OLB2"};default:return a}})}const Ke={olRun:{OT1:.579,OT2:.348,OG1:.705,OG2:.441,C:.263,TE1:1.436,FB:.188},olPass:{OT1:.812,OT2:.488,OG1:.588,OG2:.368,C:.221},rb:{RB1:43.113,RB2:12.177},qb:{QB:1},rec:{WR1:25.682,WR2:19.86,WR3:3.251,TE1:2.174,RB1:4.201,TE3:1.264,WR4:1.6},passRush:{DE1:.583,DE2:.255,DT1:.303,DT2:.182,MIKE:.053,WILL:.03,DL5:.114},frontRun:{DT1:.456,DT2:.273,DE1:.292,DE2:.158,MIKE:.208,WILL:.099,SAM:.234,SS:.115,CB1:.06,CB2:.034,CB3:.009,FS:.08,DL5:.099},coverage:{CB1:.175,CB2:.107,CB3:.041,SS:.113,FS:.122,MIKE:.069,WILL:.039,SAM:.1},kicker:{K:1}},Na={frontBase:{DT1:.456,DT2:.273,DE1:.292,DE2:.158,MIKE:.208,WILL:.099,SAM:.334,SS:.115,CB1:.06,CB2:.034,CB3:.005,FS:.08,DL5:.099},frontNick:{DT1:.456,DT2:.273,DE1:.292,DE2:.158,MIKE:.208,WILL:.099,SAM:.032,SS:.115,CB1:.062,CB2:.048,CB3:.009,FS:.08,DL5:.099},covBase:{CB1:.175,CB2:.107,CB3:.011,SS:.113,FS:.122,MIKE:.069,WILL:.039,SAM:.135},covNick:{CB1:.175,CB2:.107,CB3:.045,SS:.113,FS:.122,MIKE:.069,WILL:.039,SAM:.017},covDime:{CB1:.175,CB2:.107,CB3:.045,DIME:.184,SS:.113,FS:.122,MIKE:.069}},Cs={12:{WR1:25.682,WR2:27.236,TE1:2.174,TE2:22.844,RB1:4.201},13:{WR1:25.682,TE1:2.174,TE2:22.844,TE3:15.173,RB1:4.201},21:{WR1:25.682,WR2:27.236,TE1:2.174,RB1:4.201,RB2:12.177},22:{WR1:25.682,TE1:2.174,TE2:22.844,RB1:4.201,RB2:12.177}},gi={RB1:44.218,RB2:30.441},ka={11:{label:"11 personnel",run:0,runB:0,passB:0,heavy:0,tbw:0,pc:0},12:{label:"12 personnel",run:.03,runB:.03,passB:-.015,heavy:.5,tbw:.08,pc:.22},13:{label:"13 personnel",run:.06,runB:.055,passB:-.035,heavy:1,tbw:.14,pc:.42},21:{label:"21 personnel",run:.05,runB:.04,passB:-.03,heavy:.6,tbw:.03,pc:.38},22:{label:"22 personnel",run:.08,runB:.07,passB:-.045,heavy:1,tbw:.1,pc:.48}},Fr={run:{label:"run-heavy",s:.08},neutral:{label:"balanced",s:0},pass:{label:"pass-heavy",s:-.08}},Wr={run:{label:"run-defense",f:1},neutral:{label:"balanced",f:0},pass:{label:"pass-defense",f:-1}},Kn={kRun:1.4,kPass:.85,kTo:1,kSack:.9,rAmp:3,pAmp:2.5,vm:1.3,kBlock:1,predict:.38,defPredict:.15,baseRunPct:.39,nickRun:.05,baseRunVsHeavy:-.025,basePass:.03,defFront:2,defCov:1.5,defRush:.6,pkgFront:.8,pkgCov:.8},An={rb:.0208,olRun:.0495,front:.05577,qb:.00655,rec:.02045,olPass:.01403,rush:.01579,cov:.0184,lean:.013,toQb:.01471,toCov:.0204,toRush:.0105,skRush:.0268,skOl:.0336,skCov:.012,kick:.01215},Ha=105,Ka=220,ks=.04,ws=.07,Ds=3,bs=.8,xa=1.2,Oa=2.2,pt=21.5,Bi=1.7,Ci=6,yi=2.36,Pr=82,Ti=.0194,Si=.01147,ya=[1,1,1],ki=.542,ur=.15,wi=32.5,Di=17,q0=Object.freeze(Object.defineProperty({__proto__:null,BASE_PTS:pt,DEF_FOCUS:Wr,DEF_SPECS:Na,DIME_W:ur,GAMES:Di,HOME_FIELD:Bi,LAM_SACK:Oa,LAM_TO:xa,MC:An,PASS_BASE:Ka,PERS:ka,PERS_REC:Cs,PLAN_K:Kn,POINTS_PER_WIN:wi,PTS_NOISE:Ci,PT_PASS:ws,PT_RUSH:ks,PT_SACK:bs,PT_TO:Ds,PUNT_PTS:ki,QB_RUN_C:Ti,RATING_SPECS:Ke,RB_HEAVY:gi,RET_NEUTRAL:Pr,RET_PTS:yi,RUSH_BASE:Ha,STRAT:Fr,WR_BLK_C:Si,WR_BLK_W:ya},Symbol.toStringTag,{value:"Module"})),ht={pers:"11",strat:"neutral"},vt={pkg:"nickel",focus:"neutral"},Z0={off:ht,def:vt},bi=["11","12","13","21","22"].flatMap(n=>["run","neutral","pass"].map(e=>({pers:n,strat:e}))),Ri=["base","nickel"].flatMap(n=>["run","neutral","pass"].map(e=>({pkg:n,focus:e})));function X0(n){return ka[n.pers].run+Fr[n.strat].s}function $0(n){const e=1/(1+.2316419*Math.abs(n)),s=.3989423*Math.exp(-n*n/2)*e*(.3193815+e*(-.3565638+e*(1.781478+e*(-1.821256+e*1.330274))));return n>0?1-s:s}function le(n,e,a){return Math.min(a,Math.max(e,n))}function Fa(n,e,a){const s=n>=0?a:-e,t=.6*s,r=Math.abs(n);if(r<=t)return n;const o=t+(s-t)*Math.tanh((r-t)/(s-t));return n>=0?o:-o}function Co(n,e){const a=e.pers,s={...n};a!=="11"&&(s.rec=n["rec"+a]),(a==="21"||a==="22")&&(s.rb=n.rbHeavy);const t=a==="13"?(n.te2+70)/2:a==="12"||a==="22"?(n.te1+n.te2)/2:n.te1;return s.olRun=n.olRun+ka[a].tbw*(t-75)*Kn.kBlock,s}function yo(n,e,a){const s=Wr[e.focus].f,t=e.pkg==="nickel",r={...n};return r.frontRun=(t?n.frontNick:n.frontBase)+(a?0:(t?-Kn.pkgFront:Kn.pkgFront)+Kn.defFront*s),r.coverage=(t?n.covNick:n.covBase)+(a?0:(t?Kn.pkgCov:-Kn.pkgCov)-Kn.defCov*s),r.passRush=n.passRush-(a?0:Kn.defRush*s),r.coverage=(1-ur)*r.coverage+ur*n.covDime,r}function Ye(n,e,a,s=Z0){const t=s.off,r=s.def,o=Co(n,t),l=Co(a,t),i=yo(e,r,!1),f=yo(a,r,!0),u=X0(t),p=1+Kn.rAmp*u,h=1-Kn.pAmp*u,d=o.rb-l.rb,v=o.olRun-l.olRun,g=o.qb-a.qb,B=o.rec-l.rec,y=o.olPass-a.olPass,k=o.kicker-a.kicker,w=i.frontRun-f.frontRun,D=i.passRush-f.passRush,C=i.coverage-f.coverage,L=An.lean*(.35*(n.rb-a.rb)+.65*(n.olRun-a.olRun)-(.45*g+.3*(n.rec-a.rec)+.25*y)),F=ka[t.pers].heavy,G=r.pkg==="nickel",E=ka[t.pers].runB+Kn.kRun*u+(G?Kn.nickRun*F:Kn.baseRunVsHeavy*F),J=ka[t.pers].passB-Kn.kPass*u+(G?0:Kn.basePass*(1-F)),N=[["rb","off",An.rb*d*p],["olRun","off",An.olRun*v*p],["frontRun","def",-An.front*w*p],["lean","off",L],["scheme","off",E]],x=[["qb","off",An.qb*g*h],["rec","off",An.rec*B*h],["olPass","off",An.olPass*y*h],["passRush","def",-An.rush*D*h],["coverage","def",-An.cov*C*h],["lean","off",-L],["scheme","off",J]],z=[["qb","off",-An.toQb*g],["coverage","def",An.toCov*C],["passRush","def",An.toRush*D],["scheme","off",-Kn.kTo*u]],q=[["passRush","def",An.skRush*D],["olPass","off",-An.skOl*y],["coverage","def",An.skCov*C],["scheme","off",-Kn.kSack*u]],$=vn=>vn.reduce((_n,Nn)=>_n+Nn[2],0),cn=Fa(An.rb*d+An.olRun*v,-1.1,.4),en=Fa(An.qb*g+An.rec*B+An.olPass*y,-.8,.27),Q=Fa(cn*p+L+E,-1.3,.33)-An.front*w*p,X=Fa(en*h-L+J,-1,.29)-(An.rush*D+An.cov*C)*h,P=Fa($(z),-.7,.7),I=Fa($(q),-.8,.4),Y=Ha*Math.exp(Q),b=Ka*Math.exp(X),_=xa*Math.exp(P),O=Oa*Math.exp(I),U=An.kick*k,tn=yi*(Math.exp((n.ret-82)/45)-Math.exp((a.ret-82)/45)),un=Ti*(n.qbRunR-a.qbRunR),dn=Si*(n.wrBlk-a.wrBlk),yn=-ki*(Math.exp((e.p-80)/45)-Math.exp((a.p-80)/45)),nn={},rn=(vn,_n,Nn)=>{for(const[In,Yn,Gn]of vn){if(In==="lean"||In==="scheme")continue;const ue=_n(Gn),ve=In+"|"+Yn,ke=nn[ve]??={unit:In,owner:Yn,pts:0,kinds:{}},Pe=Yn==="off"?ue:-ue;ke.pts+=Pe,ke.kinds[Nn]=(ke.kinds[Nn]??0)+Pe}};rn(N,vn=>ks*Ha*(Math.exp(vn)-1),"ground game"),rn(x,vn=>ws*Ka*(Math.exp(vn)-1),"passing game"),rn(z,vn=>-Ds*xa*(Math.exp(vn)-1),"turnovers"),rn(q,vn=>-bs*Oa*(Math.exp(vn)-1),"sacks"),Math.abs(U)>.01&&(nn["kicker|off"]={unit:"kicker",owner:"off",pts:U,kinds:{"field goals":U}});const an=Kn.predict*Math.pow(Fr[t.strat].s/.08,2)-Kn.defPredict*Math.abs(Wr[r.focus].f)+ka[t.pers].pc,Dn=tn+yn+un+dn,Tn=pt+ks*(Y-Ha)+ws*(b-Ka)-Ds*(_-xa)-bs*(O-Oa)+U+Dn-an,Jn={run:ks*(Y-Ha)+un+dn,pass:ws*(b-Ka),to:-Ds*(_-xa),sack:-bs*(O-Oa),kick:U,plan:-an},zn=le(1-Kn.vm*u,.7,1.2);return{expRush:Y,expPass:b,lamTO:_,lamSack:O,structPts:Tn,extraPts:Dn,channels:Jn,swings:Object.values(nn),sd:8*zn,vm:zn,sT:u,planCost:an,plan:{off:t,def:r}}}function nu(n){const e=n.length;for(const i of n)if(i.length!==e)throw new Error("hungarian: matrix must be square");const a=Number.POSITIVE_INFINITY,s=new Array(e+1).fill(0),t=new Array(e+1).fill(0),r=new Array(e+1).fill(0),o=new Array(e+1).fill(0);for(let i=1;i<=e;i++){r[0]=i;let f=0;const u=new Array(e+1).fill(a),p=new Array(e+1).fill(!1);do{p[f]=!0;const h=r[f];let d=a,v=0;for(let g=1;g<=e;g++){if(p[g])continue;const B=n[h-1][g-1]-s[h]-t[g];B<u[g]&&(u[g]=B,o[g]=f),u[g]<d&&(d=u[g],v=g)}for(let g=0;g<=e;g++)p[g]?(s[r[g]]+=d,t[g]-=d):u[g]-=d;f=v}while(r[f]!==0);do{const h=o[f];r[f]=r[h],f=h}while(f!==0)}const l=new Array(e).fill(-1);for(let i=1;i<=e;i++)r[i]>0&&(l[r[i]-1]=i-1);return l}const dr=70,eu=120;function au(n,e,a){const s=eu*n.reduce((o,l)=>o+Math.abs(l),0)+1,t=s,r=(a+1)*t+s;return{emergency:t,plays:r,illegal:(e+a+1)*r*2}}const su=(n,e,a)=>n.map(s=>e.winsPerOvr(s.row,a)/Ei);function tu(n,e,a={}){const{stay:s,stayBonus:t=0,values:r=Dt,base:o="4-3"}=a,l=su(e,r,o),i=n.length,f=e.length,u=i+f,{emergency:p,plays:h,illegal:d}=au(l,i,f),v=[];for(let w=0;w<u;w++){const D=new Array(u).fill(0);for(let C=0;C<f;C++)if(w<i){const L=je(n[w].role,e[C].dest);D[C]=L.legal?-(h+H(l,C)*(n[w].ovr-L.penalty))+(L.emergency?p:0)-(s?.get(n[w].id)===e[C].slot?t:0):d}else D[C]=-H(l,C)*dr;v.push(D)}const g=nu(v),B=e.map(w=>({slot:w,player:null,effOvr:dr,penalty:0,emergency:!1})),y=[];for(let w=0;w<i;w++){const D=g[w];if(D>=f){y.push(n[w]);continue}const C=je(n[w].role,e[D].dest);B[D]={slot:e[D],player:n[w],effOvr:n[w].ovr-C.penalty,penalty:C.penalty,emergency:C.emergency}}const k=B.reduce((w,D,C)=>w+H(l,C)*D.effOvr,0);return{placements:B,bench:y,value:k,emergencyFills:B.filter(w=>w.emergency).length}}function Gr(n,e,a=Dt){return{base:e,...tu(n,_r(e),{base:e,values:a})}}function ru(n){return n.placements.map(e=>({row:e.slot.row,ovr:e.effOvr}))}function ou(n,e){let a=0,s=0;for(const t of n){const r=e[t.row];r!==void 0&&(a+=t.ovr*r,s+=r)}if(s===0)throw new Error("wavg: no spot matches the spec");return a/s}function Ba(n,e){const a=n.find(s=>s.row===e);return a?a.ovr:dr}function pr(n,e=Pr){const a=o=>ou(n,o),s={TE1:Ba(n,"TE1"),TE2:Ba(n,"TE2"),P:Ba(n,"P"),QB:Ba(n,"QB"),WR1:Ba(n,"WR1"),WR2:Ba(n,"WR2"),WR3:Ba(n,"WR3")},t=a(Ke.rec),r={olRun:a(Ke.olRun),olPass:a(Ke.olPass),rb:a(Ke.rb),qb:a(Ke.qb),rec:t,passRush:a(Ke.passRush),frontRun:a(Ke.frontRun),coverage:a(Ke.coverage),kicker:a(Ke.kicker),rec12:a(Cs[12]),rec13:a(Cs[13]),rec21:a(Cs[21]),rec22:a(Cs[22]),rec11:t,frontBase:a(Na.frontBase),frontNick:a(Na.frontNick),covBase:a(Na.covBase),covNick:a(Na.covNick),covDime:a(Na.covDime),te1:s.TE1,te2:s.TE2,rbHeavy:a(gi),ret:e,p:s.P,qbRunR:s.QB,wrBlk:(s.WR1*ya[0]+s.WR2*ya[1]+s.WR3*ya[2])/(ya[0]+ya[1]+ya[2]),passOff:0,runOff:0,off:0,def:0};return r.passOff=.45*r.qb+.3*r.rec+.25*r.olPass,r.runOff=.35*r.rb+.65*r.olRun,r.off=.6*r.passOff+.4*r.runOff,r.def=.55*(.5*r.passRush+.5*r.coverage)+.45*r.frontRun,r}function Nr(n){if(!n.length)throw new Error("leagueBaseline: no teams");const e=Object.keys(n[0]),a={};for(const s of e)a[s]=n.reduce((t,r)=>t+r[s],0)/n.length;return a}function mt(n,e,a){return a?Math.max(...bi.map(s=>Ye(n,e,e,{off:s,def:vt}).structPts)):-Math.min(...Ri.map(s=>Ye(e,n,e,{off:ht,def:s}).structPts))}function To(n,e){return mt(n,e,!0)+mt(n,e,!1)}const lu=n=>n==="K"||Se.find(e=>e.id===n)?.unit==="offense";function So(n,e,a="4-3"){const s=l=>_r(a).map(i=>({row:i.row,ovr:i.slot===n?l:80})),t=pr(s(80)),r=Di/wi,o=lu(n);return(mt(pr(s(e)),t,o)-mt(t,t,o))*r}function iu(n,e="4-3"){return So(n,90,e)-So(n,70,e)}const Ei=.00254/20,cu=n=>Math.round(n*1e9)/1e9;function fu(){const n=new Map,e=a=>{let s=n.get(a);return s||(s=Object.fromEntries(ja.map(t=>[t,cu(iu(t,a)/20)])),n.set(a,s)),s};return{name:"measured",winsPerOvr:(a,s)=>e(s)[a]}}const Dt=fu(),uu="4-3",as=32,du=ja.length,ss=Object.fromEntries(Se.map(n=>[n.id,n.dest])),Li=n=>n==="NICKEL"||n==="DIME"?"CB":n==="DL5"?"DT":n,Ir={topFloor:5,topFloorRounds:4,midFloor:10,midFloorRounds:8,kpFirstRound:6,noiseMax:1.5,missMax:.6,biasSd:.5,hyperP:.15,replFloor:72};function Ai(n=as,e=du){const a=[];for(let s=0;s<e;s++)for(let t=0;t<n;t++)a.push(s%2===0?t:n-1-t);return a}const pu=(n,e)=>e.ovr-n.ovr||(n.id<e.id?-1:n.id>e.id?1:0),hu=Array.from(new Set(Se.map(n=>n.dest)));function vu(n,e,a=Ir,s=Ai()){const t=n.filter(l=>l.role!=="LS").slice().sort(pu),r=e.fork("traits"),o=Array.from({length:as},()=>({noise:.05+r.next()*(a.noiseMax-.05),miss:r.next()*a.missMax,bias:Object.fromEntries(hu.map(l=>{const i=r.next();return[l,i<a.hyperP/2?.05+r.next()*.3:i<a.hyperP?2+r.next()*3:Math.exp(a.biasSd*r.normal())]}))}));return{cfg:a,order:s,pos:0,pool:t,rosters:Array.from({length:as},()=>({})),traits:o,log:[],repl:{},replAt:-99}}const bt=n=>Math.floor(n.pos/as)+1,Ks=n=>ja.filter(e=>!n[e]);function mu(n){if(n.pos===n.replAt)return n.repl;const e={};for(const t of n.rosters)for(const r of Ks(t)){const o=Li(ss[r]);e[o]=(e[o]??0)+1}const a={};for(const t of n.pool)(a[t.role]??=[]).push(t.ovr);const s={};for(const t of Object.keys(e)){const r=a[t]??[];s[t]=r.length?H(r,Math.min(e[t]??1,r.length)-1):0}return n.repl=s,n.replAt=n.pos,s}function hr(n,e,a=Dt){const s=Ks(H(n.rosters,e)),t=mu(n),r={},o=[],l=bt(n);for(const i of n.pool)if(!((r[i.role]=(r[i.role]??0)+1)>16)&&!((i.role==="K"||i.role==="P")&&l<n.cfg.kpFirstRound))for(const u of s){const p=je(i.role,ss[u]);if(!p.legal||p.emergency)continue;const h=i.ovr-p.penalty,d=Math.max(t[Li(ss[u])]??0,n.cfg.replFloor);o.push({player:i,slot:u,eff:h,wins:Math.round(a.winsPerOvr(u,uu)*(h-d)*1e9)/1e9})}return o}function gu(n){const e=n.pool.length?H(n.pool,0).ovr:0,a=bt(n),s=n.cfg;return a<=s.topFloorRounds?e-s.topFloor:a<=s.midFloorRounds?e-s.midFloor:-1/0}function Mi(n,e,a,s=Dt){const t=H(n.traits,e),r=gu(n);let o=hr(n,e,s).filter(u=>u.player.ovr>=r);if(o.length||(o=hr(n,e,s)),!o.length)return Bu(n,e);const l=o.map(u=>({c:u,v:u.wins*(t.bias[ss[u.slot]]??1)*Math.max(.02,1+t.noise*a.normal())+.002*Ei*u.player.ovr}));l.sort((u,p)=>p.v-u.v);let i=0;l.length>8&&a.next()<t.miss&&(i=Math.min(l.length-1,3+Math.min(9,Math.floor(Math.abs(a.normal())*4))));const f=H(l,i).c;return{player:f.player,slot:f.slot}}function Bu(n,e){const a=Ks(H(n.rosters,e));for(const s of n.pool)for(const t of a)if(je(s.role,ss[t]).legal)return{player:s,slot:t};throw new Error("draft: no legal pick for team "+e)}function Rt(n,e,a,s){if(n.order[n.pos]!==e)throw new Error(`draft: it is not team ${e}'s pick`);if(H(n.rosters,e)[s])throw new Error("draft: spot already filled "+s);const t=n.pool.findIndex(l=>l.id===a.id);if(t<0)throw new Error("draft: player already taken "+a.id);if(!je(a.role,ss[s]).legal)throw new Error("draft: illegal fit");const r=H(n.pool,0).ovr;n.pool.splice(t,1),H(n.rosters,e)[s]=a;const o={overall:n.pos+1,round:bt(n),pickInRound:n.pos%as+1,team:e,slot:s,player:a,ovrGap:r-a.ovr};return n.log.push(o),n.pos++,o}const Cu=/^([a-z][a-z0-9]*)-p(\d{5,})$/;function yu(n){const e=Cu.exec(n);return e?{sport:e[1],n:+e[2]}:null}const Tu="pid,name,pos,team",Ji=(n,e,a)=>`${n}|${e}|${a}`,Su="nfl";function ku(n,e=Su){const a=n.split(/\r?\n/).filter(o=>o.trim().length>0);if(a.length===0||a[0].trim()!==Tu)throw new Error("player-ids csv: unexpected header: "+(a[0]??"(empty)"));const s=[],t=new Set,r=new Set;for(let o=1;o<a.length;o++){const l=/^([a-z][a-z0-9]*-p\d{5,}),(.*),([A-Z]+),([^,]+)$/.exec(a[o]);if(!l)throw new Error(`player-ids csv line ${o+1}: cannot parse: ${a[o]}`);const i={pid:l[1],name:l[2],pos:l[3],team:l[4]};if(yu(i.pid)?.sport!==e)throw new Error(`player-ids csv line ${o+1}: ${i.pid} is not a ${e} id`);if(t.has(i.pid))throw new Error("player-ids csv: duplicate pid "+i.pid);const f=Ji(i.name,i.pos,i.team);if(r.has(f))throw new Error("player-ids csv: duplicate key "+f);t.add(i.pid),r.add(f),s.push(i)}return s}function wu(n){return new Map(n.map(e=>[Ji(e.name,e.pos,e.team),e.pid]))}const _i={QB:"QB",HB:"RB",FB:"FB",WR:"WR",TE:"TE",LT:"OT",RT:"OT",LG:"OG",RG:"OG",C:"C",DT:"DT",LEDG:"EDGE",REDG:"EDGE",MIKE:"ILB",WILL:"OLB",SAM:"OLB",CB:"CB",SS:"SS",FS:"FS",K:"K",P:"P",LS:"LS"},Du=n=>_i[n];function ko(n,e){const a=[],s=n.split(/\r?\n/).filter(t=>t.trim().length>0);if(s[0].trim()!=="name,pos,team,ovr,spd,str")throw new Error("players csv: unexpected header: "+s[0]);for(let t=1;t<s.length;t++){const r=/^(.*),([A-Z]+),([^,]+),(\d+),(\d+),(\d+)$/.exec(s[t]);if(!r)throw new Error(`players csv line ${t+1}: cannot parse: ${s[t]}`);const[,o,l,i,f,u,p]=r,h=_i[l];if(!h)throw new Error(`players csv line ${t+1}: unknown position ${l}`);a.push({id:`${o}|${l}|${i}`,name:o,pos:l,role:h,team:i,ovr:+f,spd:+u,str:+p,freeAgent:e})}return a}function bu(n,e,a){const s=[...ko(n,!1),...ko(e,!0)],t=wu(ku(a)),r=new Set,o=new Set;return s.map(l=>{if(o.has(l.id))throw new Error("duplicate player "+l.id);o.add(l.id);const i=t.get(l.id);if(!i)throw new Error("no stable id for "+l.id+" (run tools/player-ids.ts sync)");if(r.has(i))throw new Error("duplicate pid "+i);return r.add(i),{...l,id:i}})}function Fi(n){let e=2166136261;for(let a=0;a<n.length;a++)e^=n.charCodeAt(a),e=Math.imul(e,16777619)>>>0;return e>>>0}function qe(n){let e=n>>>0,a=null;const s=()=>{e=e+1831565813>>>0;let t=e;return t=Math.imul(t^t>>>15,t|1),t^=t+Math.imul(t^t>>>7,t|61),((t^t>>>14)>>>0)/4294967296};return{next:s,int:(t,r)=>t+Math.floor(s()*(r-t+1)),normal:()=>{if(a!==null){const l=a;return a=null,l}let t=0,r=0;for(;t===0;)t=s();r=s();const o=Math.sqrt(-2*Math.log(t));return a=o*Math.sin(2*Math.PI*r),o*Math.cos(2*Math.PI*r)},pick:t=>t[Math.floor(s()*t.length)],fork:t=>qe((n^Fi(t))>>>0)}}function Ru(n,e){return(n>>>0^Fi(e))>>>0}const Wi=Object.fromEntries(Se.map(n=>[n.id,n.dest])),Hr=new Set(Se.map(n=>n.id));function Eu(n){return n.filter(e=>e.role!=="LS").map(e=>[e.id,e.name,e.pos,e.team,e.ovr,e.spd,e.str,e.freeAgent?1:0])}function Kr(n){return n.map(([e,a,s,t,r,o,l,i])=>{const f=Du(s);if(!f)throw new Error("save: unknown position "+s);return{id:e,name:a,pos:s,role:f,team:t,ovr:r,spd:o,str:l,freeAgent:i===1}})}function Lu(n){if(!n||typeof n!="object"||Array.isArray(n))throw new Error("save: not an object");const e=mi(n);if(e)throw new Error("save: "+e);const a=n;if(a.picks.length>1024)throw new Error("save: too many picks");if(!a.picks.every(s=>Hr.has(s.slot)))throw new Error("save: bad pick slot");return{seed:a.seed,userTeam:a.userTeam,...a.pickSlot===void 0?{}:{pickSlot:a.pickSlot},picks:a.picks.map(s=>({overall:s.overall,team:s.team,pid:s.pid,slot:s.slot})),pool:a.pool.map(s=>[...s])}}const Us=(n,e,a)=>({seed:e.seed,userTeam:e.userTeam,...e.pickSlot===void 0?{}:{pickSlot:e.pickSlot},pool:a,picks:n.log.map(s=>({overall:s.overall,team:s.team,pid:s.player.id,slot:s.slot}))});function Pi(n,e){const a=Array.from({length:as},(s,t)=>t);if(e!==void 0&&e-1!==n){const s=e-1;[a[n],a[s]]=[a[s],a[n]]}return Ai().map(s=>a[s])}function hs(n){const e=vu(Kr(n.pool),qe(n.seed).fork("draft"),Ir,Pi(n.userTeam,n.pickSlot));for(const a of n.picks){if(e.pos>=e.order.length)throw new Error("save: more picks than the draft has");if(a.overall!==e.pos+1||a.team!==e.order[e.pos])throw new Error("save: pick "+a.overall+" is out of order");const s=e.pool.find(r=>r.id===a.pid);if(!s)throw new Error("restore: player not available: "+a.pid);const t=Hr.has(a.slot)?Wi[a.slot]:void 0;if(!t||!je(s.role,t).legal)throw new Error("restore: illegal fit");Rt(e,a.team,s,a.slot)}return e}function Nt(n,e,a){const s=qe(e).fork("cpu");for(;n.pos<n.order.length;){const t=n.order[n.pos];if(t===void 0||t===a)break;const r=Mi(n,t,s.fork("p"+n.pos));Rt(n,t,r.player,r.slot)}}function Au(n){let e={record:null,draft:null,status:"idle",error:null};const a=new Set,s=i=>{e=i,a.forEach(f=>f(e))},t=(i,f)=>{const u=hs(f);return{record:f,draft:u,status:u.pos>=u.order.length?"done":"drafting",error:null}},r=i=>{try{if(i.type==="START"){if(!Number.isInteger(i.seed)||!Number.isInteger(i.userTeam)||i.userTeam<0||i.userTeam>31)throw new Error("start: bad seed or team");if(i.pickSlot!==void 0&&!(Number.isInteger(i.pickSlot)&&i.pickSlot>=1&&i.pickSlot<=32))throw new Error("start: bad pick slot");const f={seed:i.seed,userTeam:i.userTeam,...i.pickSlot===void 0||i.pickSlot-1===i.userTeam?{}:{pickSlot:i.pickSlot}},u=Eu(n),p=hs({...f,picks:[],pool:u});Nt(p,i.seed,i.userTeam),s(t(p,Us(p,f,u)))}else if(i.type==="LOAD"){const f=Lu(i.record),u=hs(f);Nt(u,f.seed,f.userTeam),s(t(u,Us(u,f,f.pool)))}else{if(!e.record||!e.draft)throw new Error("no draft in progress");if(i.type==="PICK"){const{record:f,draft:u}=e;if(u.pos>=u.order.length||u.order[u.pos]!==f.userTeam)throw new Error("it is not your pick");if(!Hr.has(i.slot))throw new Error("bad slot");const p=hs(f),h=p.pool.find(v=>v.id===i.playerId);if(!h)throw new Error("player not available: "+i.playerId);const d=Wi[i.slot];if(!d||!je(h.role,d).legal)throw new Error("illegal fit");Rt(p,f.userTeam,h,i.slot),Nt(p,f.seed,f.userTeam),s(t(p,Us(p,f,f.pool)))}else if(i.type==="UNDO"){const f=e.record,u=f.picks.map(d=>d.team).lastIndexOf(f.userTeam);if(u<0)throw new Error("nothing to undo");const p={...f,picks:f.picks.slice(0,u)},h=hs(p);s(t(h,Us(h,f,f.pool)))}}}catch(f){console.warn("store: action rejected:",i.type,f.message),s({...e,error:f.message})}};let o=Promise.resolve();return{getState:()=>e,dispatch:r,dispatchAsync:i=>{const f=o.then(()=>new Promise(u=>setTimeout(u,0))).then(()=>{try{r(i)}catch(u){console.warn("store: subscriber threw:",u.message)}return e});return o=f.catch(()=>{}),f},subscribe:i=>(a.add(i),()=>a.delete(i))}}Is("nfl","draft");function Mu(n){return{...n,pool:n.pool.slice(),rosters:n.rosters.map(e=>({...e})),log:[],repl:{...n.repl}}}function Ju(n,e,a,s=30){if(n.order[n.pos]!==e)throw new Error("goneOdds: it is not the user's pick");let t=n.pos+1;for(;t<n.order.length&&n.order[t]!==e;)t++;const r=t-(n.pos+1),o=new Map;if(r<=0||t>=n.order.length)return{picksBetween:Math.max(0,r),sims:s,gone:o};for(let l=0;l<s;l++){const i=Mu(n);i.pos=n.pos+1;const f=a.fork("gone"+l);for(let u=i.pos;u<t;u++){const p=i.order[u],h=Mi(i,p,f);Rt(i,p,h.player,h.slot)}for(const u of i.log)o.set(u.player.id,(o.get(u.player.id)??0)+1)}for(const[l,i]of o)o.set(l,i/s);return{picksBetween:r,sims:s,gone:o}}const _u=(n,e)=>n.gone.get(e)??0;function Fu(n){if(!Number.isFinite(n))throw new Error("goneDisplay: not a number: "+n);const e=Math.round(Math.min(1,Math.max(0,n))*100);return Math.min(99,e)}function Zn(n){if(!Number.isFinite(n))throw new Error("showInt: not a number: "+n);const e=Math.sign(n)*Math.round(Math.abs(n));return String(e===0?0:e)}function Js(n,e){if(!Number.isFinite(e))throw new Error("showDecimal: not a number: "+e);const a=Math.sign(e)*Math.round(Math.abs(e)*10)/10;return(a===0?0:a).toFixed(1)}const xe=["East","North","South","West"],da=(n,e,a)=>a.map(s=>({name:s,conf:n,div:e})),kn=[...da("AFC","East",["Buffalo Bills","Miami Dolphins","New England Patriots","NY Jets"]),...da("AFC","North",["Baltimore Ravens","Cincinnati Bengals","Cleveland Browns","Pittsburgh Steelers"]),...da("AFC","South",["Houston Texans","Indianapolis Colts","Jacksonville Jaguars","Tennessee Titans"]),...da("AFC","West",["Denver Broncos","Kansas City Chiefs","Las Vegas Raiders","Los Angeles Chargers"]),...da("NFC","East",["Dallas Cowboys","NY Giants","Philadelphia Eagles","Washington Commanders"]),...da("NFC","North",["Chicago Bears","Detroit Lions","Green Bay Packers","Minnesota Vikings"]),...da("NFC","South",["Atlanta Falcons","Carolina Panthers","New Orleans Saints","Tampa Bay Buccaneers"]),...da("NFC","West",["Arizona Cardinals","Los Angeles Rams","San Francisco 49ers","Seattle Seahawks"])],Et=Object.fromEntries(kn.map(n=>[n.name,n]));function Ea(n,e){return kn.filter(a=>a.conf===n&&a.div===e).map(a=>a.name)}const It=Object.fromEntries(Se.map(n=>[n.id,n.dest])),Wu=Object.fromEntries(_r("4-3").map(n=>[n.slot,n.label])),gt=n=>Wu[n]??n,wo=n=>n.startsWith("-")?n:"+"+n,Pu=(n,e)=>n===2||n===4||n>4&&e>20;function Gu(n,e,a,s={}){const t=s.sort??"wins",r=s.limit??60,o=bt(n),l=new Set(Ks(n.rosters[e])),i=new Map;for(const d of hr(n,e))(i.get(d.player.id)??i.set(d.player.id,[]).get(d.player.id)).push(d);const f=[];for(const d of i.values()){const g=d.filter(C=>je(C.player.role,It[C.slot]).penalty===0).sort((C,L)=>L.wins-C.wins)[0]??d.slice().sort((C,L)=>L.wins-C.wins)[0],B=g.player,y=g.wins,k=_u(a,B.id),w=y*k,D=d.filter(C=>C.slot!==g.slot&&l.has(C.slot)).map(C=>({c:C,pen:je(C.player.role,It[C.slot]).penalty})).filter(C=>Pu(C.pen,o)).sort((C,L)=>L.c.wins-C.c.wins).map(C=>({slotId:C.c.slot,slotLabel:gt(C.c.slot),flex:C.pen===0?"":`-${C.pen} flex`}));f.push({id:B.id,name:B.name,pos:B.pos,nflTeam:B.team,ovr:Zn(B.ovr),slotId:g.slot,slotLabel:gt(g.slot),natural:je(B.role,It[g.slot]).penalty===0,wins:wo(Js("wins",y)),priority:wo(Js("priority",w)),gone:Fu(k)+"%",alsoFits:D,tone:y>.05?"good":y<-.05?"bad":"neutral",_w:y,_p:w})}const u=d=>t==="ovr"?Number(d.ovr):t==="priority"?d._p:d._w;f.sort((d,v)=>u(v)-u(d)||(d.id<v.id?-1:1));const p=n.pos+1,h=ja.length-l.size;return{header:{teamName:kn[e].name,round:o,roundLabel:`Round ${o}`,pickInRound:n.pos%32+1,overall:p,totalPicks:n.order.length,onClock:`You're on the clock: Round ${o}, Pick ${n.pos%32+1} (overall ${p} of ${n.order.length})`},rows:f.slice(0,r).map(({_w:d,_p:v,...g})=>g),footer:{filled:h,total:ja.length,text:`${h} of ${ja.length} starters`},sort:t}}const Gi={"Arizona Cardinals":["#97233F","#000000","#FFB612"],"Atlanta Falcons":["#A71930","#000000","#A5ACAF"],"Baltimore Ravens":["#241773","#000000","#9E7C0C"],"Buffalo Bills":["#00338D","#C60C30","#FFFFFF"],"Carolina Panthers":["#0085CA","#101820","#BFC0BF"],"Chicago Bears":["#0B162A","#000000","#FFFFFF"],"Cincinnati Bengals":["#FB4F14","#000000","#FFFFFF"],"Cleveland Browns":["#311D00","#FF3C00","#FFFFFF"],"Dallas Cowboys":["#003594","#869397","#FFFFFF"],"Denver Broncos":["#FB4F14","#002244","#FFFFFF"],"Detroit Lions":["#0076B6","#B0B7BC","#000000"],"Green Bay Packers":["#203731","#FFB612","#FFFFFF"],"Houston Texans":["#03202F","#A71930","#FFFFFF"],"Indianapolis Colts":["#002C5F","#FFFFFF","#A2AAAD"],"Jacksonville Jaguars":["#101820","#006778","#D7A22A"],"Kansas City Chiefs":["#E31837","#FFB81C","#FFFFFF"],"Las Vegas Raiders":["#000000","#A5ACAF","#FFFFFF"],"Los Angeles Chargers":["#0080C6","#FFC20E","#FFFFFF"],"Los Angeles Rams":["#003594","#FFD100","#FFFFFF"],"Miami Dolphins":["#008E97","#FC4C02","#FFFFFF"],"Minnesota Vikings":["#4F2683","#FFC62F","#FFFFFF"],"New England Patriots":["#002244","#C60C30","#BFC0BF"],"New Orleans Saints":["#D3BC8D","#101820","#FFFFFF"],"NY Giants":["#0B2265","#A71930","#A5ACAF"],"NY Jets":["#125740","#FFFFFF","#000000"],"Philadelphia Eagles":["#004C54","#A5ACAF","#000000"],"Pittsburgh Steelers":["#FFB612","#101820","#FFFFFF"],"San Francisco 49ers":["#AA0000","#B3995D","#FFFFFF"],"Seattle Seahawks":["#002244","#69BE28","#A5ACAF"],"Tampa Bay Buccaneers":["#D50A0A","#34302B","#FF7900"],"Tennessee Titans":["#4B92DB","#0C2340","#C8102E"],"Washington Commanders":["#5A1414","#FFB612","#FFFFFF"]},Nu=["RB1","RB2","WR1","WR2","WR3","TE1","TE2","MIKE","WILL","SAM","CB1","CB2","CB3","SS","FS"],Ht={spd:.8,ovr:.1,str:.1};function Iu(n){return Math.min(99,n.spd*Ht.spd+n.ovr*Ht.ovr+n.str*Ht.str)}function Hu(n){const e=[];for(const a of n.placements)a.player&&Nu.includes(a.slot.slot)&&e.push({slot:a.slot.slot,player:a.player,value:Iu(a.player)});return e.sort((a,s)=>s.value-a.value||(a.player.id<s.player.id?-1:1))}function Ni(n,e){const a=Hu(n);return a.find(s=>s.player.id===e)??a[0]??null}function Ku(n,e){return Ni(n,e)?.value??Pr}const xu=[3.27,5.78,5.88,5.85,5.91,5.93,5.2,5.41,5.17,4.48,4.26,16,26.85],Ou=[.3,4.62,4.99,14.52,4.91,4.77,7.37,7.3,4.69,2.01,5.29,9.98,29.26],Do=5.88,Vu=[.073,0,0,.396,.073,0,.292,.157,0,0,0,.008,0],Ii=n=>{const e=n.reduce((a,s)=>a+s,0);return n.map(a=>a/e)},bo=Ii(Ou.map((n,e)=>e===0?Do:Math.max(0,n-Do*Vu[e]))),Kt=Ii(xu),Yu=(()=>{const n=Kt.length,e=[0],a=[0];for(let s=0;s<n;s++)e.push(e[s]+Kt[s]),a.push(a[s]+bo[s]);return Kt.map((s,t)=>bo.map((r,o)=>s===0?t===o?1:0:Math.max(0,Math.min(e[t+1],a[o+1])-Math.max(e[t],a[o]))/s))})(),Ro=n=>n<=10?n:n<=14?11:12,Eo=n=>n===0||n===3||n>=6;function zu(n,e,a){if(a===0)return[n,n];let s=[n,e],t=1/0;for(let r=0;r<=45;r++){const o=r+a;if(!Eo(r)||!Eo(o)||o>58)continue;const l=o+r-(n+e),i=1.5*Math.abs(l)+(l<0?1.5*-l:0)+Math.abs(o-n)+Math.abs(r-e);i<t&&(t=i,s=[o,r])}return s}function Qu(n,e,a,s){const t=n===e?a:n>e,r=t?n:e,o=t?e:n,l=r-o,i=Ro(l);let f=s.next(),u=0;const p=Yu[i];for(;u<p.length-1&&(f-=p[u],!(f<0));u++);let h;u<=10?h=u:u===11?h=Ro(l)===11?l:s.int(11,14):h=l>=15?l:s.int(15,24);const[d,v]=zu(r,o,h);return t?[d,v]:[v,d]}const be=n=>n==="home"?"away":"home";function Bt(n,e){if(e<=0)return 0;const a=Math.exp(-e);let s=0,t=1;do s++,t*=n.next();while(t>a);return s-1}function $n(n,e){return n.next()<e}function Hi(n,e){let a=0;for(const t of e)a+=t;let s=n.next()*a;for(let t=0;t<e.length;t++)if(s-=H(e,t),s<0)return t;return e.length-1}function Ki(n,e){for(let a=e.length-1;a>0;a--){const s=n.int(0,a),t=H(e,a);e[a]=H(e,s),e[s]=t}return e}function Ua(n,e){const a=e.reduce((l,i)=>l+i,0),s=e.map(l=>n*l/a),t=s.map(Math.floor);let r=n-t.reduce((l,i)=>l+i,0);const o=s.map((l,i)=>[l-H(t,i),i]).sort((l,i)=>i[0]-l[0]);for(let l=0;r>0;l++,r--){const i=H(o,l%o.length)[1];t[i]=H(t,i)+1}return t}function Lo(n,e){return n===1?$n(e,.5)?0:3:n===2?3:n===4?$n(e,.5)?3:6:n===5?$n(e,.5)?6:3:n}const qs=n=>n===0||n===3||n>=6;function Ao(n,e){return{rush:le(Math.round(n.expRush*Math.exp(.3*e.normal()-.045)),15,345),pass:le(Math.round(n.expPass*Math.exp(.26*n.vm*e.normal()-.0338*n.vm*n.vm)),45,520),to:le(Bt(e,n.lamTO),0,6),sacks:le(Bt(e,n.lamSack),0,9)}}const ju=n=>n==="xp"?1:n==="two"?2:0;function Mo(n,e,a){let s=0;for(let g=0;g<e;g++)$n(a,.12)&&s++;for(;s>0&&!qs(n-7*s);)s--;let t=$n(a,.035)&&qs(n-7*s-2)?1:0;const r=n-7*s-2*t;qs(r)||(t=0,s=0);const o=n-7*s-2*t;if(!qs(o))throw new Error("decompose: cannot score "+n);const l=o*.24/3,i=[];for(let g=0;3*g<=o;g++){const B=o-3*g;if(!(B!==0&&B<6))for(let y=Math.ceil(B/8);6*y<=B;y++){const k=B-6*y,w=Math.max(k-y,0),D=k-2*w,C=y-D-w;C<0||i.push({b:g,n:y,w:Math.exp(-.5*((g-l)/1)**2)*Math.exp(-1.4*C)+1e-6})}}const f=H(i,Hi(a,i.map(g=>g.w))),u=o-3*f.b,p=u-6*f.n;let h=Math.max(p-f.n,0),d=p-2*h;for(;d>=2&&h+d-1<=f.n&&$n(a,.22);)d-=2,h+=1;const v=[];for(let g=0;g<d;g++)v.push("xp");for(let g=0;g<h;g++)v.push("two");for(let g=v.length;g<f.n;g++)v.push($n(a,.6)?"xp_miss":"two_fail");return{td:f.n,fg:f.b,convs:Ki(a,v),dTD:s,sf:t}}function Uu(n,e){return e<4?1:n<=-9?.55:n<=-4?.75:n>=17?1.85:n>=9?1.55:n>=4?1.25:n<=-1?.9:n>=1?1.1:1}const xt={TD:68,FG:46,FG_MISS:44,PUNT:24,INT:26,FUM:25,DOWNS:32,HALF:24,SAFETY:14},Jo={TD:1,FG:3,FG_MISS:3,PUNT:3,INT:2,FUM:2,DOWNS:4,HALF:2,SAFETY:2};function _o(n,e,a,s,t,r,o,l,i){const f=[];n.convs.forEach(d=>f.push({end:"TD",conv:d}));for(let d=0;d<n.fg;d++)f.push({end:"FG"});for(let d=0;d<t;d++)f.push({end:"FG_MISS"});for(let d=0;d<e;d++)f.push({end:$n(l,.65)?"INT":"FUM",defTD:d<a.dTD});for(let d=0;d<a.sf;d++)f.push({end:"SAFETY"});for(let d=0;d<s;d++)f.push({end:"DOWNS"});const u=new Array(r).fill(null),p=[i[0]?o-1:-1,i[1]?r-1:-1];for(const d of p)d>=0&&f.length<r-1&&(u[d]={end:"HALF"});Ki(l,f);let h=0;for(let d=0;d<r;d++)u[d]||(u[d]=h<f.length?H(f,h++):{end:"PUNT"});return u}function Fo(n,e,a,s,t){return n.td+n.fg+t+e+a.sf+s}function xi(n,e,a,s){const t=s.homeField??Bi,r=a.fork("aggregates"),o={home:Ao(n,r),away:Ao(e,r)},l=(b,_,O)=>le(pt+O+ks*(_.rush-Ha)+ws*(_.pass-Ka)-Ds*(_.to-xa)-bs*(_.sacks-Oa)+b.channels.kick+b.extraPts-b.planCost+Ci*b.vm*r.normal(),0,58),i=l(n,o.home,t),f=l(e,o.away,0),u=[Lo(Math.round(i),r),Lo(Math.round(f),r)],[p,h]=Qu(u[0],u[1],i>=f,a.fork("margin")),d=a.fork("drives"),v={home:Mo(p,o.away.to,d),away:Mo(h,o.home.to,d)},g={home:Bt(d,.35),away:Bt(d,.35)},B={home:0,away:0};for(const b of["home","away"])for(let _=0;_<v[b].fg;_++)$n(d,.176)&&B[b]++;const y=le(Math.round(10.8+.9*d.normal()),9,13),k=Math.max(y,Fo(v.home,o.home.to,v.away,g.home,B.home)+1,Fo(v.away,o.away.to,v.home,g.away,B.away)+1),w=k%2===0?le(k/2+d.pick([-1,0,0,1]),3,k-3):$n(d,.5)?(k-1)/2:(k+1)/2,D=$n(d,.5)?"home":"away",C=[$n(d,.55),$n(d,.55)],L=be(D),F=D,G=b=>[C[0]&&L===b,C[1]&&F===b],E={home:_o(v.home,o.home.to,v.away,g.home,B.home,k,w,d,G("home")),away:_o(v.away,o.away.to,v.home,g.away,B.away,k,w,d,G("away"))},J=[],N={home:0,away:0};for(let b=0;b<2;b++){const _=b===0?w:k-w,O=b===0?D:be(D);for(let U=0;U<_;U++)for(const tn of[O,be(O)])J.push({side:tn,idx:N[tn]++,half:b})}const x=J.map(b=>{const _=H(E[b.side],b.idx);return{side:b.side,period:1,start:0,secs:0,plays:0,rush:0,pass:0,sacks:0,end:_.end,pts:_.end==="TD"?6+ju(_.conv):_.end==="FG"?3:0,..._.conv!==void 0?{conv:_.conv}:{},oppPts:_.end==="SAFETY"?2:_.defTD?7:0,defTD:!!_.defTD}}),z=new Map;{const b={home:0,away:0};x.forEach((_,O)=>{z.set(_,Uu(b[_.side]-b[be(_.side)],1+Math.floor(O/x.length*4))),b[_.side]+=_.pts,b[be(_.side)]+=_.oppPts})}for(const b of["home","away"]){const _=x.map((dn,yn)=>[dn,yn]).filter(([dn])=>dn.side===b).map(([dn])=>dn),O=_.map(dn=>xt[dn.end]*Math.exp(.5*d.normal())*z.get(dn)),U=_.map(dn=>xt[dn.end]*Math.exp(.5*d.normal())/z.get(dn)),tn=Ua(o[b].rush,O),un=Ua(o[b].pass,U);_.forEach((dn,yn)=>{dn.rush=H(tn,yn),dn.pass=H(un,yn)}),_.forEach(dn=>{dn.plays=le(Math.max(Jo[dn.end],Math.round((dn.rush+dn.pass)/5.15+.9*d.normal())),1,22)});for(let dn=0;dn<o[b].sacks;dn++){const yn=Hi(d,_.map(rn=>rn.plays)),nn=H(_,yn);nn.sacks>=nn.plays-1&&nn.plays++,nn.sacks++}}let q=0;for(let b=0;b<2;b++){const _=x.filter((U,tn)=>H(J,tn).half===b),O=Ua(1800,_.map(U=>U.plays*26*Math.exp(.28*d.normal())+(U.end==="HALF"?10:0)));_.forEach((U,tn)=>{U.start=q,U.secs=H(O,tn),U.period=Math.min(4,Math.floor(q/900)+1),q+=H(O,tn)})}let $=p,cn=h,en=null,Q=0;if(p===h){const b=a.fork("overtime"),_=$n(b,.5)?"home":"away",O={home:0,away:0},U=s.otLimit??(s.playoff?900:600);let tn=5,un=0;const dn={home:n,away:e},yn=(Tn,Jn,zn)=>{const vn=dn[Tn].structPts/pt,_n=b.next(),Nn=le(.27*vn,.1,.5),In=le(.2*Math.sqrt(vn),.08,.3),Yn=le(.11/Math.sqrt(vn),.05,.2);let Gn="PUNT";_n<Nn?Gn="TD":_n<Nn+In?Gn=$n(b,.87)?"FG":"FG_MISS":_n<Nn+In+Yn?Gn=$n(b,.65)?"INT":"FUM":_n<Nn+In+Yn+.03&&(Gn="DOWNS");const ue=(Gn==="INT"||Gn==="FUM")&&$n(b,.1);let ve=le(Math.round(150+50*b.normal()),30,330);ve=Math.min(ve,Jn);const ke=Math.max(1,Math.round(xt[Gn]*Math.exp(.4*b.normal()))),Pe=Math.round(ke*le(.4+.1*b.normal(),.15,.7)),La=ke-Pe;let we=0,Ge;if(Gn==="TD"){const $e=zn(6);Ge=$e?"none":"xp",we=$e?6:7}else Gn==="FG"&&(we=3);return{side:Tn,period:tn,start:3600+Q,secs:ve,plays:Math.max(Jo[Gn],Math.round(ke/5.3)),rush:Pe,pass:La,sacks:0,end:Gn,pts:we,...Ge!==void 0?{conv:Ge}:{},oppPts:ue?7:0,defTD:ue}},nn=Tn=>{x.push(Tn),Q+=Tn.secs,un+=Tn.secs,O[Tn.side]+=Tn.pts,O[be(Tn.side)]+=Tn.oppPts};let rn=!1;const an=yn(_,Math.min(330,U),()=>!1);if(nn(an),an.oppPts>0&&(rn=!0),!rn){const Tn=O[_],Jn=yn(be(_),Math.max(30,U-un),zn=>zn>Tn-O[be(_)]);nn(Jn),(Jn.oppPts>0||O.home!==O.away)&&(rn=!0)}let Dn=_;for(;!rn;){const Tn=U-un;if(Tn<=0){if(s.playoff){tn++,un=0;continue}break}const Jn=yn(Dn,Tn,()=>!0);Jn.secs>=Tn&&Jn.pts===0&&Jn.oppPts===0&&(Jn.end="HALF"),nn(Jn),(Jn.pts>0||Jn.oppPts>0)&&(rn=!0),Dn=be(Dn)}$+=O.home,cn+=O.away,en={first:_,periods:tn-4,tie:$===cn}}const X=[];x.forEach((b,_)=>{b.pts>0&&X.push({side:b.side,kind:b.end==="TD"?"TD":"FG",pts:b.pts,...b.conv!==void 0?{conv:b.conv}:{},drive:_,period:b.period,at:b.start+b.secs}),b.oppPts>0&&X.push({side:be(b.side),kind:b.defTD?"DEF_TD":"SAFETY",pts:b.oppPts,drive:_,period:b.period,at:b.start+b.secs})});const P=()=>({rush:0,pass:0,yards:0,plays:0,giveaways:0,takeaways:0,sacksTaken:0,drives:0,top:0,fgMade:0,fgMissed:0}),I={home:P(),away:P()};for(const b of x){const _=I[b.side];_.rush+=b.rush,_.pass+=b.pass,_.yards+=b.rush+b.pass,_.plays+=b.plays,_.sacksTaken+=b.sacks,_.drives++,_.top+=b.secs,b.end==="FG"&&_.fgMade++,b.end==="FG_MISS"&&_.fgMissed++,(b.end==="INT"||b.end==="FUM")&&(_.giveaways++,I[be(b.side)].takeaways++)}const Y={home:o.home,away:o.away};return{homeScore:$,awayScore:cn,regHome:p,regAway:h,drives:x,events:X,stats:I,agg:Y,ot:en,otSecs:Q}}function Wo(n,e,a){return $0((n.structPts-e.structPts+a)/Math.sqrt(n.sd*n.sd+e.sd*e.sd))}function Po(n,e){let a=n[0],s=-1/0;for(const t of n){const r=e(t);r>s&&(s=r,a=t)}return{o:a,v:s}}function vr(n,e){const a={off:ht,def:vt};let s=ht,t=vt;const r=v=>Wo(Ye(n,e,e,{off:v,def:a.def}),Ye(e,n,e,{off:a.off,def:t}),0),o=v=>Wo(Ye(n,e,e,{off:s,def:a.def}),Ye(e,n,e,{off:a.off,def:v}),0);for(let v=0;v<2;v++)s=Po(bi,r).o,t=Po(Ri,o).o;const l=n.rb-e.rb,i=n.olRun-e.olRun,f=n.qb-e.qb,u=n.rec-e.rec,p=n.olPass-e.olPass,h=.35*l+.65*i-(.45*f+.3*u+.25*p),d=n.frontRun-e.frontRun-(.5*(n.coverage-e.coverage)+.5*(n.passRush-e.passRush));return{off:s,def:t,tilt:h,tiltD:d}}const qu=[[["East","North"],["South","West"]],[["East","South"],["North","West"]],[["East","West"],["North","South"]]];function Zu(n,e){const a=f=>{const u=e[f];if(u===void 0)throw new Error(`schedule: no rank for ${f}`);return u},s=(f,u)=>Ea(f,u).slice().sort((p,h)=>a(p)-a(h));for(const f of["AFC","NFC"])for(const u of xe)if(Ea(f,u).map(h=>e[h]).sort().join()!=="1,2,3,4")throw new Error(`schedule: ranks in ${f} ${u} must be 1-4 once each`);const t=[];for(const f of["AFC","NFC"])for(const u of xe){const p=s(f,u);for(let h=0;h<4;h++)for(let d=h+1;d<4;d++)t.push({home:H(p,h),away:H(p,d),kind:"div"}),t.push({home:H(p,d),away:H(p,h),kind:"div"})}const r=H(qu,(n%3+3)%3);for(const f of["AFC","NFC"])for(const[u,p]of r){const h=s(f,u),d=s(f,p);for(let v=0;v<4;v++)for(let g=0;g<4;g++)t.push((v+g+n)%2===0?{home:H(h,v),away:H(d,g),kind:"conf4"}:{home:H(d,g),away:H(h,v),kind:"conf4"})}const o=f=>(f+n)%4,l=f=>(f+n+1+Math.floor(n/4)%3)%4;xe.forEach((f,u)=>{const p=s("AFC",f),h=s("NFC",H(xe,o(u)));for(let d=0;d<4;d++)for(let v=0;v<4;v++)t.push((d+v+n)%2===0?{home:H(p,d),away:H(h,v),kind:"inter4"}:{home:H(h,v),away:H(p,d),kind:"inter4"})});for(const f of["AFC","NFC"]){const[[u,p],[h,d]]=r,v=[[u,h],[h,p],[p,d],[d,u]];for(const[g,B]of v){const y=s(f,g),k=s(f,B);for(let w=0;w<4;w++)t.push(n%2===0?{home:H(y,w),away:H(k,w),kind:"conf2"}:{home:H(k,w),away:H(y,w),kind:"conf2"})}}const i=n%2===0;return xe.forEach((f,u)=>{const p=s("AFC",f),h=s("NFC",H(xe,l(u)));for(let d=0;d<4;d++)t.push(i?{home:H(h,d),away:H(p,d),kind:"inter1"}:{home:H(p,d),away:H(h,d),kind:"inter1"})}),t}const Xu=[5,6,7,8,9,10,11,12,13,14],$u=[4,4,4,4,4,4,2,2,2,2];function nd(n,e,a,s=400){const t=Zu(e,a),r=[...new Set(t.map(o=>o.home))];for(let o=0;o<s;o++){const l=ed(t,r,n);if(l)return l}throw new Error("schedule: no weekly assignment found")}function st(n,e){for(let a=e.length-1;a>0;a--){const s=n.int(0,a),t=H(e,a);e[a]=H(e,s),e[s]=t}return e}function ed(n,e,a){const s=new Array(n.length).fill(0),t=new Map;n.forEach((i,f)=>{if(i.kind==="div"){const u=[i.home,i.away].sort().join("|");(t.get(u)??t.set(u,[]).get(u)).push(f)}});for(const i of["AFC","NFC"])for(const f of xe){const u=st(a,Ea(i,f));for(const[p,h]of[[H(u,0),H(u,1)],[H(u,2),H(u,3)]]){const d=t.get([p,h].sort().join("|"));s[H(d,a.int(0,1))]=18}}const r=new Map,o=[];Xu.forEach((i,f)=>{for(let u=0;u<H($u,f);u++)o.push(i)}),st(a,o),st(a,e.slice()).forEach((i,f)=>r.set(i,H(o,f)));const l=new Set(n.map((i,f)=>f).filter(i=>s[i]===0));for(let i=1;i<=17;i++){const f=e.filter(p=>r.get(p)!==i),u=ad(n,l,f,a);if(!u)return null;for(const p of u)s[p]=i,l.delete(p)}return l.size?null:n.map((i,f)=>({...i,week:H(s,f)}))}function ad(n,e,a,s){const t=new Set(a),r=new Map;for(const u of a)r.set(u,[]);for(const u of e){const p=H(n,u);t.has(p.home)&&t.has(p.away)&&(r.get(p.home).push(u),r.get(p.away).push(u))}const o=new Set,l=[];let i=0;const f=()=>{if(++i>4e3)return!1;let u=null,p=1e9;for(const d of a)if(!o.has(d)){const v=r.get(d).filter(g=>!o.has(H(n,g).home)&&!o.has(H(n,g).away)).length;v<p&&(p=v,u=d)}if(u===null)return!0;if(p===0)return!1;const h=st(s,r.get(u).filter(d=>!o.has(H(n,d).home)&&!o.has(H(n,d).away)));for(const d of h){const{home:v,away:g}=H(n,d);if(o.add(v),o.add(g),l.push(d),f())return!0;o.delete(v),o.delete(g),l.pop()}return!1};return f()?l.slice():null}function Oi(n,e,a){const s=n+e+a;return s===0?0:(n+.5*a)/s}let sd=class{rows=new Map;constructor(e){for(const a of kn)this.rows.set(a.name,[]);for(const a of e)this.rows.get(a.home).push({opp:a.away,pf:a.hs,pa:a.as,tdf:a.htd,tda:a.atd}),this.rows.get(a.away).push({opp:a.home,pf:a.as,pa:a.hs,tdf:a.atd,tda:a.htd})}rec(e,a=()=>!0){let s=0,t=0,r=0;for(const o of this.rows.get(e))a(o)&&(o.pf>o.pa?s++:o.pf<o.pa?t++:r++);return{w:s,l:t,t:r,n:s+t+r}}pct(e,a){const s=this.rec(e,a);return Oi(s.w,s.l,s.t)}overall(e){return this.pct(e)}net(e,a=()=>!0){let s=0;for(const t of this.rows.get(e))a(t)&&(s+=t.pf-t.pa);return s}netTD(e){let a=0;for(const s of this.rows.get(e))a+=s.tdf-s.tda;return a}sov(e){return this.oppPct(e,a=>a.pf>a.pa)}sos(e){return this.oppPct(e,()=>!0)}oppPct(e,a){let s=0,t=0;for(const r of this.rows.get(e))if(a(r)){const o=this.rec(r.opp);s+=o.w+.5*o.t,t+=o.n}return t===0?0:s/t}total(e,a){let s=0;for(const t of this.rows.get(e))s+=t[a];return s}};const Me=n=>Bs(Et,n),td=(n,e)=>Me(n).conf===Me(e).conf&&Me(n).div===Me(e).div,Go=(n,e)=>Me(n).conf===Me(e).conf;function No(n,e,a){const s=n.total(e,"pf"),t=n.total(e,"pa");return 1+a.filter(r=>n.total(r,"pf")>s).length+1+a.filter(r=>n.total(r,"pa")<t).length}const Vi=1e-12;function de(n,e){const a=n.map(e),s=Math.max(...a),t=n.filter((r,o)=>H(a,o)>s-Vi);return t.length===n.length?null:t}function rd(n,e){const a=g=>{if(n==="division")return de(g,B=>{let y=0,k=0,w=0;for(const D of g)if(D!==B){const C=e.rec(B,L=>L.opp===D);y+=C.w,k+=C.l,w+=C.t}return Oi(y,k,w)});if(g.length===2)return de(g,B=>e.pct(B,y=>y.opp===g.find(k=>k!==B)));for(const B of g)if(g.filter(k=>k!==B).every(k=>{const w=e.rec(B,D=>D.opp===k);return w.n>0&&w.w===w.n}))return[B];for(const B of g)if(g.filter(k=>k!==B).every(k=>{const w=e.rec(B,D=>D.opp===k);return w.n>0&&w.l===w.n}))return g.filter(k=>k!==B);return null},s=g=>de(g,B=>e.pct(B,y=>td(B,y.opp))),t=g=>de(g,B=>e.pct(B,y=>Go(B,y.opp))),r=g=>B=>{const y=B.map(D=>new Set(e.rows.get(D).map(C=>C.opp))),k=[...H(y,0)].filter(D=>!B.includes(D)&&y.every(C=>C.has(D))),w=D=>k.includes(D.opp);return!k.length||B.some(D=>e.rec(D,w).n<g)?null:de(B,D=>e.pct(D,w))},o=g=>de(g,B=>e.sov(B)),l=g=>de(g,B=>e.sos(B)),i=g=>kn.filter(B=>B.conf===Me(H(g,0)).conf).map(B=>B.name),f=g=>{const B=i(g);return de(g,y=>-No(e,y,B))},u=g=>{const B=kn.map(y=>y.name);return de(g,y=>-No(e,y,B))},p=g=>{const B=g.map(k=>new Set(e.rows.get(k).map(w=>w.opp))),y=[...H(B,0)].filter(k=>!g.includes(k)&&B.every(w=>w.has(k)));return y.length?de(g,k=>e.net(k,w=>y.includes(w.opp))):null},h=g=>de(g,B=>e.net(B,y=>Go(B,y.opp))),d=g=>de(g,B=>e.net(B)),v=g=>de(g,B=>e.netTD(B));return n==="division"?[a,s,r(0),t,o,l,f,u,p,d,v]:[a,t,r(4),o,l,f,u,h,d,v]}function Yi(n,e,a,s){const t=rd(e,a);let r=n.slice();n:for(;r.length>1;){for(const i of t){const f=i(r);if(f&&f.length<r.length&&f.length>0){r=f;continue n}}const o=r.slice().sort(),l=s.fork("coin:"+o.join("|")).next();return H(o,Math.floor(l*o.length))}return H(r,0)}function zi(n,e,a,s){const t=[];let r=n.slice();for(;r.length>1;){const o=Yi(r,e,a,s);t.push(o),r=r.filter(l=>l!==o)}return t.concat(r)}function Io(n,e,a){const s=[];let t=n.slice();for(;t.length;){const r=[];for(const l of new Set(t.map(i=>Me(i).conf+Me(i).div))){const i=t.filter(f=>Me(f).conf+Me(f).div===l);r.push(i.length>1?H(zi(i,"division",e,a),0):H(i,0))}const o=r.length===1?H(r,0):Yi(r,"wildcard",e,a);s.push(o),t=t.filter(l=>l!==o)}return s}function Ot(n,e){const a=n.slice().sort((t,r)=>e.overall(r)-e.overall(t)),s=[];for(const t of a){const r=s[s.length-1];r&&Math.abs(e.overall(H(r,0))-e.overall(t))<Vi?r.push(t):s.push([t])}return s}function Qi(n,e){const a=new sd(n),s={},t={},r={AFC:[],NFC:[]},o={AFC:[],NFC:[]};for(const l of["AFC","NFC"]){for(const p of xe){const h=Ot(Ea(l,p),a).flatMap(d=>d.length>1?zi(d,"division",a,e):d);s[`${l} ${p}`]=h,h.forEach((d,v)=>t[d]=v+1),o[l].push(H(h,0))}const i=Ot(o[l],a).flatMap(p=>p.length>1?Io(p,a,e):p),f=kn.filter(p=>p.conf===l&&!o[l].includes(p.name)).map(p=>p.name),u=Ot(f,a).flatMap(p=>p.length>1?Io(p,a,e):p).slice(0,3);r[l]=[...i,...u]}return{seeds:r,divisionOrder:s,divisionRank:t,divisionWinners:o}}function od(n){const e=Object.fromEntries(n.map(s=>[s.name,s.ratings])),a={};for(const s of["AFC","NFC"])for(const t of xe)Ea(s,t).sort((r,o)=>Bs(e,o).off+Bs(e,o).def-Bs(e,r).off-Bs(e,r).def).forEach((r,o)=>a[r]=o+1);return a}function Ho(n,e){return n.events.filter(a=>a.side===e&&(a.kind==="TD"||a.kind==="DEF_TD")).length}const xr=18,tt=["Wild Card","Divisional","Conference","Super Bowl"],ld=n=>n.year+n.run,Lt=n=>n.nextWeek>22,Or=n=>n>=19&&n<=22?tt[n-19]??null:null;function id(n,e){qi(n);const a=e.run??0,s=e.prevRank??od(n),t=nd(qe(e.seed).fork("schedule"),e.year+a,s).sort((r,o)=>r.week-o.week);return{seed:e.seed,year:e.year,run:a,prevRank:s,homeField:e.homeField,schedule:t,nextWeek:1,scores:[],playoffs:[],seeding:null,champion:null}}const cd=(n,e,a)=>e?`po:${e}:${a}`:`w${n}:${a}`,At=(n,e,a)=>Ru(n,cd(e,Or(e),a));function ji(n){if(Lt(n))return[];const e=n.nextWeek,a=Or(e),s=a?ud(n,a):n.schedule.filter(r=>r.week===e).map(r=>[r.home,r.away]),t=a==="Super Bowl"?0:n.homeField;return s.map(([r,o])=>({week:e,round:a,home:r,away:o,seed:At(n.seed,e,r),...t!==void 0?{homeField:t}:{}}))}function fd(n,e){if(qi(n),Lt(e))throw new Error("season: already finished");const a=new Map(n.map(u=>[u.name,u.ratings])),s=Nr(n.map(u=>u.ratings)),t=new Map;for(const u of n){const p=vr(u.ratings,s);t.set(u.name,{off:p.off,def:p.def})}const r=ji(e),o=Or(e.nextWeek),l=r.map(u=>{const p=a.get(u.home),h=a.get(u.away),d=Ye(p,h,s,{off:t.get(u.home).off,def:t.get(u.away).def}),v=Ye(h,p,s,{off:t.get(u.away).off,def:t.get(u.home).def});return{home:u.home,away:u.away,round:o,result:xi(d,v,qe(u.seed),{playoff:o!==null,...u.homeField!==void 0?{homeField:u.homeField}:{}})}}),i=l.map(u=>({week:e.nextWeek,home:u.home,away:u.away,hs:u.result.homeScore,as:u.result.awayScore,htd:Ho(u.result,"home"),atd:Ho(u.result,"away"),...u.round?{round:u.round}:{}})),f={...e,scores:o?e.scores:[...e.scores,...i],playoffs:o?[...e.playoffs,...i]:e.playoffs,nextWeek:e.nextWeek+1};return e.nextWeek===xr&&(f.seeding=Qi(f.scores,qe(e.seed).fork("seeding"))),o==="Super Bowl"&&(f.champion=Ui(H(i,0))),{state:f,games:l}}function _s(n){const e=Object.fromEntries(kn.map(s=>[s.name,{w:0,l:0,t:0,pf:0,pa:0}])),a=s=>{const t=e[s];if(!t)throw new Error("season: unknown team "+s);return t};for(const s of n.scores){const t=a(s.home),r=a(s.away);t.pf+=s.hs,t.pa+=s.as,r.pf+=s.as,r.pa+=s.hs,s.hs>s.as?(t.w++,r.l++):s.hs<s.as?(r.w++,t.l++):(t.t++,r.t++)}return e}const Ui=n=>n.hs>n.as?n.home:n.away;function ud(n,e){const a=n.seeding;if(!a)throw new Error("season: playoffs before the regular season is done");const s=(r,o)=>n.playoffs.filter(l=>l.round===r&&Et[l.home]?.conf===o).map(Ui);if(e==="Super Bowl"){const r=l=>H(s("Conference",l),0);return[ld(n)%2===1?[r("AFC"),r("NFC")]:[r("NFC"),r("AFC")]]}const t=[];for(const r of["AFC","NFC"]){const o=a.seeds[r],l=i=>o.indexOf(i)+1;if(e==="Wild Card")for(const[i,f]of[[2,7],[3,6],[4,5]])t.push([H(o,i-1),H(o,f-1)]);else if(e==="Divisional"){const i=[H(o,0),...s("Wild Card",r)].sort((f,u)=>l(f)-l(u));t.push([H(i,0),H(i,i.length-1)],[H(i,1),H(i,2)])}else{const i=s("Divisional",r).sort((f,u)=>l(f)-l(u));t.push([H(i,0),H(i,1)])}}return t}function qi(n){if(n.length!==32)throw new Error("season: 32 teams needed");const e=new Set(n.map(a=>a.name));for(const a of kn)if(!e.has(a.name))throw new Error("season: missing team "+a.name)}const Zi=["att","cmp","pyd","ptd","ints","sacked","car","ryd","rtd","fumLost","tgt","rec","recYd","recTd","twoPt","tkl","tfl","sack","press","pd","intDef","intDefYd","ff","fr","defTd","safeties","fgm","fga","xpm","xpa","punts","puntYd","kr","krYd","pr","prYd"],Vr=()=>Object.fromEntries(Zi.map(n=>[n,0])),dd=n=>n==="home"?"away":"home",Va=(n,e,a)=>Math.min(a,Math.max(e,n)),pd=["OT1","OT2","OG1","OG2","C"],Ko=(n,e,a,s)=>Math.exp(e*(n.ovr-80)+a*(n.p.spd-80)+s*(n.p.str-80));function hd(n,e){switch(e){case"DE1":case"DE2":return"DE";case"DT1":return"DT";case"DT2":return n==="3-4"?"ILB":"DT";case"DL5":return"DL5";case"MIKE":return"ILB";case"WILL":case"SAM":return n==="3-4"?"OLB34":"LB";case"CB1":case"CB2":return"CB";case"CB3":case"DIME":return"NB";case"FS":return"FS";case"SS":return"SS";default:return null}}const vd={run:{DE:.075,DT:.08,DL5:.03,ILB:.17,LB:.11,OLB34:.09,CB:.035,NB:.02,FS:.06,SS:.11},pass:{DE:.02,DT:.015,DL5:.005,ILB:.09,LB:.08,OLB34:.07,CB:.12,NB:.09,FS:.13,SS:.12},sack:{DE:.3,DT:.15,DL5:.05,ILB:.03,LB:.05,OLB34:.3,CB:.01,NB:.015,FS:.005,SS:.01},press:{DE:.26,DT:.18,DL5:.05,ILB:.04,LB:.06,OLB34:.24,CB:.015,NB:.02,FS:.01,SS:.015},int:{DE:.005,DT:.003,DL5:.001,ILB:.05,LB:.055,OLB34:.045,CB:.17,NB:.12,FS:.2,SS:.13},pd:{DE:.01,DT:.005,DL5:0,ILB:.04,LB:.045,OLB34:.035,CB:.26,NB:.14,FS:.12,SS:.1}},md={RB1:.6,RB2:.18,FB:.04,QB:.07,WR1:.01,WR2:.01,WR3:.01},gd={RB1:.55,RB2:.15,FB:.08,QB:.12,WR1:.01,WR2:.01},Bd={WR1:.21,WR2:.18,WR3:.12,WR4:.02,TE1:.16,TE2:.05,TE3:.01,RB1:.1,RB2:.04,FB:.01},Cd={WR1:.22,WR2:.17,WR3:.11,WR4:.01,TE1:.22,TE2:.08,TE3:.01,RB1:.06,RB2:.03,FB:.02},yd={WR1:1,WR2:1,WR3:1,WR4:1,TE1:.8,TE2:.8,TE3:.8,RB1:.6,RB2:.6,FB:.5};function Td(n,e,a,s){const t={id:`ghost|${s}|${n}`,name:`Backup ${s}`,pos:s,role:s,team:n,ovr:70,spd:70,str:70,freeAgent:!1};return{line:{id:t.id,name:t.name,team:n,side:e,slot:a,label:a,stats:Vr()},p:t,ovr:70,slot:a,kind:""}}function xo(n,e){const a=[];for(const v of n.lineup.placements){if(!v.player||pd.includes(v.slot.slot))continue;const g=hd(n.lineup.base,v.slot.slot)??"";a.push({line:{id:v.player.id,name:v.player.name,team:n.team,side:e,slot:v.slot.slot,label:v.slot.label,stats:Vr()},p:v.player,ovr:v.effOvr,slot:v.slot.slot,kind:g})}const s=(v,g)=>{const B=a.find(k=>k.slot===v);if(B)return B;const y=Td(n.team,e,v,g);return a.push(y),y},t=s("QB","QB"),r=s("K","K"),o=s("P","P"),l=(v,g)=>a.filter(B=>v[B.slot]!==void 0).map(B=>[B,v[B.slot]*Ko(B,g,0,0)]),i=(v,g)=>{const B=l(v,g);return B.length?B:[[t,1]]},f=(v,g,B,y)=>a.filter(k=>k.kind).map(k=>[k,vd[v][k.kind]*Ko(k,g,B,y)]).filter(k=>k[1]>0),u=f("run",.02,.003,.005),p=f("pass",.02,.004,.002),h=(v,g)=>v.map(([B,y],k)=>[B,(y+H(g,k)[1])/2]),d=Ni(n.lineup,n.returnerId);return{side:e,team:n.team,qb:t,k:r,pt:o,returner:d?a.find(v=>v.p.id===d.player.id)??null:null,retValue:d?.value??82,carry:i(md,.02),carryRz:i(gd,.02),target:i(Bd,.02),targetRz:i(Cd,.02),runTkl:u,passTkl:p,sack:f("sack",.035,.01,.006),press:f("press",.03,.008,.005),ints:f("int",.03,.008,0),pd:f("pd",.03,.008,0),ff:u.map(([v,g])=>[v,g*Math.exp(.008*(v.p.str-80))]),fr:h(u,p),all:a}}function re(n,e){let a=0;for(const t of e)a+=t[1];let s=n.next()*a;for(const[t,r]of e)if(s-=r,s<0)return t;return H(e,e.length-1)[0]}const ee=n=>({id:n.p.id,name:n.p.name,team:n.line.team,label:n.line.label}),Sd=n=>Math.exp(.012*(n.p.spd-80)+.004*(n.p.str-80)),kd=.645;function wd(n,e,a,s,t){const r=n.end==="FG"||n.end==="FG_MISS"||n.end==="PUNT";let o=Math.max(0,n.plays-n.sacks-(r?1:0));o===0&&n.rush+n.pass>0&&(o=1);let l=!1;n.end==="TD"&&(l=n.pass>0&&(n.rush===0||t.next()<.28+.55*n.pass/(n.pass+n.rush)),o===0&&(o=1));const i=o?Ua(o,[n.rush/4.3+.15,n.pass/6.6+.15]):[0,0];let f=H(i,0),u=H(i,1);const p=n.end==="INT"?1:0,h=n.pass>0||l?1:0;(n.rush>0||n.end==="TD"&&!l)&&(f=Math.max(f,1)),u=Math.max(u,h+p);const d=u-p,v=Va(kd+.0035*(a.qb.ovr-80),.5,.78);let g=0;if(h){for(let E=0;E<d;E++)t.next()<v&&g++;g=Math.max(g,1)}const B=[];for(let E=0;E<f;E++)B.push(re(t,a.carry));let y=null;n.end==="TD"&&!l&&(y=re(t,a.carryRz),B[f-1]=y);const k=f?Ua(n.rush,B.map(E=>Math.exp(.6*t.normal())*Sd(E))):[],w=(E,J)=>{if(H(E,J)>=1)return;let N=-1;for(let x=0;x<E.length;x++)x!==J&&H(E,x)>1&&(N<0||H(E,x)>H(E,N))&&(N=x);N>=0&&(E[N]=H(E,N)-1,E[J]=H(E,J)+1)};y&&w(k,f-1),B.forEach((E,J)=>{E.line.stats.car++,E.line.stats.ryd+=H(k,J)}),y&&y.line.stats.rtd++;const D=[];for(let E=0;E<g;E++)D.push(re(t,a.target));let C=null;l&&(C=re(t,a.targetRz),D[g-1]=C);const L=g?Ua(n.pass,D.map(E=>Math.exp(.55*t.normal())*(yd[E.slot]??.7)*Math.exp(.012*(E.p.spd-80)))):[];C&&w(L,g-1),D.forEach((E,J)=>{E.line.stats.tgt++,E.line.stats.rec++,E.line.stats.recYd+=H(L,J)}),C&&C.line.stats.recTd++;for(let E=0;E<u-g;E++){const J=re(t,a.target);J.line.stats.tgt++}const F=a.qb.line.stats;F.att+=u,F.cmp+=g,F.pyd+=n.pass,F.sacked+=n.sacks,l&&F.ptd++,F.ints+=p,B.forEach((E,J)=>{if(E===y&&J===f-1)return;const N=re(t,s.runTkl);N.line.stats.tkl++,t.next()<(H(k,J)<=1?.2:H(k,J)<=3?.06:0)&&N.line.stats.tfl++}),D.forEach((E,J)=>{E===C&&J===g-1||re(t,s.passTkl).line.stats.tkl++});for(let E=0;E<n.sacks;E++){const J=re(t,s.sack).line.stats;J.sack++,J.press++,J.tkl++,J.tfl++}for(let E=0;E<u;E++)t.next()<.17&&re(t,s.press).line.stats.press++;for(let E=0;E<u-g-p;E++)t.next()<.45&&re(t,s.pd).line.stats.pd++;const G={drive:e,side:n.side,period:n.period,kind:n.end==="TD"?l?"PASS_TD":"RUSH_TD":n.end==="FG"?"FG":n.end==="FG_MISS"?"FG_MISS":n.end==="INT"?"INT":n.end==="FUM"?"FUM":n.end==="SAFETY"?"SAFETY":n.end==="PUNT"?"PUNT":n.end==="DOWNS"?"DOWNS":"HALF"};if(n.end==="TD"){const E=l?C:y;G.scorer=ee(E),G.tdYards=l?H(L,g-1):H(k,f-1),l&&(G.passer=ee(a.qb));const J=a.k.line.stats;if(n.conv!==void 0&&(G.conv=n.conv),n.conv==="xp")J.xpa++,J.xpm++,G.convKicker=ee(a.k);else if(n.conv==="xp_miss")J.xpa++,G.convKicker=ee(a.k);else if(n.conv==="two"||n.conv==="two_fail"){const N=t.next()<.55,x=re(t,N?a.targetRz:a.carryRz);G.convBy=ee(x),N&&(G.convPasser=ee(a.qb)),n.conv==="two"&&x.line.stats.twoPt++}}if(n.end==="FG"&&(a.k.line.stats.fga++,a.k.line.stats.fgm++,G.kicker=ee(a.k),G.kickYards=Va(Math.round(35+8*t.normal()),19,63)),n.end==="FG_MISS"&&(a.k.line.stats.fga++,G.kicker=ee(a.k),G.kickYards=Va(Math.round(46+7*t.normal()),30,66)),n.end==="PUNT"){a.pt.line.stats.punts++;const E=Va(Math.round(45+5.5*t.normal()),28,66);a.pt.line.stats.puntYd+=E,G.kicker=ee(a.pt),G.kickYards=E}if(n.end==="INT"){const E=re(t,s.ints);E.line.stats.intDef++;const J=n.defTD?t.int(15,85):Math.max(0,Math.round(10+9*t.normal()));E.line.stats.intDefYd+=J,n.defTD&&E.line.stats.defTd++,G.giver=ee(a.qb),G.taker=ee(E),G.retYards=J,G.defTD=n.defTD}if(n.end==="FUM"){const E=[...B,...D],J=E.length?H(E,t.int(0,E.length-1)):a.qb;J.line.stats.fumLost++;const N=re(t,s.ff);N.line.stats.ff++;const x=re(t,s.fr);x.line.stats.fr++;const z=n.defTD?t.int(5,70):t.int(0,12);n.defTD&&x.line.stats.defTd++,G.giver=ee(J),G.forcer=ee(N),G.taker=ee(x),G.retYards=z,G.defTD=n.defTD}if((n.end==="INT"||n.end==="FUM")&&n.defTD&&(s.k.line.stats.xpa++,s.k.line.stats.xpm++,G.defKicker=ee(s.k)),n.end==="SAFETY"){const E=re(t,s.sack);E.line.stats.safeties++,G.taker=ee(E)}return G}function Dd(n,e,a){const s=n.drives;for(let t=0;t<s.length;t++){const r=H(s,t),o=r.side,l=e[o];if(!l.returner)continue;const i=t>0?H(s,t-1):null,f=!i||r.start>=1800&&i.start<1800||r.period>=5&&i.period<5||i.pts>0||i.oppPts>0,u=i&&i.side!==o,p=l.returner.line.stats;f&&a.next()<.45?(p.kr++,p.krYd+=Va(Math.round(24+.13*(l.retValue-82)+5*a.normal()),10,55)):!f&&u&&i&&i.end==="PUNT"&&a.next()<.36&&(p.pr++,p.prYd+=Va(Math.round(8.5+.12*(l.retValue-82)+5*a.normal()),0,40))}}function bd(n,e,a,s){const t={home:xo(e,"home"),away:xo(a,"away")},r=s.fork("box"),o=n.drives.map((l,i)=>wd(l,i,t[l.side],t[dd(l.side)],r));return Dd(n,t,r.fork("returns")),{home:e.team,away:a.team,lines:[...t.home.all,...t.away.all].map(l=>l.line),credits:o}}const Rd=new Set(["RB1","RB2","FB","WR1","WR2","WR3","WR4","TE1","TE2","TE3"]);function Oo(n){const e=n.stats;return n.slot==="QB"?.045*e.pyd+5*e.ptd-6*e.ints+.03*e.ryd+4*e.rtd-4*e.fumLost:.07*(e.ryd+e.recYd)+.3*e.rec+6*(e.rtd+e.recTd)+3*e.twoPt-8*e.fumLost}function Ed(n){const e=n.stats;return 4*e.sack+5*e.intDef+8*e.defTd+3*e.ff+2.5*e.fr+e.pd+.6*e.tfl+.25*e.tkl+.1*(e.press-e.sack)+4*e.safeties}const Xi=n=>n.slot==="QB"||Rd.has(n.slot),Ld=n=>!Xi(n)&&n.slot!=="K"&&n.slot!=="P",Ad=()=>({players:{}});function Md(n,e){for(const a of e.lines){const s=n.players[a.id]??={id:a.id,name:a.name,team:a.team,slot:a.slot,label:a.label,games:0,stats:Vr()};s.games++,s.slot=a.slot,s.label=a.label,s.team=a.team;for(const t of Zi)s.stats[t]+=a.stats[t]}}const $i=["pyd","ptd","ryd","rtd","recYd","rec","recTd","sack","intDef","tkl","ff","fgm","defTd"];function Yr(n,e,a=5){return Object.values(n.players).filter(s=>s.stats[e]>0).sort((s,t)=>t.stats[e]-s.stats[e]||(s.id<t.id?-1:1)).slice(0,a)}const Vo=n=>n?n.w+n.t/2:8.5;function Jd(n,e,a){const s=Object.values(n.players).sort((h,d)=>h.id<d.id?-1:1),t=(h,d)=>h.reduce((v,g)=>v===null||d(g)>d(v)?g:v,null),r=s.filter(Xi),o=s.filter(Ld),l=t(r,h=>Oo(h)*(1+.04*(Vo(e[h.team])-9))),i=t(r.filter(h=>h!==l),h=>Oo(h)),f=t(o,h=>Ed(h));let u=null;for(const h of Object.keys(e).sort()){const d=Vo(e[h]),v=a?.[h]??8.5,g=d-v;(!u||g>u.over||g===u.over&&d>u.wins)&&(u={team:h,wins:d,expected:v,over:g})}const p={};for(const h of $i)p[h]=Yr(n,h,5);return{mvp:l,opoy:i,dpoy:f,coach:u,leaders:p}}function _d(n,e,a){const s=l=>l==="home"?e:a,t=l=>`${String(Math.floor(l/60)).padStart(2,"0")}:${String(l%60).padStart(2,"0")}`,r=(l,i)=>{if(i>=5)return`OT ${t(Math.max(0,l-3600))}`;const f=Math.min(4,Math.max(1,Math.ceil(l/900)));return`Q${f} ${t(Math.max(0,900*f-l))}`},o=n.drives.map((l,i)=>({kind:"drive",n:i+1,team:s(l.side),period:l.period,clock:r(l.start,l.period),plays:l.plays,yards:null,end:l.end,pts:l.pts,oppPts:l.oppPts,defTD:l.defTD,scores:n.events.filter(f=>f.drive===i+1).map(f=>({team:s(f.side),kind:f.kind,pts:f.pts,conv:f.conv??"none",at:f.at})),summary:Fd(l,s(l.side))}));return{v:1,home:e,away:a,homeScore:n.homeScore,awayScore:n.awayScore,regHome:n.regHome,regAway:n.regAway,ot:n.ot?{first:s(n.ot.first),periods:n.ot.periods,tie:n.ot.tie}:null,drives:o,mvpLine:null}}function Fd(n,e){const a={TD:"ends in a touchdown",FG:"kicks a field goal",FG_MISS:"misses a field goal",PUNT:"punts",INT:"throws an interception",FUM:"loses a fumble",DOWNS:"turns it over on downs",HALF:"runs out the half",SAFETY:"is sacked in the end zone for a safety"},s=Math.max(1,Math.round(n.secs/60)),t=n.oppPts?` ${e} gives up ${n.oppPts} the other way.`:"";return`${e} ${a[n.end]} — ${n.plays} plays, ${s} min.${t}`}const Wd=["olRun","olPass","rb","qb","rec","passRush","frontRun","coverage","kicker","rec12","rec13","rec21","rec22","rec11","frontBase","frontNick","covBase","covNick","covDime","te1","te2","rbHeavy","ret","p","qbRunR","wrBlk","passOff","runOff","off","def"];function nc(n,e){const a=ji(n).find(s=>s.home===e||s.away===e);return a?a.seed:n.seed}function Pd(n,e,a){const s={};for(const o of e)s[o.name]={...o.ratings};const t=o=>({week:o.week,home:o.home,away:o.away,hs:o.hs,as:o.as,htd:o.htd,atd:o.atd,...o.round?{round:o.round}:{}}),r={seed:n.seed,year:n.year,run:n.run,gameSeed:nc(n,a.userTeam),nextWeek:n.nextWeek,userTeam:a.userTeam,roster:a.roster,ratings:s,schedule:n.schedule.map(o=>({week:o.week,home:o.home,away:o.away,kind:o.kind})),scores:[...n.scores.map(t),...n.playoffs.map(t)],plan:a.plan,statsRecorded:a.statsRecorded,prevRank:{...n.prevRank}};return n.homeField!==void 0&&(r.homeField=n.homeField),r}function ec(n){const e=[];for(const o of kn){const l=n.ratings[o.name];if(!l||typeof l!="object")return{ok:!1,message:"week: no ratings for "+o.name};for(const i of Wd)if(typeof l[i]!="number"||!Number.isFinite(l[i]))return{ok:!1,message:"week: bad rating "+i+" for "+o.name};e.push({name:o.name,ratings:{...l}})}const a=[],s=[];for(const o of n.scores){const l={week:o.week,home:o.home,away:o.away,hs:o.hs,as:o.as,htd:o.htd??0,atd:o.atd??0,...o.round?{round:o.round}:{}};(o.round?s:a).push(l)}const t={seed:n.seed,year:n.year,run:n.run,prevRank:n.prevRank?{...n.prevRank}:{},homeField:n.homeField,schedule:n.schedule.map(o=>({week:o.week,home:o.home,away:o.away,kind:o.kind})).sort((o,l)=>o.week-l.week),nextWeek:n.nextWeek,scores:a,playoffs:s,seeding:null,champion:null};t.nextWeek>xr&&(t.seeding=Qi(a,qe(n.seed).fork("seeding")));const r=s.find(o=>o.round==="Super Bowl");return r&&(t.champion=r.hs>r.as?r.home:r.away),n.prevRank?t.nextWeek<=22&&nc(t,n.userTeam)!==n.gameSeed?{ok:!1,message:"week: stored gameSeed does not match the state (changed save?)"}:{ok:!0,value:{state:t,teams:e,context:{userTeam:n.userTeam,roster:n.roster,plan:n.plan,statsRecorded:n.statsRecorded}}}:{ok:!1,message:"week: saved without prevRank (cannot rebuild a run-it-back)"}}const Gd=6,Nd=4,Id=2,Hd=1,Yo={"Wild Card":Gd,Divisional:Nd,Conference:Id,"Super Bowl":Hd};function ac(n){const e=n.payload;if(!Number.isInteger(e.nextWeek)||e.nextWeek<1||e.nextWeek>xr+4)return Xn(`week: nextWeek ${e.nextWeek} outside 1..22`);if(e.scores.find(v=>v.round==="Super Bowl")&&e.nextWeek!==22)return Xn("week: a Super Bowl score exists but nextWeek is not 22 (finished seasons are Season payloads, not week saves)");const s=v=>tt.indexOf(v);for(const v of e.scores){if(v.round&&!tt.includes(v.round))return Xn(`week: unknown playoff round '${v.round}'`);if(v.round&&v.week!==19+s(v.round))return Xn(`week: round '${v.round}' stored under week ${v.week} (expected ${19+s(v.round)})`)}for(const v of e.scores)if(!Number.isInteger(v.htd)||!Number.isInteger(v.atd))return Xn(`week: score ${v.home} vs ${v.away} (week ${v.week}) lacks htd/atd — seeding tiebreaks would silently change`);const t=(v,g,B)=>`${v}|${g}|${B}`,r=new Set(e.schedule.map(v=>t(v.week,v.home,v.away))),o=new Map;for(const v of e.scores){if(!v.round&&!r.has(t(v.week,v.home,v.away)))return Xn(`week: score ${v.away} @ ${v.home} (week ${v.week}) is not on the stored schedule`);const g=t(v.week,v.home,v.away);if(o.has(g))return Xn(`week: fixture ${v.away} @ ${v.home} (week ${v.week}) appears twice in scores`);o.set(g,v)}for(const v of e.schedule)if(!(v.week<e.nextWeek&&!v.week)&&v.week<e.nextWeek&&!o.has(t(v.week,v.home,v.away)))return Xn(`week: scheduled game ${v.away} @ ${v.home} (week ${v.week}) has no score but week ${v.week} < nextWeek ${e.nextWeek}`);const l=new Map;for(const v of e.scores)v.round&&(l.get(v.round)??l.set(v.round,[]).get(v.round)).push(v);let i=new Set;for(const v of tt){const g=l.get(v)??[];if(!g.length)break;if(g.length!==Yo[v])return Xn(`week: ${v} has ${g.length} games (expected ${Yo[v]})`);if(v!=="Wild Card"){for(const B of g)if(!i.has(B.home)&&!i.has(B.away))return Xn(`week: ${v} game ${B.away} @ ${B.home} has no participant from the previous round's winners`)}if(i=new Set(g.map(B=>B.hs>B.as?B.home:B.away)),i.size!==g.length)return Xn(`week: ${v} has a tie or a repeat winner — playoff games cannot tie`)}const u=l.get("Super Bowl")?.[0];if(u&&u.hs===u.as)return Xn("week: the Super Bowl ended level — impossible in the engine");const p=ec(e);if(!p.ok)return Xn(p.message);const h=p.value,d=new Set(kn.map(v=>v.name));for(const v of[...e.schedule,...e.scores])if(!d.has(v.home)||!d.has(v.away))return Xn(`week: unknown team name in ${v.away} @ ${v.home}`);return{ok:!0,value:h}}function Xn(n){return{ok:!1,code:"corrupt",message:n}}function Kd(n){const e=n.payload,a=e.userResults[e.userResults.length-1];if(!a)return Xn("season: no user results");const s=a.hs>a.as?a.home:a.away;return e.champion===e.userTeam&&e.userOutcome!=="champion"?Xn("season: champion is the user but userOutcome says otherwise"):e.champion!==e.userTeam&&e.userOutcome==="champion"?Xn("season: userOutcome says champion but the stored champion is not the user"):e.champion===e.userTeam&&s!==e.userTeam?Xn("season: stored champion is the user but the last result was a loss"):{ok:!0,value:null}}const xd={"Wild Card":"wild-card",Divisional:"divisional",Conference:"conference","Super Bowl":"super-bowl-loss"},Od=n=>n.hs>n.as?n.home:n.as>n.hs?n.away:null;function Vd(n,e){const a=Et[e];if(!a)throw new Error("outcome: unknown team "+e);if(!n.seeding)return null;if(!n.seeding.seeds[a.conf].includes(e))return"missed-playoffs";for(const s of n.playoffs){if(s.home!==e&&s.away!==e)continue;const t=Od(s);if(t!==null){if(t!==e)return xd[s.round];if(s.round==="Super Bowl")return"champion"}}return null}function Yd(n,e=0){let a=3735928559^e,s=1103547991^e;for(let t=0;t<n.length;t++){const r=n.charCodeAt(t);a=Math.imul(a^r,2654435761),s=Math.imul(s^r,1597334677)}return a=Math.imul(a^a>>>16,2246822507)^Math.imul(s^s>>>13,3266489909),s=Math.imul(s^s>>>16,2246822507)^Math.imul(a^a>>>13,3266489909),(4294967296*(2097151&s)+(a>>>0)).toString(16).padStart(14,"0")}async function zd(n){const e=await globalThis.crypto.subtle.digest("SHA-256",new TextEncoder().encode(n));return[...new Uint8Array(e)].map(a=>a.toString(16).padStart(2,"0")).join("")}const Zs=n=>({ok:!1,error:n instanceof Error?n.message:String(n)});class Qd{constructor(e,a={}){this.ls=e,this.o=a}ls;o;get storage(){return this.ls}async read(e){try{return{ok:!0,value:this.storage?.getItem(e)??null}}catch(a){return Zs(a)}}async write(e,a){try{if(H0(e)&&this.o.slotCheck)try{const s=hi(JSON.parse(a));if(s.ok){const t=this.o.slotCheck(s.value.slot,e);if(t)return{ok:!1,error:t}}}catch{}return this.storage?.setItem(e,a),{ok:!0,value:void 0}}catch(s){return Zs(s)}}async remove(e){try{return this.storage?.removeItem(e),{ok:!0,value:void 0}}catch(a){return Zs(a)}}async keys(e){try{const a=this.storage;if(!a)return{ok:!0,value:[]};const s=[];for(let t=0;t<a.length;t++){const r=a.key(t);r!==null&&r.startsWith(e)&&s.push(r)}return{ok:!0,value:s.sort()}}catch(a){return Zs(a)}}async entries(e){const a=await this.keys(e);if(!a.ok)return a;const s=[];for(const t of a.value){const r=await this.read(t);r.ok&&r.value!==null&&s.push([t,r.value])}return{ok:!0,value:s}}}const jd=(n={})=>new Qd(typeof localStorage>"u"?null:localStorage,n),Ud="nfl1";function qd(){const{RATING_SPECS:n,DEF_SPECS:e,PERS_REC:a,RB_HEAVY:s,PERS:t,STRAT:r,DEF_FOCUS:o,PLAN_K:l,MC:i,RUSH_BASE:f,PASS_BASE:u,PT_RUSH:p,PT_PASS:h,PT_TO:d,PT_SACK:v,LAM_TO:g,LAM_SACK:B,BASE_PTS:y,HOME_FIELD:k,PTS_NOISE:w,RET_PTS:D,RET_NEUTRAL:C,QB_RUN_C:L,WR_BLK_C:F,WR_BLK_W:G,PUNT_PTS:E,DIME_W:J,POINTS_PER_WIN:N,GAMES:x}=q0;return JSON.stringify([Se,dt,fr,Ir,n,e,a,s,t,r,o,l,i,[f,u,p,h,d,v,g,B,y,k,w,D,C,L,F,G,E,J,N,x]])}const oa=()=>Ud+"."+Yd(qd()),Zd={"Arizona Cardinals":"ARI","Atlanta Falcons":"ATL","Baltimore Ravens":"BAL","Buffalo Bills":"BUF","Carolina Panthers":"CAR","Chicago Bears":"CHI","Cincinnati Bengals":"CIN","Cleveland Browns":"CLE","Dallas Cowboys":"DAL","Denver Broncos":"DEN","Detroit Lions":"DET","Green Bay Packers":"GB","Houston Texans":"HOU","Indianapolis Colts":"IND","Jacksonville Jaguars":"JAX","Kansas City Chiefs":"KC","Las Vegas Raiders":"LV","Los Angeles Chargers":"LAC","Los Angeles Rams":"LAR","Miami Dolphins":"MIA","Minnesota Vikings":"MIN","New England Patriots":"NE","New Orleans Saints":"NO","NY Giants":"NYG","NY Jets":"NYJ","Philadelphia Eagles":"PHI","Pittsburgh Steelers":"PIT","San Francisco 49ers":"SF","Seattle Seahawks":"SEA","Tampa Bay Buccaneers":"TB","Tennessee Titans":"TEN","Washington Commanders":"WAS"},Wn=n=>Zd[n]??n.slice(0,3).toUpperCase(),Xd=n=>kn.find(e=>e.name===n),sc=["Wild Card","Divisional","Conference","Super Bowl"],ts=18;function zo(n){return ts+sc.length}function $d(n,e){const a=ts;if(e<=a){const l=n.schedule.filter(i=>i.week===e).map(i=>Qo(n,i,i.kind,null));return{week:e,label:"WEEK "+e,games:l,done:l.every(i=>i.hs!==null)}}const s=sc[e-a-1]??null;if(!s)throw new Error(`weekVM: no week slot ${e}`);const r=np(n,s).map(([o,l])=>Qo(n,{week:e,home:o,away:l},"playoff",s));return{week:e,label:s.toUpperCase(),games:r,done:r.every(o=>o.hs!==null)}}function np(n,e){const a=n.seeding;if(e==="Wild Card"){if(!a)return[];const t=[];for(const r of["AFC","NFC"]){const o=a.seeds[r];for(const[l,i]of[[2,7],[3,6],[4,5]])t.push([o[l-1],o[i-1]])}return t}return n.playoffs.filter(t=>t.round===e).map(t=>[t.home,t.away])}function Qo(n,e,a,s){const t=s?n.playoffs.find(o=>o.round===s&&(o.home===e.home||o.away===e.home)):n.scores.find(o=>o.week===e.week&&o.home===e.home&&o.away===e.away),r=At(n.seed,e.week,e.home);return{home:e.home,away:e.away,homeAbbr:Wn(e.home),awayAbbr:Wn(e.away),hs:t?t.hs:null,as:t?t.as:null,kind:s?"playoff":a,round:s,replayLabel:s?`po:${s}:${e.home}`:`w${e.week}:${e.home}`,gameSeed:r,me:!1}}function ep(n,e){const s=Math.min(e,ts),t={};for(const f of kn)t[f.name]={w:0,l:0,t:0,pf:0,pa:0};for(const f of n.scores){if(f.week>s)continue;const u=t[f.home],p=t[f.away],h=f.hs,d=f.as;u.pf+=h,u.pa+=d,p.pf+=d,p.pa+=h,h>d?(u.w++,p.l++):d>h?(p.w++,u.l++):(u.t++,p.t++)}const r=f=>{if(!n.seeding)return null;const u=n.seeding.seeds.AFC.indexOf(f),p=n.seeding.seeds.NFC.indexOf(f);return u>=0?u+1:p>=0?p+1:null},o=f=>{const u=Xd(f),p=t[f],h=(p.w+.5*p.t)/Math.max(1,p.w+p.l+p.t);return{team:f,abbr:Wn(f),conf:u.conf,div:u.div,w:p.w,l:p.l,t:p.t,pf:p.pf,pa:p.pa,winPct:h===1?"1.000":h.toFixed(3),seed:r(f)}},l=kn.map(f=>o(f.name)).sort((f,u)=>u.w-f.w||f.pa-u.pa||f.team.localeCompare(u.team)),i=[];for(const f of["AFC","NFC"])for(const u of["East","North","South","West"]){const p=kn.filter(h=>h.conf===f&&h.div===u).map(h=>o(h.name)).sort((h,d)=>d.w-h.w||h.pa-d.pa||h.team.localeCompare(d.team));i.push({conf:f,div:u,rows:p})}return{throughWeek:s,league:l,divisions:i}}function ap(n,e,a,s){return Pd(n,e,{userTeam:a,roster:s,plan:null,statsRecorded:!1})}function jo(n){const e=kn.map(s=>{const t=n.ratings[s.name];return{name:s.name,ratings:{...t}}}),a=ec(n);return a.ok?{ok:!0,value:{state:a.value.state,teams:e,userTeamName:a.value.context.userTeam,roster:a.value.context.roster}}:{ok:!1,message:a.message}}function sp(n,e,a){const s=_s(n)??{},t=kn.map(l=>{const i=s[l.name]??{w:0,l:0,t:0,pf:0,pa:0};return{team:l.name,w:i.w,l:i.l,t:i.t,pf:i.pf,pa:i.pa}}),r=[...n.scores,...n.playoffs].filter(l=>l.home===e||l.away===e).map(l=>({week:l.week,home:l.home,away:l.away,hs:l.hs,as:l.as,...l.round?{round:l.round}:{},htd:l.htd,atd:l.atd})),o=n.champion?Vd(n,e)??"missed-playoffs":"missed-playoffs";return{seed:n.seed,year:n.year,run:n.run,userTeam:e,roster:a,table:t,userResults:r,champion:n.champion??"",userOutcome:o,statsRecorded:!1}}let bn=null,Wa=null,Pa="",Xs=[],Re=1;const mr=new Set,$s=()=>{for(const n of mr)n()},Fn={get ready(){return bn!==null},get slot(){return Re},get total(){return bn?zo():ts+4},get view(){return bn?$d(bn,Re):null},get standings(){return bn?ep(bn,Re):null},get finished(){return bn?Lt(bn):!1},get champion(){return bn?.champion??null},get userTeamName(){return Pa},get label(){return this.view?.label??""},get atLastPlayed(){return bn?Re===bn.nextWeek-1:!1},get runState(){return bn},get userRoster(){return Xs},subscribe(n){return mr.add(n),()=>mr.delete(n)},begin(n,e,a,s,t){Wa=n,Pa=s,Xs=t,bn=id(n,{seed:e,year:a}),Re=1,$s()},resume(n,e,a,s){Wa=e,Pa=a,Xs=s,bn=n,Re=Math.max(1,Math.min(n.nextWeek,zo())),$s()},step(){if(!bn||!Wa)return null;Re=bn.nextWeek;const n=fd(Wa,bn);bn=n.state;const e=n.games.map(a=>({home:a.home,away:a.away,round:a.round,result:a.result,gs:At(bn.seed,bn.nextWeek-1,a.home)}));return $s(),{week:bn.nextWeek-1,games:e}},go(n){Re=Math.max(1,Math.min(this.total,n)),$s()},next(){this.go(Re+1)},prev(){this.go(Re-1)},weekPayload(){return ap(bn,Wa,Pa,Xs)},snapshot(){return{state:bn,teams:Wa,userTeamName:Pa,slot:Re}},scores(){return bn?[...bn.scores,...bn.playoffs]:[]},userTeamIndex(){return kn.findIndex(n=>n.name===Pa)}},ys={mode:"system",reducedMotion:!1,newestFirst:!0,teamName:null,draftSlot:null},tc=Is("nfl","settings");function rc(){try{return globalThis.localStorage}catch{return null}}function oc(){const n=rc();if(!n)return{...ys};try{const e=n.getItem(tc);if(!e)return{...ys};const a=JSON.parse(e);return{mode:a.mode==="light"||a.mode==="dark"||a.mode==="system"?a.mode:ys.mode,reducedMotion:a.reducedMotion===!0,newestFirst:a.newestFirst!==!1,teamName:typeof a.teamName=="string"?a.teamName:null,draftSlot:typeof a.draftSlot=="number"&&a.draftSlot>=1&&a.draftSlot<=32?a.draftSlot:null}}catch{return{...ys}}}function tp(n){const e=rc();if(e)try{e.setItem(tc,JSON.stringify(n))}catch{}}function rp(){return typeof window>"u"||!window.matchMedia?!1:window.matchMedia("(prefers-reduced-motion: reduce)").matches}const op=["team","board","complete","hub","week","standings","bracket","book","awards","review","guide","cards","feed","stats","settings","saves","share"],lp=new RegExp("^#/?("+op.join("|")+")(?:/([0-9]{1,2}))?$");function ip(n){const e=lp.exec(n);return e?{screen:e[1],param:e[2]?Number(e[2]):null}:null}function cp(n,e){return"#/"+n+(e!=null?"/"+e:"")}function fp(){return typeof location>"u"?null:ip(location.hash)}function up(n,e){typeof location>"u"||(location.hash=cp(n,e))}function dp(n){return Au(n)}function pp(n){return ci(n.getState(),e=>(e(n.getState()),n.subscribe(e)))}function Ca(n){return Jr(n)}function hp(){return ci(Vt(),n=>(n(Vt()),Fn.subscribe(()=>n(Vt()))))}function Vt(){const n=Fn;return{ready:n.ready,slot:n.slot,total:n.total,view:n.view,standings:n.standings,finished:n.finished,champion:n.champion,userTeamName:n.userTeamName,label:n.label,atLastPlayed:n.atLastPlayed,runState:n.runState}}function vp(){return Jr({...ys,...oc()})}const mp="Model Value",_e={measured:mp,balance:"Game balance",owner:"Owner preset"};let ea={mode:"measured",locked:!1};const nt=new Set,ie={get(){return ea},set(n){ea.locked||(ea={...ea,mode:n},nt.forEach(e=>e(ea)))},lock(){ea={...ea,locked:!0},nt.forEach(n=>n(ea))},subscribe(n){return nt.add(n),n(ea),()=>nt.delete(n)}},Yt=2147483647,gp=1e5,Bp=99e5;function Mt(n){return"b36:"+n.toString(36)}function Uo(n){const e=String(n??"").trim();if(!e)return null;if(e.slice(0,4)==="b36:"){if(!/^[0-9a-z]+$/i.test(e.slice(4)))return null;const a=parseInt(e.slice(4),36);return Number.isInteger(a)&&a>=1&&a<=Yt?a:null}if(/^\d{1,10}$/.test(e)){const a=Number(e);return Number.isInteger(a)&&a>=1&&a<=Yt?a:null}if(/^[0-9a-z]{1,6}$/i.test(e)){const a=parseInt(e,36);return Number.isInteger(a)&&a>=1&&a<=Yt?a:null}return null}function Cp(){return gp+Math.floor(Math.random()*Bp)}function qo(n){try{const e=new URL(location.href);e.searchParams.set("seed",Mt(n)),history.replaceState(null,"",e.toString())}catch{}}const yp={"Arizona Cardinals":["#97233F","#000000","#FFB612"],"Atlanta Falcons":["#A71930","#000000","#A5ACAF"],"Baltimore Ravens":["#241773","#000000","#9E7C0C"],"Buffalo Bills":["#00338D","#C60C30","#FFFFFF"],"Carolina Panthers":["#0085CA","#101820","#BFC0BF"],"Chicago Bears":["#0B162A","#000000","#FFFFFF"],"Cincinnati Bengals":["#FB4F14","#000000","#FFFFFF"],"Cleveland Browns":["#311D00","#FF3C00","#FFFFFF"],"Dallas Cowboys":["#003594","#869397","#FFFFFF"],"Denver Broncos":["#FB4F14","#002244","#FFFFFF"],"Detroit Lions":["#0076B6","#B0B7BC","#000000"],"Green Bay Packers":["#203731","#FFB612","#FFFFFF"],"Houston Texans":["#03202F","#A71930","#FFFFFF"],"Indianapolis Colts":["#002C5F","#FFFFFF","#A2AAAD"],"Jacksonville Jaguars":["#101820","#006778","#D7A22A"],"Kansas City Chiefs":["#E31837","#FFB81C","#FFFFFF"],"Las Vegas Raiders":["#000000","#A5ACAF","#FFFFFF"],"Los Angeles Chargers":["#0080C6","#FFC20E","#FFFFFF"],"Los Angeles Rams":["#003594","#FFD100","#FFFFFF"],"Miami Dolphins":["#008E97","#FC4C02","#FFFFFF"],"Minnesota Vikings":["#4F2683","#FFC62F","#FFFFFF"],"New England Patriots":["#002244","#C60C30","#BFC0BF"],"New Orleans Saints":["#D3BC8D","#101820","#FFFFFF"],"NY Giants":["#0B2265","#A71930","#A5ACAF"],"NY Jets":["#125740","#FFFFFF","#000000"],"Philadelphia Eagles":["#004C54","#A5ACAF","#000000"],"Pittsburgh Steelers":["#FFB612","#101820","#FFFFFF"],"San Francisco 49ers":["#AA0000","#B3995D","#FFFFFF"],"Seattle Seahawks":["#002244","#69BE28","#A5ACAF"],"Tampa Bay Buccaneers":["#D50A0A","#34302B","#FF7900"],"Tennessee Titans":["#4B92DB","#0C2340","#C8102E"],"Washington Commanders":["#5A1414","#FFB612","#FFFFFF"]},rt={bg:"#fdf2f6",zcream:"#53382b",gold2:"#e6c67d",goldm:"#ad7f2e"},Tp={bg:"#1e1119"},zr=["#e6c67d","#f2e7d5","#c39a4a"],Sp="#291a24",kp="#ffffff",lc=yp,wp=n=>lc[n]??zr;function Ct(n){const e=n.replace("#","");return[parseInt(e.slice(0,2),16),parseInt(e.slice(2,4),16),parseInt(e.slice(4,6),16)]}function ic(n,e,a){const s=t=>Math.max(0,Math.min(255,Math.round(t))).toString(16).padStart(2,"0");return"#"+s(n)+s(e)+s(a)}function zt(n,e,a){const s=Ct(n),t=Ct(e);return ic(s[0]+(t[0]-s[0])*a,s[1]+(t[1]-s[1])*a,s[2]+(t[2]-s[2])*a)}function Be(n){const[e,a,s]=Ct(n).map(f=>f/255),t=Math.max(e,a,s),r=Math.min(e,a,s);let o=0,l=0;const i=(t+r)/2;if(t!==r){const f=t-r;l=i>.5?f/(2-t-r):f/(t+r),o=t===e?(a-s)/f+(a<s?6:0):t===a?(s-e)/f+2:(e-a)/f+4,o/=6}return{h:o*360,s:l,l:i}}function Ya(n,e,a){const s=(1-Math.abs(2*a-1))*e,t=s*(1-Math.abs(n/60%2-1)),r=a-s/2;let o=0,l=0,i=0;return n<60?(o=s,l=t):n<120?(o=t,l=s):n<180?(l=s,i=t):n<240?(l=t,i=s):n<300?(o=t,i=s):(o=s,i=t),ic((o+r)*255,(l+r)*255,(i+r)*255)}function Zo(n){return Ct(n).map(e=>(e/=255,e<=.03928?e/12.92:Math.pow((e+.055)/1.055,2.4))).reduce((e,a,s)=>e+a*[.2126,.7152,.0722][s],0)}function Dp(n,e){const a=Zo(n),s=Zo(e),t=Math.max(a,s),r=Math.min(a,s);return(t+.05)/(r+.05)}function Ga(n,e,a,s){const t=Be(n),r=Math.max(t.s,.42);let o=t.l;for(let l=0;l<90;l++){const i=Ya(t.h,r,o);if(Dp(i,e)>=s)break;if(a){if(o>=.9)break;o+=.015}else{if(o<=.15)break;o-=.015}}return Ya(t.h,r,o)}const Qt=rt.bg,jt=Tp.bg,bp={"Buffalo Bills":1,"Los Angeles Rams":1};function Rp(n){const e=lc[n];if(!e){const u=[rt.gold2,rt.zcream,rt.goldm];return{light:u,dark:u}}let a=e[0];if(Be(a).s<.15&&(a=[...e].sort((u,p)=>Be(p).s-Be(u).s)[0]),Be(a).s<.15&&(a=zt(a,"#c9a24b",.45)),bp[n]){const u=Be(a);u.h>=195&&u.h<=255&&u.l<.45&&(a=Ya(u.h,Math.min(1,u.s*.94),.47))}{const u=e.filter(p=>{const h=Be(p);return h.s<.14&&h.l>.45});if(Be(a).l<.26&&u.length){const p=u.find(h=>{const d=Be(h);return d.l>=.55&&d.l<=.92})||u[u.length-1];a=zt(a,p,.45)}}const s=e.filter(u=>u!==a),t=u=>{const p=Be(u);if(p.l<.18||p.s<.15){const h=Be(a);return Ya(h.h,Math.max(.12,Math.min(h.s,.34)),p.l<.18?.22:Math.min(Math.max(p.l,.3),.72))}return Ya(p.h,Math.max(p.s,.42),Math.min(Math.max(p.l,.3),.55))},r=u=>{const p=Be(u);return p.h>=30&&p.h<=70&&p.l>.42?zt(Ya(p.h,Math.min(1,Math.max(p.s,.55)),.5),"#c9a24b",.45):u},o=r(t(s[0]!==void 0?s[0]:a)),l=r(t(s[1]!==void 0?s[1]:a)),i=[Ga(a,Qt,!1,4.6),Ga(o,Qt,!1,4.2),Ga(l,Qt,!1,4.2)],f=[Ga(a,jt,!0,4.6),Ga(o,jt,!0,4.2),Ga(l,jt,!0,4.2)];return{light:i,dark:f}}function Ep(n){const[e,a,s]=wp(n),t=Rp(n);return{attr:n,vars:{"--zpb-t1":e,"--zpb-t2":a,"--zpb-t3":s,"--zpb-t1L":t.light[0],"--zpb-t2L":t.light[1],"--zpb-t3L":t.light[2],"--zpb-t1D":t.dark[0],"--zpb-t2D":t.dark[1],"--zpb-t3D":t.dark[2]}}}const Xo=n=>{const e=n.replace("#",""),a=[0,2,4].map(s=>parseInt(e.slice(s,s+2),16)/255).map(s=>s<=.03928?s/12.92:((s+.055)/1.055)**2.4);return .2126*a[0]+.7152*a[1]+.0722*a[2]},Ut=(n,e)=>{const a=Xo(n),s=Xo(e);return(Math.max(a,s)+.05)/(Math.min(a,s)+.05)};function gr(n,e=!0){const a=Gi[n]??[...zr],s=e?Sp:kp,r=[...a].sort((o,l)=>Ut(l,s)-Ut(o,s))[0];return Ut(r,s)>=3?{ink:r,pale:r}:{ink:r,pale:`color-mix(in srgb, ${r} 55%, ${e?"#f2e7d5":"#53382b"})`}}const Lp=2027;function yt(n){const e=Kr(n.pool),a=new Map(e.map(t=>[t.id,t])),s=kn.map(()=>[]);for(const t of n.picks){const r=a.get(t.pid);r&&s[t.team]?.push(r)}return s}function cc(n){const a=["4-3","3-4"].map(r=>Gr(n,r)).map(r=>({l:r,R:pr(ru(r),Ku(r))})),s=Nr(a.map(r=>r.R)),t=a[1]&&To(a[1].R,s)>To(a[0].R,s)?a[1]:a[0];return{lineup:t.l,ratings:t.R}}function Ap(n){return kn.map((e,a)=>({name:e.name,ratings:cc(yt(n)[a]).ratings}))}const Mp={TD:{label:"TD",tone:"good"},FG:{label:"FG",tone:"good"},INT:{label:"INT",tone:"bad"},FUM:{label:"FUM",tone:"bad"},PUNT:{label:"PUNT",tone:"sub"},DOWNS:{label:"DOWNS",tone:"sub"},FG_MISS:{label:"MISS",tone:"bad"},HALF:{label:"EOH",tone:"sub"},SAFETY:{label:"SAFETY",tone:"bad"}},Jp={xp:{label:"XP",tone:"good"},two:{label:"2PT",tone:"good"},xp_miss:{label:"XP MISS",tone:"sub"},two_fail:{label:"2PT FAIL",tone:"sub"},none:{label:"NO TRY",tone:"sub"}};function fc(n,e,a,s){const t=s.week,r=s.year??Lp,o=_d(n,e,a),l={[e]:gr(e),[a]:gr(a)},i=s.userTeamName??"";let f=0,u=0,p=0,h=0,d="tie";const v=o.drives.map(B=>{B.team===e?(f+=B.pts,u+=B.oppPts):(u+=B.pts,f+=B.oppPts),B.team===i&&h++;const k=f>u?"home":u>f?"away":"tie",w=k!==d&&k!=="tie";w&&p++,d=k;const D=[],C=Mp[B.end]??{label:B.end,tone:"sub"};D.push(C),B.defTD&&D.push({label:"DEF TD",tone:"gold"}),w&&D.push({label:"LEAD Δ",tone:"gold"});const L=B.scores.find(G=>G.kind==="TD"&&G.team===B.team),F=L?[Jp[L.conv]].filter(G=>!!G):[];return{...B,homeAbbr:Wn(e),awayAbbr:Wn(a),teamAbbr:Wn(B.team),teamInk:l[B.team].pale,teamPale:l[B.team].pale,me:B.team===i,leadChange:w,scoreAfter:{home:f,away:u},badges:D,convBadges:F}}),g=s.round?` · ${s.round}`:"";return{week:t,year:r,home:e,away:a,homeAbbr:Wn(e),awayAbbr:Wn(a),homeInk:l[e],awayInk:l[a],homeScore:o.homeScore,awayScore:o.awayScore,regHome:o.regHome,regAway:o.regAway,ot:o.ot,gameSeedLabel:`gameSeed ${s.gs??"?"} · week ${t}${g} · ${a} @ ${e} · played by the pinned engine`,drives:v,meDrives:h,leadChanges:p,userWon:o.homeScore===o.awayScore?null:o.homeScore>o.awayScore?e===i:a===i}}function _p(n,e,a,s,t=!0){const r=[...n.scores,...n.playoffs].find(y=>(y.home===a||y.away===a)&&y.week===s),o=r?.round??null,l=At(n.seed,s,r?r.home:""),i=new Map(e.map(y=>[y.name,y.ratings])),f=Nr(e.map(y=>y.ratings)),u=i.get(r?r.home:""),p=i.get(r?r.away:"");if(!u||!p||!r)return null;const h=vr(u,f),d=vr(p,f),v=Ye(u,p,f,{off:h.off,def:d.def}),g=Ye(p,u,f,{off:d.off,def:h.def}),B=xi(v,g,qe(l),{playoff:!!o});return fc(B,r.home,r.away,{week:s,round:o,gs:l,userTeamName:a,year:n.year})}const $o={dark:"#e8c87e",light:"#8a5f18"},Fp={dark:$o.dark,light:$o.light},nl=n=>{const e=n.replace("#","");return[parseInt(e.slice(0,2),16),parseInt(e.slice(2,4),16),parseInt(e.slice(4,6),16)]},Wp=n=>"#"+n.map(e=>Math.max(0,Math.min(255,Math.round(e))).toString(16).padStart(2,"0")).join("");function Pp(n,e){const s=(Gi[n]??[...zr])[0],t=e==="dark"?"#1a1220":"#f2e7d5",r=nl(s),o=nl(t),l=[o[0]*.88+r[0]*.12,o[1]*.88+r[1]*.12,o[2]*.88+r[2]*.12];return Wp(l)}function Gp(n,e){return{tint:Pp(n,e),gold:Fp[e]}}function el(n,e){if(typeof document>"u")return;const a=document.documentElement;if(!n){delete a.dataset.zpbteam;return}const s=Ep(n);a.dataset.zpbteam=s.attr;for(const[r,o]of Object.entries(s.vars))a.style.setProperty(r,o);const t=Gp(n,e==="system"?"dark":e);a.style.setProperty("--cp-takeover-tint",t.tint),a.style.setProperty("--cp-takeover-gold",t.gold),a.dataset.theme=e==="system"?"":e,e==="system"&&delete a.dataset.theme}function Np(n){if(typeof document>"u")return;const e=document.documentElement;n==="system"?delete e.dataset.theme:e.dataset.theme=n}function al(n,e){const{lineup:a}=cc(e),s=a.placements.map(t=>t.player).find(Boolean);return{team:n,lineup:a,returnerId:s?.id??null}}class sl{ss=Ad();boxes=[];addWeek(e,a){for(const s of e){const t=tl(s.home),r=tl(s.away);if(t<0||r<0)continue;const o=bd(s.result,al(s.home,a[t]??[]),al(s.away,a[r]??[]),Hp());this.boxes.push(o),Md(this.ss,o)}}}let Ip=0;const Hp=()=>qe(24231+Ip++).fork("boxscore"),tl=n=>kn.findIndex(e=>e.name===n),fs=n=>Is("nfl","slot:"+n),rl=pi,Kp=()=>{try{return new URL(import.meta.url).pathname.match(/index-[A-Za-z0-9_-]+\.js/)?.[0]??"dev"}catch{return"dev"}},Xe=jd({slotCheck:Q0}),xs=n=>({...n});async function xp(n,e,a,s){const t=Hs("draft",n,xs(a),e,s),r=await Xe.write(fs(n),t);return r.ok?"":"storage refused the write: "+r.error}async function Op(n,e,a,s){const t=Hs("week",n,xs(a),e,s),r=await Xe.write(fs(n),t);return r.ok?"":"storage refused the write: "+r.error}async function Vp(n,e,a,s){const t=Hs("season",n,xs(a),e,s),r=await Xe.write(fs(n),t);return r.ok?"":"storage refused the write: "+r.error}const Yp=n=>{if(Lt(n.state))return"season complete";const e=n.teams.length&&(n.state.schedule.find(a=>a.week===n.state.nextWeek&&(a.home===n.context.userTeam||a.away===n.context.userTeam))??null);return e?`${e.away} @ ${e.home}`:"no user game this week"},ol=(n,e)=>n.state!=="ok"||!n.engineVersion||n.engineVersion===e?null:"this save came from build "+n.engineVersion+" (running: "+e+") — logged picks hold; un-made picks may differ";async function zp(n){const e=await Xe.read(fs(n));if(!e.ok)return{slot:n,state:"refused",problem:"corrupt",message:"storage unavailable: "+e.error};if(e.value===null)return{slot:n,state:"empty"};const a=wt(e.value);if(!a.ok)return{slot:n,state:"refused",problem:a.reason,message:a.message};const s=a.value;if(s.kind==="draft"){const o=s.payload;return{slot:n,state:"ok",kind:"draft",saveId:s.saveId,saveRevision:s.saveRevision,savedAt:s.savedAt,createdAt:s.createdAt,engineVersion:s.engineVersion,dataVersion:s.dataVersion,picks:o.picks.length,userTeamIndex:o.userTeam}}const t=s.kind==="week"?ac(s):Kd(s);if(!t.ok)return{slot:n,state:"refused",problem:"corrupt",message:t.message};if(s.kind==="week"){const o=t.value;return{slot:n,state:"ok",kind:"week",saveId:s.saveId,saveRevision:s.saveRevision,savedAt:s.savedAt,createdAt:s.createdAt,engineVersion:s.engineVersion,dataVersion:s.dataVersion,week:o.state.nextWeek,userTeam:o.context.userTeam,nextFixture:Yp(o),played:o.state.scores.length+o.state.playoffs.length}}const r=s.payload;return{slot:n,state:"ok",kind:"season",saveId:s.saveId,saveRevision:s.saveRevision,savedAt:s.savedAt,createdAt:s.createdAt,engineVersion:s.engineVersion,dataVersion:s.dataVersion,userTeam:r.userTeam,week:23,played:r.userResults.length,champion:r.champion}}async function Qp(n){const e=await Xe.read(fs(n));if(!e.ok)return{ok:!1,message:"storage unavailable: "+e.error};if(e.value===null)return{ok:!1,message:"slot "+n+" is empty"};const a=wt(e.value);return a.ok?a.value.kind!=="draft"?{ok:!1,message:"slot "+n+" holds a "+a.value.kind+" save, not a draft"}:{ok:!0,record:a.value.payload}:{ok:!1,message:a.message}}async function jp(n){const e=await Xe.read(fs(n));if(!e.ok)return{ok:!1,message:"storage unavailable: "+e.error};if(e.value===null)return{ok:!1,message:"slot "+n+" is empty"};const a=wt(e.value);if(!a.ok)return{ok:!1,message:a.message};if(a.value.kind!=="week")return{ok:!1,message:"slot "+n+" holds a "+a.value.kind+" save, not a week"};const s=a.value,t=ac(s);return t.ok?{ok:!0,env:s}:{ok:!1,message:t.message}}const uc=Is("nfl","autosave:draft"),Qr=Is("nfl","autosave:week");async function Up(n,e,a,s=Xe){const t=Hs("draft","A",xs(e),n,a),r=await s.write(uc,t);return r.ok?"":"autosave refused the write: "+r.error}async function qp(n,e,a,s=Xe){const t=Hs("week","C",xs(e),n,a),r=await s.write(Qr,t);return r.ok?"":"autosave refused the write: "+r.error}async function ll(n=Xe){await n.remove(Qr)}async function Zp(n=Xe){const e=await il(n,uc,"draft");if(!e.ok)return e;const a=await il(n,Qr,"week");return a.ok?{ok:!0,draft:e.value,week:a.value}:a}async function il(n,e,a){const s=await n.read(e);if(!s.ok)return{ok:!1,message:"storage unavailable: "+s.error};if(s.value===null)return{ok:!0,value:null};const t=wt(s.value);if(!t.ok)return{ok:!1,message:t.message};const r=t.value;if(r.kind!==a)return{ok:!1,message:"autosave: "+e+" holds a "+r.kind+" save, not a "+a};const o=l=>({saveId:l.saveId,createdAt:l.createdAt,engineVersion:l.engineVersion,dataVersion:l.dataVersion,saveRevision:l.saveRevision,savedAt:l.savedAt});return a==="draft"?{ok:!0,value:{kind:"draft",record:r.payload,lineage:o(r)}}:{ok:!0,value:{kind:"week",env:r}}}function Xp(n,e,a){return e===0?`best value at ${n.slotLabel}`:a.includes(n.slotId)?"fills your thinnest need":"most Wins left"}function dc(n,e){const a=r=>Number(String(r[e]).replace(/[^0-9.\-]/g,""))||0,s=[],t=Math.min(3,n.length);for(let r=0;r<t;r++)s.push(n[r].id);if(t===3){const r=a(n[2]);for(let o=3;o<n.length&&a(n[o])===r;o++)s.push(n[o].id)}return s}function $p(n,e){return!Array.isArray(n)||n.length===0||!n.every(a=>typeof a=="string"&&e.has(a))?null:n}const nh="408410477",eh={pin:nh};Vn(["click"]);const ah=(n,e)=>n>=.5&&e>0?"hot":n>=.25||e>0?"warm":"calm";function sh(n){return n.openSlots.map(e=>{const a=n.goneBySlot[e]??0,s=n.needBySlot[e]??0;return{slot:e,risk:a,need:s,tone:ah(a,s)}})}function th(n,e,a){const s=String(n),t=String(e),o=s===t?"genuine tie on wins — the order is the engine's stable sort":a===null?"the engine ranks the first row ahead (wins display pair shown; no numeric delta until rawSort)":a>=.25?"clear edge — the next best is likely gone first":a>=.05?"slight edge — some gone-risk gap":"near tie — both likely available next turn";return{topWins:s,nextWins:t,goneMargin:a,verdict:o}}const cl={fresh:"fresh draft",autosave:"autosave restored",shared:"shared link",season:"restored season"};function rh(n){return n.seasonPhase==="running"?{phase:"season-running",label:"Season in progress",tone:"active",action:"Advance the week",why:"the season facade is mid-run — the stepper owns the screen"}:n.seasonPhase==="finished"?{phase:"season-finished",label:"Season complete",tone:"done",action:"Review the season",why:"the facade reports finished — the bracket/review surfaces are live"}:n.picks===0?{phase:"fresh",label:n.restoredFrom&&n.restoredFrom!=="fresh"?`Restored (${n.restoredFrom}) — board empty`:"Fresh draft",tone:"info",action:"Draft your first player",why:"the record holds no picks yet"}:n.slotsOpen===0?{phase:"complete",label:"Draft complete",tone:"done",action:"See the Complete screen",why:"every slot is filled"}:n.restoredFrom==="autosave"||n.restoredFrom==="shared"||n.restoredFrom==="season"?{phase:"restored",label:`Restored from ${n.restoredFrom} · ${n.picks} pick${n.picks===1?"":"s"} in`,tone:"info",action:"Continue the draft",why:"a saved state was loaded — continue or start fresh from the saves panel"}:{phase:"drafting",label:`Drafting · ${n.picks} pick${n.picks===1?"":"s"} in`,tone:"active",action:n.slotsOpen<=3?"Final rounds — land the last slots":"Draft from the board",why:`${n.slotsOpen} slot${n.slotsOpen===1?"":"s"} still open`}}var oh=M('<div class="cp-hd svelte-jqmiv9"><span class="cp-team svelte-jqmiv9"> </span> <span class="cp-round svelte-jqmiv9"> </span> <span class="cp-overall svelte-jqmiv9"> </span></div> <p class="cp-onclock svelte-jqmiv9"> </p>',1);function lh(n,e){En(e,!0);var a=oh(),s=wn(a),t=W(s),r=S(t,!0),o=m(t,2),l=S(o),i=m(o,2),f=S(i),u=m(s,2),p=S(u,!0);K(()=>{T(r,e.header.teamName),T(l,`${e.header.roundLabel??""} · Pick ${e.header.pickInRound??""}`),T(f,`overall ${e.header.overall??""} of ${e.header.totalPicks??""}`),T(p,e.header.onClock)}),A(n,a),Ln()}const ih={ovr:"boardVM row .ovr ← engine players.ts ratings (never ranked by)",wins:"boardVM row .wins ← engine value.ts slotWins (the ranking unit)",priority:"boardVM row .priority ← engine value.ts (the ranking unit while the Priority sort is on)",gone:"goneOdds(...) ← engine goneodds.ts CPU replay"},fl={ovr:"displayed as the engine shows it (integer)",wins:"displayed as the engine shows it (one decimal where the engine prints one)",priority:"displayed as the engine shows it",gone:"display-rounded to a whole percent — INTERIM — display-rounded (the raw value is the engine's; rawSort is filed with the Architect)"};function et(n){const e=[`${n.field.toUpperCase()} ${n.value} — source: ${ih[n.field]} · engine pin ${n.pin}`];if(n.field==="gone"?(e.push(n.oddsMeta?`inputs: the ${n.oddsMeta.picksBetween} picks between now and your turn, replayed ${n.oddsMeta.sims} times with the real CPU logic`:"inputs: no CPU replay while the CPU is on the clock"),e.push(fl.gone)):(e.push("inputs: the madden27 ratings pool at the frozen snapshot (no UI math — the VM is the engine's)"),e.push(fl[n.field])),n.field==="wins"&&Array.isArray(n.neighbourWins)&&n.neighbourWins.length>0&&n.rawWins!==void 0){const a=String(n.rawWins),s=n.neighbourWins.filter(t=>String(t)===a).length;s>0&&e.push(`GENUINE TIE: ${s} other row${s===1?"":"s"} share these exact wins — the order here is the engine's stable sort, not a ranking`)}return e.join(" · ")}var ch=M('<span class="cp-toptag svelte-q412k" title="One of your top three priorities right now">TOP</span>'),fh=M('<span class="cp-why svelte-q412k"> </span>'),uh=M('<button class="cp-chip svelte-q412k"> <i class="svelte-q412k"> </i></button>'),dh=M('<div><div class="cp-rowtop svelte-q412k"><button class="cp-main svelte-q412k"><span class="cp-name svelte-q412k"><!> </span> <span class="cp-pos svelte-q412k"> </span> <span class="cp-nflteam svelte-q412k"> </span> <span class="cp-num cp-ovr svelte-q412k"> </span> <span class="cp-num svelte-q412k"> </span> <span class="cp-num svelte-q412k"> </span> <span class="cp-gone-wrap svelte-q412k"><span class="cp-num cp-gone svelte-q412k"> </span> <span class="cp-gonetip svelte-q412k" role="tooltip" aria-hidden="true"> </span></span></button> <span class="cp-btnwrap svelte-q412k"><button> </button></span> <!> <button type="button" class="cp-sr svelte-q412k"> </button></div> <div class="cp-fits svelte-q412k"><span class="cp-fitlbl svelte-q412k"> </span> <!> <button class="cp-chip cp-primary svelte-q412k"> </button> <p class="cp-gonehow svelte-q412k"> </p></div></div>');function ph(n,e){En(e,!0);let a=xn(e,"oddsMeta",3,null),s=xn(e,"suggest",3,!1),t=xn(e,"why",3,""),r=xn(e,"winsNeighbours",19,()=>[]),o=xn(e,"busy",3,!1),l=pn(!1);const i={priority:"Priority — what the board ranks by while the Priority sort is on"},f=vn=>vn?`GONE% — how often the CPU took him before your next pick: the ${vn.picksBetween} picks between now and your turn were replayed ${vn.sims} times with the real CPU logic. It is a chance, not a promise — the weird pick is still yours.`:"GONE% — the CPU replay estimate (no replay while the CPU is on the clock).",u=eh.pin,p=()=>et({field:"ovr",value:e.r.ovr,pin:u}),h=()=>et({field:"wins",value:e.r.wins,rawWins:e.r.wins,neighbourWins:r(),pin:u}),d=()=>et({field:"priority",value:e.r.priority,pin:u}),v=()=>et({field:"gone",value:e.r.gone,oddsMeta:a(),pin:u});var g=dh();let B;var y=W(g),k=W(y),w=W(k),D=W(w);{var C=vn=>{var _n=ch();A(vn,_n)};sn(D,vn=>{s()&&vn(C)})}var L=m(D,1,!0),F=m(w,2),G=S(F,!0),E=m(F,2),J=S(E,!0),N=m(E,2),x=S(N,!0),z=m(N,2),q=S(z,!0),$=m(z,2),cn=S($,!0),en=m($,2),Q=W(en),X=S(Q,!0),P=m(Q,2),I=S(P),Y=m(k,2),b=W(Y);let _;var O=S(b),U=m(Y,2);{var tn=vn=>{var _n=fh(),Nn=S(_n,!0);K(()=>T(Nn,t())),A(vn,_n)};sn(U,vn=>{s()&&t()&&vn(tn)})}var un=m(U,2),dn=S(un,!0),yn=m(y,2),nn=W(yn),rn=S(nn),an=m(nn,2);hn(an,17,()=>e.r.alsoFits,cs,(vn,_n)=>{var Nn=uh(),In=W(Nn),Yn=m(In),Gn=S(Yn,!0);K(()=>{Nn.disabled=o(),T(In,`${c(_n).slotLabel??""} `),T(Gn,c(_n).flex)}),on("click",Nn,()=>e.onpick(e.r.id,c(_n).slotId)),A(vn,Nn)});var Dn=m(an,2),Tn=S(Dn),Jn=m(Dn,2),zn=S(Jn,!0);K((vn,_n,Nn,In,Yn,Gn,ue,ve)=>{B=Hn(g,1,`cp-row cp-${e.r.tone??""}`,"svelte-q412k",B,{"cp-top3":s()}),fn(g,"data-id",e.r.id),fn(k,"aria-expanded",c(l)),fn(k,"aria-controls",`cp-fit-${e.r.id??""}`),T(L,e.r.name),T(G,e.r.pos),T(J,e.r.nflTeam),fn(N,"title",vn),fn(N,"aria-label",`${e.r.ovr??""} overall — provenance in the tooltip`),T(x,e.r.ovr),fn(z,"title",_n),fn(z,"aria-label",`${e.r.wins??""} wins — provenance in the tooltip`),T(q,e.r.wins),fn($,"title",Nn),fn($,"aria-label",`${e.r.priority??""} priority — provenance in the tooltip`),T(cn,e.r.priority),fn(Q,"aria-label",`${e.r.gone??""} gone odds`),fn(Q,"aria-describedby",`cp-gone-desc-${e.r.id??""}`),fn(Q,"title",In),T(X,e.r.gone),T(I,`${Yn??""} ${Gn??""}`),_=Hn(b,1,"cp-draftbtn svelte-q412k",null,_,{"cp-istop":s()}),b.disabled=o(),fn(b,"aria-label",`Draft ${e.r.name??""} at ${e.r.slotLabel??""}${s()?" — one of your top three priorities":""}`),T(O,`Draft at ${e.r.slotLabel??""}`),fn(un,"id",`cp-gone-desc-${e.r.id??""}`),T(dn,ue),fn(yn,"id",`cp-fit-${e.r.id??""}`),fn(yn,"hidden",!c(l)),T(rn,`Fills ${e.r.slotLabel??""}${e.r.natural?"":" (flex)"}`),Dn.disabled=o(),T(Tn,`Draft at ${e.r.slotLabel??""}`),T(zn,ve)},[()=>p(),()=>h(),()=>i.priority+" — "+d(),()=>v(),()=>f(a()),()=>v(),()=>f(a()),()=>f(a())]),on("click",k,()=>V(l,!c(l))),on("click",b,()=>(e.onpickDirect??e.onpick)(e.r.id,e.r.slotId)),on("click",Dn,()=>e.onpick(e.r.id,e.r.slotId)),A(n,g),Ln()}Vn(["click"]);var hh=M("<button> </button>"),vh=M('<div class="cp-sorts svelte-1xb8352" role="group" aria-label="Sort the board"></div>');function mh(n,e){En(e,!0);const a=[{k:"wins",lbl:"Wins"},{k:"priority",lbl:"Priority"},{k:"ovr",lbl:"OVR"}];var s=vh();hn(s,21,()=>a,cs,(t,r)=>{var o=hh();let l;var i=S(o,!0);K(()=>{l=Hn(o,1,"cp-sort svelte-1xb8352",null,l,{"cp-on":e.sort===c(r).k}),T(i,c(r).lbl)}),on("click",o,()=>e.onsort(c(r).k)),A(t,o)}),A(n,s),Ln()}Vn(["click"]);var gh=M('<span class="cp-seedcode svelte-zb9xkj">code <b class="svelte-zb9xkj"> </b></span>'),Bh=M('<button class="cp-play svelte-zb9xkj" data-testid="cp-play">Play week 1 →</button>'),Ch=M('<div class="cp-ft svelte-zb9xkj"><!> <span class="cp-count svelte-zb9xkj"> </span> <!> <button class="cp-undo svelte-zb9xkj">Undo my last pick</button> <!></div>');function yh(n,e){En(e,!0);let a=xn(e,"draftDone",3,!1),s=xn(e,"seedCode",3,""),t=xn(e,"busy",3,!1);var r=Ch(),o=W(r);mh(o,{get sort(){return e.sort},get onsort(){return e.onsort}});var l=m(o,2),i=S(l,!0),f=m(l,2);{var u=v=>{var g=gh(),B=m(W(g)),y=S(B,!0);K(()=>{fn(g,"title",`the draft code — put ?seed=${s()??""} in the URL to replay this exact draft`),T(y,s())}),A(v,g)};sn(f,v=>{s()&&v(u)})}var p=m(f,2),h=m(p,2);{var d=v=>{var g=Bh();on("click",g,function(...B){e.onplay?.apply(this,B)}),A(v,g)};sn(h,v=>{a()&&v(d)})}K(()=>{T(i,e.footer.text),p.disabled=!e.canUndo||t()}),on("click",p,function(...v){e.onundo?.apply(this,v)}),A(n,r),Ln()}Vn(["click"]);Vn(["click"]);var Th=M("<button> </button>"),Sh=M('<span class="cp-needs-unit svelte-2mq0wt"> </span> <!>',1),kh=M('<button class="cp-need cp-need-all svelte-2mq0wt">ALL</button>'),wh=M('<div class="cp-needs svelte-2mq0wt" data-testid="cp-needs"><span class="cp-needs-lbl svelte-2mq0wt"> </span> <!> <!></div>');function Dh(n,e){En(e,!0);let a=xn(e,"selected",19,()=>[]);const s={offense:"OFF",defense:"DEF",special:"ST"};Object.fromEntries(Se.map(h=>[h.id,h.unit]));const t=h=>Se.filter(d=>d.unit===h&&e.open.includes(d.id)).map(d=>d.id),r=h=>a().includes(h);var o=wh(),l=W(o),i=S(l),f=m(l,2);hn(f,16,()=>["offense","defense","special"],h=>h,(h,d)=>{var v=Sh(),g=wn(v),B=S(g,!0),y=m(g,2);hn(y,16,()=>t(d),k=>k,(k,w)=>{var D=Th();let C;var L=S(D,!0);K((F,G,E,J)=>{C=Hn(D,1,"cp-need svelte-2mq0wt",null,C,{"cp-need-on":F}),fn(D,"aria-pressed",G),fn(D,"title",`filter the board to ${E??""}`),T(L,J)},[()=>r(w),()=>r(w),()=>gt(w),()=>gt(w)]),on("click",D,()=>e.ontoggle(w)),A(k,D)}),K(()=>T(B,s[d])),A(h,v)});var u=m(f,2);{var p=h=>{var d=kh();on("click",d,function(...v){e.onclear?.apply(this,v)}),A(h,d)};sn(u,h=>{a().length&&h(p)})}K(()=>T(i,`MY NEEDS · ${e.open.length??""} OPEN`)),A(n,o),Ln()}Vn(["click"]);var bh=M('<span class="cp-heatcell svelte-e071nj"> </span>'),Rh=M(`<div class="cp-heat svelte-e071nj" aria-label="Needs by open slot — gone-risk heat (the cells are the engine VM's own numbers)"></div>`),Eh=M('<p class="cp-confidence svelte-e071nj">Top pick: <b class="svelte-e071nj"> </b> wins · next best: <b class="svelte-e071nj"> </b> </p>'),Lh=M('<p class="cp-drafted svelte-e071nj" role="status" aria-live="polite">Drafted <b class="svelte-e071nj"> </b> · <button class="cp-btn cp-draftedundo svelte-e071nj">Undo</button></p>'),Ah=M('<p class="cp-confirm svelte-e071nj">Draft <b> </b> at <b> </b>? <button class="cp-btn cp-go svelte-e071nj">Confirm the pick</button> <button class="cp-btn svelte-e071nj">Cancel</button></p>'),Mh=M('<section class="cp-board svelte-e071nj" aria-label="Draft board"><!> <!> <!> <!> <!> <!> <div class="cp-rows svelte-e071nj"></div> <!></section>');function ul(n,e){En(e,!0);let a=xn(e,"openSlots",19,()=>[]),s=xn(e,"oddsMeta",3,null),t=xn(e,"needsSelected",19,()=>[]),r=xn(e,"draftDone",3,!1),o=xn(e,"seedCode",3,""),l=xn(e,"savedSuggest",3,null),i=xn(e,"busy",3,!1),f=xn(e,"heat",19,()=>[]);xn(e,"winsNeighbours",19,()=>[]);let u=pn(null),p=pn(null),h=pn(!1),d=pn(null),v=null,g=null;const B=async(P,I)=>{if(c(h))return;V(h,!0),V(u,null);const Y=e.vm.rows.find(_=>_.id===P)?.name??"the pick";if(await e.onpick(P,I)===!1){g&&clearTimeout(g),g=setTimeout(()=>{V(h,!1)},380);return}V(d,{name:Y},!0),v&&clearTimeout(v),v=setTimeout(()=>{V(d,null)},2600),g&&clearTimeout(g),g=setTimeout(()=>{V(h,!1)},380)};let y=pn(!1),k=null;const w=()=>{!c(u)||c(y)||(V(y,!0),e.onpick(c(u).id,c(u).slot),V(u,null),k&&clearTimeout(k),k=setTimeout(()=>{V(y,!1)},380))},D=ln(()=>t().length===0?e.vm.rows:e.vm.rows.filter(P=>t().includes(P.slotId)||P.alsoFits.some(I=>t().includes(I.slotId)))),C=ln(()=>{const P=c(D),Y=$p(l(),new Set(P.map(O=>O.id)))??dc(P,e.vm.sort),b=new Map(P.map(O=>[O.id,O])),_=new Map(Y.map((O,U)=>{const tn=b.get(O);return[O,tn?Xp(tn,U,[...t()]):""]}));return{ids:new Set(Y),why:_}}),L=ln(()=>{const P=[...c(C).ids];if(P.length<2)return null;const I=c(D),Y=new Map(I.map(O=>[O.id,O])),b=Y.get(P[0]),_=Y.get(P[1]);return!b||!_?null:th(b.wins,_.wins,null)});var F=Mh(),G=W(F);lh(G,{get header(){return e.vm.header}});var E=m(G,2);Dh(E,{get open(){return a()},get selected(){return t()},get ontoggle(){return e.onneedtoggle},get onclear(){return e.onneedclear}});var J=m(E,2);{var N=P=>{var I=Rh();hn(I,21,f,Y=>Y.slot,(Y,b)=>{var _=bh(),O=S(_,!0);K(U=>{fn(_,"data-tone",c(b).tone),fn(_,"data-slot",c(b).slot),fn(_,"title",U),T(O,c(b).slot)},[()=>`{c.slot}: gone-risk ${(c(b).risk*100).toFixed(0)}% — need ${c(b).need?"yes":"flex"}`]),A(Y,_)}),A(P,I)};sn(J,P=>{f().length&&P(N)})}var x=m(J,2);{var z=P=>{var I=Eh(),Y=m(W(I)),b=S(Y,!0),_=m(Y,2),O=S(_,!0),U=m(_);K(()=>{fn(I,"data-verdict",c(L).verdict),T(b,c(L).topWins),T(O,c(L).nextWins),T(U,` — ${c(L).verdict??""} (INTERIM — display-rounded, awaiting rawSort)`)}),A(P,I)};sn(x,P=>{c(L)&&P(z)})}var q=m(x,2);{var $=P=>{var I=Lh(),Y=m(W(I)),b=S(Y,!0),_=m(Y,2);K(()=>T(b,c(d).name)),on("click",_,()=>{e.onundo(),V(d,null)}),A(P,I)};sn(q,P=>{c(d)&&P($)})}var cn=m(q,2);{var en=P=>{var I=Ah(),Y=m(W(I)),b=S(Y,!0),_=m(Y,2),O=S(_,!0),U=m(_,2),tn=m(U,2);K(un=>{T(b,un),T(O,c(u).slot)},[()=>e.vm.rows.find(un=>un.id===c(u).id)?.name]),on("click",U,w),on("click",tn,()=>V(u,null)),A(P,I)};sn(cn,P=>{c(u)&&P(en)})}var Q=m(cn,2);hn(Q,21,()=>c(D),P=>P.id,(P,I)=>{{let Y=ln(()=>c(C).ids.has(c(I).id)),b=ln(()=>c(C).why.get(c(I).id)??""),_=ln(()=>c(D).filter(O=>O.id!==c(I).id).map(O=>O.wins));ph(P,{get r(){return c(I)},onpick:(O,U)=>V(u,{id:O,slot:U},!0),onpickDirect:B,get oddsMeta(){return s()},get suggest(){return c(Y)},get why(){return c(b)},get winsNeighbours(){return c(_)},get busy(){return i()}})}}),R0(Q,P=>V(p,P),()=>c(p));var X=m(Q,2);yh(X,{get footer(){return e.vm.footer},get canUndo(){return e.canUndo},get onundo(){return e.onundo},get onsort(){return e.onsort},get sort(){return e.vm.sort},get onplay(){return e.onplay},get draftDone(){return r()},get seedCode(){return o()},get busy(){return i()}}),K(()=>fn(Q,"data-count",c(D).length)),A(n,F),Ln()}Vn(["click"]);var Jh=M("<button> </button>"),_h=M('<div role="group" aria-label="Valuation mode"></div>');function Fh(n,e){En(e,!0);let a=pn(sa(ie.get()));ie.subscribe(o=>V(a,o,!0));const s=["measured","balance","owner"];var t=_h();let r;hn(t,21,()=>s,cs,(o,l)=>{var i=Jh();let f;var u=S(i,!0);K(()=>{f=Hn(i,1,"cp-mode svelte-1o2iqa1",null,f,{"cp-on":c(a).mode===c(l)}),i.disabled=c(a).locked,fn(i,"title",c(a).locked?"The mode switch is disabled mid-draft":_e[c(l)]),T(u,_e[c(l)])}),on("click",i,()=>ie.set(c(l))),A(o,i)}),K(()=>r=Hn(t,1,"cp-modes svelte-1o2iqa1",null,r,{"cp-locked":c(a).locked})),A(n,t),Ln()}Vn(["click"]);var Wh=M('<li><span class="cp-sl svelte-lz9ww5"> </span> <span class="cp-sn"> </span> <b> </b></li>'),Ph=M('<section class="cp-adv svelte-lz9ww5" aria-label="Lineup advice"><h3 class="svelte-lz9ww5">Best lineup from your roster</h3> <ul class="svelte-lz9ww5"></ul></section>');function pc(n,e){En(e,!0);let a=xn(e,"weak",19,()=>[]);var s=Ph(),t=m(W(s),2);hn(t,21,()=>e.slots,cs,(r,o,l)=>{var i=Wh();let f;var u=W(i),p=S(u,!0),h=m(u,2),d=S(h,!0),v=m(h,2),g=S(v,!0);K(B=>{f=Hn(i,1,"svelte-lz9ww5",null,f,{"cp-weak":B}),T(p,c(o).label),T(d,c(o).name),T(g,c(o).ovr)},[()=>a().includes(l)]),A(r,i)}),A(n,s),Ln()}var Gh=M('<p class="cp-saves-notice svelte-spfs26" role="alert"> </p>'),Nh=M('<p class="cp-slot-empty svelte-spfs26">empty</p>'),Ih=M('<p class="cp-slot-refused svelte-spfs26"><b> </b> — corrupt-never-repair</p> <p class="cp-slot-msg svelte-spfs26"> </p>',1),Hh=M('<p class="cp-slot-line svelte-spfs26"> </p>'),Kh=M('<p class="cp-slot-line svelte-spfs26"> </p> <p class="cp-slot-line cp-slot-dim svelte-spfs26"> </p>',1),xh=M('<p class="cp-slot-older svelte-spfs26"> </p>'),Oh=M('<p class="cp-slot-kind svelte-spfs26"> </p> <!> <p class="cp-slot-dim svelte-spfs26"> </p> <!> <button class="cp-slot-load svelte-spfs26"> </button>',1),Vh=M('<article><h3 class="svelte-spfs26"> </h3> <!> <button class="cp-slot-save svelte-spfs26">Save draft here</button></article>'),Yh=M(`<aside class="cp-hydrated svelte-spfs26" aria-label="Hydrated season"><h3 class="svelte-spfs26"> </h3> <p class="cp-slot-line svelte-spfs26"> </p> <p class="cp-slot-dim svelte-spfs26"> </p> <p class="cp-slot-dim svelte-spfs26">the season screens ride a later slice — the hydration itself is proven (this card renders the engine's LoadedWeek)</p></aside>`),zh=M(`<section class="cp-saves svelte-spfs26" aria-label="Save and load"><header class="cp-saves-head svelte-spfs26"><h2 class="svelte-spfs26">Saves</h2> <span class="cp-saves-sub svelte-spfs26">slots A · B · C — written through the engine's envelope (saveId · revision · sha-256 dataset stamp)</span> <button class="cp-saves-x svelte-spfs26" aria-label="Close saves">✕</button></header> <!> <div class="cp-slotgrid svelte-spfs26"></div> <!> <p class="cp-saves-foot svelte-spfs26">A refused save is <b class="svelte-spfs26">never repaired</b> — the reason above is the engine's own verdict (hydrateWeek / parseEnvelope).</p> <p class="cp-saves-foot cp-saves-stamp svelte-spfs26">This build writes its stamp into every save: <b class="svelte-spfs26"> </b> </p></section>`);function Qh(n,e){En(e,!0);const a=sa({A:null,B:null,C:null});let s=pn(""),t=pn(null),r=pn(!1);async function o(){V(r,!0);for(const C of rl)a[C]=await zp(C);V(r,!1)}As(()=>{e.record,o()});async function l(C){if(V(s,""),!e.record||!e.meta){V(s,"nothing to save — no draft is in progress");return}const L=await xp(C,e.record,e.meta,new Date);L&&V(s,L,!0),await o()}async function i(C){V(s,""),V(t,null);const L=a[C];if(!L||L.state!=="ok"){V(s,"nothing loadable in slot "+C);return}if(L.kind==="draft"){const F=await Qp(C);if(!F.ok){V(s,"refused: "+F.message),await o();return}e.onloaddraft(F.record,{saveId:L.saveId,createdAt:L.createdAt}),e.onclose();return}V(t,L,!0)}var f=zh(),u=W(f),p=m(W(u),4),h=m(u,2);{var d=C=>{var L=Gh(),F=S(L,!0);K(()=>T(F,c(s))),A(C,L)};sn(h,C=>{c(s)&&C(d)})}var v=m(h,2);hn(v,20,()=>rl,C=>C,(C,L)=>{const F=ln(()=>a[L]);var G=Vh();let E;var J=W(G),N=S(J),x=m(J,2);{var z=en=>{var Q=Nh();A(en,Q)},q=en=>{var Q=Ih(),X=wn(Q),P=W(X),I=S(P),Y=m(X,2),b=S(Y,!0);K(()=>{T(I,`REFUSED (${c(F).problem??""})`),T(b,c(F).message)}),A(en,Q)},$=en=>{var Q=Oh(),X=wn(Q),P=S(X),I=m(X,2);{var Y=nn=>{var rn=Hh(),an=S(rn);K(()=>T(an,`${c(F).picks??""} picks · ${kn[c(F).userTeamIndex??0]?.name??"?"??""}`)),A(nn,rn)},b=nn=>{var rn=Kh(),an=wn(rn),Dn=S(an),Tn=m(an,2),Jn=S(Tn);K(()=>{T(Dn,`${c(F).userTeam??""} · next: week ${c(F).week??""}`),T(Jn,`${c(F).nextFixture??""} · ${c(F).played??""} games played`)}),A(nn,rn)};sn(I,nn=>{c(F).kind==="draft"?nn(Y):nn(b,-1)})}var _=m(I,2),O=S(_),U=m(_,2);{var tn=nn=>{var rn=xh(),an=S(rn,!0);K(Dn=>T(an,Dn),[()=>ol(c(F),oa())]),A(nn,rn)},un=ln(()=>ol(c(F),oa()));sn(U,nn=>{c(un)&&nn(tn)})}var dn=m(U,2),yn=S(dn);K((nn,rn)=>{T(P,`${nn??""} · rev ${c(F).saveRevision??""}`),T(O,`saved ${rn??""}`),T(yn,`Load ${c(F).kind??""}`)},[()=>c(F).kind?.toUpperCase(),()=>c(F).savedAt?.slice(0,16).replace("T"," ")]),on("click",dn,()=>i(L)),A(en,Q)};sn(x,en=>{!c(F)||c(F).state==="empty"?en(z):c(F).state==="refused"?en(q,1):en($,-1)})}var cn=m(x,2);K(()=>{E=Hn(G,1,"cp-slot svelte-spfs26",null,E,{"cp-slot-ok":c(F)?.state==="ok","cp-slot-bad":c(F)?.state==="refused"}),fn(G,"data-slot",L),T(N,`Slot ${L??""}`),cn.disabled=!e.record}),on("click",cn,()=>l(L)),A(C,G)});var g=m(v,2);{var B=C=>{var L=Yh(),F=W(L),G=S(F),E=m(F,2),J=S(E),N=m(E,2),x=S(N);K(()=>{T(G,`Hydrated — ${c(t).kind??""} save, slot ${c(t).slot??""}`),T(J,`${c(t).userTeam??""} · next week ${c(t).week??""} · ${c(t).nextFixture??""}`),T(x,`${c(t).played??""} games played · the table, seeding and champion were RE-DERIVED by the engine (trusted: ratings, roster, scores, plan)`)}),A(C,L)};sn(g,C=>{c(t)&&C(B)})}var y=m(g,4),k=m(W(y)),w=S(k,!0),D=m(k);K((C,L)=>{T(w,C),T(D,` · shell ${L??""} (§4.4 — the stamp is the RUNNING engine's, never a hardcoded pin).`)},[()=>oa(),()=>Kp()]),on("click",p,function(...C){e.onclose?.apply(this,C)}),A(n,f),Ln()}Vn(["click"]);var jh=M('<p class="cp-ts-replay svelte-qxuqmk">This tab carries a replay link — starting a draft replays that exact seed. <button class="cp-ts-newseed svelte-qxuqmk">New draft · new seed</button></p>'),Uh=M("<button> </button>"),qh=M('<div class="cp-ts-div svelte-qxuqmk"><h3 class="svelte-qxuqmk"> </h3> <!></div>'),Zh=M('<h2 class="cp-ts-conf svelte-qxuqmk"> </h2> <div class="cp-ts-divs svelte-qxuqmk"></div>',1),Xh=M("<button></button>"),$h=M(`No position chosen — the league's standard order decides. Slot <b class="svelte-qxuqmk"> </b> is this team's natural first pick.`,1),nv=M('You pick <b class="svelte-qxuqmk"> </b> ',1),ev=M('<p class="cp-sub cp-ts-order svelte-qxuqmk"> </p>'),av=M('<aside class="cp-ts-detail svelte-qxuqmk" aria-live="polite"><h3 class="svelte-qxuqmk"> </h3> <p class="cp-ts-meta svelte-qxuqmk"> </p> <p class="cp-ts-rivals svelte-qxuqmk"><b class="svelte-qxuqmk">Division rivals:</b> </p> <p class="cp-ts-note svelte-qxuqmk"> </p> <h4 class="cp-ts-sloth svelte-qxuqmk">Your draft position</h4> <div class="cp-ts-slots svelte-qxuqmk" role="group" aria-label="Pick your draft position"></div> <p class="cp-ts-note svelte-qxuqmk"><!></p> <!> <button class="cp-ts-go svelte-qxuqmk"> </button></aside>'),sv=M('<aside class="cp-ts-detail cp-ts-idle svelte-qxuqmk" aria-live="polite"><p class="cp-ts-note svelte-qxuqmk">Select one of the 32 teams to see its details, choose a draft position, and start the draft.</p></aside>'),tv=M('<section class="cp-ts svelte-qxuqmk"><h1 class="cp-ts-title svelte-qxuqmk">Pick your team</h1> <p class="cp-cygline"><span class="cp-cygt">Can you go</span><b class="cp-shine">20-0</b><b class="cp-shine" style="font-size:1.1em;">?</b></p> <!> <p class="cp-prov">Every number you will see on this board reads <b> </b> — the label travels with the numbers.</p> <!> <!></section>');function rv(n,e){En(e,!0);let a=xn(e,"seedPinned",3,!1),s=xn(e,"busy",3,!1),t=pn(null),r=pn(null),o=ln(()=>c(t)==null?-1:kn.findIndex(C=>C.name===c(t))),l=ln(()=>c(t)==null?null:Et[c(t)]),i=ln(()=>c(t)==null||!c(l)?[]:Ea(c(l).conf,c(l).div).filter(C=>C!==c(l).name)),f=ln(()=>c(o)<0||c(r)===null?null:Pi(c(o),c(r)));function u(){c(o)<0||s()||e.onstart(c(o),c(r))}var p=tv(),h=m(W(p),4);{var d=C=>{var L=jh(),F=m(W(L));on("click",F,function(...G){e.onnewseed?.apply(this,G)}),A(C,L)};sn(h,C=>{a()&&C(d)})}var v=m(h,2),g=m(W(v)),B=S(g,!0),y=m(v,2);hn(y,16,()=>["AFC","NFC"],C=>C,(C,L)=>{var F=Zh(),G=wn(F),E=S(G,!0),J=m(G,2);hn(J,20,()=>xe,N=>N,(N,x)=>{var z=qh(),q=W(z),$=S(q),cn=m(q,2);hn(cn,16,()=>Ea(L,x),en=>en,(en,Q)=>{var X=Uh();let P;var I=S(X,!0);K(()=>{P=Hn(X,1,"cp-ts-team svelte-qxuqmk",null,P,{"cp-on":c(t)===Q}),fn(X,"aria-pressed",c(t)===Q),T(I,Q)}),on("click",X,()=>V(t,Q,!0)),A(en,X)}),K(()=>T($,`${L??""} ${x??""}`)),A(N,z)}),K(()=>T(E,L)),A(C,F)});var k=m(y,2);{var w=C=>{var L=av(),F=W(L),G=S(F,!0),E=m(F,2),J=S(E),N=m(E,2),x=m(W(N)),z=m(N,2),q=S(z),$=m(z,4);hn($,20,()=>Array(32),cs,(_,O,U)=>{var tn=Xh();let un;tn.textContent=U+1,K(()=>{un=Hn(tn,1,"cp-ts-slot svelte-qxuqmk",null,un,{"cp-on":c(r)===U+1,"cp-nat":c(o)===U}),fn(tn,"aria-pressed",c(r)===U+1)}),on("click",tn,()=>V(r,c(r)===U+1?null:U+1,!0)),A(_,tn)});var cn=m($,2),en=W(cn);{var Q=_=>{var O=$h(),U=m(wn(O)),tn=S(U,!0);K(()=>T(tn,c(o)+1)),A(_,O)},X=_=>{var O=nv(),U=m(wn(O)),tn=S(U,!0),un=m(U);K(()=>{T(tn,c(r)),T(un,`${c(r)===c(o)+1?" — this team's natural spot":" first"}. The store trades your team into this slot and mirrors the trade through the snake; a save restores the same order.`)}),A(_,O)};sn(en,_=>{c(r)===null?_(Q):_(X,-1)})}var P=m(cn,2);{var I=_=>{var O=ev(),U=S(O);K(tn=>T(U,`Order preview (first 6): ${tn??""}`),[()=>c(f).slice(0,6).map(tn=>kn[tn].name).join(" · ")]),A(_,O)};sn(P,_=>{c(f)&&c(r)!==null&&_(I)})}var Y=m(P,2),b=S(Y);K((_,O)=>{T(G,c(l).name),T(J,`${c(l).conf??""} ${c(l).div??""}`),T(x,` ${_??""}`),T(q,`You draft as this team: the board's on-clock indicator, your picks and your roster are all ${c(l).name??""}'s.`),Y.disabled=s(),T(b,`DRAFT AS ${O??""}${c(r)?` · SLOT ${c(r)}`:""}`)},[()=>c(i).join(" · "),()=>c(l).name.toUpperCase()]),on("click",Y,u),A(C,L)},D=C=>{var L=sv();A(C,L)};sn(k,C=>{c(l)?C(w):C(D,-1)})}K(C=>T(B,C),[()=>_e[ie.get().mode]]),A(n,p),Ln()}Vn(["click"]);function ov(n){const e=(n.drives??[]).filter(o=>o.pts>0);if(!e.length)return null;let a=e[0];for(const o of e)(o.pts>a.pts||o.pts===a.pts&&o.n<a.n)&&(a=o);const s=(n.drives??[]).filter(o=>o.end==="INT"||o.end==="FUM").length,t=e.filter(o=>o.end==="TD").length,r=e.filter(o=>o.end==="FG").length;return{team:a.team,driveNo:a.n,summary:a.summary,pts:a.pts,line:`drive ${a.n} · ${a.pts} pts · the game's ${t} TD${t===1?"":"s"} and ${r} FG${r===1?"":"s"} across ${e.length} scoring drives`,why:`the feed's own drive data — no new math · ${s} turnover${s===1?"":"s"} named on their drive lines`}}function lv(n,e,a){const s=a.includes(n.team),t=e.filter(i=>i!==n&&i.w===n.w&&Math.abs(parseFloat(i.winPct)-parseFloat(n.winPct))<1e-9),r=`${n.seed}. ${n.team} — ${n.w}-${n.l}-${n.t} (${n.winPct} win pct), ${s?"division winner (the engine seeds division winners first)":"wild card"}`;if(!t.length)return r;const o=t.filter(i=>(i.seed??99)<(n.seed??99));if(o.length){const i=o[0];return`${r} · tied on wins with ${i.team} — the engine's tiebreak (points allowed, lower first) puts ${i.team} ahead (${i.pa} < ${n.pa} pa)`}const l=t.filter(i=>(i.seed??0)>(n.seed??0));if(l.length){const i=l[0];return`${r} · tied on wins with ${i.team} — the engine's tiebreak (points allowed, lower first) puts this team ahead (${n.pa} < ${i.pa} pa)`}return r}const iv=["slower","standard","faster"],cv={slower:2,standard:1,faster:.5},fv={slower:"Slower",standard:"Standard",faster:"Faster"},uv=n=>Math.min(2,Math.max(.5,n));var dv=M("<button> </button>"),pv=M('<aside class="cp-gameball svelte-tsx9t1" aria-label="The game ball"><span class="cp-gameball-team"> </span> <b class="svelte-tsx9t1">GAME BALL</b> <span class="cp-gameball-why svelte-tsx9t1"> </span></aside>'),hv=M('<span class="cp-feed-dim svelte-tsx9t1"> </span>'),vv=M('<div class="cp-feed-q svelte-tsx9t1"> </div>'),dl=M('<span class="zrl-badge svelte-tsx9t1"> </span>'),mv=M('<!> <article><span class="zrl-t svelte-tsx9t1"> </span> <span class="zrl-team svelte-tsx9t1"> </span> <span class="zrl-play svelte-tsx9t1"><span class="cp-feed-summary svelte-tsx9t1"> </span> <span class="cp-feed-badges svelte-tsx9t1"><!> <!></span></span> <span class="zrl-sc svelte-tsx9t1"><b class="svelte-tsx9t1"> </b> <span class="cp-feed-dot svelte-tsx9t1">·</span> <b class="svelte-tsx9t1"> </b></span></article>',1),gv=M('<p class="cp-feed-empty svelte-tsx9t1">no drives match the filter</p>'),Bv=M(`<section class="cp-feed svelte-tsx9t1" aria-label="Game feed"><header class="cp-feed-head svelte-tsx9t1"><span class="cp-feed-week svelte-tsx9t1"> </span> <span class="cp-feed-vs svelte-tsx9t1"> </span> <span class="cp-feed-tools svelte-tsx9t1"><button>NEWEST FIRST</button> <button>MY DRIVES</button> <span class="cp-feedpace svelte-tsx9t1" role="group" aria-label="Recap pace"></span> <button class="cp-feedtool svelte-tsx9t1">← BOARD</button></span></header> <!> <div class="cp-feed-final svelte-tsx9t1"><b class="svelte-tsx9t1"><span> </span> </b> <span class="cp-feed-at svelte-tsx9t1">at</span> <b class="svelte-tsx9t1"><span> </span> </b> <span class="cp-feed-finalnote svelte-tsx9t1"> <!></span> <span class="cp-feed-prov svelte-tsx9t1"> </span></div> <div class="cp-feed-log svelte-tsx9t1" data-testid="cp-feed-log"><!> <!></div> <footer class="cp-feed-foot svelte-tsx9t1"><span> </span> <span class="cp-feed-dim svelte-tsx9t1">drives and scores read off the engine's own game; the feed adds nothing (yards ride a later engine field — none is faked)</span></footer></section>`);function Cv(n,e){En(e,!0);let a=pn(!1),s=pn(!1),t=pn("standard");const r=ln(()=>ov(e.feed)),o=ln(()=>c(a)?[...e.feed.drives].reverse():e.feed.drives),l=ln(()=>c(s)?c(o).filter(nn=>nn.me):c(o)),i=nn=>nn.replace(":","·"),f=nn=>nn==="good"?"var(--cp-good)":nn==="bad"?"var(--cp-bad)":nn==="gold"?"var(--cp-gold)":"var(--cp-sub)";var u=Bv(),p=W(u),h=W(p),d=S(h),v=m(h,2),g=S(v),B=m(v,2),y=W(B);let k;var w=m(y,2);let D;var C=m(w,2);hn(C,20,()=>iv,nn=>nn,(nn,rn)=>{var an=dv();let Dn;var Tn=S(an,!0);K(()=>{Dn=Hn(an,1,"cp-feedtool svelte-tsx9t1",null,Dn,{"cp-feedtool-on":c(t)===rn}),fn(an,"aria-pressed",c(t)===rn),T(Tn,fv[rn])}),on("click",an,()=>V(t,rn,!0)),A(nn,an)});var L=m(C,2),F=m(p,2);{var G=nn=>{var rn=pv(),an=W(rn),Dn=S(an,!0),Tn=m(an,3),Jn=m(Tn),zn=S(Jn,!0);K(()=>{Ie(an,`color:${e.feed.homeInk.pale??""}`),T(Dn,c(r).team===e.feed.home?e.feed.homeAbbr:e.feed.awayAbbr),T(Tn,` — ${c(r).line??""} `),T(zn,c(r).summary)}),A(nn,rn)};sn(F,nn=>{c(r)&&nn(G)})}var E=m(F,2),J=W(E),N=W(J),x=S(N,!0),z=m(N),q=m(J,4),$=W(q),cn=S($,!0),en=m($),Q=m(q,2),X=W(Q),P=m(X);{var I=nn=>{var rn=hv(),an=S(rn);K(()=>T(an,`· regulation ${e.feed.regAway??""}–${e.feed.regHome??""}`)),A(nn,rn)};sn(P,nn=>{(e.feed.regHome!==e.feed.homeScore||e.feed.regAway!==e.feed.awayScore)&&nn(I)})}var Y=m(Q,2),b=S(Y,!0),_=m(E,2),O=W(_);hn(O,19,()=>c(l),nn=>nn.n,(nn,rn,an)=>{var Dn=mv(),Tn=wn(Dn);{var Jn=se=>{var Ne=vv(),me=S(Ne,!0);K(()=>T(me,c(rn).period>=5?"OT":`Q${c(rn).period}`)),A(se,Ne)};sn(Tn,se=>{!c(s)&&!c(a)&&(c(an)===0||c(l)[c(an)-1].period!==c(rn).period)&&se(Jn)})}var zn=m(Tn,2);let vn;var _n=W(zn),Nn=S(_n,!0),In=m(_n,2),Yn=S(In,!0),Gn=m(In,2),ue=W(Gn),ve=S(ue,!0),ke=m(ue,2),Pe=W(ke);hn(Pe,17,()=>c(rn).badges,se=>se.label,(se,Ne)=>{var me=dl(),us=S(me,!0);K(Ma=>{Ie(me,`color:${Ma??""}`),T(us,c(Ne).label)},[()=>f(c(Ne).tone)]),A(se,me)});var La=m(Pe,2);hn(La,17,()=>c(rn).convBadges,se=>se.label,(se,Ne)=>{var me=dl(),us=S(me,!0);K(Ma=>{Ie(me,`color:${Ma??""}`),T(us,c(Ne).label)},[()=>f(c(Ne).tone)]),A(se,me)});var we=m(Gn,2),Ge=W(we),$e=S(Ge,!0),Os=m(Ge,4),Aa=S(Os,!0);K(se=>{vn=Hn(zn,1,"cp-feed-line svelte-tsx9t1",null,vn,{"cp-me":c(rn).me}),Ie(zn,`--beat:${c(an)??""}`),fn(zn,"data-period",c(rn).period),T(Nn,se),Ie(In,`color:${c(rn).teamPale??""}`),T(Yn,c(rn).teamAbbr),T(ve,c(rn).summary),Ie(Ge,`color:${e.feed.awayInk.pale??""}`),T($e,c(rn).scoreAfter.away),Ie(Os,`color:${e.feed.homeInk.pale??""}`),T(Aa,c(rn).scoreAfter.home)},[()=>c(rn).period>=5?`OT${c(rn).period-4}`:i(c(rn).clock)]),A(nn,Dn)});var U=m(O,2);{var tn=nn=>{var rn=gv();A(nn,rn)};sn(U,nn=>{c(l).length||nn(tn)})}var un=m(_,2),dn=W(un),yn=S(dn);K(nn=>{T(d,`WEEK ${e.feed.week??""} · ${e.feed.year??""}`),T(g,`${e.feed.awayAbbr??""} @ ${e.feed.homeAbbr??""}`),k=Hn(y,1,"cp-feedtool svelte-tsx9t1",null,k,{"cp-feedtool-on":c(a)}),fn(y,"aria-pressed",c(a)),D=Hn(w,1,"cp-feedtool svelte-tsx9t1",null,D,{"cp-feedtool-on":c(s)}),fn(w,"aria-pressed",c(s)),Ie(N,`color:${e.feed.awayInk.pale??""}`),T(x,e.feed.awayAbbr),T(z,` ${e.feed.awayScore??""}`),Ie($,`color:${e.feed.homeInk.pale??""}`),T(cn,e.feed.homeAbbr),T(en,` ${e.feed.homeScore??""}`),T(X,`${e.feed.ot?e.feed.ot.tie?`TIE — OT ×${e.feed.ot.periods} (both teams possessed)`:`FINAL — OT ×${e.feed.ot.periods} (both teams possessed)`:"FINAL"} `),T(b,e.feed.gameSeedLabel),Ie(_,nn),T(yn,`${e.feed.drives.length??""} drives · ${e.feed.meDrives??""} mine · ${e.feed.leadChanges??""} lead changes`)},[()=>`--beatpace:${uv(cv[c(t)])}`]),on("click",y,()=>V(a,!c(a))),on("click",w,()=>V(s,!c(s))),on("click",L,function(...nn){e.onclose?.apply(this,nn)}),A(n,u),Ln()}Vn(["click"]);var yv=M('<h1 class="cp-done-h1 svelte-14csbb6">Your draft is complete</h1>'),Tv=M('· requested slot <b class="svelte-14csbb6"> </b>',1),Sv=M('<p class="cp-note cp-done-note svelte-14csbb6"><!></p>'),kv=M('<div class="cp-rosterline svelte-14csbb6"><!></div>'),wv=M('<section class="cp-done svelte-14csbb6"><!> <p class="cp-done-sub svelte-14csbb6"><!></p> <p class="cp-prov cp-done-prov svelte-14csbb6">seed <b class="svelte-14csbb6"> </b> · code <b class="svelte-14csbb6"> </b> · engine <b class="svelte-14csbb6"> </b> <!> · every number reads <b class="svelte-14csbb6"> </b></p> <!> <!> <div class="cp-chipline svelte-14csbb6"><button class="cp-stepbtn cp-cta">PLAY THE SEASON</button> <button class="cp-stepbtn">YOUR PLAYER CARDS</button> <button class="cp-stepbtn">THE SEASON BOOK</button></div></section>');function Dv(n,e){En(e,!0);let a=ln(()=>e.record.picks.length),s=ln(()=>c(a)>=1024),t=ln(()=>e.record.picks.filter(P=>P.team===e.record.userTeam).length),r=ln(()=>{if(!c(s))return[];try{const P=e.record,I=yt(e.record)[P.userTeam]??[];return(Gr(I,"4-3").placements??[]).map(b=>({label:b.slot?.label??b.slot?.slot??"?",name:b.player?.name??"(empty)",ovr:b.player?String(b.effOvr??b.player.ovr):"-"}))}catch{return[]}}),o=ln(()=>c(r).filter(P=>P.name!=="(empty)"&&P.ovr!=="-").length),l=ln(()=>c(o)<11&&c(r).length?"incomplete":"complete"),i=ln(()=>c(r).map((I,Y)=>({i:Y,v:I.name!=="(empty)"&&I.ovr!=="-"?Number(I.ovr):1/0})).filter(I=>I.v!==1/0).sort((I,Y)=>I.v-Y.v).slice(0,3).map(I=>I.i));var f=wv(),u=W(f);{var p=P=>{var I=yv();A(P,I)};sn(u,P=>{c(s)&&P(p)})}var h=m(u,2),d=W(h);{var v=P=>{var I=zs("All 1,024 picks are in — every one of the 32 teams holds a full 32-man roster. The league is built; the season is yours to play.");A(P,I)},g=P=>{var I=zs();K((Y,b)=>T(I,`The draft has ${Y??""} of 1,024 picks in (${b??""} of yours). Come back when the board says done — the season opens from here.`),[()=>Zn(c(a)),()=>Zn(c(t))]),A(P,I)};sn(d,P=>{c(s)?P(v):P(g,-1)})}var B=m(h,2),y=m(W(B)),k=S(y,!0),w=m(y,2),D=S(w,!0),C=m(w,2),L=S(C,!0),F=m(C),G=m(F);{var E=P=>{var I=Tv(),Y=m(wn(I)),b=S(Y,!0);K(()=>T(b,e.requestedSlot)),A(P,I)};sn(G,P=>{e.requestedSlot!==null&&P(E)})}var J=m(G,2),N=S(J,!0),x=m(B,2);{var z=P=>{var I=Sv(),Y=W(I);{var b=O=>{var U=zs();K(()=>T(U,`You drafted at slot ${e.record.pickSlot??""} — the store traded ${kn[e.record.userTeam].name??""} into that slot and mirrored the trade through the snake; the record carries it (pickSlot) and a restore replays the same order.`)),A(O,U)},_=O=>{var U=zs();K(()=>T(U,`Slot ${e.requestedSlot??""} is ${kn[e.record.userTeam].name??""}'s own spot — the standard snake ran, and a restore replays it unchanged.`)),A(O,U)};sn(Y,O=>{e.record.pickSlot!==void 0?O(b):O(_,-1)})}A(P,I)};sn(x,P=>{(e.requestedSlot!==null||e.record.pickSlot!==void 0)&&P(z)})}var q=m(x,2);{var $=P=>{var I=kv(),Y=W(I);pc(Y,{get slots(){return c(r)},get weak(){return c(i)}}),K(()=>fn(I,"data-lineup",c(l))),A(P,I)};sn(q,P=>{c(s)&&c(r).length&&P($)})}var cn=m(q,2),en=W(cn),Q=m(en,2),X=m(Q,2);K((P,I,Y,b)=>{fn(f,"data-state",c(s)?"complete":"partial"),T(k,e.record.seed),T(D,P),T(L,I),T(F,` · ${Y??""} picks · ${kn[e.record.userTeam].name??""} `),T(N,b),en.disabled=!c(s),fn(en,"title",c(s)?void 0:"the season needs a finished draft")},[()=>Mt(e.record.seed),()=>oa(),()=>Zn(c(a)),()=>_e[ie.get().mode]]),on("click",en,function(...P){e.onseason?.apply(this,P)}),on("click",Q,function(...P){e.oncards?.apply(this,P)}),on("click",X,function(...P){e.onbook?.apply(this,P)}),A(n,f),Ln()}Vn(["click"]);var bv=M('<button class="cp-stepbtn">RESTORE A SAVED WEEK</button>'),Rv=M('<div class="cp-panel"><h2 class="cp-h2">THE SEASON</h2> <p class="cp-note">No season is running. Finish a draft and the season opens from the draft-complete screen — or restore a saved week.</p> <!></div>'),Ev=M('<span class="cp-score"> </span>'),Lv=M('<span class="cp-pending">NOT YET PLAYED</span>'),Av=M('<div class="cp-matchup"><span class="cp-abbr"> </span> <!> <span class="cp-abbr"> </span></div> <button class="cp-stepbtn cp-cta"> </button>',1),Mv=M('<p class="cp-note">No game for you this week — the league plays on.</p> <button class="cp-stepbtn cp-cta">PLAY THE WEEK</button>',1),Jv=M('<button class="cp-stepbtn">RESTORE</button>'),_v=M("<button> </button>"),Fv=M('<div class="cp-champbanner"><div class="champ"> </div> <button class="cp-stepbtn cp-cta">OPEN THE SEASON BOOK</button></div>'),Wv=M('<h2 class="cp-h2"> </h2> <div class="cp-hubrow svelte-k2xmuw"><div class="cp-gamecard cp-megame"><p class="cp-final"> </p> <!></div> <div class="cp-hubmeta cp-panel svelte-k2xmuw"><p class="cp-sub"> </p> <div class="cp-chipline"><button class="cp-stepbtn">WEEK VIEW</button> <button class="cp-stepbtn">STANDINGS</button> <button class="cp-stepbtn">PLAYOFFS</button> <button class="cp-stepbtn">BOOK</button> <!></div></div></div> <div class="cp-panel"><h3 class="cp-h3 svelte-k2xmuw">THE WEEKS</h3> <div class="cp-weekgrid svelte-k2xmuw"></div></div> <!>',1),Pv=M('<section class="cp-hub"><!></section>');function Gv(n,e){En(e,!0);let a=ln(()=>e.season.ready?e.season.finished?"finished":"running":"none"),s=ln(()=>e.season.view?e.season.view.games.filter(f=>f.home===e.season.userTeamName||f.away===e.season.userTeamName):[]),t=ln(()=>c(s).length?c(s)[0]:null);var r=Pv(),o=W(r);{var l=f=>{var u=Rv(),p=m(W(u),4);{var h=d=>{var v=bv();on("click",v,function(...g){e.onrestore?.apply(this,g)}),A(d,v)};sn(p,d=>{e.canRestore&&d(h)})}A(f,u)},i=f=>{var u=Wv(),p=wn(u),h=S(p),d=m(p,2),v=W(d),g=W(v),B=S(g),y=m(g,2);{var k=Q=>{var X=Av(),P=wn(X),I=W(P),Y=S(I,!0),b=m(I,2);{var _=yn=>{var nn=Ev(),rn=S(nn);K(()=>T(rn,`${c(t).as??""} — ${c(t).hs??""}`)),A(yn,nn)},O=yn=>{var nn=Lv();A(yn,nn)};sn(b,yn=>{c(t).hs!==null?yn(_):yn(O,-1)})}var U=m(b,2),tn=S(U,!0),un=m(P,2),dn=S(un,!0);K(()=>{T(Y,c(t).awayAbbr),T(tn,c(t).homeAbbr),T(dn,c(t).hs!==null?"WATCH THE FEED":"PLAY THE WEEK")}),on("click",un,function(...yn){e.onplayweek?.apply(this,yn)}),A(Q,X)},w=Q=>{var X=Mv(),P=m(wn(X),2);on("click",P,function(...I){e.onplayweek?.apply(this,I)}),A(Q,X)};sn(y,Q=>{c(t)?Q(k):Q(w,-1)})}var D=m(v,2),C=W(D),L=S(C),F=m(C,2),G=W(F),E=m(G,2),J=m(E,2),N=m(J,2),x=m(N,2);{var z=Q=>{var X=Jv();on("click",X,function(...P){e.onrestore?.apply(this,P)}),A(Q,X)};sn(x,Q=>{e.canRestore&&Q(z)})}var q=m(d,2),$=m(W(q),2);hn($,21,()=>Array(e.season.total),cs,(Q,X,P)=>{const I=ln(()=>P+1);var Y=_v();let b;var _=S(Y,!0);K(()=>{b=Hn(Y,1,"cp-wk svelte-k2xmuw",null,b,{"cp-cur":c(I)===e.season.slot,"cp-played":c(I)<e.season.slot+0&&e.season.atLastPlayed===!1||c(I)<=e.season.slot-1}),T(_,c(I)>ts?["WC","DIV","CONF","SB"][c(I)-ts-1]:c(I))}),on("click",Y,()=>e.onweek(c(I))),A(Q,Y)});var cn=m(q,2);{var en=Q=>{var X=Fv(),P=W(X),I=S(P),Y=m(P,2);K(b=>T(I,`${b??""} · SUPER BOWL CHAMPIONS`),[()=>e.season.champion?.toUpperCase()]),on("click",Y,function(...b){e.onbook?.apply(this,b)}),A(Q,X)};sn(cn,Q=>{e.season.finished&&Q(en)})}K((Q,X,P)=>{T(h,`THE SEASON · ${Q??""} · ${e.season.view?.label??""??""}`),T(B,`YOUR GAME · ${e.season.view?.label??""??""}`),T(L,`Week slot ${X??""} of ${P??""} · ${e.season.finished?"season finished":e.season.atLastPlayed?"you are at the latest played week":"reviewing an earlier week"}`)},[()=>e.season.userTeamName.toUpperCase(),()=>Zn(e.season.slot),()=>Zn(e.season.total)]),on("click",G,()=>e.onweek(e.season.slot)),on("click",E,function(...Q){e.onstandings?.apply(this,Q)}),on("click",J,function(...Q){e.onbracket?.apply(this,Q)}),on("click",N,function(...Q){e.onbook?.apply(this,Q)}),A(f,u)};sn(o,f=>{c(a)==="none"?f(l):f(i,-1)})}K(()=>fn(r,"data-phase",c(a))),A(n,r),Ln()}Vn(["click"]);var pl=M('<button class="cp-stepbtn cp-cta"> </button>'),Nv=M('<button class="cp-stepbtn">WATCH THE FEED</button>'),Iv=M('<p class="cp-note">No season is running — open the hub to begin one.</p>'),Hv=M('<span class="cp-score"> </span> <span class="cp-final">FINAL</span>',1),Kv=M('<span class="cp-pending"> </span>'),xv=M('<div><div class="cp-matchup"><span class="cp-abbr"> </span> <!></div> <p class="cp-sub cp-gs"> </p></div>'),Ov=M('<p class="cp-note">No games this slot.</p>'),Vv=M('<div class="cp-grid"></div> <!>',1),Yv=M('<section class="cp-week"><div class="cp-stepper"><button class="cp-stepbtn">‹ PREV</button> <span class="cp-weeklabel"> </span> <button class="cp-stepbtn">NEXT ›</button> <span class="cp-sub"> </span> <!> <!> <button class="cp-stepbtn">SAVE</button></div> <!></section>');function zv(n,e){En(e,!0);let a=ln(()=>e.season.view),s=ln(()=>c(a)?.games.find(C=>C.home===e.season.userTeamName||C.away===e.season.userTeamName)??null);var t=Yv(),r=W(t),o=W(r),l=m(o,2),i=S(l,!0),f=m(l,2),u=m(f,2),p=S(u),h=m(u,2);{var d=C=>{var L=pl(),F=S(L);K(()=>T(F,`PLAY WEEK ${e.season.slot??""}`)),on("click",L,function(...G){e.onplay?.apply(this,G)}),A(C,L)},v=C=>{var L=pl(),F=S(L);K(()=>T(F,`STEP TO WEEK ${e.season.slot+1}`)),on("click",L,function(...G){e.onplay?.apply(this,G)}),A(C,L)};sn(h,C=>{c(s)&&c(s).hs===null?C(d):e.season.atLastPlayed&&!e.season.finished&&C(v,1)})}var g=m(h,2);{var B=C=>{var L=Nv();on("click",L,()=>e.onfeed(c(s).home)),A(C,L)};sn(g,C=>{c(s)&&c(s).hs!==null&&C(B)})}var y=m(g,2),k=m(r,2);{var w=C=>{var L=Iv();A(C,L)},D=C=>{var L=Vv(),F=wn(L);hn(F,21,()=>c(a).games,J=>J.replayLabel,(J,N)=>{var x=xv();let z;var q=W(x),$=W(q),cn=S($,!0),en=m($,2);{var Q=Y=>{var b=Hv(),_=wn(b),O=S(_);K(()=>T(O,`${c(N).as??""} — ${c(N).hs??""}`)),A(Y,b)},X=Y=>{var b=Kv(),_=S(b);K(()=>T(_,`@ ${c(N).homeAbbr??""} · not yet played`)),A(Y,b)};sn(en,Y=>{c(N).hs!==null?Y(Q):Y(X,-1)})}var P=m(q,2),I=S(P);K(Y=>{z=Hn(x,1,"cp-gamecard",null,z,{"cp-megame":c(N).home===e.season.userTeamName||c(N).away===e.season.userTeamName}),T(cn,c(N).awayAbbr),T(I,`gameSeed ${Y??""}${c(N).round?" · "+c(N).round:""}`)},[()=>Zn(c(N).gameSeed)]),A(J,x)});var G=m(F,2);{var E=J=>{var N=Ov();A(J,N)};sn(G,J=>{c(a).games.length===0&&J(E)})}A(C,L)};sn(k,C=>{c(a)?C(D,-1):C(w)})}K((C,L)=>{o.disabled=e.season.slot<=1,T(i,e.season.label),f.disabled=e.season.slot>=e.season.total,T(p,`week slot ${C??""} / ${L??""}`)},[()=>Zn(e.season.slot),()=>Zn(e.season.total)]),on("click",o,()=>Fn.prev()),on("click",f,()=>Fn.next()),on("click",y,function(...C){e.onsave?.apply(this,C)}),A(n,t),Ln()}Vn(["click"]);var Qv=M('<p class="cp-note">No season is running — the standings arrive with it.</p>'),jv=M('<tr><td> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td></tr>'),Uv=M('<div class="cp-panel cp-stdiv"><h3 class="cp-h3"> </h3> <table class="cp-table"><thead><tr><th>TEAM</th><th class="num">W</th><th class="num">L</th><th class="num">T</th><th class="num">PF</th><th class="num">PA</th><th class="num">PCT</th><th class="num">SEED</th></tr></thead><tbody></tbody></table></div>'),qv=M('<tr><td> </td><td> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td></tr>'),Zv=M('<h2 class="cp-h2"> </h2> <div class="cp-stdivs svelte-1z0ye32"></div> <div class="cp-panel"><h3 class="cp-h3">THE LEAGUE</h3> <table class="cp-table"><thead><tr><th>#</th><th>TEAM</th><th class="num">W</th><th class="num">L</th><th class="num">T</th><th class="num">PF</th><th class="num">PA</th></tr></thead><tbody></tbody></table></div> <div class="cp-chipline"><button class="cp-stepbtn cp-cta">THE PLAYOFF PICTURE</button></div>',1),Xv=M('<section class="cp-st"><!></section>');function $v(n,e){En(e,!0);let a=ln(()=>e.season.standings);var s=Xv(),t=W(s);{var r=l=>{var i=Qv();A(l,i)},o=l=>{var i=Zv(),f=wn(i),u=S(f),p=m(f,2);hn(p,21,()=>c(a).divisions,y=>y.conf+y.div,(y,k)=>{var w=Uv(),D=W(w),C=S(D),L=m(D,2),F=m(W(L));hn(F,21,()=>c(k).rows,G=>G.team,(G,E)=>{var J=jv();let N;var x=W(J),z=S(x),q=m(x),$=S(q,!0),cn=m(q),en=S(cn,!0),Q=m(cn),X=S(Q,!0),P=m(Q),I=S(P,!0),Y=m(P),b=S(Y,!0),_=m(Y),O=S(_,!0),U=m(_),tn=S(U,!0);K(un=>{N=Hn(J,1,"",null,N,{"cp-me":c(E).team===e.season.userTeamName}),T(z,`${un??""} ${c(E).team??""}`),T($,c(E).w),T(en,c(E).l),T(X,c(E).t),T(I,c(E).pf),T(b,c(E).pa),T(O,c(E).winPct),T(tn,c(E).seed??"—")},[()=>Wn(c(E).team)]),A(G,J)}),K(()=>T(C,`${c(k).conf??""} ${c(k).div??""}`)),A(y,w)});var h=m(p,2),d=m(W(h),2),v=m(W(d));hn(v,23,()=>c(a).league,y=>y.team,(y,k,w)=>{var D=qv();let C;var L=W(D),F=S(L,!0),G=m(L),E=S(G),J=m(G),N=S(J,!0),x=m(J),z=S(x,!0),q=m(x),$=S(q,!0),cn=m(q),en=S(cn,!0),Q=m(cn),X=S(Q,!0);K(P=>{C=Hn(D,1,"",null,C,{"cp-me":c(k).team===e.season.userTeamName}),T(F,c(w)+1),T(E,`${P??""} ${c(k).team??""}`),T(N,c(k).w),T(z,c(k).l),T($,c(k).t),T(en,c(k).pf),T(X,c(k).pa)},[()=>Wn(c(k).team)]),A(y,D)});var g=m(h,2),B=S(g);K(y=>T(u,`STANDINGS · THROUGH ${y??""}`),[()=>c(a).throughWeek===18?"WEEK 18":"WEEK "+Zn(c(a).throughWeek)]),on("click",B,function(...y){e.onbracket?.apply(this,y)}),A(l,i)};sn(t,l=>{c(a)?l(o,-1):l(r)})}A(n,s),Ln()}Vn(["click"]);const nm={"Wild Card":"WILD CARD",Divisional:"DIVISIONAL",Conference:"CONFERENCE","Super Bowl":"SUPER BOWL"},em=["Wild Card","Divisional","Conference","Super Bowl"],am=(n,e,a)=>{if(e==="Wild Card"){if(!a)return[];const t=[];for(const r of["AFC","NFC"]){const o=a.seeds[r];for(const[l,i]of[[2,7],[3,6],[4,5]])t.push([o[l-1],o[i-1]])}return t}const s=n.playoffs.filter(t=>t.round===e);if(s.length===0){const t=(r,o)=>n.playoffs.filter(l=>l.round===r&&(a?.seeds[o].includes(l.home)??!1)).map(l=>l.hs>l.as?l.home:l.away);if(e==="Divisional"&&a){const r=[];for(const o of["AFC","NFC"]){const l=a.seeds[o],i=u=>l.indexOf(u)+1,f=[l[0],...t("Wild Card",o)].sort((u,p)=>i(u)-i(p));f.length===4&&r.push([f[0],f[3]],[f[1],f[2]])}return r}if(e==="Conference"&&a){const r=[];for(const o of["AFC","NFC"]){const l=a.seeds[o],i=u=>l.indexOf(u)+1,f=t("Divisional",o).sort((u,p)=>i(u)-i(p));f.length===2&&r.push([f[0],f[1]])}return r}if(e==="Super Bowl"){const r=["AFC","NFC"].map(o=>t("Conference",o)[0]).filter(Boolean);if(r.length===2)return[[r[0],r[1]]]}return[]}return s.map(t=>[t.home,t.away])};function sm(n,e){const a=n.seeding,s=r=>(a?.seeds[r]??[]).map((o,l)=>({seed:l+1,team:o,abbr:Wn(o),me:o===e})),t=em.map(r=>{const o=am(n,r,a??null),l=n.playoffs.filter(f=>f.round===r),i=o.length===0?"pending":l.length===o.length?"played":"ready";return{round:r,label:nm[r],state:i,pairs:o.map(([f,u])=>{const p=l.find(h=>h.home===f&&h.away===u);return{home:f,away:u,homeAbbr:Wn(f),awayAbbr:Wn(u),hs:p?p.hs:null,as:p?p.as:null,winner:p?p.hs>p.as?f:p.as>p.hs?u:null:null,gameSeed:0}})}});return{seeded:!!a,seeds:{AFC:s("AFC"),NFC:s("NFC")},rounds:t,champion:n.champion,championAbbr:n.champion?Wn(n.champion):null}}var tm=M('<p class="cp-note">No season is running — the bracket arrives with it.</p>'),rm=M(`<p class="cp-note">The field is set after week 18. Keep stepping the season — the bracket fills itself from the engine's seeding.</p>`),om=M("<span> </span>"),lm=M("<li> </li>"),im=M('<h3 class="cp-h3"> </h3> <div class="cp-seeds svelte-1f06r09"></div> <ul class="cp-seedwhy"></ul>',1),cm=M('<div class="cp-panel"></div>'),fm=M(`<p class="cp-sub">Pending — the round's pairs derive from the round before it.</p>`),um=M('<span class="cp-score"> </span> <span class="cp-final"> </span>',1),dm=M('<span class="cp-pending">VS · not yet played</span>'),pm=M('<div class="cp-matchup cp-brpair svelte-1f06r09"><span class="cp-abbr"> </span> <!> <span class="cp-abbr"> </span></div>'),hm=M('<div class="cp-brackround"><h3> </h3> <!></div>'),vm=M('<div class="cp-champbanner"><div class="champ"> </div> <button class="cp-stepbtn cp-cta">THE SEASON REVIEW</button></div>'),mm=M('<h2 class="cp-h2">THE PLAYOFFS</h2> <!> <div class="cp-bracket-list svelte-1f06r09"></div> <!>',1),gm=M('<section class="cp-bracket"><!></section>');function Bm(n,e){En(e,!0);let a=ln(()=>e.season.runState?sm(e.season.runState,e.season.userTeamName):null),s=ln(()=>e.season.standings);function t(f,u,p){const h=c(s)?.league??[],d=h.find(g=>g.abbr===u);if(!d||d.seed===null)return`seed ${f} — the standings row is not on record yet`;const v=h.filter(g=>g.conf===p).reduce((g,B)=>(g.findIndex(k=>h.find(w=>w.team===k)?.div===B.div)===-1&&g.push(B.team),g),[]);return lv(d,h,v)}var r=gm(),o=W(r);{var l=f=>{var u=tm();A(f,u)},i=f=>{var u=mm(),p=m(wn(u),2);{var h=y=>{var k=rm();A(y,k)},d=y=>{var k=cm();hn(k,20,()=>["AFC","NFC"],w=>w,(w,D)=>{var C=im(),L=wn(C),F=S(L),G=m(L,2);hn(G,21,()=>c(a).seeds[D],J=>J.seed,(J,N)=>{var x=om();let z;var q=S(x);K($=>{z=Hn(x,1,"cp-seedrow svelte-1f06r09",null,z,{"cp-meseed":c(N).me}),fn(x,"title",$),T(q,`${c(N).seed??""}. ${c(N).abbr??""}`)},[()=>t(c(N).seed,c(N).abbr,D)]),A(J,x)});var E=m(G,2);hn(E,21,()=>c(a).seeds[D],J=>J.seed,(J,N)=>{var x=lm(),z=S(x,!0);K(q=>T(z,q),[()=>t(c(N).seed,c(N).abbr,D)]),A(J,x)}),K(()=>T(F,`${D??""} FIELD`)),A(w,C)}),A(y,k)};sn(p,y=>{c(a).seeded?y(d,-1):y(h)})}var v=m(p,2);hn(v,21,()=>c(a).rounds,y=>y.round,(y,k)=>{var w=hm(),D=W(w),C=S(D,!0),L=m(D,2);{var F=E=>{var J=fm();A(E,J)},G=E=>{var J=o0(),N=wn(J);hn(N,17,()=>c(k).pairs,x=>x.home+x.away,(x,z)=>{var q=pm(),$=W(q),cn=S($,!0),en=m($,2);{var Q=Y=>{var b=um(),_=wn(b),O=S(_),U=m(_,2),tn=S(U);K(un=>{T(O,`${c(z).as??""} — ${c(z).hs??""}`),T(tn,`FINAL · ${un??""}`)},[()=>c(z).winner?c(z).winner.toUpperCase():""]),A(Y,b)},X=Y=>{var b=dm();A(Y,b)};sn(en,Y=>{c(z).hs!==null?Y(Q):Y(X,-1)})}var P=m(en,2),I=S(P,!0);K(()=>{T(cn,c(z).awayAbbr),T(I,c(z).homeAbbr)}),A(x,q)}),A(E,J)};sn(L,E=>{c(k).pairs.length===0?E(F):E(G,-1)})}K(()=>{fn(w,"data-state",c(k).state),T(C,c(k).label)}),A(y,w)});var g=m(v,2);{var B=y=>{var k=vm(),w=W(k),D=S(w),C=m(w,2);K(L=>T(D,`${L??""} · SUPER BOWL CHAMPIONS`),[()=>c(a).champion.toUpperCase()]),on("click",C,function(...L){e.onreview?.apply(this,L)}),A(y,k)};sn(g,y=>{c(a).champion&&y(B)})}A(f,u)};sn(o,f=>{c(a)?f(i,-1):f(l)})}A(n,r),Ln()}Vn(["click"]);var Cm=M('<p class="cp-note">No season yet — the book opens when one has been played.</p>'),ym=M('<div class="cp-champbanner"><div class="champ"> </div> <button class="cp-stepbtn cp-cta">THE SEASON REVIEW</button></div>'),Tm=M('<div class="cp-revline"><span class="per"> </span> <span class="cp-abbr"> </span> <span class="cp-score"> </span> <span class="cp-abbr"> </span> <button class="cp-stepbtn">REPLAY FEED</button></div>'),Sm=M('<p class="cp-sub">The playoffs have not been played yet.</p>'),km=M('<div class="cp-pcard"><div class="mono"> </div> <div class="pname"> </div> <div class="pmeta"> </div></div>'),wm=M('<div class="cp-cardgrid"></div>'),Dm=M(`<p class="cp-sub">The champion's draft class rides the finished draft.</p>`),bm=M('<tr><td> </td><td> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td></tr>'),Rm=M('<div class="cp-panel"><h3 class="cp-h3">FINAL STANDINGS</h3> <table class="cp-table"><thead><tr><th>#</th><th>TEAM</th><th class="num">W</th><th class="num">L</th><th class="num">T</th><th class="num">PF</th><th class="num">PA</th></tr></thead><tbody></tbody></table> <p class="cp-sub">Top 10 shown; the full table lives on Standings.</p></div>'),Em=M(`<!> <div class="cp-panel"><h3 class="cp-h3">REPLAYABLE PLAYOFF GAMES</h3> <!></div> <div class="cp-panel"><h3 class="cp-h3">THE CHAMPION'S ROSTER</h3> <!></div> <!>`,1),Lm=M('<section class="cp-book"><h2 class="cp-h2"> </h2> <!></section>');function Am(n,e){En(e,!0);let a=ln(()=>{const f=e.draftRecord;if(!f||!e.season.champion)return[];const u=Kr(f.pool),p=new Map(u.map(d=>[d.id,d])),h=kn.findIndex(d=>d.name===e.season.champion);return h<0?[]:f.picks.filter(d=>d.team===h).map(d=>p.get(d.pid)).filter(Boolean)});var s=Lm(),t=W(s),r=S(t),o=m(t,2);{var l=f=>{var u=Cm();A(f,u)},i=f=>{var u=Em(),p=wn(u);{var h=C=>{var L=ym(),F=W(L),G=S(F),E=m(F,2);K(J=>T(G,`${J??""} · SUPER BOWL CHAMPIONS`),[()=>e.season.champion.toUpperCase()]),on("click",E,function(...J){e.onreview?.apply(this,J)}),A(C,L)};sn(p,C=>{e.season.champion&&C(h)})}var d=m(p,2),v=m(W(d),2);hn(v,17,()=>e.season.runState?.playoffs??[],C=>C.week+C.home,(C,L)=>{var F=Tm(),G=W(F),E=S(G,!0),J=m(G,2),N=S(J,!0),x=m(J,2),z=S(x),q=m(x,2),$=S(q,!0),cn=m(q,2);K((en,Q,X)=>{T(E,en),T(N,Q),T(z,`${c(L).as??""} — ${c(L).hs??""}`),T($,X)},[()=>c(L).round?.toUpperCase(),()=>Wn(c(L).away),()=>Wn(c(L).home)]),on("click",cn,()=>e.onfeed(c(L).home)),A(C,F)},C=>{var L=Sm();A(C,L)});var g=m(d,2),B=m(W(g),2);{var y=C=>{var L=wm();hn(L,23,()=>c(a),F=>F.id,(F,G,E)=>{var J=km(),N=W(J),x=S(N,!0),z=m(N,2),q=S(z,!0),$=m(z,2),cn=S($);K((en,Q,X)=>{T(x,en),T(q,c(G).name),T(cn,`${c(G).pos??""} · ${c(G).team??""} · OVR ${Q??""} · pick ${X??""}`)},[()=>c(G).name.split(/\s+/).slice(0,2).map(en=>en[0]).join(""),()=>Zn(c(G).ovr),()=>Zn(c(E)+1)]),A(F,J)}),A(C,L)},k=C=>{var L=Dm();A(C,L)};sn(B,C=>{c(a).length?C(y):C(k,-1)})}var w=m(g,2);{var D=C=>{var L=Rm(),F=m(W(L),2),G=m(W(F));hn(G,23,()=>e.season.standings.league.slice(0,10),E=>E.team,(E,J,N)=>{var x=bm();let z;var q=W(x),$=S(q,!0),cn=m(q),en=S(cn),Q=m(cn),X=S(Q,!0),P=m(Q),I=S(P,!0),Y=m(P),b=S(Y,!0),_=m(Y),O=S(_,!0),U=m(_),tn=S(U,!0);K(un=>{z=Hn(x,1,"",null,z,{"cp-me":c(J).team===e.season.userTeamName}),T($,c(N)+1),T(en,`${un??""} ${c(J).team??""}`),T(X,c(J).w),T(I,c(J).l),T(b,c(J).t),T(O,c(J).pf),T(tn,c(J).pa)},[()=>Wn(c(J).team)]),A(E,x)}),A(C,L)};sn(w,C=>{e.season.standings&&C(D)})}A(f,u)};sn(o,f=>{e.season.ready?f(i,-1):f(l)})}K(f=>T(r,`THE SEASON BOOK${f??""}`),[()=>e.season.champion?` · ${e.season.champion.toUpperCase()}`:""]),A(n,s),Ln()}Vn(["click"]);const hl={MVP:"MOST VALUABLE PLAYER",OPOY:"OFFENSIVE PLAYER OF THE YEAR",DPOY:"DEFENSIVE PLAYER OF THE YEAR",COACH:"COACH OF THE YEAR"},vl={pyd:"PASSING YARDS",ptd:"PASSING TD",ryd:"RUSHING YARDS",rtd:"RUSHING TD",recYd:"RECEIVING YARDS",rec:"RECEPTIONS",recTd:"RECEIVING TD",sack:"SACKS",intDef:"INTERCEPTIONS",tkl:"TACKLES",ff:"FORCED FUMBLES",fgm:"FIELD GOALS",defTd:"DEFENSIVE TD"},Mm={pyd:"pyd",ptd:"ptd",ryd:"ryd",rtd:"rtd",recYd:"recYd",rec:"rec",recTd:"recTd",sack:"sack",intDef:"intDef",tkl:"tkl",ff:"ff",fgm:"fgm",defTd:"defTd"},ml=(n,e)=>{const a=n[e];return a?`${a.w}-${a.l}${a.t?"-"+a.t:""}`:""};function Jm(n,e){const a=Jd(n,e),s=(o,l)=>l&&{key:o,name:hl[o]??o,winner:l.name,line:`${l.label} · ${Object.entries(l.stats).filter(([,i])=>i>0).slice(0,3).map(([i,f])=>`${i} ${f}`).join(", ")}`,team:l.team,teamAbbr:Wn(l.team),teamWins:ml(e,l.team),shimmer:!1}||null,t=[];for(const[o,l]of[["MVP",a.mvp],["OPOY",a.opoy],["DPOY",a.dpoy]]){const i=s(o,l);i&&t.push(i)}a.coach&&t.push({key:"COACH",name:hl.COACH,winner:a.coach.team,line:`${Js("wins",a.coach.over)} over expected`,team:a.coach.team,teamAbbr:Wn(a.coach.team),teamWins:ml(e,a.coach.team),shimmer:!1});const r=$i.filter(o=>vl[o]).map(o=>({key:o,label:vl[o],rows:Yr(n,o,5).map(l=>({name:l.name,team:l.team,abbr:Wn(l.team),value:String(l.stats[Mm[o]??o]??0)}))}));return{regular:t,leaders:r}}var _m=M('<p class="cp-note">No season statistics yet — the awards are computed from the games the engine plays, never promised in advance.</p>'),Fm=M('<div class="cp-award"><div class="aname"> </div> <div> </div> <div class="cp-sub"> </div> <div class="cp-sub"> </div></div>'),Wm=M('<p class="cp-sub">The winners arrive with the finished season.</p>'),Pm=M('<div class="cp-lrow svelte-1yazvx7"><span class="cp-lrank svelte-1yazvx7"> </span> <span class="cp-lteam svelte-1yazvx7"> </span> <b class="cp-lval svelte-1yazvx7"> </b></div>'),Gm=M('<div class="cp-leadercol"><h4 class="cp-lh svelte-1yazvx7"> </h4> <!></div>'),Nm=M('<div class="cp-awards-grid svelte-1yazvx7"></div> <div class="cp-panel"><h3 class="cp-h3">THE LEAGUE LEADERS</h3> <div class="cp-leadercols svelte-1yazvx7"></div></div>',1),Im=M('<section class="cp-awards"><h2 class="cp-h2">THE AWARDS</h2> <!></section>');function Hm(n,e){En(e,!0);let a=ln(()=>e.stats&&e.table?Jm(e.stats,e.table):null);var s=Im(),t=m(W(s),2);{var r=l=>{var i=_m();A(l,i)},o=l=>{var i=Nm(),f=wn(i);hn(f,21,()=>c(a).regular,h=>h.key,(h,d)=>{var v=Fm(),g=W(v),B=S(g,!0),y=m(g,2);let k;var w=S(y,!0),D=m(y,2),C=S(D,!0),L=m(D,2),F=S(L);K(()=>{T(B,c(d).name),k=Hn(y,1,"awinner",null,k,{"cp-shimmer90":c(d).shimmer}),T(w,c(d).winner),T(C,c(d).line),T(F,`${c(d).teamAbbr??""} · ${c(d).teamWins??""}`)}),A(h,v)},h=>{var d=Wm();A(h,d)});var u=m(f,2),p=m(W(u),2);hn(p,21,()=>c(a).leaders,h=>h.key,(h,d)=>{var v=Gm(),g=W(v),B=S(g,!0),y=m(g,2);hn(y,19,()=>c(d).rows,k=>k.name,(k,w,D)=>{var C=Pm(),L=W(C),F=S(L,!0),G=m(L),E=m(G),J=S(E),N=m(E,2),x=S(N,!0);K(()=>{T(F,c(D)+1),T(G,` ${c(w).name??""} `),T(J,`(${c(w).abbr??""})`),T(x,c(w).value)}),A(k,C)}),K(()=>T(B,c(d).label)),A(h,v)}),A(l,i)};sn(t,l=>{c(a)?l(o,-1):l(r)})}A(n,s),Ln()}const gl={"missed-playoffs":"The season ended in week 18 — the playoffs went on without you.","wild-card":"Your season ended in the Wild Card round.",divisional:"Your season ended in the Divisional round.",conference:"Your season ended in the Conference championship.","super-bowl-loss":"You reached the Super Bowl and fell one game short.",champion:"You won the Super Bowl."};function Km(n,e){const a=_s(n),s=[...n.scores,...n.playoffs].filter(l=>l.home===e||l.away===e),t=a[e]??{w:0,l:0,t:0,pf:0,pa:0},r=s.filter(l=>l.round).map(l=>l.round).pop(),o=n.champion===e?"champion":r??"missed-playoffs";return{year:n.year,userTeam:e,userAbbr:Wn(e),outcome:gl[o]??gl["missed-playoffs"],w:t.w,l:t.l,t:t.t,pf:t.pf,pa:t.pa,gamesPlayed:s.length,champion:n.champion??"",championAbbr:n.champion?Wn(n.champion):"",userMadePlayoffs:!!r,highlightLines:[`You played ${s.length} games and went ${t.w}-${t.l}${t.t?"-"+t.t:""}.`,`Your team scored ${t.pf} points and allowed ${t.pa}.`,n.champion?`The season's champion: ${n.champion}.`:"The season is not finished yet."]}}var xm=M('<p class="cp-note">No season to review yet — the review arrives with the run.</p>'),Om=M('<div class="cp-champbanner"><div class="champ"> </div></div>'),Vm=M('<div class="cp-chipstat"><b> </b><span>TIES</span></div>'),Ym=M('<p class="cp-revsummary svelte-1vfenj1"> </p>'),zm=M('<h2 class="cp-h2"> </h2> <!> <div class="cp-chipline"><div class="cp-chipstat"><b> </b><span>WINS</span></div> <div class="cp-chipstat"><b> </b><span>LOSSES</span></div> <!> <div class="cp-chipstat"><b> </b><span>POINTS FOR</span></div> <div class="cp-chipstat"><b> </b><span>POINTS AGAINST</span></div> <div class="cp-chipstat"><b> </b><span>GAMES PLAYED</span></div></div> <div class="cp-panel cp-guide"><p class="cp-done-sub"> </p> <!></div> <div class="cp-chipline"><button class="cp-stepbtn">THE BRACKET</button> <button class="cp-stepbtn">THE AWARDS</button> <button class="cp-stepbtn cp-cta">THE SEASON BOOK</button></div>',1),Qm=M('<section class="cp-sreview"><!></section>');function jm(n,e){En(e,!0);let a=ln(()=>e.season.runState?Km(e.season.runState,e.season.userTeamName):null);var s=Qm(),t=W(s);{var r=l=>{var i=xm();A(l,i)},o=l=>{var i=zm(),f=wn(i),u=S(f),p=m(f,2);{var h=b=>{var _=Om(),O=W(_),U=S(O);K(tn=>T(U,`${tn??""} · SUPER BOWL CHAMPIONS`),[()=>e.season.champion.toUpperCase()]),A(b,_)};sn(p,b=>{e.season.champion&&b(h)})}var d=m(p,2),v=W(d),g=W(v),B=S(g,!0),y=m(v,2),k=W(y),w=S(k,!0),D=m(y,2);{var C=b=>{var _=Vm(),O=W(_),U=S(O,!0);K(()=>T(U,c(a).t)),A(b,_)};sn(D,b=>{c(a).t&&b(C)})}var L=m(D,2),F=W(L),G=S(F,!0),E=m(L,2),J=W(E),N=S(J,!0),x=m(E,2),z=W(x),q=S(z,!0),$=m(d,2),cn=W($),en=S(cn,!0),Q=m(cn,2);hn(Q,16,()=>c(a).highlightLines,b=>b,(b,_)=>{var O=Ym(),U=S(O,!0);K(()=>T(U,_)),A(b,O)});var X=m($,2),P=W(X),I=m(P,2),Y=m(I,2);K((b,_,O)=>{T(u,`THE SEASON REVIEW · ${c(a).userAbbr??""} ${b??""}`),T(B,c(a).w),T(w,c(a).l),T(G,_),T(N,O),T(q,c(a).gamesPlayed),T(en,c(a).outcome)},[()=>e.season.userTeamName.toUpperCase(),()=>Zn(c(a).pf),()=>Zn(c(a).pa)]),on("click",P,function(...b){e.onbracket?.apply(this,b)}),on("click",I,function(...b){e.onawards?.apply(this,b)}),on("click",Y,function(...b){e.onbook?.apply(this,b)}),A(l,i)};sn(t,l=>{c(a)?l(o,-1):l(r)})}A(n,s),Ln()}Vn(["click"]);Af();var Um=M(`<section class="cp-guide"><h2 class="cp-h2">HOW THIS WORKS</h2> <p class="cp-cygline"><span class="cp-cygt">Can you go</span><b class="cp-shine">20-0</b><b class="cp-shine" style="font-size:1.1em;">?</b></p> <p class="cp-note">76 Pancakes is a draft simulator: you draft real players for one of the 32 teams, the other 31 teams draft against you, and then the engine plays a full 22-week season — every game, every drive — from the rosters the draft produced. Nothing on any screen is a promise; every number is a measured value the engine computed.</p> <dl><dt>THE DRAFT</dt> <dd>32 teams, 32 rounds, one pick per slot. Your board shows the players you can still take; the CPU teams pick by the engine's own policy while you are not on the clock. You may draft a player into any slot he legally fits — a flex cost applies when he plays out of position, and the cost is the engine's own table, shown as "−N flex".</dd> <dt>THE NUMBERS (Wins · Priority · OVR)</dt> <dd><b>Wins</b> <b>Priority</b> is Wins divided by the gone odds — the value of taking him right now. <b>OVR</b> is the player's overall rating. Only these three ride the board; integers everywhere except Wins and Priority, which print one decimal.</dd> <dt>GONE%</dt> <dd>The chance the player is drafted between now and your next pick. The method, in plain words: the engine simulates the CPU draft from this point 30 times and counts how often each player is gone when your turn returns. Hover the column to see the exact counts.</dd> <dt>VALUATION MODES</dt> <dd>Every number carries a label: <b> </b> (the engine's measured default), <b> </b>, or <b> </b>. One mode at a time, never blended; the label travels with the numbers everywhere they appear; the switch locks the moment a draft starts.</dd> <dt>THE SEASON</dt> <dd>The finished rosters become 32 rated teams (the engine builds each team's lineup and rates it — no ratings are invented here). The engine builds the schedule, plays every game week by week through its drive generator, seeds the playoffs after week 18, and plays Wild Card → Divisional → Conference → Super Bowl. Each game's result is a fixed derivation of the season seed and the matchup: the same draft and seed always replay the same game, and the gameSeed stamp on every card proves it.</dd> <dt>THE FEED AND THE RECAP</dt> <dd>The feed is the play-by-play of the user's game, drive by drive, with running scores and lead-change marks. The recap names every score, every turnover and every star in plain informative lines. Overtime events appear in the overtime block; the words "expected scoring" and "sudden death" never appear anywhere in this product. There are no injuries in any sport, ever.</dd> <dt>SAVES</dt> <dd>One save blob per slot, version-checked on every read. A corrupt save is refused and shown verbatim — never repaired, never silently replaced. A save written by a newer build is refused with its version named.</dd> <dt>OFFLINE</dt> <dd>The fonts are bundled in the app (Cinzel, inlined — never loaded from Google's servers). The whole product runs from a single file on disk with no network. Shareable cards export as one self-contained file each.</dd> <dt>BUILD</dt> <dd> </dd></dl></section>`);function qm(n,e){En(e,!1),E0();var a=Um(),s=m(W(a),6),t=m(W(s),6),r=m(W(t));r.nodeValue=" is the model's estimate of how many wins a player adds — the engine's weight-OVR units carried to wins (one number, one decimal). ";var o=m(t,8),l=m(W(o)),i=S(l,!0),f=m(l,2),u=S(f,!0),p=m(f,2),h=S(p,!0),d=m(o,20),v=S(d);K(g=>{T(i,_e.measured),T(u,_e.balance),T(h,_e.owner),T(v,`Engine stamp ${g??""} — the frozen snapshot this shell consumes byte-identically. The engine's own test suite runs in this tree; the shell's battery laws run against the built app.`)},[()=>oa()]),A(n,a),Ln()}const Zm=n=>n.split(/\s+/).filter(Boolean).slice(0,2).map(e=>e[0].toUpperCase()).join("");function Xm(n){return{cards:n.rows.map(a=>({id:a.id,name:a.name,pos:a.pos,nflTeam:a.nflTeam,ovr:a.ovr,wins:a.wins,priority:a.priority,slotId:a.slotId,slotLabel:a.slotLabel,tone:a.tone,alsoFits:a.alsoFits.map(s=>s.slotLabel+(s.flex?" ("+s.flex+")":"")),monogram:Zm(a.name),arrow:a.tone==="good"?"up":a.tone==="bad"?"down":"flat"})),teamName:n.header.teamName,overall:n.header.overall,totalPicks:n.header.totalPicks,onClock:n.header.onClock,count:n.footer.text}}var $m=M(`<p class="cp-note">No board yet — the cards re-render the board's own rows, so a draft has to exist first.</p>`),n1=M('<div class="pmeta cp-fitsline"> </div>'),e1=M('<div class="cp-pcard"><span title="form"> </span> <div class="mono"> </div> <div class="pname"> </div> <div class="pmeta"> </div> <div class="pnum"><div><b> </b><span>WINS</span></div> <div><b> </b><span>PRIORITY</span></div> <div><b> </b><span>OVR</span></div></div> <!></div>'),a1=M('<p class="cp-sub"> </p> <div class="cp-cardgrid"></div> <p class="cp-prov">Every number on these cards reads <b> </b> </p>',1),s1=M('<section class="cp-cards"><h2 class="cp-h2"> </h2> <!></section>');function t1(n,e){En(e,!0);let a=ln(()=>e.vm?Xm(e.vm):null);var s=s1(),t=W(s),r=S(t),o=m(t,2);{var l=f=>{var u=$m();A(f,u)},i=f=>{var u=a1(),p=wn(u),h=S(p,!0),d=m(p,2);hn(d,21,()=>c(a).cards,k=>k.id,(k,w)=>{var D=e1(),C=W(D),L=S(C,!0),F=m(C,2),G=S(F,!0),E=m(F,2),J=S(E,!0),N=m(E,2),x=S(N),z=m(N,2),q=W(z),$=W(q),cn=S($,!0),en=m(q,2),Q=W(en),X=S(Q,!0),P=m(en,2),I=W(P),Y=S(I,!0),b=m(z,2);{var _=O=>{var U=n1(),tn=S(U,!0);K(un=>T(tn,un),[()=>c(w).alsoFits.join(" · ")]),A(O,U)};sn(b,O=>{c(w).alsoFits.length&&O(_)})}K(()=>{fn(D,"data-tone",c(w).tone),Hn(C,1,`cp-arrow ${c(w).arrow??""}`),T(L,c(w).arrow==="up"?"▲":c(w).arrow==="down"?"▼":"—"),T(G,c(w).monogram),T(J,c(w).name),T(x,`${c(w).pos??""} · ${c(w).nflTeam??""} · fills ${c(w).slotLabel??""}`),T(cn,c(w).wins),T(X,c(w).priority),T(Y,c(w).ovr)}),A(k,D)});var v=m(d,2),g=m(W(v)),B=S(g,!0),y=m(g);K(k=>{T(h,c(a).onClock),T(B,k),T(y,` — the label travels with the numbers. ${c(a).count??""}.`)},[()=>_e[ie.get().mode]]),A(f,u)};sn(o,f=>{c(a)?f(i,-1):f(l)})}K(()=>T(r,`PLAYER CARDS${c(a)?` · ${c(a).teamName}`:""}`)),A(n,s),Ln()}var r1=M('<p class="cp-note">No season statistics yet — the stats accumulate from the games the engine plays.</p>'),o1=M('<span class="cp-statp svelte-1y9sotg"> <b class="svelte-1y9sotg"> </b></span>'),l1=M('<span class="cp-statp cp-none svelte-1y9sotg">—</span>'),i1=M('<div class="cp-statrow svelte-1y9sotg"><span class="cp-statl svelte-1y9sotg"> </span> <!></div>'),c1=M('<tr><td> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td><td class="num"> </td></tr>'),f1=M(`<div class="cp-panel"><h3 class="cp-h3">THE 32 TEAMS' ENGINE RATINGS</h3> <table class="cp-table"><thead><tr><th>TEAM</th><th class="num">OFF</th><th class="num">DEF</th><th class="num">PASS</th><th class="num">RUN</th><th class="num">RUSH D</th><th class="num">COV</th><th class="num">W</th><th class="num">L</th><th class="num">T</th></tr></thead><tbody></tbody></table> <p class="cp-sub">OFF/DEF are the engine's net points vs the league baseline (Wins units, one decimal); the rest are the engine's raw rating axes.</p></div>`),u1=M(`<p class="cp-note cp-standin svelte-1y9sotg">STAND-IN: gravity and double-teams are formally measured in the live site's model, not yet by the pinned engine — filed §5 to the Architect. Everything below IS the engine's own output.</p> <div class="cp-panel"><h3 class="cp-h3">THE SEASON LINES (LEAGUE LEADERS)</h3> <!></div> <!>`,1),d1=M('<section class="cp-stats"><h2 class="cp-h2">THE STATS</h2> <!></section>');function p1(n,e){En(e,!0);const a=[["pyd","PASS YD"],["ptd","PASS TD"],["ryd","RUSH YD"],["rtd","RUSH TD"],["recYd","REC YD"],["rec","REC"],["sack","SACKS"],["intDef","INT"],["tkl","TACKLES"],["fgm","FG"]];var s=d1(),t=m(W(s),2);{var r=l=>{var i=r1();A(l,i)},o=l=>{var i=u1(),f=m(wn(i),2),u=m(W(f),2);hn(u,17,()=>a,([d,v])=>d,(d,v)=>{var g=ln(()=>Zc(c(v),2));let B=()=>c(g)[0],y=()=>c(g)[1];const k=ln(()=>Yr(e.stats,B(),3));var w=i1(),D=W(w),C=S(D,!0),L=m(D,2);hn(L,17,()=>c(k),F=>F.id,(F,G)=>{var E=o1(),J=W(E),N=m(J),x=S(N,!0);K(z=>{T(J,`${c(G).name??""} `),T(x,z)},[()=>Zn(c(G).stats[B()]??0)]),A(F,E)},F=>{var G=l1();A(F,G)}),K(()=>T(C,y())),A(d,w)});var p=m(f,2);{var h=d=>{var v=f1(),g=m(W(v),2),B=m(W(g));hn(B,23,()=>kn,y=>y.name,(y,k,w)=>{const D=ln(()=>e.teams[c(w)]?.ratings),C=ln(()=>e.table[c(k).name]);var L=c1(),F=W(L),G=S(F),E=m(F),J=S(E,!0),N=m(E),x=S(N,!0),z=m(N),q=S(z,!0),$=m(z),cn=S($,!0),en=m($),Q=S(en,!0),X=m(en),P=S(X,!0),I=m(X),Y=S(I,!0),b=m(I),_=S(b,!0),O=m(b),U=S(O,!0);K((tn,un,dn,yn,nn,rn,an)=>{T(G,`${tn??""} ${c(k).name??""}`),T(J,un),T(x,dn),T(q,yn),T(cn,nn),T(Q,rn),T(P,an),T(Y,c(C)?.w??"—"),T(_,c(C)?.l??"—"),T(U,c(C)?.t??"—")},[()=>Wn(c(k).name),()=>c(D)?Js("wins",c(D).off):"—",()=>c(D)?Js("wins",c(D).def):"—",()=>c(D)?Zn(c(D).passOff):"—",()=>c(D)?Zn(c(D).runOff):"—",()=>c(D)?Zn(c(D).frontRun):"—",()=>c(D)?Zn(c(D).coverage):"—"]),A(y,L)}),A(d,v)};sn(p,d=>{e.teams&&d(h)})}A(l,i)};sn(t,l=>{!e.stats||!e.table?l(r):l(o,-1)})}A(n,s),Ln()}var h1=M('<section class="cp-settings"><h2 class="cp-h2">SETTINGS</h2> <div class="cp-panel"><div class="cp-setrow"><label for="set-mode">Colour mode</label> <select id="set-mode"><option>Follow the system</option><option>Light (pale rose)</option><option>Dark (plum ink)</option></select></div> <div class="cp-setrow"><label for="set-motion">Reduce motion</label> <input id="set-motion" type="checkbox"/></div> <div class="cp-setrow"><label for="set-order">Feed reading: newest first</label> <input id="set-order" type="checkbox"/></div> <div class="cp-setrow"><span class="cp-cap">Valuation mode</span> <span class="cp-sub"> </span></div></div> <div class="cp-chipline"><button class="cp-stepbtn">SAVES · SLOT A · B · C</button> <button class="cp-stepbtn">CLEAR SAVED CHOICES</button></div> <p class="cp-note">Settings persist across reload. Saves are one blob per slot, version-checked on every read — a corrupt save is refused verbatim, never repaired.</p></section>');function v1(n,e){En(e,!0);var a=h1(),s=m(W(a),2),t=W(s),r=m(W(t),2),o=W(r);o.value=o.__value="system";var l=m(o);l.value=l.__value="light";var i=m(l);i.value=i.__value="dark";var f;S0(r);var u=m(t,2),p=m(W(u),2),h=m(u,2),d=m(W(h),2),v=m(h,2),g=m(W(v),2),B=S(g),y=m(s,2),k=W(y),w=m(k,2);K((D,C)=>{f!==(f=e.settings.mode)&&(r.value=(r.__value=f)??"",oi(r,f)),uo(p,e.settings.reducedMotion),uo(d,e.settings.newestFirst),T(B,`${D??""}${C??""}`)},[()=>_e[ie.get().mode],()=>ie.get().locked?" (locked mid-draft)":""]),on("change",r,D=>e.onmode(D.currentTarget.value)),on("change",p,D=>e.onmotion(D.currentTarget.checked)),on("change",d,D=>e.onorder(D.currentTarget.checked)),on("click",k,function(...D){e.onsaves?.apply(this,D)}),on("click",w,function(...D){e.onresetsave?.apply(this,D)}),A(n,a),Ln()}Vn(["change","click"]);const m1=`
+  :root { color-scheme: light dark; }
+  body { margin:0; padding:18px; background:#1e1119; color:#f2e7d5; font-family: Georgia, 'Times New Roman', serif; }
+  .card { max-width:420px; margin:0 auto; border:1px solid #c39a4a; border-radius:14px; padding:22px;
+          background:linear-gradient(160deg,#291a24,#1e1119); }
+  .h { font-size:1.5rem; letter-spacing:.1em; color:#e8c87e; font-weight:800; margin:0 0 4px; }
+  .t { font-size:.66rem; letter-spacing:.2em; color:#c99cae; margin:0 0 12px; }
+  .l { font-size:.95rem; color:#f2e7d5; margin:6px 0; }
+  .l b { color:#e8c87e; font-variant-numeric: tabular-nums; }
+  .stamp { margin-top:14px; padding-top:10px; border-top:1px dashed #4a3040; font-size:.62rem;
+           letter-spacing:.08em; color:#c99cae; }
+  .ink { color:#e8c87e; }
+  @media (max-width:390px){ body{padding:10px} .card{padding:16px} }
+  @media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important} }
+`;function g1(n,e){const a=n.lines.map(s=>`<p class="l">${s}</p>`).join(`
+      `);return`<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>76 Pancakes · ${n.title}</title>
+<style>
+${m1}
+  .card { border-color: ${e}; }
+</style>
+</head>
+<body>
+  <section class="card" aria-label="${n.title}">
+    <h1 class="h">${n.title}</h1>
+    <p class="t">${n.teamName?n.teamName.toUpperCase()+" · ":""}76 PANCAKES</p>
+    ${a}
+    <p class="stamp">${n.stamp}</p>
+  </section>
+</body>
+</html>
+`}const Fe=n=>n.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");function B1(n){return{stage:"draft",title:"DRAFT NIGHT",teamName:n.teamName,lines:[`I drafted the <b>${Fe(n.teamName)}</b> from slot one of the board.`,`<b>${n.picks}</b> picks in the league, <b>${n.mine}</b> of them mine.`,`Best of my class: <span class="ink">${Fe(n.bestPick)}</span> at <b>${n.bestWins}</b> wins.`],stamp:`seed ${n.seed} (code ${Mt(n.seed)}) · engine ${n.engine} · played by the pinned engine`}}function C1(n){const e=n.meHome?n.hs:n.as,a=n.meHome?n.as:n.hs,s=e>a,t=n.meHome?n.away:n.home;return{stage:"week",title:`WEEK ${n.week} BRAG`,teamName:n.teamName,lines:[`${s?"I beat":e===a?"I tied":"I fell to"} the <b>${Fe(Wn(t))} ${Fe(t)}</b> <b>${e}—${a}</b> in ${Fe(n.label)}.`,s?"The board says you called it: the run continues.":"A stumble, not an ending — the season is long."],stamp:`gameSeed ${n.gs} · week ${n.week} · ${n.away} @ ${n.home} · engine ${n.engine} · played by the pinned engine`}}function y1(n){return{stage:"season",title:"THE SEASON",teamName:n.teamName,lines:[n.iChampion?`The <b>${Fe(n.teamName)}</b> are Super Bowl champions. <b>${n.w}-${n.l}${n.t?"-"+n.t:""}</b>, <b>${n.pf}</b> points scored.`:`The <b>${n.w}-${n.l}${n.t?"-"+n.t:""}</b> season is in the book — <b>${n.pf}</b> points scored.`,n.champion&&!n.iChampion?`The year belongs to the <b>${Fe(n.champion)}</b>.`:""].filter(Boolean),stamp:`engine ${n.engine} · played by the pinned engine`}}function T1(n){return{stage:"bracket",title:"THE RUN",teamName:n.teamName,lines:[n.iChampion?"Wild Card. Divisional. Conference. <b>Super Bowl champions.</b>":n.madeIt?`The run ended in the <b>${Fe(n.lastRound??"Wild Card")}</b>.`:"The playoffs went on without me this year.",n.champion?`The bracket crowns the <b>${Fe(n.champion)}</b>.`:""].filter(Boolean),stamp:`engine ${n.engine} · played by the pinned engine`}}function S1(n){return{stage:"awards",title:"THE AWARDS",teamName:n.teamName,lines:[`The season's Most Valuable Player: <span class="ink">${Fe(n.mvp)}</span>.`,n.mvpLine?`<span class="cp-sub">${Fe(n.mvpLine)}</span>`:""].filter(Boolean),stamp:`engine ${n.engine} · played by the pinned engine`}}function k1(n){const e=n.teamName?gr(n.teamName).ink:"#c39a4a";return g1(n,e)}const w1={},hc=w1?.VITE_BRAG_URL??"",D1=()=>hc!=="";function b1(n,e=hc){return`I went ${`${n.w}-${n.l}${n.t?"-"+n.t:""}`} and ${n.result} with the ${n.teamName}. Can you go 20-0?${e?" "+e:""}`}function R1(n){return n.lines.map(e=>e.replace(/<[^>]+>/g,"")).join(`
+`)}var E1=M('<button class="cp-navbtn"> </button>'),L1=M('<button class="cp-stepbtn cp-cta"> </button>'),A1=M('<p class="cp-copytoast svelte-o6jlvs" role="status" aria-live="polite"> </p>'),M1=M('<div class="cp-sharewrap svelte-o6jlvs"><iframe class="cp-shareframe svelte-o6jlvs" title="the shareable preview"></iframe> <div class="cp-sharebtns svelte-o6jlvs"><!> <p class="cp-bragtext svelte-o6jlvs"> </p> <!></div></div>'),J1=M('<p class="cp-note">Nothing to brag about yet on this stage — play it first.</p>'),_1=M('<section class="cp-share"><h2 class="cp-h2">THE SHAREABLES</h2> <p class="cp-note">One card per stage. The share is a copy-paste brag — text only, no downloads, no files, no save data, no seed (P-209). The season brag carries the link to the live game once it ships.</p> <div class="cp-chipline"></div> <!></section>');function F1(n,e){En(e,!0);const a=[{id:"draft",label:"DRAFT"},{id:"week",label:"WEEK"},{id:"season",label:"SEASON"},{id:"bracket",label:"BRACKET"},{id:"awards",label:"AWARDS"}];let s=pn("draft"),t=ln(()=>{const B=oa(),y=e.record,k=e.season.userTeamName||"";if(c(s)==="draft"){if(!y)return null;const w=y.picks.filter(D=>D.team===y.userTeam).length;return B1({teamName:k,seed:y.seed,picks:y.picks.length,mine:w,bestPick:"your best draft pick",bestWins:"—",engine:B})}if(c(s)==="week"){const w=e.season.view?.games.find(D=>D.home===e.season.userTeamName||D.away===e.season.userTeamName);return!w||w.hs===null?null:C1({teamName:k,week:e.season.slot,label:e.season.label,home:w.home,away:w.away,hs:w.hs,as:w.as,meHome:w.home===e.season.userTeamName,gs:w.gameSeed,engine:B})}if(c(s)==="season"){if(!e.season.runState)return null;const w=_s(e.season.runState)[e.season.userTeamName],D=w?.w??0,C=w?.l??0,L=w?.t??0,F=w?.pf??0;return y1({teamName:k,w:D,l:C,t:L,pf:F,champion:e.season.champion??"",iChampion:e.season.champion===e.season.userTeamName&&!!e.season.champion,engine:B})}if(c(s)==="bracket"){if(!e.season.runState)return null;const w=e.season.runState.playoffs.filter(C=>C.home===e.season.userTeamName||C.away===e.season.userTeamName),D=w.length?w[w.length-1].round??null:null;return T1({teamName:k,madeIt:w.length>0,lastRound:D,champion:e.season.champion??"",iChampion:e.season.champion===e.season.userTeamName&&!!e.season.champion,engine:B})}return e.stats?S1({teamName:k,mvp:e.stats.mvp,mvpLine:e.stats.mvpLine,engine:B}):null}),r=ln(()=>c(t)?k1(c(t)):null);const o=ln(()=>{if(!e.season.runState||!e.season.userTeamName)return{w:0,l:0,t:0};const B=_s(e.season.runState)[e.season.userTeamName];return{w:B?.w??0,l:B?.l??0,t:B?.t??0}});let l=ln(()=>{if(!c(t))return"";if(c(s)==="season"&&e.season.runState){const B=e.season.champion===e.season.userTeamName&&!!e.season.champion,y=e.season.runState.playoffs.filter(w=>w.home===e.season.userTeamName||w.away===e.season.userTeamName),k=B?"won the Super Bowl":y.length?`reached the ${y[y.length-1].round??"Wild Card"}`:"missed the playoffs";return b1({w:c(o).w,l:c(o).l,t:c(o).t,teamName:e.season.userTeamName||"",result:k})}return R1(c(t))}),i=pn(""),f=null;async function u(){if(c(l)){try{await navigator.clipboard.writeText(c(l)),V(i,"Copied — paste it anywhere.")}catch{V(i,"Copy failed — select the text below and copy it by hand.")}f&&clearTimeout(f),f=setTimeout(()=>{V(i,"")},2600)}}var p=_1(),h=m(W(p),4);hn(h,21,()=>a,B=>B.id,(B,y)=>{var k=E1(),w=S(k,!0);K(()=>{fn(k,"aria-pressed",c(s)===c(y).id),T(w,c(y).label)}),on("click",k,()=>V(s,c(y).id,!0)),A(B,k)});var d=m(h,2);{var v=B=>{var y=M1(),k=W(y),w=m(k,2),D=W(w);{var C=N=>{var x=L1(),z=S(x);K(q=>T(z,`COPY THE ${q??""} BRAG`),[()=>c(s).toUpperCase()]),on("click",x,u),A(N,x)},L=ln(()=>c(s)!=="season"||D1());sn(D,N=>{c(L)&&N(C)})}var F=m(D,2),G=S(F,!0),E=m(F,2);{var J=N=>{var x=A1(),z=S(x,!0);K(()=>T(z,c(i))),A(N,x)};sn(E,N=>{c(i)&&N(J)})}K(()=>{fn(k,"srcdoc",c(r)),T(G,c(l))}),A(B,y)},g=B=>{var y=J1();A(B,y)};sn(d,B=>{c(r)?B(v):B(g,-1)})}A(n,p),Ln()}Vn(["click"]);var W1=M('<button class="cp-navbtn"> </button>'),P1=M('<nav class="cp-nav" aria-label="Screens"></nav>'),G1=M('<p class="cp-error" role="alert"> </p>'),N1=M('<p class="cp-note">Loading…</p>'),I1=M(`<section class="cp-empty"><h1>76 Pancakes</h1> <p>No player dataset yet. The draft board needs the ratings file (eight columns: id, name, pos, team, ovr, spd, str, freeAgent).</p> <p class="cp-note">Import a dataset CSV to begin — or open a dev build with <code>?dev=1</code> (the engine's own bundled ratings, labelled DEV).</p> <p><a class="cp-devlink" href="?dev=1">Open the dev build →</a></p></section>`),H1=M('<p class="cp-sharenotice" role="status"> </p>'),K1=M('<!> <p class="cp-prov">Every number on this shell reads <b> </b> — the label travels with the numbers.</p> <!>',1),x1=M('<p class="cp-prov">Every number on this board reads <b> </b> — the label travels with the numbers.</p> <!> <!>',1),O1=M('<main class="cp-root svelte-1n46o8q"><header class="cp-topbar"><span class="cp-brand">76 P<strong class="cp-shine">a</strong>ncakes</span> <span class="cp-topbtns"><span class="cp-stateorigin"> </span> <span class="cp-status"> </span> <!> <button class="cp-topbar-btn">Saves</button></span></header> <!> <!> <!></main>');function V1(n,e){En(e,!0);const a=()=>He(F,"$openNow",h),s=()=>He(_,"$settingsStore",h),t=()=>He(D,"$vmStore",h),r=()=>He(k,"$draftState",h),o=()=>He(U,"$seasonStats",h),l=()=>He(O,"$season",h),i=()=>He(v,"$boot",h),f=()=>He(L,"$oddsMeta",h),u=()=>He(G,"$needsSel",h),p=()=>He(C,"$advice",h),[h,d]=A0(),v=Ca({phase:"loading"}),g=new URLSearchParams(location.search).has("dev");oa();const B=g?bu(vo,W0,P0):[];let y=dp(B),k=pp(y),w="wins";const D=Ca(null),C=Ca([]),L=Ca(null),F=Ca([]),G=Ca([]);let E=pn(0),J=pn(777),N=ln(()=>Mt(c(J))),x=pn(null),z=pn("team"),q=pn(""),$=pn(!1),cn=pn(""),en=pn("fresh");const Q=ln(()=>{const R=y.getState().record,j=O.phase??"none";return rh({picks:R?.picks?.length??0,slotsOpen:a().length,seasonPhase:j,restoredFrom:c(en)})});let X=pn(null),P=pn(null),I=pn("sha256:pending"),Y=pn(""),b=pn("");const _=vp(),O=hp(),U=Ca(null);let tn=null;function un(R){Np(R.mode),el(R.teamName,R.mode),typeof document<"u"&&document.body.classList.toggle("cp-reduced",R.reducedMotion||rp()),tp(R)}function dn(R){const j={...s(),mode:R};un(j),_.set(j)}function yn(R){const j={...s(),reducedMotion:R};un(j),_.set(j)}function nn(R){const j={...s(),newestFirst:R};un(j),_.set(j)}function rn(R,j){const Z={...s(),teamName:R,draftSlot:j};un(Z),_.set(Z)}function an(R,j){R==="board"&&y.getState().status==="done"&&(R="complete"),V(z,R,!0),up(R,j)}function Dn(){const R=fp();R&&an(R.screen,R.param)}function Tn(){if(!g){v.set({phase:"empty"});return}v.set({phase:"ready",players:B}),window.__cp={store:y,refresh:Yn,valuation:ie,seasonFacade:Fn,go:an,vmStore:D,engineVersion:oa},zd(vo).then(R=>V(I,"sha256:"+R)),vn(),an("team"),se()}function Jn(){return Uo(new URLSearchParams(location.search).get("seed")||"")??Cp()}let zn=pn(!1);function vn(){V(zn,new URLSearchParams(location.search).has("seed"),!0)}function _n(){try{const R=new URL(location.href);R.searchParams.delete("seed"),history.replaceState(null,"",R.toString())}catch{}V(zn,!1)}async function Nn(R,j){if(!c($)){V(en,"fresh"),V(cn,""),V(X,null),V(J,Jn(),!0),qo(c(J)),vn(),V(E,R,!0),V(x,j,!0),rn(kn[R].name,j),V($,!0);try{const Z=await y.dispatchAsync({type:"START",seed:c(J),userTeam:c(E),...j!==null&&j-1!==c(E)?{pickSlot:j}:{}});V(q,Z.error??"",!0)}finally{V($,!1)}an("board"),ie.lock(),tn=null,U.set(null),Yn(),ll(),$e()}}let In=pn(sa([]));function Yn(){const R=y.getState();if(R.error&&V(q,R.error,!0),!R.draft||R.status==="idle"){D.set(null),L.set(null),F.set([]),V(In,[],!0);return}const j=Ks(R.draft.rosters[c(E)]);if(F.set(j),R.status==="done")L.set(null),V(In,[],!0);else try{const Z=Ju(R.draft,c(E),qe(c(J)*7+13),30);D.set(Gu(R.draft,c(E),Z,{sort:w})),L.set({picksBetween:Z.picksBetween,sims:Z.sims});const mn=y.getState(),Bn=new Map,te=t()?.rows??[];for(const De of te){const ia=Z.gone.get(De.id)??0,na=[De.slotId,...De.alsoFits.map(ca=>ca.slotId)];for(const ca of na)(!Bn.has(String(ca))||ia>(Bn.get(String(ca))??0))&&Bn.set(String(ca),ia)}V(In,sh({openSlots:j.map(String),goneBySlot:Object.fromEntries(Bn),needBySlot:Object.fromEntries(j.map(De=>[String(De),1]))}),!0)}catch{}try{const Z=Object.values(R.draft.rosters[c(E)]).filter(Boolean),mn=Gr(Z,"4-3");C.set(mn.placements.map(Bn=>({label:Bn.slot?.label??Bn.slot?.slot??"?",name:Bn.player?.name??"(empty)",ovr:Bn.player?String(Bn.effOvr??Bn.player.ovr):"-"})))}catch{C.set([])}}async function Gn(R,j){if(c($))return!1;V(X,null);let Z=!1;V($,!0);try{const mn=await y.dispatchAsync({type:"PICK",playerId:R,slot:j});V(q,mn.error??"",!0),Z=!!(mn.error??"")}finally{V($,!1)}return Yn(),$e(),y.getState().status==="done"&&an("complete"),!Z}async function ue(){if(!c($)){V(X,null),V($,!0);try{const R=await y.dispatchAsync({type:"UNDO"});V(q,R.error??"",!0)}finally{V($,!1)}Yn(),$e()}}function ve(R){V(X,null),w=R,Yn()}function ke(R){G.update(j=>j.includes(R)?j.filter(Z=>Z!==R):[...j,R])}function Pe(){G.set([])}const La=()=>y.getState().record,we=()=>({engineVersion:oa(),dataVersion:c(I),saveId:c(Y)||V(Y,crypto?.randomUUID?.()??"save-"+c(J)+"-"+Date.now(),!0),saveRevision:1+(y.getState().record?.picks.length??0),createdAt:c(b)||V(b,new Date().toISOString(),!0)});async function Ge(R,j,Z={}){const mn=R;if(!mn){V(q,"load: empty record");return}V(cn,""),V(X,null),V(J,mn.seed,!0),V(E,mn.userTeam,!0),qo(mn.seed),vn(),V(Y,j?.saveId||(crypto?.randomUUID?.()??"save-"+mn.seed),!0),V(b,j?.createdAt||new Date().toISOString(),!0),V($,!0);try{const Bn=await y.dispatchAsync({type:"LOAD",record:R});V(q,Bn.error??"",!0)}finally{V($,!1)}ie.lock(),an("board"),Yn(),Z.keepWeek||ll(),$e()}async function $e(){const R=La();if(!R)return;const j=Os(),Z=j.length?{...R,suggestIds:j}:R,mn=await Up(Z,we(),new Date);mn&&V(q,mn,!0)}function Os(){let R=null;if(D.subscribe(te=>R=te)(),!R)return[];let Z=[];G.subscribe(te=>Z=te)();const Bn=Z.length===0?R.rows:R.rows.filter(te=>Z.includes(te.slotId)||te.alsoFits.some(De=>Z.includes(De.slotId)));return dc(Bn,R.sort)}async function Aa(){if(!Fn.snapshot().state)return;const j=await qp(Fn.weekPayload(),we(),new Date);j&&V(q,j,!0)}async function se(){const R=new URLSearchParams(location.search).get("seed"),j=R===null?null:Uo(R),Z=await Zp(),mn=Z.ok&&Z.draft?Z.draft.record?.seed??null:null;if(j!==null&&mn!==null&&j!==mn){V(cn,"shared link opened; your local save is untouched"),V(en,"shared");return}if(!Z.ok){V(q,"the autosave was refused: "+Z.message);return}if(Z.draft&&(V(en,"autosave"),await Ge(Z.draft.record,Z.draft.lineage,{keepWeek:!!Z.week})),Z.draft&&V(X,Array.isArray(Z.draft.record?.suggestIds)&&Z.draft.record.suggestIds.length>0?Z.draft.record.suggestIds:null,!0),Z.week){const Bn=jo(Z.week.env.payload);if(!Bn.ok){V(q,"the season autosave was refused: "+Bn.message);return}V(en,"season"),Fn.resume(Bn.value.state,Bn.value.teams,Bn.value.userTeamName,Bn.value.roster),an("hub")}}function Ne(){const R=y.getState().record;if(!R||y.getState().status!=="done"){V(q,"the season needs a finished draft");return}const j=yt(R)[c(E)].map(Z=>({id:Z.id,name:Z.name,pos:Z.pos,role:Z.role,team:Z.team,ovr:Z.ovr,spd:Z.spd,str:Z.str,freeAgent:!!Z.freeAgent}));Fn.begin(Ap(R),c(J),2027,kn[c(E)].name,j),tn=new sl,U.set(tn.ss),an("hub"),Aa()}function me(){tn||(tn=new sl);const R=Fn.step();if(!R){V(q,"no season is running");return}const j=y.getState().record;j&&tn.addWeek(R.games.map(mn=>({home:mn.home,away:mn.away,round:mn.round,result:mn.result})),yt(j)),U.set(tn.ss);const Z=R.games.find(mn=>mn.home===Fn.userTeamName||mn.away===Fn.userTeamName);Z?(V(P,fc(Z.result,Z.home,Z.away,{week:R.week,year:2027,gs:Z.gs,userTeamName:Fn.userTeamName}),!0),an("feed")):an("week",R.week),Fn.finished&&mc(),Aa()}async function us(){const R=await jp("C");if(!R.ok){V(q,"restore refused: "+R.message);return}const j=jo(R.env.payload);if(!j.ok){V(q,"restore refused: "+j.message);return}Fn.resume(j.value.state,j.value.teams,j.value.userTeamName,j.value.roster),tn=null,U.set(null),an("hub"),Aa()}function Ma(){const R=Fn.snapshot();if(!R.state||!R.teams)return;const j=_p(R.state,R.teams,R.userTeamName,Fn.slot);j&&(V(P,j,!0),an("feed"))}async function vc(){if(!Fn.snapshot().state){V(q,"no season to save");return}const j=Fn.weekPayload(),Z=await Op("C",j,we(),new Date);V(q,Z?"save refused: "+Z:"",!0),Aa()}function mc(){const R=Fn.snapshot();if(!R.state)return;const j=sp(R.state,R.userTeamName,Fn.userRoster);Vp("C",j,we(),new Date)}As(()=>{}),J0(()=>{ie.subscribe(()=>Yn()),window.addEventListener("hashchange",Dn);const R=oc();return un(R),_.set(R),R.teamName&&el(R.teamName,R.mode),Tn(),()=>window.removeEventListener("hashchange",Dn)});const gc=[{id:"team",label:"TEAM",show:!0},{id:"board",label:"DRAFT",show:!0},{id:"cards",label:"CARDS",show:!0},{id:"hub",label:"SEASON",show:!0},{id:"week",label:"WEEK",show:!0},{id:"standings",label:"STANDINGS",show:!0},{id:"bracket",label:"PLAYOFFS",show:!0},{id:"awards",label:"AWARDS",show:!0},{id:"review",label:"REVIEW",show:!0},{id:"stats",label:"STATS",show:!0},{id:"book",label:"BOOK",show:!0},{id:"share",label:"SHARE",show:!0},{id:"guide",label:"GUIDE",show:!0},{id:"settings",label:"SETTINGS",show:!0}],Vs=ln(()=>r()?.record??null),jr=ln(()=>{const R=Fn.runState;return R?_s(R):null}),Bc=ln(()=>{const R=o();if(!R)return null;const j=Object.values(R.players);if(!j.length)return null;const Z=j.slice().sort((mn,Bn)=>(Bn.stats.pyd??0)+(Bn.stats.rtd??0)-((mn.stats.pyd??0)+(mn.stats.rtd??0)))[0];return{mvp:Z.name,mvpLine:Z.label}}),Cc=ln(()=>l().ready);var Jt=O1(),Ur=W(Jt),yc=m(W(Ur),2),Ys=W(yc),Tc=S(Ys,!0),ds=m(Ys,2),Sc=S(ds),qr=m(ds,2);Fh(qr,{});var Zr=m(qr,2),Xr=m(Ur,2);{var kc=R=>{var j=P1();hn(j,21,()=>gc.filter(Z=>Z.show),Z=>Z.id,(Z,mn)=>{var Bn=W1(),te=S(Bn,!0);K(()=>{fn(Bn,"aria-current",c(z)===c(mn).id),T(te,c(mn).label)}),on("click",Bn,()=>an(c(mn).id)),A(Z,Bn)}),A(R,j)};sn(Xr,R=>{i().phase==="ready"&&R(kc)})}var $r=m(Xr,2);{var wc=R=>{var j=G1(),Z=S(j,!0);K(()=>T(Z,c(q))),A(R,j)};sn($r,R=>{c(q)&&R(wc)})}var Dc=m($r,2);{var bc=R=>{var j=N1();A(R,j)},Rc=R=>{var j=I1();A(R,j)},Ec=R=>{var j=K1(),Z=wn(j);{var mn=na=>{var ca=H1(),zc=S(ca,!0);K(()=>T(zc,c(cn))),A(na,ca)};sn(Z,na=>{c(cn)&&na(mn)})}var Bn=m(Z,2),te=m(W(Bn)),De=S(te,!0),ia=m(Bn,2);rv(ia,{onstart:Nn,get seedPinned(){return c(zn)},onnewseed:_n,get busy(){return c($)}}),K(na=>T(De,na),[()=>_e[ie.get().mode]]),A(R,j)},Lc=R=>{var j=x1(),Z=wn(j),mn=m(W(Z)),Bn=S(mn,!0),te=m(Z,2);{let ia=ln(()=>(r()?.record?.picks?.length??0)>0),na=ln(()=>r()?.status==="done");ul(te,{get vm(){return t()},onpick:Gn,onundo:ue,onsort:ve,get canUndo(){return c(ia)},get openSlots(){return a()},get heat(){return c(In)},get oddsMeta(){return f()},get needsSelected(){return u()},onneedtoggle:ke,onneedclear:Pe,onplay:()=>an("complete"),get draftDone(){return c(na)},get seedCode(){return c(N)},get savedSuggest(){return c(X)},get busy(){return c($)}})}var De=m(te,2);pc(De,{get slots(){return p()}}),K(ia=>T(Bn,ia),[()=>_e[ie.get().mode]]),A(R,j)},Ac=R=>{Dv(R,{get record(){return c(Vs)},get requestedSlot(){return c(x)},onseason:Ne,oncards:()=>an("cards"),onbook:()=>an("book")})},Mc=R=>{Gv(R,{get season(){return l()},onplayweek:me,onweek:j=>{Fn.go(j),an("week",j)},onstandings:()=>an("standings"),onbracket:()=>an("bracket"),onrestore:us,canRestore:!0,onbook:()=>an("book")})},Jc=R=>{zv(R,{get season(){return l()},onplay:me,onfeed:Ma,onsave:vc})},_c=R=>{$v(R,{get season(){return l()},onbracket:()=>an("bracket")})},Fc=R=>{Bm(R,{get season(){return l()},onreview:()=>an("review")})},Wc=R=>{Am(R,{get season(){return l()},get draftRecord(){return c(Vs)},onreview:()=>an("review"),onfeed:Ma})},Pc=R=>{Hm(R,{get stats(){return o()},get table(){return c(jr)}})},Gc=R=>{jm(R,{get season(){return l()},onbracket:()=>an("bracket"),onbook:()=>an("book"),onawards:()=>an("awards")})},Nc=R=>{qm(R,{})},Ic=R=>{t1(R,{get vm(){return t()}})},Hc=R=>{{let j=ln(()=>Fn.snapshot().teams);p1(R,{get stats(){return o()},get table(){return c(jr)},get teams(){return c(j)}})}},Kc=R=>{v1(R,{get settings(){return s()},onmode:dn,onmotion:yn,onorder:nn,onsaves:()=>an("saves"),onresetsave:()=>rn(s().teamName,s().draftSlot)})},xc=R=>{{let j=ln(La),Z=ln(we);Qh(R,{get record(){return c(j)},get meta(){return c(Z)},get userTeamIndex(){return c(E)},onclose:()=>an("board"),onloaddraft:Ge})}},Oc=R=>{F1(R,{get record(){return c(Vs)},get stats(){return c(Bc)},get season(){return l()}})},Vc=R=>{Cv(R,{get feed(){return c(P)},onclose:()=>{an(c(Cc)?"week":"board"),V(P,null)}})},Yc=R=>{ul(R,{get vm(){return t()},onpick:Gn,onundo:ue,onsort:ve,canUndo:!1,get busy(){return c($)}})};sn(Dc,R=>{i().phase==="loading"?R(bc):i().phase==="empty"?R(Rc,1):c(z)==="team"?R(Ec,2):c(z)==="board"&&t()?R(Lc,3):c(z)==="complete"&&c(Vs)?R(Ac,4):c(z)==="hub"?R(Mc,5):c(z)==="week"?R(Jc,6):c(z)==="standings"?R(_c,7):c(z)==="bracket"?R(Fc,8):c(z)==="book"?R(Wc,9):c(z)==="awards"?R(Pc,10):c(z)==="review"?R(Gc,11):c(z)==="guide"?R(Nc,12):c(z)==="cards"?R(Ic,13):c(z)==="stats"?R(Hc,14):c(z)==="settings"?R(Kc,15):c(z)==="saves"?R(xc,16):c(z)==="share"?R(Oc,17):c(z)==="feed"&&c(P)?R(Vc,18):t()&&R(Yc,19)})}K(()=>{fn(Jt,"data-screen",c(z)),fn(Ys,"data-origin",c(en)),fn(Ys,"title",`the boot origin, read from the same state that decided the restore (${cl[c(en)]})`),T(Tc,cl[c(en)]),fn(ds,"data-status-phase",c(Q).phase),fn(ds,"data-status-tone",c(Q).tone),fn(ds,"title",c(Q).why),T(Sc,`${c(Q).label??""}${c(Q).action?` · ${c(Q).action}`:""}`),fn(Zr,"aria-pressed",c(z)==="saves")}),on("click",Zr,()=>an("saves")),A(n,Jt),Ln(),d()}Vn(["click"]);u0(V1,{target:document.getElementById("app")});

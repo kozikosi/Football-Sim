@@ -1,0 +1,12 @@
+# WIP RESEAL at handover bytes (2026-11-24) — the tree WITHOUT the composite's final bytes
+boot target: 2 referenced asset(s) checked against the manifest
+gate-manifest: PASS (374 entries verified, dist/ covered, converse clean)
+gate-manifest exit=0
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+numerals exit=0
+verify-package: 374 OK / 0 FAILED / 0 missing (374 entries in CHECKSUMS.txt)
+verify-package: converse clean — the tree carries no unlisted file
+verify exit=0
+SKIP  [falsifier-verdicts] not in phase packaging
+check-claims: 20 OK · 0 RED · 5 skipped (phase packaging; the claim list is claims.json — the T2 protocol, the orcads F2 fix)
+claims-packaging exit=0
