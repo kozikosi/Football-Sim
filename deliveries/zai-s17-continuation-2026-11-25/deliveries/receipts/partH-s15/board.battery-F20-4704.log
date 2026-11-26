@@ -1,0 +1,21 @@
+node-port: src/engine-node missing (never generated) — regenerating (npm run precompile does the same step explicitly)
+node-port: engine-node: generated 69 files (1 transformed: platform/localstorage.ts) — snapshot untouched
+   FAIL  L16 the top-three treatment is PRESENT (3+ rows, C'1's minimum) and EVERY row carries EXACTLY ONE visible Draft button (.cp-draftbtn) that names the SLOT — the S15 one-button design, cp-quick retired (the Architect decision, the continuation order §2.3) — top3=0 rows=60 oneButtonPerRow=true named=true e.g. "(none)"
+   FAIL  L16 one click on a top-three row lands EXACTLY one user pick — no expand, no confirm banner — and the CPU picks on (T2) — the one-click button NEVER APPEARED — the top-three is dead; the walk is skipped so the later laws still evaluate
+   FAIL  L17 undo reverses the one-click pick: zero user picks, the board order and the top-three treatment return (T2) — skipped — the one-click path is dead (the top-three died first)
+   FAIL  L17 a non-top-three row still expands into the flex chip path (the expand path is kept, T2) — skipped — the one-click path is dead (the top-three died first)
+   FAIL  L17 keyboard-only: Tab reaches the one-click button with a visible focus ring and Enter drafts with it (T2) — skipped — the one-click path is dead (the top-three died first)
+   FAIL  L18 a fast double activation on the one-click button (two clicks in one task — the double-click / Enter auto-repeat class) lands EXACTLY ONE pick — the guard window keeps one interaction one pick (R1) — skipped loud — the top-three is dead (the F20 mutant class); the law needs a top-three row
+   FAIL  L19 the staged confirm banner is GONE after the pick lands — a second PICK is not possible (S2) — skipped loud — the top-three is dead; the staged path needs a top-three row
+   FAIL  L22 a fast double click on the staged CONFIRM (two clicks in one task) lands EXACTLY ONE pick, the banner disarms, zero page errors — the staged path is guarded like the one-click path (S13) — skipped loud — the top-three is dead; the staged path needs a top-three row
+   PASS  L20 the numeric cells announce their VALUES to the screen reader — the accessible name contains the number, never a bare column name (D2) — ovr="98 overall" wins="+3.2 wins" prio="+3.2 priority" gone="99% gone odds"
+   PASS  L21 the gone% METHOD is keyboard-reachable: the Tab order main → Draft → the focusable method copy holds, and the copy reveals on focus (S3) — firstStop="cp-draftbtn svelte-q412k" method="cp-gone-desc-nfl-p00009" visible=true position=static outlined=true
+file:///tmp/cp-board-falsify-swFXdp/batteries/board.battery.mjs:131
+    throw new Error(`uiPick click failed: ${String(e).split('\n')[0]} · DUMP ${JSON.stringify(dump)}`);
+          ^
+
+Error: uiPick click failed: TimeoutError: locator.click: Timeout 10000ms exceeded. · DUMP {"confirm":0,"confirmTxt":"(none)","rows":60,"openFits":0,"chips":0,"expandedBtns":0,"err":""}
+    at uiPick (file:///tmp/cp-board-falsify-swFXdp/batteries/board.battery.mjs:131:11)
+    at async file:///tmp/cp-board-falsify-swFXdp/batteries/board.battery.mjs:360:32
+
+Node.js v24.22.3

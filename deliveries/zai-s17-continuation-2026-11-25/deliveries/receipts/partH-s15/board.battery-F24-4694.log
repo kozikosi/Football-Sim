@@ -1,0 +1,21 @@
+node-port: src/engine-node missing (never generated) — regenerating (npm run precompile does the same step explicitly)
+node-port: engine-node: generated 69 files (1 transformed: platform/localstorage.ts) — snapshot untouched
+   PASS  L16 the top-three treatment is PRESENT (3+ rows, C'1's minimum) and EVERY row carries EXACTLY ONE visible Draft button (.cp-draftbtn) that names the SLOT — the S15 one-button design, cp-quick retired (the Architect decision, the continuation order §2.3) — top3=4 rows=60 oneButtonPerRow=true named=true e.g. "Draft at QB"
+   PASS  L16 one click on a top-three row lands EXACTLY one user pick — no expand, no confirm banner — and the CPU picks on (T2) — userPicks 0→1 total 20→43 confirmBanner=0 err=""
+   PASS  L17 undo reverses the one-click pick: zero user picks, the board order and the top-three treatment return (T2) — userPicks=0 treatmentRestored=true orderRestored=true
+   PASS  L17 a non-top-three row still expands into the flex chip path (the expand path is kept, T2) — aria-expanded=true fitsOpen=true chips=1
+   PASS  L17 keyboard-only: Tab reaches the one-click button with a visible focus ring and Enter drafts with it (T2) — focusedClass="cp-draftbtn svelte-q412k cp-istop" outline=solid/2px userPicksAfterEnter=1
+   PASS  L18 a fast double activation on the one-click button (two clicks in one task — the double-click / Enter auto-repeat class) lands EXACTLY ONE pick — the guard window keeps one interaction one pick (R1) — userPicks 0→1 err=""
+   PASS  L19 the staged confirm banner is GONE after the pick lands — a second PICK is not possible (S2) — staged=1 bannerAfterPick=0 userPicks 0→1 err=""
+   PASS  L22 a fast double click on the staged CONFIRM (two clicks in one task) lands EXACTLY ONE pick, the banner disarms, zero page errors — the staged path is guarded like the one-click path (S13) — staged=1 dbl=true userPicks 0→1 bannerAfter=0 err=""
+   PASS  L20 the numeric cells announce their VALUES to the screen reader — the accessible name contains the number, never a bare column name (D2) — ovr="92 overall" wins="+2.4 wins" prio="+0.6 priority" gone="23% gone odds"
+   PASS  L21 the gone% METHOD is keyboard-reachable: the Tab order main → Draft → the focusable method copy holds, and the copy reveals on focus (S3) — firstStop="cp-draftbtn svelte-q412k" method="cp-gone-desc-nfl-p00061" visible=true position=static outlined=true
+file:///tmp/cp-board-falsify-EyuNSE/batteries/board.battery.mjs:131
+    throw new Error(`uiPick click failed: ${String(e).split('\n')[0]} · DUMP ${JSON.stringify(dump)}`);
+          ^
+
+Error: uiPick click failed: TimeoutError: locator.click: Timeout 10000ms exceeded. · DUMP {"confirm":0,"confirmTxt":"(none)","rows":60,"openFits":1,"chips":1,"expandedBtns":1,"err":""}
+    at uiPick (file:///tmp/cp-board-falsify-EyuNSE/batteries/board.battery.mjs:131:11)
+    at async file:///tmp/cp-board-falsify-EyuNSE/batteries/board.battery.mjs:360:32
+
+Node.js v24.22.3
