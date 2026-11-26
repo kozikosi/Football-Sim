@@ -1,0 +1,513 @@
+
+=================================================================
+== 1. npm ci (clean lock — no --legacy-peer-deps)
+=================================================================
+$ npm ci
+
+added 41 packages, and audited 42 packages in 2s
+
+6 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+EXIT_CODE=0
+
+=================================================================
+== 2. npm run test:engine (the pin's own suite — expect 430/430 at pin 408410477, exit 0)
+=================================================================
+$ npm run test:engine
+✔ board VM: header round follows the draft and the text has no retired words (2249.564298ms)
+✔ board VM: a natural spot is the primary spot whenever one is open (the Cooper DeJean rule); flex options follow the 2/4 rule (106.960267ms)
+✔ gone odds: a deep-board player is rarely taken, the best players often are, and probabilities are in range (1383.572197ms)
+✔ view layer purity: src/view has no DOM, storage, clock or Math.random (0.879474ms)
+✔ board VM: a tight end is listed at TE1 even though the flex spot WR1 is worth more (found by search: seed 2, first pick; seed 1 moved when the audit reordered the DB weights and a CPU took him) (192.054082ms)
+✔ board VM: a certain Gone% prints as 99%, never 100% (4.75024ms)
+✔ E3b: at every week (incl. playoffs and the finished season) RunState -> envelope text -> RunState is identical, seeding and champion included (739.362342ms)
+✔ E3b: a refresh at any preview replays the SAME game and continues to the same champion (699.467688ms)
+✔ E3b: the stored gameSeed is the user game of that week, and a tampered one is refused (3.899998ms)
+✔ E3b: refuses missing team ratings, a non-numeric rating, and a save without prevRank (4.186939ms)
+✔ E3b: run-it-back: the next run built from the saved prevRank has different opponents (353.120961ms)
+✔ the default display equals the fit table on every slot (nothing in it is a measurement) (0.204332ms)
+✔ display == fit table and the refitted engine tracks it within the Owner limit -> FITTED (a fit, not independent evidence) (0.254083ms)
+✔ the same display is never MEASURED: only a display that differs from the table and tracks the engine earns that label (0.161329ms)
+✔ a stale fit is caught: display == table but the engine no longer tracks it (legacy coefficients) -> ECHO (8.885788ms)
+✔ the Pre-Colors default tolerance (5) is too tight for a fitted engine: the verdict flips FITTED -> ECHO without the stated 50 (0.142225ms)
+✔ the default display (measuredDisplayWeights) is MEASURED: QB 1000, nearest 5, not the table, tracks the raw curve (9.43705ms)
+ℹ tests 430
+ℹ suites 0
+ℹ pass 430
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 64816.243563
+EXIT_CODE=0
+
+=================================================================
+== 2b. npm run precompile (the Part-D generated copy src/engine-node — the node suites' freshness gate regenerates it too, this makes the step explicit)
+=================================================================
+$ npm run precompile
+
+> cakepanz-67@0.6.0-shell precompile
+> node scripts/precompile-engine.mjs
+
+engine-node: generated 69 files (1 transformed: platform/localstorage.ts) — snapshot untouched
+EXIT_CODE=0
+
+=================================================================
+== 3. the node battery via the Part-D register (expect 37/37: the 33 c12 laws + N34 the seam golden + N35 the b36 anchor (S13) + N36 the truthful engine stamp (S15 §4.4) + N37 the brag-share text law (S15 §4.8); runs on Node 24 AND 26) — A2: stdout tees into deliveries/receipts/node-battery.log so the FILED receipt is this live run
+=================================================================
+$ bash -c set -o pipefail; npm run battery:node 2>&1 | tee deliveries/receipts/node-battery.log
+✔ N16: port/ is framework-blind (no svelte/vue/react imports, no runes anywhere below the render layer) (2.176747ms)
+✔ N17: the w88 feed anatomy rides the shell (zrl-* classes + the me glow + reduced-motion off) (0.751105ms)
+✔ N18: the team remap is the 32-team palette (zpb json) + the .ub law lives in the shell law set (0.296669ms)
+✔ N20 (F8): the save service refuses a slot/key mismatch — the engine asserts the pair, the composition wires it (0.253513ms)
+✔ N21: the older-build note names another build on the slot card, and is silent for the running one (Part F) (1.039263ms)
+✔ N22 (the packs law): the sim boots on a non-empty pool, and the current-era pack hashes to the pin value (408.127848ms)
+✔ N23 (Part A): picking a team changes at least three accent tokens, and --zcream is unchanged (6.264221ms)
+✔ N24 (Part D): the body copy is a system sans, the slogan rides home + Guide, the 900 faces are inlined, and the label is one constant (7.028735ms)
+✔ N25 (HYDRATE, Slice 3): a refresh mid-draft lands back on the same board — the full AppState rehydrates from the saver (2006.909363ms)
+✔ N26 (Slice 3, D2/D3 re-anchor 2026-11-19 · T4 re-anchor 2026-11-20): the gone-odds tooltip surfaces the engine's own method on hover only, is aria-hidden, the method is in-flow in the row detail AND programmatically on the cell (L7b + T4) (1101.386378ms)
+✔ N27 (Slice 3): the "my needs" sticky row shows exactly the roster's empty slots, is clickable, and the count moves (51.550844ms)
+✔ N28 (RESUME, cakepanz-8 A1): a refresh with BOTH autosaves lands on the hub — the season outranks the finished draft's screen (1013.917707ms)
+✔ N29 (DONE-DRAFT, cakepanz-8 A1): a refresh with a done draft and no week lands on Complete — never a blank board (914.257978ms)
+✔ N34: the SEAM GOLDEN — boardVM/goneOdds/lineupFor at the fixed seed equal the committed VM→JSON map (a re-pin that silently changes engine output fails here, not at the Owner's first draft — the data-export law) (1772.667625ms)
+✔ N35: the b36 payload is ANCHORED — a malformed prefixed code (`b36:12abc###`, `b36:1.5`, `b36:12 34`, `b36:`) returns null and the caller falls back to the random draw; every VALID form still parses (S13, Ernie D4/Pickle minor) (6.375248ms)
+✔ N36: the envelope stamp is TRUTHFUL — App.svelte stamps the RUNNING engineVersion() (the hardcoded previous-pin literal is gone; the stale-stamp class made the saves panel flag every first save as foreign, the work order §4.4) (0.340508ms)
+✔ N37: the P-209 brag text — the season template is exact, the link rides ONLY the build-time constant (unset here → no link, no broken link shipped), the card paste strips tags and drops the seed-bearing stamp, and no download path remains in the Share screen (the work order §4.8) (1.766191ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16621.805897
+EXIT_CODE=0
+
+=================================================================
+== 3b. the contrast guardrail (T6/W5 — the 32 team inks × 2 modes + the token audit; the six KNOWN holes stay named, a NEW hole FAILS)
+=================================================================
+$ node --import ./scripts/node-port-register.mjs batteries/contrast.battery.mjs
+   KNOWN-HOLE  team ink  dark Baltimore Ravens: #9E7C0C on #291a24 = 4.21:1 · pre-existing at the c10 bytes, the Owner to fix
+   KNOWN-HOLE  team ink  light Los Angeles Chargers: #0080C6 on #ffffff = 4.28:1 · pre-existing at the c10 bytes, the Owner to fix
+   KNOWN-HOLE  team ink  light Miami Dolphins: #008E97 on #ffffff = 3.95:1 · pre-existing at the c10 bytes, the Owner to fix
+   PASS  C1 the 32 team inks × 2 modes read ≥ 4.5:1 as body text (every failing team NAMED; the three pre-existing holes stay on the record, a NEW hole FAILS) — 32 teams × 2 modes measured · 3 AA hole(s) named, 0 NEW · dark Baltimore Ravens: #9E7C0C on #291a24 = 4.21:1 | light Los Angeles Chargers: #0080C6 on #ffffff = 4.28:1 | light Miami Dolphins: #008E97 on #ffffff = 3.95:1
+   KNOWN-HOLE  1.51:1 (AA 4.5:1) — light gold2 #e6c67d on pale rose #fdf2f6 · the Owner's to fix, named on the record
+   KNOWN-HOLE  1.65:1 (AA 4.5:1) — light gold2 #e6c67d on white panel #ffffff · the Owner's to fix, named on the record
+   KNOWN-HOLE  3.17:1 (AA 4.5:1) — dark rose ink #8e5566 on plum #1e1119 · the Owner's to fix, named on the record
+   measured    5.27:1 PASS — light text #8e5566 on pale rose #fdf2f6
+   measured    14.94:1 PASS — dark zcream #f2e7d5 on plum #1e1119
+   measured    11.30:1 PASS — dark gold2 #e8c87e on plum #1e1119
+   PASS  C2 the shell token audit: every token pair measured; the two c10 holes stay NAMED; a NEW hole FAILS — 6 pairs measured · 3 KNOWN hole(s) on record (light gold2 #e6c67d on pale rose #fdf2f6 1.51:1 | light gold2 #e6c67d on white panel #ffffff 1.65:1 | dark rose ink #8e5566 on plum #1e1119 3.17:1)
+
+== CONTRAST GUARDRAIL · 2 pass · 0 fail · AA 4.5:1 · 3 team hole(s), 0 new token hole(s) ==
+EXIT_CODE=0
+
+=================================================================
+== 4. npm run build (green; dist/assets ships)
+=================================================================
+$ npm run build
+
+> cakepanz-67@0.6.0-shell build
+> vite build
+
+5:47:22 AM [vite-plugin-svelte] no Svelte config found at /home/z/my-project/work/cakepanz - using default configuration.
+vite v7.3.7 building client environment for production...
+transforming...
+5:47:23 AM [vite-plugin-svelte] src/lib/components/BoardFooter.svelte:23:2 Unused CSS selector ".cp-sorttoggle"
+https://svelte.dev/e/css_unused_selector
+21:   .cp-seedcode { color: #c8a48f; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+22:   .cp-seedcode b { color: var(--gold2); letter-spacing: 0.04em; }
+23:   .cp-sorttoggle { border: 1px solid var(--hairline); background: transparent; color: var(--sub); border-radius: 999px; padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.82rem; }
+                    ^
+24:   .cp-undo { margin-left: auto; border: 1px solid #3a2c31; background: transparent; color: #c8a48f; border-radius: 999px; padding: 6px 14px; cursor: pointer; font-family: inherit; }
+25:   .cp-undo:hover:not(:disabled) { color: var(--gold2); border-color: var(--gold3); }
+✓ 227 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.65 kB │ gzip:   0.41 kB
+dist/assets/index-BHOhZuA_.css  146.19 kB │ gzip:  90.81 kB
+dist/assets/index-Cb5sVPrX.js   393.68 kB │ gzip: 134.24 kB
+✓ built in 1.93s
+EXIT_CODE=0
+
+=================================================================
+== 5. npm run distfile (single-file dist/single.html)
+=================================================================
+$ npm run distfile
+
+> cakepanz-67@0.6.0-shell distfile
+> vite build && node scripts/distfile.mjs
+
+5:47:25 AM [vite-plugin-svelte] no Svelte config found at /home/z/my-project/work/cakepanz - using default configuration.
+vite v7.3.7 building client environment for production...
+transforming...
+5:47:26 AM [vite-plugin-svelte] src/lib/components/BoardFooter.svelte:23:2 Unused CSS selector ".cp-sorttoggle"
+https://svelte.dev/e/css_unused_selector
+21:   .cp-seedcode { color: #c8a48f; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+22:   .cp-seedcode b { color: var(--gold2); letter-spacing: 0.04em; }
+23:   .cp-sorttoggle { border: 1px solid var(--hairline); background: transparent; color: var(--sub); border-radius: 999px; padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.82rem; }
+                    ^
+24:   .cp-undo { margin-left: auto; border: 1px solid #3a2c31; background: transparent; color: #c8a48f; border-radius: 999px; padding: 6px 14px; cursor: pointer; font-family: inherit; }
+25:   .cp-undo:hover:not(:disabled) { color: var(--gold2); border-color: var(--gold3); }
+✓ 227 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.65 kB │ gzip:   0.41 kB
+dist/assets/index-BHOhZuA_.css  146.19 kB │ gzip:  90.81 kB
+dist/assets/index-Cb5sVPrX.js   393.68 kB │ gzip: 134.24 kB
+✓ built in 2.06s
+single-file dist written: dist/single.html (527.7 KB) — no external refs: true
+EXIT_CODE=0
+
+=================================================================
+== 6. vite preview serves dist/ (the D3 + D-2 guards as ONE steppable command: HTTP 200 + the served js asset must equal the on-disk dist asset — a zombie preview once served a stale build and poisoned a receipt; the server stays up for the browser batteries)
+=================================================================
+$ bash scripts/preview-serve.sh 4179
+GET / -> HTTP 200
+served js asset: assets/index-Cb5sVPrX.js
+on-disk js asset: assets/index-Cb5sVPrX.js
+preview up on :4179 (pid 1430) — served bytes match the shipped dist
+EXIT_CODE=0
+
+=================================================================
+== 7. npm run battery (the slice battery — expect 29/0/10/3: 26 carried + 3 Slice-3 laws)
+=================================================================
+$ npm run battery
+   PASS  the flex chips read the flex cost (the "-N" form, no "flex tax" wording) — OBSERVED open — 60 pickers probed · 72 flex chips · sample ["-2 flex","-2 flex","-2 flex"]
+   PASS  the slot picker offers the natural slot first — Draft at QB
+   PASS  the pick confirms before it lands — Draft Patrick Mahomes at QB? Confirm the pick Cancel
+   PASS  the pick lands and the footer counts it
+   PASS  the CPU teams pick on after the user's pick (the clock advances)
+   PASS  undo cuts the log back and the count returns
+   PASS  the measured mode is the DEFAULT ("Model Value" on)
+   PASS  the Owner preset is one click away
+   PASS  the mode switch is DISABLED mid-draft (it was free on Team Select — the lock fires at START)
+   PASS  the mode label travels with the numbers (the subtitle carries it)
+   PASS  zero page errors across the whole battery
+== the laws that live on later slices or shell surfaces (SKIP — loudly) ==
+   SKIP  V0 the median trio (the drafted-pool median, superseded 76, cached once) — the scale explainer lives on the season screen (a later slice); the engine median itself is verified by the engine tests
+   SKIP  V2/V3 the chip law (all off = the full board) — the position chips belong to the shell board chrome — slice 1 renders the full board; the chip bar arrives with the board chrome slice
+   SKIP  V5 the phone laws at 390 (the footer nav, the pan laws) — the footer nav is shell chrome; the slice screens are mobile-flexible but the shell laws name shell elements
+   SKIP  V6 the playoff round cinematics — playoffs are a later slice
+   SKIP  V8a/V8b/V8c/V13/V14/V16 the stage bars, the preseason page, the guide ladder — shell pages outside slice 1 (team select, season, standings, guide arrive in slices 2-3)
+   SKIP  V9/V10/V11/V12 the SIM SEASON ghost, the pregame cards, the linescore frame, the award inks — season-surface laws — later slices
+   SKIP  V15 the fills column and V17 the picker chips in shell form — slice 1 renders the same data as the also-fits chips + the slot picker; the shell FORM is not the law, the DATA is (verified above)
+   SKIP  V7 the display scale centers on the median — the display scale drives the season surfaces; the draft numbers ride the same display.ts strings (verified by the engine tests)
+   SKIP  V4 the command center / cutdown day — the season review screen — a later slice
+   SKIP  V1 the dropdown order + the OG casing — the shell dropdown is a filter on the board chrome; the depth-chart order lives in the engine slots (verified by the engine tests)
+== DEFER to the cutover battery (needs both trees; the Architect runs it) ==
+
+== SLICE 1 BATTERY · 29 pass · 0 fail · 10 skip (loud, with reasons) · 3 deferred to cutover ==
+EXIT_CODE=0
+
+=================================================================
+== 8. the shell battery S1a–S31 + L12 + S32/S33/S34/S35 (one uninterrupted run, exit 0 — 53/0: the A2 split, the boot path MANDATORY when an autosave exists, S31 the manual path, L12 the uniform-board law (cakepanz-9); S15: +S32 law L-ERR both halves (the dispatchAsync contract), +S33 the glass panel law (w89 :625), +S34 the envelope stamp law (the engineVersion the save carries equals the running engineVersion(), §4.4), +S35 the brag-surface law (P-209: no download, the link only from the build-time constant, hidden while unset); 53 = 51 + the stamp law + the brag law; Part-D register)
+=================================================================
+$ node --import ./scripts/node-port-register.mjs batteries/shell.battery.mjs
+   PASS  S25 390px clean on awards (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on review (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on stats (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on book (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on share (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on guide (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on settings (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on saves (no horizontal scroll) — 390/390
+   390px walk table: team 390/390 · cards 390/390 · hub 390/390 · week 390/390 · standings 390/390 · bracket 390/390 · awards 390/390 · review 390/390 · stats 390/390 · book 390/390 · share 390/390 · guide 390/390 · settings 390/390 · saves 390/390
+   PASS  S25b the DRAFT BOARD fits 390px (scrollWidth <= clientWidth — the board-at-390 law) — 390/390
+   PASS  S25c zero page errors across the 390px walk
+   PASS  S29 a saved week comes back through the BOOT REHYDRATION (autosaves exist — the boot path is mandatory; no manual fallback in this law) — the hub resumed from the autosave on boot
+   PASS  S31 the MANUAL restore (RESTORE A SAVED WEEK) brings the hub back when no autosave exists — hub re-mounted from the week save (slot C)
+   PASS  S30 zero page errors across the restore flow (boot + manual)
+   PASS  L12 the uniform board (the Owner's ruling, cakepanz-9 §5): picks 1..12 render ONE anatomy — data-form absent at every pick, zero .cp-simplerow/.cp-fullbtn/.cp-late-note nodes ever, mains === rows at every pick, every pick lands, zero page errors — formAttrs=0 simpleNodes=0 anatomyBreaks=0 walk=12/12 pageErrors=0
+   PASS  S32 L-ERR half 1: a FAILED action (illegal PICK, the rejected fit) shows its message — the shell error text equals state.error, the pick did not land, zero page errors — state="illegal fit" shown="illegal fit" userPicks=0 errs=0
+   PASS  S32 L-ERR half 2: the next SUCCESSFUL action clears the message — the visible error is gone, state.error has reset, zero page errors (S15) — errorEl=false stateErr="" userPicks=1 errs=0
+   PASS  S33 the glass panel law (S15 §2.7): the large panels are 22px-radius glass with the blur+saturate backdrop, and --glass/--glassbd/--shadow exist in BOTH modes (w89 :625 ported; no blue, the golds unchanged) — light: r=22px blur=blur(14px) saturate(1.2) --glass=rgba(255,255,255,.58) · dark: r=22px --glass=rgba(38,28,33,.55) errs=0
+   PASS  S34 the envelope stamp law (S15 §4.4): the draft autosave's engineVersion EQUALS the running engineVersion() — no hardcoded previous-pin stamp; the saves panel never flags a first-party save as foreign — envelope=nfl1.1ac56c28928eff running=nfl1.1ac56c28928eff errs=0
+   PASS  S35 the brag-surface law (S15 §4.8): the share is a copy-paste brag — the draft-stage button copies the composed text to the clipboard with the confirmation toast, the seed-bearing stamp is not in the paste, no DOWNLOAD affordance exists anywhere, and the season (link-carrying) button HIDES while the build-time link is unset — asserted on a LIVE season stage (the preview rendered; the FF re-home) — btn="COPY THE DRAFT BRAG" dl=false pasteLen=132 toast="Copied — paste it anywhere." clipMatch=true seasonWrap=true seasonBtn=null anyHttp=false errs=0
+   PASS  S26 the single-file dist boots from vanilla file:// at Team Select (P-317 picker present) — {"teams":32,"slots":32}
+   PASS  S27 file:// zero console errors
+   PASS  S28 file:// zero blocked requests
+
+== SHELL BATTERY · 53 pass · 0 fail ==
+EXIT_CODE=0
+
+=================================================================
+== 8b. the uniform-board battery (cakepanz-9 + T2 + cakepanz-12 + S13 + S15 — expect 24/0: L16 EVERY row carries ONE visible Draft button (.cp-draftbtn) naming the slot, one click lands one pick (the S15 one-button design, cp-quick retired) + L17 undo/expand/keyboard + L18 the double-click guard, L19 the staged-banner disarm, L20 the value cells announce their values, L21 the keyboard path to the gone% method (cakepanz-12), L22 the staged-Confirm double-click guard (S13); carried: L13 the top-three treatment, L8 the last pick lands on Complete (re-quoted), L14 the Complete roster print, L15 the wall-slip reveal, L10 the new draft after a done draft, L11 the partial Complete screen; S15: L23 the CORRECTED w89 glow (EVERY button pulses, the three opt out to the sheen, reduced-motion kills both), L26 the TOP badge exactly on the three, L27 the sheen exactly on the three, L28 zero cp-quick / zero ring class / the why copy exactly on the three, L30 sort-after-restore (the pickle F4 law), L31 the toast-truth law (the one-click toast rides a LANDED pick — a refused pick shows only the error line, the 0305 finding); Part-D register)
+=================================================================
+$ node --import ./scripts/node-port-register.mjs batteries/board.battery.mjs
+   PASS  L16 one click on a top-three row lands EXACTLY one user pick — no expand, no confirm banner — and the CPU picks on (T2) — userPicks 0→1 total 20→43 confirmBanner=0 err=""
+   PASS  L17 undo reverses the one-click pick: zero user picks, the board order and the top-three treatment return (T2) — userPicks=0 treatmentRestored=true orderRestored=true
+   PASS  L17 a non-top-three row still expands into the flex chip path (the expand path is kept, T2) — aria-expanded=true fitsOpen=true chips=1
+   PASS  L17 keyboard-only: Tab reaches the one-click button with a visible focus ring and Enter drafts with it (T2) — focusedClass="cp-draftbtn svelte-q412k cp-istop" outline=solid/2px userPicksAfterEnter=1
+   PASS  L18 a fast double activation on the one-click button (two clicks in one task — the double-click / Enter auto-repeat class) lands EXACTLY ONE pick — the guard window keeps one interaction one pick (R1) — userPicks 0→1 err=""
+   PASS  L19 the staged confirm banner is GONE after the pick lands — a second PICK is not possible (S2) — staged=1 bannerAfterPick=0 userPicks 0→1 err=""
+   PASS  L22 a fast double click on the staged CONFIRM (two clicks in one task) lands EXACTLY ONE pick, the banner disarms, zero page errors — the staged path is guarded like the one-click path (S13) — staged=1 dbl=true userPicks 0→1 bannerAfter=0 err=""
+   PASS  L20 the numeric cells announce their VALUES to the screen reader — the accessible name contains the number, never a bare column name (D2) — ovr="92 overall" wins="+2.4 wins" prio="+0.2 priority" gone="10% gone odds"
+   PASS  L21 the gone% METHOD is keyboard-reachable: the Tab order main → Draft → the focusable method copy holds, and the copy reveals on focus (S3) — firstStop="cp-draftbtn svelte-q412k" method="cp-gone-desc-nfl-p00061" visible=true position=static outlined=true
+   PASS  L13 the top THREE rows carry the top-three treatment (the sheen + TOP badge on the Draft button) by the board's active order — sampled early/mid/late; ids exact against the VM — INTERIM — display-rounded, awaiting rawSort (the oracle and the tie path stay PAIRED until rawSort lands, S14 §3.4.3); more than three only on an order tie (cakepanz-9 C′1) — pick 1 (early): 3 highlighted (expected 3, ids exact) · pick 13 (mid): 43 highlighted (expected 43, ids exact) · pick 27 (late): 60 highlighted (expected 60, ids exact) · pageErrors=0
+   PASS  L24 the PRIMARY top-three TREATMENT is the first three ARRAY POSITIONS of the engine-sorted rows — under every sort at pick 1 and at every checkpoint of the walk — never derived from rendered text or .cp-top3 nodes (the scoped no-display-parse law; the ring-era "ring" word is retired with the ring, the oracle is unchanged; the tie extension stays INTERIM — display-rounded, awaiting rawSort) — Wins:array-exact · Priority:array-exact · OVR:array-exact · pick 1 (early):array-exact · pick 13 (mid):array-exact · pick 27 (late):array-exact
+   PASS  L23 the w89 W66 glow, CORRECTED (S15 §2.2): EVERY Draft button carries the pulse (zpbBtnPulse, 1.5s infinite), the top-three buttons OPT OUT (animation none) and carry the sheen sweep instead (zpbsheen ::after), and prefers-reduced-motion disables BOTH — plain=zpbBtnPulse/1.5s top(4)=none sheen=zpbsheen (buttons=60) · reduced: plain=none top=none sheen=none errs=0
+   PASS  L26 the separate TOP badge (.cp-toptag, w89 :6432) sits EXACTLY on the top-three rows — no badge anywhere else (S15 §2.2; the Owner's answer 3: "there is a separate top badge") — top3=4 badges=4 exact=true errs=0
+   PASS  L27 the sheen treatment (.cp-istop, w89 :1749-1752) sits EXACTLY on the top-three rows — badge and sheen travel together on the three and nowhere else (S15 §2.2) — top3=4 istop=4 exact=true errs=0
+   PASS  L28 the retired classes are GONE and the why copy rides exactly the top-three rows: zero .cp-quick and zero .cp-suggest nodes anywhere on the board, the reason line only on the three (S15 §2.1/§2.5) — cp-quick=0 cp-suggest=0 why=4 top3=4 exact=true
+   PASS  L25 the top-three treatment is EXPLAINED (one plain reason per top-three row, from the shared VM mapping — never parsed text) and PERSISTED (the autosave carries suggestIds; a reload shows the SAME three from the stored data; the next interaction recomputes and re-persists) (S14 §3.6) — why 3/3 matched=true · persisted=true · restored screen=board ring===stored=true · after interaction: ring=3 rows, saved===ring=true moved=true errs=0
+   PASS  L30 sort-after-restore (S15): the boot restore shows the STORED three, and changing the sort recomputes the highlight — the top-three rows track the NEW order's first three array positions, never the stale stored set (the pickle F4 regression law) — stored=4 restored===stored=true sort→priority base3=true staleKept=false errs=0
+   PASS  L31 the one-click toast tells the truth (S15, the 0305 finding): the toast rides a LANDED pick — the legal one-click shows it (one pick logged, no error), a refused PICK shows only the error line (zero toast), the next legal pick shows the toast while clearing the error, and the source sets the toast only after the awaited onpick behind the refused-guard — leg1 toast="Drafted Brock Purdy · Un" picks=1 · leg2 refused=true toast=none err="player not available: nu" · leg3 toast=shown errClear=true picks=2 · srcGuard=true errs=0
+   PASS  L8 the last pick lands on Complete: the user's 32nd pick, taken through the real UI, hands the screen to Complete — the record renders and "it is not your pick" never appears (re-quoted from the 8.1 late battery; the law survives the flip) — screen=complete status=done record=true h1="Your draft is complete" · hash door: #/board → complete
+   PASS  L14 Complete prints the roster the engine would field: the lineup rows equal lineupFor on the record (sha-exact labels/names/effOvr), the three weakest are marked, the 11-fielded state is the attribute (cakepanz-9 C′2) — rows dom=32 vm=32 sha match fielded=32 weakest dom=[Hunter Luepke,John Metchie III,Robbie Ouzts] vm=[Hunter Luepke,John Metchie III,Robbie Ouzts] dataLineup=complete
+   PASS  L15 the wall-slip reveal: entering Complete cascades (title → the stats hint → the buttons), ≤2 s total, and reduced motion renders it instant — CSS only, zero strings (cakepanz-9 C′3) — cascade h1=svelte-14csbb6-cp-reveal/0s sub=0.18s buttons=0.36s total=0.86s · reduced: animation=none bodyClass=false pageErrors=0
+   PASS  L10 a NEW draft after a finished draft lands on the BOARD: Team Select → DRAFT → data-screen="board", status="drafting", zero user picks, no stale Complete headline, zero page errors (the C1 law, cakepanz-9 B1) — after TEAM → same team → DRAFT: screen=board status=drafting userPicks=0 (total on the clock=20, the standard order runs ahead of the user's slot) board=true staleH1="(none)" pageErrors=0
+   PASS  L11 the Complete screen does not lie in partial state: a deep link mid-draft renders the partial copy (no "complete" headline), PLAY THE SEASON is disabled with the finished-draft tip, and the Back path returns to the live board (the C2 law, cakepanz-9 B2) — partial: state=partial h1=(none) sub="The draft has 20 of 1,024 picks in (0 of you" ctaDisabled=true · back: board board=true pageErrors=0
+
+== BOARD BATTERY (uniform) · 24 pass · 0 fail ==
+EXIT_CODE=0
+
+=================================================================
+== 8c. the P-317 slot battery (T1 + S4 — expect 28/0: the draft-position selector end-to-end, node + browser laws, the independent order oracle)
+=================================================================
+$ node --import ./scripts/node-port-register.mjs batteries/slot.battery.mjs
+   PASS  N-S3 slot 32 · San Francisco 49ers (natural 31): the user is on the clock at overall pick 32 — pos=31 order[pos]=30
+   PASS  N-S4 slot 32 · San Francisco 49ers (natural 31): the full 1,024 order equals the independent oracle (the swap stands in EVERY round) — len=1024
+   PASS  N-S5 slot 32 · San Francisco 49ers (natural 31): the displaced team holds the user's natural round-1 position — order[natural]=31 expected=31
+   PASS  N-S6 slot 32 · San Francisco 49ers (natural 31): every logged pick rides the oracle order — checked=31
+   PASS  N-S7 undo after a slotted pick: the record (incl. pickSlot) returns byte-for-byte to the pre-pick state and the user is back on the clock — pos=1 (pre-pick: 1) recordIdentical=true
+   PASS  N-S8 the user pick lands exactly at overall pick 2 and on the user roster (the CPU then picks on) — pick@2 team=0 userPicks=1
+   PASS  N-S9 save → restore replays the slotted order (no "pick is out of order") — writeErr="" r.ok=true error=null restoredPickSlot=32
+   PASS  N-S10 the natural slot (slot = team index + 1) is OMITTED from the record and the plain snake runs — pickSlotPresent=false onClock=0
+store: action rejected: START start: bad pick slot
+store: action rejected: START start: bad pick slot
+   PASS  N-S11 a bad slot (33, 2.5) is REJECTED with a named error, no draft mounts — e1="start: bad pick slot" e2="start: bad pick slot"
+== P-317 browser laws: Team Select → slot → DRAFT through the real flow ==
+   PASS  B1 the DRAFT button NAMES the chosen slot — DRAFT AS BUFFALO BILLS · SLOT 2
+   PASS  B1 EARLY slot: START carried pickSlot through the real flow — pickSlot=2 userTeam=0
+   PASS  B1 EARLY slot: the displaced team made overall pick 1 (the slot is not ignored) — logged=1 first=1 onClock=0 pos=1
+   PASS  B1 EARLY slot: the live order equals the independent oracle — len=1
+   PASS  B1 the real pick lands exactly at overall pick 2 on the chosen roster (the CPU then picks on) — pick@2=0 userPicks=1 roster=1
+   PASS  B1 the mode lock fired at START and holds after the pick — atStart=true afterPick=true
+   PASS  B2 the reload replays the SAME slotted order (pickSlot restored, no "pick is out of order") — error=null pickSlot=2 sameOrder=true onClock=0
+   PASS  B2b the restore-replay reassurance RENDERS on the restore path (a reloaded slotted draft shows the pickSlot note without a live requestedSlot — S4) — screen=complete present=true text="You drafted at slot 2 — the store traded Buffalo Bills into that slot an…"
+   PASS  B3 LATE slot: START carried pickSlot=32; 31 CPU picks ride the oracle; the user is on the clock at pick 32 — pickSlot=32 logged=31 onClock=30
+   PASS  B4 the natural slot omits pickSlot and the plain snake runs (on clock at the natural pick) — pickSlot=null onClock=1 first=0
+   PASS  B5 zero page errors across the whole P-317 walk — clean
+
+== P-317 SLOT BATTERY · 28 pass · 0 fail · 0 skip ==
+EXIT_CODE=0
+
+=================================================================
+== 8d. the seeded visual battery (T5/T3 — expect 18/0 at named seeds a3f2,k1x9: the top-three laws (the ring retired, S15 — every selector rides .cp-top3 .cp-draftbtn), the 390 walk, the identical-boards replay, the seed code, W12 the restored-draft URL law, W13 the new-seed affordance law, W14 the link-beats-autosave law (S14/P0))
+=================================================================
+$ node --import ./scripts/node-port-register.mjs batteries/visual.battery.mjs
+   PASS  W1 seed a3f2: exactly 3 top-three rows (.cp-top3) at pick 1 (more ONLY on an order tie — C′1's rule; the ring class is retired, S15) — ring=4 userPicks=0 · TIE at the cutoff: vals[2..3]=2.2/2.2, next=2.1
+   PASS  W2 seed a3f2: the top-three treatment is contiguous from the top — top3=nfl-p00061,nfl-p00071,nfl-p00002 ring=nfl-p00061,nfl-p00071,nfl-p00002,nfl-p00081
+   PASS  W6 seed a3f2: the footer shows the PREFIXED seed code and it matches ?seed= — code=b36:a3f2 seed=470990 expected=b36:a3f2 roundtrip=470990
+   PASS  W3 seed a3f2: one-click Draft on a ringed row lands exactly one pick — userPicks=1 err=""
+   PASS  W1 seed k1x9: exactly 3 top-three rows (.cp-top3) at pick 1 (more ONLY on an order tie — C′1's rule; the ring class is retired, S15) — ring=3 userPicks=0
+   PASS  W2 seed k1x9: the top-three treatment is contiguous from the top — top3=nfl-p00061,nfl-p00071,nfl-p00081 ring=nfl-p00061,nfl-p00071,nfl-p00081
+   PASS  W6 seed k1x9: the footer shows the PREFIXED seed code and it matches ?seed= — code=b36:k1x9 seed=935613 expected=b36:k1x9 roundtrip=935613
+   PASS  W7 two loads at seed a3f2 give identical boards (60-row id order + ring + footer) — idsEqual=true ringEqual=true footerEqual=true rows=60
+   PASS  W8 a garbage seed falls back to the widened random draw WITHOUT throwing (a valid record mounts, a prefixed code displays, the resolved seed rides the URL) — seed=7155513 code=b36:49d89 range=[100000,9999999] urlSeed=b36:49d89 rendered=true
+   PASS  W8 an integer seed pins the exact integer (777777) — seed=777777 code=b36:go4x
+   PASS  W10 the displayed code round-trips to the SAME seed: 1000–9999 → 0 failures (the PORCA S1 bug mis-replayed 700), the widened range 100,000–9,999,999 → 0 failures, a strided sweep of 1…2^31-1 → 0 failures, the boundaries hold, and the legacy URL forms keep their contracts — old-range failures=0 · wide-range failures=0 · stride failures=0 · boundaries=true · legacy=true
+   PASS  W4 seed a3f2: no horizontal scroll at 390 across the walk — board 390/390 · after pick 390/390
+   PASS  W5 zero console/page errors across every load (both viewports) — clean
+   PASS  W9 seed a3f2 survives save → restore (reload replays the same seed, no "pick is out of order") — seed=470990 err=""
+   PASS  W11 the wrap band holds at 768px: no horizontal scroll, the one-click button renders and stays usable (one click lands one pick, zero page errors) — scrollW=768 clientW=768 quick=true(99×29) userPicks=1 errs=0
+   PASS  W12 after a reload-restore the URL seed === the store seed (the restored draft is shareable — the D2 law) — url=b36:a3f2 store=470990 screen=board errs=0
+   PASS  W13 the new-seed affordance clears the tab pin: it shows when pinned, vanishes on click, and the next START draws a FRESH seed whose code rides the URL (explicit replay untouched) — pinned=1 cleared=true seed 470990→5448722 url=b36:38s9e errs=0
+   PASS  W14 the explicit ?seed= link wins over a DIFFERENT autosave (no restore, the URL keeps the link, the notice shows, the local save is left untouched) and a SAME-seed reload still restores — the W9 exception is load-bearing (S14/P0) — link: screen=team store=null notice=shown savedSeed=470990(want 470990) savedPicks=43 url=k1x9 · START: seed=935613 url=b36:k1x9 · same-seed reload: screen=board seed=935613 notice=none errs=0
+
+== SEEDED VISUAL BATTERY · 18 pass · 0 fail · seeds a3f2, k1x9 ==
+EXIT_CODE=0
+
+=================================================================
+== 9. boot probes: dist/single.html from vanilla file:// (the file:// law ran inside the shell battery S26–S28; receipt above)
+=================================================================
+== the Owner-flagged contrast questions, measured (WCAG 2.1) ==
+1.51:1  AA(4.5:1) FAIL  — light gold2 #e6c67d on pale rose #fdf2f6
+1.65:1  AA(4.5:1) FAIL  — light gold2 #e6c67d on white panel #ffffff
+5.27:1  AA(4.5:1) PASS  — light text #8e5566 on pale rose #fdf2f6
+3.17:1  AA(4.5:1) FAIL  — dark text (rose ink) #8e5566 on plum #1e1119
+14.94:1  AA(4.5:1) PASS  — dark zcream #f2e7d5 on plum #1e1119
+11.30:1  AA(4.5:1) PASS  — dark gold2 #e8c87e on plum #1e1119
+
+=================================================================
+== 10. the P-369 node-count probe (five screens, 1180px + 390px; Part-D register)
+=================================================================
+$ node --import ./scripts/node-port-register.mjs scripts/probe-node-counts.mjs
+
+== P-369 DOM node counts (measured live, this sitting) ==
+screen        1180px   390px
+TeamSelect    99       101
+DraftBoard    1517     179
+Feed          305      328
+Share         49       49
+Saves         57       57
+EXIT_CODE=0
+
+=================================================================
+== 11. the reduced-motion screenshot pairs (normal vs reduced, both modes; Part-D register)
+=================================================================
+$ node --import ./scripts/node-port-register.mjs scripts/probe-motion-shots.mjs
+light-reduced: none/0s
+
+== shots + sha256 ==
+24a86574717b9598…  shots/motion/team-dark-normal.png
+2110ef928f4d2194…  shots/motion/team-dark-reduced.png
+d00e77b1ff3a3381…  shots/motion/board-dark-normal.png
+09fe62b401415c27…  shots/motion/board-dark-reduced.png
+b78b8905a832e34b…  shots/motion/complete-dark-normal.png
+50533491c8d1ffc8…  shots/motion/hub-dark-normal.png
+3c55f961302822c7…  shots/motion/feed-dark-normal.png
+f5551edb2247d728…  shots/motion/feed-dark-reduced.png
+409a3bb7dc098982…  shots/motion/standings-dark-normal.png
+1b975ab9010eee60…  shots/motion/guide-dark-normal.png
+46616b5547790172…  shots/motion/team-light-normal.png
+0765cc84ea2fd947…  shots/motion/team-light-reduced.png
+365c4a8477b99365…  shots/motion/board-light-normal.png
+765a847bb9cb4dcc…  shots/motion/board-light-reduced.png
+9a8c76f8141c67e4…  shots/motion/complete-light-normal.png
+5211e04d4d456f59…  shots/motion/hub-light-normal.png
+e20fc822ccb01446…  shots/motion/feed-light-normal.png
+e0e2d735c6ac7137…  shots/motion/feed-light-reduced.png
+fc3098f9c4ab7ed3…  shots/motion/standings-light-normal.png
+d769f8182612c048…  shots/motion/guide-light-normal.png
+
+20 shots captured (normal vs reduced, both modes)
+EXIT_CODE=0
+
+=================================================================
+== 12. the receipt falsifiers F0–F14 (every law must DIE — zero tautologies, zero could-not-run; F11/F12 the cakepanz-8 A1 falsifiers; S15: F13 the stale stamp re-planted → N36 must DIE, F14 the download path re-planted → N37 must DIE)
+=================================================================
+$ node scripts/receipt-falsifier.mjs
+F0 clean baseline · unmutated node battery exit 0 · baseline OK
+F1 M1 grep-law            · mutation: engine import planted in a screen  · DIED (the law's grep catches the plant)
+F2 offline-no-CDN law     · mutation: CDN url planted in the card CSS  · DIED — ✖ N14: every shareable card is ONE self-contained blob (no CDN, no network, provenance ins
+F3 saves-roundtrip        · mutation: roster → empty (0 players)            · DIED — ✖ N12a: the week payload round-trips (serialize → restore → hydrate) (2.801527ms)
+F4 gone%-values law       · mutation: every gone% zeroed in goneodds.ts · DIED — ✖ N19: gone% values are TRUE — a direct engine replay agrees with the board, and the envel
+F5 season-brag truth law  · mutation: champion line swapped to the user team · DIED — ✖ N14b: the season brag names the REAL champion and the honest record (case-insensitive) (
+F6 save-service slot law  · mutation: the composition drops the slot check    · DIED — ✖ N20 (F8): the save service refuses a slot/key mismatch — the engine asserts the pair, th
+F7 older-build note law  · mutation: the panel stops rendering the note           · DIED — ✖ N21: the older-build note names another build on the slot card, and is silent for the ru
+F8 packs law             · mutation: the 2023-2025 pack removed from data/packs     · DIED — ✖ N22 (the packs law): the sim boots on a non-empty pool, and the current-era pack hashes 
+F9 team-takeover law     · mutation: the solver always reads the wrong team         · DIED — ✖ N23 (Part A): picking a team changes at least three accent tokens, and --zcream is uncha
+F10 body-font law        · mutation: body copy set back in Cinzel                  · DIED — ✖ N24 (Part D): the body copy is a system sans, the slogan rides home + Guide, the 900 fac
+F11 resume law (N28)     · mutation: the c7 `if (!r.draft)` gate planted back          · DIED — ✖ N28 (RESUME, cakepanz-8 A1): a refresh with BOTH autosaves lands on the hub — the season
+F12 done-draft law (N29) · mutation: the go() redirect deleted                     · DIED — ✖ N29 (DONE-DRAFT, cakepanz-8 A1): a refresh with a done draft and no week lands on Comple
+F13 stamp law (N36)       · mutation: the stale 67-cakepanz@d3bd81d2 literal re-planted   · DIED — ✖ N36: the envelope stamp is TRUTHFUL — App.svelte stamps the RUNNING engineVersion() (the
+F14 brag law (N37)        · mutation: the downloadShare import re-planted              · DIED — ✖ N37: the P-209 brag text — the season template is exact, the link rides ONLY the build-t
+every falsified law DIED — the battery is falsifiable
+EXIT_CODE=0
+
+=================================================================
+== 13. the shell falsifiers FA/FB/FC/FD/FE/FF (the render laws must die too; S15: FD the L-ERR clear-half reverted → S32 must DIE, FE the stale hardcoded stamp re-planted → S34 must DIE, FF a hardcoded brag URL planted → S35 must DIE; every child log filed under deliveries/receipts/partH-s15/)
+=================================================================
+$ node scripts/shell-falsifier.mjs
+[serveAndRun 4224] bytes=1147 verdict=CRASH-MID-FLOW
+FA D2 Complete-prop law   · mutation: {recordTyped} shorthand reintroduced · DIED — FAIL  S5 the draft-complete state renders with the provenance stamp — TimeoutError: page.waitForSelector: Timeout 20000m
+FB mutation applied · restoreSeason definition removed (the template reference stays)
+[serveAndRun 4225] bytes=3994 verdict=CRASH-MID-FLOW
+FB D1 restore law         · mutation: restoreSeason deleted (ReferenceError path) · DIED — the flow crashed on ReferenceError: restoreSeason is not defined (receipted in S15/battery death)
+[serveAndRun 4226] bytes=6208 verdict=VERDICT
+FC board-at-390 law       · mutation: the phone grid media query removed · DIED — FAIL  S25b the DRAFT BOARD fits 390px (scrollWidth <= clientWidth — the board-at-390 law) — 427/390
+FD mutation applied · the L-ERR clear-half reverted (the old never-clearing read)
+[serveAndRun 4227] bytes=6207 verdict=VERDICT
+FD L-ERR clear-half law     · mutation: the L-ERR clear reverted to the never-clearing read · DIED — PASS  S32 L-ERR half 1: a FAILED action (illegal PICK, the rejected fit) shows its message — the shell error text equals
+FE mutation applied · the stale hardcoded engineVersion stamp re-planted
+[serveAndRun 4228] bytes=6209 verdict=VERDICT
+FE envelope-stamp law       · mutation: the stale previous-pin stamp re-planted · DIED — FAIL  S34 the envelope stamp law (S15 §4.4): the draft autosave's engineVersion EQUALS the running engineVersion() — no 
+FF mutation applied · a hardcoded brag URL planted as the constant fallback
+[serveAndRun 4229] bytes=6223 verdict=VERDICT
+FF brag-surface law         · mutation: a hardcoded URL planted as the constant fallback · DIED — FAIL  S35 the brag-surface law (S15 §4.8): the share is a copy-paste brag — the draft-stage button copies the composed t
+every shell falsifier DIED — the shell laws can fail
+EXIT_CODE=0
+
+=================================================================
+== 13b. the uniform-board falsifier (cakepanz-12 + S15: the D-2 STALE-SERVER GUARD carried in — served-hash asserted per case; F0-board clean baseline + F0-shell baseline (the S15 bytes), then F15-board the completing-pick handoff deleted → L8 must DIE, F17 the START order reverted (re-anchored to the dispatchAsync bytes) → L10 must DIE, F18 the unconditional Complete h1 + live CTA re-planted → L11 must DIE, F19 the simple branch planted → L12 must DIE, F20 the suggestion wiring killed → L13 must DIE (the walk FAILS LOUD, never crashes), F21 the roster print deleted → L14 must DIE, F22 the cascade deleted → L15 must DIE, F23-w14 the naive link guard → W14 must DIE, F24 the primary re-derived from rendered text → L24 must DIE, F25 the autosave drops suggestIds → L25 must DIE, F26 the pulse removed (re-anchored to .cp-draftbtn) → L23 must DIE; S15: F27 the badge on every row → L26 must DIE, F28 the sheen on every button → L27 must DIE, F29 cp-quick + the ring class re-planted → L28 must DIE, F30 setSort keeps the restored suggestIds → L30 must DIE, F31 the sync toast lie re-planted (the toast set before the dispatch resolves) → L31 must DIE; every child log filed under deliveries/receipts/partH-s15/; staged builds, PID ports)
+=================================================================
+$ node --import ./scripts/node-port-register.mjs scripts/falsify-board.mjs
+F0-board clean baseline · unmutated board battery green · == BOARD BATTERY (uniform) · 24 pass · 0 fail ==
+F0-shell clean baseline · unmutated shell battery green · == SHELL BATTERY · 53 pass · 0 fail ==
+F15-board last-pick law     · mutation: the go('complete') handoff deleted · DIED — FAIL  L8 the last pick lands on Complete: the user's 32nd pick, taken through the real UI,
+F17 new-draft law           · mutation: the startDraft order reverted (go before START) · DIED — FAIL  L10 a NEW draft after a finished draft lands on the BOARD: Team Select → DRAFT → dat
+F18 partial-Complete law    · mutation: the unconditional h1 + the live CTA re-planted · DIED — FAIL  L11 the Complete screen does not lie in partial state: a deep link mid-draft renders
+F19 uniform-board law       · mutation: the simple branch planted (data-form + a .cp-simplerow node) · DIED — FAIL  L12 the uniform board (the Owner's ruling, cakepanz-9 §5): picks 1..12 render ONE an
+F13→F20 suggestion law      · mutation: suggest={false} (the top-three highlight killed) · DIED — FAIL  L13 the top THREE rows carry the top-three treatment (the sheen + TOP badge on the D
+F21 roster-print law        · mutation: the Complete roster block deleted · DIED — FAIL  L14 Complete prints the roster the engine would field: the lineup rows equal lineupF
+F22 wall-slip law           · mutation: the cascade keyframes deleted · DIED — FAIL  L15 the wall-slip reveal: entering Complete cascades (title → the stats hint → the b
+F23-w14 link-beats-autosave   · mutation: the naive guard re-planted (if has seed return — the W9 exception dropped) · DIED — FAIL  W14 the explicit ?seed= link wins over a DIFFERENT autosave (no restore, the URL kee
+F24 no-display-parse law     · mutation: the primary re-derived from rendered text (localeCompare sort) · DIED — FAIL  L24 the PRIMARY top-three TREATMENT is the first three ARRAY POSITIONS of the engine
+F25 ring-persistence law     · mutation: the autosave drops suggestIds (the raw record written) · DIED — FAIL  L25 the top-three treatment is EXPLAINED (one plain reason per top-three row, from t
+F26 glow law (L23)           · mutation: the ported zpbBtnPulse rule removed · DIED — FAIL  L23 the w89 W66 glow, CORRECTED (S15 §2.2): EVERY Draft button carries the pulse (zp
+F27 badge-scope law       · mutation: the TOP badge on every row (the exactly-on-the-three law broken) · DIED — FAIL  L26 the separate TOP badge (.cp-toptag, w89 :6432) sits EXACTLY on the top-three row
+F28 sheen-scope law       · mutation: .cp-istop on every button (the sheen exactly-on-the-three law broken) · DIED — FAIL  L27 the sheen treatment (.cp-istop, w89 :1749-1752) sits EXACTLY on the top-three ro
+F29 retired-classes law    · mutation: .cp-quick + the ring class re-planted · DIED — FAIL  L28 the retired classes are GONE and the why copy rides exactly the top-three rows: 
+F30 sort-after-restore law · mutation: setSort keeps the restored suggestIds (the stale highlight survives) · DIED — FAIL  L30 sort-after-restore (S15): the boot restore shows the STORED three, and changing 
+F31 toast-truth law        · mutation: the sync toast re-planted + the one-click button forced to an illegal slot · DIED — FAIL  L31 the one-click toast tells the truth (S15, the 0305 finding): the toast rides a L
+the uniform-board battery is falsifiable — L8 dies without the completing-pick handoff; L10 dies with the reverted startDraft order; L11 dies with the unconditional h1 + the live CTA; L12 dies with the planted simple branch; L13 dies without the suggestion wiring; L14 dies without the roster print; L15 dies without the cascade; W14 dies with the naive link guard (the same-seed exception dropped); L24 dies with the primary re-derived from rendered text; L25 dies without the ring persistence; L23 dies without the ported w89 pulse; L26 dies with the badge on every row; L27 dies with the sheen on every button; L28 dies with the retired classes re-planted; L30 dies with the stale restored highlight kept across a sort change; L31 dies with the sync toast lie re-planted and the one-click button forced to an illegal slot
+EXIT_CODE=0
+
+=================================================================
+== 13c. the P-317 slot falsifier (F-S1: the START dispatch drops pickSlot → B1+B3 must DIE)
+=================================================================
+$ node scripts/falsify-slot.mjs
+F-S1 mutation applied · the START dispatch drops pickSlot (the slot is ignored)
+[serveAndRun 4308] bytes=4792 verdict=VERDICT
+F-S1 slot-ignored law      · mutation: pickSlot dropped from the START dispatch · DIED — B1: FAIL  B1 EARLY slot: START carried pickSlot through the real flow — pickSlot=null userTeam=0 · B3: FAIL  B3 LATE slot: START carried pickSlot=32; 31 CPU picks ride the oracle; the user is on the clock at pick 32 — pickS
+
+FALSIFIER COMPLETE · every P-317 slot law shown to DIE under the slot-ignored mutation.
+EXIT_CODE=0
+
+=================================================================
+== 13d. tools/shell-status.mjs (SHELL-STATUS.md is MEASURED, never hand-written — the T6 anti-rot tool; written BEFORE the manifest so the gates hash the fresh file)
+=================================================================
+$ node --import ./scripts/node-port-register.mjs tools/shell-status.mjs
+- visual battery: last receipt 18/18 (fail 0) at seeds a3f2, k1x9 — receipt 48 min old — content FRESH (the receipt's dist fingerprint matches the shipped dist/)
+- slot battery (P-317): last receipt 28/28 (fail 0) at seeds n/a — receipt 49 min old — content FRESH (the receipt's dist fingerprint matches the shipped dist/)
+
+## the ring retirement (S15 §4.2) and the floors
+- 6 ring-era law subjects RETIRED with the ring, by name: L13 (the top-three ring), L16 (the ringed-row qualifier), L21 (the quick leg of the Tab walk), L23 (the backwards ring-only glow), L24 (the ring oracle), L25 (the ring explanation) — reasons per law in deliverables/RING-LAW-RETIREMENT-2026-11-21.md; L17/L18/L19/L20/L22 are KEPT (their subjects — undo/expand, the double-activation guard, the staged disarm, the announced values, the staged-confirm guard — are not ring-bound); every surviving outcome carries a law
+- floor is now: board 24/0 · shell 53/0 · visual 18/0 · node 37/37 · slot 28/0 · slice 29 pass / 0 fail / 10 skip / 3 defer · contrast 2/0 (three KNOWN team holes stay NAMED) · engine 430/430 · falsifiers ALL DIE
+
+## the seed wiring (T3)
+- src/App.svelte:15: import { parseSeedCode, randomSeed, seedToCode, writeSeedToUrl } from './lib/port/seedCode.ts';
+- src/App.svelte:67: let seed = $state(777);
+- src/App.svelte:127: function parseSeed(): number {
+- src/App.svelte:128: return parseSeedCode(new URLSearchParams(location.search).get('seed') || '') ?? randomSeed();
+- src/App.svelte:135: // (parseSeed still reads the URL first; nothing is weakened).
+- src/App.svelte:153: seed = parseSeed();
+
+## aria attributes
+- source (.svelte, 26 files): 33 aria-* attributes
+- dist bundle: 32 aria-* occurrences (assets/index-Cb5sVPrX.js)
+
+## the top-three treatment at a fixed seed (a3f2 · 1180×900, measured headless)
+- top-three rows at pick 1: nfl-p00061, nfl-p00071, nfl-p00002, nfl-p00081 (4 rows — >3 only on an order tie, C′1's rule)
+- seed code displayed in the footer: b36:a3f2
+```
+
+SHELL-STATUS.md written (40 lines) — measured, not hand-written.
+EXIT_CODE=0
+
+=================================================================
+== 14. node scripts/regen-manifest.mjs (dist/ covered — the D4 fix)
+=================================================================
+$ node scripts/regen-manifest.mjs
+regen: 381 entries
+EXIT_CODE=0
+
+=================================================================
+== 15. node scripts/gate-manifest.mjs (PASS: dist/ hashed + boot target asserted)
+=================================================================
+$ node scripts/gate-manifest.mjs
+MANIFEST FAIL (hash): receipt-attestation.json
+boot target: 2 referenced asset(s) checked against the manifest
+gate-manifest: FAIL
+EXIT_CODE=1
+ACCEPTANCE RUN STOPPED AT: 15. node scripts/gate-manifest.mjs (PASS: dist/ hashed + boot target asserted) (exit 1)
+
+ACCEPTANCE RUN PARTIAL — stopped after step 21

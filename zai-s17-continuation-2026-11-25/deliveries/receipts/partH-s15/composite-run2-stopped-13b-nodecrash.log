@@ -1,0 +1,41 @@
+FE mutation applied · the stale hardcoded engineVersion stamp re-planted
+[serveAndRun 4209] bytes=6209 verdict=VERDICT
+FE envelope-stamp law       · mutation: the stale previous-pin stamp re-planted · DIED — FAIL  S34 the envelope stamp law (S15 §4.4): the draft autosave's engineVersion EQUALS the running engineVersion() — no 
+FF mutation applied · a hardcoded brag URL planted as the constant fallback
+[serveAndRun 4210] bytes=6223 verdict=VERDICT
+FF brag-surface law         · mutation: a hardcoded URL planted as the constant fallback · DIED — FAIL  S35 the brag-surface law (S15 §4.8): the share is a copy-paste brag — the draft-stage button copies the composed t
+every shell falsifier DIED — the shell laws can fail
+EXIT_CODE=0
+
+=================================================================
+== 13b. the uniform-board falsifier (cakepanz-12 + S15: the D-2 STALE-SERVER GUARD carried in — served-hash asserted per case; F0-board clean baseline + F0-shell baseline (the S15 bytes), then F15-board the completing-pick handoff deleted → L8 must DIE, F17 the START order reverted (re-anchored to the dispatchAsync bytes) → L10 must DIE, F18 the unconditional Complete h1 + live CTA re-planted → L11 must DIE, F19 the simple branch planted → L12 must DIE, F20 the suggestion wiring killed → L13 must DIE (the walk FAILS LOUD, never crashes), F21 the roster print deleted → L14 must DIE, F22 the cascade deleted → L15 must DIE, F23-w14 the naive link guard → W14 must DIE, F24 the primary re-derived from rendered text → L24 must DIE, F25 the autosave drops suggestIds → L25 must DIE, F26 the pulse removed (re-anchored to .cp-draftbtn) → L23 must DIE; S15: F27 the badge on every row → L26 must DIE, F28 the sheen on every button → L27 must DIE, F29 cp-quick + the ring class re-planted → L28 must DIE, F30 setSort keeps the restored suggestIds → L30 must DIE, F31 the sync toast lie re-planted (the toast set before the dispatch resolves) → L31 must DIE; every child log filed under deliveries/receipts/partH-s15/; staged builds, PID ports)
+=================================================================
+$ node --import ./scripts/node-port-register.mjs scripts/falsify-board.mjs
+F15-board last-pick law     · mutation: the go('complete') handoff deleted · DIED — FAIL  L8 the last pick lands on Complete: the user's 32nd pick, taken through the real UI,
+F17 new-draft law           · mutation: the startDraft order reverted (go before START) · DIED — FAIL  L10 a NEW draft after a finished draft lands on the BOARD: Team Select → DRAFT → dat
+F18 partial-Complete law    · mutation: the unconditional h1 + the live CTA re-planted · DIED — FAIL  L11 the Complete screen does not lie in partial state: a deep link mid-draft renders
+F19 uniform-board law       · mutation: the simple branch planted (data-form + a .cp-simplerow node) · DIED — FAIL  L12 the uniform board (the Owner's ruling, cakepanz-9 §5): picks 1..12 render ONE an
+F13→F20 suggestion law      · mutation: suggest={false} (the top-three highlight killed) · RED ELSEWHERE (not the planted law): FAIL  L16 the top-three treatment is PRESENT (3+ rows, C'1's minimum) and EVERY row carrie | FAIL  L16 one click on a top-three row lands EXACTLY one user pick — no expand, no confirm | FAIL  L17 undo reverses the one-click pick: zero user picks, the board order and the top-t | FAIL  L17 a non-top-three row still expands into the flex chip path (the expand path is ke | FAIL  L17 keyboard-only: Tab reaches the one-click button with a visible focus ring and En | FAIL  L18 a fast double activation on the one-click button (two clicks in one task — the d | FAIL  L19 the staged confirm banner is GONE after the pick lands — a second PICK is not po | FAIL  L22 a fast double click on the staged CONFIRM (two clicks in one task) lands EXACTLY
+F21 roster-print law        · mutation: the Complete roster block deleted · DIED — FAIL  L14 Complete prints the roster the engine would field: the lineup rows equal lineupF
+F22 wall-slip law           · mutation: the cascade keyframes deleted · DIED — FAIL  L15 the wall-slip reveal: entering Complete cascades (title → the stats hint → the b
+F23-w14 link-beats-autosave   · mutation: the naive guard re-planted (if has seed return — the W9 exception dropped) · DIED — FAIL  W14 the explicit ?seed= link wins over a DIFFERENT autosave (no restore, the URL kee
+F24 no-display-parse law     · mutation: the primary re-derived from rendered text (localeCompare sort) · TAUTOLOGY (the board battery stayed green — L24 did not die)
+F25 ring-persistence law     · mutation: the autosave drops suggestIds (the raw record written) · DIED — FAIL  L25 the top-three treatment is EXPLAINED (one plain reason per top-three row, from t
+F26 glow law (L23)           · mutation: the ported zpbBtnPulse rule removed · DIED — FAIL  L23 the w89 W66 glow, CORRECTED (S15 §2.2): EVERY Draft button carries the pulse (zp
+F27 badge-scope law       · mutation: the TOP badge on every row (the exactly-on-the-three law broken) · DIED — FAIL  L26 the separate TOP badge (.cp-toptag, w89 :6432) sits EXACTLY on the top-three row
+F28 sheen-scope law       · mutation: .cp-istop on every button (the sheen exactly-on-the-three law broken) · DIED — FAIL  L27 the sheen treatment (.cp-istop, w89 :1749-1752) sits EXACTLY on the top-three ro
+F29 retired-classes law    · mutation: .cp-quick + the ring class re-planted · DIED — FAIL  L28 the retired classes are GONE and the why copy rides exactly the top-three rows: 
+file:///home/z/my-project/work/s15closeout/zai-s15-closeout-2026-11-21/scripts/falsify-board.mjs:53
+  if (!before.includes(anchor)) throw new Error(`FALSIFIER TARGET MOVED in ${path.relative(TREE, p)} — anchor not found:\n  ${anchor.slice(0, 120)}`);
+                                      ^
+
+Error: FALSIFIER TARGET MOVED in ../../../../../../tmp/cp-board-falsify-dcHpKb/src/App.svelte — anchor not found:
+      // S15 (the sort-after-restore law, the pickle F4 finding): a restored ring is a derived view —
+    // the stored su
+    at mustReplace (file:///home/z/my-project/work/s15closeout/zai-s15-closeout-2026-11-21/scripts/falsify-board.mjs:53:39)
+    at file:///home/z/my-project/work/s15closeout/zai-s15-closeout-2026-11-21/scripts/falsify-board.mjs:398:3
+
+Node.js v24.22.3
+EXIT_CODE=1
+ACCEPTANCE RUN STOPPED AT: 13b. the uniform-board falsifier (cakepanz-12 + S15: the D-2 STALE-SERVER GUARD carried in — served-hash asserted per case; F0-board clean baseline + F0-shell baseline (the S15 bytes), then F15-board the completing-pick handoff deleted → L8 must DIE, F17 the START order reverted (re-anchored to the dispatchAsync bytes) → L10 must DIE, F18 the unconditional Complete h1 + live CTA re-planted → L11 must DIE, F19 the simple branch planted → L12 must DIE, F20 the suggestion wiring killed → L13 must DIE (the walk FAILS LOUD, never crashes), F21 the roster print deleted → L14 must DIE, F22 the cascade deleted → L15 must DIE, F23-w14 the naive link guard → W14 must DIE, F24 the primary re-derived from rendered text → L24 must DIE, F25 the autosave drops suggestIds → L25 must DIE, F26 the pulse removed (re-anchored to .cp-draftbtn) → L23 must DIE; S15: F27 the badge on every row → L26 must DIE, F28 the sheen on every button → L27 must DIE, F29 cp-quick + the ring class re-planted → L28 must DIE, F30 setSort keeps the restored suggestIds → L30 must DIE, F31 the sync toast lie re-planted (the toast set before the dispatch resolves) → L31 must DIE; every child log filed under deliveries/receipts/partH-s15/; staged builds, PID ports) (exit 1)
+COMPOSITE_EXIT=1

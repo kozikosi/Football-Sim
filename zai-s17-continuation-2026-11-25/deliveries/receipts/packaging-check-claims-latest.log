@@ -1,0 +1,32 @@
+OK    [claims-exist] the claim list itself is on the tree (the T2 protocol is installed)
+OK    [claims-tool-exists] the claims checker is on the tree
+OK    [seal-count] the seal carries exactly 385 content entries (the S17 continuation deltas, named: the delivered 374 + 6 — scripts/attest.mjs, scripts/gen-freshness.mjs, scripts/gen-state-block.mjs, scripts/materialise-w89-fixture.sh, scripts/preview-serve.sh, freshness.json — + 5 more — scripts/gen-claims-index.mjs, scripts/gen-cutover-proof.mjs, deliveries/CLAIMS-INDEX.md, deliveries/CUTOVER-PROOF.md, and the R-13 filing rename netting zero; measured at the close-out reseal #1, 2026-11-25)
+OK    [manifest-identity] MANIFEST.txt is byte-identical to CHECKSUMS.txt (the regen writes both; the ernie check, in code)
+OK    [seal-verifies] verify-package green at these bytes: every entry OK, zero FAILED/missing, converse clean, and OK == the seal count
+OK    [dist-in-seal-and-status] all four shipped dist bytes' sha256 prefixes are exactly what SHELL-STATUS.md prints (css, js, index, single)
+OK    [node-battery-live] the node battery ran LIVE in the SHELL-STATUS regen: 37 pass / 0 fail in the native node:test format (the 2026-11-23 RED's claim-2 expectation, corrected to the real format)
+OK    [contrast-live] the contrast guardrail ran LIVE in the SHELL-STATUS regen: 2 pass · 0 fail
+OK    [freshness-content-based] the browser-battery freshness verdicts are CONTENT-based (the T1 rule) — no bare clock-age STALE flag survives in the generated status
+OK    [no-bare-stale-flag] the retired misleading signal is gone: no 'STALE — re-run the battery' line next to green receipts
+OK    [sbs-receipt] the side-by-side receipt: 41 captures, the 40-cell matrix COMPLETE, zero fallback captures, zero right-verdict FAIL rows, and the doc's fallback cells equal the receipt's fallbacks (0)
+OK    [sbs-orphan-renamed] the orphan Settings capture is named new-only-… (the orcads F4 rename)
+OK    [lineage-note] the package identity + lineage note exists (the porca/pickle finding)
+OK    [r13-plan-filed] the CAKEPANZ VITE-8 MIGRATION RECEIPT PLAN is filed under its correct (non-R-13) name — R-13 is CLOSED (Owner 2026-11-19); plan only, no dependency change (the S17 A5 rename)
+OK    [no-stale-zip-claim] the 2026-11-22 zip promise is RETRACTED in the hand-over prose (the hy4 finding) — the promise sentence no longer stands
+OK    [no-zip-file-claim-active] no doc still claims the 2026-11-22 continuation SHIPPED the named zip (the sentence is gone, not hedged)
+OK    [boot-docs-current] the boot docs carry the 2026-11-24 sitting's state blocks (the ernie F1 rewrite)
+OK    [start-doc-current] the START file's state block is the 2026-11-24 sitting
+OK    [handover-left-correction] the hand-over §13.3 carries the 2026-11-24 LEFT s1–s3 correction (boot-state fallbacks named, re-drive pointed at)
+SKIP  [acceptance-complete] not in phase packaging
+SKIP  [acceptance-no-stops] not in phase packaging
+SKIP  [engine-430] not in phase packaging
+SKIP  [node-battery-receipt] not in phase packaging
+SKIP  [falsifier-verdicts] not in phase packaging
+OK    [sbs-nonvacuity] the STRUCTURED non-vacuity check (the S17 A4 replacement for hy4 N4's raw count — a planted '"met": "true"' string or a count fudge cannot satisfy it): every one of the 41 captures joins 1:1 to its nonVacuity record on (side,scene,w,h,theme) and every joined record carries met === true — no false, no null, no string, no missing twin
+SKIP  [status-acceptance-agrees] not in phase packaging
+SKIP  [status-freshness-agrees] not in phase packaging
+OK    [no-contradictory-acceptance-line] PROMOTED to the packaging phase (the S17 A4 bullet 4 — the packaging gate is what ran green while the full phase was RED): the SHELL-STATUS acceptance line and the receipt's terminal marker agree in BOTH directions, at ANY phase — no contradictory COMPLETE line can ship again
+SKIP  [acceptance-attestation] not in phase packaging
+SKIP  [freshness-map] not in phase packaging
+SKIP  [state-blocks-fresh] not in phase packaging
+check-claims: 21 OK · 0 RED · 10 skipped (phase packaging; the claim list is claims.json — the T2 protocol, the orcads F2 fix)
