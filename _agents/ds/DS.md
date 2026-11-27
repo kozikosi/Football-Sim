@@ -3,16 +3,23 @@
 ## Identity
 - **Seat:** DS · **Model:** deepseek-v4.1-flash-free via OpenChamber · **State:** advisor
 - **First seen:** 2026-10-25 · **ID block:** none used
-- **Strengths shown (evidence):** byte-checks that hold or break a delivery — Z.ai framework-eval v4 (14 Nov: manifest 44/44, suite 323/323, flex 99; found the `C5b` log 101-vs-99); P-337 cakepanz-8 / 8.1 / c9 reviews (pins, gates, D1–D5, L10 closed); P-342 engine-design review; P-347 λ identification; P-346 v3 review; flex rebuild 9–10 Nov; GLM pass-class state-bucket (17 Nov: 12,000 paired games, within-bucket bias isolated); R-13 tools evaluation (19 Nov: five measured builds, Svelte 5 vs Vue 3).
+- **Strengths shown (evidence):** byte-checks that hold or break a delivery — Z.ai framework-eval v4 (14 Nov: manifest 44/44, suite 323/323, flex 99; found the `C5b` log 101-vs-99); P-337 cakepanz-8 / 8.1 / c9 reviews (pins, gates, D1–D5, L10 closed); P-342 engine-design review; P-347 λ identification; P-346 v3 review; flex rebuild 9–10 Nov; GLM pass-class state-bucket (17 Nov: 12,000 paired games, within-bucket bias isolated); R-13 tools evaluation (19 Nov: five measured builds, Svelte 5 vs Vue 3); S17 continuation review (26 Nov: hosted 840 files / 26 MB; claims 25/8; engine 69/69 @408410477 and 430/430; final visual 18/0, slot 28/0 at distHash 3f053afd; node 35/37; board 23/1; offline tent fails; Wave B battery parse; path bug; left s2 overlay).
 - **Pattern to keep:** I take the verification half of a delivery and the mechanism half of a spec. I file the *delta*, not a restatement.
 
 ## Where
 - **Worktree:** `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-ds` (OpenChamber worktree; the equivalent of `../wt/ds`)
 - **Branch:** `council/ds`
 - **merge-base HEAD origin/council/base:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
-- **Last session end:** 2026-11-23 (S15 WIP + S17 close-out hosted; S17 review and shell ideas filed)
+- **Last session end:** 2026-11-26 (S17 continuation hosted + reviewed; shell round 2 filed)
 
-## Current state (23 Nov 2026)
+## Current state (26 Nov 2026)
+
+### S17 continuation — hosted and reviewed (26 Nov)
+- **Hosted:** the Owner's `zai-s17-continuation-2026-11-25` at `d626a5262` (840 files, 26 MB; byte-for-byte from the desktop folder, no `node_modules`; the hosting note is the sibling `deliveries/zai-s17-continuation-2026-11-25-HOSTING-NOTE.md`). The artifact has its own 401-entry `CHECKSUMS.txt` and an extra 839-line `SHA256SUMS-2026-11-25.txt`; `verify-package` is 401 OK/0/0 with 1 EXTRA, exit 1.
+- **Review:** `inbox/20261126-0157-ds-zai-s17-continuation-review.md` — **Wave A closed; Wave B code-landed, PARTIAL; NOT ACCEPTED at the delivered bytes.** The package's own gate is **25 OK · 8 RED** (packaging **18 OK · 3 RED**), not the 30 OK · 0 RED in the top state block. The state block/`SHELL-STATUS`/freshness/seam card/seal accounting are Wave A; the final source/dist is Wave B. The A3/A4 instrument correctly turns red; the release shipped the red gate under a green line.
+- **Verified at the final bytes:** engine fence **69/69 @`408410477`** (byte-identical; `diff -rq` empty); engine **430/430**; acceptance **COMPLETE and attested** (log sha `d536d63f…`, every step exit 0; at the Wave A tree, not the final tree); final **visual 18/0** and **slot 28/0** at `distHash 3f053afd…`; final **node 35/37** (N26/N27 source-string drift from the Wave B provenance/heat-strip; behavior appears intact); final **board 23/1** (L20 aria-label parse; L13 still 3/36/60 at picks 1/13/27); **Wave B battery does not parse** (`as const` at `batteries/waveB.node.battery.mjs:57`); **offline tent fails** (`dist/single.html` under `file://` shows “No player dataset yet”; 0 external, 0 page errors); **left s2 PNG still the w89 intro overlay**, non-vacuity says `met:true` (rows behind the overlay); **path bug** (`check-claims` from a path with a space: `ENOENT … /Football%20Sim%20s17/claims.json`); **seam card** `sealCount 385` vs live 401, `claims.total 31` vs 33, `distHash 8144…` vs final `3f053afd…`.
+- **Ideas:** `inbox/20261126-0157-ds-cakepanz-shell-round2-ideas.md` — 12 ranked + 2 bonus: final-byte release gate + `PROOF.md`; phone card deck; top-three cap; offline first-run demo; decision rail; proof chip; share story; toolbar/one method; text-safe palette; motion budget; structured why; experience laws. No engine edit proposed; `rawSort` remains the Architect's move.
+- **Prior state:** the 23 Nov S17 close-out review and the 19 Nov R-13 tools evaluation remain below; the close-out is superseded by the continuation, not deleted.
 
 ### S15 WIP + S17 close-out — hosted and reviewed (23 Nov)
 - **Hosted:** the Owner's `67-cakepanz-15-WIP-2026-11-21` at `aaaee04f4` (545 files, 18 MB) and `zai-s17-closeout-2026-11-23` at `7b94a40ec` (677 files, 24 MB), both byte-identical to the desktop copies (`diff -r`); no `node_modules`/`.git`/symlinks.
@@ -41,20 +48,24 @@
 - **Open filings:** relay spec `inbox/20261115-1132-ds-delivery-fix-relay.md` (the tool is MUSE's); direction `inbox/20261115-1149-ds-direction-innovation.md` (`file://` root cause, 11,569 B gz delta); pin-watch retired (canonical is `council/inkling` @ `0bd76860`).
 
 ## What the next session needs
-1. **The S17 close-out review is filed** (`inbox/20261123-1756-ds-zai-s17-closeout-review.md`). Two more seats should confirm F1/F2/F3; the shell round starts with the cap, the phone card, and the contrast tokens. `rawSort` is the Architect's engine move; do not build a shell oracle against raw values until it lands.
+1. **The S17 continuation review is filed** (`inbox/20261126-0157-ds-zai-s17-continuation-review.md`): Wave A closed; Wave B partial; **not accepted at the delivered bytes** (25/8; packaging 18/3; final node 35/37; board 23/1; offline tent fails; Wave B battery parse; left s2 overlay; path bug). The next round starts with the final-byte release gate, the phone card, the top-three cap and the offline demo; the prior F1/F2/F3 are still open. `rawSort` is the Architect's engine move; do not build a shell oracle against raw values until it lands.
 2. Read the live round prompt and **check the tip before working**; `node tools/council.mjs next` (from `origin/council/muse`) is the queue truth.
 3. **Round K — still owed.** (a) merge gate: the five checks, four fixes documented; (b) 4-3/3-4: the ~947 floor appears in no council filing, Ernie's EDGE→ILB=0 + EDGE→DT=2 gives gap 0 / bias +334, and "947 worse than 720" is a category error; (c) Wins calibration: policy→outcome exists (greedy N=1000: 89.5% playoffs, 11.43 mean wins), the slope and the 20-0 rate do not.
 4. If a new delivery lands, check **D1 and D2 first** (receipts above); do not re-run the whole review.
 5. Do not rebuild pin-watch or bucket-bar variants.
 6. If R-13 is taken, the harness is ready — re-run it before changing any number.
+7. **S17 continuation red set:** the package's own gate is 25/8 and the state block 25/7; the final visual/slot pass but the shipped receipts are pre-final; the seam card is 385/401; the extra `SHA256SUMS` makes `verify-package` exit 1. The first action is a release re-run at the final tree, not a new feature; the review's §7 has the order.
 
 ## Open questions (mine, not the council's)
 - GLM sack bias source: league drift vs model form (the score-state sign flip points to model form; INFERRED). Claude's source analysis is the open input.
 - Does the Owner want the default decision now, or after the source analysis?
 - Does "one adapter" mean one facade over the six VMs, or a new interface layer?
+- Does the Owner want **exactly 3** top rows or **3 + ties**? Recommended: exactly 3 until `rawSort`, with a “+N tied” strip; the final board's 36/60 is not a top three.
+- Offline first run: `?dev=1` demo or an Owner-approved demo dataset? Recommended: `?dev=1` as a labelled demo until the Owner approves a dataset; the real ratings stay out of the cutover.
+- Must a Wave B package carry a Wave B acceptance? Recommended: yes; a Wave A acceptance can be complete and attested and still not certify Wave B bytes. The `acceptance-covers-this-tree` claim is the minimum.
 
 ## Live files
-`inbox/20261123-1756-ds-zai-s17-closeout-review.md` · `inbox/20261123-1756-ds-cakepanz-shell-ideas.md` · `inbox/20261119-0451-ds-R-13-w89-stats-tools-svelte-vue.md` · `_agents/ds/deliveries/tools-eval-2026-11-19/` · `inbox/20261119-0455-ds-c81-addendum-c9.md` · `inbox/20261119-0427-ds-c81-review.md` · `inbox/20261119-0427-ds-c81-ui-ideas.md` · `inbox/20261119-0427-ds-OP-add-cakepanz-8-2-close-the-two-she.md` · `_agents/ds/deliveries/cakepanz-8.1-review-2026-11-18/` · `inbox/20261118-1956-ds-P-337-cakepanz-8-review.md` · `inbox/20261118-1956-ds-R-13-cakepanz-shell-innovations.md` · `_agents/ds/deliveries/prompt-zai-cakepanz-9-2026-11-18.md` · `inbox/20261117-2056-ds-GLM-state-bucket.md` · `_agents/ds/deliveries/glm-state-bucket-2026-11-17/` · `inbox/20261116-2102-ds-CAKEPANZ-SHELL-{pin,neutrality,seam}.md` · `inbox/20261115-1149-ds-direction-innovation.md` · `inbox/20261115-1132-ds-delivery-fix-relay.md`
+`inbox/20261126-0157-ds-zai-s17-continuation-review.md` · `inbox/20261126-0157-ds-cakepanz-shell-round2-ideas.md` · `deliveries/zai-s17-continuation-2026-11-25/` · `deliveries/zai-s17-continuation-2026-11-25-HOSTING-NOTE.md` · `inbox/20261123-1756-ds-zai-s17-closeout-review.md` · `inbox/20261123-1756-ds-cakepanz-shell-ideas.md` · `inbox/20261119-0451-ds-R-13-w89-stats-tools-svelte-vue.md` · `_agents/ds/deliveries/tools-eval-2026-11-19/` · `inbox/20261119-0455-ds-c81-addendum-c9.md` · `inbox/20261119-0427-ds-c81-review.md` · `inbox/20261119-0427-ds-c81-ui-ideas.md` · `inbox/20261119-0427-ds-OP-add-cakepanz-8-2-close-the-two-she.md` · `_agents/ds/deliveries/cakepanz-8.1-review-2026-11-18/` · `inbox/20261118-1956-ds-P-337-cakepanz-8-review.md` · `inbox/20261118-1956-ds-R-13-cakepanz-shell-innovations.md` · `_agents/ds/deliveries/prompt-zai-cakepanz-9-2026-11-18.md` · `inbox/20261117-2056-ds-GLM-state-bucket.md` · `_agents/ds/deliveries/glm-state-bucket-2026-11-17/` · `inbox/20261116-2102-ds-CAKEPANZ-SHELL-{pin,neutrality,seam}.md` · `inbox/20261115-1149-ds-direction-innovation.md` · `inbox/20261115-1132-ds-delivery-fix-relay.md`
 
 ## Method notes
 - zsh: `$r:tools/...` is a **parameter modifier** (`:t` = tail) — quote the whole ref, and print the ref + byte count beside every hash.
