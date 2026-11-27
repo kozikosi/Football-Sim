@@ -1,11 +1,16 @@
-# PORCA — lane file (rewritten at session end 2026-11-26T01:46Z, never append)
+# PORCA — lane file (updated at session end 2026-11-27T03:27Z, never append)
 
 ## Identity
 - **Seat:** PORCA · **Model / how reached:** PORCA / API · **State:** advisor (admitted by the Owner 2026-11-19). ID block: none filed.
 - **Worktree:** `/Users/kosi/Desktop/wt/porca` · **Branch:** `council/porca` · `git merge-base HEAD origin/council/base` → `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`.
 - **Evidence standard:** every claim carries a fresh command receipt (`git show`, `git grep`, `git cat-file`, `shasum`, `md5sum`, `node`, file read). No shared-tree writes, no product/engine/pin/governance/queue/tools bytes, no other seat's file. A wrong claim stays in the record with a superseding correction.
 
-## Current work and state (session 21 — Owner's 2026-11-25 folder: published, reviewed, brainstormed; 2026-11-26T01:46Z)
+## Current work and state (session 22 — queue review P-160; 2026-11-27T03:27Z)
+- **Took the top live queue line** via `node ./.council_tool.mjs next --no-fetch` (v11 tool from `origin/council/muse`; temp tool deleted before push). REVIEW P-160, which had 7 prior reviews.
+- **Filed:** `inbox/20261127-0327-porca-P-160-review.md`, verdict **improved**. VERIFIED: Pre-Colors hash `40233d6b…`; two of the named anchors are stale (`teamAdvancedHTML` 4281 not 4219, `advancedStatsHTML` 4317 not 4281, `renderSeasonCompleteView` 5885 not ~5889); nine of ten target strings occur **zero** times in Pre-Colors; they belong to Z-post-blue and are recorded LIVE at `origin/main:z-core/11-worklog/WORKLOG-SHARED.md:338`. `fragOffense` is prose with no unit labels; `teamAdvancedHTML` has no PF/PA totals. Recommended: mark the shipped subset superseded; retarget any remaining item to the Svelte shell with fresh anchors; do not patch the frozen reference.
+- **Not changed:** product, engine, pin, governance, queue, tools, other seats' files. No build, no assignment.
+
+## Prior work (session 21 — Owner's 2026-11-25 folder: published, reviewed, brainstormed; 2026-11-26T01:46Z)
 - **Published:** Owner-relayed `/Users/kosi/Desktop/Football Sim/zai-s17-continuation-2026-11-25` copied verbatim except `node_modules/` (840 files, 26 MB) onto `council/porca` at commit **`4850bb2d9a8a2c91cb29e29bc1e82d63249e31fc`** (includes `PUBLICATION-NOTE-porca.md`, publisher metadata only); `git ls-remote` verified. Published `shasum -a 256 -c SHA256SUMS-2026-11-25.txt` → 839/839 OK, exit 0.
 - **Reviewed (verdict `REGRESSED at the delivered bytes`):** `inbox/20261126-0146-porca-zai-s17-continuation-2026-11-25-review.md`. Clean-room copy (publisher note removed) still gives `check-claims --phase full`: **25 OK / 8 RED / 0 skipped, exit 1**; packaging 18 OK / 3 RED. Engine fence intact (69 files vs `408410477`, `diff -rq` exit 0); acceptance seal hash `d536d63f…` matches attestation; one COMPLETE marker. Eight REDs: seal 401 vs 385; verify-package EXTRA `SHA256SUMS-2026-11-25.txt` (exit 1); shipped dist names changed from the pinned ones; visual/slot receipts pinned to `8144ae6c…` vs shipped `3f053afd…`; 8 stale freshness inputs; generated state blocks stale; Wave B battery crashed on TS `as const` in `.mjs` line 57; `offline-tent.json` missing entirely.
 - **Key finding:** `seam-card.json` (read by both the gate and the dev chip) is stale — seal 385 / claims 31 / distHash `8144ae6c…`, while the tree is 401 / 33 rows with 8 RED / `3f053afd…`. Pin and canary are still correct, so the chip looks healthy while three numbers lie.
@@ -21,7 +26,7 @@
 - **16/15/14/13/12:** Architect timeout review; Cloudflare how delegated to Claude+council; `dfdb887` review (improved); cross-seat S14 round; S14 verbatim relay + six-item brainstorm; composite PARTIAL; falsifiers died by name.
 
 ## What the next session needs
-- **Read first:** this file → `inbox/20261126-0146-porca-zai-s17-continuation-2026-11-25-review.md` → `inbox/20261126-0146-porca-cakepanz-waveb-next-wave.md`. Do not redo the publication, the review or the B1–B6 filing.
+- **Read first:** this file → `inbox/20261127-0327-porca-P-160-review.md` → `inbox/20261126-0146-porca-zai-s17-continuation-2026-11-25-review.md` → `inbox/20261126-0146-porca-cakepanz-waveb-next-wave.md`. Do not redo the publication, the reviews or the B1–B6 filing.
 - **Gate restoration order (proposal):** fix the `.mjs` `as const` line and run `battery:waveb`; run `battery:offline` to produce its receipt; reseal/regenerate in dependency order (seal count, freshness, state blocks, seam card, status), then re-run both claim phases at the final bytes. No gate result counts before the last byte is fixed.
 - **Do not adopt** MUSE's ring-law range `L13, L16–L25` without byte verification; canonical says ring removal voids L13/L16–L22, with L23–L28 corrected/new laws.
 - **Session-end gate:** `node tools/preserve.mjs check` exits 1 for OTHER worktrees and the Owner's shared tree only; do not touch them. This branch must read `0 dirty, 0 unpushed, OK`, 0 stashes, 0 local-only commits.
