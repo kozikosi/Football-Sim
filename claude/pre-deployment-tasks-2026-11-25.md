@@ -8,6 +8,8 @@
 - **Open (U).** CSV size vs the localStorage budget if the user-CSV path stores it (measure; if too big, keep it in memory and refetch each boot); whether `server/wrangler.jsonc` assets config serves `/dataset/*` as-is.
 - **Z.ai ask (relay via Owner).** Fetch-then-import at boot; remove the `?raw` import; an empty-state acceptance receipt. Write this into the next work-order note.
 
+**Superseded (27 Nov):** the CSV design and Z.ai ask above were replaced by what T1 built: `claude/zai-note-2026-11-25-boot-loader.md` (`/dataset/nfl.json`).
+
 ## T2. Build the clean repo locally, in scratch, never pushed (the receipt-safe cutover rehearsal)
 `git init` in the scratchpad; commit 0 = byte-identical copy minus `claude/cutover-hide-list.txt` files, minus the filtered queue (T4), plus `ARCHIVE.md` and `PINS.md` (content pins: engine `408410477`, subtree hashes, the seam golden rule `sha256(JSON.stringify(g,null,1))`); commit 1 = brand + docs + `bootstrap.sh` URL/branch (`kozikosi/76pancakes`) + README ("76 Pancakes") + LICENSE + NOTICE + `docs/EXHIBIT.md` pointer; commit 2 = renames (`colors`/`server` package names) with the 7 `server/` imports of `colors/src` updated in the same commit. Per commit: the public gate identity (pass + 119 gated = full count of the source), `tsc:check` 89, build, subtree hashes, and the exposure scan (0 files). Never sweep real artifact filenames (`Football-Sim-Z-post-blue-w54.html` etc.). Output: a scratch repo plus a receipts file under `claude/`. Drafts of README/LICENSE/NOTICE/PINS/ARCHIVE go in `claude/cutover-drafts/` first.
 
