@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { memoryD1 } from './sqlite-d1.ts';
 import type { TestDb } from './sqlite-d1.ts';
+import { handle } from '../src/api.ts';
 import { call, draftEnv, results, seasonEnv, T0, W17 } from './helpers.ts';
 
 test('a share token reads one snapshot, read-only; the token is never stored; no email or user id leaks', async () => {
@@ -80,4 +81,16 @@ test('one door: SQL on our four tables and Better Auth\'s four exists only in sr
   }
   assert.deepEqual(offenders, []);
   assert.ok(sql.test(readFileSync(new URL('store.ts', dir), 'utf8')), 'the checker can see store.ts SQL (it is not vacuous)');
+});
+
+test('the rate limit, when the binding exists, answers 429 with Retry-After and writes nothing; without it there is none', async () => {
+  const db = await memoryD1(); const seen: string[] = []; let left = 1;
+  const SYNC_RATE = { limit: async ({ key }: { key: string }) => { seen.push(key); return { success: left-- > 0 }; } };
+  const send = (env: Parameters<typeof handle>[1]) => handle(new Request('http://x/api/saves/nfl/A', { method: 'PUT', headers: { 'x-test-user': 'u1' }, body: JSON.stringify({ envelope: draftEnv('A', 's', 1), base: null }) }), env, async (r) => r.headers.get('x-test-user'));
+  assert.equal((await handle(new Request('http://x/api/saves', { headers: { 'x-test-user': 'u1' } }), { DB: db, SYNC_RATE }, async (r) => r.headers.get('x-test-user'))).status, 200);
+  const limited = await send({ DB: db, SYNC_RATE });
+  assert.equal(limited.status, 429); assert.equal(limited.headers.get('retry-after'), '60'); assert.equal(((await limited.json()) as { error: string }).error, 'rate-limited');
+  assert.equal((await db.get('SELECT COUNT(*) n FROM saves')).n, 0);
+  assert.deepEqual(seen, ['u1', 'u1'], 'counted per signed-in user');
+  assert.equal((await send({ DB: db })).status, 200);
 });

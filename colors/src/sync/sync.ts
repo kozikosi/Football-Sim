@@ -107,6 +107,7 @@ export function createSync(deps: SyncDeps): SyncApi {
   const retry = new Map<SlotName, { n: number; h: unknown }>();
   const attempts = new Map<SlotName, number>();   // consecutive failures per slot; cleared on success so backoff really doubles
   let pullTimer: unknown = null;
+  let pullFails = 0;                              // consecutive failed whole-sync rounds, so those back off too
   let pausedUntil = 0;
 
   // ---- local reads and writes ----
@@ -135,7 +136,7 @@ export function createSync(deps: SyncDeps): SyncApi {
     switch (f.type) {
       case 'unauthenticated': userId = null; setStatus({ kind: 'off', reason: 'signed-out' }); return 'stop';
       case 'paused': pausedUntil = deps.now() + f.retryAfterSec * 1000; setStatus({ kind: 'paused', untilMs: pausedUntil }); schedulePull(f.retryAfterSec * 1000); return 'stop';
-      case 'transient': setStatus({ kind: 'failed', reason: f.message, retriable: true, slot }); if (slot) scheduleRetry(slot, f.retryAfterSec === undefined ? undefined : f.retryAfterSec * 1000); else schedulePull(backoff(1)); return 'retry';
+      case 'transient': setStatus({ kind: 'failed', reason: f.message, retriable: true, slot }); if (slot) scheduleRetry(slot, f.retryAfterSec === undefined ? undefined : f.retryAfterSec * 1000); else schedulePull(f.retryAfterSec === undefined ? backoff(++pullFails) : f.retryAfterSec * 1000); return 'retry';
       case 'rejected': setStatus(f.code === 'newer-schema' && slot ? { kind: 'newer-schema', slot } : { kind: 'failed', reason: f.message, retriable: false, slot }); return 'stop';
       case 'conflict': return 'retry';   // callers handle conflict themselves; reaching here means they did not
     }
@@ -308,7 +309,7 @@ export function createSync(deps: SyncDeps): SyncApi {
   async function pull(slot: SlotName, archive: { text: string } | null, into: SlotName = slot): Promise<{ serverRev: number; text: string } | 'changed' | null> {
     if (rec === null) return null;
     const g = await net.getSave(sport, slot);
-    if (!g.ok) { onFailure(g.failure, slot); return null; }
+    if (!g.ok) { onFailure(g.failure, null); return null; }                // a failed download is retried by a whole round
     if (g.value === null) return null;
     const p = parseEnvelope(g.value.envelope);
     if (!p.ok) { setStatus(p.reason === 'newer-version' ? { kind: 'newer-schema', slot } : { kind: 'failed', reason: 'the server copy of slot ' + slot + ' is not a valid save; left it alone', retriable: false, slot }); return null; }
@@ -352,16 +353,18 @@ export function createSync(deps: SyncDeps): SyncApi {
       for (const s of SLOT_NAMES) if ((await reconcileSlot(s, l.value)) === 'conflict') again = true;
       if (!again) return true;
     }
-    setStatus({ kind: 'failed', reason: 'the server copy kept changing while we synced; will retry', retriable: true, slot: null }); schedulePull(backoff(1));
+    setStatus({ kind: 'failed', reason: 'the server copy kept changing while we synced; will retry', retriable: true, slot: null }); schedulePull(backoff(++pullFails));
     return false;
   }
+  // The end of a whole round that got through: report it, and start the next failure from the shortest wait.
+  function settled(): void { if (st.kind === 'syncing') idleStatus(); if (st.kind === 'idle') pullFails = 0; }
   async function pullAll(): Promise<void> {
     if (userId === null || rec === null || pendingUser !== null) return;
     await enqueue(async () => {
       if (userId === null) return;
       if (deps.now() < pausedUntil) { setStatus({ kind: 'paused', untilMs: pausedUntil }); return; }
       setStatus({ kind: 'syncing' });
-      if (await reconcileAll()) { await sendRuns(); if (st.kind === 'syncing') idleStatus(); }
+      if (await reconcileAll()) { await sendRuns(); settled(); }
     }, undefined);
   }
 
@@ -408,7 +411,7 @@ export function createSync(deps: SyncDeps): SyncApi {
       const ok = await reconcileAll();
       if (!ok) return { kind: 'failed' as const, reason: st.kind === 'failed' ? st.reason : st.kind === 'paused' ? 'sync is paused' : 'sign-in sync failed' };
       await sendRuns();
-      if (st.kind === 'syncing') idleStatus();
+      settled();
       return st.kind === 'failed' ? { kind: 'failed' as const, reason: st.reason } : { kind: 'ok' as const };
     }, { kind: 'failed', reason: 'the account changed while signing in' });
   }
@@ -472,7 +475,7 @@ export function createSync(deps: SyncDeps): SyncApi {
     signOut() {   // local saves and the sync record stay (contract section 9)
       newSession(); userId = null; pendingUser = null; dirty.clear();
       for (const h of debounce.values()) deps.clearTimer(h); debounce.clear();
-      for (const r of retry.values()) deps.clearTimer(r.h); retry.clear(); attempts.clear();
+      for (const r of retry.values()) deps.clearTimer(r.h); retry.clear(); attempts.clear(); pullFails = 0;
       if (pullTimer !== null) { deps.clearTimer(pullTimer); pullTimer = null; }
       setStatus({ kind: 'off', reason: 'signed-out' });
     },

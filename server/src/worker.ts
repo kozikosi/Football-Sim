@@ -3,12 +3,13 @@ import { handle } from './api.ts';
 import { purgeExpired } from './store.ts';
 import { authPathAllowed, makeAuth } from './auth.ts';
 import type { AuthEnv } from './auth.ts';
+import type { Env } from './api.ts';
 import type { D1Like } from './d1.ts';
 
 const json = (status: number, body: unknown): Response => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
 
 export default {
-  async fetch(req: Request, env: AuthEnv & { DB: D1Like }): Promise<Response> {
+  async fetch(req: Request, env: AuthEnv & Env): Promise<Response> {
     const url = new URL(req.url);
     const auth = makeAuth(env);
     if (url.pathname.startsWith('/api/auth/') || url.pathname === '/api/auth') {

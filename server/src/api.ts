@@ -8,7 +8,11 @@ import { deriveRun } from './derive.ts';
 import { MAX_ACTIVE_SHARES, MAX_RUNS, scopedDb, shareByTokenHash } from './store.ts';
 import type { Scoped, WriteResult } from './store.ts';
 
-export interface Env { DB: D1Like }
+export interface Env {
+  DB: D1Like;
+  /** Cloudflare's Rate Limiting binding, when the account has it. Absent: no per-minute limit (the caps and the client cadence remain). */
+  SYNC_RATE?: { limit(o: { key: string }): Promise<{ success: boolean }> };
+}
 export type Auth = (req: Request) => Promise<string | null>;
 export const API_VERSION = '1';
 export const MAX_ENVELOPE_BYTES = 256 * 1024;
@@ -73,6 +77,7 @@ async function route(req: Request, env: Env, auth: Auth, nowD: Date): Promise<Re
   // The page says which account it is syncing. If the session cookie now belongs to someone else (another tab signed in), nothing is read or written.
   const expected = req.headers.get('x-sync-user');
   if (expected !== null && expected !== userId) return err(401, 'wrong-user', 'this browser is now signed in as a different account');
+  if (env.SYNC_RATE && !(await env.SYNC_RATE.limit({ key: userId })).success) return reply(429, { error: 'rate-limited', message: 'too many sync requests; trying again in a minute' }, { 'retry-after': '60' });
   const db = scopedDb(env.DB, userId);
 
   if (parts[1] === 'saves') {

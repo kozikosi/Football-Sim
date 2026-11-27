@@ -446,3 +446,31 @@ test('"keep both" interrupted before its last write finishes later without makin
   assert.deepEqual((['A', 'B', 'C'] as const).map((s) => saveIdOf(b.storage.data.get(K(s)))), ['s', 'second', null]);
   assert.equal(b.server.rows.get('A')!.envelope.saveId, 's'); assert.equal(b.server.rows.get('B')!.envelope.saveId, 'second');
 });
+
+// ---- a failed look at the server backs off like a failed push ----
+test('while the server is unreachable, whole-sync retries slow down instead of repeating every second', async () => {
+  const r = rig(); await r.sync.signIn('u1');
+  r.server.offline = true; r.server.calls.length = 0; await focus(r);
+  await r.clock.advance(600_000); await r.sync.idle();
+  assert.ok(r.server.calls.length <= 20, 'calls in ten minutes: ' + r.server.calls.length);
+  assert.ok(r.server.calls.length >= 10, 'it keeps trying: ' + r.server.calls.length);
+  r.server.offline = false; await r.clock.advance(60_000); await r.sync.idle();
+  assert.equal(r.sync.status().kind, 'idle');
+  r.server.offline = true; r.server.calls.length = 0; await focus(r); await r.clock.advance(1000); await r.sync.idle();
+  assert.equal(r.server.calls.length, 2, 'after a success the waits start small again');
+});
+
+test('a server that says when to come back is obeyed for whole-sync retries', async () => {
+  const r = rig(); await r.sync.signIn('u1'); r.server.calls.length = 0;
+  r.server.failures.push({ type: 'transient', message: 'slow down', retryAfterSec: 60 }); await focus(r);
+  await r.clock.advance(59_000); await r.sync.idle(); assert.equal(r.server.calls.length, 1);
+  await r.clock.advance(1_000); await r.sync.idle(); assert.equal(r.server.calls.length, 2);
+});
+
+test('a download that fails is tried again without waiting for the user', async () => {
+  const r = rig(); await r.sync.signIn('u1'); r.server.seed('A', env('A', 'remote', 4));
+  r.server.during.set('get A', () => { r.server.failures.push({ type: 'transient', message: 'offline' }); });
+  await focus(r); assert.equal(r.storage.data.has(K('A')), false);
+  await r.clock.advance(2_000); await r.sync.idle();
+  assert.equal(saveIdOf(r.storage.data.get(K('A'))), 'remote'); assert.equal(r.sync.status().kind, 'idle');
+});

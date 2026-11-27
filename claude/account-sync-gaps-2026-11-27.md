@@ -7,7 +7,8 @@ Adds to `claude/client-sync-module-2026-11-23.md`; its "Not done" items 1, 2, 4 
 - **Delete:** `notifyDeleted(slot)` after the app removes a slot. Sent with the last seen revision, remembered across reloads. Never destroys a copy this device has not seen.
 - **Server history and restore:** `serverHistory(slot)`, `restoreFromServer(slot, archivedSeq)`. A server delete now keeps a restorable copy (contract section 3 asked for it; the server did not do it).
 - **Stats and shares:** `stats()`, `shareSave(slot)`, `shareRun(saveId, run)`, `revokeShare(id)`; transport `getShare(token)` for a public share page (not found = null, expired or revoked = `gone`).
-- **Backoff jitter:** each wait is between half and all of the doubling step.
+- **Backoff jitter:** each wait is between half and all of the doubling step, for single-slot and whole-sync retries; a server `retry-after` is obeyed.
+- **Rate limit (server, optional):** used only if a `SYNC_RATE` binding exists; 429 `rate-limited`, retry after 60 s.
 
 ## Wiring for the app (Z.ai)
 - New optional deps: `onRemoved(slot)` (a delete from another device was applied; `onPulled` fires too), `random()`.
@@ -38,9 +39,11 @@ The second account does not sync on this device. Local saves and the sync record
 | A second tab signing in as someone else: the first tab's saves would go to that account | reading the code (I); server test now refuses it |
 | A lost server reply, then a delete: the save came back | random histories (V) |
 | "Keep both" interrupted before its last write copied the same save again | test (V) |
+| With the server unreachable, whole-sync retries repeated every second without slowing (601 calls in ten minutes, one tab; the free daily limit is 100,000 requests). Present since the module was built | test (V), during T5 |
+| A failed download was retried as an upload that did nothing, so the save waited for the next focus or reload | test (V) |
 
 ## Evidence (V)
-- colors 534/534, `tsc` 89 pinned, build OK, `test:gate-verify` OK. Server: sqlite 41 pass, 3 skipped; Miniflare D1 44/44; 10/10 server mutants killed. A delete writes 3 rows (Miniflare).
+- colors 537/537, `tsc` 89 pinned, build OK, `test:gate-verify` OK. Server: sqlite 42 pass, 3 skipped; Miniflare D1 45/45; 11/11 server mutants killed. A delete writes 3 rows (Miniflare).
 - Client: 34 of 35 deliberate breakages fail a test. The survivor (skipping stale queued work before it starts) is a second layer behind the per-request fence.
 - `server/scripts/sync-fuzz.ts`: 20,000 random histories (5,000 each: one device; one device with lost replies; two devices; two accounts) with no violation. On `1681d3a3` the same checker (3,000 each) found 532 and 1,013 one-device failures, 132 account leaks and 13 devices that never agreed; the two-device mode found none.
 
