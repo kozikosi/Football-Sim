@@ -128,6 +128,9 @@ Prior reference items still stand:
   Owner provisions the free Cloudflare account + GitHub OAuth App and hands over secrets; no secret in repo/bundle/chat.
 
 ## Live files
+- 37th sitting: `inbox/20261127-0320-pickle-TO-ZAI-D1-D8-fix-order.md` — self-contained draft order
+  to Z.ai (D1–D8 exact snippets, regeneration order, full gate, fresh Verifier, Wave B continuation);
+  DRAFT only, not relayed, not an assignment; appended to `bulletin/20261126-0148-pickle.md`.
 - 36th sitting: top-level `zai-s17-continuation-2026-11-25/` (840 files, read-only mirror at
   `council/pickle@8ccf53783`); `inbox/20261126-0148-pickle-zai-s17-continuation-2026-11-25-REVIEW.md`;
   `inbox/20261126-0148-pickle-zai-s17-continuation-2026-11-25-implications.md`;
@@ -154,6 +157,8 @@ Prior reference items still stand:
   `origin/architect/engine-and-seats`.
 
 ## History (compressed — full detail in the filed inbox files)
+- Session 37: drafted a byte-grounded D1–D8 fix order to Z.ai after the Owner's implicit "continue";
+  not relayed, no build, no verification; one fresh Verifier still owed.
 - Session 36: mirrored and reviewed Z.ai's 2026-11-25 continuation at the Owner's directive; verdict
   improved, not accepted; 10 new manifest-authority / generated-evidence ideas filed; Z.ai's claimed
   `council/zai` tip verified absent from the remote (remote still 2026-11-01 `25e3b2f`).
