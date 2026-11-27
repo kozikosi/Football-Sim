@@ -70,6 +70,9 @@ async function route(req: Request, env: Env, auth: Auth, nowD: Date): Promise<Re
 
   const userId = await auth(req);
   if (userId === null) return err(401, 'unauthenticated', 'sign in to sync');
+  // The page says which account it is syncing. If the session cookie now belongs to someone else (another tab signed in), nothing is read or written.
+  const expected = req.headers.get('x-sync-user');
+  if (expected !== null && expected !== userId) return err(401, 'wrong-user', 'this browser is now signed in as a different account');
   const db = scopedDb(env.DB, userId);
 
   if (parts[1] === 'saves') {

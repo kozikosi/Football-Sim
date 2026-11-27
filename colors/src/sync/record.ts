@@ -8,10 +8,12 @@ export interface SyncRecord {
   version: 1; userId: string; deviceId: string; serverRev: Partial<Record<SlotName, number>>; runsSent: string[];
   /** Fingerprint of the local save as of the last time it matched the server: tells "unchanged here" from "new progress here". */
   synced?: Partial<Record<SlotName, string>>;
-  /** A delete not yet accepted by the server: the base it must be sent with. */
+  /** A delete not yet accepted by the server: the base it must be sent with (0 = not known yet, see `sent`). */
   pendingDelete?: Partial<Record<SlotName, number>>;
   /** Slots whose save belongs to an earlier account and was not imported: the saveId that must never be synced into this one. */
   held?: Partial<Record<SlotName, string>>;
+  /** Fingerprints written to a slot whose outcome is unknown: the server may hold one of them even though no reply arrived. */
+  sent?: Partial<Record<SlotName, string[]>>;
 }
 export const RUNS_SENT_MAX = 400;
 export const recordKey = (sport: SportId): string => sportKey(sport, 'sync');
@@ -28,11 +30,12 @@ export async function loadRecord(storage: StorageModule, sport: SportId): Promis
   try {
     const j = JSON.parse(r.value);
     if (j?.version !== 1 || typeof j.userId !== 'string' || typeof j.deviceId !== 'string' || typeof j.serverRev !== 'object' || j.serverRev === null) return null;
-    const revs = (m: any): Partial<Record<SlotName, number>> => perSlot(m, (v): v is number => Number.isInteger(v) && (v as number) >= 1);
+    const revs = (m: any, min = 1): Partial<Record<SlotName, number>> => perSlot(m, (v): v is number => Number.isInteger(v) && (v as number) >= min);
     const texts = (m: any): Partial<Record<SlotName, string>> => perSlot(m, (v): v is string => typeof v === 'string');
     return {
       version: 1, userId: j.userId, deviceId: j.deviceId, serverRev: revs(j.serverRev), runsSent: Array.isArray(j.runsSent) ? j.runsSent.filter((x: unknown) => typeof x === 'string') : [],
-      synced: texts(j.synced), pendingDelete: revs(j.pendingDelete), held: texts(j.held),
+      synced: texts(j.synced), pendingDelete: revs(j.pendingDelete, 0), held: texts(j.held),
+      sent: perSlot(j.sent, (v): v is string[] => Array.isArray(v) && v.every((x) => typeof x === 'string')),
     };
   } catch { return null; }
 }

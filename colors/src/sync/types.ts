@@ -16,6 +16,8 @@ export type TResult<T> = { ok: true; value: T } | { ok: false; failure: Failure 
 
 export interface PutRequest { envelope: unknown; base: number | null; deviceId: string }
 export interface SyncTransport {
+  /** The account every following request is made for; the server refuses a request whose session is someone else's. */
+  expectUser?(userId: string): void;
   listSaves(): Promise<TResult<RemoteMeta[]>>;
   /** value null = the server has no such save (404). */
   getSave(sport: SportId, slot: SlotName): Promise<TResult<{ serverRev: number; envelope: unknown } | null>>;

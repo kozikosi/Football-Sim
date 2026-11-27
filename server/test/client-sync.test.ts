@@ -22,6 +22,14 @@ const device = (db: Awaited<ReturnType<typeof memoryD1>>, user: string, local: R
 };
 const J = (e: unknown) => JSON.stringify(e);
 
+test('a browser signed in as someone else cannot receive this account\'s saves', async () => {
+  const db = await memoryD1();
+  const other = device(db, 'u2', { 'sim:nfl:slot:A': J(draftEnv('A', 'of-u1', 1)) });     // the cookie is u2's, the page still believes u1
+  await other.sync.signIn('u1');
+  assert.equal(other.sync.status().kind, 'off');
+  assert.equal((await db.get('SELECT COUNT(*) n FROM saves')).n, 0);
+});
+
 test('two devices through the real server: push from one, pull on the other, fork keeps both, runs land in stats', async () => {
   const db = await memoryD1();
   const a = device(db, 'u1', { 'sim:nfl:slot:A': J(draftEnv('A', 's1', 4)), 'sim:nfl:slot:B': J(seasonEnv('B', 'done1', 6, results(W17, [['Wild Card', 'W'], ['Divisional', 'W'], ['Conference', 'W'], ['Super Bowl', 'W']]), { userOutcome: 'champion' })) });

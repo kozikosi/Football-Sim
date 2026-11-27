@@ -8,12 +8,16 @@ const KEEPALIVE_MAX = 60_000;   // browsers cap keepalive bodies at 64 KB
 interface CallOpts<T> { body?: unknown; keepalive?: boolean; on404?: T; parse(json: any): T | undefined }
 
 export function createFetchTransport(fetchFn: typeof fetch, baseUrl = ''): SyncTransport {
+  let expected: string | null = null;
   async function call<T>(method: string, path: string, o: CallOpts<T>): Promise<TResult<T>> {
     const text = o.body === undefined ? undefined : JSON.stringify(o.body);
     let res: Response;
     try {
       const init: RequestInit = { method, credentials: 'same-origin' };
-      if (text !== undefined) { init.body = text; init.headers = { 'content-type': 'application/json' }; if (o.keepalive === true && text.length < KEEPALIVE_MAX) init.keepalive = true; }
+      const headers: Record<string, string> = {};
+      if (expected !== null) headers['x-sync-user'] = expected;
+      if (text !== undefined) { init.body = text; headers['content-type'] = 'application/json'; if (o.keepalive === true && text.length < KEEPALIVE_MAX) init.keepalive = true; }
+      init.headers = headers;
       res = await fetchFn(baseUrl + path, init);
     } catch (e) { return { ok: false, failure: { type: 'transient', message: e instanceof Error ? e.message : 'network error' } }; }
     let json: any = null;
@@ -42,6 +46,7 @@ export function createFetchTransport(fetchFn: typeof fetch, baseUrl = ''): SyncT
     ? j.history.map((h: any) => ({ archivedSeq: Number(h.archived_seq), saveId: String(h.save_id), saveRevision: Number(h.save_revision), reason: String(h.reason), archivedAt: String(h.archived_at) }))
     : undefined);
   return {
+    expectUser: (id: string) => { expected = id; },
     deleteSave: (sport: SportId, slot: SlotName, base: number) => call<{ serverRev: number }>('DELETE', `/api/saves/${sport}/${slot}`, { body: { base }, parse: rev }),
     listHistory: (sport: SportId, slot: SlotName) => call<HistoryEntry[]>('GET', `/api/saves/${sport}/${slot}/history`, { parse: history }),
     restoreSave: (sport: SportId, slot: SlotName, req) => call<{ serverRev: number }>('POST', `/api/saves/${sport}/${slot}/restore`, { body: req, parse: rev }),

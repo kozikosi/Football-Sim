@@ -352,3 +352,97 @@ test('share is refused when the newest progress could not be sent: no stale snap
   assert.deepEqual(await r.sync.shareSave('A'), { ok: false, error: 'could not bring this slot up to date first; try again' });
   assert.equal(r.server.shares.length, 0);
 });
+
+// ---- a sign-in change stops everything started for the account before it ----
+test('work still running when the account changes sends nothing more and leaves the sync record alone', async () => {
+  for (const signOutFirst of [true, false]) {
+    const r = rig(); await r.sync.signIn('u1');
+    r.storage.data.set(K('A'), env('A', 'a1', 1)); r.storage.data.set(K('B'), env('B', 'b1', 1)); r.server.puts.length = 0;
+    let next: Promise<unknown> | null = null;
+    r.server.during.set('put A', () => { if (signOutFirst) r.sync.signOut(); next = r.sync.signIn('u2'); });
+    await focus(r); await next; await r.sync.idle();
+    assert.deepEqual(r.server.puts.map((p) => p.slot), ['A'], 'only the request that had already left; signOutFirst=' + signOutFirst);
+    assert.equal(rec(r).userId, 'u1'); assert.equal(rec(r).serverRev.A, undefined);
+    assert.deepEqual(r.sync.status(), { kind: 'needs-account-choice' });
+  }
+});
+
+test('signing out while a pull is in flight leaves the slot alone', async () => {
+  const r = rig(); await r.sync.signIn('u1'); r.server.seed('A', env('A', 'remote', 4));
+  r.server.during.set('get A', () => { r.sync.signOut(); });
+  await focus(r);
+  assert.equal(r.storage.data.has(K('A')), false); assert.equal(r.sync.status().kind, 'off');
+  await r.sync.signIn('u1'); assert.equal(saveIdOf(r.storage.data.get(K('A'))), 'remote');
+});
+
+test('the transport is told which account every request is for', async () => {
+  const r = rig(); await r.sync.signIn('u1'); r.sync.signOut();
+  await r.sync.signIn('u2'); await r.sync.resolveAccountSwitch({ action: 'keep-separate' }); assert.deepEqual(r.server.expected, ['u1']);
+  await r.sync.signIn('u2'); await r.sync.resolveAccountSwitch({ action: 'adopt', slots: [] }); assert.deepEqual(r.server.expected, ['u1', 'u2']);
+});
+
+// ---- nothing moved on the server: there is nothing to resolve ----
+test('a new game over a synced one replaces it on the server instead of being treated as a fork', async () => {
+  const r = rig({ [K('A')]: env('A', 'first', 3) }); await r.sync.signIn('u1');
+  r.storage.data.set(K('A'), env('A', 'second', 1, T0 + 5000)); await focus(r);
+  assert.equal(r.server.rows.get('A')!.envelope.saveId, 'second'); assert.deepEqual(r.server.rows.get('A')!.history.map((e: any) => e.saveId), ['first']);
+  assert.equal(r.storage.data.has(K('B')), false);
+});
+
+test('an older copy put back by hand is not overwritten while the server has not moved', async () => {
+  const r = rig({ [K('A')]: env('A', 's', 5, T0 + 5000) }); await r.sync.signIn('u1');
+  r.storage.data.set(K('A'), env('A', 's', 2)); await focus(r);
+  assert.equal(revOf(r.storage.data.get(K('A'))), 2); assert.equal(r.server.rows.get('A')!.envelope.saveRevision, 2);
+  assert.equal(r.server.rows.get('A')!.history[0].saveRevision, 5);
+});
+
+// ---- the server took a write and the reply was lost ----
+test('lost reply, then delete: the slot stays deleted', async () => {
+  for (const before of [true, false]) {
+    const r = rig(before ? { [K('A')]: env('A', 's', 1) } : {}); await r.sync.signIn('u1');
+    r.server.lose.add('put A'); save(r, 'A', env('A', 's', 2, T0 + 1000)); await r.sync.idle();
+    await del(r, 'A'); await focus(r);
+    assert.equal(r.server.rows.get('A')!.deleted, true, String(before)); assert.equal(r.storage.data.has(K('A')), false, String(before));
+  }
+});
+
+test('lost reply, then a new game and a delete while offline: the replaced game does not come back', async () => {
+  const r = rig(); await r.sync.signIn('u1');
+  r.server.lose.add('put A'); save(r, 'A', env('A', 'old', 1)); await r.sync.idle();
+  r.server.offline = true; save(r, 'A', env('A', 'new', 1, T0 + 1000)); await r.sync.idle(); await del(r, 'A');
+  const again = rig({}, { server: r.server, storage: r.storage }); r.server.offline = false; await again.sync.signIn('u1'); await focus(again);
+  assert.equal(r.server.rows.get('A')!.deleted, true); assert.deepEqual([...r.storage.data.keys()].filter((k) => k.includes(':slot:')), []);
+});
+
+test('lost reply, then a new game in the slot: it replaces ours and nothing is copied into another slot', async () => {
+  const r = rig({ [K('A')]: env('A', 's', 1) }); await r.sync.signIn('u1');
+  r.server.lose.add('put A'); save(r, 'A', env('A', 's', 2, T0 + 1000)); await r.sync.idle();
+  r.storage.data.set(K('A'), env('A', 'next', 1, T0 + 2000)); await focus(r);
+  assert.equal(r.server.rows.get('A')!.envelope.saveId, 'next'); assert.equal(r.storage.data.has(K('B')), false);
+});
+
+test('a write that never arrived gives no claim on a save another device put there', async () => {
+  const r = rig(); await r.sync.signIn('u1');
+  r.server.offline = true; save(r, 'A', env('A', 'mine', 1)); await r.sync.idle();
+  r.server.seed('A', env('A', 'theirs', 1, T0 + 1000)); r.server.offline = false;
+  await del(r, 'A'); await focus(r);
+  assert.deepEqual(r.server.deletes, []); assert.equal(r.server.rows.get('A')!.deleted, false);
+  assert.equal(saveIdOf(r.storage.data.get(K('A'))), 'theirs');
+});
+
+test('lost reply on a delete, then a new save: it goes up cleanly', async () => {
+  const r = rig({ [K('A')]: env('A', 's', 1) }); await r.sync.signIn('u1');
+  r.server.lose.add('delete A'); await del(r, 'A');
+  save(r, 'A', env('A', 'next', 1, T0 + 1000)); await r.sync.idle(); await focus(r);
+  assert.equal(r.server.rows.get('A')!.envelope.saveId, 'next'); assert.equal(r.server.rows.get('A')!.deleted, false); assert.equal(r.storage.data.has(K('B')), false);
+});
+
+test('"keep both" interrupted before its last write finishes later without making a third copy', async () => {
+  const { a, b } = await pair();
+  save(a, 'A', env('A', 'second', 1, T0 + 5000)); await a.sync.idle();
+  b.storage.data.set(K('A'), env('A', 's', 2, T0 + 6000));
+  b.server.during.set('put A', () => { b.server.failures.push({ type: 'transient', message: 'offline' }); });
+  await focus(b); await focus(b);
+  assert.deepEqual((['A', 'B', 'C'] as const).map((s) => saveIdOf(b.storage.data.get(K(s)))), ['s', 'second', null]);
+  assert.equal(b.server.rows.get('A')!.envelope.saveId, 's'); assert.equal(b.server.rows.get('B')!.envelope.saveId, 'second');
+});

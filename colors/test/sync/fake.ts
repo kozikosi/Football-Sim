@@ -44,6 +44,10 @@ export class FakeServer implements SyncTransport {
   /** Runs inside the next call of that name, before it answers: stands for the app writing while a request is in flight. */
   during = new Map<string, () => void>();
   shares: { id: string; req: unknown; revoked: boolean }[] = [];
+  /** The next write of that name is applied, and its reply never arrives. */
+  lose = new Set<string>(); expected: string[] = [];
+  expectUser(id: string): void { this.expected.push(id); }
+  private answer<T>(name: string, value: T): TResult<T> { return this.lose.delete(name) ? { ok: false, failure: { type: 'transient', message: 'reply lost' } } : { ok: true, value }; }
   seed(slot: SlotName, text: string, serverRev = 1, deleted = false): void { this.rows.set(slot, { serverRev, envelope: JSON.parse(text), deleted, history: [] }); }
   private gate<T>(name: string): TResult<T> | null {
     this.calls.push(name);
@@ -61,12 +65,12 @@ export class FakeServer implements SyncTransport {
     const g = this.gate<{ serverRev: number; archived: boolean }>('put ' + slot); if (g) return g;
     this.puts.push({ slot, base: req.base });
     const cur = this.rows.get(slot), e = req.envelope as any;
-    if (!cur) { if (req.base !== null) return { ok: false, failure: { type: 'conflict', current: null } }; this.rows.set(slot, { serverRev: 1, envelope: e, deleted: false, history: [] }); return { ok: true, value: { serverRev: 1, archived: false } }; }
+    if (!cur) { if (req.base !== null) return { ok: false, failure: { type: 'conflict', current: null } }; this.rows.set(slot, { serverRev: 1, envelope: e, deleted: false, history: [] }); return this.answer('put ' + slot, { serverRev: 1, archived: false }); }
     if (req.base !== cur.serverRev) return { ok: false, failure: { type: 'conflict', current: this.meta(slot, cur) } };
     const archive = !cur.deleted && (cur.envelope.saveId !== e.saveId || e.saveRevision <= cur.envelope.saveRevision);
     if (archive) cur.history.push(cur.envelope);
     cur.envelope = e; cur.serverRev++; cur.deleted = false;
-    return { ok: true, value: { serverRev: cur.serverRev, archived: archive } };
+    return this.answer('put ' + slot, { serverRev: cur.serverRev, archived: archive });
   }
   async deleteSave(_sp: 'nfl', slot: SlotName, base: number): Promise<TResult<{ serverRev: number }>> {
     const g = this.gate<{ serverRev: number }>('delete ' + slot); if (g) return g;
@@ -74,7 +78,7 @@ export class FakeServer implements SyncTransport {
     const cur = this.rows.get(slot);
     if (!cur || cur.serverRev !== base) return { ok: false, failure: { type: 'conflict', current: cur ? this.meta(slot, cur) : null } };
     if (!cur.deleted) { cur.history.push(copy(cur.envelope)); cur.deleted = true; cur.serverRev++; }
-    return { ok: true, value: { serverRev: cur.serverRev } };
+    return this.answer('delete ' + slot, { serverRev: cur.serverRev });
   }
   async listHistory(_sp: 'nfl', slot: SlotName): Promise<TResult<HistoryEntry[]>> {
     const g = this.gate<HistoryEntry[]>('history ' + slot); if (g) return g;

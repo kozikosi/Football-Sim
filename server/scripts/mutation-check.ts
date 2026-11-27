@@ -13,6 +13,7 @@ const MUTANTS: M[] = [
   { name: 'account delete needs no confirm', file: 'src/api.ts', from: 'if (b.body.confirm !== true) return', to: 'if (false) return' },
   { name: 'purge ignores the 30-day cutoff on saves', file: 'src/store.ts', from: 'DELETE FROM saves WHERE deleted_at IS NOT NULL AND deleted_at < ?', to: 'DELETE FROM saves WHERE deleted_at IS NOT NULL AND deleted_at < ? OR 1' },
   { name: 'purge leaves history behind', file: 'src/store.ts', from: "db.prepare('DELETE FROM save_history WHERE EXISTS", to: "db.prepare('DELETE FROM save_history WHERE 0 AND EXISTS" },
+  { name: 'another account\'s cookie accepted', file: 'src/api.ts', from: 'if (expected !== null && expected !== userId)', to: 'if (false)' },
   { name: 'delete keeps no rung-back', file: 'src/store.ts', from: "...keepRungBack(sport, slot, cur.server_rev, 'deleted', now),", to: '' },
   { name: 'purge deletes unexpired shares', file: 'src/store.ts', from: '(expires_at IS NOT NULL AND expires_at < ?)', to: '(expires_at IS NOT NULL)' },
 ];
