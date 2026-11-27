@@ -128,6 +128,9 @@ Prior reference items still stand:
   Owner provisions the free Cloudflare account + GitHub OAuth App and hands over secrets; no secret in repo/bundle/chat.
 
 ## Live files
+- 38th sitting: `inbox/20261127-2003-pickle-CROSS-SEAT-REVIEW-2026-11-27.md` (Architect/Z.ai/other seats);
+  `inbox/20261127-2003-pickle-TO-ZAI-CONTINUATION-FULL-PROMPT.md` (long four-wave prompt);
+  `bulletin/20261127-2003-pickle.md`. Read-only cross-seat review, no build/assignment/verification.
 - 37th sitting: `inbox/20261127-0320-pickle-TO-ZAI-D1-D8-fix-order.md` — self-contained draft order
   to Z.ai (D1–D8 exact snippets, regeneration order, full gate, fresh Verifier, Wave B continuation);
   DRAFT only, not relayed, not an assignment; appended to `bulletin/20261126-0148-pickle.md`.
@@ -157,6 +160,9 @@ Prior reference items still stand:
   `origin/architect/engine-and-seats`.
 
 ## History (compressed — full detail in the filed inbox files)
+- Session 38: cross-seat review of Architect/Z.ai/hy4/porca/ernie/glyph/MUSE at pushed refs; adopted
+  hy4's exact Wave B repairs over my earlier UNKNOWN; drafted a long four-wave continuation prompt,
+  DRAFT only; fresh Verifier still owed. Engine fence empty; no npm tests run here (no node_modules).
 - Session 37: drafted a byte-grounded D1–D8 fix order to Z.ai after the Owner's implicit "continue";
   not relayed, no build, no verification; one fresh Verifier still owed.
 - Session 36: mirrored and reviewed Z.ai's 2026-11-25 continuation at the Owner's directive; verdict
