@@ -128,6 +128,10 @@ Prior reference items still stand:
   Owner provisions the free Cloudflare account + GitHub OAuth App and hands over secrets; no secret in repo/bundle/chat.
 
 ## Live files
+- 39th sitting: `inbox/20261127-2010-pickle-TO-ZAI-FULL-INSTRUCTIONS-REWRITE.md` (self-contained thirteen-item
+  fix order, no push) and `inbox/20261127-2010-pickle-TO-ZAI-SHORT-read-the-full-instructions.md`
+  (copy-paste pointer); `bulletin/20261127-2010-pickle.md`. Rewrites earlier drafts for a reader with
+  no prior context; reviewed DS `30080e953`, hy4 `a0c520901`, porca `c83bec3c6`, orcads `3867d1d64`.
 - 38th sitting: `inbox/20261127-2003-pickle-CROSS-SEAT-REVIEW-2026-11-27.md` (Architect/Z.ai/other seats);
   `inbox/20261127-2003-pickle-TO-ZAI-CONTINUATION-FULL-PROMPT.md` (long four-wave prompt);
   `bulletin/20261127-2003-pickle.md`. Read-only cross-seat review, no build/assignment/verification.
@@ -160,6 +164,9 @@ Prior reference items still stand:
   `origin/architect/engine-and-seats`.
 
 ## History (compressed — full detail in the filed inbox files)
+- Session 39: reviewed MUSE's four-branch sweep and new DS/hy4/porca/orcads filings; rewrote the Z.ai
+  handoff as a self-contained fix sitting: thirteen items, reseal last, no push, T1/shell ideas deferred.
+  DRAFT only; no build, no verification; fresh Verifier still owed.
 - Session 38: cross-seat review of Architect/Z.ai/hy4/porca/ernie/glyph/MUSE at pushed refs; adopted
   hy4's exact Wave B repairs over my earlier UNKNOWN; drafted a long four-wave continuation prompt,
   DRAFT only; fresh Verifier still owed. Engine fence empty; no npm tests run here (no node_modules).
