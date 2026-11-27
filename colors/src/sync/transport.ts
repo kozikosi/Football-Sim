@@ -1,6 +1,6 @@
 // fetch-based SyncTransport. Every status is classified here (contract section 4 status table) so sync.ts never sees a status code.
 import type { SlotName, SportId } from '../core/envelope.ts';
-import type { PutRequest, RemoteMeta, SyncTransport, TResult } from './types.ts';
+import type { HistoryEntry, PutRequest, RemoteMeta, SharedSnapshot, ShareLink, ShareRequest, Stats, SyncTransport, TResult } from './types.ts';
 
 export const API_VERSION = '1';
 const KEEPALIVE_MAX = 60_000;   // browsers cap keepalive bodies at 64 KB
@@ -36,7 +36,23 @@ export function createFetchTransport(fetchFn: typeof fetch, baseUrl = ''): SyncT
     if (s >= 500 || (s === 429 && code !== 'cap')) return { ok: false, failure: retryAfterSec === undefined ? { type: 'transient', message } : { type: 'transient', message, retryAfterSec } };
     return { ok: false, failure: { type: 'rejected', status: s, code, message } };   // 413, 422, 426, 429 cap, other 4xx: stop and surface
   }
+  const rev = (j: any): { serverRev: number } | undefined => (typeof j?.serverRev === 'number' ? { serverRev: j.serverRev as number } : undefined);
+  // The history route answers with the table's column names.
+  const history = (j: any): HistoryEntry[] | undefined => (Array.isArray(j?.history)
+    ? j.history.map((h: any) => ({ archivedSeq: Number(h.archived_seq), saveId: String(h.save_id), saveRevision: Number(h.save_revision), reason: String(h.reason), archivedAt: String(h.archived_at) }))
+    : undefined);
   return {
+    deleteSave: (sport: SportId, slot: SlotName, base: number) => call<{ serverRev: number }>('DELETE', `/api/saves/${sport}/${slot}`, { body: { base }, parse: rev }),
+    listHistory: (sport: SportId, slot: SlotName) => call<HistoryEntry[]>('GET', `/api/saves/${sport}/${slot}/history`, { parse: history }),
+    restoreSave: (sport: SportId, slot: SlotName, req) => call<{ serverRev: number }>('POST', `/api/saves/${sport}/${slot}/restore`, { body: req, parse: rev }),
+    getStats: () => call<Stats>('GET', '/api/stats', { parse: (j) => (typeof j?.runs === 'number' ? (j as Stats) : undefined) }),
+    createShare: (req: ShareRequest) => call<ShareLink>('POST', '/api/shares', {
+      body: req, parse: (j) => (typeof j?.id === 'string' && typeof j.token === 'string' ? { id: j.id as string, token: j.token as string, expiresAt: String(j.expiresAt) } : undefined),
+    }),
+    revokeShare: (id: string) => call<{ revoked: true }>('DELETE', '/api/shares/' + encodeURIComponent(id), { parse: (j) => (j?.revoked === true ? { revoked: true as const } : undefined) }),
+    getShare: (token: string) => call<SharedSnapshot | null>('GET', '/api/share/' + encodeURIComponent(token), {
+      on404: null, parse: (j) => (typeof j?.kind === 'string' && j.snapshot !== undefined ? (j as SharedSnapshot) : undefined),
+    }),
     listSaves: () => call<RemoteMeta[]>('GET', '/api/saves', { parse: (j) => (Array.isArray(j?.saves) ? (j.saves as RemoteMeta[]) : undefined) }),
     getSave: (sport: SportId, slot: SlotName) => call<{ serverRev: number; envelope: unknown } | null>('GET', `/api/saves/${sport}/${slot}`, {
       on404: null, parse: (j) => (typeof j?.serverRev === 'number' && j.envelope !== undefined ? { serverRev: j.serverRev as number, envelope: j.envelope as unknown } : undefined),

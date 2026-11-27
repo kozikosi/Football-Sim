@@ -18,12 +18,12 @@ test('purge removes saves soft-deleted 30+ days ago (and their history), never a
   const now = new Date('2026-12-31T00:00:00Z');
   await db.run('UPDATE saves SET deleted_at = ? WHERE slot = ?', new Date(now.getTime() - 31 * DAY).toISOString(), 'A');
   await db.run('UPDATE saves SET deleted_at = ? WHERE slot = ?', new Date(now.getTime() - 29 * DAY).toISOString(), 'B');
-  assert.equal((await db.get('SELECT COUNT(*) n FROM save_history WHERE slot = ?', 'A')).n, 1);
+  assert.equal((await db.get('SELECT COUNT(*) n FROM save_history WHERE slot = ?', 'A')).n, 2, 'the fork rung-back and the deleted save');
 
   const out = await purgeExpired(db, now);
-  assert.deepEqual(out, { saves: 1, history: 1, shares: 0 });
+  assert.deepEqual(out, { saves: 1, history: 2, shares: 0 });
   assert.deepEqual((await db.all('SELECT slot FROM saves ORDER BY slot')).map((r: any) => r.slot), ['B', 'C']);
-  assert.equal((await db.get('SELECT COUNT(*) n FROM save_history')).n, 0);
+  assert.deepEqual((await db.all('SELECT slot, reason FROM save_history')).map((r: any) => [r.slot, r.reason]), [['B', 'deleted']], 'a recent delete keeps its copy');
   assert.deepEqual(await purgeExpired(db, now), { saves: 0, history: 0, shares: 0 }, 'idempotent');
 });
 

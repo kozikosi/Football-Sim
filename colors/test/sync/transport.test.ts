@@ -36,3 +36,21 @@ test('transport: PUT sends {envelope, base, deviceId} as JSON; keepalive only fo
   await createFetchTransport(f).putSave('nfl', 'B', { envelope: { a: 'x'.repeat(70000) }, base: null, deviceId: 'd' }, { keepalive: true });
   assert.equal(seen!.keepalive, undefined);
 });
+
+test('transport: delete, history, restore, stats and shares use the server routes and wire names', async () => {
+  const seen: [string, string, unknown][] = [];
+  const answer = (body: unknown, status = 200) => (async (u: string, init?: RequestInit) => { seen.push([String(init?.method), u, init?.body === undefined ? undefined : JSON.parse(String(init.body))]); return new Response(JSON.stringify(body), { status, headers: { 'x-api-version': '1' } }); }) as unknown as typeof fetch;
+  assert.deepEqual(await createFetchTransport(answer({ serverRev: 3, archived: false })).deleteSave('nfl', 'A', 2), { ok: true, value: { serverRev: 3 } });
+  assert.deepEqual(await createFetchTransport(answer({ history: [{ archived_seq: 2, save_id: 's', save_revision: 4, reason: 'deleted', archived_at: 't' }] })).listHistory('nfl', 'B'),
+    { ok: true, value: [{ archivedSeq: 2, saveId: 's', saveRevision: 4, reason: 'deleted', archivedAt: 't' }] });
+  assert.deepEqual(await createFetchTransport(answer({ serverRev: 5, archived: true })).restoreSave('nfl', 'B', { archivedSeq: 2, base: 4 }), { ok: true, value: { serverRev: 5 } });
+  assert.deepEqual(await createFetchTransport(answer({ runs: 2 })).getStats(), { ok: true, value: { runs: 2 } });
+  assert.deepEqual(await createFetchTransport(answer({ id: 'i', token: 't', expiresAt: 'e' }, 201)).createShare({ sport: 'nfl', kind: 'run', saveId: 's', run: 0 }), { ok: true, value: { id: 'i', token: 't', expiresAt: 'e' } });
+  assert.deepEqual(await createFetchTransport(answer({ revoked: true })).revokeShare('a/b'), { ok: true, value: { revoked: true } });
+  assert.deepEqual(await createFetchTransport(answer({ kind: 'save', sport: 'nfl', createdAt: 'c', snapshot: { x: 1 } })).getShare('tok'), { ok: true, value: { kind: 'save', sport: 'nfl', createdAt: 'c', snapshot: { x: 1 } } });
+  assert.deepEqual(seen.map(([m, u]) => m + ' ' + u), ['DELETE /api/saves/nfl/A', 'GET /api/saves/nfl/B/history', 'POST /api/saves/nfl/B/restore', 'GET /api/stats', 'POST /api/shares', 'DELETE /api/shares/a%2Fb', 'GET /api/share/tok']);
+  assert.deepEqual(seen[0]![2], { base: 2 }); assert.deepEqual(seen[2]![2], { archivedSeq: 2, base: 4 }); assert.deepEqual(seen[4]![2], { sport: 'nfl', kind: 'run', saveId: 's', run: 0 });
+  assert.deepEqual(await createFetchTransport(answer({ error: 'not-found' }, 404)).getShare('gone'), { ok: true, value: null });
+  const revoked = await createFetchTransport(answer({ error: 'gone', message: 'revoked' }, 410)).getShare('old');
+  assert.deepEqual(revoked, { ok: false, failure: { type: 'rejected', status: 410, code: 'gone', message: 'revoked' } });
+});

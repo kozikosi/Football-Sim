@@ -16,8 +16,9 @@ function store(init: Record<string, string> = {}): StorageModule & { data: Map<s
 const device = (db: Awaited<ReturnType<typeof memoryD1>>, user: string, local: Record<string, string>) => {
   const fetchFn = (async (url: string, init?: RequestInit) => handle(new Request('http://x' + url, { ...init, headers: { ...(init?.headers as object), 'x-test-user': user } }), { DB: db }, async (r) => r.headers.get('x-test-user'), T0)) as unknown as typeof fetch;
   const storage = store(local); let n = 0, t = 0;
-  const sync = createSync({ storage, transport: createFetchTransport(fetchFn), now: () => T0.getTime(), setTimer: () => ++t, clearTimer: () => {}, newId: () => 'dev-' + ++n });
-  return { storage, sync };
+  const transport = createFetchTransport(fetchFn);
+  const sync = createSync({ storage, transport, now: () => T0.getTime(), setTimer: () => ++t, clearTimer: () => {}, newId: () => 'dev-' + ++n });
+  return { storage, sync, transport };
 };
 const J = (e: unknown) => JSON.stringify(e);
 
@@ -32,4 +33,24 @@ test('two devices through the real server: push from one, pull on the other, for
   a.storage.data.set('sim:nfl:slot:A', J(draftEnv('A', 's1', 5))); a.sync.notifySaved('A', 'week'); await a.sync.idle();
   const stats = await (await handle(new Request('http://x/api/stats', { headers: { 'x-test-user': 'u1' } }), { DB: db }, async (r) => r.headers.get('x-test-user'), T0)).json() as any;
   assert.equal(stats.runs, 1);
+});
+
+test('two devices through the real server: delete, honoured elsewhere, restored, stats and share links', async () => {
+  const db = await memoryD1(), K = 'sim:nfl:slot:A';
+  const a = device(db, 'u1', { [K]: J(seasonEnv('A', 's1', 2, results(W17))) }), b = device(db, 'u1', {});
+  assert.deepEqual(await a.sync.signIn('u1'), { kind: 'ok' }); assert.deepEqual(await b.sync.signIn('u1'), { kind: 'ok' });
+  assert.ok(b.storage.data.has(K));
+  a.storage.data.delete(K); a.sync.notifyDeleted('A'); await a.sync.idle();
+  b.sync.onVisible(60_000); await b.sync.idle();
+  assert.equal(b.storage.data.has(K), false);
+  const h = await b.sync.serverHistory('A'); assert.ok(h.ok); assert.equal(h.value[0]!.reason, 'deleted');
+  assert.deepEqual(await b.sync.restoreFromServer('A', h.value[0]!.archivedSeq), { ok: true, value: undefined });
+  a.sync.onVisible(60_000); await a.sync.idle();
+  assert.equal(JSON.parse(a.storage.data.get(K)!).saveId, 's1');
+  const stats = await a.sync.stats(); assert.ok(stats.ok); assert.equal(stats.value.runs, 1);
+  const link = await a.sync.shareSave('A'); assert.ok(link.ok);
+  const seen = await a.transport.getShare(link.value.token); assert.ok(seen.ok); assert.equal((seen.value!.snapshot as any).saveId, 's1');
+  assert.ok((await a.sync.shareRun('s1', 0)).ok);
+  assert.deepEqual(await a.sync.revokeShare(link.value.id), { ok: true, value: undefined });
+  const gone = await a.transport.getShare(link.value.token); assert.ok(!gone.ok && gone.failure.type === 'rejected' && gone.failure.code === 'gone');
 });

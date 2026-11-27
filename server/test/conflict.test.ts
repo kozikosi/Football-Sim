@@ -70,3 +70,23 @@ test('restore puts a rung-back into the slot and archives what it replaced', asy
   assert.equal(h[0].save_id, 's2'); assert.equal(h[0].reason, 'restored-over');
   assert.equal((await call(db, 'u1', 'POST', '/api/saves/nfl/A/restore', { archivedSeq: 99, base: 3 })).status, 404);
 });
+
+test('a soft delete keeps the deleted save as a rung-back, once, and it can be restored', async () => {
+  const db = await memoryD1();
+  await put(db, 'u1', 'C', draftEnv('C', 's1', 4), null);
+  assert.equal((await call(db, 'u1', 'DELETE', '/api/saves/nfl/C', { base: 1 })).status, 200);
+  assert.equal((await call(db, 'u1', 'DELETE', '/api/saves/nfl/C', { base: 2 })).status, 200, 'repeating it is harmless');
+  const h = (await call(db, 'u1', 'GET', '/api/saves/nfl/C/history')).json.history;
+  assert.deepEqual(h.map((x: any) => [x.save_id, x.save_revision, x.reason]), [['s1', 4, 'deleted']]);
+  const back = await call(db, 'u1', 'POST', '/api/saves/nfl/C/restore', { archivedSeq: h[0].archived_seq, base: 2 });
+  assert.deepEqual(back.json, { serverRev: 3, archived: false });
+  assert.equal((await call(db, 'u1', 'GET', '/api/saves/nfl/C')).json.envelope.saveRevision, 4);
+});
+
+test('a new save over a deleted slot loses nothing: the deleted one is still in history', async () => {
+  const db = await memoryD1();
+  await put(db, 'u1', 'C', draftEnv('C', 'old', 9), null);
+  await call(db, 'u1', 'DELETE', '/api/saves/nfl/C', { base: 1 });
+  await put(db, 'u1', 'C', draftEnv('C', 'new', 1), 2);
+  assert.deepEqual((await call(db, 'u1', 'GET', '/api/saves/nfl/C/history')).json.history.map((x: any) => x.save_id), ['old']);
+});

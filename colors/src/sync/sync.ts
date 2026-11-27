@@ -7,7 +7,7 @@ import type { Envelope, SlotName } from '../core/envelope.ts';
 import { sportKey } from '../core/keys.ts';
 import { loadRecord, saveRecord } from './record.ts';
 import type { SyncRecord } from './record.ts';
-import type { AccountChoice, Failure, RemoteMeta, SaveReason, SignInResult, SyncDeps, SyncStatus } from './types.ts';
+import type { AccountChoice, Failure, HistoryEntry, RemoteMeta, SaveReason, ShareLink, SignInResult, Stats, SyncDeps, SyncStatus, TResult } from './types.ts';
 
 export const DEBOUNCE_MS = 10_000;          // contract: >= 10 s per slot for ordinary edits
 export const FOCUS_PULL_AFTER_MS = 60_000;  // pull on focus after >= 60 s hidden
@@ -18,6 +18,7 @@ export const ARCHIVE_KEEP = 3;              // local rung-backs per slot, same a
 type Local = { text: string; env: Envelope } | null | 'unreadable';
 type Decision = 'same' | 'pull' | 'push' | 'fork';
 const at = (iso: string): number => Date.parse(iso);
+const fingerprint = (e: { saveId: string; saveRevision: number; savedAt: string }): string => e.saveId + '|' + e.saveRevision + '|' + e.savedAt;
 
 // The contract's conflict table, as a pure function.
 export function decide(local: { saveId: string; saveRevision: number; savedAt: string }, remote: { saveId: string; saveRevision: number; savedAt: string }): Decision {
@@ -33,6 +34,8 @@ export interface SyncApi {
   signOut(): void;
   /** The app calls this after a save landed locally. Ordinary edits debounce; the other reasons push now. */
   notifySaved(slot: SlotName, reason: SaveReason): void;
+  /** The app calls this after the user deleted a slot locally. Sent only while signed in; otherwise the save returns at the next sign-in. */
+  notifyDeleted(slot: SlotName): void;
   /** pagehide: start pushing every dirty slot now (keepalive). Does not wait. */
   flush(): void;
   /** window focus: pulls when the page was hidden for at least 60 s. */
@@ -43,6 +46,17 @@ export interface SyncApi {
   subscribe(fn: (s: SyncStatus) => void): () => void;
   /** Local rung-backs for a slot, newest first. */
   localArchive(slot: SlotName): Promise<{ key: string; env: Envelope }[]>;
+  /** Slots holding an earlier account's save that was not imported: shown as "on this device only". */
+  heldSlots(): SlotName[];
+  /** Server rung-backs for a slot, newest first. */
+  serverHistory(slot: SlotName): Promise<Result<HistoryEntry[]>>;
+  /** Makes a server rung-back the slot's save, here and on the server. Unsynced progress is sent first, so it is kept as a rung-back too. */
+  restoreFromServer(slot: SlotName, archivedSeq: number): Promise<Result<void>>;
+  stats(): Promise<Result<Stats>>;
+  /** A read-only link to the slot as it is now (progress is sent first). */
+  shareSave(slot: SlotName): Promise<Result<ShareLink>>;
+  shareRun(saveId: string, run: number): Promise<Result<ShareLink>>;
+  revokeShare(id: string): Promise<Result<void>>;
   /** Resolves when no queued work remains (tests, and sign-out confirmations). */
   idle(): Promise<void>;
 }
@@ -71,6 +85,7 @@ export function createSync(deps: SyncDeps): SyncApi {
   };
   const queued = new Set<SlotName>();             // pushes already waiting: a second notify coalesces into it
   const dirty = new Set<SlotName>();              // saved locally, not yet acknowledged by the server
+  const deleting = new Set<SlotName>();           // deleted by the user, the queued send not yet started: nothing may refill the slot meanwhile
   const debounce = new Map<SlotName, unknown>();
   const retry = new Map<SlotName, { n: number; h: unknown }>();
   const attempts = new Map<SlotName, number>();   // consecutive failures per slot; cleared on success so backoff really doubles
@@ -108,7 +123,9 @@ export function createSync(deps: SyncDeps): SyncApi {
       case 'conflict': return 'retry';   // callers handle conflict themselves; reaching here means they did not
     }
   }
-  const backoff = (n: number): number => Math.min(BACKOFF_MAX_MS, BACKOFF_BASE_MS * 2 ** Math.max(0, n - 1));
+  // Doubling, capped, and spread over the upper half of each step so many devices do not retry in the same instant.
+  const random = deps.random ?? Math.random;
+  const backoff = (n: number): number => { const step = Math.min(BACKOFF_MAX_MS, BACKOFF_BASE_MS * 2 ** Math.max(0, n - 1)); return Math.round(step / 2 + random() * (step / 2)); };
   function scheduleRetry(slot: SlotName, forcedMs?: number): void {
     const cur = retry.get(slot);
     if (cur) deps.clearTimer(cur.h);
@@ -129,20 +146,52 @@ export function createSync(deps: SyncDeps): SyncApi {
     queued.add(slot);
     return enqueue(async () => { queued.delete(slot); await pushSlot(slot, keepalive); });
   }
+  // ---- what the record remembers per slot ----
+  function noteSynced(slot: SlotName, env: { saveId: string; saveRevision: number; savedAt: string }): void {
+    if (rec === null) return;
+    (rec.synced ??= {})[slot] = fingerprint(env);
+    delete rec.pendingDelete?.[slot];
+  }
+  const unchanged = (slot: SlotName, env: Envelope): boolean => rec?.synced?.[slot] === fingerprint(env);
+  const movedOnServer = (slot: SlotName, serverRev: number): boolean => rec?.serverRev[slot] !== undefined && serverRev > rec.serverRev[slot]!;
+  // True while the slot still holds an earlier account's un-imported save. Any other content ends the hold.
+  async function isHeld(slot: SlotName, local: Local): Promise<boolean> {
+    const id = rec?.held?.[slot];
+    if (id === undefined || local === 'unreadable') return false;
+    if (local !== null && local.env.saveId === id) return true;
+    delete rec!.held![slot]; await persist(); return false;
+  }
+  const stillHolds = async (slot: SlotName, text: string | null): Promise<boolean> => { const r = await deps.storage.read(slotKey(slot)); return r.ok && r.value === text; };
+
   async function pushSlot(slot: SlotName, keepalive = false): Promise<void> {
     if (userId === null || rec === null) return;
     const local = await readLocal(slot);              // the latest bytes at the moment of the push: coalescing
-    if (local === null || local === 'unreadable') { dirty.delete(slot); return; }
+    if (local === 'unreadable' || (await isHeld(slot, local))) { dirty.delete(slot); return; }
+    if (local === null) { dirty.delete(slot); await pushDelete(slot); return; }
     if (deps.now() < pausedUntil) { setStatus({ kind: 'paused', untilMs: pausedUntil }); return; }
     setStatus({ kind: 'syncing' });
     const r = await deps.transport.putSave(sport, slot, { envelope: JSON.parse(local.text), base: rec.serverRev[slot] ?? null, deviceId: rec.deviceId }, { keepalive });
     if (r.ok) {
-      rec.serverRev[slot] = r.value.serverRev; dirty.delete(slot); retry.delete(slot); attempts.delete(slot); await persist();
+      rec.serverRev[slot] = r.value.serverRev; noteSynced(slot, local.env); dirty.delete(slot); retry.delete(slot); attempts.delete(slot); await persist();
       lastSyncedAt = deps.now(); if (st.kind !== 'failed' || st.slot === slot || st.slot === null) idleStatus();
       return;
     }
     if (r.failure.type === 'conflict') { await resolveConflict(slot); return; }
     onFailure(r.failure, slot);
+  }
+  // Sends a remembered delete. It never destroys a copy this device has not seen: if the server moved on, that copy comes back here.
+  async function pushDelete(slot: SlotName): Promise<void> {
+    const base = rec?.pendingDelete?.[slot];
+    if (userId === null || rec === null || base === undefined) return;
+    if (deps.now() < pausedUntil) { setStatus({ kind: 'paused', untilMs: pausedUntil }); return; }
+    setStatus({ kind: 'syncing' });
+    const r = await deps.transport.deleteSave(sport, slot, base);
+    if (!r.ok && r.failure.type !== 'conflict') { onFailure(r.failure, slot); return; }
+    const current = !r.ok && r.failure.type === 'conflict' ? r.failure.current : null;
+    delete rec.pendingDelete![slot]; retry.delete(slot); attempts.delete(slot);
+    if (current && !current.deleted) { await persist(); await resolveConflict(slot); return; }
+    if (r.ok) rec.serverRev[slot] = r.value.serverRev; else if (current) rec.serverRev[slot] = current.serverRev; else delete rec.serverRev[slot];
+    await persist(); markSynced();
   }
   // 409: someone else wrote since we last looked. Pull the server's metadata and apply the conflict table to this slot.
   async function resolveConflict(slot: SlotName): Promise<void> {
@@ -162,27 +211,56 @@ export function createSync(deps: SyncDeps): SyncApi {
     const row = remoteAll.find((r) => r.sport === sport && r.slot === slot);
     const live = row && !row.deleted ? row : null;
     const local = await readLocal(slot);
-    if (local === 'unreadable') return 'done';                                          // never overwrite what we cannot read
-    if (!local && !live) { if (row) rec.serverRev[slot] = row.serverRev; return 'done'; }
-    if (!local && live) { await pull(slot, null); return 'done'; }
-    if (local && !live) return pushWith(slot, local, row ? row.serverRev : null);       // local-only (or deleted elsewhere): push, nothing local is deleted
-    if (!local || !live) return 'done';
+    if (local === 'unreadable' || (await isHeld(slot, local))) return 'done';           // never overwrite what we cannot read, or sync another account's save
+    if (deleting.has(slot)) return 'done';
+    const pending = rec.pendingDelete?.[slot];
+    if (pending !== undefined) {
+      if (live && live.serverRev === pending) {
+        if (!local) { await pushDelete(slot); return 'done'; }
+        return pushWith(slot, local, pending);                                          // a newer save took the slot: it replaces the deleted one, kept as a rung-back
+      }
+      delete rec.pendingDelete![slot]; await persist();                                 // already gone, or the server copy moved on: the table below decides
+    }
+    if (!local && !live) {
+      if (row && rec.serverRev[slot] !== row.serverRev) { rec.serverRev[slot] = row.serverRev; delete rec.synced?.[slot]; await persist(); }
+      return 'done';
+    }
+    if (!local) return pulled(slot, null);
+    if (!live) {
+      // Deleted elsewhere since we last matched, with nothing new here: follow the delete. Otherwise push; nothing local is deleted.
+      if (row && movedOnServer(slot, row.serverRev) && unchanged(slot, local.env)) return honourDelete(slot, local, row.serverRev);
+      return pushWith(slot, local, row ? row.serverRev : null);
+    }
     const d = decide(local.env, live);
-    if (d === 'same') { rec.serverRev[slot] = live.serverRev; dirty.delete(slot); await persist(); markSynced(); return 'done'; }
-    if (d === 'pull') { await pull(slot, local); return 'done'; }
+    if (d === 'same') { rec.serverRev[slot] = live.serverRev; noteSynced(slot, local.env); dirty.delete(slot); await persist(); markSynced(); return 'done'; }
+    // Nothing new here and the server moved (another device wrote, or restored an older copy): follow it, keeping ours as a rung-back.
+    if (d === 'pull' || (movedOnServer(slot, live.serverRev) && unchanged(slot, local.env))) return pulled(slot, local);
     if (d === 'push') return pushWith(slot, local, live.serverRev);
     return fork(slot, local, live, remoteAll);
+  }
+  const pulled = async (slot: SlotName, archive: { text: string } | null): Promise<'done' | 'conflict'> => ((await pull(slot, archive)) === 'changed' ? 'conflict' : 'done');
+  async function honourDelete(slot: SlotName, local: { text: string }, serverRev: number): Promise<'done' | 'conflict'> {
+    if (rec === null) return 'done';
+    const a = await archiveLocal(slot, local.text);
+    if (!a.ok) { setStatus({ kind: 'failed', reason: 'could not keep a rung-back before removing: ' + a.error, retriable: true, slot }); return 'done'; }
+    if (!(await stillHolds(slot, local.text))) return 'conflict';
+    const w = await deps.storage.remove(slotKey(slot));
+    if (!w.ok) { setStatus({ kind: 'failed', reason: 'could not remove the deleted save: ' + w.error, retriable: true, slot }); return 'done'; }
+    rec.serverRev[slot] = serverRev; delete rec.synced?.[slot]; dirty.delete(slot); await persist(); markSynced();
+    deps.onPulled?.(slot); deps.onRemoved?.(slot);
+    return 'done';
   }
   const markSynced = (): void => { lastSyncedAt = deps.now(); if (st.kind === 'syncing' || st.kind === 'idle') idleStatus(); };
   async function pushWith(slot: SlotName, local: { text: string }, base: number | null, to: SlotName = slot, text = local.text): Promise<'done' | 'conflict'> {
     if (rec === null) return 'done';
     const r = await deps.transport.putSave(sport, to, { envelope: JSON.parse(text), base, deviceId: rec.deviceId });
-    if (r.ok) { rec.serverRev[to] = r.value.serverRev; dirty.delete(to); await persist(); markSynced(); return 'done'; }
+    if (r.ok) { rec.serverRev[to] = r.value.serverRev; noteSynced(to, JSON.parse(text)); dirty.delete(to); await persist(); markSynced(); return 'done'; }
     if (r.failure.type === 'conflict') return 'conflict';
     onFailure(r.failure, slot); return 'done';
   }
-  // Fetch the server's copy of a slot and make it the local one. `archive` is the local save it replaces (a rung-back kept on this device).
-  async function pull(slot: SlotName, archive: { text: string } | null, into: SlotName = slot): Promise<{ serverRev: number; text: string } | null> {
+  // Fetch the server's copy of a slot and make it the local one. `archive` is the local save it replaces (a rung-back kept on this device), or
+  // null when the target slot is expected to be empty. 'changed' = the app wrote the target while we were fetching: nothing was overwritten.
+  async function pull(slot: SlotName, archive: { text: string } | null, into: SlotName = slot): Promise<{ serverRev: number; text: string } | 'changed' | null> {
     if (rec === null) return null;
     const g = await deps.transport.getSave(sport, slot);
     if (!g.ok) { onFailure(g.failure, slot); return null; }
@@ -193,9 +271,10 @@ export function createSync(deps: SyncDeps): SyncApi {
     const env: Envelope = into === slot ? p.value : { ...p.value, slot: into };
     const text = into === slot ? JSON.stringify(g.value.envelope) : JSON.stringify(env);
     if (archive) { const a = await archiveLocal(slot, archive.text); if (!a.ok) { setStatus({ kind: 'failed', reason: 'could not keep a rung-back before pulling: ' + a.error, retriable: true, slot }); return null; } }
+    if (!(await stillHolds(into, archive?.text ?? null))) return 'changed';
     const w = await deps.storage.write(slotKey(into), text);
     if (!w.ok) { setStatus({ kind: 'failed', reason: 'could not write the pulled save: ' + w.error, retriable: true, slot: into }); return null; }
-    if (into === slot) { rec.serverRev[slot] = g.value.serverRev; await persist(); markSynced(); }
+    if (into === slot) { rec.serverRev[slot] = g.value.serverRev; noteSynced(slot, env); await persist(); markSynced(); }
     deps.onPulled?.(into);
     return { serverRev: g.value.serverRev, text };
   }
@@ -209,13 +288,14 @@ export function createSync(deps: SyncDeps): SyncApi {
     }
     if (free !== null) {
       const moved = await pull(slot, null, free);                       // the incoming lineage lands in the free slot, local slot keeps the local lineage
+      if (moved === 'changed') return 'conflict';
       if (moved === null) return 'done';
       const freeRow = remoteAll.find((r) => r.sport === sport && r.slot === free);
       const a = await pushWith(slot, local, freeRow ? freeRow.serverRev : null, free, moved.text);   // replicate the moved lineage under its new slot
       if (a === 'conflict') return 'conflict';
       return pushWith(slot, local, live.serverRev);                     // local lineage over the old remote one; the server archives it as a rung-back
     }
-    if (at(live.savedAt) >= at(local.env.savedAt)) { await pull(slot, local); return 'done'; }   // remote newer: local becomes a local rung-back
+    if (at(live.savedAt) >= at(local.env.savedAt)) return pulled(slot, local);                    // remote newer: local becomes a local rung-back
     return pushWith(slot, local, live.serverRev);                                                // local newer: the server archives the remote
   }
   async function reconcileAll(): Promise<boolean> {
@@ -245,7 +325,7 @@ export function createSync(deps: SyncDeps): SyncApi {
     const fresh: { key: string; env: Envelope }[] = [];
     for (const s of SLOT_NAMES) {
       const l = await readLocal(s);
-      if (l === null || l === 'unreadable' || l.env.kind !== 'season') continue;
+      if (l === null || l === 'unreadable' || l.env.kind !== 'season' || (await isHeld(s, l))) continue;
       const p = l.env.payload as { statsRecorded?: unknown; run?: unknown };
       if (p.statsRecorded !== true) continue;
       const key = l.env.saveId + ':' + (Number.isInteger(p.run) ? String(p.run) : '0');
@@ -267,24 +347,62 @@ export function createSync(deps: SyncDeps): SyncApi {
 
   // ---- public surface ----
   async function startSession(uid: string, only: SlotName[] | null): Promise<SignInResult> {
-    userId = uid; pendingUser = null;
     if (rec === null) rec = { version: 1, userId: uid, deviceId: deps.newId(), serverRev: {}, runsSent: [] };
-    else if (rec.userId !== uid) rec = { version: 1, userId: uid, deviceId: rec.deviceId, serverRev: {}, runsSent: [] };   // an explicit adopt: the old account's revs are meaningless to the new one
+    else if (rec.userId !== uid) {
+      // An explicit adopt. The old account's revs mean nothing to the new one, and every save not listed is held back from it.
+      const held: Partial<Record<SlotName, string>> = {};
+      for (const s of SLOT_NAMES) { if (only?.includes(s)) continue; const l = await readLocal(s); if (l !== null && l !== 'unreadable') held[s] = l.env.saveId; }
+      rec = { version: 1, userId: uid, deviceId: rec.deviceId, serverRev: {}, runsSent: [], held };
+    }
+    userId = uid; pendingUser = null;
     await persist();
     return enqueue(async () => {
       setStatus({ kind: 'syncing' });
-      const ok = only === null ? await reconcileAll() : await reconcileOnly(only);
+      const ok = await reconcileAll();
       if (!ok) return { kind: 'failed' as const, reason: st.kind === 'failed' ? st.reason : st.kind === 'paused' ? 'sync is paused' : 'sign-in sync failed' };
       await sendRuns();
       if (st.kind === 'syncing') idleStatus();
       return st.kind === 'failed' ? { kind: 'failed' as const, reason: st.reason } : { kind: 'ok' as const };
     });
   }
-  async function reconcileOnly(slots: SlotName[]): Promise<boolean> {
-    const l = await deps.transport.listSaves();
-    if (!l.ok) { onFailure(l.failure, null); return false; }
-    for (const s of slots) if ((await reconcileSlot(s, l.value)) === 'conflict') { setStatus({ kind: 'failed', reason: 'the server copy changed while we synced; try again', retriable: true, slot: s }); return false; }
-    return true;
+
+  // ---- calls the user asks for (history, restore, stats, shares): they answer with a Result instead of retrying later ----
+  const err = (error: string): { ok: false; error: string } => ({ ok: false, error });
+  function failed(f: Failure): { ok: false; error: string } {
+    if (f.type === 'unauthenticated' || f.type === 'paused') onFailure(f, null);
+    switch (f.type) {
+      case 'unauthenticated': return err('sign in first');
+      case 'paused': return err('sync is paused until the daily limit resets');
+      case 'conflict': return err('the server copy changed; look again');
+      default: return err(f.message);
+    }
+  }
+  const answer = <T>(r: TResult<T>): Result<T> => (r.ok ? { ok: true, value: r.value } : failed(r.failure));
+  function onDemand<T>(f: () => Promise<Result<T>>): Promise<Result<T>> {
+    return enqueue(async () => {
+      if (userId === null || rec === null || pendingUser !== null) return err('sign in first');
+      if (deps.now() < pausedUntil) return err('sync is paused until the daily limit resets');
+      return f();
+    });
+  }
+  const HELD = 'this save belongs to another account on this device';
+  // Reconciles one slot and confirms that this device and the server now agree about it.
+  async function bringUpToDate(slot: SlotName): Promise<Result<{ row: RemoteMeta | null; local: { text: string; env: Envelope } | null }>> {
+    const behind = err('could not bring this slot up to date first; try again');
+    const before = await deps.transport.listSaves();
+    if (!before.ok) return failed(before.failure);
+    const held = await readLocal(slot);
+    if (await isHeld(slot, held)) return err(HELD);
+    await reconcileSlot(slot, before.value);
+    if (userId === null || rec === null) return err('sign in first');
+    const after = await deps.transport.listSaves();
+    if (!after.ok) return failed(after.failure);
+    const row = after.value.find((r) => r.sport === sport && r.slot === slot) ?? null;
+    const local = await readLocal(slot);
+    if (local === 'unreadable' || rec.pendingDelete?.[slot] !== undefined) return behind;
+    if (row === null) return local === null ? { ok: true, value: { row, local } } : behind;
+    if (rec.serverRev[slot] !== row.serverRev || (row.deleted ? local !== null : local === null || !unchanged(slot, local.env))) return behind;
+    return { ok: true, value: { row, local } };
   }
 
   return {
@@ -321,6 +439,47 @@ export function createSync(deps: SyncDeps): SyncApi {
       const h = debounce.get(slot); if (h !== undefined) { deps.clearTimer(h); debounce.delete(slot); }
       void requestPush(slot).then(() => (reason === 'elimination' ? enqueue(sendRuns) : undefined));
     },
+    notifyDeleted(slot) {
+      if (userId === null || rec === null || pendingUser !== null) return;   // never recorded for an account that is not the one signed in
+      dirty.delete(slot);
+      const h = debounce.get(slot); if (h !== undefined) { deps.clearTimer(h); debounce.delete(slot); }
+      const t = retry.get(slot); if (t) { deps.clearTimer(t.h); retry.delete(slot); }
+      attempts.delete(slot); deleting.add(slot);
+      void enqueue(async () => {                          // after any push already running, so the base is the newest one we wrote
+        deleting.delete(slot);
+        if (userId === null || rec === null) return;
+        delete rec.synced?.[slot];
+        const base = rec.serverRev[slot];
+        if (base !== undefined) (rec.pendingDelete ??= {})[slot] = base;   // never seen on the server: there is nothing of ours to delete
+        await persist();
+        await pushSlot(slot);
+      });
+    },
+    heldSlots: () => (userId === null ? [] : SLOT_NAMES.filter((s) => rec?.held?.[s] !== undefined)),
+    serverHistory: (slot) => onDemand(async () => answer(await deps.transport.listHistory(sport, slot))),
+    restoreFromServer: (slot, archivedSeq) => onDemand<void>(async () => {
+      const now = await bringUpToDate(slot);
+      if (!now.ok) return now;
+      const r = await deps.transport.restoreSave(sport, slot, { archivedSeq, base: now.value.row?.serverRev ?? null });
+      if (!r.ok) return failed(r.failure);
+      const p = await pull(slot, now.value.local);
+      return p === null || p === 'changed' ? err('restored on the server; this device could not take it yet') : { ok: true, value: undefined };
+    }),
+    stats: () => onDemand(async () => {
+      await sendRuns();
+      return userId === null ? err('sign in first') : answer(await deps.transport.getStats());
+    }),
+    shareSave: (slot) => onDemand(async () => {
+      const now = await bringUpToDate(slot);
+      if (!now.ok) return now;
+      if (now.value.local === null) return err('there is no save in this slot');
+      return answer(await deps.transport.createShare({ sport, kind: 'save', slot }));
+    }),
+    shareRun: (saveId, run) => onDemand(async () => {
+      await sendRuns();
+      return userId === null ? err('sign in first') : answer(await deps.transport.createShare({ sport, kind: 'run', saveId, run }));
+    }),
+    revokeShare: (id) => onDemand<void>(async () => { const r = await deps.transport.revokeShare(id); return r.ok ? { ok: true, value: undefined } : failed(r.failure); }),
     flush() {
       if (userId === null) return;
       for (const h of debounce.values()) deps.clearTimer(h);

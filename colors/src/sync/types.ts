@@ -21,7 +21,24 @@ export interface SyncTransport {
   getSave(sport: SportId, slot: SlotName): Promise<TResult<{ serverRev: number; envelope: unknown } | null>>;
   putSave(sport: SportId, slot: SlotName, req: PutRequest, opts?: { keepalive?: boolean }): Promise<TResult<{ serverRev: number; archived: boolean }>>;
   postRuns(envelopes: unknown[]): Promise<TResult<{ inserted: number; ignored: number }>>;
+  /** Soft delete; `base` is the server_rev last seen, so a stale device cannot erase a newer save. The server keeps the deleted copy as a rung-back. */
+  deleteSave(sport: SportId, slot: SlotName, base: number): Promise<TResult<{ serverRev: number }>>;
+  /** Server rung-backs, newest first. */
+  listHistory(sport: SportId, slot: SlotName): Promise<TResult<HistoryEntry[]>>;
+  restoreSave(sport: SportId, slot: SlotName, req: { archivedSeq: number; base: number | null }): Promise<TResult<{ serverRev: number }>>;
+  getStats(): Promise<TResult<Stats>>;
+  createShare(req: ShareRequest): Promise<TResult<ShareLink>>;
+  revokeShare(id: string): Promise<TResult<{ revoked: true }>>;
+  /** The public read of a share link (no sign-in). value null = no such link; a revoked or expired one is rejected with code 'gone'. */
+  getShare(token: string): Promise<TResult<SharedSnapshot | null>>;
 }
+
+export interface HistoryEntry { archivedSeq: number; saveId: string; saveRevision: number; reason: string; archivedAt: string }
+export type ShareRequest = { sport: SportId; kind: 'save'; slot: SlotName } | { sport: SportId; kind: 'run'; saveId: string; run: number };
+export interface ShareLink { id: string; token: string; expiresAt: string }
+export interface SharedSnapshot { kind: string; sport: string; createdAt: string; snapshot: unknown }
+/** The server's fold over the run ledger (server/src/api.ts statsOf); read-only here. */
+export type Stats = Record<string, unknown>;
 
 // What the chip next to the save status shows. 'failed' mirrors core SaveStatus's failed (retriable says whether we will try again).
 export type SyncStatus =
@@ -45,6 +62,10 @@ export interface SyncDeps {
   clearTimer(handle: unknown): void;
   newId(): string;
   sport?: SportId;
-  /** Called after a pulled envelope replaced a local slot, so the UI can re-hydrate it. */
+  /** Called after sync changed a local slot (pulled, restored or removed), so the UI can re-hydrate it. */
   onPulled?(slot: SlotName): void;
+  /** Called, after onPulled, when a slot was removed because it was deleted on another device. A rung-back stays here (localArchive). */
+  onRemoved?(slot: SlotName): void;
+  /** 0..1, for retry jitter. Default Math.random. */
+  random?(): number;
 }

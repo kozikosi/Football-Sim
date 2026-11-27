@@ -21,10 +21,12 @@ test('rows written per operation stay within the contract budget', { skip: !live
   m.run = await cost(db, () => call(db, 'u1', 'POST', '/api/runs', { envelopes: [seasonEnv('B', 'r1', 1, results(W17, [['Divisional', 'L']]))] }));
   m.runReplay = await cost(db, () => call(db, 'u1', 'POST', '/api/runs', { envelopes: [seasonEnv('B', 'r1', 1, results(W17, [['Divisional', 'L']]))] }));
   m.share = await cost(db, () => call(db, 'u1', 'POST', '/api/shares', { sport: 'nfl', kind: 'save', slot: 'A' }));
+  m.softDelete = await cost(db, () => call(db, 'u1', 'DELETE', '/api/saves/nfl/A', { base: 3 }));
   console.log('rows_written per operation (Miniflare D1):', JSON.stringify(m));
   assert.ok(m.ordinarySave <= 2, 'an ordinary save is one row, plus at most one for the row itself');
   assert.equal(m.staleConflict, 0, 'a refused write writes nothing');
   assert.ok(m.forkWithArchive <= 6);
   assert.ok(m.run <= 3);
   assert.equal(m.runReplay, 0, 'a replayed run writes nothing');
+  assert.ok(m.softDelete >= 2 && m.softDelete <= 6, 'a delete writes the rung-back and marks the row');
 });

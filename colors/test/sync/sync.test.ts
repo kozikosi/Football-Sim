@@ -8,7 +8,7 @@ import { Clock, FakeServer, T0, env, memStorage } from './fake.ts';
 const K = (s: SlotName) => 'sim:nfl:slot:' + s;
 function rig(local: Record<string, string> = {}) {
   const storage = memStorage(local), server = new FakeServer(), clock = new Clock(); let n = 0; const pulled: SlotName[] = [];
-  const sync = createSync({ storage, transport: server, now: clock.now, setTimer: clock.setTimer, clearTimer: clock.clearTimer, newId: () => 'dev-' + ++n, onPulled: (s) => { pulled.push(s); } });
+  const sync = createSync({ storage, transport: server, now: clock.now, setTimer: clock.setTimer, clearTimer: clock.clearTimer, random: () => 1, newId: () => 'dev-' + ++n, onPulled: (s) => { pulled.push(s); } });
   return { storage, server, clock, sync, pulled };
 }
 const saveIdOf = (t: string | undefined) => JSON.parse(t ?? 'null')?.saveId;
