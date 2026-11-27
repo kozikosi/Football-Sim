@@ -1,11 +1,17 @@
-# PORCA — lane file (updated at session end 2026-11-27T03:27Z, never append)
+# PORCA — lane file (updated at session end 2026-11-27T20:04Z, never append)
 
 ## Identity
 - **Seat:** PORCA · **Model / how reached:** PORCA / API · **State:** advisor (admitted by the Owner 2026-11-19). ID block: none filed.
 - **Worktree:** `/Users/kosi/Desktop/wt/porca` · **Branch:** `council/porca` · `git merge-base HEAD origin/council/base` → `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`.
 - **Evidence standard:** every claim carries a fresh command receipt (`git show`, `git grep`, `git cat-file`, `shasum`, `md5sum`, `node`, file read). No shared-tree writes, no product/engine/pin/governance/queue/tools bytes, no other seat's file. A wrong claim stays in the record with a superseding correction.
 
-## Current work and state (session 22 — queue review P-160; 2026-11-27T03:27Z)
+## Current work and state (session 23 — cross-seat review + Z.ai continuation prompt; 2026-11-27T20:04Z)
+- **Owner request:** review other seats' work, especially Claude's and Z.ai's, then draft a long prompt for Z.ai to continue.
+- **Filed:** `inbox/20261127-2004-porca-FOR-zai-continuation-prompt.md` — draft prompt, not an assignment. Grounds: Architect tip `1681d3a36` (T3 sync; colors 523/523, tsc 89, D1 43/43, mutants 22/22 + 9/9, "No independent review yet"), `claude/NOW.md` (25 Nov; v8 outcomes; waiting on Z.ai slices 3–5; T1 fetch-then-import; T6 flags), rehearsal `b482289be` (8 files with names need Owner decision); Z.ai delivered folder `4850bb2d` with 8 REDs and stale seam card; pushed `council/zai` tip `25e3b2f99` (1 Nov), local zai worktree clean at that tip, 0 unpushed (VERIFIED read-only).
+- **Prompt structure:** authority/lanes → receipts → 8 REDs → ordered steps A (push/preserve) → B (gate restoration at final bytes + independent Verifier) → C (slices 3–5 handover unblocking Architect T7) → D (v8/T1/T6) → E (B1–B6 ideas) → anti-goals → definition of done → carried question. No build, no accepted design, no seat assigned.
+- **Not changed:** product, engine, pin, governance, queue, tools, other seats' files.
+
+## Prior work (session 22 — queue review P-160; 2026-11-27T03:27Z)
 - **Took the top live queue line** via `node ./.council_tool.mjs next --no-fetch` (v11 tool from `origin/council/muse`; temp tool deleted before push). REVIEW P-160, which had 7 prior reviews.
 - **Filed:** `inbox/20261127-0327-porca-P-160-review.md`, verdict **improved**. VERIFIED: Pre-Colors hash `40233d6b…`; two of the named anchors are stale (`teamAdvancedHTML` 4281 not 4219, `advancedStatsHTML` 4317 not 4281, `renderSeasonCompleteView` 5885 not ~5889); nine of ten target strings occur **zero** times in Pre-Colors; they belong to Z-post-blue and are recorded LIVE at `origin/main:z-core/11-worklog/WORKLOG-SHARED.md:338`. `fragOffense` is prose with no unit labels; `teamAdvancedHTML` has no PF/PA totals. Recommended: mark the shipped subset superseded; retarget any remaining item to the Svelte shell with fresh anchors; do not patch the frozen reference.
 - **Not changed:** product, engine, pin, governance, queue, tools, other seats' files. No build, no assignment.
@@ -26,7 +32,7 @@
 - **16/15/14/13/12:** Architect timeout review; Cloudflare how delegated to Claude+council; `dfdb887` review (improved); cross-seat S14 round; S14 verbatim relay + six-item brainstorm; composite PARTIAL; falsifiers died by name.
 
 ## What the next session needs
-- **Read first:** this file → `inbox/20261127-0327-porca-P-160-review.md` → `inbox/20261126-0146-porca-zai-s17-continuation-2026-11-25-review.md` → `inbox/20261126-0146-porca-cakepanz-waveb-next-wave.md`. Do not redo the publication, the reviews or the B1–B6 filing.
+- **Read first:** this file → `inbox/20261127-2004-porca-FOR-zai-continuation-prompt.md` → `inbox/20261127-0327-porca-P-160-review.md` → `inbox/20261126-0146-porca-zai-s17-continuation-2026-11-25-review.md` → `inbox/20261126-0146-porca-cakepanz-waveb-next-wave.md`. Do not redo the publication, the reviews or the B1–B6 filing. The Z.ai prompt is a drafted handoff for the Owner, not a seat assignment.
 - **Gate restoration order (proposal):** fix the `.mjs` `as const` line and run `battery:waveb`; run `battery:offline` to produce its receipt; reseal/regenerate in dependency order (seal count, freshness, state blocks, seam card, status), then re-run both claim phases at the final bytes. No gate result counts before the last byte is fixed.
 - **Do not adopt** MUSE's ring-law range `L13, L16–L25` without byte verification; canonical says ring removal voids L13/L16–L22, with L23–L28 corrected/new laws.
 - **Session-end gate:** `node tools/preserve.mjs check` exits 1 for OTHER worktrees and the Owner's shared tree only; do not touch them. This branch must read `0 dirty, 0 unpushed, OK`, 0 stashes, 0 local-only commits.
