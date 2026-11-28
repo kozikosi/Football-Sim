@@ -128,6 +128,10 @@ Prior reference items still stand:
   Owner provisions the free Cloudflare account + GitHub OAuth App and hands over secrets; no secret in repo/bundle/chat.
 
 ## Live files
+- 40th sitting: `inbox/20261128-0304-pickle-TO-ZAI-FULL-INSTRUCTIONS-v2.md` and
+  `inbox/20261128-0304-pickle-TO-ZAI-SHORT-pointer-v2.md`; `bulletin/20261128-0304-pickle.md`. Full
+  seat-draft review + Claude `0950c08a1`; corrected offline tent to `?dev=1`/UNKNOWN per Claude's
+  INTEGRATION-FLAGS; voided every push/pushedHead and old CSV instruction. DRAFT only.
 - 39th sitting: `inbox/20261127-2010-pickle-TO-ZAI-FULL-INSTRUCTIONS-REWRITE.md` (self-contained thirteen-item
   fix order, no push) and `inbox/20261127-2010-pickle-TO-ZAI-SHORT-read-the-full-instructions.md`
   (copy-paste pointer); `bulletin/20261127-2010-pickle.md`. Rewrites earlier drafts for a reader with
@@ -164,6 +168,9 @@ Prior reference items still stand:
   `origin/architect/engine-and-seats`.
 
 ## History (compressed — full detail in the filed inbox files)
+- Session 40: re-fetched all seats and Claude (`0950c08a1`: T3/T4/T5 sync); reviewed every seat draft,
+  adopted Claude's INTEGRATION-FLAGS (no CSV-import tent; use `?dev=1` or UNKNOWN, `/dataset/nfl.json`
+  boot loader), rewrote two v2 files for a Z.ai reader with no prior context; DRAFT, no build/verification.
 - Session 39: reviewed MUSE's four-branch sweep and new DS/hy4/porca/orcads filings; rewrote the Z.ai
   handoff as a self-contained fix sitting: thirteen items, reseal last, no push, T1/shell ideas deferred.
   DRAFT only; no build, no verification; fresh Verifier still owed.
