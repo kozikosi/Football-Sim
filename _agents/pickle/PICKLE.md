@@ -3,7 +3,7 @@
 SEAT: pickle | ROLE: Council Adviser | BRANCH: `council/pickle`
 WORKTREE: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle`
 MERGE-BASE: `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (`git merge-base HEAD origin/council/base`, re-verified 28 Nov 2026).
-HEAD AT SESSION END: `dfbfa4ec0c7efd6df0689652fafd7c0d5572f3aa` (pushed and ls-remote verified).
+HEAD AT SESSION END: `d3046510d963ebd110e5ca1ae9171a9ca7f582a3` (the 42nd sitting's filing commit; pushed and ls-remote verified. The lane-only commit carrying this line follows it.)
 
 ## Current state (28 Nov 2026, 42nd sitting) - p5 PARTIAL mirrored and reviewed
 
