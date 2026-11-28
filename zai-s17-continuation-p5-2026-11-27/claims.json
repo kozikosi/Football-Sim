@@ -1,0 +1,422 @@
+{
+  "meta": {
+    "protocol": "T2 (orcads F2 fix, 2026-11-24) — every claim machine-checkable; a RED is a failing line, never a paragraph",
+    "phases": {
+      "packaging": "holds mid-composite (acceptance-run step 17c: after step 14's reseal + step 13d's SHELL-STATUS regen, while ACCEPTANCE-RECEIPTS.txt is still growing)",
+      "full": "everything, run at the final bytes after the composite"
+    },
+    "history": "the 2026-11-23 verifier RED (claim 2, literal '37 pass · 0 fail' vs node:test's native 'ℹ pass 37') is the defect class this file retires; the original RED + resolution stay on record at deliveries/receipts/partH-s15/verifier-2026-11-23.log"
+  },
+  "claims": [
+    {
+      "id": "claims-exist",
+      "desc": "the claim list itself is on the tree (the T2 protocol is installed)",
+      "file": "claims.json",
+      "kind": "fileExists",
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "claims-tool-exists",
+      "desc": "the claims checker is on the tree",
+      "file": "scripts/check-claims.mjs",
+      "kind": "fileExists",
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "seal-count",
+      "desc": "the seal count is the GENERATED manifest-facts.json's sealLines/contentEntries re-derived from the live bytes — the live CHECKSUMS.txt line count equals both, every excluded path (the meta layer, the SHA256SUMS transport sidecars, the receipt layer) is named in skipped[], and no sidecar on the tree goes unnamed (item 1: three counts disagreed — 401 seal lines, 385 in generated docs, 380 in the cutover proof — a checksum file cannot seal itself, so the rule is a named predicate, never a dated literal)",
+      "file": "manifest-facts.json",
+      "kind": "manifestFacts",
+      "phases": [
+        "packaging",
+        "full"
+      ],
+      "cmd": "node scripts/regen-manifest.mjs (generates) · node scripts/check-claims.mjs (verifies)"
+    },
+    {
+      "id": "manifest-identity",
+      "desc": "MANIFEST.txt is byte-identical to CHECKSUMS.txt (the regen writes both; the ernie check, in code)",
+      "file": "MANIFEST.txt",
+      "kind": "manifestIdentity",
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "seal-verifies",
+      "desc": "verify-package green at these bytes: every entry OK, zero FAILED/missing, converse clean, and OK == the seal count",
+      "file": "CHECKSUMS.txt",
+      "kind": "verifyPackage",
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "dist-in-seal-and-status",
+      "desc": "the GENERATED dist-manifest.json is joined to the live dist walk byte-for-byte AND every dist file's sha256 prefix is exactly what SHELL-STATUS.md prints — the status renders the manifest, never a stale hash (item 2)",
+      "file": "SHELL-STATUS.md",
+      "kind": "distManifest",
+      "phases": [
+        "packaging",
+        "full"
+      ],
+      "cmd": "node tools/shell-status.mjs (generates dist-manifest.json + renders it) · node scripts/check-claims.mjs (verifies)"
+    },
+    {
+      "id": "node-battery-live",
+      "desc": "the node battery ran LIVE in the SHELL-STATUS regen: 37 pass / 0 fail in the native node:test format (the 2026-11-23 RED's claim-2 expectation, corrected to the real format)",
+      "file": "SHELL-STATUS.md",
+      "kind": "regex",
+      "pattern": "node battery \\(live\\): .*pass 37[\\s\\S]{0,80}fail 0",
+      "flags": "m",
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "contrast-live",
+      "desc": "the contrast guardrail ran LIVE in the SHELL-STATUS regen: 2 pass · 0 fail",
+      "file": "SHELL-STATUS.md",
+      "kind": "regex",
+      "pattern": "contrast guardrail \\(live\\): == CONTRAST GUARDRAIL · 2 pass · 0 fail",
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "freshness-content-based",
+      "desc": "the browser-battery freshness verdicts are CONTENT-based (the T1 rule) — no bare clock-age STALE flag survives in the generated status",
+      "file": "SHELL-STATUS.md",
+      "kind": "regex",
+      "pattern": "content (FRESH|UNKNOWN|STALE)",
+      "flags": "m",
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "no-bare-stale-flag",
+      "desc": "the retired misleading signal is gone: no 'STALE — re-run the battery' line next to green receipts",
+      "file": "SHELL-STATUS.md",
+      "kind": "regex",
+      "pattern": "STALE — re-run the battery",
+      "negate": true,
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "sbs-receipt",
+      "desc": "the side-by-side receipt: 41 captures, the 40-cell matrix COMPLETE, zero fallback captures, zero right-verdict FAIL rows, and the doc's fallback cells equal the receipt's fallbacks (0)",
+      "file": "deliveries/receipts/s15-side-by-side.json",
+      "kind": "sideBySide",
+      "expectCaptures": 41,
+      "expectFallback": 0,
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "sbs-orphan-renamed",
+      "desc": "the orphan Settings capture is named new-only-… (the orcads F4 rename)",
+      "file": "deliveries/receipts/s15-side-by-side.json",
+      "kind": "regex",
+      "pattern": "new-only-s5-panel-settings-1180x950-light\\.png",
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "lineage-note",
+      "desc": "the package identity + lineage note exists (the porca/pickle finding)",
+      "file": "README-S17-PACKAGE-NOTE.md",
+      "kind": "fileExists",
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "r13-plan-filed",
+      "desc": "the CAKEPANZ VITE-8 MIGRATION RECEIPT PLAN is filed under its correct (non-R-13) name — R-13 is CLOSED (Owner 2026-11-19); plan only, no dependency change (the S17 A5 rename)",
+      "file": "inbox/20261124-zai-CAKEPANZ-VITE8-MIGRATION-receipt-plan-FILED.md",
+      "kind": "fileExists",
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "no-stale-zip-claim",
+      "desc": "the 2026-11-22 zip promise is RETRACTED in the hand-over prose (the hy4 finding) — the promise sentence no longer stands",
+      "file": "deliveries/zai-s15-closeout-handover-2026-11-21.md",
+      "kind": "regex",
+      "pattern": "RETRACTED 2026-11-24 \\(hy4's finding\\)",
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "no-zip-file-claim-active",
+      "desc": "no doc still claims the 2026-11-22 continuation SHIPPED the named zip (the sentence is gone, not hedged)",
+      "file": "deliveries/zai-s15-closeout-handover-2026-11-21.md",
+      "kind": "regex",
+      "pattern": "continuation ships a fresh zip `zai-s15-closeout-2026-11-22\\.zip`",
+      "negate": true,
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "boot-docs-current",
+      "desc": "the boot docs carry the 2026-11-24 sitting's state blocks (the ernie F1 rewrite)",
+      "file": "ZAI.md",
+      "kind": "regex",
+      "pattern": "2026-11-24",
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "start-doc-current",
+      "desc": "the START file's state block is the 2026-11-24 sitting",
+      "file": "START-OF-CHAT-ZAI.md",
+      "kind": "regex",
+      "pattern": "2026-11-24",
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "handover-left-correction",
+      "desc": "the hand-over §13.3 carries the 2026-11-24 LEFT s1–s3 correction (boot-state fallbacks named, re-drive pointed at)",
+      "file": "deliveries/zai-s15-closeout-handover-2026-11-21.md",
+      "kind": "regex",
+      "pattern": "CORRECTION \\(2026-11-24, the ernie F2 finding",
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "acceptance-complete",
+      "desc": "the acceptance run of record is COMPLETE: exactly one COMPLETE marker, zero STOPPED, zero non-zero exit codes",
+      "file": "ACCEPTANCE-RECEIPTS.txt",
+      "kind": "regex",
+      "pattern": "ACCEPTANCE RUN COMPLETE — every step exit 0",
+      "phases": [
+        "full"
+      ]
+    },
+    {
+      "id": "acceptance-no-stops",
+      "desc": "no step stopped and no non-zero exit code exists in the run of record",
+      "file": "ACCEPTANCE-RECEIPTS.txt",
+      "kind": "regex",
+      "pattern": "ACCEPTANCE RUN STOPPED|EXIT_CODE=[1-9]",
+      "negate": true,
+      "phases": [
+        "full"
+      ]
+    },
+    {
+      "id": "engine-430",
+      "desc": "the engine suite at these bytes: 430 pass / 0 fail in the native node:test format",
+      "file": "ACCEPTANCE-RECEIPTS.txt",
+      "kind": "regex",
+      "pattern": "ℹ tests 430[\\s\\S]{0,200}ℹ pass 430[\\s\\S]{0,80}ℹ fail 0",
+      "flags": "s",
+      "phases": [
+        "full"
+      ]
+    },
+    {
+      "id": "node-battery-receipt",
+      "desc": "the refreshed node-battery receipt at the final bytes: 37 pass / 0 fail",
+      "file": "deliveries/receipts/node-battery.log",
+      "kind": "regex",
+      "pattern": "ℹ pass 37[\\s\\S]{0,200}ℹ fail 0",
+      "flags": "s",
+      "phases": [
+        "full"
+      ]
+    },
+    {
+      "id": "falsifier-verdicts",
+      "desc": "the falsifier gauntlet at these bytes: every verdict is a DIED (the floors line in the acceptance receipt names the DIED count; zero TAUTOLOGY / COULD-NOT-RUN tokens)",
+      "file": "ACCEPTANCE-RECEIPTS.txt",
+      "kind": "regex",
+      "pattern": "TAUTOLOGY|COULD-NOT-RUN",
+      "negate": true,
+      "phases": [
+        "full"
+      ]
+    },
+    {
+      "id": "sbs-nonvacuity",
+      "desc": "the STRUCTURED non-vacuity check (the S17 A4 replacement for hy4 N4's raw count — a planted '\"met\": \"true\"' string or a count fudge cannot satisfy it): every one of the 41 captures joins 1:1 to its nonVacuity record on (side,scene,w,h,theme) and every joined record carries met === true — no false, no null, no string, no missing twin",
+      "file": "deliveries/receipts/s15-side-by-side.json",
+      "kind": "sideBySideNonVacuity",
+      "phases": [
+        "packaging",
+        "full"
+      ],
+      "cmd": "node scripts/check-claims.mjs --phase packaging (subject receipt: deliveries/receipts/s15-side-by-side.json — regenerated by node scripts/side-by-side-s15.mjs)"
+    },
+    {
+      "id": "status-acceptance-agrees",
+      "desc": "status acceptance line derives from ACCEPTANCE-RECEIPTS.txt (the S17 A4 kind — expect COMPLETE — A1's composite landed 2026-11-25 (the script-generated COMPLETE marker; log_sha256 attested))",
+      "file": "SHELL-STATUS.md",
+      "kind": "statusAcceptance",
+      "acceptanceFile": "ACCEPTANCE-RECEIPTS.txt",
+      "expect": "complete",
+      "phases": [
+        "full"
+      ]
+    },
+    {
+      "id": "status-freshness-agrees",
+      "desc": "visual/slot freshness lines match receipt distHash vs shipped dist/ AND the GENERATED dist-manifest.json fingerprint equals the live dist walk (item 2's join: manifest, receipts and directory agree, or the drift is named)",
+      "file": "SHELL-STATUS.md",
+      "kind": "statusFreshness",
+      "receipts": [
+        [
+          "deliveries/receipts/visual-battery-latest.json",
+          "visual battery"
+        ],
+        [
+          "deliveries/receipts/slot-battery-latest.json",
+          "slot battery (P-317)"
+        ]
+      ],
+      "phases": [
+        "full"
+      ],
+      "cmd": "node tools/shell-status.mjs + the owning batteries"
+    },
+    {
+      "id": "no-contradictory-acceptance-line",
+      "desc": "PROMOTED to the packaging phase (the S17 A4 bullet 4 — the packaging gate is what ran green while the full phase was RED): the SHELL-STATUS acceptance line and the receipt's terminal marker agree in BOTH directions, at ANY phase — no contradictory COMPLETE line can ship again",
+      "file": "SHELL-STATUS.md",
+      "kind": "statusAgreement",
+      "acceptanceFile": "ACCEPTANCE-RECEIPTS.txt",
+      "phases": [
+        "packaging",
+        "full"
+      ]
+    },
+    {
+      "id": "acceptance-attestation",
+      "desc": "the S17 A1/A3 seal-over-the-log gate: receipt-attestation.json's last run record is COMPLETE, its log_sha256 equals the live sha256(ACCEPTANCE-RECEIPTS.txt) recomputed here, every per-step exit code is 0, and tree_sha_start/tree_sha_end are present — a hand-edited receipt or a stale terminal marker fails loud with the mismatch named",
+      "file": "receipt-attestation.json",
+      "kind": "attestation",
+      "acceptanceFile": "ACCEPTANCE-RECEIPTS.txt",
+      "phases": [
+        "full"
+      ]
+    },
+    {
+      "id": "freshness-map",
+      "desc": "the S17 A3 freshness map: every generated file's recorded input hashes equal the live bytes (a changed receipt byte turns this RED with the file NAMED), freshness.acceptanceSha equals the live ACCEPTANCE-RECEIPTS.txt hash, and SHELL-STATUS prints the same acceptanceSha value",
+      "file": "freshness.json",
+      "kind": "freshnessMap",
+      "file2": "SHELL-STATUS.md",
+      "acceptanceFile": "ACCEPTANCE-RECEIPTS.txt",
+      "phases": [
+        "full"
+      ],
+      "cmd": "node scripts/gen-freshness.mjs (regenerates) · node scripts/check-claims.mjs (verifies)"
+    },
+    {
+      "id": "state-blocks-fresh",
+      "desc": "the S17 A3 generated state blocks (README top block, ZAI.md, the hand-over state paragraph) equal what gen-state-block.mjs produces from the CURRENT claim results — green prose is impossible while a claim is RED because the block itself prints the RED lines; this claim's own row is excluded from the rendered block to keep the fixed point",
+      "file": "README.md",
+      "kind": "stateBlocks",
+      "phases": [
+        "full"
+      ],
+      "cmd": "node scripts/gen-state-block.mjs (regenerates) · node scripts/gen-state-block.mjs --check (verifies)"
+    },
+    {
+      "id": "waveb-battery",
+      "desc": "the Wave B node battery (one law per theme: the seam card, the provenance+tie honesty, the display-parse ban, the hook registry, the static offline complement, the decision surface, the contract golden, the pace clamp, the takeover tint receipt, the dev-gated tape, the composed brag regex)",
+      "file": "deliveries/receipts/waveb-battery.log",
+      "kind": "regex",
+      "pattern": "# WAVE B · (\\d+) pass · 0 fail",
+      "phases": [
+        "full"
+      ],
+      "cmd": "npm run battery:waveb (receipt: deliveries/receipts/waveb-battery.log)"
+    },
+    {
+      "id": "offline-tent",
+      "desc": "the offline tent: dist/single.html under file:// ON THE ?dev=1 LABELLED-DEV BOOT (the Architect's contract — never a CSV-import path; the receipt names the run path) plays a draft turn (pick + reload + restore) with ZERO external requests, each law naming any URL that fires",
+      "file": "deliveries/receipts/offline-tent.json",
+      "kind": "offlineTent",
+      "phases": [
+        "full"
+      ],
+      "cmd": "npm run battery:offline (receipt: deliveries/receipts/offline-tent.json)"
+    },
+    {
+      "id": "seam-card-agrees",
+      "desc": "the dev chip and the claims gate read the same generated provenance file: seam-card.json's pin equals SNAPSHOT.md's engine commit and its sealCount equals the live CHECKSUMS.txt lines (W1b — never a hardcoded pin or count)",
+      "file": "seam-card.json",
+      "kind": "seamCard",
+      "phases": [
+        "packaging",
+        "full"
+      ],
+      "cmd": "node --import ./scripts/node-port-register.mjs scripts/gen-seam-card.mjs (regenerates) · node scripts/check-claims.mjs (verifies)"
+    },
+    {
+      "id": "acceptance-covers-this-tree",
+      "desc": "the attested tree_sha_end and the acceptance dist fingerprint cover the live tree/dist — or SHELL-STATUS carries the honest `COMPLETE at tree X; current tree Y` line naming the move (item 2: a Wave A acceptance cannot certify Wave B bytes; a lying status fails, an honest move passes)",
+      "file": "receipt-attestation.json",
+      "kind": "acceptanceCovers",
+      "phases": [
+        "full"
+      ],
+      "cmd": "bash scripts/acceptance-run.sh (seals the attestation) · node tools/shell-status.mjs (renders the coverage line)"
+    },
+    {
+      "id": "path-portability",
+      "desc": "the gates run from a path containing a space (the Owner's `Football Sim` desktop path): no script/tool/battery resolves its root through new URL(...).pathname (the %20 class — offenders are named), and the spaced-path gate receipt is on record saying PASS with the spaced root named (item 7)",
+      "file": "deliveries/receipts/path-portability.log",
+      "kind": "pathPortability",
+      "phases": [
+        "full"
+      ],
+      "cmd": "node scripts/verify-spaced-path.mjs (copies the sealed tree to a spaced path and runs the gate there)"
+    },
+    {
+      "id": "battery-syntax",
+      "desc": "every batteries/*.mjs parses under node --check and zero TypeScript tokens (as const / interface / type aliases / annotations outside string literals) survive in .mjs — the `as const` SyntaxError class that silenced the Wave B battery at the delivered bytes (item 5, HY4 N5)",
+      "file": "batteries",
+      "kind": "batterySyntax",
+      "phases": [
+        "packaging",
+        "full"
+      ],
+      "cmd": "node scripts/gate-battery-syntax.mjs"
+    }
+  ]
+}
