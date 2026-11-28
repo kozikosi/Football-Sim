@@ -1,0 +1,240 @@
+
+=================================================================
+== 1. npm ci (clean lock — no --legacy-peer-deps)
+=================================================================
+$ npm ci
+
+added 41 packages, and audited 42 packages in 927ms
+
+6 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+EXIT_CODE=0
+
+=================================================================
+== 2. npm run test:engine (the pin's own suite — expect 430/430 at pin 408410477, exit 0)
+=================================================================
+$ npm run test:engine
+✔ board VM: header round follows the draft and the text has no retired words (2191.630835ms)
+✔ board VM: a natural spot is the primary spot whenever one is open (the Cooper DeJean rule); flex options follow the 2/4 rule (104.618271ms)
+✔ gone odds: a deep-board player is rarely taken, the best players often are, and probabilities are in range (1368.804841ms)
+✔ view layer purity: src/view has no DOM, storage, clock or Math.random (0.821265ms)
+✔ board VM: a tight end is listed at TE1 even though the flex spot WR1 is worth more (found by search: seed 2, first pick; seed 1 moved when the audit reordered the DB weights and a CPU took him) (188.992234ms)
+✔ board VM: a certain Gone% prints as 99%, never 100% (4.646884ms)
+✔ E3b: at every week (incl. playoffs and the finished season) RunState -> envelope text -> RunState is identical, seeding and champion included (746.471027ms)
+✔ E3b: a refresh at any preview replays the SAME game and continues to the same champion (699.004834ms)
+✔ E3b: the stored gameSeed is the user game of that week, and a tampered one is refused (3.152094ms)
+✔ E3b: refuses missing team ratings, a non-numeric rating, and a save without prevRank (4.262157ms)
+✔ E3b: run-it-back: the next run built from the saved prevRank has different opponents (347.225946ms)
+✔ the default display equals the fit table on every slot (nothing in it is a measurement) (0.21497ms)
+✔ display == fit table and the refitted engine tracks it within the Owner limit -> FITTED (a fit, not independent evidence) (0.278404ms)
+✔ the same display is never MEASURED: only a display that differs from the table and tracks the engine earns that label (0.136626ms)
+✔ a stale fit is caught: display == table but the engine no longer tracks it (legacy coefficients) -> ECHO (8.620197ms)
+✔ the Pre-Colors default tolerance (5) is too tight for a fitted engine: the verdict flips FITTED -> ECHO without the stated 50 (0.143838ms)
+✔ the default display (measuredDisplayWeights) is MEASURED: QB 1000, nearest 5, not the table, tracks the raw curve (9.422552ms)
+ℹ tests 430
+ℹ suites 0
+ℹ pass 430
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 62971.594707
+EXIT_CODE=0
+
+=================================================================
+== 2b. npm run precompile (the Part-D generated copy src/engine-node — the node suites' freshness gate regenerates it too, this makes the step explicit)
+=================================================================
+$ npm run precompile
+
+> cakepanz-67@0.6.0-shell precompile
+> node scripts/precompile-engine.mjs
+
+engine-node: generated 69 files (1 transformed: platform/localstorage.ts) — snapshot untouched
+EXIT_CODE=0
+
+=================================================================
+== 3. the node battery via the Part-D register (expect 37/37: the 33 c12 laws + N34 the seam golden + N35 the b36 anchor (S13) + N36 the truthful engine stamp (S15 §4.4) + N37 the brag-share text law (S15 §4.8); runs on Node 24 AND 26)
+=================================================================
+$ npm run battery:node
+✔ N16: port/ is framework-blind (no svelte/vue/react imports, no runes anywhere below the render layer) (1.319091ms)
+✔ N17: the w88 feed anatomy rides the shell (zrl-* classes + the me glow + reduced-motion off) (0.737728ms)
+✔ N18: the team remap is the 32-team palette (zpb json) + the .ub law lives in the shell law set (0.225359ms)
+✔ N20 (F8): the save service refuses a slot/key mismatch — the engine asserts the pair, the composition wires it (0.21592ms)
+✔ N21: the older-build note names another build on the slot card, and is silent for the running one (Part F) (0.899298ms)
+✔ N22 (the packs law): the sim boots on a non-empty pool, and the current-era pack hashes to the pin value (424.840889ms)
+✔ N23 (Part A): picking a team changes at least three accent tokens, and --zcream is unchanged (6.976711ms)
+✔ N24 (Part D): the body copy is a system sans, the slogan rides home + Guide, the 900 faces are inlined, and the label is one constant (8.324989ms)
+✔ N25 (HYDRATE, Slice 3): a refresh mid-draft lands back on the same board — the full AppState rehydrates from the saver (1972.992986ms)
+✔ N26 (Slice 3, D2/D3 re-anchor 2026-11-19 · T4 re-anchor 2026-11-20): the gone-odds tooltip surfaces the engine's own method on hover only, is aria-hidden, the method is in-flow in the row detail AND programmatically on the cell (L7b + T4) (1078.076619ms)
+✔ N27 (Slice 3): the "my needs" sticky row shows exactly the roster's empty slots, is clickable, and the count moves (51.233004ms)
+✔ N28 (RESUME, cakepanz-8 A1): a refresh with BOTH autosaves lands on the hub — the season outranks the finished draft's screen (1018.810572ms)
+✔ N29 (DONE-DRAFT, cakepanz-8 A1): a refresh with a done draft and no week lands on Complete — never a blank board (912.673708ms)
+✔ N34: the SEAM GOLDEN — boardVM/goneOdds/lineupFor at the fixed seed equal the committed VM→JSON map (a re-pin that silently changes engine output fails here, not at the Owner's first draft — the data-export law) (1442.327815ms)
+✔ N35: the b36 payload is ANCHORED — a malformed prefixed code (`b36:12abc###`, `b36:1.5`, `b36:12 34`, `b36:`) returns null and the caller falls back to the random draw; every VALID form still parses (S13, Ernie D4/Pickle minor) (1.099593ms)
+✔ N36: the envelope stamp is TRUTHFUL — App.svelte stamps the RUNNING engineVersion() (the hardcoded previous-pin literal is gone; the stale-stamp class made the saves panel flag every first save as foreign, the work order §4.4) (0.328931ms)
+✔ N37: the P-209 brag text — the season template is exact, the link rides ONLY the build-time constant (unset here → no link, no broken link shipped), the card paste strips tags and drops the seed-bearing stamp, and no download path remains in the Share screen (the work order §4.8) (1.714008ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16153.293836
+EXIT_CODE=0
+
+=================================================================
+== 3b. the contrast guardrail (T6/W5 — the 32 team inks × 2 modes + the token audit; the six KNOWN holes stay named, a NEW hole FAILS)
+=================================================================
+$ node --import ./scripts/node-port-register.mjs batteries/contrast.battery.mjs
+   KNOWN-HOLE  team ink  dark Baltimore Ravens: #9E7C0C on #291a24 = 4.21:1 · pre-existing at the c10 bytes, the Owner to fix
+   KNOWN-HOLE  team ink  light Los Angeles Chargers: #0080C6 on #ffffff = 4.28:1 · pre-existing at the c10 bytes, the Owner to fix
+   KNOWN-HOLE  team ink  light Miami Dolphins: #008E97 on #ffffff = 3.95:1 · pre-existing at the c10 bytes, the Owner to fix
+   PASS  C1 the 32 team inks × 2 modes read ≥ 4.5:1 as body text (every failing team NAMED; the three pre-existing holes stay on the record, a NEW hole FAILS) — 32 teams × 2 modes measured · 3 AA hole(s) named, 0 NEW · dark Baltimore Ravens: #9E7C0C on #291a24 = 4.21:1 | light Los Angeles Chargers: #0080C6 on #ffffff = 4.28:1 | light Miami Dolphins: #008E97 on #ffffff = 3.95:1
+   KNOWN-HOLE  1.51:1 (AA 4.5:1) — light gold2 #e6c67d on pale rose #fdf2f6 · the Owner's to fix, named on the record
+   KNOWN-HOLE  1.65:1 (AA 4.5:1) — light gold2 #e6c67d on white panel #ffffff · the Owner's to fix, named on the record
+   KNOWN-HOLE  3.17:1 (AA 4.5:1) — dark rose ink #8e5566 on plum #1e1119 · the Owner's to fix, named on the record
+   measured    5.27:1 PASS — light text #8e5566 on pale rose #fdf2f6
+   measured    14.94:1 PASS — dark zcream #f2e7d5 on plum #1e1119
+   measured    11.30:1 PASS — dark gold2 #e8c87e on plum #1e1119
+   PASS  C2 the shell token audit: every token pair measured; the two c10 holes stay NAMED; a NEW hole FAILS — 6 pairs measured · 3 KNOWN hole(s) on record (light gold2 #e6c67d on pale rose #fdf2f6 1.51:1 | light gold2 #e6c67d on white panel #ffffff 1.65:1 | dark rose ink #8e5566 on plum #1e1119 3.17:1)
+
+== CONTRAST GUARDRAIL · 2 pass · 0 fail · AA 4.5:1 · 3 team hole(s), 0 new token hole(s) ==
+EXIT_CODE=0
+
+=================================================================
+== 4. npm run build (green; dist/assets ships)
+=================================================================
+$ npm run build
+
+> cakepanz-67@0.6.0-shell build
+> vite build
+
+7:19:08 AM [vite-plugin-svelte] no Svelte config found at /home/z/my-project/football-sim/work/67-cakepanz-15-2026-11-21 - using default configuration.
+vite v7.3.7 building client environment for production...
+transforming...
+7:19:09 AM [vite-plugin-svelte] src/lib/components/BoardFooter.svelte:23:2 Unused CSS selector ".cp-sorttoggle"
+https://svelte.dev/e/css_unused_selector
+21:   .cp-seedcode { color: #c8a48f; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+22:   .cp-seedcode b { color: var(--gold2); letter-spacing: 0.04em; }
+23:   .cp-sorttoggle { border: 1px solid var(--hairline); background: transparent; color: var(--sub); border-radius: 999px; padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.82rem; }
+                    ^
+24:   .cp-undo { margin-left: auto; border: 1px solid #3a2c31; background: transparent; color: #c8a48f; border-radius: 999px; padding: 6px 14px; cursor: pointer; font-family: inherit; }
+25:   .cp-undo:hover:not(:disabled) { color: var(--gold2); border-color: var(--gold3); }
+✓ 227 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.65 kB │ gzip:   0.41 kB
+dist/assets/index-BHOhZuA_.css  146.19 kB │ gzip:  90.81 kB
+dist/assets/index-CChAgI0H.js   393.68 kB │ gzip: 134.25 kB
+✓ built in 1.73s
+EXIT_CODE=0
+
+=================================================================
+== 5. npm run distfile (single-file dist/single.html)
+=================================================================
+$ npm run distfile
+
+> cakepanz-67@0.6.0-shell distfile
+> vite build && node scripts/distfile.mjs
+
+7:19:10 AM [vite-plugin-svelte] no Svelte config found at /home/z/my-project/football-sim/work/67-cakepanz-15-2026-11-21 - using default configuration.
+vite v7.3.7 building client environment for production...
+transforming...
+7:19:11 AM [vite-plugin-svelte] src/lib/components/BoardFooter.svelte:23:2 Unused CSS selector ".cp-sorttoggle"
+https://svelte.dev/e/css_unused_selector
+21:   .cp-seedcode { color: #c8a48f; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+22:   .cp-seedcode b { color: var(--gold2); letter-spacing: 0.04em; }
+23:   .cp-sorttoggle { border: 1px solid var(--hairline); background: transparent; color: var(--sub); border-radius: 999px; padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.82rem; }
+                    ^
+24:   .cp-undo { margin-left: auto; border: 1px solid #3a2c31; background: transparent; color: #c8a48f; border-radius: 999px; padding: 6px 14px; cursor: pointer; font-family: inherit; }
+25:   .cp-undo:hover:not(:disabled) { color: var(--gold2); border-color: var(--gold3); }
+✓ 227 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.65 kB │ gzip:   0.41 kB
+dist/assets/index-BHOhZuA_.css  146.19 kB │ gzip:  90.81 kB
+dist/assets/index-CChAgI0H.js   393.68 kB │ gzip: 134.25 kB
+✓ built in 1.69s
+single-file dist written: dist/single.html (527.8 KB) — no external refs: true
+EXIT_CODE=0
+
+=================================================================
+== 6. vite preview serves dist/ (the D3 check — a blank page means the assets are missing)
+=================================================================
+GET / -> HTTP 200
+served js asset: assets/index-CChAgI0H.js
+on-disk js asset: assets/index-CChAgI0H.js
+
+=================================================================
+== 7. npm run battery (the slice battery — expect 29/0/10/3: 26 carried + 3 Slice-3 laws)
+=================================================================
+$ npm run battery
+   PASS  the flex chips read the flex cost (the "-N" form, no "flex tax" wording) — OBSERVED open — 60 pickers probed · 78 flex chips · sample ["-2 flex","-2 flex","-2 flex"]
+   PASS  the slot picker offers the natural slot first — Draft at QB
+   PASS  the pick confirms before it lands — Draft Brock Purdy at QB? Confirm the pick Cancel
+   PASS  the pick lands and the footer counts it
+   PASS  the CPU teams pick on after the user's pick (the clock advances)
+   PASS  undo cuts the log back and the count returns
+   PASS  the measured mode is the DEFAULT ("Model Value" on)
+   PASS  the Owner preset is one click away
+   PASS  the mode switch is DISABLED mid-draft (it was free on Team Select — the lock fires at START)
+   PASS  the mode label travels with the numbers (the subtitle carries it)
+   PASS  zero page errors across the whole battery
+== the laws that live on later slices or shell surfaces (SKIP — loudly) ==
+   SKIP  V0 the median trio (the drafted-pool median, superseded 76, cached once) — the scale explainer lives on the season screen (a later slice); the engine median itself is verified by the engine tests
+   SKIP  V2/V3 the chip law (all off = the full board) — the position chips belong to the shell board chrome — slice 1 renders the full board; the chip bar arrives with the board chrome slice
+   SKIP  V5 the phone laws at 390 (the footer nav, the pan laws) — the footer nav is shell chrome; the slice screens are mobile-flexible but the shell laws name shell elements
+   SKIP  V6 the playoff round cinematics — playoffs are a later slice
+   SKIP  V8a/V8b/V8c/V13/V14/V16 the stage bars, the preseason page, the guide ladder — shell pages outside slice 1 (team select, season, standings, guide arrive in slices 2-3)
+   SKIP  V9/V10/V11/V12 the SIM SEASON ghost, the pregame cards, the linescore frame, the award inks — season-surface laws — later slices
+   SKIP  V15 the fills column and V17 the picker chips in shell form — slice 1 renders the same data as the also-fits chips + the slot picker; the shell FORM is not the law, the DATA is (verified above)
+   SKIP  V7 the display scale centers on the median — the display scale drives the season surfaces; the draft numbers ride the same display.ts strings (verified by the engine tests)
+   SKIP  V4 the command center / cutdown day — the season review screen — a later slice
+   SKIP  V1 the dropdown order + the OG casing — the shell dropdown is a filter on the board chrome; the depth-chart order lives in the engine slots (verified by the engine tests)
+== DEFER to the cutover battery (needs both trees; the Architect runs it) ==
+
+== SLICE 1 BATTERY · 29 pass · 0 fail · 10 skip (loud, with reasons) · 3 deferred to cutover ==
+EXIT_CODE=0
+
+=================================================================
+== 8. the shell battery S1a–S31 + L12 + S32/S33/S34/S35 (one uninterrupted run, exit 0 — 53/0: the A2 split, the boot path MANDATORY when an autosave exists, S31 the manual path, L12 the uniform-board law (cakepanz-9); S15: +S32 law L-ERR both halves (the dispatchAsync contract), +S33 the glass panel law (w89 :625), +S34 the envelope stamp law (the engineVersion the save carries equals the running engineVersion(), §4.4), +S35 the brag-surface law (P-209: no download, the link only from the build-time constant, hidden while unset); 53 = 51 + the stamp law + the brag law; Part-D register)
+=================================================================
+$ node --import ./scripts/node-port-register.mjs batteries/shell.battery.mjs
+   PASS  S25 390px clean on awards (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on review (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on stats (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on book (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on share (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on guide (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on settings (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on saves (no horizontal scroll) — 390/390
+   390px walk table: team 390/390 · cards 390/390 · hub 390/390 · week 390/390 · standings 390/390 · bracket 390/390 · awards 390/390 · review 390/390 · stats 390/390 · book 390/390 · share 390/390 · guide 390/390 · settings 390/390 · saves 390/390
+   PASS  S25b the DRAFT BOARD fits 390px (scrollWidth <= clientWidth — the board-at-390 law) — 390/390
+   PASS  S25c zero page errors across the 390px walk
+   PASS  S29 a saved week comes back through the BOOT REHYDRATION (autosaves exist — the boot path is mandatory; no manual fallback in this law) — the hub resumed from the autosave on boot
+   PASS  S31 the MANUAL restore (RESTORE A SAVED WEEK) brings the hub back when no autosave exists — hub re-mounted from the week save (slot C)
+   PASS  S30 zero page errors across the restore flow (boot + manual)
+   PASS  L12 the uniform board (the Owner's ruling, cakepanz-9 §5): picks 1..12 render ONE anatomy — data-form absent at every pick, zero .cp-simplerow/.cp-fullbtn/.cp-late-note nodes ever, mains === rows at every pick, every pick lands, zero page errors — formAttrs=0 simpleNodes=0 anatomyBreaks=0 walk=12/12 pageErrors=0
+   PASS  S32 L-ERR half 1: a FAILED action (illegal PICK, the rejected fit) shows its message — the shell error text equals state.error, the pick did not land, zero page errors — state="illegal fit" shown="illegal fit" userPicks=0 errs=0
+   PASS  S32 L-ERR half 2: the next SUCCESSFUL action clears the message — the visible error is gone, state.error has reset, zero page errors (S15) — errorEl=false stateErr="" userPicks=1 errs=0
+   PASS  S33 the glass panel law (S15 §2.7): the large panels are 22px-radius glass with the blur+saturate backdrop, and --glass/--glassbd/--shadow exist in BOTH modes (w89 :625 ported; no blue, the golds unchanged) — light: r=22px blur=blur(14px) saturate(1.2) --glass=rgba(255,255,255,.58) · dark: r=22px --glass=rgba(38,28,33,.55) errs=0
+   PASS  S34 the envelope stamp law (S15 §4.4): the draft autosave's engineVersion EQUALS the running engineVersion() — no hardcoded previous-pin stamp; the saves panel never flags a first-party save as foreign — envelope=nfl1.1ac56c28928eff running=nfl1.1ac56c28928eff errs=0
+   PASS  S35 the brag-surface law (S15 §4.8): the share is a copy-paste brag — the draft-stage button copies the composed text to the clipboard with the confirmation toast, the seed-bearing stamp is not in the paste, no DOWNLOAD affordance exists anywhere, and the season (link-carrying) button HIDES while the build-time link is unset — btn="COPY THE DRAFT BRAG" dl=false pasteLen=132 toast="Copied — paste it anywhere." clipMatch=true seasonBtn=null anyHttp=false errs=0
+   PASS  S26 the single-file dist boots from vanilla file:// at Team Select (P-317 picker present) — {"teams":32,"slots":32}
+   PASS  S27 file:// zero console errors
+   PASS  S28 file:// zero blocked requests
+
+== SHELL BATTERY · 53 pass · 0 fail ==
+EXIT_CODE=0
+
+=================================================================
+== 8b. the uniform-board battery (cakepanz-9 + T2 + cakepanz-12 + S13 + S15 — expect 24/0: L16 EVERY row carries ONE visible Draft button (.cp-draftbtn) naming the slot, one click lands one pick (the S15 one-button design, cp-quick retired) + L17 undo/expand/keyboard + L18 the double-click guard, L19 the staged-banner disarm, L20 the value cells announce their values, L21 the keyboard path to the gone% method (cakepanz-12), L22 the staged-Confirm double-click guard (S13); carried: L13 the top-three treatment, L8 the last pick lands on Complete (re-quoted), L14 the Complete roster print, L15 the wall-slip reveal, L10 the new draft after a done draft, L11 the partial Complete screen; S15: L23 the CORRECTED w89 glow (EVERY button pulses, the three opt out to the sheen, reduced-motion kills both), L26 the TOP badge exactly on the three, L27 the sheen exactly on the three, L28 zero cp-quick / zero ring class / the why copy exactly on the three, L30 sort-after-restore (the pickle F4 law), L31 the toast-truth law (the one-click toast rides a LANDED pick — a refused pick shows only the error line, the 0305 finding); Part-D register)
+=================================================================
+$ node --import ./scripts/node-port-register.mjs batteries/board.battery.mjs

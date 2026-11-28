@@ -1,0 +1,19 @@
+
+> cakepanz-67@0.6.0-shell battery:waveb
+> node --import ./scripts/node-port-register.mjs batteries/waveB.node.battery.mjs
+
+== WAVE B environment · node v24.22.3 · 12 laws ==
+   PASS  W1a: seam-card.json exists, carries the SNAPSHOT.md pin + stamp, and the seal count equals the live CHECKSUMS.txt lines (the chip and the gate read THIS file)
+   PASS  W1b: the SeamCard chip imports seam-card.json — the SAME file the claims gate reads (one file, two consumers, zero drift) — and renders UNKNOWN, never a green default, for a missing field
+   PASS  W2a: provenanceFor covers every displayed numeric field, names the SNAPSHOT pin (never a literal), and carries the INTERIM display-rounded note for gone%
+   PASS  W2b: no shell file parses a number out of a display string (the grep is the law — planted `parseInt(el.textContent)` dies here)
+   PASS  W3: the hook registry is well-formed, the batteries import it (no inlined core selectors in the drivers), and every SCENES.board hook appears in the shell source
+   PASS  W4: zero remote references in the shipped bytes (css/index/single — the static half of the offline tent)
+   PASS  W5: the heat strip + confidence are pure functions of the VM numbers (the module exports them; no component recomputes)
+   PASS  W6: the contract golden matches the live seam shape — a renamed/removed/retyped field FAILS NAMING IT
+   PASS  W7: the cinematic pace is ONE clamped value with the three named speeds and a reduced-motion path that keeps information
+   PASS  W8: the tint derives from the engine TEAM_COLORS table (32 rows, both modes inside each) and contrast never degrades
+   PASS  W9: the coach tape module exists, is dev-gated in code, and its strings are ABSENT from the production bundle (the M1/N14 dist-grep class)
+   PASS  W10: the composed brag contains no ?seed=, no b36: code, no envelope (the hard regex law over the FULL composed text)
+
+# WAVE B · 12 pass · 0 fail

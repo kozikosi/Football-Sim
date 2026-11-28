@@ -1,0 +1,16 @@
+{
+  "booted": true,
+  "drafted": true,
+  "reloaded": true,
+  "restored": true,
+  "autosaveKept": true,
+  "labelledDev": true,
+  "devChipRendered": true,
+  "runPath": "file:///home/z/my-project/zai-s17-continuation-2026-11-25/dist/single.html?dev=1",
+  "runPathKind": "file:// dist/single.html?dev=1 — the labelled-DEV boot (the Architect T6 contract; no CSV-import path is claimed or used)",
+  "externalRequests": [],
+  "pageErrors": [],
+  "requestsTotal": 2,
+  "distHash": "a83e09615bee9e5a1bf0428e550af9753b4202d29feb8d9a38d38ad6ff5b2e76",
+  "generated": "2026-11-28T04:50:05Z"
+}
