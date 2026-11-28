@@ -5,35 +5,50 @@ WORKTREE: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2
 MERGE-BASE: `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (`git merge-base HEAD origin/council/base`, re-verified 28 Nov 2026).
 HEAD AT SESSION END: `dfbfa4ec0c7efd6df0689652fafd7c0d5572f3aa` (pushed and ls-remote verified).
 
-## Current state (28 Nov 2026, 41st sitting) - Z.ai pointer repointed to MUSE v4
+## Current state (28 Nov 2026, 42nd sitting) - p5 PARTIAL mirrored and reviewed
 
 PICKLE remains an **adviser**: no product, engine, pin, governance, queue or council-tool file has
 been edited by this seat. Deliverables are `inbox/` filings, a bulletin entry and read-only byte
 mirrors. No build, deploy, publish, push from Z.ai, or acceptance claim was made by this seat.
 
-This sitting read the latest MUSE branch: `d8eca10e5` -> `720c02c4b` (MUSE merged Z.ai continuation
-order v4, self-contained, inlined anchors). MUSE v4 supersedes my 03:04 v2 pointer as the full
-instruction file. I filed `inbox/20261128-0314-pickle-TO-ZAI-SHORT-pointer-v3.md`, which points Z.ai
-at MUSE v4 by exact ref, keeps this relay at Wave 1's thirteen fix items + Gate 1 only, marks Waves
-2-4 as PLAN/IDEA notes, and tells Z.ai to ignore MUSE v4 section 12's question to Porca.
+This sitting mirrored the Owner's desktop folder
+`zai-s17-continuation-p5-2026-11-27` byte-for-byte to the top level of `council/pickle` (857 files,
+64 dirs, 0 symlinks, whole-tree digest `f1d24379…`; mirror commit `c417ec0db`, `diff -rq` clean,
+`shasum -a 256 -c CHECKSUMS.txt` → 416 lines OK). The identity note is
+`_agents/pickle/MIRROR-zai-s17-continuation-p5-2026-11-28.md`. All gates ran in scratch copies, never
+in the mirror.
 
-Scope correction from Architect `0950c08a1` `inbox/20261127-2023-architect-INTEGRATION-FLAGS.md`
-section 2: boot-loader wiring, `?raw` removal and account sync are **after** the fix sitting, so
-MUSE Wave 4 is plan-only in this relay. The offline tent is `?dev=1` labelled DEV or UNKNOWN, never
-the CSV-import path. `/dataset/madden27.csv` is void; the contract is `/dataset/nfl.json` via
-`createBootDatasetLoader`. No push, ever: one zip + SHA256 list + mirror citation if a seat hosts
-it, with an explicit statement that nothing was pushed. Tint scope stays deferred to the Owner;
-measure both scopes and fix only Arizona.
+Review verdict: **improved, not accepted**. Claims gate re-run at the mirrored bytes:
+`31 OK · 6 RED (full)` and `20 OK · 3 RED · 14 skipped (packaging)`; seal `416 OK / 0 FAILED`.
+Four REDs are checker/stale-doc defects with exact repairs (`start-doc-current` expects 2026-11-24
+but §2 says 2026-11-28; the sbs doc-cell regex misses 6 real cells; `acceptance-covers-this-tree`
+reads `receipt-attestation.json` instead of `SHELL-STATUS.md`; generated state blocks drift). Two
+are genuine receipts still owed (6 `met=false` non-vacuity records / fallback captures; missing
+`path-portability.log`). The delivered bulletin overclaims Gate 1 completion; `PARTIAL-2026-11-28.md`
+is the honest state of record and both reports are kept for the Architect to resolve by re-running.
+
+The brainstorm `inbox/20261128-0556-pickle-IDEA-cakepanz-shell-implications.md` transfers p5's
+visible-scene probe, FALLBACK honesty, tint repair and byte latch into eight ranked, engine-safe
+UX ideas. Verified anchor: `colors/` on `origin/architect/engine-and-seats` still has **no `.svelte`
+files**; the view layer is framework-free TS in `colors/src/sports/nfl/view/`.
+
+Scope carried forward unchanged: no push by Z.ai (one zip + SHA256 list is the delivery form),
+offline tent `?dev=1` labelled DEV or UNKNOWN, `/dataset/nfl.json` boot-loader contract, tint scope
+deferred to the Owner with only Arizona repaired, and a fresh independent Verifier owed at final
+sealed bytes.
 
 ## What the next session needs
 
-1. Owner relays only the v3 short pointer from
-   `inbox/20261128-0314-pickle-TO-ZAI-SHORT-pointer-v3.md` (verbatim) to Z.ai. Z.ai should have no
-   knowledge of prior drafts; MUSE v4 is the sole full order.
-2. Z.ai completes Wave 1's thirteen items, reseals LAST, and gets Gate 1 to `0 RED` at final bytes,
-   including the spaced-path run. Wave 2-4 notes are filed, not built in this sitting.
+1. Owner relays the four exact repairs in section 5 of
+   `inbox/20261128-0556-pickle-P5-REVIEW-zai-partial-2026-11-28.md` to Z.ai: fix `start-doc-current`
+   and the sbs doc-cell regex and the `acceptance-covers-this-tree` file pointer **before** the final
+   chain; re-drive the side-by-side capture to 0 FALLBACK; run the spaced-path gate; reseal LAST.
+2. Gate 1 must print `0 RED` at the final sealed bytes and `verify-package` must be green at the new
+   seal. The transport zip + sidecar named in the PARTIAL report were not present in the mirror and
+   remain RELAYED, not VERIFIED, until a seat hashes them.
 3. A fresh independent Verifier who authored none of this round must verify the final sealed bytes.
-   No author or pre-fix reviewer certifies them. Wave A receipts cannot certify Wave B bytes.
+   No author or pre-fix reviewer certifies them. This seat is a pre-reviewer and will not certify.
+   Wave A receipts cannot certify Wave B bytes.
 
 ## Open questions (not mine to decide)
 
@@ -45,6 +60,11 @@ measure both scopes and fix only Arizona.
 
 ## Live files
 
+- 42nd sitting: top-level `zai-s17-continuation-p5-2026-11-27/` (857 files, read-only mirror at
+  `council/pickle@c417ec0db`); `_agents/pickle/MIRROR-zai-s17-continuation-p5-2026-11-28.md`;
+  `inbox/20261128-0556-pickle-P5-REVIEW-zai-partial-2026-11-28.md`;
+  `inbox/20261128-0556-pickle-IDEA-cakepanz-shell-implications.md`;
+  `bulletin/20261128-0556-pickle.md`.
 - 41st sitting: `inbox/20261128-0314-pickle-TO-ZAI-SHORT-pointer-v3.md`;
   `bulletin/20261128-0316-pickle.md`. MUSE v4 relaying pointer.
 - 40th sitting: `inbox/20261128-0304-pickle-TO-ZAI-FULL-INSTRUCTIONS-v2.md`;
@@ -76,6 +96,8 @@ measure both scopes and fix only Arizona.
 
 ## History (compressed)
 
+- Session 42: mirrored and reviewed the 28 Nov PARTIAL; verdict improved, not accepted; filed exact
+  checker/doc repairs and eight shell UX implications.
 - Session 41: read MUSE v4 (`720c02c4b`); repointed Z.ai to it with Wave 1 + Gate 1 scope caveat.
 - Session 40: re-fetched all seats and Claude (`0950c08a1`); reviewed every seat draft; adopted
   Claude's offline/dataset corrections; filed two v2 files.
