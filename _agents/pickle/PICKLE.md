@@ -128,6 +128,7 @@ Prior reference items still stand:
   Owner provisions the free Cloudflare account + GitHub OAuth App and hands over secrets; no secret in repo/bundle/chat.
 
 ## Live files
+- 41st sitting: `inbox/20261128-0314-pickle-TO-ZAI-SHORT-pointer-v3.md`; `bulletin/20261128-0316-pickle.md`. Repointed Z.ai to MUSE merged v4 (`720c02c4b`) as the sole full order; kept relay at Wave 1 + Gate 1, Waves 2-4 plan-only per Architect INTEGRATION-FLAGS section 2.
 - 40th sitting: `inbox/20261128-0304-pickle-TO-ZAI-FULL-INSTRUCTIONS-v2.md` and
   `inbox/20261128-0304-pickle-TO-ZAI-SHORT-pointer-v2.md`; `bulletin/20261128-0304-pickle.md`. Full
   seat-draft review + Claude `0950c08a1`; corrected offline tent to `?dev=1`/UNKNOWN per Claude's
@@ -168,6 +169,7 @@ Prior reference items still stand:
   `origin/architect/engine-and-seats`.
 
 ## History (compressed — full detail in the filed inbox files)
+- Session 41: read MUSE v4 merge (`720c02c4b`); adopted it as the full self-contained instruction file in place of my v2, with an explicit scope caveat (Wave 1 + Gate 1 only; boot loader/sync deferred; Porca question ignored). DRAFT, no build/verification.
 - Session 40: re-fetched all seats and Claude (`0950c08a1`: T3/T4/T5 sync); reviewed every seat draft,
   adopted Claude's INTEGRATION-FLAGS (no CSV-import tent; use `?dev=1` or UNKNOWN, `/dataset/nfl.json`
   boot loader), rewrote two v2 files for a Z.ai reader with no prior context; DRAFT, no build/verification.

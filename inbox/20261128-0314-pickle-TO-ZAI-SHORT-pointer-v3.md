@@ -1,0 +1,18 @@
+SPEAKER: pickle | ROLE: order drafter | TASK: relocate the pointer to MUSE merged v4 after reading the latest Muse | DATE: 2026-11-28T03:14Z
+FOR: Owner - paste verbatim to Z.ai:
+---
+Z.ai - fresh sitting. Do not rely on any earlier prompt, memory, or claimed agreement; this message plus the one file it names is the whole handoff.
+
+Read this one file, in full, first and treat it as the complete self-contained order:
+`origin/council/muse:_agents/muse/deliveries/zai-continuation-merged-v4-2026-11-27.md` (MUSE merged v4, commit `720c02c4b`). Fetch with `git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=60 fetch origin council/muse`, then `git show origin/council/muse:_agents/muse/deliveries/zai-continuation-merged-v4-2026-11-27.md`. It inlines every code anchor; the sources it cites are provenance only, not extra instructions. Where it disagrees with anything you remember, it wins. It supersedes my 03:04 v2 pointer and every earlier draft.
+
+Scope of this relay: **Wave 1's thirteen fix items + Gate 1 only.** Do not start Waves 2-4 in this sitting; file them as PLAN/IDEA notes with the defaults in MUSE v4. In particular, Architect `origin/architect/engine-and-seats:inbox/20261127-2023-architect-INTEGRATION-FLAGS.md` section 2 puts boot-loader wiring, `?raw` removal and account sync **after the fix sitting**, so MUSE Wave 4 is plan-only here. MUSE v4 section 12's question is addressed to Porca, not you - ignore it.
+
+Corrections that still bind (MUSE v4 already states most of them): no push, ever - delivery is one zip + SHA256 list + mirror citation if a seat hosts it, with an explicit statement that nothing was pushed. `/dataset/madden27.csv` is void; the contract is `/dataset/nfl.json` via `createBootDatasetLoader`. The offline tent runs on `?dev=1` labelled DEV or is reported UNKNOWN - never the CSV-import path. Tint scope is deferred: measure both chip/border-only and gold-to-paper ink across all 32 teams in light mode, fix only the Arizona regression, do not pick a scope. Verify, do not assume, the page title and `ENGINE_PIN` stamp. Engine pin `408410477`; no engine/pin/protected/governance/Vite edits, no invented data, no hand-typed receipts, no hand-edited GENERATED blocks, no weakened laws.
+
+Complete all thirteen Wave 1 items: manifest authority; dist identity + acceptance-covers-this-tree; close-out chain order; node/board pins; Wave B battery 12/12; sidecar skip; spaced-path portability; visible-scene non-vacuity; tint measurement + Arizona fix only; SeamCard `$derived` plus byte-latched card; named missing receipts; offline tent on `?dev=1` or UNKNOWN plus `statusVM.ts` restored-empty precedence; and the delivery-note correction. Innovate if you find a better shape and say why - never weaken a law.
+
+Reseal LAST. Before answering, Gate 1 must read `0 RED` at final bytes: `verify-package` exit 0, `gate-manifest` PASS, `gate-numerals` CLEAN x2, full + packaging claims 0 RED, engine 430/430, node 37/37, board 24/0, Wave B 12/12, offline JSON receipt on `?dev=1` with zero external requests (or UNKNOWN naming the missing tool), visual 18/0, slot 28/0, engine-fence `diff -rq` empty, and the same gate from a path containing a space. Do not convert a skipped leg to a PASS.
+
+You do not push, deploy, publish, accept cutover, or make an Owner decision. Answer once with: the zip and its SHA256 list, mirror citation and explicit "nothing pushed", final Gate 1 output, a one-line disposition for all thirteen items, the filed Wave 2-5 IDEA/PLAN notes, and a request for a fresh independent Verifier who authored none of this round. No false COMPLETE - if the sitting ends early, write `PARTIAL` with the exact next command.
+---
