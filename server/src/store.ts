@@ -20,10 +20,14 @@ export interface RunRow {
 }
 export interface ShareRow { id: string; sport: string; kind: string; created_at: string; expires_at: string | null; revoked_at: string | null; snapshot: string }
 
-const metaOf = (r: SaveRow): SaveMeta => ({ slot: r.slot, sport: r.sport, saveId: r.save_id, saveRevision: r.save_revision, serverRev: r.server_rev, kind: r.kind, savedAt: r.saved_at, deleted: r.deleted_at !== null });
+// A save's label columns: everything but its text. The text can be 256 KB, and reading it back costs processor time, so only a download does.
+type MetaRow = Pick<SaveRow, 'slot' | 'sport' | 'save_id' | 'save_revision' | 'server_rev' | 'kind' | 'saved_at' | 'deleted_at'>;
+const META = 'slot, sport, save_id, save_revision, server_rev, kind, saved_at, deleted_at';
+
+const metaOf = (r: MetaRow): SaveMeta => ({ slot: r.slot, sport: r.sport, saveId: r.save_id, saveRevision: r.save_revision, serverRev: r.server_rev, kind: r.kind, savedAt: r.saved_at, deleted: r.deleted_at !== null });
 
 export function scopedDb(db: D1Like, userId: string) {
-  const one = (sport: string, slot: string) => db.prepare('SELECT * FROM saves WHERE user_id = ? AND sport = ? AND slot = ?').bind(userId, sport, slot).first<SaveRow>();
+  const one = (sport: string, slot: string) => db.prepare(`SELECT ${META} FROM saves WHERE user_id = ? AND sport = ? AND slot = ?`).bind(userId, sport, slot).first<MetaRow>();
 
   // Copies the live row into save_history (only while it is still at `rev`) and keeps the newest KEEP_HISTORY.
   const keepRungBack = (sport: string, slot: string, rev: number, reason: string, now: string) => [
@@ -65,12 +69,11 @@ export function scopedDb(db: D1Like, userId: string) {
 
   return {
     async listSaves(): Promise<SaveMeta[]> {
-      const r = await db.prepare('SELECT * FROM saves WHERE user_id = ? ORDER BY sport, slot').bind(userId).all<SaveRow>();
+      const r = await db.prepare(`SELECT ${META} FROM saves WHERE user_id = ? ORDER BY sport, slot`).bind(userId).all<MetaRow>();
       return r.results.map(metaOf);
     },
-    async getSave(sport: string, slot: string): Promise<SaveRow | null> {
-      const r = await one(sport, slot);
-      return r && r.deleted_at === null ? r : null;
+    async getSave(sport: string, slot: string): Promise<Pick<SaveRow, 'server_rev' | 'envelope'> | null> {
+      return db.prepare('SELECT server_rev, envelope FROM saves WHERE user_id = ? AND sport = ? AND slot = ? AND deleted_at IS NULL').bind(userId, sport, slot).first<Pick<SaveRow, 'server_rev' | 'envelope'>>();
     },
     putSave: commit,
     async deleteSave(sport: string, slot: string, base: number, now: string): Promise<WriteResult> {

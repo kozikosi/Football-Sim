@@ -40,3 +40,15 @@ export const AUTH_ALLOW: readonly [string, RegExp][] = [
 export const authPathAllowed = (method: string, path: string): boolean => AUTH_ALLOW.some(([m, re]) => m === method && re.test(path));
 
 export const makeAuth = (env: AuthEnv) => betterAuth(authOptions(env));
+
+// Building the library costs several milliseconds and the free plan allows 10 per request, so one instance is kept per environment.
+// It is kept only after its own setup has finished: a request must never wait on a promise another request started (workerd refuses that).
+const built = new WeakMap<AuthEnv, ReturnType<typeof makeAuth>>();
+export async function authFor(env: AuthEnv): Promise<ReturnType<typeof makeAuth>> {
+  const hit = built.get(env);
+  if (hit) return hit;
+  const auth = makeAuth(env);
+  await auth.$context;
+  built.set(env, auth);
+  return auth;
+}

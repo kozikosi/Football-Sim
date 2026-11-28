@@ -16,6 +16,9 @@ const MUTANTS: M[] = [
   { name: 'another account\'s cookie accepted', file: 'src/api.ts', from: 'if (expected !== null && expected !== userId)', to: 'if (false)' },
   { name: 'rate limit ignored', file: 'src/api.ts', from: 'if (env.SYNC_RATE && !(', to: 'if (false && !(' },
   { name: 'delete keeps no rung-back', file: 'src/store.ts', from: "...keepRungBack(sport, slot, cur.server_rev, 'deleted', now),", to: '' },
+  { name: 'labels are read with the save text', file: 'src/store.ts', from: "const META = 'slot, ", to: "const META = 'envelope, slot, " },
+  { name: 'sign-in library rebuilt every request', file: 'src/auth.ts', from: 'if (hit) return hit;', to: '' },
+  { name: 'download ignores a deleted save', file: 'src/store.ts', from: "slot = ? AND deleted_at IS NULL').bind", to: "slot = ?').bind" },
   { name: 'purge deletes unexpired shares', file: 'src/store.ts', from: '(expires_at IS NOT NULL AND expires_at < ?)', to: '(expires_at IS NOT NULL)' },
 ];
 
